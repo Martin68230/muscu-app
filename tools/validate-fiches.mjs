@@ -389,10 +389,24 @@ export function loadTags(path) {
   return { ids: new Set(j.tags.map((t) => t.id)), remplaces: j.remplaces ?? {} };
 }
 
+/** Liste récursive des fiches sous dir (exclut ecartees/, README, CONTROLE/RECONTROLE, fichiers non-fiches). Noms relatifs à dir. */
+export function listFiches(dir) {
+  const out = [];
+  const walk = (d, rel) => {
+    for (const e of readdirSync(d, { withFileTypes: true })) {
+      if (e.isDirectory()) { if (e.name !== 'ecartees' && !e.name.startsWith('.')) walk(join(d, e.name), rel ? rel + '/' + e.name : e.name); continue; }
+      if (!e.name.endsWith('.md') || e.name === 'README.md' || e.name === 'CAMPAGNE.md' || /CONTROLE/i.test(e.name)) continue;
+      out.push(rel ? rel + '/' + e.name : e.name);
+    }
+  };
+  walk(dir, '');
+  return out.sort();
+}
+
 function main() {
   const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
-  const dir = resolve(process.argv[2] ?? join(root, 'knowledge', 'exercices', 'pilote'));
-  const names = readdirSync(dir).filter((f) => f.endsWith('.md') && f !== 'README.md' && !/CONTROLE/i.test(f)).sort();
+  const dir = resolve(process.argv[2] ?? join(root, 'knowledge', 'exercices'));
+  const names = listFiches(dir);
   const files = names.map((n) => ({ name: n, text: readFileSync(join(dir, n), 'utf8') }));
   const tags = loadTags(join(root, 'knowledge', 'materiel-tags.json'));
   const { issues, errors, warnings } = validateLot(files, { tags, photosDir: join(root, 'public', 'photos', 'free-exercise-db') });
