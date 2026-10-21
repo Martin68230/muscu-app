@@ -46,22 +46,57 @@ Pieds surélevés : même geste, tête et dos restent alignés, ne laisse pas le
 - Demi-répétitions.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : pompe-diamant, pompe-ecartee, pompe-archer
 **pompe-mur** (1) -> pompe-chaise (2) -> pompe-genoux (3) -> pompe-sol (4) -> pompe-pieds-sureleves (5) -> pompe-diamant, pompe-ecartee, pompe-archer (autres muscles ou plus dur) ; pompe-sol -> pompe avec descente lente (non rédigée). Passer à l'échelon suivant : load-calibration.md règle 5 (NON SOURCÉ).
 
 ## Repères de dosage
 Voir program-logic.md. Progression par échelle de variantes : load-calibration.md règle 5 (NON SOURCÉ).
 
 ## Sécurité et contre-indications
-**À refaire par `kine`** (fiche fusionnée le 21/10/2026, nouveau format de knowledge/format-fiches.md). Les tableaux d'origine sont dans ecartees/pompe-ancienne.md, ecartees/pompe-inclinee.md et ecartees/pompe-genoux.md (ids anciens ; correspondance : pompe-inclinee-mur = pompe-mur ; pompe-inclinee-chaise et pompe-inclinee = pompe-chaise ; pompe-inclinee-marche = supprimée, voir pompe-chaise ; pompe-genoux = pompe-genoux ; pompe-sol = ex-pompe). Le dernier échelon (pompe-pieds-sureleves) n'a encore aucune ligne de sécurité : tête plus basse que les pieds, charge sur les épaules et les poignets plus forte.
-Rappel de règles communes : knowledge/regles-securite-communes.md (R1 à R10, G, S, U).
+Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Statut : NON SOURCÉ (extrapolation de `kine` des règles communes ; aucune étude ne teste ces adaptations exercice par exercice).
 
-Objets du quotidien (reprise des anciennes fiches, à valider par `kine`) : chaise à 4 pieds, sans roulettes, non pliante, en bon état, dossier calé contre un mur, sol non glissant ; avant la première série, appuie-toi dessus comme pendant l'exercice : si elle bouge, glisse ou grince, n'utilise pas cette chaise.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+
+| Zone | Niveau 1 | Niveau 2 | Niveau 3 |
+|---|---|---|---|
+| Épaule | garder | adapter: variante:pompe-chaise | retirer |
+| Coude | garder | adapter: variante:pompe-chaise | retirer |
+| Poignet | adapter: variante:pompe-chaise | adapter: variante:pompe-chaise | retirer |
+| Dos | garder | adapter: variante:pompe-chaise | retirer |
+| Genou | adapter: appui:coussin | adapter: variante:pompe-chaise | retirer: sans-zone:pompe-chaise |
+
+**Notes**
+- epaule-n1 : la variante pieds surélevés (échelon 5) charge davantage l'épaule : à ne pas ajouter tant que la gêne dure.
+- poignet-n1 : mains plus hautes, moins de poids sur les mains ; mains un peu tournées vers l'extérieur si utile.
+- genou-n1 : coussin plié sous les genoux (variante sur les genoux) ; au niveau 2, aucun appui sur les genoux.
+- genou-n3 : la pompe sur la chaise ne charge pas les genoux.
+- grossesse : mains hautes (chaise ou mur), respiration continue, jamais jusqu'à l'échec ; pieds surélevés non proposés. Post-partum : G7.
+- general : les 5 échelons du plus doux au plus dur sont pompe-mur, pompe-chaise, pompe-genoux, pompe-sol, pompe-pieds-sureleves. Version plus douce : descendre d'un échelon, jusqu'au mur.
+
+**Grossesse** : adapter: variante:pompe-chaise
+**Version plus douce** : pompe-mur
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude, au poignet ou au bas du dos.
+- Bassin qui s'effondre ou bas du dos qui se creuse.
+- Support qui glisse ou bouge.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Chaise à 4 pieds, sans roulettes, non pliante, en bon état ; dossier calé contre un mur ; sol non glissant (pas de tapis qui glisse, pas de carrelage mouillé).
+- Avant la première série, appuie-toi dessus comme pendant l'exercice : si elle bouge, glisse ou grince, n'utilise pas cette chaise.
+- Mains sur le bord de l'assise, du côté opposé au mur, pour que la poussée plaque la chaise contre le mur.
+- Mur : semelles qui accrochent, sol non glissant.
 
 ## Photo
-- `public/photos/free-exercise-db/Incline_Push-Up-0.webp` et `Incline_Push-Up-1.webp` (recadrées par `dev`, logo retiré) : affichable : **oui, pour l'échelon `pompe-chaise` seulement** (décision de `coach` le 21/10/2026 : mains sur une box en bois à peu près à hauteur d'assise, proche de la chaise ; mention « montré sur une box »). Non affichable pour les autres échelons (mur, genoux, sol, pieds surélevés). Réserve : les fichiers n'existaient pas encore dans le dépôt au moment de la rédaction ; `relecteur` doit constater que le recadrage retire bien la bannière et le logo avant l'affichage.
-- `Pushups/0.jpg`, `Pushups/1.jpg` (free-exercise-db) : affichable : à vérifier (images non regardées) ; pour l'échelon `pompe-sol`.
-- `Push-Ups_With_Feet_Elevated/0.jpg`, `1.jpg` : affichable : à vérifier (non regardées) ; pour l'échelon `pompe-pieds-sureleves` (source : pieds sur un banc).
-Échelons mur et genoux : aucune photo libre (la photo du brouillon pour les genoux vient de maxwu : interdite).
+- `Incline_Push-Up/0.jpg` : affichable : oui (échelon `pompe-chaise` seulement, mention « montré sur une box » : décision de `coach` le 21/10/2026, mains sur une box en bois à peu près à hauteur d'assise ; fichier public/photos/free-exercise-db/Incline_Push-Up-0.webp recadré par `dev`, logo retiré ; `relecteur` doit constater que le recadrage retire bien la bannière et le logo)
+- `Incline_Push-Up/1.jpg` : affichable : oui (même réserve et même échelon que 0.jpg ; fichier Incline_Push-Up-1.webp)
+- `Pushups/0.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-sol`)
+- `Pushups/1.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-sol`)
+- `Push-Ups_With_Feet_Elevated/0.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-pieds-sureleves`, source : pieds sur un banc)
+- `Push-Ups_With_Feet_Elevated/1.jpg` : affichable : à vérifier (image non regardée ; même échelon)
+Échelons mur et genoux : aucune photo libre (la photo du brouillon pour les genoux vient de maxwu : interdite). Chaque photo ne s'affiche que pour l'échelon indiqué.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -74,7 +109,7 @@ Objets du quotidien (reprise des anciennes fiches, à valider par `kine`) : chai
 | Échelon genoux (existence du mouvement) | brouillon M1497 (wger « knee push-ups ») et M1504 ; ACE liste une « Bent Knee Push-up » de niveau débutant (page d'index seulement, détail non lu) https://www.acefitness.org/resources/everyone/exercise-library/ | organisme de certification ; sources non lues | 2026-10-21 | NON SOURCÉ (le brouillon wger prouve seulement que le mouvement existe) |
 | Échelon mur (existence du mouvement) | brouillon M1804 (wger « Wall Pushup ») : page wger non lue | - | 2026-10-21 | NON SOURCÉ |
 | Coudes à environ 45° ; ordre des échelons (mur < chaise < genoux < sol < pieds surélevés) ; passage d'un échelon à l'autre | pratique courante ; raisonnement de coach, aucune source ; ordre chaise/genoux décidé par l'utilisateur le 21/10/2026 | - | - | NON SOURCÉ |
-| Variante « mains sur haltères » RETIRÉE (21/10/2026) : elle exige des haltères hexagonaux, attribut que le tag `halteres` ne porte pas | point 49 de `relecteur` ; à ré-introduire seulement si le profil porte l'attribut | - | - | retirée |
-| Variante « mains sur la première marche » non reprise dans la fusion | décision de coach (21/10/2026) : la chaise couvre le besoin | - | - | sans objet |
+| Variante « mains sur haltères » RETIRÉE (21/10/2026) : elle exige des haltères hexagonaux, attribut que le tag `halteres` ne porte pas | point 49 de `relecteur` ; à ré-introduire seulement si le profil porte l'attribut | - | - | NON SOURCÉ (variante retirée) |
+| Variante « mains sur la première marche » non reprise dans la fusion | décision de coach (21/10/2026) : la chaise couvre le besoin | - | - | NON SOURCÉ (sans objet) |
 | Avertissement de stabilité de la chaise | règle de conception (exercise-catalog.md §5, cite la chaise) et R8 de knowledge/regles-securite-communes.md ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
-| Sécurité (zones, grossesse, signes d'arrêt) | à refaire par kine (voir la section) | - | - | à compléter |
+| Sécurité (zones, grossesse, signes d'arrêt) | à refaire par kine (voir la section) | - | - | NON SOURCÉ (à compléter par kine) |

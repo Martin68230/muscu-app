@@ -42,6 +42,8 @@ Tags (décision de l'utilisateur, 21/10/2026) : `marche_escalier` = marche d'un 
 - Marche instable ou glissante.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : montee-sur-marche-halteres, montee-sur-box-haute
 **montee-sur-marche-poids-du-corps** (marche basse, échelon 1) -> montee-sur-marche-halteres (haltères légers, échelon 2 ; on ne charge qu'après avoir maîtrisé l'échelon 1) -> montee-sur-box-haute (box stable plus haute, tag `box_ou_step`, échelon 3, sans charge) ; jamais d'haltères sur une box haute
 
 ## Repères de dosage
@@ -50,20 +52,27 @@ Voir program-logic.md. La hauteur de marche change la difficulté (valeurs non s
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter : variante:montee-sur-marche-poids-du-corps (sans-charge), appui:main sur la rampe | retirer |
-| Hanche | garder | adapter : sans-charge | retirer |
-| Cheville | adapter : appui:main sur la rampe | adapter : sans-charge, appui:main sur la rampe | retirer |
-| Dos | adapter : sans-charge | adapter : sans-charge, appui:main sur la rampe | retirer |
+| Genou | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
+| Hanche | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
+| Cheville | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
+| Dos | adapter: sans-charge | adapter: sans-charge | retirer |
 
-**Variantes de l'échelon 2** : `montee-sur-box-haute` est retirée dès le niveau 1 d'une gêne au genou, à la hanche ou à la cheville (remplaçant : `montee-sur-marche-poids-du-corps`). `montee-sur-marche-halteres` : voir « sans-charge » ci-dessus.
+**Notes**
+- genou-n1 : version sans haltères, main sur la rampe ; la box haute n'est pas proposée dès la gêne légère au genou, à la hanche ou à la cheville.
+- genou-n2 : aucune augmentation de charge ni de difficulté (R2).
+- general : haltères autorisés seulement sur la première ou la deuxième marche (décision de l'utilisateur), légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; avec haltères les mains ne sont pas libres pour la rampe : un seul haltère et l'autre main sur la rampe, ou sans haltères. Box haute : jamais avec haltères, jamais dans un escalier.
+- grossesse : version sans haltères, main sur la rampe ; la box haute est retirée. Post-partum : G7.
 
-**Version plus douce** : `montee-sur-marche-poids-du-corps` sur une marche basse, main sur la rampe.
+**Grossesse** : adapter: variante:montee-sur-marche-poids-du-corps
+**Version plus douce** : montee-sur-marche-poids-du-corps
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:montee-sur-marche-poids-du-corps, sans-charge, main sur la rampe ; montee-sur-box-haute : retirer. Post-partum : G7.
+**Variantes** : `montee-sur-box-haute` est remplacée par `montee-sur-marche-poids-du-corps` dès la gêne légère au genou, à la hanche ou à la cheville.
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche ou à la cheville.
@@ -74,7 +83,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 **Objets du quotidien**
 - Marche d'escalier : seulement la première marche du bas, escalier éclairé et dégagé, main sur la rampe si possible. Box ou banc : stable, qui ne glisse pas.
 - Jamais une marche plus haute dans un escalier (risque de chute en arrière) : pour monter plus haut, utilise une box stable.
-- Version haltères : tes mains ne sont plus libres pour la rampe, donc seulement sur une box basse et stable (pas sur une marche d'escalier), et si la version sans charge est parfaitement stable. Box haute : jamais dans un escalier, jamais avec haltères.
+- Version haltères : seulement sur la première ou la deuxième marche, haltères légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; tes mains ne sont plus libres pour la rampe : prends un seul haltère et garde l'autre main sur la rampe, ou reviens sans haltères. Box haute : jamais dans un escalier, jamais avec haltères.
 
 ## Photo
 - `Dumbbell_Step_Ups/0.jpg` : affichable : à vérifier (non regardée ; haltères, box).

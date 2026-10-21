@@ -1,6 +1,6 @@
 # Règles de sécurité communes (valables pour toute l'app)
 
-Rédigé par `kine` le 21/10/2026. Statut du fichier : **à contrôler par `relecteur`** (lancé à neuf). Reprend R1 à R10 du README du lot pilote, corrigées selon `CONTROLE-relecteur.md` (n° 1 à 11), et ajoute D (dépistage), G (grossesse et post-partum), S (signes d'alerte), U (urgences).
+Rédigé par `kine` le 21/10/2026. Statut du fichier : **à contrôler par `relecteur`** (lancé à neuf). Reprend R1 à R10 du README du lot pilote, corrigées selon `CONTROLE-relecteur.md` (n° 1 à 11), et ajoute D (décision : pas de dépistage), G (grossesse et post-partum), S (signes d'alerte), U (urgences).
 
 Principes : l'app ne pose **jamais de diagnostic**, ne nomme aucune pathologie, ne prescrit pas. Elle connaît une zone (cou, épaule, coude, poignet, dos, hanche, genou, cheville) et un niveau. L'avertissement « pas un avis médical » reste affiché. Un message « consulte » n'est pas un diagnostic : il dit seulement qu'un professionnel doit voir la personne.
 
@@ -28,36 +28,8 @@ Zone non listée dans une fiche = garder, **sauf** si l'exercice charge la zone 
 | R9 | **Charge au-dessus du visage** (développé au sol, pull-over, dead bug à l'haltère) : haltère fixe de préférence ; haltère réglable seulement si les disques sont serrés, vérifiés avant chaque série ; ne jamais lâcher l'haltère au-dessus de soi. | adultes | La mise en garde « disques desserrés » figure dans la fiche free-exercise-db Bent-Arm_Dumbbell_Pullover (exercises.json), non rouverte ici | « disques serrés » : **PROVISOIRE** (relecteur n° 11) ; reste : **NON SOURCÉ** |
 | R10 | **Pas de douleur pour progresser** : l'app ne demande jamais de « travailler dans la douleur ». | adultes | Smith 2017 (ci-dessus). Contexte non retenu : en rééducation **supervisée** certains protocoles tolèrent une douleur modérée (Silbernagel, Am J Sports Med 2007;35(6):897-906, tendinopathie d'Achille, essai randomisé 38 patients, synthèses seulement) ; l'app n'est pas supervisée | **PROVISOIRE** |
 
-## 2. D : dépistage avant de commencer
-
-### 2.1 Conclusion sur le PAR-Q+ (conditions lues sur le site officiel)
-- **Version actuelle** : PAR-Q+ 2025 (anglais, version officielle). **Version française officielle** : « Q-AAP+ », version de janvier 2024, listée en « FRENCH (North America Official Version) ». Source : https://eparmedx.com/?page_id=79 (lu). Page des traductions : https://eparmedx.com/print-versions-of-par-q/languages/ (lu ; aucun lien PDF français direct sur cette page, il faut passer par https://eparmedx.com/print-versions-of-par-q/). Le PDF anglais 2025 (https://eparmedx.com/wp-content/uploads/2025/01/PARQPlus2025Fillable.pdf) a été lu en entier pour la page 1 et le début de la page 2 ; le Q-AAP+ français n'a pas été ouvert.
-- **Conditions de reproduction** (https://eparmedx.com/?page_id=79 et https://eparmedx.com/?page_id=746, lues) : usage gratuit pour participants, professionnels de l'exercice, cliniciens, chercheurs non commerciaux et organismes à but non lucratif, avec mention des auteurs ; le questionnaire « must remain unaltered » et ne peut être « incorporated into electronic surveys, research tools, or any derivative materials » sans accord écrit du PAR-Q+ Collaboration ; « may not under any circumstances be changed in any way » ; ne peut être vendu ni intégré à un produit vendu sans accord écrit ; copyright PAR-Q+ Collaboration 2007-2026, tous droits réservés. Les traductions exigent une permission écrite préalable. Les liens vers le site doivent pointer directement vers eparmedx.com, examen au cas par cas pour les organisations.
-- **Décision** : **intégration dans l'app interdite sans accord écrit** (ni telle quelle, ni adaptée, ni recopiée dans un formulaire électronique ; l'app est un outil électronique et un dépôt public). **Autorisé sans accord** : un **lien** vers la page officielle (la personne remplit et garde le PAR-Q+ elle-même, hors de l'app). **Option** : écrire via https://eparmedx.com/contact-us/ pour demander l'accord d'intégrer ; en attendant, ne pas copier le texte des questions dans le dépôt, ni dans l'app, ni dans un prompt IA. Les questions propres à l'app (§2.2) sont formulées autrement et sourcées sur l'ACSM, pas sur le PAR-Q+.
-- Statut : conditions **OK** (lues sur la source officielle). Réserve : la page « Terms » ne traite pas directement l'intégration dans une app gratuite ; la réponse « interdit sans accord » s'appuie sur « unaltered / not incorporated into electronic surveys ». Un accord écrit lèverait le doute.
-
-### 2.2 Questions propres à l'app (écran « avant de commencer », une fois, puis tous les 12 mois et à chaque changement de santé déclaré)
-Source : modèle de pré-participation ACSM, Riebe et al. 2015 (URL en R5) : trois éléments, **niveau d'activité actuel**, **maladie cardiovasculaire, métabolique ou rénale connue**, **signes ou symptômes**, puis intensité souhaitée. Preuve : recommandation d'experts ; adultes ; validation externe signalée comme à compléter ; texte complet non lu (résumés et synthèses : digitalcommons.uri.edu/kinesiology_facpubs/179, acsm.org blog 2018). Statut des questions : **PROVISOIRE**. L'idée de revalider à 12 mois est inspirée de la durée de validité indiquée par le PAR-Q+ (lu dans le PDF) : **PROVISOIRE**.
-
-Formulations de l'app (à relire par `relecteur`, volontairement différentes du PAR-Q+) :
-1. « Un médecin t'a-t-il déjà parlé d'une maladie du cœur ou des vaisseaux, d'une maladie du rein, ou d'un diabète ? » (oui/non)
-2. « Ces derniers temps, ressens-tu à l'effort ou au repos : une douleur ou un serrement dans la poitrine, le cou, la mâchoire ou le bras ; un essoufflement inhabituel ; des vertiges ou un malaise ; des palpitations ; des chevilles gonflées ; une douleur de mollet en marchant ? » (cases à cocher)
-3. « Un médecin t'a-t-il dit de ne faire du sport que sous surveillance médicale ? »
-4. « Fais-tu déjà de l'activité physique modérée, au moins 30 minutes, 3 jours par semaine, depuis au moins 3 mois ? » (la définition « régulier » est celle de l'ACSM, PROVISOIRE)
-5. « Es-tu enceinte, ou as-tu accouché dans l'année ? » (oui -> règle G)
-6. Lien : « Tu préfères un questionnaire officiel ? Ouvre le Q-AAP+ (PAR-Q+) : https://eparmedx.com » (lien seul).
-
-### 2.3 Ce que l'app fait selon les réponses (sans diagnostic)
-| Situation | Action de l'app | Statut |
-|---|---|---|
-| Q2 : au moins un symptôme coché, ou Q3 = oui | **Avis médical conseillé avant de commencer.** Aucun programme n'est généré tant que la case « j'ai eu l'avis d'un médecin » n'est pas cochée (date enregistrée). Message court, pas de nom de maladie. Si symptôme de poitrine : aussi U1. | PROVISOIRE (Riebe 2015) ; le blocage du générateur est un choix de conception, à valider par l'utilisateur |
-| Q1 = oui, Q2 vide, Q4 = non (inactif) | Avis médical conseillé avant de commencer, même traitement que la ligne précédente. | PROVISOIRE (Riebe 2015) |
-| Q1 = oui, Q2 vide, Q4 = oui (actif) | Continuer à intensité légère à modérée ; avis médical conseillé avant d'augmenter l'intensité (pas d'efforts proches de l'échec, pas de séries très intenses). | PROVISOIRE (Riebe 2015, lu via résumés) |
-| Q1, Q2, Q3 = non, Q4 = non (inactif) | Continuer ; démarrage prudent (étalonnage avec marge, pas d'échec, montée progressive). | PROVISOIRE |
-| Q1, Q2, Q3 = non, Q4 = oui | Continuer sans restriction liée au dépistage. | PROVISOIRE |
-| Q5 = oui | Règle G. | voir §3 |
-| Changement de santé déclaré, ou 12 mois écoulés | Refaire le questionnaire. | PROVISOIRE |
-Exclusions de l'app (CLAUDE.md) : mineurs, pathologies, troubles alimentaires pour la nutrition ; ce dépistage ne remplace pas ces exclusions.
+## 2. D : pas de dépistage ni de verrou (décision de l'utilisateur, 22/10/2026)
+L'app n'a **aucun questionnaire de dépistage** (ni PAR-Q+/Q-AAP+, ni questions maison) et **aucun verrou à l'entrée**. Elle garde : l'avertissement « pas un avis médical » affiché au lancement, les signes d'arrêt (R5, S1 à S3, U1), le profil blessures facultatif (zone + niveau) et les exclusions du projet (mineurs, pathologies, troubles alimentaires pour la nutrition). Le PAR-Q+ n'est ni copié ni lié dans l'app (ses conditions interdisent l'intégration sans accord écrit). Statut : décision de conception.
 
 ## 3. G : grossesse et post-partum
 Sources lues : HAS, « Prescription d'activité physique et sportive pendant la grossesse et en post-partum », juillet 2019, https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf (recommandation officielle française ; lu en grande partie, extraits tableaux 2 à 4 et post-partum) ; HAS, fiche patiente « Grossesse, l'activité physique pour votre santé », décembre 2022, https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf (lue en entier) ; Mottola et al., 2019 Canadian guideline for physical activity throughout pregnancy, Br J Sports Med 2018;52(21):1339-1346, DOI 10.1136/bjsports-2018-100056, résumé officiel CSEP https://csepguidelines.ca/?p=1037 (lu ; texte BJSM bloqué, 403) ; ACOG Committee Opinion 804 : **non lu** (accès refusé), non utilisé. Public : femmes enceintes ou en post-partum. Preuve : recommandations officielles (HAS) et lignes directrices de consensus (Canada) ; pas d'essai testant ces adaptations exercice par exercice.
@@ -74,7 +46,7 @@ Sources lues : HAS, « Prescription d'activité physique et sportive pendant la 
 | G8 | **Nutrition** : l'exclusion « grossesse » de nutrition-rules.md reste (aucun plan alimentaire). | aucun plan | règle du projet |
 
 ## 4. Résumé pour `dev` : ce qui est sourcé ou pas
-OK (sourcé et lu) : conditions de reproduction du PAR-Q+ ; G1 ; G3 ; G6 ; red flags HAS lombalgie (S). PROVISOIRE : dépistage ACSM (2.2-2.3), R4-R6, R9 partiel, R10, G2, G4, G5, G7 (principe), S2 (extrapolation aux autres zones). **NON SOURCÉ** : R1, R2, R3, R7, R8 (hors porte), R9 (reste), seuil R4 « 2 séances », seuil « 2 semaines », signes post-partum de `kine`, case « tête en bas déconseillée ».
+OK (sourcé et lu) : G1 ; G3 ; G6 ; red flags HAS lombalgie (S). PROVISOIRE : R4-R6, R9 partiel, R10, G2, G4, G5, G7 (principe), S2 (extrapolation aux autres zones). **NON SOURCÉ** : R1, R2, R3, R7, R8 (hors porte), R9 (reste), seuil R4 « 2 séances », seuil « 2 semaines », signes post-partum de `kine`, case « tête en bas déconseillée ».
 
 ## 5. S : signes d'alerte (remplace R6)
 Source principale : HAS, fiche mémo « Prise en charge du patient présentant une lombalgie commune », 2019, PDF lu en entier : https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf (page : https://www.has-sante.fr/jcms/c_2961499/fr/lombalgie-commune). Recommandation officielle ; accord d'experts (AE) ; public : adultes avec douleur lombaire ; elle précise que **chaque signe pris isolément est peu spécifique et que c'est leur combinaison qui doit attirer l'attention**, et de réévaluer 2 à 4 semaines après une poussée aiguë. NICE NG59 (https://www.nice.org.uk/guidance/ng59, recommandation officielle britannique, plus de 16 ans) : seuls le périmètre et l'ordre d'évaluation ont été lus (identifier d'abord le syndrome de la queue-de-cheval et les autres signes d'alerte ; la prise en charge de la sciatique avec déficit neurologique progressif en est exclue) ; le texte complet a donné une erreur 403 ; la mise à jour de 2026 mentionnée n'est pas vérifiée.
@@ -102,7 +74,7 @@ Aucune étude. Source des ancrages de porte : notices de fabricants (Serious Ste
 - L'objet bouge, glisse, grince : arrêt, et l'objet n'est plus utilisé.
 
 ## 8. Ce qui reste à faire
-- `relecteur` : contrôler ce fichier (surtout §2.1, §3 G4, §5).
+- `relecteur` : contrôler ce fichier (surtout §3 G4, §5).
 - Source à lire en entier : Riebe 2015 (texte), NICE NG59 (texte), Mottola 2019 (BJSM, signes d'arrêt), ACOG 804, une page officielle pour le 15/112.
-- Décisions utilisateur : blocage du générateur pour dépistage positif, grossesse et post-partum ; envoi d'une demande d'accord au PAR-Q+ Collaboration (https://eparmedx.com/contact-us/) pour une éventuelle intégration.
+- Décisions utilisateur : le blocage du générateur pour grossesse et post-partum (G2, G3, G7) est-il maintenu malgré la décision « pas de verrou » ? (question en attente). Dépistage : supprimé (§2).
 - Étape B : mettre à jour les sections sécurité des 33 fiches avec les mots garder / adapter / retirer.

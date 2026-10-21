@@ -36,6 +36,8 @@ statut: complete_kine
 - Genoux qui rentrent vers l'intérieur.
 
 ## Progression / régression
+- plus-facile : a-creer:assis-debout-mains-cuisses
+- plus-dur : squat-poids-du-corps
 assis-debout avec appui des mains sur les cuisses (à créer) <- **squat-assis-debout** -> squat-poids-du-corps -> squat-gobelet
 
 ## Repères de dosage
@@ -44,17 +46,25 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter : appui:assise rehaussée (chaise plus haute, ou coussin antidérapant ou plié et calé sur l'assise), descente lente, mains sur les cuisses | retirer |
-| Hanche | garder | adapter : appui:assise rehaussée (même précaution), pieds un peu plus écartés | retirer |
-| Dos | garder | adapter : appui:assise rehaussée (même précaution), buste droit | retirer |
+| Genou | garder | adapter: appui:assise-rehaussee | retirer |
+| Hanche | garder | adapter: appui:assise-rehaussee | retirer |
+| Dos | garder | adapter: appui:assise-rehaussee | retirer |
 
-**Version plus douce** : même fiche avec une assise plus haute (chaise plus haute, ou coussin antidérapant ou plié et calé sur l'assise) ; fiche « assis-debout avec appui des mains » à créer.
+**Notes**
+- genou-n2 : assise plus haute (chaise plus haute, ou coussin antidérapant ou plié et calé sur l'assise), descente lente, mains sur les cuisses.
+- hanche-n2 : même précaution sur l'assise, pieds un peu plus écartés.
+- dos-n2 : même précaution sur l'assise, buste droit.
+- grossesse : respiration continue, sans maintien en bas. Post-partum : G7.
+- general : version plus douce = même fiche avec une assise plus haute.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : garder (respiration continue, sans maintien en bas). Post-partum : G7.
+**Grossesse** : garder
+**Version plus douce** : aucune
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche ou au dos.
@@ -68,6 +78,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Assieds-toi au milieu de l'assise, jamais sur le bord.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet). « Sit_Squats » montre un demi-squat sans chaise : ne pas l'utiliser.
 
 ## Sources

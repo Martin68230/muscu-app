@@ -36,6 +36,8 @@ statut: complete_kine
 - Fesses qui remontent avant la poitrine.
 
 ## Progression / régression
+- plus-facile : squat-poids-du-corps
+- plus-dur : squat-bulgare
 squat-poids-du-corps <- **squat-gobelet** -> même fiche avec pause en bas -> squat-bulgare (si les haltères deviennent trop légers)
 
 ## Repères de dosage
@@ -44,22 +46,31 @@ Voir program-logic.md. Paliers réels des haltères : load-calibration.md règle
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter : variante:squat-poids-du-corps ou variante:squat-assis-debout | retirer |
-| Hanche | garder | adapter : variante:squat-poids-du-corps | retirer |
-| Dos | garder | adapter : variante:squat-assis-debout, sans-charge | retirer |
-| Cheville | garder | adapter : amplitude:réduite, sans-charge | retirer |
-| Coude / poignet | garder | adapter : variante:squat-poids-du-corps (sans-charge) | retirer ; sans-zone:squat-poids-du-corps (bras libres) |
+| Genou | garder | adapter: variante:squat-poids-du-corps | retirer |
+| Hanche | garder | adapter: variante:squat-poids-du-corps | retirer |
+| Dos | garder | adapter: variante:squat-assis-debout | retirer |
+| Cheville | garder | adapter: amplitude:reduite | retirer |
+| Coude | garder | adapter: variante:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
+| Poignet | garder | adapter: variante:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
+
+**Notes**
+- genou-n2 : le squat assis-debout est aussi possible.
+- dos-n2 : sans charge.
+- cheville-n2 : sans charge.
+- coude-n3 : le squat au poids du corps laisse les bras libres (idem poignet).
+- grossesse : charge légère, respiration continue. Post-partum : G7.
+
+**Grossesse** : adapter: charge:legere
+**Version plus douce** : squat-poids-du-corps
 
 **Points d'attention (kine)**
 - Haltère tenu contre la poitrine : haltère fixe de préférence ; haltère réglable seulement si les disques sont bien serrés (vérifie avant chaque série).
 
-**Version plus douce** : `squat-poids-du-corps`.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : charge:légère, respiration continue. Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche ou au dos.

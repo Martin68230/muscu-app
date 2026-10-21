@@ -40,6 +40,8 @@ Sans aucun matériel, on ne peut pas faire de vrai tirage vertical. Ce mouvement
 - Aller trop vite.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : pullover-haltere-au-sol
 **tirage-w-sol** -> tirage-w-halteres-legers -> pullover-haltere-au-sol (si haltères) -> vrai tirage vertical si barre ou élastique
 
 ## Repères de dosage
@@ -48,17 +50,25 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | garder | adapter : sans-charge (tirage-w-sol), amplitude:petite, bras près du sol | retirer |
-| Cou | garder | adapter : appui:front posé tout le long, sans-charge | retirer |
-| Dos | garder | adapter : appui:coussin plat sous le ventre, amplitude:bras moins hauts | retirer |
+| Épaule | garder | adapter: variante:tirage-w-sol | retirer |
+| Cou | garder | adapter: variante:tirage-w-sol | retirer |
+| Dos | garder | adapter: amplitude:bras-bas | retirer |
 
-**Version plus douce** : `tirage-w-sol`, front posé.
+**Notes**
+- epaule-n2 : sans charge, petite amplitude, bras près du sol.
+- cou-n2 : sans charge, front posé tout le long.
+- dos-n2 : coussin plat sous le ventre.
+- grossesse : couché sur le ventre, donc retiré ; remplaçant conseillé : rowing unilatéral à l'haltère, charge légère. Post-partum : G7.
+- general : version plus douce = au sol, front posé.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (couché sur le ventre ; remplaçant : rowing-unilateral-haltere, charge légère). Post-partum : G7.
+**Grossesse** : retirer: remplacant:rowing-unilateral-haltere
+**Version plus douce** : tirage-w-sol
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au cou ou au bas du dos.
@@ -67,6 +77,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet).
 
 ## Sources

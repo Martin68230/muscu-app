@@ -36,6 +36,8 @@ statut: complete_kine
 - Bloquer la respiration.
 
 ## Progression / régression
+- plus-facile : a-creer:dead-bug-jambes-seules
+- plus-dur : dead-bug-haltere
 jambes seules <- **dead-bug-poids-du-corps** (bras + jambe opposés) -> dead-bug-haltere
 
 ## Repères de dosage
@@ -44,21 +46,30 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter : amplitude:jambes seules, talon qui glisse au sol | retirer |
-| Hanche | garder | adapter : amplitude:jambes pliées, talon qui effleure le sol | retirer |
-| Épaule | adapter : sans-charge (dead-bug-poids-du-corps) | adapter : amplitude:jambes seules, bras posés au sol | retirer (variante sans-zone possible plus tard : jambes seules, bras posés au sol ; fiche à créer) |
-| Cou | adapter : appui:coussin sous la tête | adapter : appui:tête posée sur un coussin tout le long | retirer |
+| Dos | garder | adapter: amplitude:jambes-seules | retirer |
+| Hanche | garder | adapter: amplitude:reduite | retirer |
+| Épaule | adapter: variante:dead-bug-poids-du-corps | adapter: amplitude:jambes-seules | retirer |
+| Cou | adapter: appui:coussin | adapter: appui:coussin | retirer |
+
+**Notes**
+- dos-n2 : jambes seules, talon qui glisse au sol.
+- hanche-n2 : jambes pliées, talon qui effleure le sol.
+- epaule-n2 : jambes seules, bras posés au sol.
+- epaule-n3 : une variante sans l'épaule (jambes seules, bras posés au sol) pourra être créée plus tard.
+- cou-n2 : tête posée sur un coussin tout le long.
+- grossesse : couché sur le dos, donc retiré ; remplaçant conseillé : bird-dog. Post-partum : G7.
+
+**Grossesse** : retirer: remplacant:bird-dog
+**Version plus douce** : dead-bug-poids-du-corps
 
 **Points d'attention (kine)**
 - Haltère au-dessus du visage ou de la poitrine : haltère fixe de préférence ; haltère réglable seulement si les disques sont bien serrés (vérifie avant chaque série).
 
-**Version plus douce** : `dead-bug-poids-du-corps` en ne bougeant que les jambes (fiche « jambes seules » à créer).
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (couché sur le dos ; remplaçant : bird-dog). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Bas du dos qui se décolle du sol sans que tu puisses le recoller.

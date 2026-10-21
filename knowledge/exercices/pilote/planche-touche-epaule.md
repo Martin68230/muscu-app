@@ -37,6 +37,8 @@ statut: complete_kine
 - Aller vite pour « finir ».
 
 ## Progression / régression
+- plus-facile : planche
+- plus-dur : aucun
 planche <- **planche-touche-epaule-genoux** -> planche-touche-epaule-pieds -> planche-touche-epaule-pieds-serres
 
 ## Repères de dosage
@@ -45,20 +47,26 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : variante:planche-touche-epaule-genoux | retirer (remplaçant : dead-bug) | retirer |
-| Poignet | adapter : variante:planche-touche-epaule-genoux | retirer (remplaçant : planche-avant-bras) | retirer ; sans-zone:planche-avant-bras (appui sur les avant-bras, poignets non chargés) |
-| Coude | garder | adapter : variante:planche-touche-epaule-genoux | retirer |
-| Dos | adapter : variante:planche-touche-epaule-genoux | adapter : variante:planche-genoux | retirer |
+| Épaule | adapter: variante:planche-touche-epaule-genoux | retirer: remplacant:dead-bug | retirer |
+| Poignet | adapter: variante:planche-touche-epaule-genoux | retirer: remplacant:planche-avant-bras | retirer: sans-zone:planche-avant-bras |
+| Coude | garder | adapter: variante:planche-touche-epaule-genoux | retirer |
+| Dos | adapter: variante:planche-touche-epaule-genoux | adapter: variante:planche-genoux | retirer |
+
+**Notes**
+- poignet-n3 : la planche sur les avant-bras ne charge pas les poignets.
+- general : les échelons sur les pieds et pieds serrés sont retirés dès le niveau 1 d'une zone du tableau ; la ligne de la zone donne le remplacement. Version plus douce : sur les genoux, puis planche.
+- grossesse : maintien isométrique prolongé, donc retiré ; remplaçant conseillé : bird-dog sans pause. Post-partum : G7.
+
+**Grossesse** : retirer: remplacant:bird-dog
+**Version plus douce** : planche-touche-epaule-genoux
 
 **Variantes des échelons 2 et 3** : `planche-touche-epaule-pieds` et `planche-touche-epaule-pieds-serres` sont retirées dès le niveau 1 d'une zone du tableau ; la ligne de la zone donne la variante de remplacement (`planche-touche-epaule-genoux` ou `planche-genoux`).
 
-**Version plus douce** : `planche-touche-epaule-genoux`, puis `planche`.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (maintien isométrique ; remplaçant : bird-dog sans pause). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule ou au poignet d'appui.
@@ -67,6 +75,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet ; wger : licence à contrôler ; maxwu : interdit).
 
 ## Sources

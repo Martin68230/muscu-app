@@ -35,6 +35,8 @@ statut: complete_kine
 - Aller trop vite.
 
 ## Progression / régression
+- plus-facile : a-creer:bird-dog-jambe-seule
+- plus-dur : a-creer:bird-dog-pause
 jambe seule ou bras seul (à créer) <- **bird-dog** -> bird-dog avec pause de quelques secondes bras et jambe tendus
 
 ## Repères de dosage
@@ -43,19 +45,28 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Poignet | adapter : appui:poings fermés (poignet droit) | adapter : appui:avant-bras | retirer (remplaçant : dead-bug) |
-| Genou | adapter : appui:coussin plié sous les genoux | adapter : appui:coussin épais | retirer (remplaçant : dead-bug) |
-| Épaule | adapter : amplitude:bras moins haut | retirer (remplaçant : dead-bug, bras au sol) | retirer |
-| Dos | adapter : amplitude:hauteur réduite | adapter : amplitude:jambe seule, petite amplitude | retirer |
-| Hanche | garder | adapter : amplitude:bras seul | retirer |
+| Poignet | adapter: appui:poings-fermes | adapter: appui:avant-bras | retirer: remplacant:dead-bug |
+| Genou | adapter: appui:coussin | adapter: appui:coussin | retirer: remplacant:dead-bug |
+| Épaule | adapter: amplitude:bras-bas | retirer: remplacant:dead-bug | retirer |
+| Dos | adapter: amplitude:reduite | adapter: amplitude:jambes-seules | retirer |
+| Hanche | garder | adapter: amplitude:reduite | retirer |
 
-**Version plus douce** : bras seul ou jambe seule (fiche à créer) ; sinon `dead-bug`.
+**Notes**
+- poignet-n1 : poings fermés (poignet droit).
+- genou-n1 : coussin plié sous les genoux ; au niveau 2, coussin plus épais.
+- epaule-n2 : remplacement par dead-bug, bras au sol.
+- dos-n2 : une jambe seulement, petite amplitude.
+- hanche-n2 : bras seul, petite amplitude.
+- grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. Post-partum : G7.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : sans pause en position tendue (pas de maintien prolongé), respiration continue. Post-partum : G7.
+**Grossesse** : adapter: amplitude:maintien-court
+**Version plus douce** : dead-bug
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, au poignet ou au genou d'appui.
@@ -64,6 +75,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet ; fiche wger : licence de l'image à contrôler).
 
 ## Sources

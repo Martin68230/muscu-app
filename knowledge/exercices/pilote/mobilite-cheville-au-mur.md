@@ -36,6 +36,8 @@ statut: complete_kine
 - Voûte du pied qui s'écrase.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : aucun
 **mobilite-cheville-au-mur** (pied proche du mur -> pied plus loin)
 
 ## Repères de dosage
@@ -44,16 +46,21 @@ Voir program-logic.md (échauffement : à sourcer, §9).
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Cheville | garder | adapter : amplitude:pied plus près du mur, petite amplitude | retirer |
-| Genou | garder | adapter : variante:cheville-mur-debout, amplitude:pied proche du mur | retirer |
+| Cheville | garder | adapter: amplitude:reduite | retirer |
+| Genou | garder | adapter: variante:cheville-mur-debout | retirer |
 
-**Version plus douce** : `cheville-mur-debout`, pied proche du mur.
+**Notes**
+- cheville-n2 : pied plus près du mur, petite amplitude.
+- genou-n2 : pied proche du mur.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : garder. Post-partum : G7.
+**Grossesse** : garder
+**Version plus douce** : cheville-mur-debout
+
+
 
 **Signes qui doivent faire arrêter**
 - Pincement ou douleur à l'avant de la cheville : n'insiste pas.
@@ -62,6 +69,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet). « Ankle_Circles » est un autre exercice.
 
 ## Sources

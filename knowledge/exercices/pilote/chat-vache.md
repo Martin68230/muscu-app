@@ -35,6 +35,8 @@ statut: complete_kine
 - Ne bouger que la tête.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : fente-basse-rotation
 **chat-vache** -> fente-basse-rotation (mobilité plus globale)
 
 ## Repères de dosage
@@ -43,18 +45,26 @@ Voir program-logic.md (échauffement : contenu et durée encore à sourcer, §9)
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter : amplitude:petite, sans aller au bout du dos creux | retirer |
-| Cou | garder | adapter : amplitude:tête dans l'alignement, le cou ne suit pas le mouvement | retirer |
-| Poignet | adapter : appui:poings fermés | adapter : appui:avant-bras | retirer |
-| Genou | adapter : appui:coussin sous les genoux | adapter : appui:coussin épais | retirer |
+| Dos | garder | adapter: amplitude:reduite | retirer |
+| Cou | garder | adapter: amplitude:tete-alignee | retirer |
+| Poignet | adapter: appui:poings-fermes | adapter: appui:avant-bras | retirer |
+| Genou | adapter: appui:coussin | adapter: appui:coussin | retirer |
 
-**Version plus douce** : même fiche en petite amplitude.
+**Notes**
+- dos-n2 : petite amplitude, sans aller au bout du dos creux.
+- cou-n2 : la tête reste dans l'alignement, le cou ne suit pas le mouvement.
+- poignet-n1 : poings fermés, poignet droit.
+- genou-n1 : coussin sous les genoux ; au niveau 2, coussin plus épais.
+- general : version plus douce = même fiche en petite amplitude.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : garder. Post-partum : G7.
+**Grossesse** : garder
+**Version plus douce** : aucune
+
+
 
 **Signes qui doivent faire arrêter**
 - Une position fait mal (la mobilité doit rester sans douleur).

@@ -139,7 +139,7 @@ Les sections « Sécurité et contre-indications » des fiches et la section « 
 | 1 | non corrigé (kine) | statut de R2 : section Retour kine |
 | 2 | non corrigé (kine) | statut de R3 : section Retour kine |
 | 3 | non corrigé (kine) | seuil R4 : section Retour kine |
-| 4 | non corrigé (kine) | dépistage avant le premier programme (Riebe 2015) : règle de sécurité |
+| 4 | abandonné | dépistage avant le premier programme : supprimé par décision de l'utilisateur (22/10/2026) |
 | 5 | non corrigé (kine) | drapeaux rouges omis de R6 |
 | 6 | non corrigé (kine) | urgence « 15 ou 112 » dans R6 |
 | 7 | sans objet | remarque, statut déjà correct |
@@ -197,7 +197,7 @@ Les sections « Sécurité et contre-indications » des fiches et la section « 
 Bilan : 57 points : 31 corrigés, 2 corrigés en partie (17, 52), 14 renvoyés à `kine` (1 à 6, 8 à 11, 23, 43, 45, 53), 8 sans objet (7, 58 et fiche écartée : 35, 36, 38 à 41), 2 non corrigés (26, 59). Blocs à surveiller par `kine` : les lignes qui nomment « tirage-sous-table », « table » et « test de soulèvement » dans la section Retour kine (R8, fiches à risque, désaccord n°1, avis rowing serviette) et dans knowledge/regles-securite-communes.md sont devenues sans objet et à retirer.
 
 ## Sécurité : règles communes
-Les règles communes de sécurité (R1 à R10 corrigées, dépistage avant de commencer, grossesse et post-partum, signes d'alerte, urgences, objets du quotidien) sont dans **knowledge/regles-securite-communes.md**, source unique : elles ne sont plus recopiées ici. Chaque fiche y renvoie.
+Les règles communes de sécurité (R1 à R10 corrigées, dépistage supprimé (décision du 22/10/2026), grossesse et post-partum, signes d'alerte, urgences, objets du quotidien) sont dans **knowledge/regles-securite-communes.md**, source unique : elles ne sont plus recopiées ici. Chaque fiche y renvoie.
 
 Avis `kine` sur le rowing avec une serviette accrochée à une poignée de porte (brouillon M1854) : **écarté**, la poignée n'est pas faite pour supporter le poids du corps et la chute se ferait en arrière ; alternative : élastique avec un vrai ancrage de porte, selon sa notice (profil B). PROVISOIRE (notices de fabricants, aucune étude).
 
@@ -211,7 +211,7 @@ Points renvoyés par `coach` (1 à 6, 8 à 11, 23, 43, 45, 53) et points de séc
 | 1 | corrigé | R2 passée en NON SOURCÉ (règle de conception) dans regles-securite-communes.md |
 | 2 | corrigé | R3 passée en NON SOURCÉ |
 | 3 | corrigé | seuil « 2 séances de suite » de R4 marqué NON SOURCÉ ; constat Smith 2017 : OK |
-| 4 | corrigé | dépistage avant de commencer ajouté (§2) : le PAR-Q+ ne peut pas être intégré (conditions du site officiel), questions propres à l'app sourcées sur l'ACSM (PROVISOIRE) |
+| 4 | abandonné | dépistage supprimé par décision de l'utilisateur (22/10/2026) ; voir regles-securite-communes.md §2 |
 | 5 | corrigé | antécédent de cancer, début avant 20 ans ou après 55 ans, fièvre, perte de poids, état général, cortisone prolongée ajoutés (S2), source : fiche mémo HAS lombalgie 2019 lue en entier ; troubles des selles dans S3 |
 | 6 | corrigé | signes de la queue-de-cheval renvoient à « Urgence : appelle le 15 (SAMU) ou le 112 » (S3, U1) |
 | 7 | sans objet | remarque du relecteur : statut déjà correct ; seuil de 2 semaines laissé NON SOURCÉ |

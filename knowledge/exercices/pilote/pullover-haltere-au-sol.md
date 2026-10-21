@@ -40,6 +40,8 @@ Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (o
 - Haltère mal tenu au-dessus du visage.
 
 ## Progression / régression
+- plus-facile : tirage-w-allonge
+- plus-dur : aucun
 substitut sans matériel : tirage-w-allonge <- **pullover-haltere-au-sol** -> vrai tirage vertical si barre ou élastique (tractions, tirage élastique : vague 1, profils B et D)
 
 ## Repères de dosage
@@ -48,14 +50,23 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : charge:légère, amplitude:l'haltère s'arrête au-dessus du front ; pullover-banc-haltere : retirer | retirer (remplaçant : tirage-w-allonge sans charge) | retirer |
-| Dos | garder | adapter : amplitude:réduite, charge:légère | retirer |
-| Coude | garder | adapter : charge:légère | retirer |
-| Poignet | garder | adapter : charge:légère | retirer |
+| Épaule | adapter: variante:pullover-sol-haltere | retirer: remplacant:tirage-w-allonge | retirer |
+| Dos | garder | adapter: amplitude:reduite | retirer |
+| Coude | garder | adapter: charge:legere | retirer |
+| Poignet | garder | adapter: charge:legere | retirer |
+
+**Notes**
+- epaule-n1 : au sol seulement (la variante sur banc est retirée), charge légère, l'haltère s'arrête au-dessus du front.
+- epaule-n2 : remplacement par le tirage en W allongé, sans charge.
+- dos-n2 : amplitude réduite, charge légère.
+- grossesse : couché sur le dos, donc retiré ; remplaçant conseillé : rowing unilatéral à l'haltère, charge légère. Post-partum : G7.
+
+**Grossesse** : retirer: remplacant:rowing-unilateral-haltere
+**Version plus douce** : tirage-w-allonge
 
 **Points d'attention (kine)**
 - Haltère au-dessus du visage ou de la poitrine : haltère fixe de préférence ; haltère réglable seulement si les disques sont bien serrés (vérifie avant chaque série).
@@ -63,9 +74,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Au sol, le sol limite l'amplitude : c'est voulu, ne cherche pas à descendre plus loin. La variante banc permet de descendre plus bas : à réserver aux personnes sans gêne à l'épaule.
 - Augmente la charge lentement : c'est un exercice d'amplitude, pas de force maximale.
 
-**Version plus douce** : `tirage-w-allonge` (au sol, sans charge).
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (couché sur le dos ; remplaçant : rowing-unilateral-haltere, charge légère). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur ou pincement à l'avant ou sur le dessus de l'épaule quand l'haltère passe derrière la tête.
@@ -87,7 +96,7 @@ Variante au sol : aucune photo libre.
 | Niveau : la source dit intermédiaire ; la variante au sol est mise en débutant (le sol limite l'amplitude, `kine` d'accord) ; la variante banc reste intermédiaire | choix de coach, tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Variante banc dans la longueur (la source est en travers du banc) | adaptation de coach pour la sécurité | - | - | NON SOURCÉ |
 | Le pull-over comme substitut du tirage vertical | choix de coach ; trou mesuré dans equipment-taxonomy.md §4 | - | 2026-10-21 | NON SOURCÉ (à trancher) |
-| Tag du brouillon M0410 = halteres seulement alors que la source utilise un banc | constat de nettoyage | - | 2026-10-21 | à corriger dans le brouillon |
+| Tag du brouillon M0410 = halteres seulement alors que la source utilise un banc | constat de nettoyage | - | 2026-10-21 | NON SOURCÉ (constat de nettoyage, à corriger dans le brouillon) |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Haltère au-dessus du visage : haltère fixe ou réglable vérifié, prise en coupe | règle de prudence de `kine` (R9) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |

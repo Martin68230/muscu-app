@@ -14,8 +14,8 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| squat-fendu-poids-du-corps | Poids du corps | 2 | debutant | poids_du_corps | Pieds décalés, un devant, un derrière. |
 | squat-fendu-mur | Main au mur | 1 | debutant | poids_du_corps, mur | Une main posée au mur pour l'équilibre. |
+| squat-fendu-poids-du-corps | Poids du corps | 2 | debutant | poids_du_corps | Pieds décalés, un devant, un derrière. |
 | squat-fendu-halteres | Haltères | 2 | debutant | halteres | Un haltère dans chaque main, bras le long du corps. |
 
 ## Consignes
@@ -38,6 +38,8 @@ statut: complete_kine
 - Genou avant qui rentre vers l'intérieur.
 
 ## Progression / régression
+- plus-facile : squat-assis-debout
+- plus-dur : fente-arriere, squat-bulgare
 squat-assis-debout <- **squat-fendu** (mur -> poids du corps -> haltères) -> fente-arriere -> squat-bulgare
 
 ## Repères de dosage
@@ -46,18 +48,28 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter : variante:squat-fendu-mur | adapter : variante:squat-fendu-mur, amplitude:mi-descente | retirer |
-| Hanche | garder | adapter : variante:squat-fendu-mur, amplitude:mi-descente | retirer |
-| Cheville | adapter : variante:squat-fendu-mur | adapter : amplitude:réduite, ou variante:squat-assis-debout | retirer |
-| Dos | adapter : sans-charge (squat-fendu-poids-du-corps) | adapter : sans-charge, variante:squat-fendu-mur | retirer |
+| Genou | adapter: variante:squat-fendu-mur | adapter: variante:squat-fendu-mur | retirer |
+| Hanche | garder | adapter: variante:squat-fendu-mur | retirer |
+| Cheville | adapter: variante:squat-fendu-mur | adapter: variante:squat-assis-debout | retirer |
+| Dos | adapter: variante:squat-fendu-poids-du-corps | adapter: variante:squat-fendu-mur | retirer |
 
-**Version plus douce** : `squat-fendu-mur` à mi-descente, ou `squat-assis-debout`.
+**Notes**
+- genou-n2 : mi-descente.
+- hanche-n2 : mi-descente.
+- cheville-n2 : le squat assis-debout remplace ; amplitude réduite possible.
+- dos-n1 : sans haltères.
+- dos-n2 : sans haltères, main au mur.
+- grossesse : main au mur, sans haltères. Post-partum : G7.
+- general : version plus douce = main au mur à mi-descente, ou squat assis-debout.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:squat-fendu-mur, sans-charge. Post-partum : G7.
+**Grossesse** : adapter: variante:squat-fendu-mur
+**Version plus douce** : squat-fendu-mur
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou ou à la hanche.
@@ -66,6 +78,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet). Ne pas utiliser « Split_Squats » (fente sautée) ni « Split_Squat_with_Dumbbells » (pied arrière surélevé = squat bulgare).
 
 ## Sources

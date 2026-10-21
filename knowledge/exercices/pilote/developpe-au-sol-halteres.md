@@ -36,6 +36,8 @@ statut: complete_kine
 - Lâcher les haltères sur les côtés en fin de série.
 
 ## Progression / régression
+- plus-facile : pompe-genoux
+- plus-dur : developpe-sol-un-haltere
 pompe-genoux <- **developpe-au-sol-halteres** -> version un bras à la fois (gainage en plus)
 
 ## Repères de dosage
@@ -44,21 +46,29 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | garder | adapter : charge:légère, appui:coudes plus près du corps | retirer |
-| Coude | garder | adapter : charge:légère, appui:paumes face à face | retirer |
-| Poignet | adapter : appui:paumes face à face, poignet droit | adapter : charge:légère, appui:paumes face à face | retirer |
+| Épaule | garder | adapter: charge:legere | retirer |
+| Coude | garder | adapter: charge:legere | retirer |
+| Poignet | adapter: appui:paumes-face-a-face | adapter: charge:legere | retirer |
+
+**Notes**
+- epaule-n2 : charge légère, coudes plus près du corps.
+- coude-n2 : charge légère, paumes face à face.
+- poignet-n1 : paumes face à face, poignet droit.
+- poignet-n2 : charge légère, paumes face à face.
+- grossesse : couché sur le dos, donc retiré ; remplaçant conseillé : développé épaules assis, charge légère. Post-partum : G7.
+
+**Grossesse** : retirer: remplacant:developpe-epaules-halteres
+**Version plus douce** : developpe-sol-deux-halteres
 
 **Points d'attention (kine)**
 - Haltère au-dessus du visage ou de la poitrine : haltère fixe de préférence ; haltère réglable seulement si les disques sont bien serrés (vérifie avant chaque série).
 - Pour finir : descends les haltères sur la poitrine puis roule sur le côté ; ne les lâche jamais au-dessus de toi.
 
-**Version plus douce** : même fiche plus légère, paumes face à face (`developpe-sol-deux-halteres`).
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (couché sur le dos ; remplaçant : developpe-epaules-halteres assis, charge légère). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude ou au poignet.

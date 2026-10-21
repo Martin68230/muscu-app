@@ -36,6 +36,8 @@ statut: complete_kine
 - Hausser les épaules vers les oreilles.
 
 ## Progression / régression
+- plus-facile : rowing-unilateral-haltere
+- plus-dur : aucun
 rowing-unilateral-haltere <- **rowing-buste-penche-halteres**
 
 ## Repères de dosage
@@ -44,18 +46,28 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter : variante:rowing-unilateral-haltere (main d'appui sur la chaise) | adapter : variante:rowing-unilateral-haltere, charge:légère | retirer |
-| Hanche | garder | adapter : variante:rowing-unilateral-haltere | retirer |
-| Épaule | garder | adapter : charge:légère, amplitude:réduite | retirer |
-| Coude / poignet | garder | adapter : charge:légère, variante:rowing-penche-paumes-face | retirer |
+| Dos | adapter: variante:rowing-unilateral-haltere | adapter: variante:rowing-unilateral-haltere | retirer |
+| Hanche | garder | adapter: variante:rowing-unilateral-haltere | retirer |
+| Épaule | garder | adapter: charge:legere | retirer |
+| Coude | garder | adapter: charge:legere | retirer |
+| Poignet | garder | adapter: variante:rowing-penche-paumes-face | retirer |
 
-**Version plus douce** : `rowing-unilateral-haltere`.
+**Notes**
+- dos-n1 : main d'appui sur la chaise.
+- dos-n2 : charge légère.
+- epaule-n2 : charge légère, amplitude réduite.
+- coude-n2 : charge légère, paumes face à face.
+- poignet-n2 : paumes face à face, charge légère.
+- grossesse : version à un bras, charge légère. Post-partum : G7.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:rowing-unilateral-haltere, charge:légère. Post-partum : G7.
+**Grossesse** : adapter: variante:rowing-unilateral-haltere
+**Version plus douce** : rowing-unilateral-haltere
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos.
@@ -66,7 +78,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Bent_Over_Two-Dumbbell_Row/0.jpg` : affichable : à vérifier (image non regardée).
 - `Bent_Over_Two-Dumbbell_Row/1.jpg` : affichable : à vérifier (image non regardée).
-- `Bent_Over_Two-Dumbbell_Row_With_Palms_In` (paumes face à face) : l'identifiant existe (vérifié par `relecteur`) ; images non regardées : affichable : à vérifier.
+- `Bent_Over_Two-Dumbbell_Row_With_Palms_In/0.jpg` : affichable : à vérifier (paumes face à face ; l'identifiant existe, vérifié par `relecteur` ; image non regardée)
+- `Bent_Over_Two-Dumbbell_Row_With_Palms_In/1.jpg` : affichable : à vérifier (image non regardée)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

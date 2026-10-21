@@ -37,6 +37,8 @@ statut: complete_kine
 - Lâcher la descente.
 
 ## Progression / régression
+- plus-facile : a-creer:rowing-elastique
+- plus-dur : rowing-buste-penche-halteres
 rowing élastique (à rédiger en vague 1, profil B) <-> **rowing-unilateral-haltere** -> rowing-buste-penche-halteres (deux bras, sans appui)
 
 ## Repères de dosage
@@ -45,18 +47,27 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter : charge:légère, buste plus redressé, appui:main d'appui plus haute, sur un support stable qui ne bouge pas quand tu t'appuies de tout ton poids dessus (essai obligatoire avant, R8) | retirer |
-| Épaule | garder | adapter : charge:légère, amplitude:coude près du corps, réduite | retirer |
-| Coude | garder | adapter : charge:légère | retirer |
-| Poignet | adapter : appui:poing fermé pour la main d'appui | adapter : charge:légère, appui:poing fermé pour la main d'appui | retirer |
+| Dos | garder | adapter: charge:legere | retirer |
+| Épaule | garder | adapter: charge:legere | retirer |
+| Coude | garder | adapter: charge:legere | retirer |
+| Poignet | adapter: appui:poings-fermes | adapter: charge:legere | retirer |
 
-**Version plus douce** : même fiche plus légère (`rowing-un-bras-chaise`).
+**Notes**
+- dos-n2 : buste plus redressé, main d'appui plus haute sur un support stable qui ne bouge pas quand tu t'appuies de tout ton poids dessus (essai obligatoire avant, R8).
+- epaule-n2 : coude près du corps, amplitude réduite.
+- poignet-n1 : poing fermé pour la main d'appui.
+- poignet-n2 : poing fermé pour la main d'appui.
+- grossesse : main d'appui sur une chaise stable. Post-partum : G7.
+- general : version plus douce = même fiche plus légère.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : charge:légère, appui:main d'appui sur la chaise stable. Post-partum : G7.
+**Grossesse** : adapter: charge:legere
+**Version plus douce** : rowing-un-bras-chaise
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au dos, à l'épaule ou au coude.

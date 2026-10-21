@@ -36,6 +36,8 @@ statut: complete_kine
 - Grands pas qui font balancer les charges.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : porte-valise
 **marche-du-fermier** -> plus lourd ou plus long -> porte-valise (une seule main, plus de gainage)
 
 ## Repères de dosage
@@ -44,20 +46,30 @@ Voir program-logic.md §10 : dosage des portés en distance ou en temps ; valeur
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Poignet / main | garder | adapter : charge:légère | retirer |
-| Coude | garder | adapter : charge:légère | retirer |
-| Épaule | garder | adapter : charge:légère | retirer |
-| Cou | garder | adapter : charge:légère | retirer |
-| Dos | adapter : appui:soulever et poser jambes fléchies | adapter : charge:légère, appui:charges posées au départ sur une chaise stable pour ne pas les ramasser au sol | retirer |
-| Hanche / genou / cheville | garder | adapter : charge:légère, amplitude:trajet court | retirer |
+| Poignet | garder | adapter: charge:legere | retirer |
+| Coude | garder | adapter: charge:legere | retirer |
+| Épaule | garder | adapter: charge:legere | retirer |
+| Cou | garder | adapter: charge:legere | retirer |
+| Dos | adapter: appui:charges-surelevees | adapter: charge:legere | retirer |
+| Hanche | garder | adapter: charge:legere | retirer |
+| Genou | garder | adapter: charge:legere | retirer |
+| Cheville | garder | adapter: charge:legere | retirer |
 
-**Version plus douce** : même fiche plus légère, charges posées au départ sur une chaise stable.
+**Notes**
+- dos-n1 : soulever et poser jambes fléchies, charges posées au départ sur une chaise stable.
+- dos-n2 : charges posées au départ sur une chaise stable pour ne pas les ramasser au sol.
+- hanche-n2 : trajet court (idem genou et cheville).
+- grossesse : poids connu, respiration continue. Post-partum : G7.
+- general : version plus douce = même fiche plus légère, charges posées au départ sur une chaise stable.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : charge:légère, poids connu, respiration continue. Post-partum : G7.
+**Grossesse** : adapter: charge:legere
+**Version plus douce** : aucune
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au dos, à l'épaule, au coude ou au poignet.

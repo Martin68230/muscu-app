@@ -36,6 +36,8 @@ statut: complete_kine
 - Épaule tassée.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : a-creer:planche-laterale-jambe-levee
 **planche-laterale-genoux** -> planche-laterale-pieds -> planche latérale jambe du dessus levée (à créer)
 
 ## Repères de dosage
@@ -44,18 +46,26 @@ Voir program-logic.md. Durées de maintien non sourcées : à définir.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : variante:planche-laterale-genoux | retirer (remplaçant : dead-bug) | retirer |
-| Coude | adapter : appui:serviette pliée sous l'avant-bras | adapter : variante:planche-laterale-genoux, appui:serviette | retirer |
-| Dos | garder | adapter : variante:planche-laterale-genoux, amplitude:maintien court | retirer |
-| Hanche | garder | adapter : variante:planche-laterale-genoux, appui:coussin sous le genou | retirer |
+| Épaule | adapter: variante:planche-laterale-genoux | retirer: remplacant:dead-bug | retirer |
+| Coude | adapter: appui:serviette | adapter: variante:planche-laterale-genoux | retirer |
+| Dos | garder | adapter: variante:planche-laterale-genoux | retirer |
+| Hanche | garder | adapter: variante:planche-laterale-genoux | retirer |
 
-**Version plus douce** : `planche-laterale-genoux`.
+**Notes**
+- coude-n1 : serviette pliée sous l'avant-bras.
+- coude-n2 : sur le genou, serviette sous l'avant-bras.
+- dos-n2 : sur le genou, maintien court.
+- hanche-n2 : sur le genou, coussin sous le genou.
+- grossesse : maintien isométrique prolongé, donc retiré ; remplaçant conseillé : bird-dog sans pause. Post-partum : G7.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (maintien isométrique ; remplaçant : bird-dog sans pause). Post-partum : G7.
+**Grossesse** : retirer: remplacant:bird-dog
+**Version plus douce** : planche-laterale-genoux
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule d'appui ou au bas du dos.

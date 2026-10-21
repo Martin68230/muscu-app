@@ -36,6 +36,8 @@ statut: complete_kine
 - Descente en chute libre.
 
 ## Progression / régression
+- plus-facile : squat-assis-debout
+- plus-dur : squat-gobelet
 squat-assis-debout <- **squat-poids-du-corps** -> même fiche avec descente lente ou pause en bas -> squat-gobelet -> squat-bulgare
 
 ## Repères de dosage
@@ -44,18 +46,25 @@ Voir program-logic.md. Au poids du corps : progression par tempo, pauses puis r�
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter : variante:squat-assis-debout (la chaise limite la descente) | retirer |
-| Hanche | garder | adapter : variante:squat-assis-debout | retirer |
-| Dos | garder | adapter : variante:squat-assis-debout | retirer |
-| Cheville | adapter : amplitude:pieds un peu plus ouverts, talons au sol | adapter : amplitude:réduite, ou variante:squat-assis-debout | retirer |
+| Genou | garder | adapter: variante:squat-assis-debout | retirer |
+| Hanche | garder | adapter: variante:squat-assis-debout | retirer |
+| Dos | garder | adapter: variante:squat-assis-debout | retirer |
+| Cheville | adapter: appui:pieds-ecartes | adapter: variante:squat-assis-debout | retirer |
 
-**Version plus douce** : `squat-assis-debout`.
+**Notes**
+- genou-n2 : la chaise limite la descente.
+- cheville-n1 : pieds un peu plus ouverts, talons au sol.
+- cheville-n2 : amplitude réduite possible.
+- grossesse : un appui au mur ou une chaise à portée si l'équilibre change. Post-partum : G7.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : garder (appui:mur ou chaise à portée si l'équilibre change). Post-partum : G7.
+**Grossesse** : garder
+**Version plus douce** : squat-assis-debout
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche ou au dos.

@@ -37,6 +37,8 @@ statut: complete_kine
 - Descente trop rapide.
 
 ## Progression / régression
+- plus-facile : pompe-piquee
+- plus-dur : developpe-epaules-un-bras
 pompe-piquee (sans matériel) <-> **developpe-epaules-halteres** (assis -> debout -> un bras)
 
 ## Repères de dosage
@@ -45,19 +47,29 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : variante:developpe-epaules-assis-chaise, appui:paumes face à face, amplitude:sans gêne | retirer (remplaçant : developpe-au-sol-halteres, pas de bras au-dessus de la tête) | retirer |
-| Coude | garder | retirer (remplaçant : developpe-au-sol-halteres, charge légère) | retirer |
-| Poignet | adapter : appui:paumes face à face | retirer (remplaçant : developpe-au-sol-halteres, charge légère, paumes face à face) | retirer |
-| Dos | adapter : variante:developpe-epaules-assis-chaise (dos près du dossier, dossier calé contre un mur) | retirer (remplaçant : developpe-au-sol-halteres, dos soutenu) | retirer |
-| Cou | garder | retirer (remplaçant : developpe-au-sol-halteres) | retirer |
+| Épaule | adapter: variante:developpe-epaules-assis-chaise | retirer: remplacant:developpe-au-sol-halteres | retirer |
+| Coude | garder | retirer: remplacant:developpe-au-sol-halteres | retirer |
+| Poignet | adapter: appui:paumes-face-a-face | retirer: remplacant:developpe-au-sol-halteres | retirer |
+| Dos | adapter: variante:developpe-epaules-assis-chaise | retirer: remplacant:developpe-au-sol-halteres | retirer |
+| Cou | garder | retirer: remplacant:developpe-au-sol-halteres | retirer |
 
-**Version plus douce** : `developpe-epaules-assis-chaise` plus léger ; si l'épaule est gênée : `developpe-au-sol-halteres`.
+**Notes**
+- epaule-n1 : assis, paumes face à face, amplitude sans gêne.
+- epaule-n2 : pas de bras au-dessus de la tête ; remplacement par le développé au sol.
+- coude-n2 : remplacement par le développé au sol, charge légère.
+- poignet-n2 : remplacement par le développé au sol, charge légère, paumes face à face.
+- dos-n1 : assis, dos près du dossier, dossier calé contre un mur.
+- dos-n2 : remplacement par le développé au sol, dos soutenu.
+- grossesse : seule la version assise est gardée, charge légère ; debout et un bras sont retirées (équilibre). Post-partum : G7.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:developpe-epaules-assis-chaise, charge:légère ; developpe-epaules-debout et developpe-epaules-un-bras : retirer (équilibre). Post-partum : G7.
+**Grossesse** : adapter: variante:developpe-epaules-assis-chaise
+**Version plus douce** : developpe-epaules-assis-chaise
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule quand le bras passe au-dessus de la tête.
@@ -73,7 +85,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Standing_Dumbbell_Press/0.jpg` : affichable : à vérifier (image non regardée ; variante debout).
 - `Standing_Dumbbell_Press/1.jpg` : affichable : à vérifier (image non regardée).
-- `Dumbbell_Shoulder_Press/0.jpg` et `/1.jpg` : affichable : à vérifier (images non regardées ; sur un banc à dossier : illustration seulement pour la variante assise sur chaise).
+- `Dumbbell_Shoulder_Press/0.jpg` : affichable : à vérifier (image non regardée ; sur un banc à dossier : illustration seulement pour la variante assise sur chaise)
+- `Dumbbell_Shoulder_Press/1.jpg` : affichable : à vérifier (image non regardée ; même réserve : banc à dossier)
 Variante un bras : aucune photo.
 
 ## Sources

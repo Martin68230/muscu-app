@@ -14,8 +14,8 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| fente-basse-rotation-sol | Au sol | 2 | debutant | poids_du_corps, tapis | Espace pour une grande fente, genou arrière sur un tapis. |
 | fente-basse-rotation-appui | Mains sur une marche | 1 | debutant | poids_du_corps, marche_escalier | Mains posées sur une marche plutôt qu'au sol, si le sol est trop loin. |
+| fente-basse-rotation-sol | Au sol | 2 | debutant | poids_du_corps, tapis | Espace pour une grande fente, genou arrière sur un tapis. |
 
 ## Consignes
 1. Grand pas en avant, genou arrière posé au sol.
@@ -37,6 +37,8 @@ statut: complete_kine
 - Bloquer la respiration.
 
 ## Progression / régression
+- plus-facile : chat-vache
+- plus-dur : aucun
 chat-vache <- **fente-basse-rotation** (mains sur marche -> mains au sol)
 
 ## Repères de dosage
@@ -45,19 +47,30 @@ Voir program-logic.md (échauffement : à sourcer, §9). La fiche source propose
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Hanche | adapter : variante:fente-basse-rotation-appui | adapter : variante:fente-basse-rotation-appui, amplitude:fente moins grande | retirer |
-| Genou | adapter : appui:coussin sous le genou arrière | adapter : appui:coussin, amplitude:fente moins profonde | retirer |
-| Dos | adapter : amplitude:rotation lente | adapter : amplitude:sans rotation (fente seule) | retirer |
-| Épaule | adapter : amplitude:bras levé moins haut | adapter : amplitude:sans lever le bras | retirer |
-| Poignet | adapter : variante:fente-basse-rotation-appui, appui:poing fermé | retirer (remplaçant : chat-vache sur les avant-bras) | retirer |
+| Hanche | adapter: variante:fente-basse-rotation-appui | adapter: variante:fente-basse-rotation-appui | retirer |
+| Genou | adapter: appui:coussin | adapter: appui:coussin | retirer |
+| Dos | adapter: amplitude:lente | adapter: amplitude:sans-rotation | retirer |
+| Épaule | adapter: amplitude:bras-bas | adapter: amplitude:bras-bas | retirer |
+| Poignet | adapter: variante:fente-basse-rotation-appui | retirer: remplacant:chat-vache | retirer |
 
-**Version plus douce** : `fente-basse-rotation-appui`.
+**Notes**
+- hanche-n2 : fente moins grande.
+- genou-n1 : coussin sous le genou arrière ; au niveau 2, fente moins profonde.
+- dos-n1 : rotation lente.
+- dos-n2 : fente seule, sans rotation.
+- epaule-n2 : sans lever le bras.
+- poignet-n1 : poing fermé sur la marche.
+- poignet-n2 : remplacement par le chat-vache sur les avant-bras.
+- grossesse : version mains sur une marche, fente moins grande. Post-partum : G7.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:fente-basse-rotation-appui, amplitude:fente moins grande. Post-partum : G7.
+**Grossesse** : adapter: variante:fente-basse-rotation-appui
+**Version plus douce** : fente-basse-rotation-appui
+
+
 
 **Signes qui doivent faire arrêter**
 - Une position fait mal (étirement oui, douleur non).
@@ -79,7 +92,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Ouverture du bras vers le plafond (rotation du buste) | ajout de coach (version courante du mouvement, absente de cette fiche source) | pratique courante | - | NON SOURCÉ |
 | Muscles (ischios ; mollets, fessiers, quadriceps) | même fiche ; fléchisseurs de hanche ajoutés par coach | idem | 2026-10-21 | PROVISOIRE |
 | Niveau débutant (la source dit intermédiaire) | choix de coach avec la variante mains sur marche, à trancher | - | - | NON SOURCÉ |
-| Nom français descriptif au lieu de « World's Greatest Stretch » | choix de coach | - | - | à trancher |
+| Nom français descriptif au lieu de « World's Greatest Stretch » | choix de coach | - | - | NON SOURCÉ (à trancher) |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |

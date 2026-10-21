@@ -36,16 +36,41 @@ Variante de la pompe qui insiste sur les pectoraux (moins de triceps) : fiche s�
 - Demi-répétitions.
 
 ## Progression / régression
+- plus-facile : pompe-genoux, pompe-chaise
+- plus-dur : pompe-archer
 pompe-sol (fiche `pompe`) -> **pompe-ecartee-sol** ; version plus facile : pompe-genoux ou pompe-chaise
 
 ## Repères de dosage
 Voir program-logic.md.
 
 ## Sécurité et contre-indications
-À compléter par kine (nouvelle fiche créée le 21/10/2026, au format de knowledge/format-fiches.md). Règles communes : knowledge/regles-securite-communes.md (R1 à R10, G, S, U). Aucune consigne de sécurité propre à cette fiche n'est validée avant le passage de `kine`.
+Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Statut : NON SOURCÉ (extrapolation de `kine` des règles communes ; aucune étude ne teste ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+
+| Zone | Niveau 1 | Niveau 2 | Niveau 3 |
+|---|---|---|---|
+| Épaule | adapter: amplitude:reduite | retirer: remplacant:pompe-chaise | retirer |
+| Coude | garder | adapter: variante:pompe-chaise | retirer |
+| Poignet | adapter: appui:poings-fermes | adapter: variante:pompe-chaise | retirer |
+| Dos | garder | adapter: variante:pompe-genoux | retirer |
+
+**Notes**
+- epaule-n1 : mains écartées = épaule étirée en bas de mouvement : ne descends pas plus bas que sans gêne.
+- grossesse : mains hautes, respiration continue, jamais jusqu'à l'échec. Post-partum : G7.
+
+**Grossesse** : adapter: variante:pompe-chaise
+**Version plus douce** : pompe-genoux
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude, au poignet ou au bas du dos.
+- Bassin qui s'effondre ou bas du dos qui se creuse.
+- Support qui glisse ou bouge.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Pushups_Close_and_Wide_Hand_Positions/0.jpg`, `1.jpg` (free-exercise-db) : affichable : à vérifier (images non regardées ; la fiche source couvre les deux positions, large et serrée : n'afficher que si l'image montre les mains larges).
+- `Pushups_Close_and_Wide_Hand_Positions/0.jpg` : affichable : à vérifier (image non regardée ; la fiche source couvre les deux positions, large et serrée : n'afficher que si l'image montre les mains larges)
+- `Pushups_Close_and_Wide_Hand_Positions/1.jpg` : affichable : à vérifier (image non regardée ; même réserve)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -54,4 +79,4 @@ Voir program-logic.md.
 | Niveau « intermediaire » (la source dit beginner) | choix de coach : mains très écartées plus exigeantes pour l'épaule ; changement tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Existence du mouvement | brouillon M1325 (maxwu « Wide Hand Push Up ») : texte non copié | - | 2026-10-21 | NON SOURCÉ |
 | Conseil d'écartement modéré | pratique courante | - | - | NON SOURCÉ |
-| Sécurité (zones, grossesse, signes d'arrêt) | à compléter par kine | - | - | à compléter |
+| Sécurité (zones, grossesse, signes d'arrêt) | à compléter par kine | - | - | NON SOURCÉ (à compléter par kine) |

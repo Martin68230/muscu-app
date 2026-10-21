@@ -37,6 +37,8 @@ statut: complete_kine
 - Genou d'appui verrouillé.
 
 ## Progression / régression
+- plus-facile : souleve-de-terre-roumain-halteres
+- plus-dur : aucun
 souleve-de-terre-roumain-halteres <- **sdt-unijambiste-mur** -> sdt-unijambiste-poids-du-corps -> sdt-unijambiste-haltere
 
 ## Repères de dosage
@@ -45,18 +47,27 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter : variante:sdt-unijambiste-mur, sans-charge | retirer (remplaçant : pont-fessier) | retirer |
-| Hanche | adapter : variante:sdt-unijambiste-mur | adapter : variante:souleve-de-terre-roumain-halteres, charge:légère (deux pieds) | retirer |
-| Genou | garder | adapter : variante:souleve-de-terre-roumain-halteres (deux pieds) | retirer |
-| Cheville | adapter : variante:sdt-unijambiste-mur | adapter : variante:souleve-de-terre-roumain-halteres (deux pieds) | retirer |
+| Dos | adapter: variante:sdt-unijambiste-mur | retirer: remplacant:pont-fessier | retirer |
+| Hanche | adapter: variante:sdt-unijambiste-mur | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
+| Genou | garder | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
+| Cheville | adapter: variante:sdt-unijambiste-mur | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
 
-**Version plus douce** : `sdt-unijambiste-mur`, puis `souleve-de-terre-roumain-halteres` (deux pieds au sol).
+**Notes**
+- dos-n1 : version mur, sans charge.
+- hanche-n2 : deux pieds au sol, charge légère.
+- genou-n2 : deux pieds au sol.
+- cheville-n2 : deux pieds au sol.
+- grossesse : version mur (appui au mur), sans charge. Post-partum : G7.
+- general : version plus douce = version mur, puis soulevé de terre roumain aux haltères (deux pieds au sol).
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:sdt-unijambiste-mur (appui:mur), sans-charge. Post-partum : G7.
+**Grossesse** : adapter: variante:sdt-unijambiste-mur
+**Version plus douce** : sdt-unijambiste-mur
+
+
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au dos, à la hanche, au genou ou à la cheville d'appui.
@@ -65,6 +76,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
+- aucune photo
 Aucune photo libre (affichable : sans objet).
 
 ## Sources

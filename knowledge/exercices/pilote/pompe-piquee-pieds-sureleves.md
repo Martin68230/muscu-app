@@ -36,6 +36,8 @@ statut: complete_kine
 - Tête qui tape le sol.
 
 ## Progression / régression
+- plus-facile : pompe-piquee
+- plus-dur : a-creer:pompe-equilibre-mur
 pompe-piquee <- **pompe-piquee-pieds-sureleves** (marche -> chaise) -> pompe en équilibre contre un mur (avancé, à créer)
 
 ## Repères de dosage
@@ -44,21 +46,29 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : variante:pompe-piquee | retirer (remplaçant : pompe-chaise) | retirer |
-| Coude | adapter : variante:pompe-piquee-pieds-marche, amplitude:réduite | adapter : variante:pompe-piquee (mains sur marche : pompe-piquee-mains-marche) | retirer |
-| Poignet | adapter : variante:pompe-piquee (mains sur marche : pompe-piquee-mains-marche) | retirer | retirer |
-| Cou | adapter : variante:pompe-piquee, amplitude:moins tête en bas | retirer | retirer |
+| Épaule | adapter: variante:pompe-piquee | retirer: remplacant:pompe-chaise | retirer |
+| Coude | adapter: amplitude:reduite | adapter: variante:pompe-piquee | retirer |
+| Poignet | adapter: variante:pompe-piquee | retirer | retirer |
+| Cou | adapter: variante:pompe-piquee | retirer | retirer |
+
+**Notes**
+- coude-n1 : variante pieds sur une marche, amplitude réduite.
+- coude-n2 : mains sur une marche (pompe-piquee-mains-marche).
+- poignet-n1 : mains sur une marche.
+- cou-n1 : moins de tête en bas.
+- grossesse : tête en bas et risque de chute, donc retiré ; remplaçant conseillé : pompe-chaise. Post-partum : G7.
+
+**Grossesse** : retirer: remplacant:pompe-chaise
+**Version plus douce** : pompe-piquee
 
 **Points d'attention (kine)**
 - Si un médecin t'a déconseillé les positions tête en bas, ne fais pas cet exercice (proposition : une case dédiée dans le profil, à trancher avec l'utilisateur et `dev` ; NON SOURCÉ).
 
-**Version plus douce** : `pompe-piquee`.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (tête en bas, risque de chute ; remplaçant : pompe-inclinee). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude, au poignet ou au cou.
@@ -73,6 +83,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Commence toujours par la marche, plus basse. Pieds nus ou chaussures, jamais en chaussettes sur une chaise ou une marche lisse.
 
 ## Photo
+- aucune photo
 Aucune photo affichable (affichable : sans objet).
 
 ## Sources

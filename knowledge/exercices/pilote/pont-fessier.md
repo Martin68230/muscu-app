@@ -36,6 +36,8 @@ statut: complete_kine
 - Redescendre en lâchant d'un coup.
 
 ## Progression / régression
+- plus-facile : aucun
+- plus-dur : a-creer:pont-fessier-une-jambe
 **pont-fessier-sol** -> pont-fessier-haltere -> pont fessier sur une jambe (à créer, brouillon M0506)
 
 ## Repères de dosage
@@ -44,19 +46,27 @@ Voir program-logic.md.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter : sans-charge, amplitude:bassin à mi-hauteur | retirer |
-| Hanche | garder | adapter : sans-charge, amplitude:réduite | retirer |
-| Genou | garder | adapter : sans-charge, appui:pieds un peu plus loin des fesses | retirer |
+| Dos | garder | adapter: sans-charge | retirer |
+| Hanche | garder | adapter: sans-charge | retirer |
+| Genou | garder | adapter: sans-charge | retirer |
+
+**Notes**
+- dos-n2 : sans charge, bassin à mi-hauteur.
+- hanche-n2 : sans charge, amplitude réduite.
+- genou-n2 : sans charge, pieds un peu plus loin des fesses.
+- grossesse : couché sur le dos, donc retiré ; remplaçant conseillé : soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
+- general : version plus douce = pont-fessier-sol à mi-hauteur.
+
+**Grossesse** : retirer: remplacant:souleve-de-terre-roumain-halteres
+**Version plus douce** : pont-fessier-sol
 
 Niveau 1 du dos : garder, car la consigne limite déjà la montée à l'alignement épaules-hanches-genoux.
 
-**Version plus douce** : `pont-fessier-sol` à mi-hauteur.
 
-**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (couché sur le dos ; remplaçant : souleve-de-terre-roumain-halteres, charge légère). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos ou à la hanche.
