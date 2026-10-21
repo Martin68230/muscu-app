@@ -1,0 +1,52 @@
+{
+  "version": 1,
+  "mis_a_jour": "2026-10-21",
+  "source": "knowledge/equipment-taxonomy.md §2 (vocabulaire unique). Fichier lu par tools/validate-fiches.mjs et, plus tard, par le générateur. En cas de désaccord, equipment-taxonomy.md décide ; mettre à jour les deux.",
+  "groupes": {
+    "implicite": "Supposé présent partout, sauf case décochée dans le profil.",
+    "maison": "Matériel de maison courant.",
+    "objet_quotidien": "Objet du quotidien : à cocher dans le profil, jamais implicite.",
+    "salle": "Matériel de salle (salle_uniquement)."
+  },
+  "tags": [
+    { "id": "poids_du_corps", "groupe": "implicite", "detail": "Aucun matériel." },
+    { "id": "tapis", "groupe": "implicite", "detail": "Tapis ou sol." },
+    { "id": "chaise", "groupe": "implicite", "detail": "Stable, sans roulettes." },
+    { "id": "mur", "groupe": "implicite", "detail": "Mur dégagé." },
+    { "id": "marche_escalier", "groupe": "implicite", "detail": "Première marche d'un escalier éclairé et dégagé ; un banc de parc de hauteur comparable convient. Remplace marche_ou_box (décision du 21/10/2026)." },
+    { "id": "serviette", "groupe": "implicite", "detail": "Serviette." },
+    { "id": "porte", "groupe": "implicite", "detail": "Pour ancrer un élastique, seulement avec ancrage adapté." },
+
+    { "id": "halteres", "groupe": "maison", "detail": "Fixes ou réglables ; liste des poids disponibles dans le profil." },
+    { "id": "kettlebell", "groupe": "maison", "detail": "Poids dans le profil." },
+    { "id": "elastique", "groupe": "maison", "detail": "Mini-bande, bande longue ou avec poignées ; résistance dans le profil." },
+    { "id": "barre_traction", "groupe": "maison" },
+    { "id": "banc", "groupe": "maison" },
+    { "id": "banc_inclinable", "groupe": "maison" },
+    { "id": "roue_abdos", "groupe": "maison" },
+    { "id": "swiss_ball", "groupe": "maison" },
+    { "id": "medecine_ball", "groupe": "maison" },
+    { "id": "rouleau_massage", "groupe": "maison" },
+    { "id": "corde_a_sauter", "groupe": "maison" },
+    { "id": "sangles_suspension", "groupe": "maison", "detail": "TRX ou anneaux." },
+    { "id": "lest", "groupe": "maison", "detail": "Gilet lesté." },
+    { "id": "sac_de_sable", "groupe": "maison" },
+    { "id": "bosu", "groupe": "maison" },
+    { "id": "barre", "groupe": "maison" },
+    { "id": "barre_ez", "groupe": "maison" },
+
+    { "id": "sac_a_dos", "groupe": "objet_quotidien", "detail": "Sac à dos chargé, fermé, contenu calé, poids connu." },
+    { "id": "bidons_ou_sacs", "groupe": "objet_quotidien", "detail": "Packs ou bidons d'eau, sacs de courses solides, poids connu." },
+    { "id": "box_ou_step", "groupe": "objet_quotidien", "detail": "Box ou step stable, plus haut qu'une marche d'escalier. Remplace box_stable (décision du 21/10/2026)." },
+
+    { "id": "poulie", "groupe": "salle", "salle_uniquement": true },
+    { "id": "machine", "groupe": "salle", "salle_uniquement": true },
+    { "id": "machine_cardio", "groupe": "salle", "salle_uniquement": true },
+    { "id": "materiel_specialise", "groupe": "salle", "salle_uniquement": true, "detail": "Sled, pneu, pierres d'Atlas... Jamais pour débutants ni à la maison (règle 23)." }
+  ],
+  "remplaces": {
+    "marche_ou_box": "marche_escalier",
+    "box_stable": "box_ou_step"
+  },
+  "a_nettoyer": ["autre", "corde_a_preciser"]
+}

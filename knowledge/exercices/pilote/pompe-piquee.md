@@ -15,7 +15,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pompe-piquee-sol | Mains au sol | 2 | debutant | poids_du_corps, tapis | Mains et pieds au sol, hanches hautes. |
-| pompe-piquee-mains-marche | Mains sur une marche | 1 | debutant | poids_du_corps, marche_ou_box | Mains sur une marche ou un banc stable : un peu plus facile. |
+| pompe-piquee-mains-marche | Mains sur une marche | 1 | debutant | poids_du_corps, marche_escalier | Mains sur une marche ou un banc stable : un peu plus facile. |
 
 ## Consignes
 1. Mets-toi à quatre pattes, puis monte les hanches : ton corps fait un V à l'envers.
@@ -36,7 +36,7 @@ statut: complete_kine
 - Descente trop rapide vers la tête.
 
 ## Progression / régression
-pompe-inclinee <- **pompe-piquee** (mains sur marche -> mains au sol) -> pompe-piquee-pieds-sureleves -> pompe en équilibre contre un mur (avancé, à créer)
+pompe-chaise (fiche pompe) <- **pompe-piquee** (mains sur marche -> mains au sol) -> pompe-piquee-pieds-sureleves -> pompe en équilibre contre un mur (avancé, à créer)
 
 ## Repères de dosage
 Voir program-logic.md.
@@ -48,7 +48,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : variante:pompe-piquee-mains-marche, amplitude:réduite | retirer (remplaçant : pompe-inclinee) | retirer |
+| Épaule | adapter : variante:pompe-piquee-mains-marche, amplitude:réduite | retirer (remplaçant : pompe-chaise) | retirer |
 | Coude | garder | adapter : variante:pompe-piquee-mains-marche, amplitude:réduite | retirer |
 | Poignet | adapter : variante:pompe-piquee-mains-marche (mains sur le bord, poignet moins plié) | retirer (remplaçant : developpe-epaules-halteres, paumes face à face, si haltères) | retirer |
 | Cou | adapter : amplitude:réduite, la tête ne touche jamais le sol | retirer | retirer |

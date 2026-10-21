@@ -26,6 +26,9 @@ jobs:
           cache: npm
       - run: npm ci
       - run: npm test
+      # Format des fiches d'exercices : non bloquant tant que les fiches ne sont pas conformes (à rendre bloquant ensuite).
+      - run: npm run check:fiches
+        continue-on-error: true
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:

@@ -15,7 +15,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | squat-assis-debout-chaise | Sur une chaise | 1 | debutant | poids_du_corps, chaise | Chaise stable, sans roulettes, dossier contre un mur. |
-| squat-assis-debout-marche | Sur un banc de parc ou une box | 1 | debutant | poids_du_corps, marche_ou_box | Support stable, à peu près à hauteur de genou. |
+| squat-assis-debout-marche | Sur un banc de parc ou une box | 1 | debutant | poids_du_corps, box_ou_step | Support stable, à peu près à hauteur de genou. |
 
 ## Consignes
 1. Dos à la chaise, pieds à largeur de hanches, un peu ouverts.

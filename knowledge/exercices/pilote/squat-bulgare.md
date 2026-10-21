@@ -15,7 +15,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | squat-bulgare-chaise | Pied sur une chaise | 1 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur, dessus du pied arrière posé sur l'assise. |
-| squat-bulgare-marche | Pied sur une marche | 1 | intermediaire | poids_du_corps, marche_ou_box | Dessus du pied arrière sur la première marche d'un escalier (éclairé, dégagé, rampe si possible) ou sur un banc stable. |
+| squat-bulgare-marche | Pied sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Dessus du pied arrière sur la première marche d'un escalier (éclairé, dégagé, rampe si possible) ou sur un banc stable. |
 | squat-bulgare-halteres | Haltères, pied sur une chaise | 1 | intermediaire | halteres, chaise | Comme la version chaise, un haltère dans chaque main. |
 
 ## Consignes

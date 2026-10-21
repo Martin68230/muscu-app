@@ -25,7 +25,7 @@ EQ_MAP = {
     'resistance band': 'elastique', 'cable machine': 'poulie',
 }
 NAME_TAGS = [  # matériel détecté dans le nom (ajouté aux tags)
-    (r"\bchair\b", 'chaise'), (r"\bwall\b", 'mur'), (r"\b(box|step|stair)s?\b", 'marche_ou_box'),
+    (r"\bchair\b", 'chaise'), (r"\bwall\b", 'mur'), (r"\b(box|step|stair)s?\b", 'marche_escalier'),
     (r"\bbench\b", 'banc'), (r"\bincline\b|\bdecline\b", 'banc_inclinable'),
     (r"pull-?ups?\b|chin-?ups?\b|\bhanging\b|\bhang\b", 'barre_traction'),
     (r"\btrx\b|suspension|\brings?\b", 'sangles_suspension'), (r"jump rope|skipping rope|rope jump", 'corde_a_sauter'),
@@ -188,7 +188,7 @@ with open(OUT + '/exercise-library-draft.csv', 'w', newline='', encoding='utf-8'
     w = csv.DictWriter(f, fieldnames=cols); w.writeheader(); w.writerows(out)
 
 # ---------- Couverture selon des profils de matériel ----------
-IMPLICITE = {'poids_du_corps', 'tapis', 'chaise', 'mur', 'marche_ou_box', 'serviette', 'porte'}
+IMPLICITE = {'poids_du_corps', 'tapis', 'chaise', 'mur', 'marche_escalier', 'serviette', 'porte'}
 PROFILS = {
     'A. poids du corps seul (+ chaise, mur, marche)': IMPLICITE,
     'B. A + élastiques': IMPLICITE | {'elastique'},

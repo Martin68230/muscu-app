@@ -151,7 +151,7 @@ M0135,Hyperextensions (Back Extensions),Hyperextensions (Back Extensions),force,
 M0136,Lower Back Extensions,Lower Back Extensions,force,hinge,poids_du_corps,non,,Back,,wger,CC-BY-SA 4.0 (attribution : Anastasious),à vérifier (licence par image),,brouillon_a_relire
 M0137,Band Fixed Back Underhand Pulldown,Band Fixed Back Underhand Pulldown,force,pull_v,elastique,non,,back,lats,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0138,Back Flyes - With Bands,Back Flyes - With Bands,force,push_h,elastique,non,beginner,strength,shoulders,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0139,Back And Forth Step,Back And Forth Step,force,a_classer,marche_ou_box,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M0139,Back And Forth Step,Back And Forth Step,force,a_classer,marche_escalier,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0140,Leg Swings (Front–Back),Leg Swings (Front–Back),fonctionnel,ballistic,poids_du_corps,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : Jhonatan),à vérifier (licence par image),,brouillon_a_relire
 M0141,Barbell Full Squat (Back Pov),Barbell Full Squat (Back Pov),force,squat,barre,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0142,Upper Back-Leg Grab,Upper Back-Leg Grab,force,a_classer,poids_du_corps,non,beginner,stretching,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
@@ -163,7 +163,7 @@ M0147,Sled 45В° Leg Press (Back Pov),Sled 45В° Leg Press (Back Pov),fonction
 M0148,Lower Back-SMR,Lower Back-SMR,mobilite_recup,a_classer,rouleau_massage,non,beginner,stretching,lower back,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0149,Seated Lower Back Stretch,Seated Lower Back Stretch,mobilite_recup,mobility,poids_du_corps,non,,back,lats,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0150,Alternate back lunges,Alternate back lunges,force,lunge_unilateral,poids_du_corps,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : clafal),à vérifier (licence par image),,brouillon_a_relire
-M0151,Barbell Step Back Lunge,Barbell Step Back Lunge,force,lunge_unilateral,barre|marche_ou_box,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
+M0151,Barbell Step Back Lunge,Barbell Step Back Lunge,force,lunge_unilateral,barre|marche_escalier,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
 M0152,Middle Back Shrug,Middle Back Shrug,force,shoulders_iso,halteres,non,intermediate,strength,middle back,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0153,Middle Back Stretch,Middle Back Stretch,mobilite_recup,mobility,poids_du_corps,non,beginner,stretching,middle back,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0154,Back neck stretch,Back neck stretch,mobilite_recup,mobility,poids_du_corps,non,,Back,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
@@ -184,7 +184,7 @@ M0167,Sled Overhead Backward Walk,Sled Overhead Backward Walk,cardio,locomotion,
 M0168,Backward shoulder rotation,Backward shoulder rotation,force,rotation,poids_du_corps,non,,Back,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
 M0169,Heavy Bag Thrust,Heavy Bag Thrust,force,a_classer,autre,non,beginner,plyometrics,chest,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0170,Bag training,Bag training,force,a_classer,poids_du_corps,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : clafal),à vérifier (licence par image),,brouillon_a_relire
-M0171,Dumbbell Step Up Single Leg Balance With Bicep Curl,Dumbbell Step Up Single Leg Balance With Bicep Curl,fonctionnel,lunge_unilateral,halteres|marche_ou_box,non,,upper arms,biceps,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M0171,Dumbbell Step Up Single Leg Balance With Bicep Curl,Dumbbell Step Up Single Leg Balance With Bicep Curl,fonctionnel,lunge_unilateral,halteres|marche_escalier,non,,upper arms,biceps,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0172,Balance Board,Balance Board,fonctionnel,a_classer,autre,non,beginner,strength,calves,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0172,Balance Board,Balance Board,fonctionnel,a_classer,poids_du_corps,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0173,Downward Facing Balance,Downward Facing Balance,fonctionnel,a_classer,swiss_ball,non,intermediate,strength,glutes,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
@@ -585,23 +585,23 @@ M0474,Bottoms-Up Clean From The Hang Position,Bottoms-Up Clean From The Hang Pos
 M0475,Bottoms Up,Bottoms Up,force,a_classer,poids_du_corps,non,beginner,strength,abdominals,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0476,Alternate Leg Diagonal Bound,Alternate Leg Diagonal Bound,fonctionnel,jump,poids_du_corps,non,beginner,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0477,Lateral Bound,Lateral Bound,fonctionnel,jump,poids_du_corps,non,beginner,plyometrics,adductors,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0478,Box Squat with Chains,Box Squat with Chains,force,squat,barre|marche_ou_box,non,expert,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0479,Box Jump Down With One Leg Stabilization,Box Jump Down With One Leg Stabilization,fonctionnel,jump,marche_ou_box,non,,lower legs,calves,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M0480,Front Box Jump,Front Box Jump,fonctionnel,jump,autre|marche_ou_box,non,beginner,plyometrics,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0481,Single-Leg High Box Squat,Single-Leg High Box Squat,force,squat,autre|marche_ou_box,non,beginner,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0482,Incline Push-Up (On Box),Incline Push-Up (On Box),force,push_h,banc_inclinable|marche_ou_box,non,,chest,pectorals,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M0483,box jumps,box jumps,fonctionnel,jump,marche_ou_box,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : tekknokrat@gmx.de),à vérifier (licence par image),,brouillon_a_relire
-M0483,box jumps,Dumbbell Seated Box Jump,fonctionnel,jump,halteres|marche_ou_box,non,intermediate,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0484,Lateral Box Jump,Lateral Box Jump,fonctionnel,jump,autre|marche_ou_box,non,beginner,plyometrics,adductors,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0485,Box Jump (Multiple Response),Box Jump (Multiple Response),fonctionnel,jump,autre|marche_ou_box,non,beginner,plyometrics,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0486,Low Box Squat - Wide Stance,Low Box Squat - Wide Stance,force,squat,barre|marche_ou_box,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : taylorbarbell),à vérifier (licence par image),,brouillon_a_relire
-M0487,Reverse Band Box Squat,Reverse Band Box Squat,force,squat,barre|elastique|marche_ou_box,non,intermediate,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0488,Side to Side Box Shuffle,Side to Side Box Shuffle,force,a_classer,autre|marche_ou_box,non,beginner,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0489,Box Skip,Box Skip,force,jump,autre|marche_ou_box,non,beginner,plyometrics,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0490,Speed Box Squat,Speed Box Squat,force,squat,barre|marche_ou_box,non,intermediate,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0491,Box Squat,Box Squat,force,squat,barre|marche_ou_box,non,intermediate,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M0491,Box Squat,Box squat,force,squat,marche_ou_box,non,,Abs,,wger,CC-BY-SA 4.0 (attribution : clafal),à vérifier (licence par image),,brouillon_a_relire
-M0491,Box Squat,Box Squat with Bands,force,squat,barre|elastique|marche_ou_box,non,expert,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0478,Box Squat with Chains,Box Squat with Chains,force,squat,barre|marche_escalier,non,expert,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0479,Box Jump Down With One Leg Stabilization,Box Jump Down With One Leg Stabilization,fonctionnel,jump,marche_escalier,non,,lower legs,calves,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M0480,Front Box Jump,Front Box Jump,fonctionnel,jump,autre|marche_escalier,non,beginner,plyometrics,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0481,Single-Leg High Box Squat,Single-Leg High Box Squat,force,squat,autre|marche_escalier,non,beginner,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0482,Incline Push-Up (On Box),Incline Push-Up (On Box),force,push_h,banc_inclinable|marche_escalier,non,,chest,pectorals,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M0483,box jumps,box jumps,fonctionnel,jump,marche_escalier,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : tekknokrat@gmx.de),à vérifier (licence par image),,brouillon_a_relire
+M0483,box jumps,Dumbbell Seated Box Jump,fonctionnel,jump,halteres|marche_escalier,non,intermediate,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0484,Lateral Box Jump,Lateral Box Jump,fonctionnel,jump,autre|marche_escalier,non,beginner,plyometrics,adductors,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0485,Box Jump (Multiple Response),Box Jump (Multiple Response),fonctionnel,jump,autre|marche_escalier,non,beginner,plyometrics,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0486,Low Box Squat - Wide Stance,Low Box Squat - Wide Stance,force,squat,barre|marche_escalier,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : taylorbarbell),à vérifier (licence par image),,brouillon_a_relire
+M0487,Reverse Band Box Squat,Reverse Band Box Squat,force,squat,barre|elastique|marche_escalier,non,intermediate,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0488,Side to Side Box Shuffle,Side to Side Box Shuffle,force,a_classer,autre|marche_escalier,non,beginner,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0489,Box Skip,Box Skip,force,jump,autre|marche_escalier,non,beginner,plyometrics,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0490,Speed Box Squat,Speed Box Squat,force,squat,barre|marche_escalier,non,intermediate,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0491,Box Squat,Box Squat,force,squat,barre|marche_escalier,non,intermediate,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0491,Box Squat,Box squat,force,squat,marche_escalier,non,,Abs,,wger,CC-BY-SA 4.0 (attribution : clafal),à vérifier (licence par image),,brouillon_a_relire
+M0491,Box Squat,Box Squat with Bands,force,squat,barre|elastique|marche_escalier,non,expert,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0492,Left Hook. Boxing,Left Hook. Boxing,force,a_classer,poids_du_corps,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0493,Braced Squat,Braced Squat,force,squat,poids_du_corps,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : sevae),à vérifier (licence par image),,brouillon_a_relire
 M0494,Brachialis-SMR,Brachialis-SMR,mobilite_recup,a_classer,rouleau_massage,non,intermediate,stretching,biceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
@@ -732,7 +732,7 @@ M0590,Car Deadlift,Car Deadlift,force,hinge,autre,non,intermediate,strongman,qua
 M0591,Car Drivers,Car Drivers,force,a_classer,barre,non,beginner,strength,shoulders,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0592,Cycling cardio session,Cycling cardio session,cardio,conditioning,poids_du_corps,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
 M0593,Treadmill Cardio,Treadmill Cardio,cardio,conditioning,machine_cardio,oui,,Cardio,,wger,CC-BY-SA 4.0 (attribution : Tierrasverdes),à vérifier (licence par image),,brouillon_a_relire
-M0594,Carioca Quick Step,Carioca Quick Step,force,locomotion,marche_ou_box,non,beginner,plyometrics,adductors,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M0594,Carioca Quick Step,Carioca Quick Step,force,locomotion,marche_escalier,non,beginner,plyometrics,adductors,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M0595,Dumbbell farmer's carry,Dumbbell farmer's carry,fonctionnel,carry,halteres,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : philip),à vérifier (licence par image),,brouillon_a_relire
 M0596,Dumbbell Single Arm Overhead Carry,Dumbbell Single Arm Overhead Carry,fonctionnel,carry,halteres,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0597,Rickshaw Carry,Rickshaw Carry,fonctionnel,carry,autre|materiel_specialise,oui,intermediate,strongman,forearms,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
@@ -1901,7 +1901,7 @@ M1466,Single-Leg Stride Jump,Single-Leg Stride Jump,fonctionnel,jump,autre,non,b
 M1467,Standing Long Jump,Standing Long Jump,fonctionnel,jump,poids_du_corps,non,beginner,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1468,Side Standing Long Jump,Side Standing Long Jump,fonctionnel,jump,poids_du_corps,non,beginner,plyometrics,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1469,Lunge With Jump,Lunge With Jump,fonctionnel,jump,poids_du_corps,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M1470,Barbell Squat Jump Step Rear Lunge,Barbell Squat Jump Step Rear Lunge,fonctionnel,jump,barre|marche_ou_box,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1470,Barbell Squat Jump Step Rear Lunge,Barbell Squat Jump Step Rear Lunge,fonctionnel,jump,barre|marche_escalier,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1471,Scissor Jumps (Male),Scissor Jumps (Male),fonctionnel,jump,poids_du_corps,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1472,Semi Squat Jump (Male),Semi Squat Jump (Male),fonctionnel,jump,poids_du_corps,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1473,Star Jump (Male),Star Jump (Male),fonctionnel,jump,poids_du_corps,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
@@ -1940,7 +1940,7 @@ M1496,Kipping Muscle Up,Kipping Muscle Up,force,a_classer,autre,non,intermediate
 M1496,Kipping Muscle Up,Kipping Muscle Up,force,a_classer,poids_du_corps,non,,back,lats,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1497,knee push-ups,knee push-ups,force,push_h,poids_du_corps,non,,Arms,,wger,CC-BY-SA 4.0 (attribution : PaukOne),à vérifier (licence par image),,brouillon_a_relire
 M1498,Knee Raises,Knee Raises,gainage,core,barre_traction,non,,Abs,,wger,CC-BY-SA 4.0 (attribution : clafal),à vérifier (licence par image),,brouillon_a_relire
-M1499,Step-up with Knee Raise,Step-up with Knee Raise,gainage,lunge_unilateral,marche_ou_box,non,beginner,strength,glutes,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M1499,Step-up with Knee Raise,Step-up with Knee Raise,gainage,lunge_unilateral,marche_escalier,non,beginner,strength,glutes,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1500,Barbell Squat (On Knees),Barbell Squat (On Knees),force,squat,barre,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1501,Seated Knee Tuck,Seated Knee Tuck,force,a_classer,poids_du_corps,non,,Abs,,wger,CC-BY-SA 4.0 (attribution : utkb),à vérifier (licence par image),,brouillon_a_relire
 M1502,Kneeling Lat Stretch,Kneeling Lat Stretch,mobilite_recup,mobility,poids_du_corps,non,,back,lats,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
@@ -1948,7 +1948,7 @@ M1503,Kneeling Plank Tap Shoulder (Male),Kneeling Plank Tap Shoulder (Male),gain
 M1504,Kneeling Push-Up (Male),Kneeling Push-Up (Male),force,push_h,poids_du_corps,non,,chest,pectorals,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1505,Band Kneeling One Arm Pulldown,Band Kneeling One Arm Pulldown,force,pull_v,elastique,non,,back,lats,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1506,Kneeling Squat,Kneeling Squat,force,squat,barre,non,intermediate,powerlifting,glutes,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1507,Weighted Kneeling Step With Swing,Weighted Kneeling Step With Swing,fonctionnel,ballistic,lest|marche_ou_box,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1507,Weighted Kneeling Step With Swing,Weighted Kneeling Step With Swing,fonctionnel,ballistic,lest|marche_escalier,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1508,Kneeling Superman,Kneeling Superman,force,a_classer,poids_du_corps,non,,Back,,wger,CC-BY-SA 4.0 (attribution : cybro),à vérifier (licence par image),,brouillon_a_relire
 M1509,Lever Kneeling Twist,Lever Kneeling Twist,force,rotation,machine,oui,,waist,abs,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1510,Kroc Row,Kroc Row,force,pull_h,poids_du_corps,non,,Back,,wger,CC-BY-SA 4.0 (attribution : Expenses7000),à vérifier (licence par image),,brouillon_a_relire
@@ -2077,7 +2077,7 @@ M1598,Barbell Rear Lunge,Dumbbell Rear Lunge,force,lunge_unilateral,halteres,non
 M1599,Reverse lunges,Reverse lunges,force,lunge_unilateral,poids_du_corps,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
 M1600,Runners Lunge Stretch,Runners Lunge Stretch,mobilite_recup,locomotion,poids_du_corps,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : Davidgj32),à vérifier (licence par image),,brouillon_a_relire
 M1601,Lunge Sprint,Lunge Sprint,cardio,locomotion,machine,oui,intermediate,strength,quadriceps,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1602,Dumbbell Step-Up Lunge,Dumbbell Step-Up Lunge,force,lunge_unilateral,halteres|marche_ou_box,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1602,Dumbbell Step-Up Lunge,Dumbbell Step-Up Lunge,force,lunge_unilateral,halteres|marche_escalier,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1603,Weighted Stretch Lunge,Weighted Stretch Lunge,mobilite_recup,lunge_unilateral,lest,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1604,Lunge with Twist Stretch,Lunge with Twist Stretch,mobilite_recup,rotation,poids_du_corps,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : Davidgj32),à vérifier (licence par image),,brouillon_a_relire
 M1605,Weighted Lunge With Swing,Weighted Lunge With Swing,fonctionnel,ballistic,lest,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
@@ -2103,7 +2103,7 @@ M1621,Side-To-Side Toe Touch (Male),Side-To-Side Toe Touch (Male),force,a_classe
 M1622,Two Toe Touch (Male),Two Toe Touch (Male),force,a_classer,poids_du_corps,non,,back,spine,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1623,Straddle Maltese,Straddle Maltese,force,a_classer,poids_du_corps,non,,waist,abs,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1624,March Sit (Wall),March Sit (Wall),force,a_classer,mur,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M1625,Stair Master,Stair Master,cardio,a_classer,marche_ou_box,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : MisterPinnacle),à vérifier (licence par image),,brouillon_a_relire
+M1625,Stair Master,Stair Master,cardio,a_classer,marche_escalier,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : MisterPinnacle),à vérifier (licence par image),,brouillon_a_relire
 M1626,Meadows Row,Meadows Row,force,pull_h,barre,non,,Back,,wger,CC-BY-SA 4.0 (attribution : carlos3c),à vérifier (licence par image),,brouillon_a_relire
 M1627,Bodyweight Mid Row,Bodyweight Mid Row,force,pull_h,autre,non,intermediate,strength,middle back,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1628,SEATED CABLE MID TRAP SHRUG,SEATED CABLE MID TRAP SHRUG,force,shoulders_iso,poulie,oui,,Back,,wger,CC-BY-SA 4.0 (attribution : novadani),à vérifier (licence par image),,brouillon_a_relire
@@ -2117,7 +2117,7 @@ M1632,One-Arm Kettlebell Military Press To The Side,One-Arm Kettlebell Military 
 M1633,Two-Arm Kettlebell Military Press,Kettlebell Seated Two Arm Military Press,force,push_v,kettlebell,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),doublon_probable,brouillon_a_relire
 M1633,Two-Arm Kettlebell Military Press,Two-Arm Kettlebell Military Press,force,push_v,kettlebell,non,intermediate,strength,shoulders,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),doublon_probable,brouillon_a_relire
 M1634,Barbell Standing Wide Military Press,Barbell Standing Wide Military Press,force,push_v,barre,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M1635,Step Mill,Step Mill,force,a_classer,machine|marche_ou_box,oui,intermediate,cardio,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M1635,Step Mill,Step Mill,force,a_classer,machine|marche_escalier,oui,intermediate,cardio,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1636,Modified pulldown,Modified pulldown,force,pull_v,banc_inclinable,non,,Back,,wger,CC-BY-SA 4.0 (attribution : Rottekongen),à vérifier (licence par image),,brouillon_a_relire
 M1637,Monster Walk,Monster Walk,cardio,locomotion,elastique,non,beginner,strength,abductors,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1637,Monster Walk,Monster Walk,cardio,locomotion,poids_du_corps,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
@@ -2149,7 +2149,7 @@ M1659,Otis-Up,Otis Up,force,a_classer,lest,non,,waist,abs,maxwu-dataset,"MIT dé
 M1659,Otis-Up,Otis-Up,force,a_classer,autre,non,beginner,strength,abdominals,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1660,TRX roll out,TRX roll out,mobilite_recup,mobility,sangles_suspension,non,,Abs,,wger,CC-BY-SA 4.0 (attribution : cynomops),à vérifier (licence par image),,brouillon_a_relire
 M1661,Barbell Row (Overhand),Barbell Row (Overhand),force,pull_h,barre,non,,Back,,wger,CC-BY-SA 4.0 (attribution : daiben),à vérifier (licence par image),,brouillon_a_relire
-M1662,Posterior Step To Overhead Reach,Posterior Step To Overhead Reach,force,a_classer,marche_ou_box,non,,waist,abs,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1662,Posterior Step To Overhead Reach,Posterior Step To Overhead Reach,force,a_classer,marche_escalier,non,,waist,abs,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1663,Overhead Press,Barbell Seated Overhead Press,force,push_v,barre,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),doublon_probable,brouillon_a_relire
 M1663,Overhead Press,Dumbbell Standing Alternate Overhead Press,force,push_v,halteres,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),doublon_probable,brouillon_a_relire
 M1663,Overhead Press,Dumbbell Standing Overhead Press,force,push_v,halteres,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),doublon_probable,brouillon_a_relire
@@ -2233,7 +2233,7 @@ M1725,Potty Squat,Potty Squat,force,squat,poids_du_corps,non,,waist,abs,maxwu-da
 M1726,Potty Squat With Support,Potty Squat With Support,force,squat,poids_du_corps,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1727,Reverse Band Power Squat,Reverse Band Power Squat,force,squat,barre|elastique,non,expert,powerlifting,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1728,Power Snatch,Power Snatch,fonctionnel,ballistic,barre,non,expert,olympic weightlifting,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1729,Power Stairs,Power Stairs,force,a_classer,autre|marche_ou_box,non,intermediate,strongman,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M1729,Power Stairs,Power Stairs,force,a_classer,autre|marche_escalier,non,intermediate,strongman,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1730,Smith Press,Alternating Kettlebell Press,force,a_classer,kettlebell,non,intermediate,strength,shoulders,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),doublon_probable,brouillon_a_relire
 M1730,Smith Press,Dumbbell Seated Alternate Press,force,a_classer,halteres,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),doublon_probable,brouillon_a_relire
 M1730,Smith Press,Kettlebell Seated Press,force,a_classer,kettlebell,non,intermediate,strength,shoulders,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),doublon_probable,brouillon_a_relire
@@ -2499,7 +2499,7 @@ M1898,Sit-ups,Weighted Sit-Ups - With Bands,gainage,core,autre|elastique,non,int
 M1899,Wall-sit,Wall-sit,force,a_classer,mur,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : clafal),à vérifier (licence par image),,brouillon_a_relire
 M1900,Skating,Skating,force,a_classer,autre,non,intermediate,cardio,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1901,Ski Machine,Ski Machine,force,a_classer,machine,oui,,Cardio,,wger,CC-BY-SA 4.0 (attribution : flanny),à vérifier (licence par image),,brouillon_a_relire
-M1902,Ski Step,Ski Step,force,a_classer,marche_ou_box,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1902,Ski Step,Ski Step,force,a_classer,marche_escalier,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1903,Barbell Skier,Barbell Skier,cardio,conditioning,barre,non,,shoulders,delts,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1904,Skipping - Standard,Skipping - Standard,cardio,jump,poids_du_corps,non,,Cardio,,wger,CC-BY-SA 4.0 (attribution : Cerin),à vérifier (licence par image),,brouillon_a_relire
 M1905,EZ-Bar Skullcrusher,EZ-Bar Skullcrusher,force,arms,barre_ez,non,beginner,strength,triceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
@@ -2525,7 +2525,7 @@ M1918,Split Squats,Barbell Split Squat V. 2,force,lunge_unilateral,barre,non,,up
 M1918,Split Squats,Smith Machine Split Squat,force,lunge_unilateral,barre|machine,oui,,Legs,,wger,CC-BY-SA 4.0 (attribution : workout@rooven.anonaddy.me),à vérifier (licence par image),,brouillon_a_relire
 M1918,Split Squats,Split Squat with Dumbbells,force,lunge_unilateral,halteres,non,beginner,strength,quadriceps,free-exercise-db+wger,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1918,Split Squats,Split Squats,force,lunge_unilateral,poids_du_corps,non,intermediate,stretching,hamstrings,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1919,Dumbbell Step-Up Split Squat,Dumbbell Step-Up Split Squat,force,lunge_unilateral,halteres|marche_ou_box,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1919,Dumbbell Step-Up Split Squat,Dumbbell Step-Up Split Squat,force,lunge_unilateral,halteres|marche_escalier,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1920,Suspended Split Squat,Suspended Split Squat,force,lunge_unilateral,autre,non,intermediate,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1920,Suspended Split Squat,Suspended Split Squat,force,lunge_unilateral,poids_du_corps,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1921,Wind Sprints,Wind Sprints,cardio,locomotion,poids_du_corps,non,beginner,strength,abdominals,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
@@ -2548,13 +2548,13 @@ M1928,Wall Squat,Wall Squat,force,squat,mur,non,,Legs,,wger,CC0 (attribution : B
 M1929,Barbell Wide Squat,Barbell Wide Squat,force,squat,barre,non,,upper legs,quads,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1930,Zercher Squats,Zercher Squats,force,squat,barre,non,expert,strength,quadriceps,free-exercise-db+maxwu-dataset,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1931,Stairmaster,Stairmaster,cardio,a_classer,machine,oui,intermediate,cardio,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1932,Band Step-Up,Band Step-Up,force,lunge_unilateral,elastique|marche_ou_box,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M1932,Band Step-Up,Barbell Step-Up,force,lunge_unilateral,barre|marche_ou_box,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M1932,Band Step-Up,Dumbbell Step-Up,force,lunge_unilateral,halteres|marche_ou_box,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
-M1933,Step-ups,Barbell Step Ups,force,lunge_unilateral,barre|marche_ou_box,non,intermediate,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1933,Step-ups,Dumbbell Step Ups,force,lunge_unilateral,halteres|marche_ou_box,non,intermediate,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
-M1933,Step-ups,Step-ups,force,lunge_unilateral,banc|marche_ou_box,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
-M1933,Step-ups,Weighted Step-ups,force,lunge_unilateral,marche_ou_box,non,,Legs,,wger,CC0 (attribution : jigglychipmunk),à vérifier (licence par image),,brouillon_a_relire
+M1932,Band Step-Up,Band Step-Up,force,lunge_unilateral,elastique|marche_escalier,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1932,Band Step-Up,Barbell Step-Up,force,lunge_unilateral,barre|marche_escalier,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1932,Band Step-Up,Dumbbell Step-Up,force,lunge_unilateral,halteres|marche_escalier,non,,upper legs,glutes,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
+M1933,Step-ups,Barbell Step Ups,force,lunge_unilateral,barre|marche_escalier,non,intermediate,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M1933,Step-ups,Dumbbell Step Ups,force,lunge_unilateral,halteres|marche_escalier,non,intermediate,strength,quadriceps,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
+M1933,Step-ups,Step-ups,force,lunge_unilateral,banc|marche_escalier,non,,Legs,,wger,CC-BY-SA 4.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire
+M1933,Step-ups,Weighted Step-ups,force,lunge_unilateral,marche_escalier,non,,Legs,,wger,CC0 (attribution : jigglychipmunk),à vérifier (licence par image),,brouillon_a_relire
 M1934,Walking On Stepmill,Walking On Stepmill,cardio,locomotion,autre,non,,cardio,cardiovascular system,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M1935,Stomach Vacuum,Stomach Vacuum,force,a_classer,poids_du_corps,non,beginner,stretching,abdominals,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire
 M1936,The Straddle,The Straddle,force,a_classer,poids_du_corps,non,beginner,stretching,hamstrings,free-exercise-db,Unlicense (domaine public),oui (domaine public),,brouillon_a_relire

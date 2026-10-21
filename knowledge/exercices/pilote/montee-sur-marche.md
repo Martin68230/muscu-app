@@ -9,14 +9,18 @@ muscles_secondaires: [ischios, mollets, moyen_fessier]
 source_brouillon: [M1933, M1499]
 statut: complete_kine
 ---
+Note de `coach` (21/10/2026) : la section « Sécurité et contre-indications » ci-dessous date d'avant la décision de l'utilisateur (haltères autorisés sur la première ou la deuxième marche) ; `kine` la refait. En cas d'écart, la décision de l'utilisateur fait foi.
+
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| montee-sur-marche-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, marche_ou_box | La première marche d'un escalier (éclairé, dégagé), main sur la rampe si besoin. |
-| montee-sur-marche-halteres | Haltères | 1 | debutant | halteres, marche_ou_box | Un haltère dans chaque main, bras le long du corps, seulement sur une marche basse ou une box basse et stable. |
-| montee-sur-box-haute | Box stable plus haute | 2 | debutant | poids_du_corps, box_stable | Box ou banc stable, plus haut qu'une marche d'escalier (jamais une marche plus haute dans un escalier). |
+| montee-sur-marche-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, marche_escalier | La première marche d'un escalier (éclairé, dégagé), main sur la rampe si besoin. |
+| montee-sur-marche-halteres | Haltères légers | 2 | debutant | halteres, marche_escalier | Haltères légers, un dans chaque main, bras le long du corps ; seulement sur la première ou la deuxième marche d'un escalier éclairé, dégagé et non glissant, chaussures aux pieds. Option : un seul haltère, l'autre main libre sur la rampe. Un débutant commence par l'échelon 1 (sans haltères). |
+| montee-sur-box-haute | Box stable plus haute | 3 | debutant | poids_du_corps, box_ou_step | Box ou banc stable, plus haut qu'une marche d'escalier (jamais une marche plus haute dans un escalier). Jamais avec haltères. |
+
+Tags (décision de l'utilisateur, 21/10/2026) : `marche_escalier` = marche d'un escalier (implicite) ; `box_ou_step` = box, step ou banc stable (à cocher, jamais implicite). Chaque variante utilise celui qui correspond, pour afficher les bonnes précautions. Les échelons 1 et 2 ne changent pas l'id des variantes ; `montee-sur-box-haute` passe de l'échelon 2 à l'échelon 3 (l'échelon 2 est maintenant la version avec haltères).
 
 ## Consignes
 1. Face à la marche, pose tout un pied dessus.
@@ -30,6 +34,7 @@ statut: complete_kine
 - Genou dans l'axe du pied.
 - Buste légèrement penché en avant, dos droit.
 - Descente lente.
+- Avec haltères : légers, première ou deuxième marche seulement, escalier dégagé et non glissant, chaussures aux pieds ; si tu as peur de perdre l'équilibre, prends un seul haltère et garde l'autre main sur la rampe, ou reviens sans haltères.
 
 ## Erreurs fréquentes
 - Rebondir sur la jambe du bas pour monter.
@@ -37,7 +42,7 @@ statut: complete_kine
 - Marche instable ou glissante.
 
 ## Progression / régression
-**montee-sur-marche-poids-du-corps** (marche basse, échelon 1) -> montee-sur-box-haute (box stable plus haute, tag `box_stable`, échelon 2) ; la charge (`montee-sur-marche-halteres`) s'ajoute à l'échelon 1, jamais sur une box haute
+**montee-sur-marche-poids-du-corps** (marche basse, échelon 1) -> montee-sur-marche-halteres (haltères légers, échelon 2 ; on ne charge qu'après avoir maîtrisé l'échelon 1) -> montee-sur-box-haute (box stable plus haute, tag `box_ou_step`, échelon 3, sans charge) ; jamais d'haltères sur une box haute
 
 ## Repères de dosage
 Voir program-logic.md. La hauteur de marche change la difficulté (valeurs non sourcées).
@@ -83,7 +88,8 @@ Variante poids du corps : illustrable par ces images avec la mention « montré 
 | Muscles (quadriceps ; mollets, fessiers, ischios) | même fiche ; moyen fessier ajouté par coach | idem | 2026-10-21 | PROVISOIRE |
 | Ne pas rebondir sur la jambe du bas ; marche stable | pratique courante | - | - | NON SOURCÉ |
 | Niveau débutant (la source dit intermédiaire) | choix de coach avec marche basse, tracé le 21/10/2026 | - | - | NON SOURCÉ |
-| Box haute séparée de la marche d'escalier (tag `box_stable`) | point 48 de `relecteur` ; règle R8 de `kine` | - | - | NON SOURCÉ |
+| Box haute séparée de la marche d'escalier (tag `box_ou_step`, ex-`box_stable`) | point 48 de `relecteur` ; règle R8 de `kine` | - | - | NON SOURCÉ |
+| Haltères autorisés sur la première ou la deuxième marche (haltères légers, escalier dégagé et non glissant, chaussures, option un seul haltère avec rampe), échelon sans charge d'abord pour un débutant | décision de l'utilisateur du 21/10/2026 (résout le bloquant R1 de `relecteur`) ; précautions de `coach`, aucune source | - | 2026-10-21 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |

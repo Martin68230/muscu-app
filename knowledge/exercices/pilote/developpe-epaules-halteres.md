@@ -80,6 +80,7 @@ Variante un bras : aucune photo.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Version assise : haltères montés aux épaules, poussée au-dessus de la tête, descente lente | free-exercise-db « Dumbbell_Shoulder_Press » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Dumbbell_Shoulder_Press.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
+| Niveau « debutant » de la variante assise (la source Dumbbell_Shoulder_Press dit intermediate) | choix de coach : haltères légers, assis sur une chaise dossier calé contre un mur (appui du dos) ; changement tracé le 21/10/2026 (point R9 de `relecteur`) ; niveau_min de la fiche inchangé | - | 2026-10-21 | NON SOURCÉ |
 | Version debout : pas d'élan des jambes, pas de cambrure | free-exercise-db « Standing_Dumbbell_Press » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Standing_Dumbbell_Press.json | idem | 2026-10-21 | PROVISOIRE |
 | Muscles (épaules ; triceps) | mêmes fiches ; trapèzes et tronc ajoutés par coach | idem | 2026-10-21 | PROVISOIRE |
 | Assis sur une chaise au lieu d'un banc | adaptation maison par coach | - | - | NON SOURCÉ |

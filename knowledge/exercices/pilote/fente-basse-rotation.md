@@ -15,7 +15,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | fente-basse-rotation-sol | Au sol | 2 | debutant | poids_du_corps, tapis | Espace pour une grande fente, genou arrière sur un tapis. |
-| fente-basse-rotation-appui | Mains sur une marche | 1 | debutant | poids_du_corps, marche_ou_box | Mains posées sur une marche plutôt qu'au sol, si le sol est trop loin. |
+| fente-basse-rotation-appui | Mains sur une marche | 1 | debutant | poids_du_corps, marche_escalier | Mains posées sur une marche plutôt qu'au sol, si le sol est trop loin. |
 
 ## Consignes
 1. Grand pas en avant, genou arrière posé au sol.

@@ -1,3 +1,5 @@
+> fusionnée dans pompe le 21/10/2026 (décision de l'utilisateur : une fiche `pompe` à échelons). Archive, ne plus utiliser.
+
 ---
 id: pompe-inclinee
 nom: Pompe inclinée (mains surélevées)

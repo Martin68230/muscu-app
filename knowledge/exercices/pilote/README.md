@@ -1,4 +1,4 @@
-# Lot pilote : 32 mouvements (corps entier, poids du corps + haltères, profils A et C)
+# Lot pilote : 33 mouvements (mis à jour le 21/10/2026 : pompes fusionnées) (corps entier, poids du corps + haltères, profils A et C)
 Rédigé par `coach` le 21/10/2026 ; section sécurité complétée par `kine` le même jour ; contrôlé par `relecteur` (CONTROLE-relecteur.md) ; corrections de `coach` le 21/10/2026 (journal en fin de partie `coach`). Statut de toutes les fiches : `complete_kine`. `kine` a corrigé ses points (journal en fin de page) ; prochaines étapes : `relecteur` recontrôle à neuf, puis l'utilisateur valide (`verifie`). Le lot n'est pas encore validé.
 Ce lot fixe le **format** des fiches. L'utilisateur en relit 5 (liste plus bas) avant la suite. La fiche `tirage-sous-table` a été retirée du lot (knowledge/exercices/ecartees/tirage-sous-table.md).
 
@@ -10,7 +10,7 @@ Ce lot fixe le **format** des fiches. L'utilisateur en relit 5 (liste plus bas) 
 - **La consigne prime sur la photo** (CLAUDE.md règle 12, rappelée dans exercise-catalog.md §2) : une image qui contredit la consigne, montre du matériel spécialisé, une marque d'un tiers ou une autre installation n'est pas affichée ; « à vérifier » = non affichée tant que l'image n'a pas été regardée.
 - Vocabulaire des muscles (snake_case) : quadriceps, fessiers, moyen_fessier, ischios, adducteurs, mollets, flechisseurs_hanche, erecteurs_rachis, carre_des_lombes, abdominaux, transverse, obliques, pectoraux, deltoides_anterieurs, deltoides_lateraux, deltoides_posterieurs, triceps, biceps, avant_bras, grand_dorsal, trapezes, rhomboides, dentele_anterieur. À intégrer au modèle de données.
 - Photos : free-exercise-db seulement (domaine public). Chemin `exercises/<id>/0.jpg` et `1.jpg` dans https://github.com/yuhonas/free-exercise-db, à convertir en WebP. Identifiants vérifiés dans dist/exercises.json le 21/10/2026. Images regardées (21/10/2026, par `coach` et `relecteur`) : Bodyweight_Squat, Plank, Farmers_Walk, Bent-Arm_Dumbbell_Pullover, Incline_Push-Up, Stiff-Legged_Dumbbell_Deadlift, Side_Bridge ; les autres sont « à vérifier ».
-- Tags de matériel : vocabulaire de knowledge/equipment-taxonomy.md §2. Objets du quotidien à cocher (jamais implicites) : `sac_a_dos`, `bidons_ou_sacs`, `box_stable`.
+- Tags de matériel : vocabulaire de knowledge/equipment-taxonomy.md §2. Objets du quotidien à cocher (jamais implicites) : `sac_a_dos`, `bidons_ou_sacs`, `box_ou_step` (ex-`box_stable`). Implicite : `marche_escalier` (ex-`marche_ou_box`).
 
 ## Liste des mouvements
 Profil A = poids du corps + implicites (tapis, chaise, mur, première marche). Profil C = A + haltères. « Hors A/C » = variante gardée pour les autres profils. Échelons : nombre d'échelons de difficulté de la fiche.
@@ -26,10 +26,11 @@ Profil A = poids du corps + implicites (tapis, chaise, mur, première marche). P
 | fente-arriere | Fente arrière | fente | débutant | 2 | rien, mur | + haltères | - |
 | squat-fendu | Squat fendu | fente | débutant | 2 | rien, mur | + haltères | - |
 | squat-bulgare | Squat bulgare | fente | intermédiaire | 1 | chaise ou marche | + haltères | - |
-| montee-sur-marche | Montée sur marche | fente | débutant | 2 | première marche | + haltères | box_stable (échelon 2) |
-| pompe-inclinee | Pompe inclinée | poussée H | débutant | 3 | mur, chaise, première marche | idem | - |
-| pompe-genoux | Pompe sur les genoux | poussée H | débutant | 1 | tapis | idem | - |
-| pompe | Pompe | poussée H | débutant | 1 | rien | idem | - |
+| montee-sur-marche | Montée sur marche | fente | débutant | 3 | première marche | + haltères (échelon 2, après l'échelon sans charge) | box_ou_step (échelon 3) |
+| pompe | Pompe (mur, chaise, genoux, sol, pieds surélevés) | poussée H | débutant | 5 | mur, chaise, tapis, rien | idem | - |
+| pompe-diamant | Pompe diamant | poussée H | intermédiaire | 1 | rien | idem | - |
+| pompe-ecartee | Pompe mains écartées | poussée H | intermédiaire | 1 | rien | idem | - |
+| pompe-archer | Pompe archer | poussée H | avancé | 1 | rien | idem | - |
 | developpe-au-sol-halteres | Développé au sol aux haltères | poussée H | débutant | 2 | - | haltères | - |
 | developpe-epaules-halteres | Développé épaules aux haltères | poussée V | débutant | 3 | - | haltères (+ chaise) | - |
 | pompe-piquee | Pompe piquée | poussée V | débutant | 2 | tapis ou marche | idem | - |
@@ -52,7 +53,7 @@ Profil A = poids du corps + implicites (tapis, chaise, mur, première marche). P
 
 Ajouts absents du brouillon : `pompe-piquee-pieds-sureleves` (progression de M1695) et `porte-sac-a-dos-devant` (porté avec un sac, signalé manquant).
 Fiche retirée : `tirage-sous-table` (voir « Choix tranchés par l'utilisateur »).
-Fiches avec échelons de difficulté (plusieurs échelons dans la fiche) : souleve-de-terre-roumain-unijambiste, fente-arriere, squat-fendu, montee-sur-marche, pompe-inclinee (3), developpe-au-sol-halteres, developpe-epaules-halteres (3), pompe-piquee, pompe-piquee-pieds-sureleves, pullover-haltere-au-sol, planche, planche-laterale, planche-touche-epaule (3), fente-basse-rotation. Les autres fiches ont un seul échelon (les variantes ne changent que le matériel). Les progressions entre fiches (par exemple pompe-inclinee -> pompe-genoux -> pompe) restent des liens de fiche à fiche ; leur fusion en une seule « famille » n'est pas faite (à confirmer par l'utilisateur si souhaité).
+Fiches avec échelons de difficulté (plusieurs échelons dans la fiche) : souleve-de-terre-roumain-unijambiste, fente-arriere, squat-fendu, montee-sur-marche, pompe (5), developpe-au-sol-halteres, developpe-epaules-halteres (3), pompe-piquee, pompe-piquee-pieds-sureleves, pullover-haltere-au-sol, planche, planche-laterale, planche-touche-epaule (3), fente-basse-rotation. Les autres fiches ont un seul échelon (les variantes ne changent que le matériel). Les progressions entre fiches (par exemple pompe-inclinee -> pompe-genoux -> pompe) restent des liens de fiche à fiche ; leur fusion en une seule « famille » n'est pas faite (à confirmer par l'utilisateur si souhaité).
 
 ## Couverture par schéma (nombre de mouvements utilisables)
 | Schéma | Profil A | Profil C | Remarque |
@@ -60,7 +61,7 @@ Fiches avec échelons de difficulté (plusieurs échelons dans la fiche) : soule
 | squat | 2 | 3 | |
 | charnière | 2 | 3 | |
 | fente | 4 | 4 | |
-| poussée H | 3 | 4 | |
+| poussée H | 4 (dont 3 nouvelles fiches `brouillon_coach` à sécuriser par `kine`) | 5 | |
 | poussée V | 2 | 3 | En A, les 2 fiches forment une seule échelle de progression |
 | tirage H | **0** | 2 | Sans haltères ni élastique, le tirage horizontal n'est pas couvert (voir ci-dessous) |
 | tirage V | **0 vrai** (1 substitut partiel) | **0 vrai** (2 substituts) | Impossible sans barre ni élastique |
@@ -79,7 +80,7 @@ L'objectif de la vague 1 (au moins 3 mouvements vérifiés par profil et par sch
 3. **Porté, profil A : 0 sans objet du quotidien.** Possible seulement avec bidons, sacs de courses ou sac à dos déclarés (tags `bidons_ou_sacs`, `sac_a_dos`, à cocher).
 4. **Tags** : `sac_a_dos`, `bidons_ou_sacs`, `box_stable` ajoutés à equipment-taxonomy.md §2 (21/10/2026) ; `table_solide` abandonné ; program-logic.md §4 ne range plus table ni sac à dos dans le matériel implicite.
 5. **Dosage impossible à coder pour l'instant** : durées de maintien (planche, planche latérale), distances ou temps des portés, durée de la mobilité à l'échauffement : rien de sourcé dans knowledge/ (program-logic.md §9 et §10).
-6. **Fiches citées dans les échelles mais pas encore écrites (à rédiger en vague 1)** : pont fessier sur une jambe (M0506), pompe pieds surélevés (M1053), planche en levant un bras ou une jambe, planche latérale jambe levée, bird dog jambe seule, assis-debout avec appui des mains, pompe en équilibre contre un mur (avancé), rowing élastique, tirage vertical élastique ancré haut.
+6. **Fiches citées dans les échelles mais pas encore écrites (à rédiger en vague 1)** : pont fessier sur une jambe (M0506), planche en levant un bras ou une jambe, planche latérale jambe levée, bird dog jambe seule, assis-debout avec appui des mains, pompe en équilibre contre un mur (avancé), rowing élastique, tirage vertical élastique ancré haut.
 7. **Photos** : 12 mouvements sur 32 n'ont aucune photo libre ; plusieurs photos montrent une autre variante. Photos NON affichables (consigne prime, matériel spécialisé, marque, mauvaise installation) : voir « Photos non affichables ». Toutes les autres images : « à vérifier » tant qu'elles n'ont pas été regardées.
 
 ## Photos non affichables (état au 21/10/2026)
@@ -89,7 +90,7 @@ L'objectif de la vague 1 (au moins 3 mouvements vérifiés par profil et par sch
 | planche | Plank/0.jpg | personne sur un genou, pas une planche (1.jpg : oui) |
 | pullover-haltere-au-sol | Bent-Arm_Dumbbell_Pullover/0.jpg, 1.jpg | en travers du banc, tête dans le vide : autre installation |
 | marche-du-fermier | Farmers_Walk/0.jpg, 1.jpg | poignées de strongman : matériel spécialisé |
-| pompe-inclinee | Incline_Push-Up/0.jpg, 1.jpg | marque de salle visible (CrossFit) et box en bois ; redevient « oui » si l'utilisateur accepte un recadrage |
+| pompe | Incline_Push-Up-0.webp, -1.webp (recadrées par `dev`) | **redevenues affichables le 21/10/2026 pour l'échelon `pompe-chaise` seulement** (box en bois ≈ chaise, mention « montré sur une box ») ; non affichables pour mur, genoux, sol, pieds surélevés ; `relecteur` doit constater l'absence de logo (fichiers absents du dépôt à la rédaction) |
 Affichables « oui » : Plank/1.jpg, Stiff-Legged_Dumbbell_Deadlift/0.jpg, Side_Bridge/0.jpg (version pieds seulement).
 
 ## Anomalies du brouillon relevées (pour le nettoyage de la vague 1)
@@ -112,9 +113,9 @@ Affichables « oui » : Plank/1.jpg, Stiff-Legged_Dumbbell_Deadlift/0.jpg, Side_
 ## Choix encore à faire trancher par l'utilisateur
 1. **Champ `couverture: substitut`** dans le frontmatter pour le pull-over et le tirage en W.
 2. **Classement anti-rotation** du dead bug et de la planche touche-épaule (le dead bug est surtout de l'anti-extension) ; le vrai anti-rotation (Pallof) demande un élastique (profil B).
-3. **Ordre pompe inclinée / pompe sur les genoux** (rien de sourcé) ; fusion éventuelle de pompe-inclinee, pompe-genoux et pompe en une seule fiche à échelons.
+3. ~~Ordre pompe inclinée / genoux, fusion~~ : tranché le 21/10/2026 (une fiche `pompe` à 5 échelons, voir « Journal du 21/10/2026 »).
 4. **Niveaux changés par rapport à la source** (tous NON SOURCÉ, tracés dans les fiches) : mis en débutant alors que la source dit intermédiaire : bird dog, porté valise, fente basse avec rotation, développé au sol, marche du fermier, fente arrière, montée sur marche, pull-over (variante sol) ; pompe piquée mise en débutant (aucun niveau de source lu) ; squat bulgare mis en intermédiaire alors que la source dit débutant. Vérifié seulement pour les fiches signalées par `relecteur` et celles de ce tableau ; les autres niveaux n'ont pas été recomparés à la source.
-5. **Recadrage de la photo Incline_Push-Up** (logo de salle) : accepter ou ne pas afficher.
+5. ~~Recadrage de la photo Incline_Push-Up~~ : tranché (recadrage par `dev`, affichable pour l'échelon chaise de `pompe`, 21/10/2026).
 6. **Photo d'une autre variante** (kettlebell pour l'haltère, box pour le banc) : affichée avec une mention, ou aucune photo ?
 7. **Noms** : garder « dead bug » et « bird dog » (courants en salle) avec une explication, et un nom descriptif pour « World's Greatest Stretch » (fente basse avec rotation du buste) ?
 8. **Regroupements** : soulevé roumain + jambes tendues en un seul mouvement ; développé épaules assis + debout en un seul mouvement.
@@ -127,7 +128,7 @@ Les consignes viennent surtout de bases d'exercices (free-exercise-db, domaine p
 1. `squat-poids-du-corps` : poids du corps, consigne qui prime sur la photo (aucune photo affichable).
 2. `souleve-de-terre-roumain-halteres` : haltères, avec photo.
 3. `planche` : gainage, question sur les durées non sourcées.
-4. `pompe-inclinee` : trois échelons (mur, chaise, première marche).
+4. `pompe` : cinq échelons (mur, chaise, genoux, sol, pieds surélevés), fiche fusionnée le 21/10/2026.
 5. `pullover-haltere-au-sol` : trou de couverture (tirage vertical impossible) et substitut.
 
 ## Journal des corrections de `coach` (21/10/2026) après CONTROLE-relecteur.md
@@ -231,3 +232,18 @@ Points renvoyés par `coach` (1 à 6, 8 à 11, 23, 43, 45, 53) et points de séc
 | non corrigé | classement grossesse par fiche | extrapolation de `kine` (PROVISOIRE), à valider par l'utilisateur et `relecteur` |
 
 Points à signaler à `coach` : (1) `montee-sur-marche-halteres` : la fiche `coach` autorise les haltères sur « une marche basse ou une box basse » ; la section sécurité de `kine` ne les autorise que sur une box basse et stable (les mains ne sont plus libres pour la rampe). (2) Les niveaux 2 et 3 de plusieurs fiches renvoient à des remplaçants d'une autre fiche (ids écrits dans les cases) : vérifier qu'ils existent dans le lot.
+
+## Journal du 21/10/2026 : décisions de l'utilisateur et points R1, R9, R10 de RECONTROLE-relecteur.md (`coach`)
+Sections « Sécurité et contre-indications » et lignes « Grossesse » non touchées (`kine` les refait au format de knowledge/format-fiches.md). Lignes de tableaux de sécurité d'AUTRES fiches : seul l'id de remplaçant a changé.
+
+| Point | Décision | Détail |
+|---|---|---|
+| Décision 1 : pompes | fait | Fiche unique `pompe` à 5 échelons : pompe-mur (1), pompe-chaise (2), pompe-genoux (3), pompe-sol (4), pompe-pieds-sureleves (5, intermédiaire ; source M1053 niveau beginner : changement tracé). Fusionne pompe, pompe-inclinee, pompe-genoux (archives dans knowledge/exercices/ecartees/ : pompe-ancienne.md, pompe-inclinee.md, pompe-genoux.md, avec en tête « fusionnée dans pompe le 21/10/2026 »). Variante « mains sur la première marche » non reprise (la chaise couvre le besoin ; à contester si besoin). Nouvelles fiches séparées `pompe-diamant` (M0989, M0990, M0740), `pompe-ecartee` (M1325, M0739), `pompe-archer` (M0076) : `brouillon_coach`, sécurité « À compléter par kine ». pompe-piquee et pompe-piquee-pieds-sureleves restent séparées. |
+| Références mises à jour | fait | Remplaçant `pompe-inclinee` -> `pompe-chaise` dans le tableau de sécurité de pompe-piquee et pompe-piquee-pieds-sureleves (l.51) et dans la progression de pompe-piquee (l.39). NON modifié (lignes « Grossesse », hors périmètre) : pompe-piquee l.58 et pompe-piquee-pieds-sureleves l.61 disent encore `pompe-inclinee` : `kine` doit mettre `pompe-chaise`. developpe-au-sol-halteres (progression) cite `pompe-genoux` : l'id existe toujours (échelon 3 de `pompe`). |
+| Décision 2 / R1 (bloquant) | fait | montee-sur-marche : haltères AUTORISÉS (première ou deuxième marche, haltères légers, escalier éclairé, dégagé, non glissant, chaussures, option un seul haltère + rampe) ; échelon 1 sans charge, échelon 2 haltères, échelon 3 `montee-sur-box-haute` (sans charge, jamais d'haltères). Tags `marche_escalier` et `box_ou_step` partout (fiches, equipment-taxonomy.md §2) : `marche_escalier` implicite, `box_ou_step` non. Ids de variantes inchangés. La section Sécurité de `kine` (« haltères seulement sur une box basse, jamais sur une marche d'escalier ») est contredite : à réaligner par `kine` ; note de `coach` en tête de la fiche. |
+| Tags par fiche | fait | marche_escalier : fente-basse-rotation-appui, pompe-piquee-mains-marche, pompe-piquee-pieds-marche, squat-bulgare-marche, montee-sur-marche-poids-du-corps et -halteres. box_ou_step : montee-sur-box-haute, squat-assis-debout-marche (banc de parc ou box). |
+| R9 | fait | developpe-epaules-halteres : variante assise gardée en `debutant` (haltères légers, dossier de chaise calé contre un mur) alors que la source Dumbbell_Shoulder_Press dit intermediate ; ligne ajoutée aux Sources (NON SOURCÉ, changement tracé). |
+| R10 | fait | souleve-de-terre-roumain-halteres : installation de `sdt-roumain-deux-halteres` = haltères sur les côtés des cuisses, alignée sur la consigne 1 et la photo 0.jpg. |
+| Décision 4 : photo | fait | Fiche `pompe` : Incline_Push-Up-0.webp et -1.webp (public/photos/free-exercise-db/) affichables pour l'échelon `pompe-chaise` seulement, mention « montré sur une box ». Réserve : fichiers absents du dépôt à la rédaction, `relecteur` à faire constater l'absence de logo. |
+
+Hors périmètre, à signaler : knowledge/regles-securite-communes.md (G4, R8) cite encore `pompe-inclinee`, `pompe-genoux` et « première marche seulement » ; tools/build_library.py et knowledge/exercise-library-draft.csv gardent `marche_ou_box` (migration vers `marche_escalier` / `box_ou_step` à faire par `dev`) ; knowledge/format-fiches.md (l.45) et knowledge/materiel-tags.json doivent porter les deux nouveaux tags.

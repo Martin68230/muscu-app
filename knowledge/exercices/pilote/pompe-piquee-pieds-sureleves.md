@@ -14,7 +14,7 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-piquee-pieds-marche | Pieds sur une marche | 1 | intermediaire | poids_du_corps, marche_ou_box | Pieds sur une marche basse ou une box stable. |
+| pompe-piquee-pieds-marche | Pieds sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Pieds sur une marche basse ou une box stable. |
 | pompe-piquee-pieds-chaise | Pieds sur une chaise | 2 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur : plus haut, donc plus dur. |
 
 ## Consignes
@@ -48,7 +48,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : variante:pompe-piquee | retirer (remplaçant : pompe-inclinee) | retirer |
+| Épaule | adapter : variante:pompe-piquee | retirer (remplaçant : pompe-chaise) | retirer |
 | Coude | adapter : variante:pompe-piquee-pieds-marche, amplitude:réduite | adapter : variante:pompe-piquee (mains sur marche : pompe-piquee-mains-marche) | retirer |
 | Poignet | adapter : variante:pompe-piquee (mains sur marche : pompe-piquee-mains-marche) | retirer | retirer |
 | Cou | adapter : variante:pompe-piquee, amplitude:moins tête en bas | retirer | retirer |

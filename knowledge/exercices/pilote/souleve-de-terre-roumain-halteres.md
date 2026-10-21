@@ -14,7 +14,7 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| sdt-roumain-deux-halteres | Deux haltères | 1 | debutant | halteres | Un haltère dans chaque main, devant les cuisses. |
+| sdt-roumain-deux-halteres | Deux haltères | 1 | debutant | halteres | Un haltère dans chaque main, bras le long du corps, haltères sur les côtés des cuisses (comme la consigne 1 et la photo 0.jpg). |
 | sdt-roumain-un-haltere | Un haltère à deux mains | 1 | debutant | halteres | Un seul haltère tenu à deux mains devant les cuisses. |
 
 ## Consignes
