@@ -56,7 +56,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Cou | adapter: variante:pompe-piquee | retirer | retirer |
 
 **Notes**
-- coude-n1 : variante pieds sur une marche, amplitude réduite.
+- coude-n1 : amplitude réduite (descente moins profonde), sur le même échelon.
 - coude-n2 : mains sur une marche (pompe-piquee-mains-marche).
 - poignet-n1 : mains sur une marche.
 - cou-n1 : moins de tête en bas.
@@ -89,11 +89,12 @@ Aucune photo affichable (affichable : sans objet).
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Existence de la version pieds surélevés | The Prehab Guys « Pike Push Up – Legs Elevated » https://library.theprehabguys.com/?p=35129 (titre vu en recherche, page non lue) | pratique professionnelle (kinés) | 2026-10-21 | NON SOURCÉ (source non lue) |
+| Existence de la version pieds surélevés | The Prehab Guys « Pike Push Up – Legs Elevated » https://library.theprehabguys.com/?p=35129 (titre vu en recherche, page non lue) | pratique professionnelle (kinés) | - | NON SOURCÉ (source non lue) |
 | Consignes | rédigées par coach à partir de la pompe piquée | pratique courante | 2026-10-21 | NON SOURCÉ |
 | Muscles | comme la pompe piquée (NASM, page non lue) | - | - | NON SOURCÉ (source non lue) |
 | Plus le support est haut, plus c'est dur | pratique courante | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
+| Niveau intermédiaire (tête en bas, charge du haut du corps plus grande que la pompe piquée) | choix de coach, tracé le 22/10/2026 | - | - | NON SOURCÉ |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Arrêt si vertige, pression dans la tête ou vision trouble (tête en bas) | prudence de `kine`, rattachée aux signes généraux R5 (Riebe 2015) ; aucune source spécifique | extrapolation | 2026-10-21 | NON SOURCÉ |
 | Avertissement de stabilité de la chaise | règle de conception (exercise-catalog.md §5, cite la chaise) et R8 de knowledge/regles-securite-communes.md ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |

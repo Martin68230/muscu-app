@@ -19,7 +19,7 @@ Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (o
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pullover-sol-haltere | Au sol, un haltère | 1 | debutant | halteres, tapis | Allongé sur le dos, genoux pliés, pieds à plat. |
-| pullover-banc-haltere | Sur un banc | 2 | intermediaire | halteres, banc | Allongé sur le dos dans la longueur d'un banc, tête et épaules sur le banc, pieds au sol (profil E et plus). Ce n'est pas l'installation de la photo de la source (en travers du banc, tête dans le vide), plus difficile et moins sûre. |
+| pullover-banc-haltere | Sur un banc | 2 | intermediaire | halteres, banc | Allongé sur le dos dans la longueur d'un banc, tête et épaules sur le banc, pieds au sol. Ce n'est pas l'installation de la photo de la source (en travers du banc, tête dans le vide), plus difficile et moins sûre. |
 
 ## Consignes
 1. Allongé sur le dos, tiens un haltère à deux mains au-dessus de la poitrine.
@@ -97,7 +97,8 @@ Variante au sol : aucune photo libre.
 | Variante banc dans la longueur (la source est en travers du banc) | adaptation de coach pour la sécurité | - | - | NON SOURCÉ |
 | Le pull-over comme substitut du tirage vertical | choix de coach ; trou mesuré dans equipment-taxonomy.md §4 | - | 2026-10-21 | NON SOURCÉ (à trancher) |
 | Tag du brouillon M0410 = halteres seulement alors que la source utilise un banc | constat de nettoyage | - | 2026-10-21 | NON SOURCÉ (constat de nettoyage, à corriger dans le brouillon) |
-| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
-| Haltère au-dessus du visage : haltère fixe ou réglable vérifié, prise en coupe | règle de prudence de `kine` (R9) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Mise en garde : disques desserrés, haltère qui peut tomber sur le visage | free-exercise-db, fiche Bent-Arm_Dumbbell_Pullover (exercises.json, relue le 2026-10-22 par `relecteur`) | base d'exercices, consigne de sécurité | 2026-10-22 | PROVISOIRE (cette partie seulement) |
+| Haltère fixe de préférence, disques vérifiés avant chaque série, ne jamais lâcher au-dessus de soi (reste de R9) | règle de prudence de `kine` ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

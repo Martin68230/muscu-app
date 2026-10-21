@@ -37,9 +37,9 @@ statut: controle_relecteur
 - Descente trop rapide.
 
 ## Progression / régression
-- plus-facile : pompe-piquee
+- plus-facile : aucun
 - plus-dur : developpe-epaules-un-bras
-pompe-piquee (sans matériel) <-> **developpe-epaules-halteres** (assis -> debout -> un bras)
+**developpe-epaules-halteres** (assis, charge légère -> debout -> un bras) ; la pompe piquée (sans matériel) est une alternative de même schéma, pas une régression : la charge légère assise est déjà l'échelon le plus facile
 
 ## Repères de dosage
 Voir program-logic.md.
@@ -98,7 +98,7 @@ Variante un bras : aucune photo.
 | Muscles (épaules ; triceps) | mêmes fiches ; trapèzes et tronc ajoutés par coach | idem | 2026-10-21 | PROVISOIRE |
 | Assis sur une chaise au lieu d'un banc | adaptation maison par coach | - | - | NON SOURCÉ |
 | Regroupement M1736 et M1730 (le nom du brouillon M1730 « Smith Press » est faux) | nettoyage du brouillon | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Avertissement de stabilité de la chaise | règle de conception (exercise-catalog.md §5) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |

@@ -59,8 +59,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - poignet-n1 : poings fermés (poignet droit).
 - genou-n1 : coussin plié sous les genoux ; au niveau 2, coussin plus épais.
 - epaule-n2 : remplacement par dead-bug, bras au sol.
-- dos-n2 : une jambe seulement, petite amplitude.
-- hanche-n2 : bras seul, petite amplitude.
+- dos-n2 : seules les jambes bougent, les bras restent au sol.
+- hanche-n2 : petite amplitude, bras et jambe.
 - grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. La version plus douce (dead-bug) se fait couché sur le dos et est retirée en grossesse (G4) : elle n'est alors pas proposée, le bird-dog à maintien court la remplace. Post-partum : G7.
 
 **Grossesse** : adapter: amplitude:maintien-court
@@ -84,7 +84,7 @@ Aucune photo affichable (affichable : sans objet ; fiche wger : licence de l'ima
 | Installation à quatre pattes, gainage, jambe et bras opposés vers l'horizontale, hanches et épaules de niveau, tête alignée, hauteur limitée par le contrôle du bas du dos, miroir | ACE Exercise Library « Bird dog » https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/ ; réécrit par coach | organisme de certification, pratique professionnelle | 2026-10-21 | PROVISOIRE |
 | Muscles (abdos, dos, fessiers/hanches) | même page | idem | 2026-10-21 | PROVISOIRE |
 | Niveau débutant (ACE dit intermédiaire) | choix de coach, à trancher | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |
