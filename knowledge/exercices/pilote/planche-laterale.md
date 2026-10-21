@@ -9,11 +9,13 @@ muscles_secondaires: [moyen_fessier, carre_des_lombes, deltoides_lateraux]
 source_brouillon: [M1715, M0514, M1712]
 statut: complete_kine
 ---
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| planche-laterale-genoux | Sur le genou | poids_du_corps, tapis | Couché sur le côté, avant-bras et genou du dessous au sol, genoux pliés. |
-| planche-laterale-pieds | Sur les pieds | poids_du_corps, tapis | Couché sur le côté, avant-bras et bord du pied au sol, jambes tendues. |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| planche-laterale-genoux | Sur le genou | 1 | debutant | poids_du_corps, tapis | Couché sur le côté, avant-bras et genou du dessous au sol, genoux pliés. |
+| planche-laterale-pieds | Sur les pieds | 2 | debutant | poids_du_corps, tapis | Couché sur le côté, avant-bras et bord du pied au sol, jambes tendues. |
 
 ## Consignes
 1. Couché sur le côté, coude juste sous l'épaule.
@@ -40,18 +42,20 @@ statut: complete_kine
 Voir program-logic.md. Durées de maintien non sourcées : à définir.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : planche-laterale-genoux | retirer (à la place : dead-bug) | retirer |
-| Coude | adapter : serviette pliée sous l'avant-bras | adapter : planche-laterale-genoux, serviette | retirer |
-| Dos | garder : version genoux si besoin | adapter : planche-laterale-genoux, maintien court | retirer |
-| Hanche | garder | adapter : planche-laterale-genoux, coussin sous le genou | retirer |
+| Épaule | adapter : variante:planche-laterale-genoux | retirer (remplaçant : dead-bug) | retirer |
+| Coude | adapter : appui:serviette pliée sous l'avant-bras | adapter : variante:planche-laterale-genoux, appui:serviette | retirer |
+| Dos | garder | adapter : variante:planche-laterale-genoux, amplitude:maintien court | retirer |
+| Hanche | garder | adapter : variante:planche-laterale-genoux, appui:coussin sous le genou | retirer |
 
 **Version plus douce** : `planche-laterale-genoux`.
+
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (maintien isométrique ; remplaçant : bird-dog sans pause). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule d'appui ou au bas du dos.
@@ -60,7 +64,9 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-free-exercise-db : `Side_Bridge/0.jpg`, `Side_Bridge/1.jpg` (domaine public ; fiche source sans consignes). Variante à vérifier sur la photo (genou ou pieds).
+- `Side_Bridge/0.jpg` : affichable : oui (vue par `relecteur` : version sur les pieds, jambes tendues ; variante pieds seulement).
+- `Side_Bridge/1.jpg` : affichable : à vérifier (vue le 21/10/2026 : personne couchée sur le côté sur un tapis, semble la position basse ; non confirmée).
+Variante genou : aucune photo libre.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -69,6 +75,7 @@ free-exercise-db : `Side_Bridge/0.jpg`, `Side_Bridge/1.jpg` (domaine public ; fi
 | Version débutant : abdos et fessiers serrés, ligne droite de la tête aux talons | NASM Exercise Library « Side Plank » https://nasm.org/exercise-library/side-plank (vu via résumé de recherche, page non lue) | organisme de certification | 2026-10-21 | PROVISOIRE |
 | Consignes détaillées, obliques en muscle principal | rédigées par coach | pratique courante | 2026-10-21 | NON SOURCÉ |
 | Fusion M1715, M0514, M1712 (« Side plank right ») | nettoyage du brouillon | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
-| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; lues via résumés et synthèses (PDF HAS non ouvert : erreur de certificat) | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

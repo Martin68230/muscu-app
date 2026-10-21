@@ -9,11 +9,14 @@ muscles_secondaires: [deltoides_anterieurs, dentele_anterieur, fessiers]
 source_brouillon: [M1714, M1503]
 statut: complete_kine
 ---
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| planche-touche-epaule-genoux | Sur les genoux | poids_du_corps, tapis | Planche bras tendus, genoux au sol. |
-| planche-touche-epaule-pieds | Sur les pieds | poids_du_corps, tapis | Planche bras tendus, pieds écartés. |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| planche-touche-epaule-genoux | Sur les genoux | 1 | intermediaire | poids_du_corps, tapis | Planche bras tendus, genoux au sol. |
+| planche-touche-epaule-pieds | Sur les pieds | 2 | intermediaire | poids_du_corps, tapis | Planche bras tendus, pieds écartés. |
+| planche-touche-epaule-pieds-serres | Sur les pieds, pieds serrés | 3 | intermediaire | poids_du_corps, tapis | Planche bras tendus, pieds serrés : plus dur que pieds écartés. |
 
 ## Consignes
 1. Mets-toi en haut de pompe, bras tendus, mains sous les épaules.
@@ -34,24 +37,28 @@ statut: complete_kine
 - Aller vite pour « finir ».
 
 ## Progression / régression
-planche <- **planche-touche-epaule-genoux** -> planche-touche-epaule-pieds -> même chose pieds serrés
+planche <- **planche-touche-epaule-genoux** -> planche-touche-epaule-pieds -> planche-touche-epaule-pieds-serres
 
 ## Repères de dosage
 Voir program-logic.md.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : planche-touche-epaule-genoux | retirer (à la place : dead-bug) | retirer |
-| Poignet | adapter : planche-touche-epaule-genoux | retirer (à la place : planche sur les avant-bras) | retirer (à la place : planche sur les avant-bras, seulement si aucune douleur) |
-| Coude | garder | adapter : planche-touche-epaule-genoux | retirer |
-| Dos | adapter : planche-touche-epaule-genoux | adapter : planche-genoux | retirer |
+| Épaule | adapter : variante:planche-touche-epaule-genoux | retirer (remplaçant : dead-bug) | retirer |
+| Poignet | adapter : variante:planche-touche-epaule-genoux | retirer (remplaçant : planche-avant-bras) | retirer ; sans-zone:planche-avant-bras (appui sur les avant-bras, poignets non chargés) |
+| Coude | garder | adapter : variante:planche-touche-epaule-genoux | retirer |
+| Dos | adapter : variante:planche-touche-epaule-genoux | adapter : variante:planche-genoux | retirer |
+
+**Variantes des échelons 2 et 3** : `planche-touche-epaule-pieds` et `planche-touche-epaule-pieds-serres` sont retirées dès le niveau 1 d'une zone du tableau ; la ligne de la zone donne la variante de remplacement (`planche-touche-epaule-genoux` ou `planche-genoux`).
 
 **Version plus douce** : `planche-touche-epaule-genoux`, puis `planche`.
+
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (maintien isométrique ; remplaçant : bird-dog sans pause). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule ou au poignet d'appui.
@@ -60,14 +67,15 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-Aucune photo libre (wger : licence à contrôler ; maxwu : interdit).
+Aucune photo affichable (affichable : sans objet ; wger : licence à contrôler ; maxwu : interdit).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Mouvement | Brouillon M1714 (wger « Plank Shoulder Taps ») et M1503 (version genoux) | base d'exercices | 2026-10-21 | PROVISOIRE |
+| Mouvement | Brouillon M1714 (wger « Plank Shoulder Taps ») et M1503 (version genoux) : prouve seulement que le mouvement existe ; pages wger non lues | base d'exercices | 2026-10-21 | NON SOURCÉ |
 | Consignes et muscles | rédigés par coach | pratique courante | 2026-10-21 | NON SOURCÉ |
 | Pieds écartés = plus facile | pratique courante | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
-| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; lues via résumés et synthèses (PDF HAS non ouvert : erreur de certificat) | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

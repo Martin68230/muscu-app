@@ -9,12 +9,14 @@ muscles_secondaires: [ischios, adducteurs, mollets]
 source_brouillon: [M1599, M1598]
 statut: complete_kine
 ---
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| fente-arriere-poids-du-corps | Poids du corps | poids_du_corps | Debout, espace dégagé derrière toi. |
-| fente-arriere-mur | Main au mur | poids_du_corps, mur | Une main posée au mur pour l'équilibre. |
-| fente-arriere-halteres | Haltères | halteres | Un haltère dans chaque main, bras le long du corps. |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| fente-arriere-poids-du-corps | Poids du corps | 2 | debutant | poids_du_corps | Debout, espace dégagé derrière toi. |
+| fente-arriere-mur | Main au mur | 1 | debutant | poids_du_corps, mur | Une main posée au mur pour l'équilibre. |
+| fente-arriere-halteres | Haltères | 2 | debutant | halteres | Un haltère dans chaque main, bras le long du corps. |
 
 ## Consignes
 1. Debout, pieds à largeur de hanches.
@@ -28,7 +30,7 @@ statut: complete_kine
 - Buste droit.
 - Genou avant dans l'axe du pied.
 - Poids surtout sur la jambe avant.
-- Pas assez long pour que le tibia avant reste à peu près vertical.
+- Pas assez long : le genou avant part loin devant (repère de technique pour garder l'équilibre, pas un danger en soi).
 
 ## Erreurs fréquentes
 - Pas trop court : le genou avant part loin devant.
@@ -42,17 +44,20 @@ squat-fendu <- **fente-arriere** (mur -> poids du corps -> haltères) -> squat-b
 Voir program-logic.md.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder : version mur, amplitude sans gêne | adapter : squat-fendu-mur, amplitude réduite | retirer |
-| Hanche | garder | adapter : squat-fendu-mur, petit pas | retirer |
-| Cheville | adapter : fente-arriere-mur | adapter : squat-fendu-mur (pieds immobiles) | retirer |
+| Genou | adapter : variante:fente-arriere-mur, amplitude:sans gêne | adapter : variante:squat-fendu-mur, amplitude:réduite | retirer |
+| Hanche | garder | adapter : variante:squat-fendu-mur, amplitude:petit pas | retirer |
+| Cheville | adapter : variante:fente-arriere-mur | adapter : variante:squat-fendu-mur (pieds immobiles) | retirer |
+| Dos | adapter : sans-charge (fente-arriere-poids-du-corps) | adapter : sans-charge, variante:fente-arriere-mur | retirer |
 
 **Version plus douce** : `squat-fendu-mur`.
+
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : variante:fente-arriere-mur, sans-charge. Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou ou à la hanche.
@@ -61,14 +66,17 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-Variante haltères : free-exercise-db `Dumbbell_Rear_Lunge/0.jpg`, `Dumbbell_Rear_Lunge/1.jpg` (domaine public). Autres variantes : aucune photo libre (la photo haltères peut illustrer le geste).
+- `Dumbbell_Rear_Lunge/0.jpg` : affichable : à vérifier (non regardée ; variante haltères, peut illustrer le geste).
+- `Dumbbell_Rear_Lunge/1.jpg` : affichable : à vérifier (non regardée).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Grand pas en arrière, descente jusqu'au tibia avant vertical, buste droit, retour en poussant sur le pied avant | free-exercise-db « Dumbbell_Rear_Lunge » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Dumbbell_Rear_Lunge.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
+| Grand pas en arrière, descente jusqu'au tibia avant à peu près vertical (repère de technique de la source ; la source ajoute que le genou ne doit pas dépasser les orteils : non repris comme un danger), buste droit, retour en poussant sur le pied avant | free-exercise-db « Dumbbell_Rear_Lunge » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Dumbbell_Rear_Lunge.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
 | Muscles (quadriceps ; mollets, fessiers, ischios) | même fiche ; adducteurs ajoutés par coach | idem | 2026-10-21 | PROVISOIRE |
 | Fente arrière plus facile à doser que la fente avant | choix de coach | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Niveau débutant (la source dit intermédiaire) | choix de coach avec l'échelon main au mur, tracé le 21/10/2026 | - | - | NON SOURCÉ |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

@@ -1,54 +1,58 @@
-# Lot pilote : 33 mouvements (corps entier, poids du corps + haltères, profils A et C)
-Rédigé par `coach` le 21/10/2026. Statut de toutes les fiches : `complete_kine` (section sécurité complétée par `kine` le 21/10/2026, voir « Retour kine » en fin de page). Étapes suivantes : `kine` complète la section sécurité (statut `complete_kine`), puis `relecteur` contrôle à neuf (`controle_relecteur`), puis l'utilisateur valide (`verifie`).
-Ce lot fixe le **format** des fiches. L'utilisateur en relit 5 (liste en fin de page) avant la suite.
+# Lot pilote : 32 mouvements (corps entier, poids du corps + haltères, profils A et C)
+Rédigé par `coach` le 21/10/2026 ; section sécurité complétée par `kine` le même jour ; contrôlé par `relecteur` (CONTROLE-relecteur.md) ; corrections de `coach` le 21/10/2026 (journal en fin de partie `coach`). Statut de toutes les fiches : `complete_kine`. `kine` a corrigé ses points (journal en fin de page) ; prochaines étapes : `relecteur` recontrôle à neuf, puis l'utilisateur valide (`verifie`). Le lot n'est pas encore validé.
+Ce lot fixe le **format** des fiches. L'utilisateur en relit 5 (liste plus bas) avant la suite. La fiche `tirage-sous-table` a été retirée du lot (knowledge/exercices/ecartees/tirage-sous-table.md).
 
 ## Format retenu
 - Un fichier par mouvement : `<id>.md`, id stable en kebab-case français.
-- Frontmatter : id, nom, schema, type, niveau_min, muscles_principaux, muscles_secondaires, source_brouillon (mouvement_id du CSV ; vide = ajout), statut. Champ en plus, proposé : `couverture: substitut` quand la fiche ne remplit le schéma qu'à moitié (à trancher, voir plus bas).
-- Sections : Variantes (installation + matériel) ; Consignes (4-6 étapes, tutoiement) ; Points d'attention ; Erreurs fréquentes ; Progression / régression (ids) ; Repères de dosage (renvoi à program-logic.md, aucun chiffre non sourcé) ; Sécurité (remplie par kine : tableau zone x niveau 1-2-3, version plus douce, signes d'arrêt, objets du quotidien) ; Photo ; Sources (une ligne par affirmation, avec statut).
+- Frontmatter : id, nom, schema, type, niveau_min, muscles_principaux, muscles_secondaires, source_brouillon (mouvement_id du CSV ; vide = ajout), statut. Champ en plus : `couverture: substitut` quand la fiche ne remplit le schéma qu'à moitié (pull-over, tirage en W ; proposition, à confirmer).
+- **Échelons de difficulté (décision de l'utilisateur, 21/10/2026)** : les variantes qui changent la difficulté restent dans une seule fiche, rangées de la plus facile à la plus dure ; chaque variante a un identifiant stable, un `echelon` (1 = plus facile) et un `niveau` (debutant / intermediaire / avance). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. Format documenté dans knowledge/exercise-catalog.md §2.
+- Sections : Variantes (installation + matériel + échelon + niveau) ; Consignes (4-6 étapes, tutoiement) ; Points d'attention ; Erreurs fréquentes ; Progression / régression (ids) ; Repères de dosage (renvoi à program-logic.md, aucun chiffre non sourcé) ; Sécurité (remplie par kine) ; Photo (une ligne par image : « affichable : oui / non (raison) / à vérifier ») ; Sources (une ligne par affirmation, avec statut).
+- **La consigne prime sur la photo** (CLAUDE.md règle 12, rappelée dans exercise-catalog.md §2) : une image qui contredit la consigne, montre du matériel spécialisé, une marque d'un tiers ou une autre installation n'est pas affichée ; « à vérifier » = non affichée tant que l'image n'a pas été regardée.
 - Vocabulaire des muscles (snake_case) : quadriceps, fessiers, moyen_fessier, ischios, adducteurs, mollets, flechisseurs_hanche, erecteurs_rachis, carre_des_lombes, abdominaux, transverse, obliques, pectoraux, deltoides_anterieurs, deltoides_lateraux, deltoides_posterieurs, triceps, biceps, avant_bras, grand_dorsal, trapezes, rhomboides, dentele_anterieur. À intégrer au modèle de données.
-- Photos : free-exercise-db seulement (domaine public). Chemin `exercises/<id>/0.jpg` et `1.jpg` dans https://github.com/yuhonas/free-exercise-db, à convertir en WebP. Tous les identifiants ont été vérifiés dans dist/exercises.json le 21/10/2026, mais **les images elles-mêmes n'ont pas été regardées** : à contrôler avant import.
+- Photos : free-exercise-db seulement (domaine public). Chemin `exercises/<id>/0.jpg` et `1.jpg` dans https://github.com/yuhonas/free-exercise-db, à convertir en WebP. Identifiants vérifiés dans dist/exercises.json le 21/10/2026. Images regardées (21/10/2026, par `coach` et `relecteur`) : Bodyweight_Squat, Plank, Farmers_Walk, Bent-Arm_Dumbbell_Pullover, Incline_Push-Up, Stiff-Legged_Dumbbell_Deadlift, Side_Bridge ; les autres sont « à vérifier ».
+- Tags de matériel : vocabulaire de knowledge/equipment-taxonomy.md §2. Objets du quotidien à cocher (jamais implicites) : `sac_a_dos`, `bidons_ou_sacs`, `box_stable`.
 
 ## Liste des mouvements
-Profil A = poids du corps + implicites (tapis, chaise, mur, marche). Profil C = A + haltères. « Hors A/C » = variante gardée pour les autres profils.
+Profil A = poids du corps + implicites (tapis, chaise, mur, première marche). Profil C = A + haltères. « Hors A/C » = variante gardée pour les autres profils. Échelons : nombre d'échelons de difficulté de la fiche.
 
-| id | nom | schéma | niveau | matériel A | matériel C | hors A/C |
-|---|---|---|---|---|---|---|
-| squat-assis-debout | Squat assis-debout sur chaise | squat | débutant | chaise ou marche | idem | - |
-| squat-poids-du-corps | Squat au poids du corps | squat | débutant | rien | idem | - |
-| squat-gobelet | Squat gobelet | squat | débutant | - | haltère | kettlebell |
-| pont-fessier | Pont fessier | charnière | débutant | tapis | + haltère | - |
-| souleve-de-terre-roumain-halteres | Soulevé de terre roumain aux haltères | charnière | débutant | - | haltères | - |
-| souleve-de-terre-roumain-unijambiste | Soulevé de terre roumain sur une jambe | charnière | intermédiaire | mur ou rien | + haltère | - |
-| fente-arriere | Fente arrière | fente | débutant | rien, mur | + haltères | - |
-| squat-fendu | Squat fendu | fente | débutant | rien, mur | + haltères | - |
-| squat-bulgare | Squat bulgare | fente | intermédiaire | chaise ou marche | + haltères | - |
-| montee-sur-marche | Montée sur marche | fente | débutant | marche | + haltères | - |
-| pompe-inclinee | Pompe inclinée | poussée H | débutant | mur, chaise, marche | idem | - |
-| pompe-genoux | Pompe sur les genoux | poussée H | débutant | tapis | idem | - |
-| pompe | Pompe | poussée H | débutant | rien | + mains sur haltères | - |
-| developpe-au-sol-halteres | Développé au sol aux haltères | poussée H | débutant | - | haltères | - |
-| developpe-epaules-halteres | Développé épaules aux haltères | poussée V | débutant | - | haltères (+ chaise) | - |
-| pompe-piquee | Pompe piquée | poussée V | débutant | tapis ou marche | idem | - |
-| pompe-piquee-pieds-sureleves | Pompe piquée pieds surélevés | poussée V | intermédiaire | marche ou chaise | idem | - |
-| rowing-unilateral-haltere | Rowing à un bras | tirage H | débutant | - | haltère + chaise | banc |
-| rowing-buste-penche-halteres | Rowing buste penché | tirage H | débutant | - | haltères | - |
-| tirage-sous-table | Tirage allongé sous une table | tirage H | débutant | - | - | table_solide (tag proposé) |
-| pullover-haltere-au-sol | Pull-over au sol (substitut) | tirage V | débutant | - | haltère | banc |
-| tirage-w-allonge | Tirage en W allongé (substitut partiel) | tirage V | débutant | tapis | + haltères légers | - |
-| planche | Planche | gainage | débutant | tapis | idem | - |
-| planche-laterale | Planche latérale | gainage | débutant | tapis | idem | - |
-| dead-bug | Dead bug | anti-rotation | débutant | tapis | + haltère | - |
-| bird-dog | Bird dog | anti-rotation | débutant | tapis | idem | - |
-| planche-touche-epaule | Planche touche-épaule | anti-rotation | intermédiaire | tapis | idem | - |
-| marche-du-fermier | Marche du fermier | porté | débutant | - | haltères | bidons_ou_sacs (tag proposé) |
-| porte-valise | Porté valise | porté | débutant | - | haltère | bidons_ou_sacs (tag proposé) |
-| porte-sac-a-dos-devant | Porté du sac à dos contre la poitrine | porté | débutant | - | - | sac_a_dos (tag proposé) |
-| chat-vache | Chat-vache | mobilité | débutant | tapis | idem | - |
-| fente-basse-rotation | Fente basse avec rotation du buste | mobilité | débutant | tapis ou marche | idem | - |
-| mobilite-cheville-au-mur | Mobilité de cheville au mur | mobilité | débutant | mur | idem | - |
+| id | nom | schéma | niveau | échelons | matériel A | matériel C | hors A/C |
+|---|---|---|---|---|---|---|---|
+| squat-assis-debout | Squat assis-debout sur chaise | squat | débutant | 1 | chaise ou marche | idem | - |
+| squat-poids-du-corps | Squat au poids du corps | squat | débutant | 1 | rien | idem | - |
+| squat-gobelet | Squat gobelet | squat | débutant | 1 | - | haltère | kettlebell |
+| pont-fessier | Pont fessier | charnière | débutant | 1 | tapis | + haltère | - |
+| souleve-de-terre-roumain-halteres | Soulevé de terre roumain aux haltères | charnière | débutant | 1 | - | haltères | - |
+| souleve-de-terre-roumain-unijambiste | Soulevé de terre roumain sur une jambe | charnière | intermédiaire | 2 | mur ou rien | + haltère | - |
+| fente-arriere | Fente arrière | fente | débutant | 2 | rien, mur | + haltères | - |
+| squat-fendu | Squat fendu | fente | débutant | 2 | rien, mur | + haltères | - |
+| squat-bulgare | Squat bulgare | fente | intermédiaire | 1 | chaise ou marche | + haltères | - |
+| montee-sur-marche | Montée sur marche | fente | débutant | 2 | première marche | + haltères | box_stable (échelon 2) |
+| pompe-inclinee | Pompe inclinée | poussée H | débutant | 3 | mur, chaise, première marche | idem | - |
+| pompe-genoux | Pompe sur les genoux | poussée H | débutant | 1 | tapis | idem | - |
+| pompe | Pompe | poussée H | débutant | 1 | rien | idem | - |
+| developpe-au-sol-halteres | Développé au sol aux haltères | poussée H | débutant | 2 | - | haltères | - |
+| developpe-epaules-halteres | Développé épaules aux haltères | poussée V | débutant | 3 | - | haltères (+ chaise) | - |
+| pompe-piquee | Pompe piquée | poussée V | débutant | 2 | tapis ou marche | idem | - |
+| pompe-piquee-pieds-sureleves | Pompe piquée pieds surélevés | poussée V | intermédiaire | 2 | marche ou chaise | idem | - |
+| rowing-unilateral-haltere | Rowing à un bras | tirage H | débutant | 1 | - | haltère + chaise | banc |
+| rowing-buste-penche-halteres | Rowing buste penché | tirage H | débutant | 1 | - | haltères | - |
+| pullover-haltere-au-sol | Pull-over au sol (substitut) | tirage V | débutant | 2 | - | haltère | banc (échelon 2, intermédiaire) |
+| tirage-w-allonge | Tirage en W allongé (substitut partiel) | tirage V | débutant | 1 | tapis | + haltères légers | - |
+| planche | Planche | gainage | débutant | 2 | tapis | idem | - |
+| planche-laterale | Planche latérale | gainage | débutant | 2 | tapis | idem | - |
+| dead-bug | Dead bug | anti-rotation | débutant | 1 | tapis | + haltère | - |
+| bird-dog | Bird dog | anti-rotation | débutant | 1 | tapis | idem | - |
+| planche-touche-epaule | Planche touche-épaule | anti-rotation | intermédiaire | 3 | tapis | idem | - |
+| marche-du-fermier | Marche du fermier | porté | débutant | 1 | - | haltères | bidons_ou_sacs |
+| porte-valise | Porté valise | porté | débutant | 1 | - | haltère | bidons_ou_sacs |
+| porte-sac-a-dos-devant | Porté du sac à dos contre la poitrine | porté | débutant | 1 | - | - | sac_a_dos |
+| chat-vache | Chat-vache | mobilité | débutant | 1 | tapis | idem | - |
+| fente-basse-rotation | Fente basse avec rotation du buste | mobilité | débutant | 2 | tapis ou marche | idem | - |
+| mobilite-cheville-au-mur | Mobilité de cheville au mur | mobilité | débutant | 1 | mur | idem | - |
 
 Ajouts absents du brouillon : `pompe-piquee-pieds-sureleves` (progression de M1695) et `porte-sac-a-dos-devant` (porté avec un sac, signalé manquant).
+Fiche retirée : `tirage-sous-table` (voir « Choix tranchés par l'utilisateur »).
+Fiches avec échelons de difficulté (plusieurs échelons dans la fiche) : souleve-de-terre-roumain-unijambiste, fente-arriere, squat-fendu, montee-sur-marche, pompe-inclinee (3), developpe-au-sol-halteres, developpe-epaules-halteres (3), pompe-piquee, pompe-piquee-pieds-sureleves, pullover-haltere-au-sol, planche, planche-laterale, planche-touche-epaule (3), fente-basse-rotation. Les autres fiches ont un seul échelon (les variantes ne changent que le matériel). Les progressions entre fiches (par exemple pompe-inclinee -> pompe-genoux -> pompe) restent des liens de fiche à fiche ; leur fusion en une seule « famille » n'est pas faite (à confirmer par l'utilisateur si souhaité).
 
 ## Couverture par schéma (nombre de mouvements utilisables)
 | Schéma | Profil A | Profil C | Remarque |
@@ -58,119 +62,172 @@ Ajouts absents du brouillon : `pompe-piquee-pieds-sureleves` (progression de M16
 | fente | 4 | 4 | |
 | poussée H | 3 | 4 | |
 | poussée V | 2 | 3 | En A, les 2 fiches forment une seule échelle de progression |
-| tirage H | **0** | 2 | En A, seulement si une table solide est déclarée (tirage-sous-table) |
+| tirage H | **0** | 2 | Sans haltères ni élastique, le tirage horizontal n'est pas couvert (voir ci-dessous) |
 | tirage V | **0 vrai** (1 substitut partiel) | **0 vrai** (2 substituts) | Impossible sans barre ni élastique |
 | gainage | 2 | 2 | |
 | anti-rotation | 3 | 3 | Dont 2 qui sont surtout de l'anti-extension (dead bug, touche-épaule : à trancher) |
 | porté | **0** | 2 | En A, seulement si bidons, sacs ou sac à dos sont déclarés |
 | mobilité | 3 | 3 | |
 
+**Tirage horizontal : trou.** Sans haltères ni élastique, aucune fiche ne couvre le tirage horizontal (tirage-sous-table écartée ; rowing à la serviette sur une porte écarté par `kine`). Message à afficher : « Sans haltères ni élastique, pas de vrai tirage horizontal. Achat conseillé : un élastique avec un ancrage de porte adapté (profil B), utilisé selon sa notice. » À rédiger en vague 1 : **rowing à l'élastique** et **tirage vertical à l'élastique ancré en haut** (aucune fiche rédigée maintenant).
+
 L'objectif de la vague 1 (au moins 3 mouvements vérifiés par profil et par schéma) n'est **pas** atteint par ce pilote, qui sert d'abord à fixer le format.
 
 ## Trous signalés
-1. **Tirage vertical, profils A et C : impossible.** Sans barre ni élastique, on ne peut tirer ni le corps vers le haut ni une charge vers le bas. Meilleurs substituts : pull-over à l'haltère (C), tirage en W allongé (A, substitut partiel). Message à afficher : « Sans barre ni élastique, pas de vrai tirage vertical. Achat le plus utile : un élastique ou une barre de traction. »
-2. **Tirage horizontal, profil A : 0 sans objet du quotidien.** Le tirage sous une table dépend d'une table solide déclarée. Candidat écarté pour l'instant : rowing avec une serviette accrochée à une poignée de porte (brouillon M1854, maxwu) : risque si la porte ou la poignée cède, à faire évaluer par `kine` avant toute fiche.
-3. **Porté, profil A : 0 sans objet du quotidien.** Possible seulement avec bidons, sacs de courses ou sac à dos déclarés.
-4. **Tags manquants** dans equipment-taxonomy.md pour les objets du quotidien : `table_solide`, `bidons_ou_sacs`, `sac_a_dos` sont proposés ici mais pas encore dans le vocabulaire (fichier hors de mon périmètre : à ajouter par la personne qui le tient).
+1. **Tirage vertical, profils A et C : impossible.** Sans barre ni élastique, on ne peut tirer ni le corps vers le haut ni une charge vers le bas. Meilleurs substituts : pull-over à l'haltère (C), tirage en W allongé (A, substitut partiel). Message à afficher : « Sans barre ni élastique, pas de vrai tirage vertical. Achat le plus utile : un élastique ou une barre de traction. » À rédiger en vague 1 : tirage vertical élastique ancré en haut.
+2. **Tirage horizontal, profil A : 0.** Voir plus haut (élastique, profil B, à rédiger). Candidat écarté : rowing avec une serviette accrochée à une poignée de porte (brouillon M1854, maxwu), écarté par `kine` (risque de chute en arrière).
+3. **Porté, profil A : 0 sans objet du quotidien.** Possible seulement avec bidons, sacs de courses ou sac à dos déclarés (tags `bidons_ou_sacs`, `sac_a_dos`, à cocher).
+4. **Tags** : `sac_a_dos`, `bidons_ou_sacs`, `box_stable` ajoutés à equipment-taxonomy.md §2 (21/10/2026) ; `table_solide` abandonné ; program-logic.md §4 ne range plus table ni sac à dos dans le matériel implicite.
 5. **Dosage impossible à coder pour l'instant** : durées de maintien (planche, planche latérale), distances ou temps des portés, durée de la mobilité à l'échauffement : rien de sourcé dans knowledge/ (program-logic.md §9 et §10).
-6. **Fiches citées dans les échelles mais pas encore écrites** : pont fessier sur une jambe (M0506), pompe pieds surélevés (M1053), planche en levant un bras ou une jambe, planche latérale jambe levée, bird dog jambe seule, assis-debout avec appui des mains, pompe en équilibre contre un mur (avancé).
-7. **Photos** : 12 mouvements sur 33 n'ont aucune photo libre (squat assis-debout, soulevé sur une jambe, squat fendu, pompe sur les genoux, les 2 pompes piquées, tirage en W, bird dog, touche-épaule, porté valise, porté du sac, cheville au mur). Plusieurs photos montrent une autre variante (kettlebell au lieu d'haltère, barre au lieu de table, banc au lieu de chaise).
+6. **Fiches citées dans les échelles mais pas encore écrites (à rédiger en vague 1)** : pont fessier sur une jambe (M0506), pompe pieds surélevés (M1053), planche en levant un bras ou une jambe, planche latérale jambe levée, bird dog jambe seule, assis-debout avec appui des mains, pompe en équilibre contre un mur (avancé), rowing élastique, tirage vertical élastique ancré haut.
+7. **Photos** : 12 mouvements sur 32 n'ont aucune photo libre ; plusieurs photos montrent une autre variante. Photos NON affichables (consigne prime, matériel spécialisé, marque, mauvaise installation) : voir « Photos non affichables ». Toutes les autres images : « à vérifier » tant qu'elles n'ont pas été regardées.
+
+## Photos non affichables (état au 21/10/2026)
+| Fiche | Image | Raison |
+|---|---|---|
+| squat-poids-du-corps | Bodyweight_Squat/0.jpg, 1.jpg | mains derrière la tête : contredit la consigne (décision utilisateur) |
+| planche | Plank/0.jpg | personne sur un genou, pas une planche (1.jpg : oui) |
+| pullover-haltere-au-sol | Bent-Arm_Dumbbell_Pullover/0.jpg, 1.jpg | en travers du banc, tête dans le vide : autre installation |
+| marche-du-fermier | Farmers_Walk/0.jpg, 1.jpg | poignées de strongman : matériel spécialisé |
+| pompe-inclinee | Incline_Push-Up/0.jpg, 1.jpg | marque de salle visible (CrossFit) et box en bois ; redevient « oui » si l'utilisateur accepte un recadrage |
+Affichables « oui » : Plank/1.jpg, Stiff-Legged_Dumbbell_Deadlift/0.jpg, Side_Bridge/0.jpg (version pieds seulement).
 
 ## Anomalies du brouillon relevées (pour le nettoyage de la vague 1)
 - free-exercise-db « Split_Squats » est une fente **sautée**, et « Split_Squat_with_Dumbbells » a le pied arrière surélevé (c'est un squat bulgare) : noms trompeurs.
 - M1730 s'appelle « Smith Press » alors que ses variantes sont aux haltères.
-- M0410 « Bent-Arm Dumbbell Pullover » : tag `halteres` seul alors que la source utilise un banc.
+- M0410 « Bent-Arm Dumbbell Pullover » : tag `halteres` seul alors que la source utilise un banc ; M0410 et M1777 (pull-over) sont classés `pull_h` (tirage horizontal) dans le CSV alors que la fiche les range en tirage vertical.
+- M1418 « Incline Push-Up » est tagué `banc_inclinable` alors qu'un support quelconque suffit.
 - M1252 : la fiche free-exercise-db « Goblet Squat » est au kettlebell (bien taguée), la version haltère vient de wger/maxwu.
 - M0518 / M0519 (squat bulgare gauche / droite) et M1548 / M1810 (rotation thoracique gauche / droite) : doublons par côté à fusionner.
-- « Farmers_Walk » (free-exercise-db) : matériel « other » (poignées spécialisées ou haltères lourds).
+- « Farmers_Walk » (free-exercise-db) : matériel « other » (poignées spécialisées) ; ses photos montrent des poignées de strongman.
+- M1436 (tirage sous table) : fiche écartée ; le CSV garde la ligne en brouillon.
 
-## Choix discutables à faire trancher par l'utilisateur
-1. **Variantes qui changent la difficulté** : pompe inclinée (mur, chaise, marche), planche (genoux, pieds), planche latérale. Le plan veut des variantes « installation + matériel seulement ». J'ai gardé une seule fiche par mouvement et rangé les variantes de la plus facile à la plus dure dans l'échelle. Alternative : une fiche par niveau de difficulté (plus de fiches, moins lisible).
-2. **Champ `couverture: substitut`** dans le frontmatter pour le pull-over et le tirage en W, afin que le générateur sache qu'il ne remplit pas vraiment le schéma.
-3. **Classement anti-rotation** du dead bug et de la planche touche-épaule (le dead bug est surtout de l'anti-extension). Le catalogue les range dans les manques anti-rotation ; le vrai anti-rotation (Pallof) demande un élastique (profil B).
-4. **Ordre pompe inclinée / pompe sur les genoux** dans l'échelle (les deux ordres se défendent ; rien de sourcé).
-5. **Niveaux changés par rapport à la source** : bird dog, porté valise, fente basse avec rotation, pompe piquée mis en débutant ; squat bulgare mis en intermédiaire ; développé au sol mis en débutant.
-6. **Photo d'une autre variante** affichée avec une mention (« montré au kettlebell », « montré à la barre ») ou aucune photo ?
+## Choix tranchés par l'utilisateur (21/10/2026)
+1. **Échelons de difficulté** : une seule fiche par mouvement, variantes rangées de la plus facile à la plus dure, chaque échelon avec identifiant stable et niveau (voir « Format retenu »). Appliqué aux 14 fiches concernées.
+2. **La consigne prime sur la photo** : squat au poids du corps = bras devant ; aucune photo qui contredit la consigne n'est affichée ; chaque image est étiquetée « affichable : oui / non / à vérifier ».
+3. **tirage-sous-table retirée du lot pilote** pour l'instant (3 points bloquants de `relecteur`), fiche déplacée dans knowledge/exercices/ecartees/ ; remplacement par l'élastique (profil B), fiches à rédiger en vague 1.
+4. **Tags hors vocabulaire** : `sac_a_dos`, `bidons_ou_sacs` ajoutés (+ `box_stable`) à equipment-taxonomy.md §2 ; `table_solide` abandonné ; program-logic.md corrigé (table et sac à dos ne sont plus implicites).
+5. **Sources** : PROVISOIRE seulement si la source a été lue au moins en résumé ; sinon NON SOURCÉ. Appliqué : brouillons wger (existence seulement), ACE index, Prehab Guys passés en NON SOURCÉ.
+
+## Choix encore à faire trancher par l'utilisateur
+1. **Champ `couverture: substitut`** dans le frontmatter pour le pull-over et le tirage en W.
+2. **Classement anti-rotation** du dead bug et de la planche touche-épaule (le dead bug est surtout de l'anti-extension) ; le vrai anti-rotation (Pallof) demande un élastique (profil B).
+3. **Ordre pompe inclinée / pompe sur les genoux** (rien de sourcé) ; fusion éventuelle de pompe-inclinee, pompe-genoux et pompe en une seule fiche à échelons.
+4. **Niveaux changés par rapport à la source** (tous NON SOURCÉ, tracés dans les fiches) : mis en débutant alors que la source dit intermédiaire : bird dog, porté valise, fente basse avec rotation, développé au sol, marche du fermier, fente arrière, montée sur marche, pull-over (variante sol) ; pompe piquée mise en débutant (aucun niveau de source lu) ; squat bulgare mis en intermédiaire alors que la source dit débutant. Vérifié seulement pour les fiches signalées par `relecteur` et celles de ce tableau ; les autres niveaux n'ont pas été recomparés à la source.
+5. **Recadrage de la photo Incline_Push-Up** (logo de salle) : accepter ou ne pas afficher.
+6. **Photo d'une autre variante** (kettlebell pour l'haltère, box pour le banc) : affichée avec une mention, ou aucune photo ?
 7. **Noms** : garder « dead bug » et « bird dog » (courants en salle) avec une explication, et un nom descriptif pour « World's Greatest Stretch » (fente basse avec rotation du buste) ?
-8. **Squat au poids du corps** : bras devant (consigne) alors que la photo montre les mains derrière la tête.
-9. **Regroupements** : soulevé roumain + jambes tendues en un seul mouvement ; développé épaules assis + debout en un seul mouvement.
+8. **Regroupements** : soulevé roumain + jambes tendues en un seul mouvement ; développé épaules assis + debout en un seul mouvement.
+9. **Variante « pompe, mains sur haltères »** retirée (haltères hexagonaux non exprimables dans le profil) : à ré-introduire seulement si le profil porte l'attribut.
 
 ## Niveau de preuve du lot (honnêtement)
-Les consignes viennent surtout de bases d'exercices (free-exercise-db, domaine public) et de bibliothèques d'organismes de certification (ACE ; NASM vu seulement via résumé). Ce sont des pratiques professionnelles, **pas des études** : statut PROVISOIRE au mieux. Les fiches sans source lue sont marquées NON SOURCÉ ligne par ligne. Aucune méta-analyse ne porte sur la technique d'un mouvement précis ; c'est normal pour ce type de contenu, mais `relecteur` doit vérifier que chaque consigne correspond bien à la source citée.
+Les consignes viennent surtout de bases d'exercices (free-exercise-db, domaine public) et de bibliothèques d'organismes de certification (ACE ; NASM vu seulement via résumé). Ce sont des pratiques professionnelles, **pas des études** : statut PROVISOIRE au mieux. Les sources non lues (même pas en résumé) et les brouillons wger (qui prouvent seulement l'existence du mouvement) sont NON SOURCÉ. Les fiches sans source lue sont marquées NON SOURCÉ ligne par ligne. Aucune méta-analyse ne porte sur la technique d'un mouvement précis ; c'est normal pour ce type de contenu, mais `relecteur` doit vérifier que chaque consigne correspond bien à la source citée. Les échelons et niveaux de chaque variante sont des choix de `coach` (NON SOURCÉ).
 
 ## 5 fiches proposées pour la relecture par l'utilisateur
-1. `squat-poids-du-corps` : poids du corps, avec photo.
+1. `squat-poids-du-corps` : poids du corps, consigne qui prime sur la photo (aucune photo affichable).
 2. `souleve-de-terre-roumain-halteres` : haltères, avec photo.
 3. `planche` : gainage, question sur les durées non sourcées.
-4. `pompe-inclinee` : plusieurs variantes qui changent la difficulté (choix n°1).
+4. `pompe-inclinee` : trois échelons (mur, chaise, première marche).
 5. `pullover-haltere-au-sol` : trou de couverture (tirage vertical impossible) et substitut.
 
-## Retour kine (21/10/2026)
-Rédigé par `kine`. Les 33 fiches ont une section « Sécurité et contre-indications » complète (tableau par zone, version plus douce, signes d'arrêt, objets du quotidien) et le statut `complete_kine`. À contrôler par `relecteur`, lancé à neuf.
+## Journal des corrections de `coach` (21/10/2026) après CONTROLE-relecteur.md
+Les sections « Sécurité et contre-indications » des fiches et la section « Retour kine » ci-dessous n'ont pas été touchées : les points qui les concernent sont renvoyés à `kine`. `kine` écrit aussi knowledge/regles-securite-communes.md (non touché). Fiches : statut laissé à `complete_kine`.
 
-### Règles générales communes (s'appliquent à toutes les fiches)
-L'app ne pose **jamais de diagnostic** : elle ne connaît qu'une zone (cou, épaule, coude, poignet, dos, hanche, genou, cheville) et un niveau de gêne. Elle ne nomme aucune pathologie, et l'avertissement « pas un avis médical » reste affiché.
-
-| n° | Règle | Statut |
+| n° | Décision | Détail |
 |---|---|---|
-| R1 | **Niveaux du profil** : 1 = gêne légère (présente mais ne change pas le geste) ; 2 = gêne nette (présente pendant l'effort ou oblige à modifier le geste) ; 3 = douleur. | NON SOURCÉ (définition de conception) |
-| R2 | **Effet des niveaux** : « garder » = exercice normal ; « adapter » = la variante ou la modification indiquée dans le tableau de la fiche ; « retirer » = l'exercice n'est plus proposé, l'app propose le remplaçant indiqué ou, à défaut, un autre exercice du même schéma qui ne sollicite pas la zone. Zone non listée dans une fiche = garder. Plusieurs zones gênées = la règle la plus prudente. Niveau 2 : **aucune augmentation de charge ou de difficulté** sur les exercices de la zone tant que le niveau reste à 2. | PROVISOIRE (extrapolation de load-calibration.md §8 et des sources de R4) |
-| R3 | **Niveau 3 (douleur)** : retirer tous les exercices qui sollicitent la zone (une variante qui ne la sollicite pas du tout peut rester si la fiche le précise) et afficher : « Douleur signalée : demande l'avis d'un professionnel de santé avant de reprendre les exercices de cette zone. » | PROVISOIRE |
-| R4 | **Douleur pendant un exercice** (douleur articulaire ou vive, pas la brûlure du muscle qui travaille) : arrêt de l'exercice, pas de progression à la séance suivante, version plus douce proposée la fois suivante. Deux séances de suite avec douleur sur la même zone : l'app propose de mettre à jour le profil (niveau 2 ou 3). | PROVISOIRE |
-| R5 | **Signes généraux d'arrêt immédiat de la séance** : douleur, serrement ou gêne dans la poitrine (ou le cou, la mâchoire, le bras) à l'effort, malaise, vertige, essoufflement anormal, palpitations. Message : arrêter, ne pas reprendre avant un avis médical ; si une douleur dans la poitrine ne passe pas au repos : appeler le 15 (ou le 112). Affiché dans chaque fiche. | PROVISOIRE |
-| R6 | **Quand l'app recommande de consulter** (message, jamais de diagnostic) : douleur qui persiste plus de 2 semaines malgré l'adaptation, ou qui s'aggrave ; gonflement ; douleur la nuit ou au repos ; perte de force ; engourdissement ou fourmillements ; douleur après une chute ou un choc ; douleur avec fièvre ou perte de poids inexpliquée. Urgence (consulter sans attendre) : perte de force qui s'aggrave, troubles pour uriner, engourdissement entre les cuisses. Proposition : quand une zone passe au niveau 2 ou 3, l'app affiche cette liste en cases à cocher ; une case cochée = message « consulte » et la zone passe au niveau 3 jusqu'à mise à jour par la personne. | PROVISOIRE (le seuil de 2 semaines est une extrapolation de la réévaluation à 2-4 semaines de la HAS pour la lombalgie) |
-| R7 | **Retour après une gêne** : quand la personne baisse le niveau d'une zone, l'exercice revient par sa version plus douce, avec un nouvel étalonnage (load-calibration.md) ; progression normale ensuite si aucune gêne pendant 2 séances. | NON SOURCÉ |
-| R8 | **Objets du quotidien** : avant la première série, la personne vérifie l'objet en s'appuyant dessus comme pendant l'exercice. Chaise : 4 pieds, sans roulettes, non pliante, dossier contre un mur, sol non glissant. Marche : seulement la première marche d'un escalier, éclairé et dégagé, rampe si possible ; plus haut = box stable. Table : test de soulèvement obligatoire (fiche tirage-sous-table). Sac à dos, bidons, sacs : fermés, solides, contenu calé, poids connu (pèse-personne), jamais dans un escalier. Porte : voir ci-dessous (rowing à la serviette écarté ; ancrage d'élastique seulement selon la notice). L'objet bouge, glisse, grince : arrêt et on n'utilise plus cet objet. | NON SOURCÉ, sauf la porte : PROVISOIRE (notices de fabricants) |
-| R9 | **Charge au-dessus du visage** (développé au sol, pull-over, dead bug à l'haltère) : haltère fixe de préférence ; haltère réglable seulement si les disques sont serrés, vérifiés avant chaque série ; ne jamais lâcher l'haltère au-dessus de soi. | NON SOURCÉ |
-| R10 | **Pas de douleur pour progresser** : l'app ne demande jamais de « travailler dans la douleur ». | PROVISOIRE |
+| 1 | non corrigé (kine) | statut de R2 : section Retour kine |
+| 2 | non corrigé (kine) | statut de R3 : section Retour kine |
+| 3 | non corrigé (kine) | seuil R4 : section Retour kine |
+| 4 | non corrigé (kine) | dépistage avant le premier programme (Riebe 2015) : règle de sécurité |
+| 5 | non corrigé (kine) | drapeaux rouges omis de R6 |
+| 6 | non corrigé (kine) | urgence « 15 ou 112 » dans R6 |
+| 7 | sans objet | remarque, statut déjà correct |
+| 8 | non corrigé (kine) | grossesse et post-partum : à rédiger et sourcer par `kine` |
+| 9 | non corrigé (kine) | « garder » / « adapter » dans R2 et les tableaux zone x niveau des fiches |
+| 10 | non corrigé (kine) | niveau 3 « seulement si aucune douleur » : tableaux des fiches |
+| 11 | non corrigé (kine) | statut de R9 : section Retour kine |
+| 12 | corrigé | phrase de statut du début du README reformulée |
+| 13 | corrigé | niveaux changés vs source tracés dans marche-du-fermier, fente-arriere, montee-sur-marche, pullover ; liste du README élargie |
+| 14 | corrigé | tags `sac_a_dos`, `bidons_ou_sacs`, `box_stable` dans equipment-taxonomy.md §2 ; mention « tag proposé » retirée des fiches |
+| 15 | corrigé | lignes de source « marche » : renvoi à R8 et plus à exercise-catalog.md §5 (qui ne cite que chaise, table, sac) |
+| 16 | corrigé | brouillons wger : NON SOURCÉ (existence du mouvement seulement) : pompe-inclinee, pompe-piquee, tirage-w-allonge, planche-touche-epaule, mobilite-cheville-au-mur, squat-gobelet, pompe-genoux |
+| 17 | corrigé en partie | photos Incline_Push-Up passées en « non » (marque de salle) ; recadrage à trancher par l'utilisateur ; Inverted_Row n'est utilisée dans aucune fiche du lot |
+| 19 | corrigé | squat : quadriceps seul en principal, changement tracé |
+| 20 | corrigé | largeur d'épaules (source) ; orteils ouverts « si confortable », NON SOURCÉ |
+| 21 | corrigé | décision utilisateur : bras devant ; photos « non » |
+| 22 | corrigé | consigne alignée sur la source et la photo (haltères de chaque côté) ; variante un haltère signalée NON SOURCÉ |
+| 23 | non corrigé (kine) | tableau Dos niveau 1 et README « fiches à risque » (sécurité) ; la consigne de coach est alignée |
+| 24 | corrigé | Plank/0.jpg « non », 1.jpg « oui » |
+| 25 | corrigé | ligne de source NON SOURCÉ pour la variante genoux |
+| 26 | non corrigé | durées de maintien : trou n°5, rien de sourcé (program-logic.md §9) ; remarque |
+| 27 | corrigé | pompe inclinée : première marche seulement, dans la variante et les sources |
+| 28 | corrigé | échelons classés par hauteur des mains (mur < chaise < première marche) |
+| 30 | corrigé | triceps en secondaire pour pompe, pompe-genoux, pompe-inclinee, changement tracé |
+| 31 | corrigé | photo « non » (box en bois, marque), mention dans la fiche |
+| 32 | corrigé | pull-over : sol débutant, banc intermédiaire ; niveau vs source tracé ; niveau_min débutant |
+| 33 | corrigé | texte nuancé (« sollicite aussi le grand dorsal », « substitut faute de mieux ») ; pectoraux en premier |
+| 34 | corrigé | variante banc décrite dans la longueur ; photos « non » (en travers du banc) |
+| 35 | sans objet | fiche écartée (le texte contradictoire est conservé tel quel dans ecartees/) |
+| 36 | sans objet | fiche écartée ; l'erreur mécanique est consignée dans l'en-tête de la fiche |
+| 37 | corrigé | program-logic.md §4 : table et sac à dos retirés de l'implicite ; exemple « tirage sous table » remplacé |
+| 38 | sans objet | fiche écartée |
+| 39 | sans objet | fiche écartée |
+| 40 | sans objet | fiche écartée (le champ « test validé » n'existe pas : à spécifier avec `dev` avant toute réintroduction) |
+| 41 | sans objet | fiche écartée |
+| 42 | corrigé | ligne de source : « Sit_Squats » est un autre mouvement |
+| 43 | non corrigé (kine) | coussin antidérapant : section Sécurité |
+| 44 | corrigé | libellé « haltère tenu contre la poitrine » |
+| 45 | non corrigé (kine) | ligne « Dos » manquante dans les tableaux de fente-arriere, squat-fendu, montee-sur-marche |
+| 46 | corrigé | « genou devant » présenté comme repère de technique, pas comme un danger |
+| 47 | corrigé | squat bulgare : « première marche » dans l'installation |
+| 48 | corrigé | tag `box_stable` ; montee-sur-box-haute (échelon 2) ; haltères seulement sur marche ou box basse |
+| 49 | corrigé | variante « mains sur haltères » retirée (haltères hexagonaux non exprimables) |
+| 50 | corrigé | ACE (index seulement) : NON SOURCÉ |
+| 51 | corrigé | Prehab Guys (page non lue) : NON SOURCÉ |
+| 52 | corrigé en partie | installation de la variante assise (dossier calé contre un mur) ; les lignes « dos contre le dossier » du tableau Dos et « ne te penche pas en arrière » des objets (sécurité) restent à harmoniser par `kine` |
+| 53 | non corrigé (kine) | rowing, Dos niveau 2 : « une table stable » |
+| 54 | corrigé | identifiant existant ; images « à vérifier » |
+| 55 | corrigé | « reproduit la fin d'une traction » atténué et sourcé NON SOURCÉ |
+| 56 | corrigé | Side_Bridge/0.jpg « oui » (pieds seulement) ; variante genou sans photo |
+| 57 | corrigé | Farmers_Walk/0.jpg et 1.jpg « non » (matériel spécialisé) |
+| 58 | sans objet | remarque : mouvement entièrement NON SOURCÉ, non codable sans validation (règle 10) |
+| 59 | non corrigé | anomalies du CSV (hors lot) : listées dans « Anomalies du brouillon » pour la vague 1 |
 
-Sources des règles communes :
-| Règle(s) | Source | Niveau de preuve | Public | Lu le | Statut |
-|---|---|---|---|---|---|
-| R4, R10 : la douleur pendant l'exercice n'est pas nécessaire à de bons résultats (petit avantage à court terme seulement, aucune différence à moyen et long terme) ; donc une règle « sans douleur » ne prive pas la personne d'un bénéfice durable | Smith et al., Should exercises be painful in the management of chronic musculoskeletal pain? Br J Sports Med 2017;51(23):1679-1687 https://pmc.ncbi.nlm.nih.gov/articles/PMC5739826 | revue systématique et méta-analyse, 7 essais, 385 participants (preuve modérée à faible) | adultes avec douleur musculosquelettique chronique | 2026-10-21 (résumé) | OK pour le constat ; la règle d'arrêt est une extrapolation prudente : PROVISOIRE |
-| R4 (contexte) : en rééducation **supervisée**, certains protocoles tolèrent une douleur jusqu'à environ 5/10 ; non retenu ici car l'app n'est pas supervisée | Silbernagel et al., Am J Sports Med 2007;35(6):897-906, DOI 10.1177/0363546506298279 (fiche PEDro https://search.pedro.org.au/search-results/record-detail/18389) | essai randomisé, 38 patients | tendinopathie d'Achille | 2026-10-21 (synthèses, résumé non complet) | PROVISOIRE |
-| R5 : symptômes à l'effort (gêne thoracique, essoufflement anormal, malaise) = arrêter et demander un avis médical avant de reprendre | Riebe et al., Updating ACSM's recommendations for exercise preparticipation health screening, Med Sci Sports Exerc 2015;47(11):2473-2479 https://digitalcommons.uri.edu/kinesiology_facpubs/180 | recommandation d'experts (ACSM) | adultes | 2026-10-21 (résumé + formulaires dérivés de l'ACSM ; texte complet non lu) | PROVISOIRE |
-| R6 : signes d'alerte (douleur d'aggravation progressive ou nocturne, symptômes neurologiques étendus, fièvre, perte de poids inexpliquée, antécédent de cancer) ; rester actif ; réévaluer à 2-4 semaines | HAS, Prise en charge du patient présentant une lombalgie commune, fiche mémo 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune | recommandation officielle française | adultes, lombalgie commune | 2026-10-21 (résumé via moteur de recherche ; page et PDF HAS non ouverts : erreur de certificat) | PROVISOIRE (à relire dans le PDF ; extrapolation aux autres zones) |
-| R6 : urgences (troubles urinaires, engourdissement entre les cuisses, faiblesse qui progresse) ; exercice en première intention | NICE NG59, Low back pain and sciatica in over 16s https://www.nice.org.uk/guidance/ng59 | recommandation officielle britannique | plus de 16 ans | 2026-10-21 (synthèses secondaires seulement ; mise à jour de juillet 2026 signalée, non vérifiée sur le site NICE) | PROVISOIRE |
-| R2 (genou, hanche) : l'exercice structuré est un traitement de base ; une gêne ne justifie pas de tout retirer | Bannuru et al., OARSI guidelines 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ | recommandation internationale (GRADE) | adultes avec arthrose du genou ou de la hanche | 2026-10-21 (résumé) | PROVISOIRE (extrapolation) |
-| R8 (porte) | notices de fabricants d'ancrages de porte : Serious Steel (https://www.living.fit/collections/resistance-bands/products/premium-resistance-band-door-anchor), GoFit, Multi Anchor (via moteur de recherche) | instructions de fabricants, pas d'étude | utilisateurs d'élastiques | 2026-10-21 (extraits) | PROVISOIRE |
+Bilan : 57 points : 31 corrigés, 2 corrigés en partie (17, 52), 14 renvoyés à `kine` (1 à 6, 8 à 11, 23, 43, 45, 53), 8 sans objet (7, 58 et fiche écartée : 35, 36, 38 à 41), 2 non corrigés (26, 59). Blocs à surveiller par `kine` : les lignes qui nomment « tirage-sous-table », « table » et « test de soulèvement » dans la section Retour kine (R8, fiches à risque, désaccord n°1, avis rowing serviette) et dans knowledge/regles-securite-communes.md sont devenues sans objet et à retirer.
 
-**Limite honnête** : aucune étude ne teste les adaptations « zone x niveau » exercice par exercice. Les 33 tableaux sont des extrapolations de `kine` à partir de R1 à R10, marquées NON SOURCÉ dans chaque fiche. Elles sont volontairement prudentes ; elles doivent être validées par l'utilisateur et contrôlées par `relecteur`.
+## Sécurité : règles communes
+Les règles communes de sécurité (R1 à R10 corrigées, dépistage avant de commencer, grossesse et post-partum, signes d'alerte, urgences, objets du quotidien) sont dans **knowledge/regles-securite-communes.md**, source unique : elles ne sont plus recopiées ici. Chaque fiche y renvoie.
 
-### Fiches à risque
-| Fiche | Risque principal | Ce qui est demandé |
+Avis `kine` sur le rowing avec une serviette accrochée à une poignée de porte (brouillon M1854) : **écarté**, la poignée n'est pas faite pour supporter le poids du corps et la chute se ferait en arrière ; alternative : élastique avec un vrai ancrage de porte, selon sa notice (profil B). PROVISOIRE (notices de fabricants, aucune étude).
+
+Fiches à risque (rappel) : `pompe-piquee` et `pompe-piquee-pieds-sureleves` (tête en bas, chute), `montee-sur-marche` et `squat-bulgare` (première marche seulement, box stable pour plus haut), `developpe-au-sol-halteres`, `dead-bug` (haltère), `pullover-haltere-au-sol` (R9 : charge au-dessus du visage), `souleve-de-terre-roumain-halteres` et `rowing-buste-penche-halteres` (charge sur le bas du dos), `porte-sac-a-dos-devant`, `marche-du-fermier`, `porte-valise` (charge improvisée de poids connu, jamais dans un escalier).
+
+## Journal des corrections de `kine` (21/10/2026) après CONTROLE-relecteur.md
+Points renvoyés par `coach` (1 à 6, 8 à 11, 23, 43, 45, 53) et points de sécurité liés (15, 27, 47, 52). Les 32 fiches ont été modifiées : vocabulaire garder / adapter (action précise) / retirer, niveau 3, lignes « Grossesse », renvoi vers knowledge/regles-securite-communes.md. Statut des fiches : `complete_kine` (inchangé). Contrôle de `relecteur` à refaire.
+
+| n° | Décision | Détail |
 |---|---|---|
-| tirage-sous-table | **la table bascule ou glisse sur la personne allongée dessous** | test de soulèvement debout obligatoire, consigné dans le profil (le tag `table_solide` seul ne suffit pas) ; la plupart des tables de salle à manger légères échoueront probablement au test |
-| pullover-haltere-au-sol | épaule en fin d'amplitude au-dessus de la tête ; haltère au-dessus du visage | épaule niveau 1 : charge légère, haltère arrêté au-dessus du front, jamais la variante banc ; niveau 2 : retiré ; R9 |
-| pompe-piquee-pieds-sureleves | tête en bas, pieds sur une chaise qui peut glisser, chute sur la tête | marche avant chaise ; cou ou épaule niveau 1 : retour à pompe-piquee |
-| pompe-piquee | tête en bas, tête qui tape | arrêt si vertige ou pression dans la tête |
-| montee-sur-marche, squat-bulgare | chute depuis une marche ou une chaise | première marche seulement ; version haltères seulement si l'équilibre est sûr |
-| developpe-au-sol-halteres, dead-bug (haltère) | haltère au-dessus du visage | R9 |
-| souleve-de-terre-roumain-halteres, rowing-buste-penche-halteres | charge sur le bas du dos en flexion | dos niveau 1 : amplitude ou appui réduits ; niveau 2 : pont-fessier / rowing avec appui |
-| porte-sac-a-dos-devant, marche-du-fermier, porte-valise | charge improvisée de poids inconnu, sac qui cède | poids pesé, progression par petites étapes, jamais dans un escalier |
+| 1 | corrigé | R2 passée en NON SOURCÉ (règle de conception) dans regles-securite-communes.md |
+| 2 | corrigé | R3 passée en NON SOURCÉ |
+| 3 | corrigé | seuil « 2 séances de suite » de R4 marqué NON SOURCÉ ; constat Smith 2017 : OK |
+| 4 | corrigé | dépistage avant de commencer ajouté (§2) : le PAR-Q+ ne peut pas être intégré (conditions du site officiel), questions propres à l'app sourcées sur l'ACSM (PROVISOIRE) |
+| 5 | corrigé | antécédent de cancer, début avant 20 ans ou après 55 ans, fièvre, perte de poids, état général, cortisone prolongée ajoutés (S2), source : fiche mémo HAS lombalgie 2019 lue en entier ; troubles des selles dans S3 |
+| 6 | corrigé | signes de la queue-de-cheval renvoient à « Urgence : appelle le 15 (SAMU) ou le 112 » (S3, U1) |
+| 7 | sans objet | remarque du relecteur : statut déjà correct ; seuil de 2 semaines laissé NON SOURCÉ |
+| 8 | corrigé | règles grossesse et post-partum G1 à G8 ; ligne « Grossesse » dans chacune des 32 fiches |
+| 9 | corrigé | vocabulaire unique (§0 du fichier de règles) ; toutes les cases des 32 tableaux réécrites en garder / adapter : action / retirer |
+| 10 | corrigé | pompe-inclinee, dead-bug, planche-touche-epaule : plus de « seulement si aucune douleur » au niveau 3 ; retirer, avec sans-zone nommé quand la variante ne sollicite pas la zone |
+| 11 | corrigé | R9 : partie « disques serrés » en PROVISOIRE (mise en garde de la fiche free-exercise-db Bent-Arm_Dumbbell_Pullover, non rouverte) |
+| 15 | corrigé | lignes de source « marche » : renvoi à R8 (regles-securite-communes.md §7), plus à exercise-catalog.md §5 |
+| 23 | corrigé | souleve-de-terre-roumain-halteres, Dos niveau 1 : adapter : amplitude jusqu'aux genoux ; le gel de la charge est la règle du niveau 2 (R2) |
+| 27 | corrigé | pompe-inclinee : première marche seulement dans les objets du quotidien (la variante de `coach` le dit déjà) |
+| 43 | corrigé | squat-assis-debout : coussin antidérapant ou plié et calé, sinon une chaise plus haute |
+| 45 | corrigé | ligne « Dos » ajoutée à fente-arriere, squat-fendu, montee-sur-marche (sans-charge) ; squat-bulgare l'avait déjà |
+| 47 | corrigé | squat-bulgare : première marche, escalier éclairé et dégagé, rampe si possible |
+| 52 | corrigé | developpe-epaules-halteres : tableau Dos et objets du quotidien alignés sur l'installation de `coach` (dos près du dossier, dossier calé contre un mur, sans te laisser aller en arrière) |
+| 53 | corrigé avec réserve | rowing-unilateral-haltere, Dos niveau 2 : plus de « table » ; remplacé par « support stable plus haut, essai obligatoire en s'appuyant de tout son poids ». Aucun objet précis n'est nommé : à trancher si `relecteur` ou l'utilisateur veut un objet précis |
+| autre | corrigé | lignes de source « HAS lombalgie » des fiches : le PDF HAS a été lu, la mention « non ouvert » est retirée ; ids de variantes mis à jour (montee-sur-box-haute, planche-touche-epaule-pieds-serres ; pompe-poignees-halteres supprimée ; remplacée par pompe-inclinee-chaise pour le poignet) |
+| non corrigé | tirage-sous-table | fiche écartée : lignes retirées de ce README et de regles-securite-communes.md |
+| non corrigé | classement grossesse par fiche | extrapolation de `kine` (PROVISOIRE), à valider par l'utilisateur et `relecteur` |
 
-Proposition pour le profil (à trancher avec l'utilisateur et `dev`) : une case « un médecin m'a déconseillé les positions tête en bas » qui retire pompe-piquee et pompe-piquee-pieds-sureleves. NON SOURCÉ.
-
-### Désaccords et compléments par rapport à `coach`
-1. **tirage-sous-table** : l'avertissement de coach dit « teste-la d'abord en tirant doucement », ce qui se fait **déjà allongé dessous**. Je demande de remplacer ce test par le test de soulèvement **debout, sans être dessous** (section sécurité de la fiche), et de ne proposer la fiche qu'après ce test validé dans le profil. Je n'ai pas modifié le texte de coach : à corriger par lui. La variante jambes tendues augmente la traction sur la table : refaire le test.
-2. **Rowing serviette à la porte (M1854)** : je confirme l'écart (section suivante).
-3. **montee-sur-marche** : la progression « marche plus haute » ne doit jamais signifier une marche plus haute dans un escalier ; uniquement une box stable.
-4. **pullover-haltere-au-sol** : d'accord avec le niveau débutant pour la variante sol (le sol limite l'amplitude) ; la variante banc ne doit pas être proposée en cas de gêne à l'épaule, même de niveau 1.
-5. **porte-sac-a-dos-devant** : la progression « sac plus lourd » doit passer par un poids connu (se peser avec et sans le sac), pas à l'estime.
-6. **pompe-piquee** (niveau débutant) : d'accord, à condition de commencer par la variante mains sur une marche si la personne n'a jamais fait de position tête en bas.
-7. Pas de désaccord sur les autres fiches. Les « points d'attention » de coach sont compatibles avec la sécurité ; j'ai ajouté des points kine seulement là où c'était nécessaire.
-
-### Rowing avec une serviette accrochée à la porte (M1854) : avis kine
-**Avis : écarté. Je recommande de ne pas en faire une fiche, ni vérifiée ni proposée.**
-- La personne se penche en arrière et met une grande partie de son poids sur une poignée de porte et une serviette, qui ne sont pas faites pour ça. Si la poignée casse, si la serviette glisse ou si le pêne lâche et que la porte s'ouvre, la chute se fait **en arrière, sur le dos et la tête**, sans possibilité de se rattraper.
-- Aucun test simple et fiable ne permet à la personne de vérifier la solidité d'une poignée.
-- Les fabricants d'ancrages de porte pour élastiques eux-mêmes demandent : ancrage côté gonds, porte fermée (à clé si possible), porte qui s'ouvre en s'éloignant de soi, porte pleine en bois ou en métal, contrôle avant chaque usage, et préviennent qu'une porte qui s'ouvre vers soi peut frapper la personne avec force (sources : R8). Une serviette sur une poignée ne respecte aucune de ces conditions.
-- Alternatives : tirage-sous-table **si** la table passe le test ; rowing-unilateral-haltere si haltères ; tirage-w-allonge sinon ; et message d'achat : un élastique avec un vrai ancrage de porte (profil B), utilisé selon sa notice. Une future fiche « tirage à l'élastique ancré à la porte » devra reprendre les conditions des fabricants.
-Statut de l'avis : PROVISOIRE (notices de fabricants extrapolées ; aucune étude).
-
-### Règles non sourcées restantes
-- R1 (définition des niveaux), R7 (retour après une gêne), R8 (objets du quotidien, hors porte), R9 (haltère au-dessus du visage).
-- Les 33 tableaux zone x niveau, versions plus douces et signes d'arrêt propres à chaque fiche (extrapolation de kine).
-- Le test de soulèvement de la table (raisonnement mécanique).
-- Le seuil « 2 semaines » de R6 (extrapolé de la HAS lombalgie, à confirmer en lisant le PDF HAS).
-- La case « tête en bas déconseillée » proposée pour le profil.
+Points à signaler à `coach` : (1) `montee-sur-marche-halteres` : la fiche `coach` autorise les haltères sur « une marche basse ou une box basse » ; la section sécurité de `kine` ne les autorise que sur une box basse et stable (les mains ne sont plus libres pour la rampe). (2) Les niveaux 2 et 3 de plusieurs fiches renvoient à des remplaçants d'une autre fiche (ids écrits dans les cases) : vérifier qu'ils existent dans le lot.

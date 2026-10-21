@@ -9,12 +9,14 @@ muscles_secondaires: [ischios, adducteurs, moyen_fessier]
 source_brouillon: [M0518, M0519, M0520]
 statut: complete_kine
 ---
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| squat-bulgare-chaise | Pied sur une chaise | poids_du_corps, chaise | Chaise stable calée contre un mur, dessus du pied arrière posé sur l'assise. |
-| squat-bulgare-marche | Pied sur une marche | poids_du_corps, marche_ou_box | Dessus du pied arrière sur une marche d'escalier ou un banc. |
-| squat-bulgare-halteres | Haltères, pied sur une chaise | halteres, chaise | Comme la version chaise, un haltère dans chaque main. |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| squat-bulgare-chaise | Pied sur une chaise | 1 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur, dessus du pied arrière posé sur l'assise. |
+| squat-bulgare-marche | Pied sur une marche | 1 | intermediaire | poids_du_corps, marche_ou_box | Dessus du pied arrière sur la première marche d'un escalier (éclairé, dégagé, rampe si possible) ou sur un banc stable. |
+| squat-bulgare-halteres | Haltères, pied sur une chaise | 1 | intermediaire | halteres, chaise | Comme la version chaise, un haltère dans chaque main. |
 
 ## Consignes
 1. Dos à la chaise, pose le dessus d'un pied sur l'assise.
@@ -42,18 +44,20 @@ squat-fendu <- **squat-bulgare** (poids du corps -> haltères)
 Voir program-logic.md.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter : squat-bulgare-marche (plus bas), sans haltères | adapter : squat-fendu-mur | retirer |
-| Hanche | garder sans haltères | adapter : squat-fendu-mur | retirer |
-| Cheville | adapter : marche basse, serviette pliée sous le dessus du pied arrière | adapter : squat-fendu-mur | retirer |
-| Dos | garder | adapter : sans haltères | retirer |
+| Genou | adapter : sans-charge, variante:squat-bulgare-marche (première marche) | adapter : variante:squat-fendu-mur | retirer |
+| Hanche | adapter : sans-charge | adapter : variante:squat-fendu-mur | retirer |
+| Cheville | adapter : appui:première marche, serviette pliée sous le dessus du pied arrière | adapter : variante:squat-fendu-mur | retirer |
+| Dos | garder | adapter : sans-charge | retirer |
 
 **Version plus douce** : `squat-fendu` (version mur).
+
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (risque de chute ; remplaçant : squat-fendu-mur). Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche ou sur le dessus du pied arrière.
@@ -64,11 +68,12 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 **Objets du quotidien**
 - Chaise à 4 pieds, sans roulettes, non pliante, en bon état ; dossier calé contre un mur ; sol non glissant (pas de tapis qui glisse, pas de carrelage mouillé).
 - Avant la première série, appuie-toi dessus comme pendant l'exercice : si elle bouge, glisse ou grince, n'utilise pas cette chaise.
-- Marche d'escalier : seulement la première marche du bas, escalier dégagé.
+- Marche d'escalier : seulement la première marche du bas, escalier éclairé et dégagé, rampe si possible (R8).
 - Version haltères : seulement si l'équilibre est sûr sans haltères (tu ne pourras pas te rattraper avec les mains).
 
 ## Photo
-Variante haltères : free-exercise-db `Split_Squat_with_Dumbbells/0.jpg`, `Split_Squat_with_Dumbbells/1.jpg` (domaine public : pied arrière surélevé, haltères). Autres variantes : aucune photo libre.
+- `Split_Squat_with_Dumbbells/0.jpg` : affichable : à vérifier (non regardée ; pied arrière surélevé, haltères).
+- `Split_Squat_with_Dumbbells/1.jpg` : affichable : à vérifier (non regardée).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -77,9 +82,10 @@ Variante haltères : free-exercise-db `Split_Squat_with_Dumbbells/0.jpg`, `Split
 | Muscles (quadriceps dans la source) | même fiche ; autres muscles ajoutés par coach | idem | 2026-10-21 | PROVISOIRE (ajouts NON SOURCÉ) |
 | Niveau intermédiaire (la source dit débutant) | choix de coach (équilibre) | - | - | NON SOURCÉ |
 | Fusion de M0518 et M0519 (gauche / droite) | nettoyage du brouillon | - | - | NON SOURCÉ |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |
-| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; lues via résumés et synthèses (PDF HAS non ouvert : erreur de certificat) | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
-| Avertissement de stabilité de la chaise | règle de conception (exercise-catalog.md §5) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
-| Avertissement de stabilité de la marche (première marche, rampe) | règle de conception (exercise-catalog.md §5) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Avertissement de stabilité de la chaise | règle de conception (exercise-catalog.md §5, cite la chaise) et R8 de knowledge/regles-securite-communes.md ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Avertissement de stabilité de la marche (première marche, rampe) | règle R8 de knowledge/regles-securite-communes.md §7 (`kine`) ; exercise-catalog.md §5 ne parle pas de marche ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

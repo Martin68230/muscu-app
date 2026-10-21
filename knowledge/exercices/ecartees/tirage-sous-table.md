@@ -8,7 +8,17 @@ muscles_principaux: [grand_dorsal, rhomboides, trapezes]
 muscles_secondaires: [biceps, deltoides_posterieurs, abdominaux]
 source_brouillon: [M1436]
 statut: complete_kine
+ecartee: 2026-10-21
 ---
+## ÉCARTÉE du lot pilote (décision de l'utilisateur, 21/10/2026)
+**Cette fiche n'est pas utilisée, ni par le générateur ni par la bibliothèque.** Elle est conservée ici pour mémoire. Raison : le contrôle de `relecteur` (CONTROLE-relecteur.md) a relevé 3 points bloquants.
+1. Point 35 : l'avertissement de `coach` (« teste-la d'abord en tirant doucement ») se fait allongé sous la table, donc dans la situation dangereuse ; il contredit le test debout de `kine`.
+2. Point 36 : le raisonnement mécanique sur le sens de la force est faux ; le test de soulèvement debout ne teste pas le vrai mode d'accident (basculement vers la personne quand les mains sont sur un débord au-delà des pieds). La seule condition fiable serait « mains entre les pieds, jamais sur un débord », à spécifier avec un vrai test.
+3. Point 37 : program-logic.md rangeait la table parmi le matériel implicite (corrigé le 21/10/2026, la table n'y est plus).
+S'y ajoutent les points 38 à 40 (tables à pied central, serviette qui diminue l'adhérence, test « validé dans le profil » sans champ dans le modèle).
+Remplacement proposé dans le lot : l'**élastique** (profil B) ; fiches « rowing élastique » et « tirage vertical élastique ancré haut » à rédiger en vague 1. Sans haltères ni élastique, le tirage horizontal n'est pas couvert.
+Avant toute réintroduction : refaire la mécanique avec `kine`, définir le test et son champ dans le profil, nouveau contrôle `relecteur`.
+
 ## Variantes (installation + matériel seulement)
 | id variante | nom | materiel_tags | installation |
 |---|---|---|---|

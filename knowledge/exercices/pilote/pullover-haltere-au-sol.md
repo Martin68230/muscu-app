@@ -5,19 +5,21 @@ schema: tirage_v
 couverture: substitut  # proposition de champ : ce n'est PAS un vrai tirage vertical
 type: force
 niveau_min: debutant
-muscles_principaux: [grand_dorsal, pectoraux]
+muscles_principaux: [pectoraux, grand_dorsal]
 muscles_secondaires: [triceps, dentele_anterieur, abdominaux]
 source_brouillon: [M1777, M0410]
 statut: complete_kine
 ---
 ## Pourquoi cette fiche
-Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (on ne peut pas tirer le corps vers le haut ni une charge vers le bas). Le pull-over fait travailler le grand dorsal dans un mouvement proche (le bras descend de la tête vers les hanches). C'est le **meilleur substitut avec des haltères**, pas un équivalent. L'achat le plus utile reste une barre de traction ou un élastique.
+Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (on ne peut pas tirer le corps vers le haut ni une charge vers le bas). Le pull-over sollicite aussi le grand dorsal (la source met les pectoraux en premier), dans un mouvement qui ressemble à un tirage vertical (le bras passe de derrière la tête vers la poitrine). C'est un **substitut faute de mieux avec des haltères**, pas un équivalent. L'achat le plus utile reste une barre de traction ou un élastique.
 
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| pullover-sol-haltere | Au sol, un haltère | halteres, tapis | Allongé sur le dos, genoux pliés, pieds à plat. |
-| pullover-banc-haltere | Sur un banc | halteres, banc | Allongé sur un banc, pieds au sol (profil E et plus). |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| pullover-sol-haltere | Au sol, un haltère | 1 | debutant | halteres, tapis | Allongé sur le dos, genoux pliés, pieds à plat. |
+| pullover-banc-haltere | Sur un banc | 2 | intermediaire | halteres, banc | Allongé sur le dos dans la longueur d'un banc, tête et épaules sur le banc, pieds au sol (profil E et plus). Ce n'est pas l'installation de la photo de la source (en travers du banc, tête dans le vide), plus difficile et moins sûre. |
 
 ## Consignes
 1. Allongé sur le dos, tiens un haltère à deux mains au-dessus de la poitrine.
@@ -44,16 +46,16 @@ substitut sans matériel : tirage-w-allonge <- **pullover-haltere-au-sol** -> vr
 Voir program-logic.md.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter : charge légère ; l'haltère s'arrête au-dessus du front, ne descend pas derrière la tête ; jamais la variante banc | retirer (à la place : tirage-w-allonge sans charge, si aucune douleur) | retirer |
-| Dos | garder : genoux pliés, bas du dos collé | adapter : amplitude réduite, charge légère | retirer |
-| Coude | garder | adapter : charge plus légère | retirer |
-| Poignet | garder | adapter : charge plus légère | retirer |
+| Épaule | adapter : charge:légère, amplitude:l'haltère s'arrête au-dessus du front ; pullover-banc-haltere : retirer | retirer (remplaçant : tirage-w-allonge sans charge) | retirer |
+| Dos | garder | adapter : amplitude:réduite, charge:légère | retirer |
+| Coude | garder | adapter : charge:légère | retirer |
+| Poignet | garder | adapter : charge:légère | retirer |
 
 **Points d'attention (kine)**
 - Haltère au-dessus du visage ou de la poitrine : haltère fixe de préférence ; haltère réglable seulement si les disques sont bien serrés (vérifie avant chaque série).
@@ -63,6 +65,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 
 **Version plus douce** : `tirage-w-allonge` (au sol, sans charge).
 
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : retirer (couché sur le dos ; remplaçant : rowing-unilateral-haltere, charge légère). Post-partum : G7.
+
 **Signes qui doivent faire arrêter**
 - Douleur ou pincement à l'avant ou sur le dessus de l'épaule quand l'haltère passe derrière la tête.
 - Prise qui glisse ou disque d'un haltère réglable qui bouge.
@@ -71,15 +75,20 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-free-exercise-db : `Bent-Arm_Dumbbell_Pullover/0.jpg`, `Bent-Arm_Dumbbell_Pullover/1.jpg` (domaine public), réalisé en travers d'un banc : illustration pour la variante banc. Variante au sol : aucune photo libre.
+- `Bent-Arm_Dumbbell_Pullover/0.jpg` : affichable : non (installation en travers d'un banc, tête dans le vide : ni la variante sol ni la variante banc de la fiche).
+- `Bent-Arm_Dumbbell_Pullover/1.jpg` : affichable : non (vue le 21/10/2026 : en travers du banc, tête hors du banc, même raison).
+Variante au sol : aucune photo libre.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Haltère tenu au-dessus de la poitrine, coudes un peu fléchis, descente en arc derrière la tête, retour par le même chemin | free-exercise-db « Bent-Arm_Dumbbell_Pullover » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Bent-Arm_Dumbbell_Pullover.json (sur banc) ; adapté au sol par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles : la source met les pectoraux en premier (grand dorsal, épaules, triceps en secondaire) | même fiche | idem | 2026-10-21 | PROVISOIRE |
+| Muscles : la source met les pectoraux en premier (grand dorsal, épaules, triceps en secondaire) ; l'ordre de la fiche suit la source | même fiche | idem | 2026-10-21 | PROVISOIRE |
+| Niveau : la source dit intermédiaire ; la variante au sol est mise en débutant (le sol limite l'amplitude, `kine` d'accord) ; la variante banc reste intermédiaire | choix de coach, tracé le 21/10/2026 | - | - | NON SOURCÉ |
+| Variante banc dans la longueur (la source est en travers du banc) | adaptation de coach pour la sécurité | - | - | NON SOURCÉ |
 | Le pull-over comme substitut du tirage vertical | choix de coach ; trou mesuré dans equipment-taxonomy.md §4 | - | 2026-10-21 | NON SOURCÉ (à trancher) |
 | Tag du brouillon M0410 = halteres seulement alors que la source utilise un banc | constat de nettoyage | - | 2026-10-21 | à corriger dans le brouillon |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Haltère au-dessus du visage : haltère fixe ou réglable vérifié, prise en coupe | règle de prudence de `kine` (R9) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

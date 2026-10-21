@@ -9,11 +9,13 @@ muscles_secondaires: [abdominaux, obliques, fessiers, quadriceps, erecteurs_rach
 source_brouillon: [M0595, M1121]
 statut: complete_kine
 ---
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| fermier-halteres | Deux haltères | halteres | Un haltère dans chaque main, posés au sol de chaque côté des pieds. |
-| fermier-bidons-sacs | Bidons ou sacs de courses | bidons_ou_sacs (tag proposé) | Deux bidons d'eau ou deux sacs solides, de poids proche, avec des poignées qui ne coupent pas les doigts. |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| fermier-halteres | Deux haltères | 1 | debutant | halteres | Un haltère dans chaque main, posés au sol de chaque côté des pieds. |
+| fermier-bidons-sacs | Bidons ou sacs de courses | 1 | debutant | bidons_ou_sacs | Deux bidons d'eau ou deux sacs solides, de poids proche, avec des poignées qui ne coupent pas les doigts. |
 
 ## Consignes
 1. Charges au sol, de chaque côté des pieds.
@@ -40,20 +42,22 @@ statut: complete_kine
 Voir program-logic.md §10 : dosage des portés en distance ou en temps ; valeurs à définir par coach avec source (NON SOURCÉ). La distance de la fiche source (environ 15 à 30 m) n'est pas retenue sans validation.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Poignet / main | garder : poignées confortables | adapter : charge plus légère, ou porte-sac-a-dos-devant | retirer |
-| Coude | garder | adapter : charge plus légère | retirer |
-| Épaule | garder : épaules basses | adapter : charge plus légère | retirer |
-| Cou | garder : épaules basses | adapter : charge plus légère | retirer |
-| Dos | garder : soulever et poser jambes fléchies | adapter : charge plus légère, posée au départ sur une chaise pour ne pas la ramasser au sol | retirer |
-| Hanche / genou / cheville | garder | adapter : charge plus légère, trajet court | retirer |
+| Poignet / main | garder | adapter : charge:légère | retirer |
+| Coude | garder | adapter : charge:légère | retirer |
+| Épaule | garder | adapter : charge:légère | retirer |
+| Cou | garder | adapter : charge:légère | retirer |
+| Dos | adapter : appui:soulever et poser jambes fléchies | adapter : charge:légère, appui:charges posées au départ sur une chaise stable pour ne pas les ramasser au sol | retirer |
+| Hanche / genou / cheville | garder | adapter : charge:légère, amplitude:trajet court | retirer |
 
 **Version plus douce** : même fiche plus légère, charges posées au départ sur une chaise stable.
+
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : charge:légère, poids connu, respiration continue. Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au dos, à l'épaule, au coude ou au poignet.
@@ -67,7 +71,9 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 - Chemin dégagé, sol sec, jamais dans un escalier.
 
 ## Photo
-free-exercise-db : `Farmers_Walk/0.jpg`, `Farmers_Walk/1.jpg` (domaine public). La fiche source parle de poignées spécialisées ou d'haltères lourds : vérifier sur la photo qu'elle montre bien des haltères avant de l'utiliser.
+- `Farmers_Walk/0.jpg` : affichable : non (vue le 21/10/2026 : poignées de strongman chargées de disques, matériel spécialisé ; CLAUDE.md règle 23).
+- `Farmers_Walk/1.jpg` : affichable : non (vue le 21/10/2026 : mêmes poignées chargées de disques).
+Fiche sans photo affichable.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -77,7 +83,9 @@ free-exercise-db : `Farmers_Walk/0.jpg`, `Farmers_Walk/1.jpg` (domaine public). 
 | Soulever et poser jambes fléchies, dos neutre | exercise-catalog.md §5 (source de blog) | synthèse | 2026-10-21 | PROVISOIRE |
 | Peu de recherche sur les portés ; intérêt pour la prise et la stabilité du tronc | NSCA Coach « Increase Hip and Trunk Stability with Loaded Carries » (sources.md) | article professionnel | 2026-10-21 | PROVISOIRE |
 | Variante bidons/sacs | equipment-taxonomy.md §2 et §4 (objets du quotidien) | - | 2026-10-21 | NON SOURCÉ |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Niveau débutant (la source dit intermédiaire) | choix de coach avec charge légère, tracé le 21/10/2026 | - | - | NON SOURCÉ |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
-| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; lues via résumés et synthèses (PDF HAS non ouvert : erreur de certificat) | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Avertissement sur le sac, les bidons ou les sacs (contenu calé, poids connu) | règle de conception (exercise-catalog.md §5) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

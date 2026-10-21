@@ -9,11 +9,13 @@ muscles_secondaires: [carre_des_lombes, moyen_fessier, trapezes, abdominaux]
 source_brouillon: [M0598]
 statut: complete_kine
 ---
-## Variantes (installation + matériel seulement)
-| id variante | nom | materiel_tags | installation |
-|---|---|---|---|
-| porte-valise-haltere | Un haltère | halteres | Un haltère posé au sol à côté du pied. |
-| porte-valise-bidon-sac | Un bidon ou un sac | bidons_ou_sacs (tag proposé) | Un bidon d'eau ou un sac solide avec une poignée confortable. |
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| porte-valise-haltere | Un haltère | 1 | debutant | halteres | Un haltère posé au sol à côté du pied. |
+| porte-valise-bidon-sac | Un bidon ou un sac | 1 | debutant | bidons_ou_sacs | Un bidon d'eau ou un sac solide avec une poignée confortable. |
 
 ## Consignes
 1. Charge au sol à côté d'un pied.
@@ -40,18 +42,20 @@ marche-du-fermier <- **porte-valise** -> charge plus lourde ou trajet plus long
 Voir program-logic.md §10 (portés : distance ou temps ; valeurs NON SOURCÉES).
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot, section « Retour kine ». Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Zones non listées : garder. Plusieurs zones gênées : la règle la plus prudente s'applique.
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Chaque case contient un seul choix : `garder` (exercice tel quel), `adapter : <action précise>` (`variante:<id>`, `charge:légère`, `sans-charge`, `amplitude:...`, `appui:...`) ou `retirer` (avec `remplaçant` ou `sans-zone:<id>` si la fiche en nomme un) ; vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder : charge légère | adapter : marche-du-fermier légère (charge répartie des deux côtés) | retirer |
-| Épaule / cou | garder : épaules à la même hauteur | adapter : charge plus légère | retirer |
-| Coude / poignet | garder | adapter : charge plus légère | retirer |
-| Hanche | garder | adapter : charge plus légère, trajet court | retirer |
+| Dos | adapter : charge:légère | adapter : variante:marche-du-fermier, charge:légère (charge répartie des deux côtés) | retirer |
+| Épaule / cou | garder | adapter : charge:légère | retirer |
+| Coude / poignet | garder | adapter : charge:légère | retirer |
+| Hanche | garder | adapter : charge:légère, amplitude:trajet court | retirer |
 
 **Version plus douce** : `marche-du-fermier` plus légère.
+
+**Grossesse** (G1 à G8 de regles-securite-communes.md ; avis du médecin ou de la sage-femme avant tout programme) : adapter : charge:légère, poids connu, respiration continue. Post-partum : G7.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au dos ou sur le côté du tronc.
@@ -64,7 +68,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 : README.md du lot
 - Chemin dégagé, sol sec, jamais dans un escalier.
 
 ## Photo
-Aucune photo libre.
+Aucune photo affichable (affichable : sans objet).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -73,7 +77,8 @@ Aucune photo libre.
 | Ne pas pencher, épaules de niveau, muscles (obliques, carré des lombes…) | rédigé par coach (ACE ne nomme pas les muscles) | pratique courante | 2026-10-21 | NON SOURCÉ |
 | Niveau débutant (ACE dit intermédiaire) | choix de coach avec charge légère, à trancher | - | - | NON SOURCÉ |
 | Soulever et poser jambes fléchies, dos neutre | exercise-catalog.md §5 (source de blog) | synthèse | 2026-10-21 | PROVISOIRE |
-| Règles communes R1 à R10 (niveaux de gêne, arrêt si douleur, pas de progression, signes généraux, quand consulter) | README.md du lot, section « Retour kine » (sources détaillées : HAS 2019, NICE NG59, Smith 2017, Riebe 2015) | voir README | 2026-10-21 | PROVISOIRE |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
-| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; lues via résumés et synthèses (PDF HAS non ouvert : erreur de certificat) | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
+| Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Avertissement sur le sac, les bidons ou les sacs (contenu calé, poids connu) | règle de conception (exercise-catalog.md §5) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
+| Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |
