@@ -37,7 +37,7 @@ statut: controle_relecteur
 - Lâcher la descente.
 
 ## Progression / régression
-- plus-facile : a-creer:rowing-elastique
+- plus-facile : rowing-elastique
 - plus-dur : rowing-buste-penche-halteres
 rowing élastique (à rédiger en vague 1, profil B) <-> **rowing-unilateral-haltere** -> rowing-buste-penche-halteres (deux bras, sans appui)
 

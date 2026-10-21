@@ -37,7 +37,7 @@ statut: controle_relecteur
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : a-creer:planche-laterale-jambe-levee
+- plus-dur : planche-laterale-jambe-levee
 **planche-laterale-genoux** -> planche-laterale-pieds -> planche latérale jambe du dessus levée (à créer)
 
 ## Repères de dosage

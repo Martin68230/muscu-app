@@ -37,7 +37,7 @@ Pompe asymétrique : un bras plie, l'autre reste tendu sur le côté ; marche ve
 
 ## Progression / régression
 - plus-facile : pompe-ecartee
-- plus-dur : a-creer:pompe-un-bras
+- plus-dur : pompe-un-bras
 pompe-sol -> pompe-ecartee-sol -> **pompe-archer-sol** (pompe à un bras : non rédigée) ; version plus facile : amplitude réduite, ou pompe-ecartee-sol
 
 ## Repères de dosage

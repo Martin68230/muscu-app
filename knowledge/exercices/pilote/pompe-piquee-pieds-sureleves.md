@@ -37,7 +37,7 @@ statut: controle_relecteur
 
 ## Progression / régression
 - plus-facile : pompe-piquee
-- plus-dur : a-creer:pompe-equilibre-mur
+- plus-dur : pompe-equilibre-mur
 pompe-piquee <- **pompe-piquee-pieds-sureleves** (marche -> chaise) -> pompe en équilibre contre un mur (avancé, à créer)
 
 ## Repères de dosage

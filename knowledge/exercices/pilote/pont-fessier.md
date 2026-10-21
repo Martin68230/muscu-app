@@ -37,7 +37,7 @@ statut: controle_relecteur
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : a-creer:pont-fessier-une-jambe
+- plus-dur : pont-fessier-une-jambe
 **pont-fessier-sol** -> pont-fessier-haltere -> pont fessier sur une jambe (à créer, brouillon M0506)
 
 ## Repères de dosage

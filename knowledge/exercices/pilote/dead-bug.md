@@ -36,7 +36,7 @@ statut: controle_relecteur
 - Bloquer la respiration.
 
 ## Progression / régression
-- plus-facile : a-creer:dead-bug-jambes-seules
+- plus-facile : dead-bug-jambes-seules
 - plus-dur : dead-bug-haltere
 jambes seules <- **dead-bug-poids-du-corps** (bras + jambe opposés) -> dead-bug-haltere
 

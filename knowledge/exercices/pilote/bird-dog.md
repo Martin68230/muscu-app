@@ -35,8 +35,8 @@ statut: controle_relecteur
 - Aller trop vite.
 
 ## Progression / régression
-- plus-facile : a-creer:bird-dog-jambe-seule
-- plus-dur : a-creer:bird-dog-pause
+- plus-facile : bird-dog-jambe-seule
+- plus-dur : bird-dog-pause
 jambe seule ou bras seul (à créer) <- **bird-dog** -> bird-dog avec pause de quelques secondes bras et jambe tendus
 
 ## Repères de dosage

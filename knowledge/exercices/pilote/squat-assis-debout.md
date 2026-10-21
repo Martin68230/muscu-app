@@ -36,7 +36,7 @@ statut: controle_relecteur
 - Genoux qui rentrent vers l'intérieur.
 
 ## Progression / régression
-- plus-facile : a-creer:assis-debout-mains-cuisses
+- plus-facile : assis-debout-mains-cuisses
 - plus-dur : squat-poids-du-corps
 assis-debout avec appui des mains sur les cuisses (à créer) <- **squat-assis-debout** -> squat-poids-du-corps -> squat-gobelet
 
