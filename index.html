@@ -1,0 +1,30 @@
+<!doctype html>
+<html lang="fr" data-theme="dark">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#0f1115" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="Muscu" />
+    <meta name="format-detection" content="telephone=no" />
+    <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
+    <title>Muscu entre amis</title>
+    <script>
+      // Thème appliqué avant le premier affichage (pas de flash blanc). Sombre par défaut.
+      (function () {
+        var t = 'dark';
+        try { t = localStorage.getItem('muscu.theme') || 'dark'; } catch (e) {}
+        if (t === 'system') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
+        document.documentElement.dataset.theme = t;
+        document.querySelector('meta[name=theme-color]').content = t === 'light' ? '#f6f7f9' : '#0f1115';
+      })();
+    </script>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
