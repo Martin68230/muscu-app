@@ -1,0 +1,173 @@
+{
+ "variantes": 2597,
+ "mouvements": 1962,
+ "lignes_brutes": 3072,
+ "types": {
+  "gainage": 160,
+  "force": 2223,
+  "mobilite_recup": 196,
+  "fonctionnel": 219,
+  "cardio": 82
+ },
+ "schemas": {
+  "core": 153,
+  "mobility": 153,
+  "a_classer": 586,
+  "hinge": 113,
+  "legs_iso": 93,
+  "shoulders_iso": 78,
+  "arms": 460,
+  "rotation": 97,
+  "conditioning": 29,
+  "pull_h": 214,
+  "locomotion": 72,
+  "push_h": 269,
+  "push_v": 69,
+  "jump": 69,
+  "pull_v": 99,
+  "squat": 134,
+  "lunge_unilateral": 76,
+  "ballistic": 84,
+  "throw": 18,
+  "carry": 9,
+  "anti_rotation": 5
+ },
+ "alertes": {
+  "nom_avec_numero": 1,
+  "langue_a_verifier": 17,
+  "nom_suspect": 47
+ },
+ "sources": {
+  "free-exercise-db": 746,
+  "maxwu-dataset": 1191,
+  "free-exercise-db+wger": 25,
+  "wger": 793,
+  "free-exercise-db+maxwu-dataset": 93,
+  "maxwu-dataset+wger": 20,
+  "free-exercise-db+maxwu-dataset+wger": 12
+ },
+ "couverture": {
+  "A. poids du corps seul (+ chaise, mur, marche)": {
+   "variantes": 758,
+   "mouvements": 711,
+   "par_schema": {
+    "squat": 33,
+    "hinge": 21,
+    "lunge_unilateral": 22,
+    "push_h": 57,
+    "push_v": 7,
+    "pull_h": 15,
+    "pull_v": 12,
+    "core": 66,
+    "carry": 0,
+    "rotation": 25,
+    "anti_rotation": 1,
+    "jump": 37,
+    "mobility": 91,
+    "conditioning": 11
+   }
+  },
+  "B. A + élastiques": {
+   "variantes": 853,
+   "mouvements": 784,
+   "par_schema": {
+    "squat": 34,
+    "hinge": 27,
+    "lunge_unilateral": 24,
+    "push_h": 58,
+    "push_v": 8,
+    "pull_h": 22,
+    "pull_v": 17,
+    "core": 72,
+    "carry": 0,
+    "rotation": 36,
+    "anti_rotation": 3,
+    "jump": 37,
+    "mobility": 95,
+    "conditioning": 11
+   }
+  },
+  "C. A + haltères": {
+   "variantes": 1134,
+   "mouvements": 938,
+   "par_schema": {
+    "squat": 39,
+    "hinge": 29,
+    "lunge_unilateral": 37,
+    "push_h": 64,
+    "push_v": 13,
+    "pull_h": 44,
+    "pull_v": 13,
+    "core": 67,
+    "carry": 5,
+    "rotation": 33,
+    "anti_rotation": 1,
+    "jump": 39,
+    "mobility": 91,
+    "conditioning": 11
+   }
+  },
+  "D. A + haltères + élastiques + barre de traction": {
+   "variantes": 1285,
+   "mouvements": 1041,
+   "par_schema": {
+    "squat": 40,
+    "hinge": 33,
+    "lunge_unilateral": 37,
+    "push_h": 65,
+    "push_v": 13,
+    "pull_h": 48,
+    "pull_v": 45,
+    "core": 77,
+    "carry": 5,
+    "rotation": 44,
+    "anti_rotation": 3,
+    "jump": 39,
+    "mobility": 95,
+    "conditioning": 11
+   }
+  },
+  "E. D + banc + kettlebell + roue abdos + swiss ball": {
+   "variantes": 1648,
+   "mouvements": 1298,
+   "par_schema": {
+    "squat": 44,
+    "hinge": 46,
+    "lunge_unilateral": 40,
+    "push_h": 117,
+    "push_v": 19,
+    "pull_h": 63,
+    "pull_v": 47,
+    "core": 95,
+    "carry": 5,
+    "rotation": 55,
+    "anti_rotation": 3,
+    "jump": 42,
+    "mobility": 105,
+    "conditioning": 11
+   }
+  },
+  "F. salle complète": {
+   "variantes": 2880,
+   "mouvements": 1962,
+   "par_schema": {
+    "squat": 87,
+    "hinge": 68,
+    "lunge_unilateral": 46,
+    "push_h": 171,
+    "push_v": 29,
+    "pull_h": 122,
+    "pull_v": 74,
+    "core": 115,
+    "carry": 9,
+    "rotation": 77,
+    "anti_rotation": 4,
+    "jump": 62,
+    "mobility": 141,
+    "conditioning": 24
+   }
+  }
+ },
+ "doublons_surs_supprimes": 283,
+ "doublons_probables_marques": 368
+}
