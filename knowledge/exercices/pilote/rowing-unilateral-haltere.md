@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal, rhomboides, trapezes]
 muscles_secondaires: [biceps, deltoides_posterieurs, avant_bras]
 source_brouillon: [M1846]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -57,7 +57,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Poignet | adapter: appui:poings-fermes | adapter: charge:legere | retirer |
 
 **Notes**
-- dos-n2 : buste plus redressé, main d'appui plus haute sur un support stable qui ne bouge pas quand tu t'appuies de tout ton poids dessus (essai obligatoire avant, R8).
+- dos-n2 : charge légère (départ de l'étalonnage, jamais augmentée) ; garde la main d'appui sur la chaise stable (version chaise) et le dos plat ; jamais de charge qui t'oblige à arrondir le dos.
 - epaule-n2 : coude près du corps, amplitude réduite.
 - poignet-n1 : poing fermé pour la main d'appui.
 - poignet-n2 : poing fermé pour la main d'appui.
@@ -88,7 +88,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Appui main et genou sur un banc, buste presque horizontal, dos plat, haltère tiré vers les côtes coude près du corps, descente contrôlée | free-exercise-db « One-Arm_Dumbbell_Row » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/One-Arm_Dumbbell_Row.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles (milieu du dos ; biceps, grand dorsal, épaules) | même fiche | idem | 2026-10-21 | PROVISOIRE |
+| Muscles (milieu du dos ; biceps, grand dorsal, épaules) ; reclassement de coach : grand dorsal promu en principal (secondaire dans la source), avant-bras ajoutés | même fiche ; reclassement par coach, NON SOURCÉ | idem | 2026-10-21 | PROVISOIRE |
 | Appui sur une chaise | adaptation maison par coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [flechisseurs_hanche, ischios]
 muscles_secondaires: [fessiers, adducteurs, quadriceps]
 source_brouillon: [M1259, M1260]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -15,12 +15,12 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | fente-basse-rotation-appui | Mains sur une marche | 1 | debutant | poids_du_corps, marche_escalier | Mains posées sur une marche plutôt qu'au sol, si le sol est trop loin. |
-| fente-basse-rotation-sol | Au sol | 2 | debutant | poids_du_corps, tapis | Espace pour une grande fente, genou arrière sur un tapis. |
+| fente-basse-rotation-sol | Au sol | 2 | debutant | poids_du_corps, tapis | Espace pour une grande fente, jambe arrière sur les orteils, genou près du sol (tapis dessous si tu le poses). |
 
 ## Consignes
-1. Grand pas en avant, genou arrière posé au sol.
-2. Mains au sol de chaque côté du pied avant.
-3. Pose la main du côté du pied avant à l'intérieur du pied, et laisse la hanche descendre.
+1. Grand pas en avant ; la jambe arrière reste sur les orteils, le genou près du sol (tu peux le poser sur un tapis ou un coussin si c'est plus confortable).
+2. Pose les deux mains au sol, de chaque côté du pied avant.
+3. Garde une main au sol à l'intérieur du pied avant et laisse la hanche descendre.
 4. Ouvre ce bras vers le plafond en tournant le buste, regard qui suit la main.
 5. Repose la main, puis tends la jambe avant en reculant les hanches.
 6. Reviens en fente, puis change de côté.

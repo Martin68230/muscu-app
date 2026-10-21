@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [abdominaux, erecteurs_rachis, fessiers]
 muscles_secondaires: [obliques, deltoides_anterieurs, moyen_fessier]
 source_brouillon: [M0458]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -61,7 +61,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - epaule-n2 : remplacement par dead-bug, bras au sol.
 - dos-n2 : une jambe seulement, petite amplitude.
 - hanche-n2 : bras seul, petite amplitude.
-- grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. Post-partum : G7.
+- grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. La version plus douce (dead-bug) se fait couché sur le dos et est retirée en grossesse (G4) : elle n'est alors pas proposée, le bird-dog à maintien court la remplace. Post-partum : G7.
 
 **Grossesse** : adapter: amplitude:maintien-court
 **Version plus douce** : dead-bug

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [obliques, abdominaux]
 muscles_secondaires: [moyen_fessier, carre_des_lombes, deltoides_lateraux]
 source_brouillon: [M1715, M0514, M1712]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -74,7 +74,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Side_Bridge/0.jpg` : affichable : oui (vue par `relecteur` : version sur les pieds, jambes tendues ; variante pieds seulement).
+- `Side_Bridge/0.jpg` : affichable : à vérifier (jugée « version sur les pieds, jambes tendues » par `relecteur` ; fichier WebP absent de public/photos, à créer puis revoir avant d'afficher).
 - `Side_Bridge/1.jpg` : affichable : à vérifier (vue le 21/10/2026 : personne couchée sur le côté sur un tapis, semble la position basse ; non confirmée).
 Variante genou : aucune photo libre.
 
@@ -82,7 +82,7 @@ Variante genou : aucune photo libre.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Mouvement et muscles (abdominaux ; épaules) | free-exercise-db « Side_Bridge » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Side_Bridge.json (pas de consignes dans la source) | base d'exercices (domaine public) | 2026-10-21 | PROVISOIRE |
-| Version débutant : abdos et fessiers serrés, ligne droite de la tête aux talons | NASM Exercise Library « Side Plank » https://nasm.org/exercise-library/side-plank (vu via résumé de recherche, page non lue) | organisme de certification | 2026-10-21 | PROVISOIRE |
+| Version débutant : abdos et fessiers serrés, ligne droite de la tête aux talons | NASM Exercise Library « Side Plank » https://nasm.org/exercise-library/side-plank (page non lue, connue par un résumé de moteur de recherche) | organisme de certification | - | NON SOURCÉ (source non lue) |
 | Consignes détaillées, obliques en muscle principal | rédigées par coach | pratique courante | 2026-10-21 | NON SOURCÉ |
 | Fusion M1715, M0514, M1712 (« Side plank right ») | nettoyage du brouillon | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |

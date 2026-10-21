@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, fessiers, deltoides_anterieurs]
 source_brouillon: [M1707]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -74,7 +74,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - `Plank/0.jpg` : affichable : non (vue le 21/10/2026 : personne sur un genou, position de départ, ce n'est pas une planche).
-- `Plank/1.jpg` : affichable : oui (vue le 21/10/2026 : planche sur les avant-bras, corps droit ; variante avant-bras seulement).
+- `Plank/1.jpg` : affichable : à vérifier (vue le 21/10/2026 : planche sur les avant-bras, corps droit ; variante avant-bras seulement ; fichier WebP absent de public/photos, à créer puis revoir avant d'afficher).
 Variante genoux : aucune photo libre.
 
 ## Sources

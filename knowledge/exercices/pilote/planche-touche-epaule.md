@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [abdominaux, obliques]
 muscles_secondaires: [deltoides_anterieurs, dentele_anterieur, fessiers]
 source_brouillon: [M1714, M1503]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -20,7 +20,7 @@ statut: complete_kine
 
 ## Consignes
 1. Mets-toi en haut de pompe, bras tendus, mains sous les épaules.
-2. Écarte un peu les pieds pour plus de stabilité.
+2. Sur les pieds : écarte-les au moins à la largeur des épaules pour plus de stabilité, et ne les rapproche que pour la version « pieds serrés » (plus dure). Sur les genoux : pose-les au sol, rien d'autre à régler.
 3. Lève une main et touche l'épaule opposée.
 4. Repose la main, puis change de côté.
 5. Le bassin ne bouge pas pendant tout l'exercice.
@@ -58,13 +58,13 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - poignet-n3 : la planche sur les avant-bras ne charge pas les poignets.
-- general : les échelons sur les pieds et pieds serrés sont retirés dès le niveau 1 d'une zone du tableau ; la ligne de la zone donne le remplacement. Version plus douce : sur les genoux, puis planche.
+- general : les échelons sur les pieds et pieds serrés sont remplacés partout où une case du tableau demande une variante ou un retrait (épaule, poignet, dos dès le niveau 1 ; coude dès le niveau 2) ; une case `garder` laisse l'échelon inchangé. Version plus douce : sur les genoux, puis planche.
 - grossesse : maintien isométrique prolongé, donc retiré ; remplaçant conseillé : bird-dog sans pause. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:bird-dog
 **Version plus douce** : planche-touche-epaule-genoux
 
-**Variantes des échelons 2 et 3** : `planche-touche-epaule-pieds` et `planche-touche-epaule-pieds-serres` sont retirées dès le niveau 1 d'une zone du tableau ; la ligne de la zone donne la variante de remplacement (`planche-touche-epaule-genoux` ou `planche-genoux`).
+**Variantes des échelons 2 et 3** : `planche-touche-epaule-pieds` et `planche-touche-epaule-pieds-serres` sont remplacées là où une case du tableau demande une variante (pas pour une case `garder`, par exemple coude niveau 1) ; la ligne de la zone donne la variante de remplacement (`planche-touche-epaule-genoux` ou `planche-genoux`).
 
 
 

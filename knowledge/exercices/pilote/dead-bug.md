@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, flechisseurs_hanche]
 source_brouillon: [M0517]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -15,7 +15,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | dead-bug-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Allongé sur le dos. |
-| dead-bug-haltere | Haltère tenu à deux mains | 1 | debutant | halteres, tapis | Un haltère léger tenu à deux mains, bras tendus vers le plafond. |
+| dead-bug-haltere | Haltère tenu à deux mains | 2 | debutant | halteres, tapis | Un haltère léger tenu à deux mains, bras tendus vers le plafond. |
 
 ## Consignes
 1. Sur le dos, bras tendus vers le plafond.

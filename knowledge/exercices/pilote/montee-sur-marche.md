@@ -7,10 +7,8 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, mollets, moyen_fessier]
 source_brouillon: [M1933, M1499]
-statut: complete_kine
+statut: controle_relecteur
 ---
-Note de `coach` (21/10/2026) : la section « Sécurité et contre-indications » ci-dessous date d'avant la décision de l'utilisateur (haltères autorisés sur la première ou la deuxième marche) ; `kine` la refait. En cas d'écart, la décision de l'utilisateur fait foi.
-
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
 
@@ -81,8 +79,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
-- Marche d'escalier : seulement la première marche du bas, escalier éclairé et dégagé, main sur la rampe si possible. Box ou banc : stable, qui ne glisse pas.
-- Jamais une marche plus haute dans un escalier (risque de chute en arrière) : pour monter plus haut, utilise une box stable.
+- Marche d'escalier : sans haltères, la première marche du bas ; avec haltères, la première ou la deuxième marche (voir ci-dessous). Escalier éclairé et dégagé, main sur la rampe si possible. Box ou banc : stable, qui ne glisse pas.
+- Jamais au-delà de la deuxième marche d'un escalier (risque de chute en arrière) : pour monter plus haut, utilise une box stable, sans haltères.
 - Version haltères : seulement sur la première ou la deuxième marche, haltères légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; tes mains ne sont plus libres pour la rampe : prends un seul haltère et garde l'autre main sur la rampe, ou reviens sans haltères. Box haute : jamais dans un escalier, jamais avec haltères.
 
 ## Photo

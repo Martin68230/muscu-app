@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [pectoraux]
 muscles_secondaires: [deltoides_anterieurs, triceps, abdominaux]
 source_brouillon: [M1325, M0739]
-statut: brouillon_coach
+statut: controle_relecteur
 ---
 Variante de la pompe qui insiste sur les pectoraux (moins de triceps) : fiche séparée (décision de l'utilisateur, 21/10/2026). Régression : `pompe-genoux` ou `pompe-chaise` (fiche `pompe`).
 
@@ -79,4 +79,5 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Niveau « intermediaire » (la source dit beginner) | choix de coach : mains très écartées plus exigeantes pour l'épaule ; changement tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Existence du mouvement | brouillon M1325 (maxwu « Wide Hand Push Up ») : texte non copié | - | 2026-10-21 | NON SOURCÉ |
 | Conseil d'écartement modéré | pratique courante | - | - | NON SOURCÉ |
-| Sécurité (zones, grossesse, signes d'arrêt) | à compléter par kine | - | - | NON SOURCÉ (à compléter par kine) |
+| Sécurité de cette fiche (tableau par zone, grossesse, version plus douce, signes d'arrêt) | choix de `kine` par extrapolation des règles communes (knowledge/regles-securite-communes.md : R1 à R3, R7, R8 NON SOURCÉ ; R4 à R6, R10 PROVISOIRE ; G4 PROVISOIRE) ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
+| Grossesse : éviter isométrique prolongé, risque de chute, charge légère | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf | recommandations officielles ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

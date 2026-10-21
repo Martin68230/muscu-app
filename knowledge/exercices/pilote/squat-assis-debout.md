@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, adducteurs]
 source_brouillon: [M0491, M1896]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -85,7 +85,7 @@ Aucune photo affichable (affichable : sans objet). « Sit_Squats » montre un de
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Mouvement et consignes | Brouillon M0491 (wger « Box squat ») et M1896 ; consignes rédigées par coach | pratique courante, pas d'étude | 2026-10-21 | NON SOURCÉ |
-| Muscles (la source décrit un autre mouvement, un demi-squat sans chaise : transposition par coach) | free-exercise-db « Sit_Squats » (quadriceps ; fessiers, ischios, abducteurs) https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Sit_Squats.json | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
+| Muscles (la source décrit un autre mouvement, un demi-squat sans chaise : transposition par coach) | free-exercise-db « Sit_Squats » (quadriceps ; fessiers, ischios, abducteurs ; la fiche remplace abducteurs par adducteurs et promeut les fessiers : choix de coach NON SOURCÉ) https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Sit_Squats.json | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
 | Chaise stable, sans roulettes | equipment-taxonomy.md §2 (règle de conception) | - | 2026-10-21 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |

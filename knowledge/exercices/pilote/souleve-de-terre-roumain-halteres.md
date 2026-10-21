@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [ischios, fessiers]
 muscles_secondaires: [erecteurs_rachis, avant_bras]
 source_brouillon: [M0937, M0931]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -60,7 +60,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - dos-n1 : descente jusqu'aux genoux seulement.
-- dos-n2 : charnière sans charge dans les mains.
+- dos-n2 : la case renvoie au pont fessier au sol, sans haltère dans les mains.
 - hanche-n2 : charge légère, amplitude réduite.
 - coude-n2 : plus d'haltère dans les mains (le pont fessier remplace).
 - poignet-n2 : plus d'haltère dans les mains (le pont fessier remplace).
@@ -81,15 +81,15 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Stiff-Legged_Dumbbell_Deadlift/0.jpg` : affichable : oui (vue le 21/10/2026 : debout, un haltère de chaque côté ; cohérent avec la consigne ; salle avec racks, sans marque lisible).
-- `Stiff-Legged_Dumbbell_Deadlift/1.jpg` : affichable : à vérifier (vue par `relecteur` : haltères sur les côtés ; flexion des genoux en bas non confirmée, la source dit « jambes tendues » alors que la consigne dit « légèrement fléchis » : la consigne prime).
+- `Stiff-Legged_Dumbbell_Deadlift/0.jpg` : affichable : à vérifier (vue le 21/10/2026 : debout, un haltère de chaque côté ; cohérent avec la consigne ; fichier WebP absent de public/photos, à créer puis revoir avant d'afficher).
+- `Stiff-Legged_Dumbbell_Deadlift/1.jpg` : affichable : à vérifier (vue par `relecteur` : haltères sur les côtés ; flexion des genoux en bas non confirmée, le nom de la source dit « jambes tendues » alors que la consigne dit « légèrement fléchis » : la consigne prime).
 Variante un seul haltère : aucune photo.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Charnière de hanche, genoux légèrement fléchis et fixes, dos plat, arrêt à l'étirement de l'arrière des cuisses, retour en poussant les hanches | free-exercise-db « Stiff-Legged_Dumbbell_Deadlift » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Stiff-Legged_Dumbbell_Deadlift.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles (ischios ; fessiers, bas du dos) | même fiche ; avant-bras ajoutés par coach | idem | 2026-10-21 | PROVISOIRE (avant-bras : NON SOURCÉ) |
+| Muscles (ischios ; fessiers, bas du dos) ; reclassement de coach : fessiers promus en principal (secondaire dans la source) | même fiche, reclassement par coach NON SOURCÉ ; avant-bras ajoutés par coach | idem | 2026-10-21 | PROVISOIRE (avant-bras : NON SOURCÉ) |
 | Haltères de chaque côté des cuisses, qui descendent le long des jambes | source et photos (haltères sur les côtés) ; consigne alignée le 21/10/2026 | idem | 2026-10-21 | PROVISOIRE |
 | Variante un seul haltère tenu à deux mains devant les cuisses | pratique courante, absente de la source | - | - | NON SOURCÉ |
 | Regroupement de M0937 (roumain) et M0931 (jambes tendues) en un seul mouvement | choix de coach, à trancher | - | - | NON SOURCÉ |

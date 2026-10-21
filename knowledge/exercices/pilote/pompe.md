@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, dentele_anterieur]
 source_brouillon: [M1803, M1418, M1804, M0482, M1497, M1504, M1053, M0739]
-statut: brouillon_coach
+statut: controle_relecteur
 ---
 Fiche fusionnée le 21/10/2026 (décision de l'utilisateur) : ex-`pompe`, `pompe-inclinee` et `pompe-genoux`, plus l'échelon « pieds surélevés » (M1053). Anciennes fiches : knowledge/exercices/ecartees/. Les variantes qui changent le muscle travaillé ont leur propre fiche : `pompe-diamant`, `pompe-ecartee`, `pompe-archer` ; les pompes piquées (épaules) restent `pompe-piquee` et `pompe-piquee-pieds-sureleves`.
 
@@ -67,7 +67,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | adapter: appui:coussin | adapter: variante:pompe-chaise | retirer: sans-zone:pompe-chaise |
 
 **Notes**
-- epaule-n1 : la variante pieds surélevés (échelon 5) charge davantage l'épaule : à ne pas ajouter tant que la gêne dure.
+- epaule-n1 : l'exercice est gardé. Conseil affiché (non codé) : la variante pieds surélevés (échelon 5) charge davantage l'épaule, évite de monter à cet échelon tant que la gêne dure ; si elle devient nette, la pompe passe sur chaise (niveau 2).
 - poignet-n1 : mains plus hautes, moins de poids sur les mains ; mains un peu tournées vers l'extérieur si utile.
 - genou-n1 : coussin plié sous les genoux (variante sur les genoux) ; au niveau 2, aucun appui sur les genoux.
 - genou-n3 : la pompe sur la chaise ne charge pas les genoux.
@@ -91,7 +91,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - `Incline_Push-Up/0.jpg` : affichable : oui (échelon `pompe-chaise` seulement, mention « montré sur une box » : décision de `coach` le 21/10/2026, mains sur une box en bois à peu près à hauteur d'assise ; fichier public/photos/free-exercise-db/Incline_Push-Up-0.webp recadré par `dev`, logo retiré ; `relecteur` doit constater que le recadrage retire bien la bannière et le logo)
-- `Incline_Push-Up/1.jpg` : affichable : oui (même réserve et même échelon que 0.jpg ; fichier Incline_Push-Up-1.webp)
+- `Incline_Push-Up/1.jpg` : affichable : non (une bannière sombre avec du texte flou reste visible en haut de l'image ; la recadrer couperait la tête ; box coupée à gauche ; décision de `coach` le 22/10/2026 : seule l'image 0 est affichée)
 - `Pushups/0.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-sol`)
 - `Pushups/1.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-sol`)
 - `Push-Ups_With_Feet_Elevated/0.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-pieds-sureleves`, source : pieds sur un banc)
@@ -112,4 +112,5 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Variante « mains sur haltères » RETIRÉE (21/10/2026) : elle exige des haltères hexagonaux, attribut que le tag `halteres` ne porte pas | point 49 de `relecteur` ; à ré-introduire seulement si le profil porte l'attribut | - | - | NON SOURCÉ (variante retirée) |
 | Variante « mains sur la première marche » non reprise dans la fusion | décision de coach (21/10/2026) : la chaise couvre le besoin | - | - | NON SOURCÉ (sans objet) |
 | Avertissement de stabilité de la chaise | règle de conception (exercise-catalog.md §5, cite la chaise) et R8 de knowledge/regles-securite-communes.md ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
-| Sécurité (zones, grossesse, signes d'arrêt) | à refaire par kine (voir la section) | - | - | NON SOURCÉ (à compléter par kine) |
+| Sécurité de cette fiche (tableau par zone, grossesse, version plus douce, signes d'arrêt) | choix de `kine` par extrapolation des règles communes (knowledge/regles-securite-communes.md : R1 à R3, R7, R8 NON SOURCÉ ; R4 à R6, R10 PROVISOIRE ; G4 PROVISOIRE) ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
+| Grossesse : éviter isométrique prolongé, risque de chute, charge légère ; mains hautes plutôt que sol | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf | recommandations officielles ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

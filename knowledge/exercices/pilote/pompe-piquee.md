@@ -7,20 +7,20 @@ niveau_min: debutant
 muscles_principaux: [deltoides_anterieurs, triceps]
 muscles_secondaires: [pectoraux, dentele_anterieur, trapezes]
 source_brouillon: [M1695]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-piquee-mains-marche | Mains sur une marche | 1 | debutant | poids_du_corps, marche_escalier | Mains sur une marche ou un banc stable : un peu plus facile. |
+| pompe-piquee-mains-marche | Mains sur une marche | 1 | debutant | poids_du_corps, marche_escalier | Mains sur la première marche d'un escalier éclairé et dégagé : un peu plus facile. |
 | pompe-piquee-sol | Mains au sol | 2 | debutant | poids_du_corps, tapis | Mains et pieds au sol, hanches hautes. |
 
 ## Consignes
 1. Mets-toi à quatre pattes, puis monte les hanches : ton corps fait un V à l'envers.
 2. Mains à largeur d'épaules, pieds rapprochés des mains autant que possible.
-3. Plie les coudes pour descendre le haut de la tête vers le sol, devant les mains.
+3. Plie les coudes pour descendre le haut de la tête vers l'avant, devant les mains (vers le sol ; avec les mains sur la marche, vers le niveau de la marche, sans la toucher).
 4. Les coudes partent un peu vers l'arrière, pas sur les côtés.
 5. Pousse le sol pour revenir bras tendus.
 
@@ -56,8 +56,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Cou | adapter: amplitude:reduite | retirer | retirer |
 
 **Notes**
-- epaule-n1 : amplitude réduite.
-- coude-n2 : amplitude réduite.
+- epaule-n1 : mains sur une marche (variante de l'échelon 1), descente moins profonde.
+- coude-n2 : mains sur une marche (variante de l'échelon 1), descente moins profonde.
 - poignet-n1 : mains sur le bord, poignet moins plié.
 - poignet-n2 : un développé épaules aux haltères, paumes face à face, reste possible si tu as des haltères.
 - cou-n1 : la tête ne touche jamais le sol.
@@ -75,7 +75,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
-- Marche : seulement la première marche d'un escalier éclairé et dégagé (R8) ; ou banc/box stable, sec, qui ne glisse pas sous les mains.
+- Marche : seulement la première marche d'un escalier éclairé et dégagé, sèche, qui ne glisse pas sous les mains (R8).
 
 ## Photo
 - aucune photo
@@ -85,8 +85,8 @@ Aucune photo affichable (affichable : sans objet). « Handstand_Push-Ups » est 
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Mouvement | Brouillon M1695 (wger « Pike Push Ups ») : prouve seulement que le mouvement existe ; page wger non lue | base d'exercices | 2026-10-21 | NON SOURCÉ |
-| Position en V à l'envers, épaules surtout, erreurs : hanches qui tombent, coudes ouverts | NASM Exercise Library « Pike Push-Up » https://www.nasm.org/exercise-library/pike-push-up (vu via résumé du moteur de recherche ; page non lisible) | organisme de certification, pratique professionnelle | 2026-10-21 | PROVISOIRE (à relire à la source) |
-| Muscles (deltoïde antérieur ; pectoraux, triceps, dentelé) | NASM, même page (via résumé) | idem | 2026-10-21 | PROVISOIRE |
+| Position en V à l'envers, épaules surtout, erreurs : hanches qui tombent, coudes ouverts | NASM Exercise Library « Pike Push-Up » https://www.nasm.org/exercise-library/pike-push-up (connue par un résumé de moteur de recherche ; page non lue) | organisme de certification | - | NON SOURCÉ (source non lue) |
+| Muscles (deltoïde antérieur ; pectoraux, triceps, dentelé) | NASM, même page (non lue) | idem | - | NON SOURCÉ (source non lue) |
 | Variante mains sur marche plus facile ; ordre de l'échelle | choix de coach | - | - | NON SOURCÉ |
 | Niveau débutant | choix de coach (la seule poussée verticale sans matériel accessible) : à trancher | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |

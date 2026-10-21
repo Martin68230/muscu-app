@@ -7,14 +7,14 @@ niveau_min: intermediaire
 muscles_principaux: [deltoides_anterieurs, triceps]
 muscles_secondaires: [trapezes, dentele_anterieur, abdominaux]
 source_brouillon: []  # absent du brouillon comme mouvement séparé : ajout coach (progression de M1695)
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-piquee-pieds-marche | Pieds sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Pieds sur une marche basse ou une box stable. |
+| pompe-piquee-pieds-marche | Pieds sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Pieds sur la première marche d'un escalier éclairé et dégagé. |
 | pompe-piquee-pieds-chaise | Pieds sur une chaise | 2 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur : plus haut, donc plus dur. |
 
 ## Consignes
@@ -66,7 +66,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 **Version plus douce** : pompe-piquee
 
 **Points d'attention (kine)**
-- Si un médecin t'a déconseillé les positions tête en bas, ne fais pas cet exercice (proposition : une case dédiée dans le profil, à trancher avec l'utilisateur et `dev` ; NON SOURCÉ).
+- Si un médecin t'a déconseillé les positions tête en bas, ne fais pas cet exercice (conseil affiché, NON SOURCÉ ; aucune case de profil ni question associée).
 
 
 
@@ -91,7 +91,7 @@ Aucune photo affichable (affichable : sans objet).
 |---|---|---|---|---|
 | Existence de la version pieds surélevés | The Prehab Guys « Pike Push Up – Legs Elevated » https://library.theprehabguys.com/?p=35129 (titre vu en recherche, page non lue) | pratique professionnelle (kinés) | 2026-10-21 | NON SOURCÉ (source non lue) |
 | Consignes | rédigées par coach à partir de la pompe piquée | pratique courante | 2026-10-21 | NON SOURCÉ |
-| Muscles | comme la pompe piquée (NASM via résumé) | - | 2026-10-21 | PROVISOIRE |
+| Muscles | comme la pompe piquée (NASM, page non lue) | - | - | NON SOURCÉ (source non lue) |
 | Plus le support est haut, plus c'est dur | pratique courante | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |

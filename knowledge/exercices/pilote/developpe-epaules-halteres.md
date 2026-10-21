@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [deltoides_anterieurs, triceps]
 muscles_secondaires: [deltoides_lateraux, trapezes, abdominaux]
 source_brouillon: [M1736, M1730]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).

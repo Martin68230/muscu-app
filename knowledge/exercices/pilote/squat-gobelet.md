@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis, abdominaux]
 source_brouillon: [M1252]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -59,8 +59,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - genou-n2 : le squat assis-debout est aussi possible.
-- dos-n2 : sans charge.
-- cheville-n2 : sans charge.
+- dos-n2 : squat assis-debout sans haltère (la case renvoie à cette variante).
+- cheville-n2 : descente moins profonde, talons au sol.
 - coude-n3 : le squat au poids du corps laisse les bras libres (idem poignet).
 - grossesse : charge légère, respiration continue. Post-partum : G7.
 
@@ -87,7 +87,7 @@ Variante haltère : aucune photo libre fidèle.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Charge contre la poitrine, buste droit, coudes à l'intérieur des genoux en bas | free-exercise-db « Goblet_Squat » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Goblet_Squat.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles (quadriceps ; mollets, fessiers, ischios, épaules dans la source) | même fiche ; adducteurs et tronc ajoutés par coach | idem | 2026-10-21 | PROVISOIRE (ajouts NON SOURCÉ) |
+| Muscles (quadriceps ; mollets, fessiers, ischios, épaules dans la source) ; reclassement de coach : fessiers promus en principal | même fiche, reclassement par coach NON SOURCÉ ; adducteurs et tronc ajoutés par coach | idem | 2026-10-21 | PROVISOIRE (ajouts NON SOURCÉ) |
 | Variante haltère | brouillon M1252 (« Dumbbell Goblet Squat », wger + maxwu) : prouve seulement que le mouvement existe ; page wger non lue | - | 2026-10-21 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |

@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, adducteurs, moyen_fessier]
 source_brouillon: [M0518, M0519, M0520]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -15,7 +15,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | squat-bulgare-chaise | Pied sur une chaise | 1 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur, dessus du pied arrière posé sur l'assise. |
-| squat-bulgare-marche | Pied sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Dessus du pied arrière sur la première marche d'un escalier (éclairé, dégagé, rampe si possible) ou sur un banc stable. |
+| squat-bulgare-marche | Pied sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Dessus du pied arrière sur la première marche d'un escalier (éclairé, dégagé, rampe si possible). |
 | squat-bulgare-halteres | Haltères, pied sur une chaise | 1 | intermediaire | halteres, chaise | Comme la version chaise, un haltère dans chaque main. |
 
 ## Consignes
@@ -59,7 +59,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - genou-n1 : sans haltères ; la variante sur la première marche est possible.
-- cheville-n1 : première marche, serviette pliée sous le dessus du pied arrière.
+- cheville-n1 : dessus du pied arrière sur la première marche d'un escalier éclairé et dégagé, à plat ; rien de glissant (serviette, coussin) entre le pied et le support.
+- general : support qui ne glisse pas (chaise calée contre un mur, ou marche sèche), pied avant chaussé ou sur sol antidérapant ; si le support bouge, arrête.
 - grossesse : risque de chute, donc retiré ; remplaçant conseillé : squat fendu, version mur. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:squat-fendu-mur

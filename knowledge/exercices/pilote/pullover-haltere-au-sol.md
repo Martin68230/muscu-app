@@ -5,10 +5,10 @@ schema: tirage_v
 couverture: substitut  # proposition de champ : ce n'est PAS un vrai tirage vertical
 type: force
 niveau_min: debutant
-muscles_principaux: [pectoraux, grand_dorsal]
-muscles_secondaires: [triceps, dentele_anterieur, abdominaux]
+muscles_principaux: [pectoraux]
+muscles_secondaires: [grand_dorsal, triceps, dentele_anterieur, abdominaux]
 source_brouillon: [M1777, M0410]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Pourquoi cette fiche
 Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (on ne peut pas tirer le corps vers le haut ni une charge vers le bas). Le pull-over sollicite aussi le grand dorsal (la source met les pectoraux en premier), dans un mouvement qui ressemble à un tirage vertical (le bras passe de derrière la tête vers la poitrine). C'est un **substitut faute de mieux avec des haltères**, pas un équivalent. L'achat le plus utile reste une barre de traction ou un élastique.
@@ -92,7 +92,7 @@ Variante au sol : aucune photo libre.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Haltère tenu au-dessus de la poitrine, coudes un peu fléchis, descente en arc derrière la tête, retour par le même chemin | free-exercise-db « Bent-Arm_Dumbbell_Pullover » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Bent-Arm_Dumbbell_Pullover.json (sur banc) ; adapté au sol par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles : la source met les pectoraux en premier (grand dorsal, épaules, triceps en secondaire) ; l'ordre de la fiche suit la source | même fiche | idem | 2026-10-21 | PROVISOIRE |
+| Muscles : la source met les pectoraux en premier (grand dorsal, épaules, triceps en secondaire) ; la fiche suit la source (pectoraux principal ; grand dorsal en secondaire ; deltoïdes non repris ; dentelé antérieur et abdominaux ajoutés par coach) | même fiche | idem | 2026-10-21 | PROVISOIRE |
 | Niveau : la source dit intermédiaire ; la variante au sol est mise en débutant (le sol limite l'amplitude, `kine` d'accord) ; la variante banc reste intermédiaire | choix de coach, tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Variante banc dans la longueur (la source est en travers du banc) | adaptation de coach pour la sécurité | - | - | NON SOURCÉ |
 | Le pull-over comme substitut du tirage vertical | choix de coach ; trou mesuré dans equipment-taxonomy.md §4 | - | 2026-10-21 | NON SOURCÉ (à trancher) |

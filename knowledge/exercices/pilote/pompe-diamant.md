@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [triceps]
 muscles_secondaires: [pectoraux, deltoides_anterieurs, abdominaux]
 source_brouillon: [M0989, M0990, M0740]
-statut: brouillon_coach
+statut: controle_relecteur
 ---
 Variante de la pompe qui déplace l'effort vers les triceps : fiche séparée (décision de l'utilisateur, 21/10/2026). Régression : `pompe-genoux` ou `pompe-sol` (fiche `pompe`).
 
@@ -79,4 +79,5 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Mains plus rapprochées que la largeur d'épaules, descente poitrine près du sol, retour bras tendus ; triceps en principal, pectoraux et épaules en secondaire | free-exercise-db « Push-Ups - Close Triceps Position » (M0740) https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Push-Ups_-_Close_Triceps_Position.json (niveau source : intermediate) ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
 | Position « losange » des mains | brouillons M0989 (maxwu « Diamond Push-Up ») et M0990 (wger « Diamond push ups ») : prouvent seulement que le mouvement existe ; textes non copiés | - | 2026-10-21 | NON SOURCÉ |
 | Coudes près du corps ; conseil de régression | pratique courante | - | - | NON SOURCÉ |
-| Sécurité (zones, grossesse, signes d'arrêt) | à compléter par kine | - | - | NON SOURCÉ (à compléter par kine) |
+| Sécurité de cette fiche (tableau par zone, grossesse, version plus douce, signes d'arrêt) | choix de `kine` par extrapolation des règles communes (knowledge/regles-securite-communes.md : R1 à R3, R7, R8 NON SOURCÉ ; R4 à R6, R10 PROVISOIRE ; G4 PROVISOIRE) ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
+| Grossesse : éviter isométrique prolongé, risque de chute, charge légère | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf | recommandations officielles ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

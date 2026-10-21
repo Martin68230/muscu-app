@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, adducteurs, mollets]
 source_brouillon: [M1599, M1598]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -85,7 +85,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Grand pas en arrière, descente jusqu'au tibia avant à peu près vertical (repère de technique de la source ; la source ajoute que le genou ne doit pas dépasser les orteils : non repris comme un danger), buste droit, retour en poussant sur le pied avant | free-exercise-db « Dumbbell_Rear_Lunge » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Dumbbell_Rear_Lunge.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles (quadriceps ; mollets, fessiers, ischios) | même fiche ; adducteurs ajoutés par coach | idem | 2026-10-21 | PROVISOIRE |
+| Muscles (quadriceps ; mollets, fessiers, ischios) ; reclassement de coach : fessiers promus en principal (la source les met en secondaire), adducteurs ajoutés | même fiche ; reclassement par coach, NON SOURCÉ | idem | 2026-10-21 | PROVISOIRE |
 | Fente arrière plus facile à doser que la fente avant | choix de coach | - | - | NON SOURCÉ |
 | Niveau débutant (la source dit intermédiaire) | choix de coach avec l'échelon main au mur, tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |

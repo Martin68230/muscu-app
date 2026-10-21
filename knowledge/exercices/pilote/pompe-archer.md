@@ -7,7 +7,7 @@ niveau_min: avance
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, obliques]
 source_brouillon: [M0076]
-statut: brouillon_coach
+statut: controle_relecteur
 ---
 Pompe asymétrique : un bras plie, l'autre reste tendu sur le côté ; marche vers la pompe à un bras. Fiche séparée (décision de l'utilisateur, 21/10/2026). Réservée aux personnes qui font déjà des pompes au sol propres. Régression : `pompe-sol` ou `pompe-ecartee-sol`.
 
@@ -77,4 +77,5 @@ Aucune photo affichable (la seule du brouillon vient de maxwu : interdite).
 |---|---|---|---|---|
 | Existence du mouvement (pompe archer) | brouillon M0076 (maxwu « Archer Push Up ») ; texte non copié, aucune autre source lue | - | 2026-10-21 | NON SOURCÉ |
 | Consignes, niveau « avance », muscles | rédigés par coach à partir de la pompe (free-exercise-db « Pushups ») ; pratique courante | - | - | NON SOURCÉ |
-| Sécurité (zones, grossesse, signes d'arrêt) | à compléter par kine | - | - | NON SOURCÉ (à compléter par kine) |
+| Sécurité de cette fiche (tableau par zone, grossesse, version plus douce, signes d'arrêt) | choix de `kine` par extrapolation des règles communes (knowledge/regles-securite-communes.md : R1 à R3, R7, R8 NON SOURCÉ ; R4 à R6, R10 PROVISOIRE ; G4 PROVISOIRE) ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
+| Grossesse : éviter isométrique prolongé, risque de chute, charge légère | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf | recommandations officielles ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

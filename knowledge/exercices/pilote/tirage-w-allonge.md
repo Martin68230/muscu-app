@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [trapezes, rhomboides]
 muscles_secondaires: [deltoides_posterieurs, grand_dorsal, erecteurs_rachis]
 source_brouillon: [M1818]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Pourquoi cette fiche
 Sans aucun matériel, on ne peut pas faire de vrai tirage vertical. Ce mouvement ressemble au geste d'abaisser et de rapprocher les omoplates qui termine une traction, sans charge (ressemblance non sourcée). C'est un **substitut partiel**, surtout pour le haut du dos et la posture ; il ne remplace pas une traction.
@@ -61,7 +61,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 **Notes**
 - epaule-n2 : sans charge, petite amplitude, bras près du sol.
 - cou-n2 : sans charge, front posé tout le long.
-- dos-n2 : coussin plat sous le ventre.
+- dos-n2 : bras plus bas et petite amplitude ; ne cambre pas le bas du dos pour monter.
 - grossesse : couché sur le ventre, donc retiré ; remplaçant conseillé : rowing unilatéral à l'haltère, charge légère. Post-partum : G7.
 - general : version plus douce = au sol, front posé.
 

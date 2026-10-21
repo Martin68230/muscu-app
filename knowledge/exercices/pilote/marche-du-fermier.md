@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [avant_bras, trapezes]
 muscles_secondaires: [abdominaux, obliques, fessiers, quadriceps, erecteurs_rachis]
 source_brouillon: [M0595, M1121]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -91,7 +91,7 @@ Fiche sans photo affichable.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Se placer entre deux charges, se relever en poussant dans les talons dos neutre, marcher à petits pas rapides en respirant | free-exercise-db « Farmers_Walk » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Farmers_Walk.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles (avant-bras ; abdominaux, fessiers, ischios, bas du dos, quadriceps, trapèzes) | même fiche | idem | 2026-10-21 | PROVISOIRE |
+| Muscles (avant-bras ; abdominaux, fessiers, ischios, bas du dos, quadriceps, trapèzes) ; reclassement de coach : trapèzes promus en principal, obliques ajoutés, ischios non repris | même fiche ; reclassement par coach, NON SOURCÉ | idem | 2026-10-21 | PROVISOIRE |
 | Soulever et poser jambes fléchies, dos neutre | exercise-catalog.md §5 (source de blog) | synthèse | 2026-10-21 | PROVISOIRE |
 | Peu de recherche sur les portés ; intérêt pour la prise et la stabilité du tronc | NSCA Coach « Increase Hip and Trunk Stability with Loaded Carries » (sources.md) | article professionnel | 2026-10-21 | PROVISOIRE |
 | Variante bidons/sacs | equipment-taxonomy.md §2 et §4 (objets du quotidien) | - | 2026-10-21 | NON SOURCÉ |

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [erecteurs_rachis]
 muscles_secondaires: [abdominaux, trapezes]
 source_brouillon: [M0603]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -80,7 +80,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | À quatre pattes, dos arrondi tête basse | free-exercise-db « Cat_Stretch » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Cat_Stretch.json ; réécrit par coach | base d'exercices (domaine public), pas d'étude | 2026-10-21 | PROVISOIRE |
-| Muscles (bas du dos ; milieu du dos, trapèzes) | même fiche | idem | 2026-10-21 | PROVISOIRE |
+| Muscles (bas du dos ; milieu du dos, trapèzes) ; abdominaux ajoutés par coach (mouvement de contraction en position chat) | même fiche ; ajout NON SOURCÉ | idem | 2026-10-21 | PROVISOIRE |
 | Alternance avec le dos creux, rythme sur la respiration | pratique courante (la source tient une seule position) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |

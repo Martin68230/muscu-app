@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, adducteurs, mollets]
 source_brouillon: [M1918]
-statut: complete_kine
+statut: controle_relecteur
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -85,7 +85,7 @@ Aucune photo affichable (affichable : sans objet). Ne pas utiliser « Split_Squa
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Mouvement et consignes | Brouillon M1918 ; consignes rédigées par coach (la fiche source free-exercise-db décrit une version sautée) | pratique courante, pas d'étude | 2026-10-21 | NON SOURCÉ |
-| Muscles (quadriceps ; mollets, fessiers, ischios) | free-exercise-db « Split_Squat_with_Dumbbells » et « Split_Squats » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Split_Squat_with_Dumbbells.json | base d'exercices (domaine public) | 2026-10-21 | PROVISOIRE |
+| Muscles (quadriceps ; mollets, fessiers, ischios) ; fessiers promus en principal et adducteurs ajoutés par coach (reclassement NON SOURCÉ) ; les deux sources citées décrivent un squat fendu et un squat bulgare (mouvements voisins) | free-exercise-db « Split_Squat_with_Dumbbells » et « Split_Squats » https://github.com/yuhonas/free-exercise-db/blob/main/exercises/Split_Squat_with_Dumbbells.json | base d'exercices (domaine public) | 2026-10-21 | PROVISOIRE |
 | Squat fendu plus facile que la fente (pieds fixes) | choix de coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8 : NON SOURCÉ ; R4, R5, R6, R9 (partie), R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
