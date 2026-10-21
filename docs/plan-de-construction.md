@@ -23,7 +23,7 @@ Toutes les répartitions (1-6 jours), objectifs combinés, fonctionnel, familles
 Graphiques (charges, volume), records, régularité, poids lissé, carte musculaire, calories estimées.
 
 ## Phase 6 : Comptes et amis
-Supabase (région UE), SMTP externe pour les emails, synchronisation, règles d'accès testées, réglages de partage, fil d'amis (séances terminées, réactions, séries de jours, défis hebdomadaires), suppression de compte. Audit de sécurité (Opus).
+Supabase (région UE), **inscriptions fermées** (« Allow new users to sign up » désactivé : l'utilisateur invite ses amis un par un depuis Supabase, décision du 21/10/2026), SMTP externe pour les emails, synchronisation, règles d'accès testées, réglages de partage, fil d'amis (séances terminées, réactions, séries de jours, défis hebdomadaires), suppression de compte. Audit de sécurité (Opus).
 Jalon : inviter 2-3 amis, puis tout le groupe.
 
 ## Phase 7 : Nutrition

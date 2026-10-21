@@ -104,6 +104,8 @@ test('hors-ligne : tout le nécessaire est mis en cache', async ({ page }) => {
   expect(has(/manifest\.webmanifest$/)).toBe(true);
   expect(has(/apple-touch-icon\.png$/)).toBe(true);
 
+  await expect(page.locator('meta[name=robots]')).toHaveAttribute('content', /noindex/);
+
   const manifest = await (await page.request.get('./manifest.webmanifest')).json();
   expect(manifest.display).toBe('standalone');
   expect(manifest.lang).toBe('fr');

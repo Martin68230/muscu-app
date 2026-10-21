@@ -14,7 +14,7 @@ Appli privée pour ~10 amis majeurs (niveaux variés, salle et maison ; surtout 
 9. **IA optionnelle avec interrupteur global** : (a) sans IA : questionnaire + moteur de règles ; (b) prompt à copier-coller + import JSON validé par schéma ; (c) clé API perso stockée seulement sur l'appareil. IA coupée = aucun élément d'IA visible. L'IA personnalise à l'intérieur des règles du code, jamais en dehors.
 10. **Contenu sourcé** : toute valeur sport/nutrition vit dans knowledge/ avec source et statut (OK / PROVISOIRE / NON SOURCÉ). Rien de PROVISOIRE ou NON SOURCÉ n'est codé en dur sans validation de `coach`/`kine`/`nutritionniste` puis contrôle de `relecteur`.
 11. **Sécurité santé** : avertissement « pas un avis médical » ; profil blessures (zone + niveau) qui retire ou adapte les exercices ; douleur -> pas de progression, conseil de consulter ; exclusions nutrition (grossesse, pathologie, trouble alimentaire, mineur).
-12. **Images** : seulement les photos libres (free-exercise-db, et wger si la licence de l'image le permet), en WebP légères, chargées à la demande ; jamais les images/GIF du dépôt maxwu (droits Gym visual) ; aucun visuel ni marque d'une autre app ; page « crédits » avec les attributions.
+12. **Images** : seulement les photos libres (free-exercise-db, et wger si la licence de l'image le permet), en WebP légères, chargées à la demande ; jamais les images/GIF du dépôt maxwu (droits Gym visual) ; aucun visuel ni marque d'une autre app ; page « crédits » avec les attributions. La consigne prime sur la photo : une photo qui contredit la consigne n'est pas affichée.
 13. **Interface en français** ; consignes d'exercices réécrites en français (pas de copier-coller des textes maxwu).
 
 ## B. Règles des programmes (détails dans knowledge/)

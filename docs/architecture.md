@@ -6,6 +6,10 @@
 - Taille : ~30 Mo/an pour 10 personnes (estimation, à mesurer). Identifiants plutôt que noms.
 - Bibliothèque d'exercices et table Ciqual : fichiers statiques de l'app, pas dans la base.
 
+## Accès (décision utilisateur, 21/10/2026)
+- **Inscriptions fermées** dans Supabase : personne ne peut créer de compte seul ; l'utilisateur invite ses amis un par un (invitation par email depuis le tableau de bord Supabase). À tester en phase 6 : une inscription spontanée doit être refusée.
+- Site non référencé : balise `<meta name="robots" content="noindex, nofollow">` (le site reste public mais n'apparaît pas dans les moteurs de recherche ; ce n'est pas une protection d'accès).
+
 ## Emails de connexion (vérifié dans la doc Supabase)
 Le service email intégré est limité à **2 messages/heure** et n'envoie **qu'aux adresses membres de l'équipe du projet** ; il est prévu pour les tests. -> Pour inviter des amis : configurer un SMTP externe gratuit (fournisseur à choisir ; vérifier ses quotas gratuits) ; la limite passe alors par défaut à 30 messages/heure. https://supabase.com/docs/guides/auth/auth-smtp
 
