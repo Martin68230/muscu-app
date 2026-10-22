@@ -63,6 +63,12 @@ export interface EquipmentProfile extends SyncFields {
   disabledImplicit: string[];
   dumbbellWeightsKg: number[];
   kettlebellWeightsKg: number[];
+  /** Ajoutés par D7 : peuvent manquer dans une ancienne sauvegarde (lire avec normalizeEquipment). */
+  dumbbellKind?: 'fixes' | 'reglables' | null;
+  /** Poids des disques disponibles (barre). */
+  platesKg?: number[];
+  /** Matériel non listé, texte libre : jamais utilisé comme tag de fiche. */
+  other?: string;
 }
 
 export interface Goal extends SyncFields {

@@ -35,6 +35,9 @@ export const SPECS: Record<TableName, Spec> = {
     disabledImplicit: 'array',
     dumbbellWeightsKg: 'array',
     kettlebellWeightsKg: 'array',
+    dumbbellKind: 'string?',
+    platesKg: 'array',
+    other: 'string',
   },
   goals: { goalKey: 'string', rank: 'number' },
   injuries: { zone: 'string', side: 'string?', level: 'number', note: 'string', active: 'boolean', afterShock: 'boolean?' },
@@ -86,7 +89,10 @@ export const SPECS: Record<TableName, Spec> = {
 };
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
-const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = { injuries: ['afterShock'] };
+const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
+  injuries: ['afterShock'],
+  equipment: ['dumbbellKind', 'platesKg', 'other'],
+};
 
 function typeOf(v: unknown): FieldType | 'null' | 'other' {
   if (v === null) return 'null';

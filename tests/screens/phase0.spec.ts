@@ -143,3 +143,36 @@ test('profil blessures : zone cou et case « choc »', async ({ page }, info) =>
   await page.getByRole('button', { name: /^Cou ·/ }).click();
   await expect(page.getByLabel(/Mon cou me fait mal depuis un choc/)).toBeChecked();
 });
+
+test('profil matériel : cases, poids, conservation', async ({ page }, info) => {
+  const theme = info.project.name.endsWith('clair') ? 'light' : 'dark';
+  await page.addInitScript((t) => {
+    try {
+      localStorage.setItem('muscu.theme', t);
+    } catch {
+      /* ignoré */
+    }
+  }, theme);
+  await page.goto('./');
+  await page.getByText("J'ai 18 ans ou plus.").click();
+  await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
+  await page.getByRole('button', { name: 'Commencer' }).click();
+  await page.getByRole('button', { name: 'Profil', exact: true }).click();
+
+  await page.getByLabel('Banc plat').check();
+  await page.getByLabel('Rack ou cage à squat').check();
+  await page.getByLabel('Haltères', { exact: true }).check();
+  await page.getByRole('button', { name: 'Réglables' }).click();
+  await page.getByLabel(/Poids des haltères/).fill('4; 6; 12,5');
+  await page.getByLabel(/Poids des haltères/).blur();
+  await page.getByRole('heading', { name: 'Mon matériel' }).scrollIntoViewIfNeeded();
+  await shot(page, '09-materiel-haut', info.project.name);
+  await page.getByRole('heading', { name: 'Salle de sport' }).scrollIntoViewIfNeeded();
+  await shot(page, '10-materiel-salle', info.project.name);
+
+  await page.reload();
+  await page.getByRole('button', { name: 'Profil', exact: true }).click();
+  await expect(page.getByLabel('Banc plat')).toBeChecked();
+  await expect(page.getByLabel(/Poids des haltères/)).toHaveValue('4; 6; 12,5');
+  await expect(page.getByLabel('Vélo ou rameur')).not.toBeChecked();
+});

@@ -52,5 +52,16 @@
     "marche_ou_box": "marche_escalier",
     "box_stable": "box_ou_step"
   },
+  "correspondance_profil": {
+    "_note": "D7 (22/10/2026) : le vocabulaire couvre déjà tout le matériel courant ; aucun tag ajouté. Les noms du profil se rattachent aux tags existants (liste affichée : src/data/equipment-options.ts). « Autre » = champ libre du profil, jamais un tag de fiche.",
+    "step": "box_ou_step",
+    "gilet_leste": "lest",
+    "velo_ou_rameur": "machine_cardio",
+    "banc_plat": "banc",
+    "elastique_boucle": "mini_bande",
+    "elastique_bande_ou_poignees": "elastique",
+    "halteres_fixes_ou_reglables": "halteres (type et poids dans le profil)",
+    "machines": "machine"
+  },
   "a_nettoyer": ["autre", "corde_a_preciser"]
 }

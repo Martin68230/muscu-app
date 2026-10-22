@@ -42,7 +42,7 @@ L'utilisateur veut une image partout : sans image, une fiche n'est pas parlante.
 - Ajouter au script check:fiches un contrôle : chaque fiche `utilisable` ou `verifie` a au moins une image affichable (photo ou illustration).
 - Faire ce travail sur les fiches existantes AVANT de lancer de nouveaux lots ; les nouveaux lots l'appliquent directement.
 
-### D7. Matériel : tout équipement possible comme option : à appliquer
+### D7. Matériel : tout équipement possible comme option : PARTIELLE le 22/10/2026 14:1x (écran profil matériel fait, tags déjà existants ; RESTE : fiches et variantes banc, puis barre/rack, kettlebell, sangles, poulie/machines)
 - Le profil doit proposer TOUT le matériel courant comme option cochable, pas seulement le matériel de maison : banc de musculation (plat, inclinable), barre de traction, barre droite et disques, barre EZ, rack à squat, haltères fixes ou réglables (avec les poids), kettlebells, élastiques (boucle, bande longue, avec poignées), sangles de suspension (TRX, anneaux), roue abdos, swiss ball, medecine ball, step ou box, corde à sauter, gilet lesté, poulie, machines de salle, vélo ou rameur, tapis, + un champ « autre ».
 - Mettre à jour knowledge/materiel-tags.json et equipment-taxonomy.md §2 avec les tags manquants (ex. `rack`, `disques`, `step`, `gilet_leste`, `sangles_suspension`, `velo_ou_rameur`), sans casser les tags existants.
 - Dans les prochains lots, prévoir des fiches et variantes qui utilisent ce matériel, en commençant par le **banc** (développé couché et incliné aux haltères, rowing appuyé sur le banc, hip thrust sur le banc, dips sur banc, step-up sur banc), puis barre et rack, kettlebell, sangles de suspension, poulie et machines (profils E et F).

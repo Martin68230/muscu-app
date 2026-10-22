@@ -263,3 +263,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 @media (prefers-reduced-motion: reduce) {
   * { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+.eq-title { margin: 0 0 4px; font-size: 1rem; }
+.eq-extra { margin: 0 0 8px 38px; }
+.eq-extra .segmented { margin-bottom: 8px; }

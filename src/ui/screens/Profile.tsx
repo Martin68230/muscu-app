@@ -3,6 +3,7 @@ import type { Profile as ProfileRow } from '../../data/model';
 import { update } from '../../data/repo';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
+import { Equipment } from './Equipment';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
@@ -131,6 +132,8 @@ export function Profile({ profile, onChange, onWiped }: {
       <button class="btn btn-danger" onClick={() => confirmDialog.current?.showModal()}>
         Supprimer toutes mes données
       </button>
+
+      <Equipment key={'eq' + (message ?? profile.id)} />
 
       <Injuries key={profile.id} />
 

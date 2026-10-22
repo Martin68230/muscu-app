@@ -26,6 +26,9 @@ export async function ensureLocalUser(): Promise<Profile> {
       disabledImplicit: [],
       dumbbellWeightsKg: [],
       kettlebellWeightsKg: [],
+      dumbbellKind: null,
+      platesKg: [],
+      other: '',
     });
   }
 
