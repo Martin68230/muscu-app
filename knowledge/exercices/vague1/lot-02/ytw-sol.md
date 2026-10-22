@@ -5,7 +5,7 @@ schema: tirage_h
 type: force
 niveau_min: debutant
 muscles_principaux: [trapezes, deltoides_posterieurs]
-muscles_secondaires: [rhomboides, erecteurs_rachis]
+muscles_secondaires: [rhomboides, erecteurs_rachis, coiffe_des_rotateurs]
 source_brouillon: []
 statut: utilisable
 couverture: substitut

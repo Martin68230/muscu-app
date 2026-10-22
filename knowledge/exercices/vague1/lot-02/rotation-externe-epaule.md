@@ -4,8 +4,8 @@ nom: Rotation externe de l'épaule
 schema: tirage_h
 type: force
 niveau_min: debutant
-muscles_principaux: [deltoides_posterieurs]
-muscles_secondaires: [trapezes]
+muscles_principaux: [coiffe_des_rotateurs]
+muscles_secondaires: [deltoides_posterieurs, trapezes]
 source_brouillon: []
 statut: utilisable
 couverture: substitut

@@ -14,9 +14,9 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| nordique-ischios-court | Descente courte, mains au sol pour remonter | 1 | intermediaire | poids_du_corps, tapis | À genoux sur un tapis, chevilles tenues par un partenaire ou pieds bloqués sous un meuble lourd et stable. Les mains restent prêtes devant toi. |
-| nordique-ischios-poussee | Descente complète, petite poussée des mains | 2 | intermediaire | poids_du_corps, tapis | Même installation ; tu descends le plus loin possible en contrôle, puis tu t'aides des mains pour remonter. |
-| nordique-ischios-sans-mains | Descente complète, remontée sans les mains | 3 | avance | poids_du_corps, tapis | Même installation ; remontée sans aide des mains. |
+| nordique-ischios-court | Descente courte, mains au sol pour remonter | 1 | intermediaire | poids_du_corps, tapis, partenaire_ou_ancrage | À genoux sur un tapis, chevilles tenues par un partenaire ou pieds bloqués sous un meuble lourd et stable. Les mains restent prêtes devant toi. |
+| nordique-ischios-poussee | Descente complète, petite poussée des mains | 2 | intermediaire | poids_du_corps, tapis, partenaire_ou_ancrage | Même installation ; tu descends le plus loin possible en contrôle, puis tu t'aides des mains pour remonter. |
+| nordique-ischios-sans-mains | Descente complète, remontée sans les mains | 3 | avance | poids_du_corps, tapis, partenaire_ou_ancrage | Même installation ; remontée sans aide des mains. |
 
 ## Consignes
 1. À genoux sur un tapis, corps droit des genoux à la tête, chevilles bloquées (partenaire, ou pieds sous un meuble lourd et stable).
@@ -46,7 +46,7 @@ Volume faible au départ puis progressif : sports.md, règle 2 (PROVISOIRE). Auc
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -54,6 +54,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | retirer: remplacant:curl-ischios-serviette-pont | retirer | retirer |
 | Dos | adapter: variante:nordique-ischios-court | retirer: remplacant:pont-fessier-sol | retirer |
 | Poignet | adapter: appui:poings-fermes | retirer: remplacant:curl-ischios-serviette-pont | retirer |
+| Cuisse | retirer: remplacant:curl-ischios-serviette-pont | retirer | retirer |
 
 **Notes**
 - hanche-n1 : exercice retiré dès la gêne légère à l'arrière de la cuisse ou à la hanche (prudence sur les ischios) ; remplacé par le curl des ischios sur serviette, deux jambes (version plus douce).
@@ -64,6 +65,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n2 : exercice retiré ; remplacé par le pont fessier au sol.
 - poignet-n1 : mains en poings fermés pour amortir la descente.
 - poignet-n2 : exercice retiré (réception sur les mains) ; remplacé par le curl des ischios sur serviette, deux jambes.
+- cuisse-n1 : exercice retiré dès la gêne légère à l'arrière de la cuisse (ischios : l'exercice les sollicite au maximum) ; remplacé par le curl des ischios sur serviette, deux jambes. NON SOURCÉ (choix prudent de `kine`).
+- cuisse-n2 : exercice retiré, sans remplaçant qui sollicite les ischios.
 - grossesse : retiré : à genoux penché en avant, effort intense et freinage prolongé (G4, extrapolation) ; remplacé par le soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
 - general : blessure récente aux ischios : retrait, pas d'adaptation ; l'app ne sait pas ce qui est « récent » (voir questions). Cases au moins aussi restrictives que le curl sur serviette, plus facile. Version plus douce : le curl des ischios sur serviette.
 

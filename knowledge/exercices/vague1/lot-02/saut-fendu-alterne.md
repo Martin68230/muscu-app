@@ -25,6 +25,7 @@ statut: utilisable
 5. Stabilise la fente avant le saut suivant.
 
 ## Points d'attention
+- Prérequis (conseil non codé, décision D3 du 22/10/2026) : réception contrôlée (reception-saut-stabilisee) maîtrisée sans gêne avant ce saut ; sauts prioritaires pour les personnes qui pratiquent un sport de saut (volley, danse, foot).
 - Réception stable avant tout ; arrête si elle devient lourde.
 - Le genou avant reste au-dessus du pied.
 - Pas de saut intensif la veille d'un match (sports.md, règle 5 : PROVISOIRE).
@@ -44,7 +45,7 @@ Aucun nombre de sauts sourcé.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -52,12 +53,16 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | retirer | retirer | retirer |
 | Dos | retirer | retirer | retirer |
 | Hanche | retirer | retirer | retirer |
+| Cuisse | retirer | retirer | retirer |
+| Aine | retirer | retirer | retirer |
 
 **Notes**
 - cheville-n1 : exercice retiré dès la gêne légère (prudence propre aux sauts) ; l'app propose un exercice qui ne sollicite pas la cheville.
 - genou-n1 : exercice retiré dès la gêne légère ; l'app propose un exercice qui ne sollicite pas le genou.
 - dos-n1 : exercice retiré dès la gêne légère ; l'app propose un exercice qui ne sollicite pas le bas du dos.
-- hanche-n1 : exercice retiré dès la gêne légère, plus strictement que les autres sauts : réception en fente, hanche et aine très sollicitées ; une gêne à l'aine se déclare sous « hanche ».
+- hanche-n1 : exercice retiré dès la gêne légère, plus strictement que les autres sauts : réception en fente, hanche et aine très sollicitées.
+- cuisse-n1 : exercice retiré dès la gêne légère à l'arrière de la cuisse (réception en fente) ; l'app propose un exercice qui ne sollicite pas la cuisse. NON SOURCÉ.
+- aine-n1 : exercice retiré dès la gêne légère à l'aine (réception en fente, adducteurs très sollicités) ; l'app propose un exercice qui ne sollicite pas l'aine. NON SOURCÉ.
 - grossesse : aucun saut : risque de chute et d'impact (G4, extrapolation) ; remplacé par le squat fendu avec la main au mur. Post-partum : G7.
 - general : plus exigeant que le saut vertical : jamais plus permissif que lui (cases alignées). Conseil non codé : proposé seulement après le saut vertical et le squat fendu sans gêne ; jamais fatigué ni la veille d'un match.
 
@@ -87,7 +92,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Danse et volley : réceptions de saut contrôlées, équilibre sur une jambe, renforcement des mollets et chevilles | knowledge/sports.md, règle de conception 4 (à valider par kine) ; danse : revue systématique de 8 études, J Dance Med Sci 2026 (vol. 30) https://lida.sport-iat.de/ta/Record/4091443?lng=en (preuve initiale) | règle de conception de coach + revue de faible niveau de preuve | 2026-10-21 | PROVISOIRE |
 | Aucun travail de saut intensif la veille d'un match ; fatigue ou douleur : réduire | knowledge/sports.md, règle de conception 5 (à valider par kine) | règle de conception de coach | 2026-10-21 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
-| Niveau « intermédiaire » dès l'échelon 1 : aucun saut maximal pour un débutant sans prérequis (réception contrôlée) ; la source libre classe l'entrée en débutant, relèvement tracé | décision prudente de coach, en attendant la réponse de l'utilisateur à la question 8 du README du lot ; aucune étude lue | - | 2026-10-22 | NON SOURCÉ (choix de prudence) |
+| Niveau « intermédiaire » dès l'échelon 1 : aucun saut maximal pour un débutant sans prérequis (réception contrôlée) ; la source libre classe l'entrée en débutant, relèvement tracé | décision D3 de l'utilisateur (22/10/2026) : sauts en intermédiaire, réception contrôlée en entrée ; aucune étude lue | - | 2026-10-22 | NON SOURCÉ (choix de prudence) |
 | Échelon 2 (changement de jambe en l'air) | choix de coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

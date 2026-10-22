@@ -51,7 +51,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 |---|---|---|---|
 | Épaule | retirer: remplacant:porte-un-haltere-epaule | retirer | retirer |
 | Cou | adapter: charge:legere | retirer | retirer |
-| Dos | adapter: charge:legere | retirer: remplacant:porte-valise | retirer |
+| Dos | adapter: charge:legere | retirer | retirer |
 | Coude | adapter: charge:legere | retirer | retirer |
 | Poignet | adapter: charge:legere | retirer | retirer |
 
@@ -61,7 +61,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - cou-n1 : charge légère, regard devant, tête dans l'alignement.
 - cou-n2 : exercice retiré ; un autre exercice du même schéma est proposé.
 - dos-n1 : charge légère (départ de l'étalonnage, jamais augmentée).
-- dos-n2 : retrait ; remplaçant : porte-valise (porté à la main, charge légère), car le porté sur l'épaule est lui-même retiré au dos niveau 2.
+- dos-n2 : exercice retiré, sans remplaçant : le porté sur l'épaule est retiré au dos niveau 2 et le porte-valise y est adapté ; l'app propose un autre exercice qui ne sollicite pas le dos.
 - coude-n1 : charge légère (départ de l'étalonnage, jamais augmentée).
 - coude-n2 : exercice retiré ; un autre exercice du même schéma est proposé.
 - poignet-n1 : charge légère (départ de l'étalonnage, jamais augmentée).

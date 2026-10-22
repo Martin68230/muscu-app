@@ -45,7 +45,7 @@ Voir program-logic.md. Aucune valeur sourcée.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -53,16 +53,22 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: variante:fente-laterale-courte | retirer: remplacant:squat-assis-debout | retirer |
 | Cheville | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
 | Dos | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
+| Aine | adapter: variante:fente-laterale-courte | retirer: remplacant:squat-assis-debout | retirer |
+| Cuisse | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
 
 **Notes**
 - genou-n1 : petite amplitude, poids du corps (sans haltère).
 - genou-n2 : squat assis-debout ; aucune augmentation de difficulté (R2).
-- hanche-n1 : petite amplitude, poids du corps ; une gêne à l'aine se déclare sous « hanche ».
+- hanche-n1 : petite amplitude, poids du corps.
 - hanche-n2 : fente latérale retirée (adducteurs, pas large) ; remplacée par le squat assis-debout.
 - cheville-n1 : petite amplitude, poids du corps.
 - cheville-n2 : squat assis-debout.
 - dos-n1 : petite amplitude, poids du corps (sans haltère).
 - dos-n2 : squat assis-debout.
+- aine-n1 : petite amplitude, poids du corps. NON SOURCÉ (choix prudent de `kine`).
+- aine-n2 : fente latérale retirée (pas large, adducteurs étirés) ; remplacée par le squat assis-debout.
+- cuisse-n1 : petite amplitude, poids du corps (les ischios sont sollicités en second). NON SOURCÉ.
+- cuisse-n2 : squat assis-debout ; aucune augmentation de difficulté (R2).
 - grossesse : retirée par prudence : pas large, équilibre sur un côté, adducteurs (G4 classe les fentes en « adapter » ; ici l'option la plus prudente est retenue pour la fente large) ; remplacée par le squat assis-debout. Post-partum : G7 (pas d'impact, sans effet ici).
 - general : cases au moins aussi restrictives que le squat sumo, plus facile. Version plus douce : le squat sumo au poids du corps.
 

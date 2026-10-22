@@ -44,7 +44,7 @@ Aucune durée sourcée. Sources sur le Copenhagen adduction exercise non lues.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -53,6 +53,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Dos | adapter: variante:copenhague-genou-chaise | retirer: remplacant:planche-laterale-genoux | retirer |
 | Hanche | retirer: remplacant:planche-laterale-genoux | retirer: remplacant:planche-laterale-genoux | retirer |
 | Genou | adapter: appui:coussin | retirer | retirer |
+| Aine | retirer: remplacant:planche-laterale-genoux | retirer: remplacant:planche-laterale-genoux | retirer |
 
 **Notes**
 - epaule-n1 : genou du dessus sur la chaise, levier court (échelon 1).
@@ -61,10 +62,12 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - coude-n2 : genou du dessus sur la chaise, levier court.
 - dos-n1 : genou du dessus sur la chaise, levier court.
 - dos-n2 : exercice retiré ; remplacé par la planche latérale sur le genou.
-- hanche-n1 : exercice retiré dès la gêne légère (appui sur l'adducteur, l'exercice qui sollicite le plus l'aine) ; remplacé par la planche latérale sur le genou. Une gêne à l'aine se déclare sous « hanche ». Choix de prudence, NON SOURCÉ.
+- hanche-n1 : exercice retiré dès la gêne légère (appui sur l'adducteur, l'exercice qui sollicite le plus l'aine) ; remplacé par la planche latérale sur le genou. Une gêne à l'aine se déclare sous « aine ». Choix de prudence, NON SOURCÉ.
 - hanche-n2 : même case : exercice retiré, remplacé par la planche latérale sur le genou.
 - genou-n1 : coussin sous le genou posé sur la chaise.
 - genou-n2 : exercice retiré (le genou du dessus porte sur l'assise).
+- aine-n1 : exercice retiré dès la gêne légère à l'aine (adducteurs : l'exercice les sollicite au maximum) ; remplacé par la planche latérale sur le genou. NON SOURCÉ (choix prudent de `kine`).
+- aine-n2 : même case : exercice retiré, remplacé par la planche latérale sur le genou.
 - grossesse : retiré : gainage latéral isométrique et pression abdominale (G4) ; remplacé par le bird-dog sur une jambe seule. Post-partum : G7.
 - general : plus exigeant que la planche latérale : cases au moins aussi restrictives. Version plus douce : la planche latérale sur le genou. Sur la chaise instable, arrêt.
 
@@ -90,7 +93,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Planche latérale avec jambe du dessus sur une chaise (adducteur « Copenhagen ») | aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) ; description de coach | - | - | NON SOURCÉ |
-| Prévention des blessures de l'aine par l'adducteur de Copenhague | aucune source lue pour ce mouvement (piste : essais sur le Copenhagen adduction exercise, non lus) | - | - | NON SOURCÉ |
+| Prévention des blessures de l'aine par l'adducteur de Copenhague | Harøy J et al., « The Adductor Strengthening Programme prevents groin problems among male football players », Br J Sports Med 2019;53:150-157 (en ligne 2018), doi:10.1136/bjsports-2017-098937 https://research.regionh.dk/en/publications/the-adductor-strengthening-programme-prevents-groin-problems-amon/ : un exercice de type Copenhague à 3 niveaux, 3 fois/semaine en présaison (6-8 semaines) puis 1 fois/semaine en saison : problèmes d'aine déclarés 13,5 % contre 21,3 % (OR 0,59 ; IC95 0,40-0,86). Programme complet à trois niveaux, pas la version courte de cette fiche | essai randomisé en grappes, 652 footballeurs semi-professionnels norvégiens (hommes) ; résumé de l'éditeur lu en entier ; critère auto-déclaré | 2026-10-22 | OK pour le principe (adducteur de Copenhague, footballeurs hommes semi-pro) ; la version courte (court, avec chaise) et l'extrapolation aux autres publics : PROVISOIRE |
 | Le FIFA 11+ entier réduit les blessures hanche/aine de 41 % (Thorborg 2017), sans détail par exercice ; l'effet de CET exercice sur l'aine ou la hanche n'est pas établi | knowledge/sports.md (résumé de Thorborg 2017, non rouvert) | méta-analyse (programme entier, pas cet exercice) | 2026-10-21 | programme entier : OK (cité par sports.md) ; effet de cet exercice sur l'aine ou la hanche : NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |

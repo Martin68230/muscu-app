@@ -5,7 +5,7 @@ schema: mobilite
 type: fonctionnel
 niveau_min: debutant
 muscles_principaux: [moyen_fessier, mollets]
-muscles_secondaires: [fessiers, quadriceps]
+muscles_secondaires: [fessiers, quadriceps, peroniers]
 source_brouillon: []
 statut: utilisable
 ---
@@ -46,19 +46,23 @@ Voir program-logic.md. Aucune durée de maintien sourcée.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Cheville | adapter: variante:equilibre-unipodal-mur | adapter: variante:equilibre-unipodal-mur | retirer |
 | Genou | garder | adapter: variante:equilibre-unipodal-mur | retirer |
 | Hanche | garder | adapter: variante:equilibre-unipodal-mur | retirer |
+| Cuisse | garder | adapter: variante:equilibre-unipodal-mur | retirer |
+| Aine | garder | adapter: variante:equilibre-unipodal-mur | retirer |
 
 **Notes**
 - cheville-n1 : doigts au mur, sol plat : ni serviette, ni mouvement de la jambe libre.
 - cheville-n2 : même variante ; aucune augmentation de difficulté (R2).
 - genou-n2 : doigts au mur, sol plat.
 - hanche-n2 : doigts au mur, sol plat.
+- cuisse-n2 : doigts au mur, sol plat, pas de mouvement de la jambe libre. NON SOURCÉ (choix prudent de `kine`).
+- aine-n2 : doigts au mur, sol plat, pas de mouvement de la jambe libre. NON SOURCÉ (choix prudent de `kine`).
 - grossesse : doigts au mur : l'équilibre change en grossesse, le mur évite la chute ; jamais les yeux fermés ; pas de serviette. Post-partum : G7.
 - general : échelon le plus simple possible : pas de version plus douce plus basse que le mur. Yeux fermés non proposé.
 
@@ -85,7 +89,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Équilibre sur une jambe à pied plat puis sur support mou | aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) ; description de coach | - | - | NON SOURCÉ |
+| Équilibre sur une jambe à pied plat puis sur support mou | aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) ; description de coach. Entraînement d'équilibre et entorses de cheville : McKeon PO, Hertel J, J Athl Train 2008;43:305-315, revue systématique https://search.pedro.org.au/search-results/record-detail/23678 : l'entraînement d'équilibre préventif réduit nettement le risque d'entorse (effet plus grand après une entorse antérieure) ; au moins 6 semaines après une entorse aiguë réduisent les récidives ; preuve insuffisante en instabilité chronique | revue systématique (recherche jusqu'à octobre 2006) ; résumé PEDro lu, texte intégral non lu, aucun chiffre repris | 2026-10-22 | OK pour le principe (équilibre sur une jambe préventif des entorses) ; échelons de cette fiche : NON SOURCÉ |
 | Danse et volley : réceptions de saut contrôlées, équilibre sur une jambe, renforcement des mollets et chevilles | knowledge/sports.md, règle de conception 4 (à valider par kine) ; danse : revue systématique de 8 études, J Dance Med Sci 2026 (vol. 30) https://lida.sport-iat.de/ta/Record/4091443?lng=en (preuve initiale) | règle de conception de coach + revue de faible niveau de preuve | 2026-10-21 | PROVISOIRE |
 | Le programme FIFA 11+ (échauffement de football) réduit les blessures de 39 % (rapport des taux 0,61) | Thorborg et al., Br J Sports Med 2017;51:562 https://bjsm.bmj.com/content/51/7/562, repris dans knowledge/sports.md | méta-analyse de 6 essais, joueurs amateurs et sub-élite ; résumé lu à la rédaction de sports.md, non rouvert | 2026-10-21 | OK pour le programme dans son ensemble. Que CET exercice (ou cette forme) en fasse partie : NON SOURCÉ (contenu détaillé du programme non lu) |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |

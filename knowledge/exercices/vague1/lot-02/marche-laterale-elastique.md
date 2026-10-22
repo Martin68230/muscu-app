@@ -1,22 +1,21 @@
 ---
 id: marche-laterale-elastique
 nom: Marche latérale à l'élastique
-schema: squat
+schema: hanche_laterale
 type: fonctionnel
 niveau_min: debutant
 muscles_principaux: [moyen_fessier]
 muscles_secondaires: [fessiers, quadriceps]
 source_brouillon: [M1637]
 statut: utilisable
-couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| marche-laterale-elastique-cuisses | Élastique au-dessus des genoux | 1 | debutant | elastique | Mini-bande en boucle fermée (une bande avec poignées ne convient pas) passée autour des cuisses, juste au-dessus des genoux. |
-| marche-laterale-elastique-chevilles | Élastique aux chevilles | 2 | intermediaire | elastique | Même mini-bande en boucle fermée, passée autour des chevilles. |
+| marche-laterale-elastique-cuisses | Élastique au-dessus des genoux | 1 | debutant | mini_bande | Mini-bande en boucle fermée (une bande avec poignées ne convient pas) passée autour des cuisses, juste au-dessus des genoux. |
+| marche-laterale-elastique-chevilles | Élastique aux chevilles | 2 | intermediaire | mini_bande | Même mini-bande en boucle fermée, passée autour des chevilles. |
 
 ## Consignes
 1. Passe la boucle élastique autour des cuisses (ou des chevilles), debout, pieds largeur de hanches, genoux légèrement fléchis.
@@ -27,9 +26,8 @@ couverture: substitut
 
 ## Points d'attention
 - Pas courts et contrôlés ; l'élastique ne doit jamais se détendre complètement.
-- Fiche rangée sous « squat » faute de schéma dédié aux fessiers latéraux : couverture « substitut ».
 - Contrôle l'élastique avant chaque série.
-- Seule une boucle fermée (mini-bande) convient : une bande avec poignées ne reste pas autour des cuisses ou des chevilles. Le tag `elastique` couvre les deux types ; à signaler à `dev` (tag dédié ou précision affichée).
+- Seule une boucle fermée (mini-bande, tag `mini_bande`) convient : une bande avec poignées ne reste pas autour des cuisses ou des chevilles.
 
 ## Erreurs fréquentes
 - Genoux qui rentrent.
@@ -46,17 +44,20 @@ Voir program-logic.md. Aucune valeur sourcée.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Genou | adapter: variante:marche-laterale-elastique-cuisses | adapter: variante:marche-laterale-elastique-cuisses | retirer |
 | Hanche | garder | adapter: variante:marche-laterale-elastique-cuisses | retirer |
+| Aine | adapter: variante:marche-laterale-elastique-cuisses | adapter: variante:marche-laterale-elastique-cuisses | retirer |
 
 **Notes**
 - genou-n1 : élastique au-dessus des genoux, pas aux chevilles.
 - genou-n2 : même variante ; aucune augmentation de résistance (R2).
 - hanche-n2 : élastique au-dessus des genoux, pas aux chevilles.
+- aine-n1 : élastique au-dessus des genoux, pas aux chevilles (levier court). NON SOURCÉ (choix prudent de `kine`).
+- aine-n2 : même variante ; aucune augmentation de résistance (R2).
 - grossesse : élastique au-dessus des genoux ; résistance la plus légère et un mur ou un dossier à portée de main (conseils non codés). Post-partum : G7.
 - general : pas de version plus douce plus basse : prends un élastique plus léger. Boucle élastique abîmée : on la jette.
 

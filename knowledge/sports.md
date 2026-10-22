@@ -15,12 +15,13 @@ Un sport combine plusieurs familles : foot = sprints + endurance intermittente +
 - **Exercice nordique des ischios** : méta-analyse de 5 études, 4 455 participants (Br J Sports Med 2018, synthèse PEDro) : programmes incluant le nordique -> 51 % de blessures des ischios en moins (rapport 0,49). https://lida.sport-iat.de/ta/Record/4050748?lng=en : OK (résumé). Matériel : un partenaire ou un point d'ancrage solide pour les pieds.
 - **Épaule des sports de lancer** : essai randomisé en grappes, 660 handballeurs d'élite (Andersson et al., Br J Sports Med 2017;51:1073) : programme OSTRC de l'épaule 3 fois/semaine à l'échauffement -> problèmes d'épaule 17 % contre 23 % (odds -28 %). https://bjsm.bmj.com/content/51/14/1073 : OK pour le hand ; extrapolation au volley et aux raquettes = PROVISOIRE.
 - **Volley** : revue systématique de 6 essais (Corrêa et al., Fisioterapia e Pesquisa 2026) : preuves de faible qualité ; seul un programme a réduit la lombalgie à court terme. https://revistas.usp.br/fpusp/article/view/251673 : OK, preuve faible.
-- **Danse** : revue systématique de 8 études (J Dance Med Sci 2025) : les programmes de renforcement/conditionnement pourraient réduire les blessures, preuve initiale. https://lida.sport-iat.de/ta/Record/4091443?lng=en : PROVISOIRE.
+- **Danse** : revue systématique de 8 études (J Dance Med Sci 2026, vol. 30) : les programmes de renforcement/conditionnement pourraient réduire les blessures, preuve initiale. https://lida.sport-iat.de/ta/Record/4091443?lng=en : PROVISOIRE.
 - **Raquettes** : aucune source de prévention spécifique lue : NON SOURCÉ ; utiliser les familles « changements de direction » et « épaule » en signalant l'extrapolation.
 
 ## Règles de conception (à valider par `kine`)
 1. Sport coché -> 1 à 2 blocs courts par semaine de sa famille, intégrés à l'échauffement ou en fin de séance (10-15 min), pas de séance en plus si le temps manque.
 2. Foot -> proposer le FIFA 11+ (ou ses éléments) à l'échauffement ; nordique progressif (volume faible au départ, courbatures fortes les premières fois).
 3. Volley, raquettes, hand -> éléments du programme d'épaule OSTRC à l'échauffement.
-4. Danse, volley -> réceptions de saut contrôlées, équilibre sur une jambe, renforcement des mollets et chevilles.
+4. Danse, volley -> réceptions de saut contrôlées, équilibre sur une jambe (jamais les yeux fermés), renforcement des mollets et chevilles.
+   Sauts : tous de niveau intermédiaire, avec la réception contrôlée (reception-saut-stabilisee) en entrée ; proposés en priorité aux personnes qui pratiquent un sport de saut (volley, danse, foot) ; décision D3 du 22/10/2026.
 5. Aucun travail de saut intensif la veille d'un match ; fatigue/douleur -> réduire.

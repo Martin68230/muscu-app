@@ -44,7 +44,7 @@ Voir program-logic.md. Aucune distance de glissement ni durée sourcée.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -52,16 +52,19 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: variante:curl-ischios-serviette-pont | adapter: variante:curl-ischios-serviette-pont | retirer |
 | Genou | adapter: variante:curl-ischios-serviette-pont | retirer: remplacant:pont-fessier-sol | retirer |
 | Cou | adapter: appui:coussin | adapter: appui:coussin | retirer |
+| Cuisse | adapter: variante:curl-ischios-serviette-pont | retirer: remplacant:pont-fessier-sol | retirer |
 
 **Notes**
 - dos-n1 : deux jambes, talons sur la serviette (échelon 1).
 - dos-n2 : exercice retiré ; remplacé par le pont fessier au sol.
-- hanche-n1 : deux jambes ; l'arrière de la cuisse se déclare sous « hanche » ou « genou ».
+- hanche-n1 : deux jambes ; une gêne à l'arrière de la cuisse se déclare sous « cuisse ».
 - hanche-n2 : même variante ; aucune augmentation de difficulté (R2).
 - genou-n1 : deux jambes, talons sur la serviette.
 - genou-n2 : exercice retiré (flexion du genou contre résistance) ; remplacé par le pont fessier au sol.
 - cou-n1 : coussin sous la tête.
 - cou-n2 : même case ; aucune augmentation de difficulté (R2).
+- cuisse-n1 : deux jambes, talons sur la serviette (échelon 1). NON SOURCÉ (choix prudent de `kine`).
+- cuisse-n2 : exercice retiré dès la gêne nette à l'arrière de la cuisse ; remplacé par le pont fessier au sol.
 - grossesse : retiré : couché sur le dos (G4) ; remplacé par le soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
 - general : cases au moins aussi restrictives que le pont fessier, plus facile. Version plus douce : le pont fessier au sol. Crampe forte à l'arrière de la cuisse : redresse la jambe, arrête.
 

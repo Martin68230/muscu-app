@@ -44,7 +44,7 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -52,6 +52,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | adapter: appui:coussin | retirer | retirer |
 | Poignet | adapter: appui:avant-bras | adapter: appui:avant-bras | retirer |
 | Dos | garder | adapter: amplitude:reduite | retirer |
+| Aine | adapter: amplitude:reduite | retirer | retirer |
 
 **Notes**
 - hanche-n1 : écartement modeste des genoux, recul vers les talons jusqu'à une tension douce seulement.
@@ -61,8 +62,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - poignet-n1 : sur les avant-bras, les mains ne portent plus le poids.
 - poignet-n2 : même appui ; aucune augmentation (R2).
 - dos-n2 : bassin moins reculé, dos plat.
+- aine-n1 : écartement modeste des genoux, recul vers les talons jusqu'à une tension douce seulement. NON SOURCÉ (choix prudent de `kine`).
+- aine-n2 : exercice retiré (étirement de l'intérieur de la cuisse, zone sensible aux élongations : prudence de `kine`, NON SOURCÉ).
 - grossesse : écartement modéré, jamais jusqu'à l'inconfort (G4, extrapolation ; laxité des ligaments en grossesse, NON SOURCÉ). Quatre pattes accepté, pas de couché sur le dos.
-- general : aine : sans zone propre dans l'app, une gêne à l'aine se déclare sous « hanche ». Version plus douce : grenouille-mains.
+- general : une gêne à l'aine se déclare sous « aine ». Version plus douce : grenouille-mains.
 
 **Grossesse** : adapter: amplitude:reduite
 **Version plus douce** : grenouille-mains

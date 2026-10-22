@@ -3,7 +3,7 @@ id: saut-lateral-patineur
 nom: Saut latéral (patineur)
 schema: saut
 type: fonctionnel
-niveau_min: debutant
+niveau_min: intermediaire
 muscles_principaux: [adducteurs, moyen_fessier]
 muscles_secondaires: [quadriceps, fessiers, mollets]
 source_brouillon: []
@@ -14,7 +14,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| saut-lateral-pas-glisse | Pas latéral sans saut, appui stabilisé | 1 | debutant | poids_du_corps | Sol plat, antidérapant, espace dégagé sur les côtés. |
+| saut-lateral-pas-glisse | Pas latéral sans saut, appui stabilisé | 1 | intermediaire | poids_du_corps | Sol plat, antidérapant, espace dégagé sur les côtés. |
 | saut-lateral-un-saut | Un saut latéral, arrêt stabilisé | 2 | intermediaire | poids_du_corps | Même installation ; saut d'un pied sur l'autre, arrêt sur la jambe d'arrivée. |
 | saut-lateral-enchaine | Sauts latéraux enchaînés | 3 | intermediaire | poids_du_corps | Même installation ; sauts d'un côté à l'autre sans arrêt. |
 
@@ -26,6 +26,7 @@ statut: utilisable
 5. Reste régulier : une réception stable vaut mieux qu'un grand saut.
 
 ## Points d'attention
+- Prérequis (conseil non codé, décision D3 du 22/10/2026) : réception contrôlée (reception-saut-stabilisee) maîtrisée sans gêne avant ce saut ; sauts prioritaires pour les personnes qui pratiquent un sport de saut (volley, danse, foot).
 - Passage progressif de la marche au saut selon l'échelon.
 - Aucune distance donnée (aucune valeur sourcée).
 - Pas de saut intensif la veille d'un match (sports.md, règle 5 : PROVISOIRE).
@@ -45,7 +46,7 @@ Aucune distance ni nombre de sauts sourcé.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -53,6 +54,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | retirer | retirer | retirer |
 | Dos | retirer | retirer | retirer |
 | Hanche | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
+| Aine | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
 
 **Notes**
 - cheville-n1 : exercice retiré dès la gêne légère (prudence propre aux sauts et réceptions) ; l'app propose un exercice qui ne sollicite pas la cheville.
@@ -61,8 +63,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n2 : retiré, comme au niveau 1.
 - dos-n1 : exercice retiré dès la gêne légère ; l'app propose un exercice qui ne sollicite pas le bas du dos.
 - dos-n2 : retiré, comme au niveau 1.
-- hanche-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1) ; une gêne à l'aine se déclare sous « hanche ».
+- hanche-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1).
 - hanche-n2 : exercice retiré.
+- aine-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1) ; les adducteurs freinent chaque réception latérale. NON SOURCÉ (choix prudent de `kine`).
+- aine-n2 : exercice retiré.
 - grossesse : aucun saut : risque de chute et d'impact (G4, extrapolation) ; remplacé par la marche latérale à l'élastique au-dessus des genoux. Post-partum : G7.
 - general : version plus douce : le pas latéral glissé sans saut. Conseil non codé : les sauts enchaînés (échelon 3) seulement après l'arrêt stabilisé sur une jambe sans gêne ; jamais fatigué ni la veille d'un match.
 
@@ -88,7 +92,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Demi-squat, poussée sur la jambe du dessus, saut latéral, retour dans l'autre sens (niveau de la source : débutant ; ici échelon 2 intermédiaire : changement tracé) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Lateral_Bound » (niveau beginner) ; lu le 2026-10-22 | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Demi-squat, poussée sur la jambe du dessus, saut latéral, retour dans l'autre sens (niveau de la source : débutant ; ici toute la fiche en intermédiaire, décision D3 : changement tracé) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Lateral_Bound » (niveau beginner) ; lu le 2026-10-22 | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Danse et volley : réceptions de saut contrôlées, équilibre sur une jambe, renforcement des mollets et chevilles | knowledge/sports.md, règle de conception 4 (à valider par kine) ; danse : revue systématique de 8 études, J Dance Med Sci 2026 (vol. 30) https://lida.sport-iat.de/ta/Record/4091443?lng=en (preuve initiale) | règle de conception de coach + revue de faible niveau de preuve | 2026-10-21 | PROVISOIRE |
 | Le programme FIFA 11+ (échauffement de football) réduit les blessures de 39 % (rapport des taux 0,61) | Thorborg et al., Br J Sports Med 2017;51:562 https://bjsm.bmj.com/content/51/7/562, repris dans knowledge/sports.md | méta-analyse de 6 essais, joueurs amateurs et sub-élite ; résumé lu à la rédaction de sports.md, non rouvert | 2026-10-21 | OK pour le programme dans son ensemble. Que CET exercice (ou cette forme) en fasse partie : NON SOURCÉ (contenu détaillé du programme non lu) |
 | Aucun travail de saut intensif la veille d'un match ; fatigue ou douleur : réduire | knowledge/sports.md, règle de conception 5 (à valider par kine) | règle de conception de coach | 2026-10-21 | PROVISOIRE |

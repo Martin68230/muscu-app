@@ -1,14 +1,13 @@
 ---
 id: releve-mollets
 nom: Montée sur la pointe des pieds
-schema: squat
+schema: cheville_mollet
 type: force
 niveau_min: debutant
 muscles_principaux: [mollets]
 muscles_secondaires: []
 source_brouillon: []
 statut: utilisable
-couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -30,7 +29,6 @@ couverture: substitut
 ## Points d'attention
 - Descente lente : c'est elle qui sollicite le mollet.
 - Aucune durée ni nombre de répétitions n'est donné (aucune valeur sourcée).
-- Fiche rangée sous le schéma « squat » faute de schéma dédié aux mollets : couverture « substitut ».
 
 ## Erreurs fréquentes
 - Chevilles qui basculent vers l'extérieur.

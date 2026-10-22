@@ -49,7 +49,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:planche-laterale-genoux | retirer: remplacant:dead-bug | retirer |
+| Épaule | adapter: variante:planche-laterale-genoux | retirer | retirer |
 | Poignet | adapter: variante:planche-laterale-jambe-levee-avant-bras | adapter: variante:planche-laterale-jambe-levee-avant-bras | retirer: sans-zone:planche-laterale-jambe-levee-avant-bras |
 | Dos | adapter: amplitude:reduite | retirer: remplacant:planche-laterale-genoux | retirer |
 | Hanche | garder | adapter: variante:planche-laterale-genoux | retirer |
@@ -57,7 +57,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - epaule-n1 : remplacé par la planche latérale sur le genou, sans jambe levée (plus facile).
-- epaule-n2 : exercice retiré ; remplaçant : dead bug (la planche latérale est elle-même retirée à l'épaule niveau 2).
+- epaule-n2 : exercice retiré, sans remplaçant : la planche latérale est retirée et le dead bug est adapté à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
 - poignet-n1 : appui sur l'avant-bras plutôt que sur la main.
 - poignet-n3 : l'appui sur l'avant-bras ne charge pas le poignet.
 - dos-n1 : jambe levée moins haut.

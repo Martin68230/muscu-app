@@ -1,14 +1,13 @@
 ---
 id: cheville-elastique
 nom: Renforcement de cheville à l'élastique
-schema: mobilite
+schema: cheville_mollet
 type: fonctionnel
 niveau_min: debutant
-muscles_principaux: [mollets]
-muscles_secondaires: []
+muscles_principaux: [peroniers]
+muscles_secondaires: [mollets]
 source_brouillon: []
 statut: utilisable
-couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -27,8 +26,6 @@ couverture: substitut
 
 ## Points d'attention
 - Petits mouvements lents, résistance légère au départ ; contrôle l'élastique avant chaque série.
-- Les muscles réels (péroniers, tibial postérieur) ne sont pas dans la liste des muscles du format : « mollets » est utilisé par défaut (voir README, question 4).
-- Fiche rangée sous « mobilité » faute de schéma dédié à la cheville : couverture « substitut ».
 
 ## Erreurs fréquentes
 - Bouger la jambe entière au lieu de la cheville.

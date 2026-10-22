@@ -55,12 +55,15 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: variante:sdt-unijambiste-mur | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
 | Genou | garder | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
 | Cheville | adapter: variante:sdt-unijambiste-mur | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
+| Cuisse | adapter: variante:sdt-unijambiste-mur | retirer: remplacant:pont-fessier | retirer |
 
 **Notes**
 - dos-n1 : version mur, sans charge.
 - hanche-n2 : deux pieds au sol, charge légère.
 - genou-n2 : deux pieds au sol.
 - cheville-n2 : deux pieds au sol.
+- cuisse-n1 : version mur, sans charge. NON SOURCÉ (choix prudent de `kine`).
+- cuisse-n2 : exercice retiré ; remplacé par le pont fessier (le soulevé de terre aux haltères est lui-même adapté à la cuisse de niveau 2).
 - grossesse : version mur (appui au mur), sans charge. Post-partum : G7.
 - general : version plus douce = version mur, puis soulevé de terre roumain aux haltères (deux pieds au sol).
 

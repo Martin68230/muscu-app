@@ -46,7 +46,7 @@ Aucun nombre de contacts sourcé. Pas de saut intensif la veille d'un match (spo
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -54,6 +54,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | retirer | retirer | retirer |
 | Dos | retirer | retirer | retirer |
 | Hanche | adapter: variante:reception-saut-petit-saut | retirer | retirer |
+| Cuisse | adapter: variante:reception-saut-petit-saut | retirer | retirer |
+| Aine | adapter: variante:reception-saut-petit-saut | retirer | retirer |
 
 **Notes**
 - cheville-n1 : exercice retiré dès la gêne légère (prudence propre aux sauts et réceptions) ; l'app propose un exercice qui ne sollicite pas la cheville.
@@ -64,6 +66,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n2 : retiré, comme au niveau 1.
 - hanche-n1 : remplacé par le petit saut sur place avec réception stabilisée (échelon 1).
 - hanche-n2 : exercice retiré.
+- cuisse-n1 : remplacé par le petit saut sur place avec réception stabilisée (les ischios freinent la réception). NON SOURCÉ (choix prudent de `kine`, aligné sur la hanche).
+- cuisse-n2 : exercice retiré.
+- aine-n1 : remplacé par le petit saut sur place avec réception stabilisée. NON SOURCÉ (choix prudent de `kine`, aligné sur la hanche).
+- aine-n2 : exercice retiré.
 - grossesse : aucun saut ni descente de marche : risque de chute et d'impact (G4, extrapolation : la HAS vise surtout le 2e et le 3e trimestre) ; remplacé par le squat assis-debout. Post-partum : G7, le schéma saut n'est pas proposé tant que le réglage est coché.
 - general : échelon le plus simple du schéma saut : pas de version plus douce dans la fiche. Conseil non codé : ne proposer le saut qu'après un squat sans gêne et jamais le jour d'un match ou fatigué (questions pour l'utilisateur).
 

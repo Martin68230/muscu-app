@@ -49,7 +49,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: amplitude:reduite | retirer: remplacant:dead-bug | retirer |
+| Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Poignet | garder | garder | retirer: sans-zone:planche-bras-leve-avant-bras |
 | Coude | adapter: appui:serviette | adapter: variante:planche-genoux | retirer |
 | Cou | adapter: amplitude:tete-alignee | adapter: variante:planche-genoux | retirer |
@@ -58,7 +58,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - epaule-n1 : levée du bras ou de la jambe moins haute.
-- epaule-n2 : exercice retiré, remplacé par dead-bug.
+- epaule-n2 : exercice retiré, sans remplaçant : le dead-bug est lui-même adapté à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
 - poignet-n3 : la planche sur les avant-bras ne charge pas les poignets.
 - coude-n1 : serviette pliée sous les avant-bras.
 - coude-n2 : remplacé par la planche sur les genoux (plus facile).
