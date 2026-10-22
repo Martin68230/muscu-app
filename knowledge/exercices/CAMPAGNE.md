@@ -34,3 +34,4 @@ Fichier `knowledge/exercices/.campagne.lock` (non commité) contenant l'heure de
 | 22/10 02:39 | Lot-03 : coach (24 fiches mobilité/cardio/rotation/traction), kine, check 0 erreur, relecteur (2 bloquants, 18 à corriger) ; corrections NON faites (quota) | 78 % -> 95 % | 40 % -> 43 % | voir git log |
 | 22/10 07:27 | Lot-03 : corrections coach, kine, recontrôle relecteur (0 bloquant, 10 mineurs), corrections coach ; 14 fiches `verifie`, check 0 erreur, npm test 52 OK | 13 % -> ~45 % | 45 % -> ~50 % | voir git log |
 | 22/10 08:06 | D1 (dev), D2 (relecteur lots 01-02, 102 fiches utilisable), D5, D3 (dev, coach, kine), D7/D8 outils ; arrêt vers 81 % | 65 % -> 81 % | 52 % -> 55 % | f2f5fd8, 0180580, fd0985b, 29c471f |
+| 22/10 08:39 | Aucune étape : quota 5 h à 81 % (reset 12:20 Paris), pas de marge pour un agent ; reprise au point « Reprendre ici » | 81 % -> 81 % | 55 % -> 55 % | - |
