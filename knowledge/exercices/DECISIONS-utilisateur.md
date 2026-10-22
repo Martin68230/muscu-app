@@ -56,3 +56,14 @@ L'utilisateur veut une image partout : sans image, une fiche n'est pas parlante.
 - Choix rapides : consigne pas claire, image fausse ou manquante, exercice gênant ou douloureux, matériel incorrect, autre ; + un champ de texte facultatif. Envoi en un appui, sans quitter la séance.
 - Enregistré localement avec l'id de la fiche, la variante, la date et l'app hors-ligne comprise ; synchronisé avec Supabase en phase 6 (table `signalements`, visible par l'admin seulement). Un écran ou un export « signalements » permet de les donner à Claude Code pour corriger les fiches.
 - Le bouton reste petit et ne gêne jamais l'action principale de l'écran (règle d'affichage D de CLAUDE.md : zone tactile de 44 px tout de même).
+
+## 22/10/2026 08 h 45 (écrit par la session principale, demande de l'utilisateur)
+
+### D10. Cou et arrière d'épaule : à appliquer APRÈS D6 (images)
+1. **Cou** : la zone `cou` existe dans le profil blessures, mais aucun exercice dédié. `coach` puis `kine` créent un petit lot « cou » (knowledge/exercices/vague1/lot-NN-cou/), avec sources (`kine` cherche les recommandations sur la douleur cervicale : HAS, NICE, JOSPT, Cochrane…) :
+   - mobilité douce (rotations, inclinaisons) ;
+   - rentrer le menton (rétraction cervicale) ;
+   - isométriques du cou ;
+   - renforcement du haut du dos qui va avec (ex. rétraction des omoplates, rowing léger, Y-T au sol si adapté).
+   Pour l'app : jamais de diagnostic ; signes qui doivent faire consulter, à afficher dans ces fiches et à vérifier dans regles-securite-communes.md : fourmillements ou engourdissement dans le bras, perte de force, douleur après un choc, maux de tête inhabituels. Quand la zone `cou` est gênée (niveau 1 ou 2), le générateur peut proposer ces exercices doux (les marquer comme tels dans les fiches, et l'écrire dans regles-securite-communes.md pour `dev`).
+2. **Arrière d'épaule** : une dizaine de fiches existent déjà ; compléter avec **face pull à l'élastique**, **oiseau sur banc incliné** (haltères) et **rotation externe à la poulie**, pour que TOUS les profils de matériel (A à F) aient au moins 3 exercices d'arrière d'épaule. Vérifier avec tools/couverture.mjs (ou une liste par profil si l'outil ne compte pas ce groupe musculaire) et combler les profils encore sous 3.
