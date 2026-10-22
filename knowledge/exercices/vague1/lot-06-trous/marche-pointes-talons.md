@@ -4,13 +4,13 @@ nom: Marche sur les pointes et sur les talons
 schema: cheville_mollet
 type: fonctionnel
 niveau_min: debutant
-muscles_principaux: [mollets]
+muscles_principaux: [mollets, tibial_anterieur]
 muscles_secondaires: [peroniers]
 source_brouillon: []
 statut: complete_kine
 ---
 ## Pourquoi cette fiche
-La marche sur les talons sollicite le muscle du devant de la jambe (tibial antérieur, non listé dans les muscles de format-fiches.md), la marche sur les pointes les mollets.
+La marche sur les talons sollicite le muscle du devant de la jambe (tibial antérieur), la marche sur les pointes les mollets (NON SOURCÉ, description de coach).
 
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -19,14 +19,14 @@ La marche sur les talons sollicite le muscle du devant de la jambe (tibial anté
 |---|---|---|---|---|---|
 | marche-talons | Marche sur les talons | 1 | debutant | poids_du_corps | Sol plat, antidérapant, espace dégagé, un mur ou un couloir à portée de main. |
 | marche-pointes | Marche sur les pointes | 1 | debutant | poids_du_corps | Même installation. |
-| marche-pointes-talons-enchainees | Pointes puis talons, enchaînés | 2 | debutant | poids_du_corps | Même installation ; quelques pas sur les pointes, puis demi-tour et quelques pas sur les talons. |
+| marche-pointes-talons-enchainees | Pointes puis talons, enchaînés | 2 | debutant | poids_du_corps | Même installation ; quelques pas sur les pointes, puis pieds à plat, arrêt et demi-tour (jamais sur les pointes ni sur les talons), puis quelques pas sur les talons. |
 
 ## Consignes
 1. Choisis un espace dégagé et plat, avec un mur ou un couloir à portée de main.
 2. Pour la marche sur les talons : relève les pointes de pieds et marche à petits pas.
 3. Pour la marche sur les pointes : monte sur l'avant des pieds, talons levés, et marche à petits pas.
 4. Garde le dos droit, le regard devant toi, les bras libres pour l'équilibre.
-5. Fais demi-tour avant d'être fatigué : arrête-toi dès que l'équilibre devient incertain.
+5. Pose les pieds à plat avant chaque demi-tour, puis fais demi-tour avant d'être fatigué : arrête-toi dès que l'équilibre devient incertain.
 
 ## Points d'attention
 - Petits pas, lents ; chaussures qui tiennent bien ou pieds nus sur un sol non glissant.

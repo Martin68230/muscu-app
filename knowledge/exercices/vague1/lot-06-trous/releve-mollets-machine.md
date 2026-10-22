@@ -83,8 +83,9 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - En salle : demande un encadrant en cas de doute sur le réglage ; chaussures aux pieds, sol non glissant autour.
 
 ## Photo
-- `Standing_Calf_Raises/0.jpg` : affichable : oui (vue le 2026-10-22 : machine debout, vue de dos, talons dans le vide ; montre la variante « debout » ; la variante assise n'a pas d'image ; WebP à créer par dev)
-- `Standing_Calf_Raises/1.jpg` : affichable : oui (vue le 2026-10-22 : même machine, position haute, talons levés ; WebP à créer par dev)
+- `Standing_Calf_Raises/0.jpg` : affichable : non (vue le 2026-10-22 : logo « Bodybuilding.com » lisible dans le dos du pratiquant, non recadrable ; règle 12 ; machine cachée par le pratiquant ; ne montre que la variante debout)
+- `Standing_Calf_Raises/1.jpg` : affichable : non (vue le 2026-10-22 : même logo de tiers lisible ; règle 12)
+- illustration : public/illustrations/releve-mollets-machine.svg : affichable : non (à créer par dev ; une figure de profil, machine debout puis assise, talons dans le vide puis levés ; la fiche reste sans image affichable tant qu'elle n'existe pas)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -23,7 +23,7 @@ Travaille le muscle du devant de la jambe (tibial antérieur), qui relève la po
 
 ## Consignes
 1. Installe-toi comme indiqué (assis, ou dos au mur) en gardant les talons au sol.
-2. Relève les pointes de pieds vers les tibias, le plus haut possible, sans plier les genoux ni décoller le dos du mur.
+2. Relève les pointes de pieds vers les tibias, le plus haut possible, sans décoller les talons du sol. Assis : le dos reste droit, sans te pencher. Debout : jambes tendues (sans verrouiller les genoux) et dos contre le mur.
 3. Marque un court arrêt en haut.
 4. Redescends lentement jusqu'au sol, sans claquer les pieds.
 5. Recommence en gardant le mouvement fluide.

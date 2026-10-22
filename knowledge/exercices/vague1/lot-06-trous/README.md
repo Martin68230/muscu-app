@@ -1,5 +1,7 @@
 # Lot 06 (vague 1) : cases sous 3, 14 fiches
-Rédigé par `coach` le 22/10/2026. Statut de toutes les fiches : `brouillon_coach` (sécurité à reprendre par `kine`, puis contrôle `relecteur`). `npm run check:fiches` : 0 erreur, 4 avertissements (WebP manquants, listés plus bas). Aucune valeur chiffrée (séries, répétitions, charges, durées) : rien n'est sourcé.
+Rédigé par `coach` le 22/10/2026, sécurité reprise par `kine`, contrôlé par `relecteur` (CONTROLE-relecteur.md : 4 bloquants, 12 à corriger). Statut des fiches : `complete_kine` (aucune n'est encore `utilisable` ; statuts inchangés par cette reprise, à fixer après recontrôle). `npm run check:fiches` : 0 erreur. Aucune valeur chiffrée (séries, répétitions, charges, durées) : rien n'est sourcé.
+
+Reprise `coach` du 22/10/2026 (contenu d'entraînement) : B1, B2, B3, C1, C4, C5, C6, C7, C11, C12, M8 traités. Restent hors de cette reprise : B4 et la sécurité (`kine`), les statuts, les illustrations (`dev`).
 
 ## Fiches
 | id | schéma | niveau | variantes (échelon) | matériel | image |
@@ -9,11 +11,11 @@ Rédigé par `coach` le 22/10/2026. Statut de toutes les fiches : `brouillon_coa
 | releve-mollets-assis | cheville/mollet | débutant | chaise (1), haltère (2), une jambe (3) | chaise ; halteres | illustration à créer |
 | releve-tibial-mur | cheville/mollet | débutant | assis (1), dos au mur 2 pieds (1), 1 pied (2) | chaise ; mur | illustration à créer |
 | marche-pointes-talons | cheville/mollet | débutant | talons (1), pointes (1), enchaînées (2) | poids du corps | illustration à créer |
-| releve-mollets-halteres | cheville/mollet | débutant | au sol (1), marche (2), une jambe (3) | halteres ; marche_escalier | illustration à créer |
-| releve-mollets-machine | cheville/mollet | débutant | debout (1), assise (1) | machine | 2 photos (variante debout) |
+| releve-mollets-halteres | cheville/mollet | débutant | au sol (1), marche avec un seul haltère et une main sur la rampe (2), une jambe (3) | halteres ; marche_escalier | illustration à créer |
+| releve-mollets-machine | cheville/mollet | débutant | debout (1), assise (1) | machine | illustration à créer (photos écartées : logo tiers) |
 | abduction-couchee-cote | hanche latérale | débutant | base (1), dos au mur (1), mini-bande (2) | tapis ; mur ; mini_bande | illustration à créer |
 | clam-coquille | hanche latérale | débutant | pieds joints (1), mini-bande (2) | tapis ; mini_bande | illustration à créer |
-| abduction-hanche-debout | hanche latérale | débutant | chaise (1), mur (1), mini-bande (2) | chaise ; mur ; mini_bande | 2 photos (mention) |
+| abduction-hanche-debout | hanche latérale | débutant | chaise (1), mur (1), mini-bande (2) | chaise ; mur ; mini_bande | illustration à créer (photos écartées) |
 | abduction-quatre-pattes | hanche latérale | débutant | sol (1), mini-bande (2) | tapis ; mini_bande | illustration à créer |
 | marche-laterale-poids-du-corps | hanche latérale | débutant | genoux souples (1), demi-squat (2) | poids du corps | illustration à créer |
 | abduction-hanche-poulie | hanche latérale | intermédiaire | debout, sangle cheville (1) | poulie | illustration à créer |
@@ -29,15 +31,24 @@ Rédigé par `coach` le 22/10/2026. Statut de toutes les fiches : `brouillon_coa
 - **Pull-over haltère** : déjà `pullover-haltere-au-sol` (variante banc incluse). Pas de fiche C de plus : les 2 fiches poids du corps suffisent pour C (A est inclus dans C). Un pull-over penché n'est pas un tirage vertical fiable (charge verticale, bras vers le bas).
 - **Mobilité cheville au mur** : déjà `mobilite-cheville-au-mur` (schéma mobilité). **Montée unipodale, sur marche** : déjà variantes de `releve-mollets`. **Fente latérale** : déjà `fente-laterale`. **Planche latérale** : `planche-laterale`, `planche-laterale-jambe-levee` (gainage). **Marche latérale à l'élastique** : `marche-laterale-elastique` (mini-bande seule), d'où la version sans élastique.
 
-## Fiches sans image affichable (avertissements ou illustrations à créer pour `dev`)
-Aucune photo free-exercise-db adaptée : 12 fiches. Ligne « illustration » présente avec `affichable : non (à créer par dev)` ; `dev` ajoute la pose dans `tools/illustrations-poses.mjs`, génère le SVG, puis `coach` passe la ligne à `oui`. Fiches : tirage-vertical-allonge-ventre, tirage-vertical-serviette, releve-mollets-assis, releve-tibial-mur, marche-pointes-talons, releve-mollets-halteres, abduction-couchee-cote, clam-coquille, abduction-quatre-pattes, marche-laterale-poids-du-corps, abduction-hanche-poulie, abduction-hanche-machine.
-Photos écartées (vues le 22/10/2026) : `Dumbbell_Seated_One-Leg_Calf_Raise/0,1` (haltère tenu devant la poitrine, pas sur la cuisse) ; `Thigh_Abductor/0,1` (marque Nautilus visible, règle 12).
+## Fiches sans image affichable (illustrations à créer ou à retoucher par `dev`)
+Pour les fiches sans illustration, la ligne « illustration » porte `affichable : non (à créer par dev)` ; `dev` ajoute la pose dans `tools/illustrations-poses.mjs`, génère le SVG, puis `coach` passe la ligne à `oui`.
+Photos écartées (vues le 22/10/2026) : `Dumbbell_Seated_One-Leg_Calf_Raise/0,1` (haltère devant la poitrine, pas sur la cuisse) ; `Thigh_Abductor/0,1` (marque Nautilus, règle 12) ; `Standing_Calf_Raises/0,1` (logo « Bodybuilding.com » dans le dos du pratiquant, règle 12) ; `Side_Leg_Raises/0` (pieds croisés, main sur la hanche, petit logo) et `/1` (jambe très haute, buste penché : contredit la consigne).
 
-## WebP à créer (`dev`, largeur 600 px, qualité 70, lignes à ajouter dans tools/photos.md)
-Source : https://raw.githubusercontent.com/yuhonas/free-exercise-db/main/exercises/<Dossier>/<n>.jpg (Unlicense). Dossiers : `Side_Leg_Raises` (0 et 1 ; fiche abduction-hanche-debout ; mention : jambe très haute et buste penché sur la photo, la consigne demande moins haut et buste droit) ; `Standing_Calf_Raises` (0 et 1 ; fiche releve-mollets-machine ; montre la machine debout, pas l'assise). Les 4 avertissements actuels de `check:fiches` viennent de là.
+**À créer par dev (aucune image affichable)**
+- releve-mollets-machine : figure de profil, machine debout puis assise, talons dans le vide puis levés.
+- abduction-hanche-debout : de face, une main sur le dossier, buste droit, jambe levée peu haut, pieds largeur de hanches.
+
+**Illustrations existantes à retoucher par dev (relecteur C2, C3, C8, C9, C10)**
+- tirage-vertical-allonge-ventre : pose d'arrivée à poitrine au sol, coudes vers les côtes (poitrine décollée = échelon 3 seulement) ; figure plus grande ; légende de droite coupée.
+- tirage-vertical-serviette : mains aux côtés de la tête, serviette en travers du front : à refaire avec bras levés et tendus devant, jamais derrière la nuque ; légende coupée.
+- abduction-couchee-cote : jambe du dessous pliée (elle est tendue) ; jambe du dessus peu haute (environ 35 à 40 degrés dessinés).
+- clam-coquille : pieds joints au sol sur le panneau d'ouverture (écart d'environ 65 px) ; légende coupée.
+- abduction-hanche-poulie : une main sur le montant (bras actuellement le long du corps).
+- Mineurs : releve-mollets-halteres (genoux dessinés fléchis, haltère sans bras ni main), marche-laterale-poids-du-corps (demi-squat trop marqué, flèche sur la tête), abduction-quatre-pattes (illisible sans légende), abduction-hanche-machine (poignées).
 
 ## Points pour `dev`
-- Muscle **tibial antérieur** absent de la liste de format-fiches.md : `releve-tibial-mur` est rattaché à `peroniers` en attendant.
+- Muscle **tibial antérieur** : présent dans format-fiches.md ; `releve-tibial-mur` (principal) et `marche-pointes-talons` (principal) l'utilisent.
 - Tag `poulie` : la sangle de cheville n'est pas décrite (fiche `abduction-hanche-poulie`).
 - Tag `table_solide` toujours absent (voir `tirage-sous-table`).
 

@@ -32,7 +32,7 @@ statut: complete_kine
 
 ## Erreurs fréquentes
 - Bascule du bassin vers l'arrière.
-- Pied tourné vers le plafond (c'est alors le fléchisseur de hanche qui travaille).
+- Pied tourné vers le plafond (NON SOURCÉ : un autre muscle, le fléchisseur de hanche, prendrait alors le relais, explication de coach).
 - Balancer la jambe avec de l'élan.
 
 ## Progression / régression

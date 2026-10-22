@@ -26,7 +26,7 @@ statut: complete_kine
 5. Avec un haltère : tiens-le fermement près des genoux, jamais au-dessus du ventre.
 
 ## Points d'attention
-- Genoux pliés : c'est la partie profonde du mollet (soléaire) qui travaille ; ne remplace pas la montée debout.
+- Genoux pliés : la partie profonde du mollet (soléaire) travaille davantage, et cela ne remplace pas la montée debout (NON SOURCÉ, explication de coach).
 - Descente lente.
 - Aucune durée, série, répétition ni intensité chiffrée (aucune valeur sourcée) : voir program-logic.md et load-calibration.md.
 
@@ -87,7 +87,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Montée de mollets assis, genoux pliés | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Dumbbell_Seated_One-Leg_Calf_Raise » (niveau beginner) ; images vues le 2026-10-22 ; la source est une jambe, avec haltère, sur un banc | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Montée de mollets assis, genoux pliés | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Dumbbell_Seated_One-Leg_Calf_Raise » (niveau beginner) ; images vues le 2026-10-22 ; la source est une jambe, avec haltère, un pied sur un bloc, sur un banc ; écarts : la fiche fait assis sur chaise, à plat, sans bloc ni étirement | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, grossesse, version plus douce, signes d'arrêt et objets du quotidien : proposition de coach (prudence), reprise par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

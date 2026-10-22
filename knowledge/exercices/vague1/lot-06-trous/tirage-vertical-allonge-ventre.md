@@ -18,7 +18,7 @@ Sans barre de traction ni élastique, on ne peut pas tirer une charge vers le ba
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| tirage-ventre-front-pose | Front posé, mains glissant sur le sol | 1 | debutant | poids_du_corps, tapis | Allongé sur le ventre, front posé sur le dos des mains ou sur une serviette pliée, bras tendus devant toi sur le sol. |
+| tirage-ventre-front-pose | Front posé sur une serviette pliée, mains glissant sur le sol | 1 | debutant | poids_du_corps, tapis | Allongé sur le ventre, front posé sur une serviette pliée (ou un coussin plat), bras tendus devant toi sur le sol. |
 | tirage-ventre-serviette | Avec une serviette tendue | 2 | debutant | poids_du_corps, tapis, serviette | Même position, une serviette tenue des deux mains et tendue entre elles : tu la tires vers l'extérieur pendant le geste. |
 | tirage-ventre-poitrine-levee | Poitrine et bras légèrement décollés | 3 | intermediaire | poids_du_corps, tapis | Même position ; la poitrine et les bras se décollent un peu du sol (regard vers le sol). |
 
