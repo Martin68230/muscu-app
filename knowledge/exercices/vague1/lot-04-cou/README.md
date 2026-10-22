@@ -1,6 +1,6 @@
 # Lot 04 (vague 1) : cou et arrière d'épaule, 12 fiches (décision D10)
 Rédigé par `coach` le 22/10/2026. Statut des fiches : `controle_relecteur`. Format : knowledge/format-fiches.md. `npm run check:fiches` : 0 erreur, 0 avertissement (114 fiches).
-**La section « Sécurité et contre-indications » est une version de prudence minimale écrite par `coach`, marquée « À COMPLÉTER PAR KINE »** (le validateur passe : format strict respecté). `kine` doit la reprendre fiche par fiche (zones, signes d'arrêt, grossesse) avant le contrôle de `relecteur`.
+**La section « Sécurité et contre-indications » a été reprise par `kine` le 22/10/2026** (sources : HAS 2020 imagerie cervicale pour les signes d'alerte ; règles du cou dans knowledge/regles-securite-communes.md §9 ; isométriques gardées non douces ; tirage aux sangles gardé intermédiaire, retiré en grossesse). À contrôler par `relecteur`.
 
 ## Fiches
 | id | schéma | niveau | zone cou (n1 / n2 / n3) | image |
@@ -51,6 +51,6 @@ Aucun profil sous 3 (les profils A et C étaient à 2). Les tirages (rowings) co
 8. **Cou après un coup du lapin ou un choc** : les fiches de cou disent de ne pas les faire avant avis d'un professionnel (extension de S2) ; à valider par `kine` et à ajouter dans regles-securite-communes.md (D10 le demande : fait seulement dans les fiches, pas encore dans ce fichier).
 
 ## Ce qui reste à faire
-- `kine` : compléter et valider la section sécurité des 12 fiches (marqueur « À COMPLÉTER PAR KINE »), signes d'alerte du cou dans regles-securite-communes.md, fiches douces.
+- `kine` : fait (22/10/2026). Reste : décision utilisateur sur le vertige léger (voir réponse de kine), champ `doux_pour` et schéma `cou` par `dev`.
 - `relecteur` : contrôle à neuf (fidélité aux sources lues par résumé : Blanpied, Cochrane, Reinold à relire dans le texte intégral).
 - Statut des fiches : `controle_relecteur` jusqu'à ce contrôle.
