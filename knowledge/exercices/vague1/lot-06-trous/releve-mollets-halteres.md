@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [mollets]
 muscles_secondaires: [peroniers]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -43,34 +43,47 @@ statut: brouillon_coach
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Cheville | adapter: variante:releve-mollets-halteres-sol | adapter: variante:releve-mollets-halteres-sol | retirer |
 | Genou | garder | adapter: variante:releve-mollets-halteres-sol | retirer |
 | Dos | garder | adapter: charge:legere | retirer |
+| Hanche | garder | adapter: variante:releve-mollets-halteres-sol | retirer |
 
 **Notes**
-- cheville-n1 : au sol ; aucune augmentation de charge.
-- cheville-n2 : même variante ; aucune augmentation (R2).
-- grossesse : debout au sol, une main au mur ; pas de marche ni d'escalier (chute, équilibre). Post-partum : G7.
+- cheville-n1 : au sol, deux pieds, une main sur un mur ; la marche donne une amplitude plus grande, donc évitée ; une gêne au tendon d'Achille se déclare sous « cheville ».
+- cheville-n2 : même variante ; aucune augmentation de charge (R2).
+- genou-n2 : au sol, sans marche ni appui sur une jambe seule.
+- dos-n2 : haltères légers (départ de l'étalonnage, jamais augmentés) ; au niveau 1, garder.
+- hanche-n2 : au sol, sans marche ni appui sur une jambe seule (équilibre).
+- grossesse : debout au sol, une main au mur ; pas de marche ni d'escalier (risque de chute). Post-partum : G7. Choix prudent NON SOURCÉ.
+- general : pas de ligne cuisse ni aine (muscles non sollicités).
 
 **Grossesse** : adapter: variante:releve-mollets-halteres-sol
 **Version plus douce** : releve-mollets-halteres-sol
 
+**Points d'attention (kine)**
+- Au sol d'abord : l'équilibre se prend à plat avant de monter sur la marche. En cas de doute, reste à l'échelon 1.
+- Marche (échelons 2 et 3) : la première marche seulement, jamais plus haut, avant-pieds entiers sur la marche, rampe ou mur à portée. Descente lente, jamais plus bas qu'une position étirée confortable.
+- Une jambe (échelon 3) : l'haltère du côté de la jambe qui travaille, l'autre main sur la rampe ; jamais les yeux fermés.
+- Charge de départ par l'étalonnage (load-calibration.md) ; haltères légers pour apprendre le geste.
+
 **Signes qui doivent faire arrêter**
-- Douleur (pas la simple brûlure du muscle qui travaille) à la cheville, derrière le talon, au mollet, au genou ou au bas du dos.
-- Perte d'équilibre, mouvement qui n'est plus contrôlé : arrête la série.
+- Douleur (pas la simple brûlure du muscle qui travaille) à la cheville, derrière le talon, au mollet, au genou, à la hanche ou au bas du dos.
+- Perte d'équilibre, talon qui dépasse trop, pied qui glisse sur la marche, haltère qui s'échappe : arrête la série et pose les haltères.
+- Douleur vive et soudaine derrière le mollet ou le talon : arrête et consulte un professionnel de santé (NON SOURCÉ, prudence).
 - Douleur qui dure, qui s'aggrave ou qui réveille la nuit, gonflement, perte de force, engourdissement ou fourmillements : consulte un professionnel de santé (S1, S2) ; ces signes n'ont pas à être « diagnostiqués » par toi.
 - Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
-- Marche : la première marche d'un escalier éclairé et dégagé, rampe à portée, chaussures aux pieds ; jamais une marche plus haute (R8, §7). Descente lente.
-- Haltères (R9) : fixes de préférence ; réglables seulement si disques et colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages.
+- Marche : la première marche d'un escalier éclairé, dégagé et non glissant, rampe à portée, chaussures aux pieds ; jamais une marche plus haute ni un escalier sans rampe (R8, §7). Les haltères restent le long du corps ; ne monte ni ne descends l'escalier avec eux.
+- Haltères (R9) : fixes de préférence ; réglables seulement si les disques sont serrés, vérifiés avant chaque série ; posés au sol hors des passages.
+- Mur plein ou rampe solide en appui, testés en appuyant fort ; sol non glissant ; pas de chaussettes sur sol lisse.
 
 ## Photo
 - aucune photo (l'entrée free-exercise-db « Standing_Dumbbell_Calf_Raise » n'a pas été regardée)
@@ -83,4 +96,4 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 | Première marche seulement, éclairée et dégagée, rampe à portée, chaussures aux pieds | regles-securite-communes.md §7 ; aucune source lue | - | 2026-10-22 | NON SOURCÉ |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse, version plus douce et signes d'arrêt : brouillon prudent de coach, à reprendre par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (brouillon coach, à reprendre par kine) |
+| Tableau par zone, grossesse, version plus douce, signes d'arrêt et objets du quotidien : proposition de coach (prudence), reprise par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

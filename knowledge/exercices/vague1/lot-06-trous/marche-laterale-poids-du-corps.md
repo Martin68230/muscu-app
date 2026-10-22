@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [moyen_fessier]
 muscles_secondaires: [fessiers, quadriceps]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Pourquoi cette fiche
 Version de la marche latérale pour les profils sans mini-bande (voir marche-laterale-elastique pour la version avec élastique).
@@ -45,9 +45,9 @@ Version de la marche latérale pour les profils sans mini-bande (voir marche-lat
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -55,25 +55,36 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 | Hanche | garder | adapter: amplitude:reduite | retirer |
 | Aine | adapter: amplitude:reduite | adapter: amplitude:reduite | retirer |
 | Cheville | garder | adapter: variante:marche-laterale-corps-genoux-souples | retirer |
+| Dos | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
-- genou-n1 : genoux peu fléchis, pas courts.
-- aine-n1 : pas courts.
-- grossesse : mur ou dossier à portée de main pour l'équilibre ; pas courts. Post-partum : G7.
+- genou-n1 : genoux peu fléchis, pas courts ; genou-n2 : même case, aucune augmentation (R2).
+- hanche-n2 : pas courts, aucune augmentation (R2).
+- aine-n1 : pas courts, sans forcer l'écartement ; aine-n2 : même case.
+- cheville-n2 : genoux peu fléchis, pas courts, mur ou dossier stable à portée de main.
+- dos-n2 : pas courts, buste droit, genoux peu fléchis.
+- grossesse : mur ou dossier à portée de main (équilibre moins sûr), genoux peu fléchis, pas courts, jamais de pas croisé. Post-partum : G7. Choix prudent NON SOURCÉ.
+- general : pas de ligne cuisse (muscles non sollicités). Jamais les yeux fermés.
 
 **Grossesse** : adapter: variante:marche-laterale-corps-genoux-souples
 **Version plus douce** : marche-laterale-corps-genoux-souples
 
+**Points d'attention (kine)**
+- Pas courts et contrôlés, jamais croisés ; ramène le pied sans le laisser toucher l'autre. Pointes de pieds vers l'avant, bassin à niveau.
+- Garde le même niveau de flexion des genoux pendant toute la marche ; ne te redresse pas à chaque pas.
+- Espace dégagé de chaque côté sur toute la longueur ; mur ou dossier stable à portée de main. Jamais les yeux fermés ; arrête-toi dès que l'équilibre devient incertain.
+
 **Signes qui doivent faire arrêter**
-- Douleur (pas la simple brûlure du muscle qui travaille) au genou, à la hanche, à l'aine ou à la cheville.
-- Perte d'équilibre, mouvement qui n'est plus contrôlé : arrête la série.
+- Douleur (pas la simple brûlure du muscle qui travaille) au genou, à la hanche, à l'aine, à la cheville ou au bas du dos.
+- Perte d'équilibre, pieds qui se croisent ou accrochent le sol, genou qui rentre nettement vers l'intérieur : arrête la série.
 - Douleur qui dure, qui s'aggrave ou qui réveille la nuit, gonflement, perte de force, engourdissement ou fourmillements : consulte un professionnel de santé (S1, S2) ; ces signes n'ont pas à être « diagnostiqués » par toi.
 - Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
-- Sol plat, non glissant, sans tapis qui glisse ; chaussures aux pieds.
-- Mur ou dossier de chaise stable à portée de main.
+- Sol plat, sec, non glissant (pas de parquet ciré en chaussettes, pas de tapis qui glisse ni de bord relevé) ; éclairage suffisant ; chaussures aux pieds, lacées.
+- Mur plein ou dossier de chaise stable (appuyé contre un mur, testé en appuyant fort) à portée de main ; ni table légère, ni porte, ni objet qui roule (R8, §7).
+- Passage dégagé (fils, chaussures, jouets) de chaque côté.
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
@@ -85,4 +96,4 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 | Marche latérale sans élastique | aucune entrée free-exercise-db correspondante (voisine : « Monster_Walk », avec bandes) ; description de coach | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse, version plus douce et signes d'arrêt : brouillon prudent de coach, à reprendre par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (brouillon coach, à reprendre par kine) |
+| Tableau par zone, grossesse, version plus douce, signes d'arrêt et objets du quotidien : proposition de coach (prudence), reprise par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |
