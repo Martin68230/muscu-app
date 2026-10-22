@@ -1,7 +1,7 @@
 # Lot 03 (vague 1) : mobilité, cardio, rotation débutant, tirage vertical, 24 fiches
-Rédigé par `coach` le 22/10/2026 (étape 3 puis début de l'étape 4 de CAMPAGNE.md). Statut de toutes les fiches : `brouillon_coach`. La section « Sécurité et contre-indications » est au gabarit « À compléter par `kine` » (avec une ligne de points de vigilance en texte libre, non codée). `npm run check:fiches` ne signale que les 72 manques de catégorie `securite` (3 par fiche : tableau, Grossesse, Version plus douce) ; aucune autre erreur, 0 avertissement.
+Rédigé par `coach` le 22/10/2026 (étape 3 puis début de l'étape 4 de CAMPAGNE.md). Statut actuel des fiches : `complete_kine` puis contrôle `relecteur` du 22/10/2026 (CONTROLE-relecteur.md) ; corrections de contenu par `coach` le 22/10/2026 (voir la fin de ce fichier). La section « Sécurité et contre-indications » est de `kine`.
 Format : knowledge/format-fiches.md. Photos : free-exercise-db seulement. Les ids de dossier ont été relevés dans l'index en ligne (dist/exercises.json, 22/10/2026) ; aucune image regardée, donc « affichable : à vérifier » (non affichée) ; « aucune photo » avec raison quand aucun id n'a été trouvé. Les numéros d'image (0 et 1) sont supposés, non vérifiés. Aucun WebP créé. Aucune image maxwu.
-Sources : free-exercise-db pour les fiches qui ont une entrée (PROVISOIRE : base d'exercices, descriptions non lues en détail) ; tout le reste (mouvements sans entrée libre, échelons, niveaux, muscles, bénéfices) est NON SOURCÉ, choix de coach. Aucune durée, répétition, série, intensité ni distance n'est donnée. `source_brouillon: []` partout (ajouts hors du brouillon).
+Sources : free-exercise-db pour les fiches qui ont une entrée (PROVISOIRE : base d'exercices ; descriptions lues en entier le 22/10/2026) ; tout le reste (mouvements sans entrée libre, échelons, niveaux, muscles, bénéfices) est NON SOURCÉ, choix de coach. Aucune durée, répétition, série, intensité ni distance n'est donnée. `source_brouillon: []` partout (ajouts hors du brouillon).
 
 ## Décompte de couverture avant le lot (fiches existantes, tous statuts : 78 en `controle_relecteur`, aucune `verifie`)
 Sortie de `node tools/couverture.mjs` (nombre de mouvements par profil x schéma) :
@@ -24,26 +24,26 @@ Cases sous 3 (en comptant les fiches `controle_relecteur` ; la contrainte « `ve
 | rotation-thoracique-assise | Rotation du haut du dos assis | mobilité | débutant | 2 | chaise ; poids_du_corps | NON SOURCÉ |
 | etirement-flechisseurs-hanche | Étirement de l'avant de la hanche | mobilité | débutant | 2 | poids_du_corps ; tapis ; tapis, chaise | PROVISOIRE (Kneeling_Hip_Flexor, Standing_Hip_Flexors) |
 | grenouille-hanches | Position de la grenouille | mobilité | débutant | 2 | tapis | NON SOURCÉ |
-| ouverture-hanche-quatre-pattes | Ouverture de hanche à quatre pattes | mobilité | débutant | 2 | tapis | NON SOURCÉ |
+| ouverture-hanche-quatre-pattes | Ouverture de hanche à quatre pattes | mobilité | débutant | 2 | tapis | PROVISOIRE (Hip_Circles_prone, échelon 2) ; échelon 1 NON SOURCÉ |
 | accroupi-profond-tenu | Position accroupie profonde tenue | mobilité | débutant | 2 | chaise ; poids_du_corps | NON SOURCÉ |
-| cercles-de-cheville | Cercles de cheville | mobilité | débutant | 2 | tapis ; chaise ; mur | PROVISOIRE (Ankle_Circles) |
-| etirement-mollets-mur | Étirement des mollets contre le mur | mobilité | débutant | 2 | mur ; marche_escalier, mur | PROVISOIRE (deux entrées libres) ; marche NON SOURCÉ |
+| cercles-de-cheville | Cercles de cheville | mobilité | débutant | 2 | tapis ; chaise ; mur | PROVISOIRE (Ankle_Circles, variante debout) ; couché et assis NON SOURCÉ |
+| etirement-mollets-mur | Étirement des mollets contre le mur | mobilité | débutant | 2 | mur ; marche_escalier, mur | PROVISOIRE (Calf_Stretch_Hands_Against_Wall) ; genou plié et marche NON SOURCÉ |
 | passage-de-bras-serviette | Passage de bras avec une serviette | mobilité | débutant | 2 | serviette | NON SOURCÉ |
-| cercles-de-bras | Cercles de bras | mobilité | débutant | 2 | poids_du_corps | PROVISOIRE (Shoulder_Circles) |
-| etirement-pectoraux-mur | Étirement des pectoraux contre le mur | mobilité | débutant | 2 | mur | PROVISOIRE (Chest_And_Front_Of_Shoulder_Stretch) |
+| cercles-de-bras | Cercles de bras | mobilité | débutant | 2 | poids_du_corps | PROVISOIRE (Arm_Circles) ; grands cercles NON SOURCÉ |
+| etirement-pectoraux-mur | Étirement des pectoraux contre le mur | mobilité | débutant | 2 | mur | NON SOURCÉ (description de coach) |
 | mobilite-poignets | Mobilité des poignets | mobilité | débutant | 2 | poids_du_corps ; tapis | PROVISOIRE (Wrist_Circles) ; échelon 2 NON SOURCÉ |
-| etirement-ischios-serviette | Étirement des ischios avec une serviette | mobilité | débutant | 2 | tapis, serviette ; tapis | PROVISOIRE (deux entrées libres) |
+| etirement-ischios-serviette | Étirement des ischios avec une serviette | mobilité | débutant | 2 | tapis, serviette ; tapis | PROVISOIRE (Seated_Floor_Hamstring_Stretch, Leg-Up_Hamstring_Stretch) ; serviette NON SOURCÉ |
 | etirement-fessiers-figure-4 | Étirement des fessiers en « 4 » | mobilité | débutant | 2 | chaise ; tapis | NON SOURCÉ |
-| etirement-quadriceps | Étirement de l'avant de la cuisse | mobilité | débutant | 1 | mur ; tapis | PROVISOIRE (Quad_Stretch, On_Your_Side_Quad_Stretch) |
+| etirement-quadriceps | Étirement de l'avant de la cuisse | mobilité | débutant | 1 | mur ; tapis | PROVISOIRE (On_Your_Side_Quad_Stretch, côté) ; debout NON SOURCÉ |
 | jumping-jacks | Jumping jacks | cardio | débutant | 2 | poids_du_corps | NON SOURCÉ |
 | montees-genoux-sur-place | Montées de genoux sur place | cardio | débutant | 2 | poids_du_corps | NON SOURCÉ |
 | mountain-climbers | Grimpeur | cardio | débutant | 3 | chaise ; tapis | PROVISOIRE (Mountain_Climbers) |
 | boxe-dans-le-vide | Boxe dans le vide | cardio | débutant | 2 | poids_du_corps | NON SOURCÉ |
-| marche-rapide-intervalles | Marche rapide en intervalles | cardio | débutant | 2 | poids_du_corps | NON SOURCÉ |
+| marche-rapide-intervalles | Marche rapide en intervalles | cardio | débutant | 2 | poids_du_corps | NON SOURCÉ (renvoi à program-logic.md §6, OMS 2020) |
 | pas-chasses-lateraux | Pas chassés latéraux | cardio | débutant | 2 | poids_du_corps | NON SOURCÉ |
-| rotation-bucheron | Bûcheron | rotation | débutant | 2 | poids_du_corps ; halteres ; elastique, porte | PROVISOIRE (Standing_Cable_Wood_Chop : poulie) |
-| crunch-bicyclette | Crunch bicyclette | rotation | débutant | 2 | tapis | NON SOURCÉ |
-| traction-barre | Traction à la barre | tirage V | intermédiaire (kine) | 4 | barre_traction ; barre_traction, elastique | PROVISOIRE (4 entrées libres) |
+| rotation-bucheron | Bûcheron | rotation | débutant | 2 | poids_du_corps ; halteres ; elastique, porte | PROVISOIRE (Standing_Cable_Wood_Chop : poulie seulement ; photos non affichées) |
+| crunch-bicyclette | Crunch bicyclette | rotation | débutant | 2 | tapis | PROVISOIRE (Cross-Body_Crunch, Air_Bike) |
+| traction-barre | Traction à la barre | tirage V | intermédiaire (kine) | 4 | barre_traction ; barre_traction, elastique | PROVISOIRE (Scapular_Pull-Up, Band_Assisted_Pull-Up, Chin-Up, Pullups) |
 
 ## Couverture apportée (fiches `brouillon_coach`, non comptées par couverture.mjs ; tout reste « non vérifié »)
 - Cardio : 6 fiches, toutes accessibles au profil A (mountain-climbers avec chaise ou tapis, les autres sans matériel) : la case passe de 0 à 6 pour A à F. Le tag `corde_a_sauter` n'est pas utilisé.
@@ -88,3 +88,27 @@ Aucune nouvelle source lue : tableaux par zone, versions plus douces et signes d
 1. **Traction en `intermediaire`** : on garde cette décision prudente, ou on la remet en débutant avec un futur champ « prérequis » ?
 2. **Étirements retirés dès la gêne nette** (mollets, pectoraux, ischios, fessiers, quadriceps, grenouille) : trop prudent ? Une alternative serait de les garder en amplitude « sans gêne ».
 3. **Post-partum et impact en cardio** : on demande à `dev` d'ajouter un attribut `impact` par variante (voir ci-dessus) ?
+
+## Corrections `coach` après le contrôle `relecteur` (22/10/2026)
+Entrées free-exercise-db relues en entier pour les fiches citées (colonne « Lu le » = descriptions lues). Statuts de fiche inchangés ; recontrôle `relecteur` nécessaire.
+- **Bloquants levés** : `cercles-de-bras` (source remplacée par `Arm_Circles`, « grands cercles » NON SOURCÉ) ; `etirement-pectoraux-mur` (ligne passée NON SOURCÉ, photos `non` : l'entrée citée décrit un bâton levé derrière la tête).
+- **Sources et photos** : `etirement-mollets-mur` (`Standing_Gastrocnemius_Calf_Stretch` retirée, photos `non`) ; `etirement-quadriceps` (ligne scindée : côté PROVISOIRE `On_Your_Side_Quad_Stretch`, debout NON SOURCÉ ; photos `Quad_Stretch` `non`) ; `cercles-de-cheville` (debout PROVISOIRE, couché/assis NON SOURCÉ) ; `ouverture-hanche-quatre-pattes` (`Hip_Circles_prone` pour l'échelon 2, PROVISOIRE) ; `crunch-bicyclette` (`Cross-Body_Crunch` échelon 1 et `Air_Bike` échelon 2, PROVISOIRE) ; `etirement-ischios-serviette` (serviette NON SOURCÉ, dit) ; `jumping-jacks` (citation `sports.md` règle 5 retirée, conseil NON SOURCÉ) ; `marche-rapide-intervalles` (renvoi à program-logic §6, HAS à recontrôler).
+- **Consignes et variantes** : `extension-thoracique` (consignes pour la chaise), `etirement-ischios-serviette` (consignes pour la variante assise, la seule permise en grossesse), `passage-de-bras-serviette` (prise étroite passée `intermediaire`), `etirement-flechisseurs-hanche` (variante debout avec appui possible), textes résiduels « à définir par kine » retirés (`jumping-jacks`, `montees-genoux-sur-place`), `chat-vache-sol` n'est plus présenté comme « plus facile » de `extension-thoracique` (ligne « alternative »).
+- **Seul changement de case, pour la cohérence** : `etirement-flechisseurs-hanche`, Grossesse = `adapter: variante:etirement-flechisseurs-debout` (la note interdisait déjà les positions à genoux). À confirmer par `kine`.
+
+### Corrections `kine` des cases (22/10/2026, après contrôle `relecteur`)
+Faites : `accroupi-profond-tenu` (Dos n2 garde la variante chaise ; Grossesse = `retirer: remplacant:squat-assis-debout`, position tenue, G4) ; `cercles-de-cheville` (Cheville n1 = variante assise, debout non proposée) ; `cercles-de-bras` (Épaule n2 et Cou n2 = petits cercles) ; `boxe-dans-le-vide` (Épaule et Coude n2 = variante lente) ; `traction-barre` (Épaule n2 = `retirer`, note corrigée) ; `passage-de-bras-serviette` (Épaule n2 garde la prise large) ; `rotation-bucheron` (ligne Hanche ajoutée par prudence, note sur l'élastique) ; `etirement-flechisseurs-hanche` (Grossesse = variante debout, confirmée) ; immobilité debout en grossesse (G4) ajoutée aux notes des étirements debout et de `passage-de-bras-serviette`, `cercles-de-bras`.
+Questions pour l'utilisateur (kine) :
+- `mobilite-poignets` : en grossesse, l'appui quatre pattes reste retiré par prudence (poignet en extension chargé) alors que `chat-vache`, `grenouille-hanches` et `ouverture-hanche-quatre-pattes` le gardent. On harmonise vers le plus prudent partout, ou on garde ce choix isolé ?
+- `cercles-de-cheville` propose `plus-dur : mobilite-cheville-au-mur` (fiche du pilote, Cheville n1 = `garder`), moins contraint que la fiche courante à n1. À aligner dans la fiche pilote (hors périmètre de cette passe) ou à retirer de la progression.
+- `rotation-bucheron` : la photo `Standing_Cable_Wood_Chop` montre une poulie ; ne pas l'afficher.
+
+### Questions pour l'utilisateur (coach, après contrôle)
+6. **Photos** : aucune image n'est affichée tant qu'elle n'a pas été regardée. Veux-tu relire les candidates (`Arm_Circles`, `Hip_Circles_prone`, `Cross-Body_Crunch`, `Air_Bike`, `On_Your_Side_Quad_Stretch`, `Ankle_Circles` pour la variante debout seulement) ? Les photos de la traction sont à vérifier une par une pour des logos de tiers.
+7. **Étirement des pectoraux contre le mur** : sans source libre, la fiche reste NON SOURCÉ (description de coach). On la garde ainsi, ou on la retire de la vague 1 ?
+8. **Prise étroite du passage de bras** : passée en `intermediaire` par prudence ; la fiche reste `debutant` par son échelon 1. D'accord ?
+
+## Textes de travail sortis des fiches (22/10/2026)
+- Rotation bûcheron : la ligne Hanche (niveau 1) a été ajoutée par prudence, car la rotation pivote sur la hanche ; à confirmer par `kine`.
+- Mobilité des poignets : en grossesse l'appui quatre pattes est retiré, alors que `grenouille-hanches`, `ouverture-hanche-quatre-pattes` et `chat-vache` le gardent ; à harmoniser par l'utilisateur.
+- Cardio à impact en post-partum : question à `dev` (attribut `impact` par variante) ; couvert pour ce lot par le réglage unique (regles-securite-communes.md §3).

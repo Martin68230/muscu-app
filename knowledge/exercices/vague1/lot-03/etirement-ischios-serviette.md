@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [ischios]
 muscles_secondaires: []
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -18,10 +18,12 @@ statut: controle_relecteur
 | etirement-ischios-assis | Assis au sol, jambe tendue | 2 | debutant | tapis | Assis au sol, une jambe tendue devant, l'autre pliée, dos droit. |
 
 ## Consignes
-1. Couché sur le dos, tiens la serviette autour de la plante du pied, jambe levée vers le plafond.
+1. Version allongée : couché sur le dos, tiens la serviette autour de la plante du pied, jambe levée vers le plafond, l'autre pied à plat au sol.
 2. Tends doucement la jambe en tirant sur la serviette, jusqu'à sentir l'arrière de la cuisse.
-3. Garde le bassin posé et le genou à peine plié.
-4. Respire calmement, relâche, fais l'autre jambe.
+3. Garde le bassin posé et le genou à peine plié. Respire calmement, relâche, fais l'autre jambe.
+4. Version assise (sans serviette) : assis sur le tapis, une jambe tendue devant toi, l'autre pliée, la plante de ce pied contre l'intérieur de la cuisse tendue ; dos droit.
+5. Penche-toi lentement en avant en partant des hanches, mains vers la cheville ou le tibia, jusqu'à sentir l'arrière de la cuisse tendue ; ne force pas pour atteindre le pied.
+6. Respire calmement, reviens dos droit, fais l'autre jambe.
 
 ## Points d'attention
 - Tension douce, jamais une douleur ; le genou n'est pas verrouillé.
@@ -58,7 +60,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n1 : allongé : pas de flexion du dos vers l'avant.
 - dos-n2 : même variante ; aucune augmentation (R2).
 - grossesse : assis au sol, dos droit, jambe tendue devant ; le couché sur le dos est retiré (G4). Post-partum : G7 (sans effet).
-- general : arrière de la cuisse : sans zone propre dans l'app, à déclarer sous « hanche » ou « genou ». Blessure récente aux ischios : voir README lot-02, question 9. Genou non verrouillé. Version plus douce : etirement-ischios-allonge.
+- general : arrière de la cuisse : sans zone propre dans l'app, à déclarer sous « hanche » ou « genou ». Blessure récente aux ischios : ne pas étirer, consulte (S1, S2). Genou non verrouillé. Version plus douce : etirement-ischios-allonge.
 
 **Grossesse** : adapter: variante:etirement-ischios-assis
 **Version plus douce** : etirement-ischios-allonge
@@ -84,7 +86,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Étirement des ischios allongé ou assis | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Leg-Up_Hamstring_Stretch » et « Seated_Floor_Hamstring_Stretch » (ids vus dans l'index, 22/10/2026, descriptions non lues en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Étirement des ischios allongé ou assis | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Leg-Up_Hamstring_Stretch » (couché, jambe levée, sans serviette) et « Seated_Floor_Hamstring_Stretch » (assis, se pencher depuis les hanches) (descriptions lues le 22/10/2026 ; les durées des entrées ne sont pas reprises) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| La serviette autour du pied (variante allongée) | ajout de coach, absent de l'entrée Leg-Up_Hamstring_Stretch | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

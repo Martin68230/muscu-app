@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [adducteurs]
 muscles_secondaires: [flechisseurs_hanche]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -62,7 +62,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - poignet-n2 : même appui ; aucune augmentation (R2).
 - dos-n2 : bassin moins reculé, dos plat.
 - grossesse : écartement modéré, jamais jusqu'à l'inconfort (G4, extrapolation ; laxité des ligaments en grossesse, NON SOURCÉ). Quatre pattes accepté, pas de couché sur le dos.
-- general : aine : sans zone propre dans l'app, une gêne à l'aine se déclare sous « hanche » (README lot-02, question 7). Version plus douce : grenouille-mains.
+- general : aine : sans zone propre dans l'app, une gêne à l'aine se déclare sous « hanche ». Version plus douce : grenouille-mains.
 
 **Grossesse** : adapter: amplitude:reduite
 **Version plus douce** : grenouille-mains

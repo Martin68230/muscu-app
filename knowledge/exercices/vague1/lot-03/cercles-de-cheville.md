@@ -20,19 +20,19 @@ statut: controle_relecteur
 
 ## Consignes
 1. Prends la position, une cheville à la fois.
-2. Dessine un grand cercle lent avec le bout du pied : bas, côté, haut, côté.
+2. Dessine un cercle lent avec le bout du pied, aussi ample que ta cheville le permet sans gêne : bas, côté, haut, côté.
 3. Garde le genou et la jambe immobiles : seule la cheville bouge.
 4. Change de sens après quelques cercles.
 5. Fais l'autre cheville.
 
 ## Points d'attention
-- Plus le cercle est grand et lent, mieux c'est : pas de petits mouvements rapides.
+- Cercle lent et contrôlé, d'amplitude confortable : pas de petits mouvements rapides (ajout de coach, NON SOURCÉ ; l'entrée citée dit seulement de dessiner un cercle avec le gros orteil).
 - Respire normalement.
 - Aucune durée ni nombre donné (aucune valeur sourcée).
 
 ## Erreurs fréquentes
 - Faire tourner toute la jambe.
-- Cercles trop petits et rapides.
+- Cercles saccadés et rapides.
 - Forcer en fin d'amplitude.
 
 ## Progression / régression
@@ -49,12 +49,12 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Cheville | adapter: amplitude:reduite | adapter: variante:cercles-cheville-couche | retirer |
+| Cheville | adapter: variante:cercles-cheville-assis | adapter: variante:cercles-cheville-couche | retirer |
 | Genou | garder | adapter: variante:cercles-cheville-assis | retirer: sans-zone:cercles-cheville-assis |
 
 **Notes**
-- cheville-n1 : petits cercles lents, sans forcer en fin de course.
-- cheville-n2 : pied non porté (couché), cercles réduits ; aucune augmentation (R2).
+- cheville-n1 : assis (la variante debout n'est pas proposée), cercles lents d'amplitude modeste, sans forcer en fin de course.
+- cheville-n2 : pied non porté (couché), cercles d'amplitude modeste ; aucune augmentation (R2).
 - genou-n2 : assis, sans appui sur le genou.
 - grossesse : assis ; le couché sur le dos est retiré (G4). Gonflement ou douleur d'un mollet : arrêt (G6).
 - general : l'app ne nomme pas de pathologie : une cheville gonflée, qui lâche ou qui reste douloureuse se signale au niveau 2 ou 3 de la zone cheville, et se montre à un professionnel (S1, S2). Debout, l'exercice n'est proposé que sans gêne de cheville. Version plus douce : cercles-cheville-assis.
@@ -76,13 +76,14 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Ankle_Circles/0.jpg` : affichable : à vérifier (image non regardée)
-- `Ankle_Circles/1.jpg` : affichable : à vérifier (image non regardée)
+- `Ankle_Circles/0.jpg` : affichable : à vérifier (image non regardée ; ne correspond qu'à la variante debout : un pied levé, appui sur un support)
+- `Ankle_Circles/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Cercles de cheville lents | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Ankle_Circles » (id vu dans l'index, 22/10/2026, description non lue en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Cercles de cheville debout, un pied levé, en se tenant à un support (variante `cercles-cheville-debout`) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Ankle_Circles » (description lue le 22/10/2026 ; la hauteur et le nombre de cercles de l'entrée ne sont pas repris) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Cercles de cheville couché ou assis (variantes `cercles-cheville-couche` et `cercles-cheville-assis`) | description de coach ; l'entrée Ankle_Circles ne décrit que la version debout. Corrigé après contrôle `relecteur` | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

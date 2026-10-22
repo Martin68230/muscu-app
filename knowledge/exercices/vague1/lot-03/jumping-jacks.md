@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [mollets, deltoides_lateraux]
 muscles_secondaires: [quadriceps, moyen_fessier]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -25,7 +25,7 @@ statut: controle_relecteur
 5. Garde un rythme régulier et respire.
 
 ## Points d'attention
-- Échelon 2 : impact, voir les points de vigilance ; prérequis (réception contrôlée) à définir par kine.
+- Échelon 2 : avec saut (impact). Ne le fais qu'après avoir fait l'échelon 1 sans gêne, avec des réceptions souples (conseil de coach, non codé, NON SOURCÉ).
 - Aucune durée, intensité ni nombre sourcés.
 
 ## Erreurs fréquentes
@@ -63,8 +63,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n1 : un pied à la fois, sans saut.
 - dos-n2 : même variante ; aucune augmentation (R2).
 - epaule-n2 : bras moins hauts.
-- grossesse : seule la version sans saut ; l'échelon avec saut est retiré (G4, risque de chute et d'impact, extrapolation). Post-partum : G7 retire l'impact, mais ici la variante avec saut est dans un schéma cardio : voir Notes kine du README.
-- general : échelon avec saut : intermédiaire (impact). Conseil non codé : saut seulement après l'échelon sans saut fait sans gêne, avec une réception souple (sports.md règle 5, PROVISOIRE ; prérequis non codé, README lot-02 question 8). Pas de saut fatigué. Version plus douce : jumping-jacks-sans-saut.
+- grossesse : seule la version sans saut ; l'échelon avec saut est retiré (G4, risque de chute et d'impact, extrapolation). Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
+- general : échelon avec saut : intermédiaire (impact). Conseil non codé : saut seulement après l'échelon sans saut fait sans gêne, avec une réception souple (conseil de coach, NON SOURCÉ : la règle 5 de sports.md dit autre chose ;). Pas de saut fatigué. Version plus douce : jumping-jacks-sans-saut.
 
 **Grossesse** : adapter: variante:jumping-jacks-sans-saut
 **Version plus douce** : jumping-jacks-sans-saut
@@ -90,6 +90,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 |---|---|---|---|---|
 | Jumping jacks sans et avec saut | description de coach ; aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
+| Faire l'échelon sans saut sans gêne, réception souple, avant l'échelon avec saut | conseil de coach ; aucune source ; sports.md règle 5 (pas de saut intensif la veille d'un match) est un autre sujet | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-22 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [deltoides_lateraux]
 muscles_secondaires: [trapezes, dentele_anterieur]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -47,16 +47,16 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:cercles-bras-petits | adapter: amplitude:bras-bas | retirer |
-| Cou | garder | adapter: amplitude:reduite | retirer |
+| Épaule | adapter: variante:cercles-bras-petits | adapter: variante:cercles-bras-petits | retirer |
+| Cou | garder | adapter: variante:cercles-bras-petits | retirer |
 | Dos | garder | adapter: variante:cercles-bras-petits | retirer |
 
 **Notes**
 - epaule-n1 : petits cercles seulement.
-- epaule-n2 : bras moins hauts, petits cercles ; aucune augmentation (R2).
+- epaule-n2 : petits cercles seulement, bras un peu moins hauts si besoin ; aucune augmentation (R2).
 - cou-n2 : petits cercles, épaules basses.
 - dos-n2 : petits cercles, sans cambrure.
-- grossesse : debout, lent et léger, sans effort. Post-partum : G7 (sans effet).
+- grossesse : debout, lent et léger, sans effort, sans rester immobile longtemps (G4). Post-partum : G7 (sans effet).
 - general : mouvement sans charge ; aucun élan. Version plus douce : cercles-bras-petits.
 
 **Grossesse** : garder
@@ -73,13 +73,14 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Shoulder_Circles/0.jpg` : affichable : à vérifier (image non regardée)
-- `Shoulder_Circles/1.jpg` : affichable : à vérifier (image non regardée)
+- `Arm_Circles/0.jpg` : affichable : à vérifier (image non regardée ; l'entrée Arm_Circles décrit bien les bras tendus sur les côtés)
+- `Arm_Circles/1.jpg` : affichable : à vérifier (image non regardée)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Cercles de bras tendus | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Shoulder_Circles » (id vu dans l'index, 22/10/2026, description non lue en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Cercles de bras tendus sur les côtés, parallèles au sol, dans un sens puis dans l'autre (échelon 1) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Arm_Circles » (description lue le 22/10/2026 ; corrigé après contrôle `relecteur` : la source citée avant, « Shoulder_Circles », décrit des cercles d'épaules, autre mouvement). Seules la position et le changement de sens sont repris ; la taille des cercles et la durée de l'entrée ne le sont pas | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Agrandir les cercles progressivement (échelon 2, « grands cercles ») | description de coach ; l'entrée Arm_Circles ne décrit que des cercles d'environ 30 cm | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

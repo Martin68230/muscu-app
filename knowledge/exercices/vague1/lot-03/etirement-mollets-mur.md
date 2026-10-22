@@ -56,7 +56,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - cheville-n2 : exercice retiré (tendon d'Achille et mollet irritables : pas d'étirement tant que la gêne est nette ; prudence de `kine`, NON SOURCÉ).
 - genou-n1 : jambe arrière tendue, genou non plié.
 - genou-n2 : même variante ; aucune augmentation (R2).
-- grossesse : contre le mur, sans la marche (risque de chute, G4) ; une douleur ou un gonflement d'un mollet est un signe d'arrêt (G6).
+- grossesse : contre le mur, sans la marche (risque de chute, G4). Station debout immobile prolongée à éviter (G4) : étirement court, change d'appui, assieds-toi si besoin. Une douleur ou un gonflement d'un mollet est un signe d'arrêt (G6).
 - general : tendon d'Achille : sans zone propre dans l'app, une gêne se déclare sous « cheville ». La variante sur la marche est la plus exigeante : à éviter si l'équilibre est incertain. Version plus douce : etirement-mollets-jambe-tendue.
 
 **Grossesse** : adapter: variante:etirement-mollets-jambe-tendue
@@ -78,13 +78,13 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Calf_Stretch_Hands_Against_Wall/0.jpg` : affichable : à vérifier (image non regardée)
 - `Calf_Stretch_Hands_Against_Wall/1.jpg` : affichable : à vérifier (image non regardée)
-- `Standing_Gastrocnemius_Calf_Stretch/0.jpg` : affichable : à vérifier (image non regardée)
-- `Standing_Gastrocnemius_Calf_Stretch/1.jpg` : affichable : à vérifier (image non regardée)
+- `Standing_Gastrocnemius_Calf_Stretch/0.jpg` : affichable : non (l'entrée montre le talon posé sur une marche, genou tendu, orteils tirés à la main : pas l'étirement contre le mur, la photo contredit la consigne, règle 12)
+- `Standing_Gastrocnemius_Calf_Stretch/1.jpg` : affichable : non (même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Étirement du mollet contre un mur | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Calf_Stretch_Hands_Against_Wall » et « Standing_Gastrocnemius_Calf_Stretch » (ids vus dans l'index, 22/10/2026, descriptions non lues en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Étirement du mollet contre un mur | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Calf_Stretch_Hands_Against_Wall » (description lue le 22/10/2026 : face au mur, mains au mur, un pied en avant, talon arrière au sol ; la durée de l'entrée n'est pas reprise). Corrigé après contrôle `relecteur` : « Standing_Gastrocnemius_Calf_Stretch » retirée des sources (talon sur une marche, orteils tirés à la main, ce n'est pas le mur). Les variantes genou plié et talon dans le vide sur la marche ne figurent pas dans l'entrée | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE (jambe tendue contre le mur) ; NON SOURCÉ (genou plié, marche) |
 | Variante sur marche, talon dans le vide | description de coach ; pas d'entrée libre lue | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |

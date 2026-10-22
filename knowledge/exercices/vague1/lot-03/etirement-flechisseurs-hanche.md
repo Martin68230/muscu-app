@@ -14,7 +14,7 @@ statut: controle_relecteur
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| etirement-flechisseurs-debout | Debout, un pas en arrière | 1 | debutant | poids_du_corps | Debout, grand pas en arrière, talon arrière levé, mains sur les hanches. |
+| etirement-flechisseurs-debout | Debout, un pas en arrière | 1 | debutant | poids_du_corps | Debout, grand pas en arrière, talon arrière levé, mains sur les hanches ; en cas de doute sur l'équilibre, une main sur un support stable (dossier de chaise, mur). |
 | etirement-flechisseurs-genou-sol | Un genou au sol | 2 | debutant | tapis | Un genou posé sur le tapis, l'autre pied devant, mains sur la cuisse avant. |
 | etirement-flechisseurs-genou-sol-chaise | Un genou au sol, main sur une chaise | 2 | debutant | tapis, chaise | Même installation, une main tient le dossier d'une chaise stable pour l'équilibre. |
 
@@ -63,7 +63,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - grossesse : version debout avec une main sur un support stable (chaise, mur), petit pas, sans chercher l'amplitude maximale ; pas de position à genoux (G4, extrapolation ; la souplesse des ligaments en grossesse est un argument de prudence courant, NON SOURCÉ). Post-partum : G7 (sans effet).
 - general : étirement doux de l'avant de la hanche : la bascule du bassin, pas la cambrure, produit la tension. Version plus douce : etirement-flechisseurs-debout.
 
-**Grossesse** : adapter: appui:main-sur-support
+**Grossesse** : adapter: variante:etirement-flechisseurs-debout
 **Version plus douce** : etirement-flechisseurs-debout
 
 **Signes qui doivent faire arrêter**
@@ -88,7 +88,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Étirement des fléchisseurs de hanche à genou ou debout, bascule du bassin | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Kneeling_Hip_Flexor » et « Standing_Hip_Flexors » (ids vus dans l'index, 22/10/2026, descriptions non lues en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Étirement des fléchisseurs de hanche à genou ou debout, bascule du bassin | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Kneeling_Hip_Flexor » et « Standing_Hip_Flexors » (descriptions lues le 22/10/2026) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

@@ -395,7 +395,7 @@ export function listFiches(dir) {
   const walk = (d, rel) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
       if (e.isDirectory()) { if (e.name !== 'ecartees' && !e.name.startsWith('.')) walk(join(d, e.name), rel ? rel + '/' + e.name : e.name); continue; }
-      if (!e.name.endsWith('.md') || e.name === 'README.md' || e.name === 'CAMPAGNE.md' || /CONTROLE/i.test(e.name)) continue;
+      if (!e.name.endsWith('.md') || e.name === 'README.md' || e.name === 'CAMPAGNE.md' || e.name === 'DECISIONS-utilisateur.md' || /CONTROLE/i.test(e.name)) continue;
       out.push(rel ? rel + '/' + e.name : e.name);
     }
   };

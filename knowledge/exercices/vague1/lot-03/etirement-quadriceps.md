@@ -15,12 +15,12 @@ statut: controle_relecteur
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | etirement-quadriceps-debout | Debout, main au mur | 1 | debutant | mur | Debout, une main au mur, un talon ramené vers la fesse et tenu à la main. |
-| etirement-quadriceps-cote | Couché sur le côté | 1 | debutant | tapis | Couché sur le côté, tête sur le bras, jambe du dessus pliée, pied tenu à la main. |
+| etirement-quadriceps-cote | Couché sur le côté | 1 | debutant | tapis | Couché sur le côté, tête sur le bras, jambe du dessous pliée devant toi (genou à environ 90°) pour stabiliser le tronc, jambe du dessus pliée, pied tenu à la main. |
 
 ## Consignes
 1. Debout, main au mur (ou couché sur le côté), plie une jambe et saisis le pied ou la cheville.
 2. Ramène le talon vers la fesse, genoux proches l'un de l'autre.
-3. Bascule le bassin vers l'arrière (rentre le ventre) pour sentir l'avant de la cuisse.
+3. Couché sur le côté : pousse doucement le pied vers l'arrière dans ta main, en avançant légèrement la hanche du dessus. Debout : rentre le ventre pour que le bassin ne se cambre pas (ajout de coach, NON SOURCÉ).
 4. Respire calmement, relâche, fais l'autre jambe.
 
 ## Points d'attention
@@ -58,7 +58,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n2 : cuisse près de l'autre, bassin neutre.
 - dos-n2 : bassin rentré, pas de cambrure.
 - cheville-n2 : couché sur le côté : pas d'équilibre sur la cheville.
-- grossesse : couché sur le côté, ce qui évite l'équilibre sur une jambe et le dos (G4, extrapolation ; le côté est autorisé, seul le dos est évité). Post-partum : G7 (sans effet).
+- grossesse : la version debout est écartée (équilibre sur une jambe et station immobile, G4) ; couché sur le côté, ce qui évite l'équilibre sur une jambe et le dos (G4, extrapolation ; le côté est autorisé, seul le dos est évité). Post-partum : G7 (sans effet).
 - general : genou orienté vers le sol, jamais tiré vers l'arrière. Version plus douce : etirement-quadriceps-cote.
 
 **Grossesse** : adapter: variante:etirement-quadriceps-cote
@@ -78,15 +78,16 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Quad_Stretch/0.jpg` : affichable : à vérifier (image non regardée ; debout)
-- `Quad_Stretch/1.jpg` : affichable : à vérifier (image non regardée ; debout)
-- `On_Your_Side_Quad_Stretch/0.jpg` : affichable : à vérifier (image non regardée ; sur le côté)
-- `On_Your_Side_Quad_Stretch/1.jpg` : affichable : à vérifier (image non regardée ; sur le côté)
+- `Quad_Stretch/0.jpg` : affichable : non (couché sur le côté avec une ceinture ou une bande, niveau intermédiaire dans la base : pas une variante de cette fiche ; aucune photo debout n'existe)
+- `Quad_Stretch/1.jpg` : affichable : non (même raison)
+- `On_Your_Side_Quad_Stretch/0.jpg` : affichable : à vérifier (image non regardée ; correspond à la variante couchée sur le côté, pied tenu à la main)
+- `On_Your_Side_Quad_Stretch/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Étirement du quadriceps debout ou sur le côté | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Quad_Stretch » et « On_Your_Side_Quad_Stretch » (ids vus dans l'index, 22/10/2026, descriptions non lues en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Étirement du quadriceps couché sur le côté, pied tenu à la main (variante `etirement-quadriceps-cote`) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « On_Your_Side_Quad_Stretch » (description lue le 22/10/2026 : genou du dessous plié devant soi, hanche poussée vers l'avant ; la durée de l'entrée n'est pas reprise). « Quad_Stretch » (même position avec une ceinture ou une bande, niveau intermédiaire) est seulement voisine, non utilisée | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Étirement du quadriceps debout, main au mur (variante `etirement-quadriceps-debout`, variante par défaut) | description de coach ; aucune entrée libre ne décrit la version debout. Corrigé après contrôle `relecteur` : la ligne « debout ou sur le côté » PROVISOIRE était trop large | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

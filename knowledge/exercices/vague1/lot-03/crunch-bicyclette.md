@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [obliques, abdominaux]
 muscles_secondaires: [flechisseurs_hanche]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -77,12 +77,16 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- aucune photo (aucune entrée libre correspondante trouvée (recherche par nom, 22/10/2026))
+- `Cross-Body_Crunch/0.jpg` : affichable : à vérifier (image non regardée ; correspond à l'échelon 1, pieds au sol)
+- `Cross-Body_Crunch/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
+- `Air_Bike/0.jpg` : affichable : à vérifier (image non regardée ; correspond à l'échelon 2, pédalage, mais l'entrée place les mains à côté de la tête)
+- `Air_Bike/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Crunch avec rotation, coude vers le genou opposé | description de coach ; aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) | - | - | NON SOURCÉ |
+| Échelon 1 : couché, pieds au sol, coude vers le genou opposé | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Cross-Body_Crunch » (description lue le 22/10/2026 ; niveau débutant). Corrigé après contrôle `relecteur` : la fiche disait à tort qu'aucune entrée n'existait | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Échelon 2 : jambes levées, pédalage lent, coude vers le genou opposé | free-exercise-db, entrée « Air_Bike » (description lue le 22/10/2026 ; niveau débutant dans la base, classé intermédiaire ici par prudence, choix de coach ; la base place les mains à côté de la tête, la fiche derrière) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

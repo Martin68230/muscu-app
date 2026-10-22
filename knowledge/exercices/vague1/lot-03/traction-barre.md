@@ -50,7 +50,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:traction-barre-assistee-elastique | retirer: remplacant:tirage-vertical-elastique-haut | retirer |
+| Épaule | adapter: variante:traction-barre-assistee-elastique | retirer | retirer |
 | Coude | adapter: variante:traction-barre-assistee-elastique | retirer: remplacant:tirage-vertical-elastique-haut | retirer |
 | Poignet | adapter: variante:traction-barre-assistee-elastique | retirer: remplacant:tirage-vertical-elastique-haut | retirer |
 | Cou | garder | adapter: variante:traction-barre-assistee-elastique | retirer |
@@ -58,7 +58,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - epaule-n1 : assistée par l'élastique : moins de poids sur l'épaule.
-- epaule-n2 : retiré (suspension sous poids du corps) ; remplacé par le tirage vertical à l'élastique.
+- epaule-n2 : retiré (suspension sous poids du corps) ; le tirage vertical à l'élastique n'est pas proposé non plus avec une gêne nette d'épaule : l'app propose un autre exercice de tirage sans la zone.
 - coude-n1 : assistée par l'élastique.
 - coude-n2 : retiré (suspension et tirage lourd) ; remplacé par l'élastique.
 - poignet-n1 : assistée par l'élastique : moins de poids sur la prise.
@@ -66,7 +66,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - cou-n2 : assistée, tête alignée.
 - dos-n2 : assistée, sans balancement.
 - grossesse : suspension avec effort intense, prise forte et risque de chute (G4 : isométrique prolongé, Valsalva, extrapolation ; G5 plafond d'intensité) ; remplacé par le tirage à l'élastique, à charge légère. Post-partum : G7 (sans effet direct).
-- general : fiche entièrement en niveau intermédiaire (décision de prudence de `kine`, voir Notes kine du README) : le format n'a pas de champ « prérequis », et la suspension sous le poids du corps n'est pas un bon point de départ pour un débutant ; il commence par le tirage vertical à l'élastique. Conseil non codé : prérequis « sans gêne à l'épaule, au coude ni au poignet ». Pas d'élan ni de balancement. Version plus douce : tirage-vertical-elastique-haut.
+- general : fiche entièrement en niveau intermédiaire (décision de prudence de `kine`) : le format n'a pas de champ « prérequis », et la suspension sous le poids du corps n'est pas un bon point de départ pour un débutant ; il commence par le tirage vertical à l'élastique. Conseil non codé : prérequis « sans gêne à l'épaule, au coude ni au poignet ». Pas d'élan ni de balancement. Version plus douce : tirage-vertical-elastique-haut.
 
 **Grossesse** : retirer: remplacant:tirage-vertical-elastique-haut
 **Version plus douce** : tirage-vertical-elastique-haut
@@ -98,7 +98,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Traction : scapulaire, assistée par élastique, supination, pronation | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Scapular_Pull-Up », « Band_Assisted_Pull-Up », « Chin-Up » et « Pullups » (ids vus dans l'index, 22/10/2026, descriptions non lues en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Traction : scapulaire, assistée par élastique, supination, pronation | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrées « Scapular_Pull-Up », « Band_Assisted_Pull-Up », « Chin-Up » et « Pullups » (descriptions lues le 22/10/2026) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

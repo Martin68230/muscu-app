@@ -65,7 +65,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n1 : genoux peu ramenés.
 - hanche-n2 : même variante ; aucune augmentation (R2).
 - genou-n2 : rythme lent sur la chaise.
-- grossesse : position de planche (pression sur le ventre, appui sur les mains, G4 : planche retirée, extrapolation) ; remplacé par la marche sur place. Post-partum : le rythme rapide est à impact : voir Notes kine du README.
+- grossesse : position de planche (pression sur le ventre, appui sur les mains, G4 : planche retirée, extrapolation) ; remplacé par la marche sur place. Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
 - general : le rythme rapide (intermédiaire) est le dernier paramètre à augmenter. Les deux mains portent le poids : ne les pose pas sur un poignet sensible. Version plus douce : mountain-climbers-chaise.
 
 **Grossesse** : retirer: remplacant:montees-genoux-marche
@@ -91,7 +91,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Grimpeur en position de pompe, genoux alternés | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Mountain_Climbers » (id vu dans l'index, 22/10/2026, description non lue en détail ; variante sur chaise : description de coach) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Grimpeur en position de pompe, genoux alternés | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Mountain_Climbers » (description lue le 22/10/2026 : position de pompe, genoux alternés ; variante sur chaise : description de coach) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

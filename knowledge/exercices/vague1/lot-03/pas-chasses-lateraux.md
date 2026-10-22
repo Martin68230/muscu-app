@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [moyen_fessier, quadriceps]
 muscles_secondaires: [adducteurs, mollets]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -59,7 +59,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n1 : pas lents, petits (l'aine se déclare ici).
 - hanche-n2 : exercice retiré.
 - dos-n2 : pas lents.
-- grossesse : pas lents, couloir dégagé, sans changement de direction rapide (risque de chute, G4, extrapolation). Post-partum : voir Notes kine du README.
+- grossesse : pas lents, couloir dégagé, sans changement de direction rapide (risque de chute, G4, extrapolation). Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
 - general : échelon rapide : intermédiaire (appuis rapides). Ne croise jamais les pieds. Version plus douce : pas-chasses-lents.
 
 **Grossesse** : adapter: variante:pas-chasses-lents

@@ -50,17 +50,20 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Dos | adapter: variante:rotation-bucheron-sans-charge | retirer: remplacant:pallof-elastique | retirer |
+| Hanche | adapter: variante:rotation-bucheron-sans-charge | adapter: variante:rotation-bucheron-sans-charge | retirer |
 | Épaule | adapter: charge:legere | adapter: variante:rotation-bucheron-sans-charge | retirer |
 | Genou | garder | adapter: variante:rotation-bucheron-sans-charge | retirer |
 
 **Notes**
 - dos-n1 : sans charge ni élastique.
 - dos-n2 : retiré (flexion et rotation chargées du tronc) ; remplacé par le Pallof à l'élastique, anti-rotation.
+- hanche-n1 : sans charge ; le pied pivote avec le mouvement, pas de torsion de la hanche pied fixé.
+- hanche-n2 : même variante ; aucune augmentation (R2).
 - epaule-n1 : charge de départ de l'étalonnage, jamais augmentée.
 - epaule-n2 : sans charge ; aucune augmentation (R2).
 - genou-n2 : sans charge, pied qui suit le mouvement (pas de genou tordu pied fixé).
 - grossesse : sans charge, rotation douce et amplitude modérée, sans compression du ventre (G4, extrapolation ; lot-02 question 11). Post-partum : G7 (sans effet).
-- general : charge très légère au départ. Mains jointes : la rotation vient du buste, pas des bras. Élastique ou haltère : jamais lâchés ni relâchés d'un coup. Version plus douce : rotation-bucheron-sans-charge.
+- general : charge très légère au départ. Mains jointes : la rotation vient du buste, pas des bras. Variante élastique : résistance légère, jamais augmentée en cas de gêne d'épaule (la case « charge » ne la règle pas). Élastique ou haltère : jamais lâchés ni relâchés d'un coup. Version plus douce : rotation-bucheron-sans-charge.
 
 **Grossesse** : adapter: variante:rotation-bucheron-sans-charge
 **Version plus douce** : rotation-bucheron-sans-charge
@@ -79,13 +82,13 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Standing_Cable_Wood_Chop/0.jpg` : affichable : à vérifier (image non regardée ; version à la poulie, pas à l'haltère ni à l'élastique)
-- `Standing_Cable_Wood_Chop/1.jpg` : affichable : à vérifier (image non regardée ; version à la poulie, pas à l'haltère ni à l'élastique)
+- `Standing_Cable_Wood_Chop/0.jpg` : affichable : non (version à la poulie, aucune variante de la fiche ne l'utilise)
+- `Standing_Cable_Wood_Chop/1.jpg` : affichable : non (même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Rotation en diagonale de haut en bas | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Standing_Cable_Wood_Chop » (version poulie, id vu dans l'index, 22/10/2026, description non lue en détail ; versions sans charge, haltère et élastique : description de coach) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Rotation en diagonale de haut en bas | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Standing_Cable_Wood_Chop » (version poulie, description lue le 22/10/2026 : poulie haute, tirage en diagonale, pivot du pied arrière ; versions sans charge, haltère et élastique : description de coach) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

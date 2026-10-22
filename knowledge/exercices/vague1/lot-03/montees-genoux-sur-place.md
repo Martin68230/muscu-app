@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [flechisseurs_hanche, quadriceps]
 muscles_secondaires: [abdominaux, mollets]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -25,7 +25,7 @@ statut: controle_relecteur
 5. Respire de façon régulière ; ralentis si tu perds le rythme.
 
 ## Points d'attention
-- Échelon 2 : impact. Prérequis à définir par kine.
+- Échelon 2 : course sur place (impact). Ne le fais qu'après avoir fait l'échelon 1 sans gêne, avec des réceptions souples (conseil de coach, non codé, NON SOURCÉ).
 - Aucune durée, intensité ni nombre sourcés.
 
 ## Erreurs fréquentes
@@ -61,7 +61,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n2 : même variante ; aucune augmentation (R2).
 - dos-n1 : marche sur place.
 - dos-n2 : même variante ; aucune augmentation (R2).
-- grossesse : seule la marche sur place ; la course est retirée (G4, impact, extrapolation). Post-partum : voir Notes kine du README (impact dans un schéma cardio).
+- grossesse : seule la marche sur place ; la course est retirée (G4, impact, extrapolation). Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
 - general : échelon course : intermédiaire (impact), même prudence que les sauts du lot-02. Version plus douce : montees-genoux-marche.
 
 **Grossesse** : adapter: variante:montees-genoux-marche

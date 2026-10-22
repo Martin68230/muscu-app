@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [trapezes]
 muscles_secondaires: [deltoides_lateraux, dentele_anterieur]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -15,7 +15,7 @@ statut: controle_relecteur
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | passage-bras-prise-large | Prise large | 1 | debutant | serviette | Debout, serviette tenue à deux mains, mains très écartées, bras tendus devant les cuisses. |
-| passage-bras-prise-etroite | Prise plus étroite | 2 | debutant | serviette | Même installation, mains moins écartées. |
+| passage-bras-prise-etroite | Prise plus étroite | 2 | intermediaire | serviette | Même installation, mains moins écartées. |
 
 ## Consignes
 1. Tiens la serviette tendue à deux mains, bras tendus devant les cuisses, mains très écartées.
@@ -47,16 +47,16 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:passage-bras-prise-large | adapter: amplitude:bras-bas | retirer |
+| Épaule | adapter: variante:passage-bras-prise-large | adapter: variante:passage-bras-prise-large | retirer |
 | Cou | garder | adapter: amplitude:bras-bas | retirer |
 | Dos | garder | adapter: amplitude:bras-bas | retirer |
 
 **Notes**
 - epaule-n1 : prise très large, bras passant moins loin derrière.
-- epaule-n2 : arrête le passage au-dessus de la tête : bras moins hauts ; aucune augmentation (R2).
+- epaule-n2 : prise large conservée ; arrête le passage au-dessus de la tête : bras moins hauts ; aucune augmentation (R2).
 - cou-n2 : bras moins hauts, nuque longue.
 - dos-n2 : bras moins hauts, côtes basses, pas de cambrure.
-- grossesse : debout, mouvement lent ; respire en continu, côtes basses. Post-partum : G7 (sans effet).
+- grossesse : debout, mouvement lent, sans rester immobile longtemps (G4) ; respire en continu, côtes basses. Post-partum : G7 (sans effet).
 - general : ne force jamais l'amplitude : si un bras bloque avant l'autre, élargis la prise. Version plus douce : passage-bras-prise-large.
 
 **Grossesse** : garder

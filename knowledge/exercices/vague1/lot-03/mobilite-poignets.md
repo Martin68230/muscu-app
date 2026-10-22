@@ -56,7 +56,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - poignet-n2 : même variante, cercles petits ; aucune augmentation (R2).
 - coude-n2 : mains libres, pas d'appui sur le bras.
 - epaule-n2 : mains libres, pas d'appui sur les bras.
-- grossesse : cercles libres ; l'appui des paumes au sol est évité par prudence (fourmillements des mains fréquents en grossesse, NON SOURCÉ ; extrapolation). Fourmillements ou engourdissement : voir S2.
+- grossesse : cercles libres ; l'appui des paumes au sol est évité par prudence : charge du poignet en extension, choix propre à cette fiche (les autres fiches du lot gardent le quatre pattes) ; NON SOURCÉ, extrapolation. Fourmillements ou engourdissement : voir S2.
 - general : l'échelon 2 charge le poignet en extension (paumes à plat) : c'est le plus exigeant ; mouvement petit et lent. Utile avant pompes et portés (lien de pratique, NON SOURCÉ). Version plus douce : mobilite-poignets-cercles.
 
 **Grossesse** : adapter: variante:mobilite-poignets-cercles
@@ -80,7 +80,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Cercles de poignets | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Wrist_Circles » (id vu dans l'index, 22/10/2026, description non lue en détail) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Cercles de poignets | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Wrist_Circles » (description lue le 22/10/2026) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Appui des paumes au sol à quatre pattes avec balancement | description de coach ; pas d'entrée libre lue | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |

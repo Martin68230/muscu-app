@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [deltoides_anterieurs, triceps]
 muscles_secondaires: [obliques, mollets, abdominaux]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -48,8 +48,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:boxe-vide-lente | adapter: amplitude:reduite | retirer |
-| Coude | adapter: variante:boxe-vide-lente | adapter: amplitude:reduite | retirer |
+| Épaule | adapter: variante:boxe-vide-lente | adapter: variante:boxe-vide-lente | retirer |
+| Coude | adapter: variante:boxe-vide-lente | adapter: variante:boxe-vide-lente | retirer |
 | Cou | garder | adapter: variante:boxe-vide-lente | retirer |
 | Dos | garder | adapter: variante:boxe-vide-lente | retirer |
 | Genou | garder | adapter: variante:boxe-vide-lente | retirer |
@@ -57,9 +57,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - epaule-n1 : coups lents, sans à-coup.
-- epaule-n2 : coups plus courts, bras jamais tendus ; aucune augmentation (R2).
+- epaule-n2 : version lente, coups plus courts, bras jamais tendus ; aucune augmentation (R2).
 - coude-n1 : coups lents, coude non verrouillé.
-- coude-n2 : coups plus courts ; aucune augmentation (R2).
+- coude-n2 : version lente, coups plus courts ; aucune augmentation (R2).
 - cou-n2 : coups lents, regard devant.
 - dos-n2 : pas de rotation forcée.
 - genou-n2 : reste en place : pas de petits pas avec pivot.

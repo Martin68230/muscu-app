@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [erecteurs_rachis]
 muscles_secondaires: [trapezes]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -19,11 +19,11 @@ statut: controle_relecteur
 | extension-thoracique-rouleau | Sur un rouleau de massage | 2 | debutant | tapis, rouleau_massage | Même installation, rouleau en travers sous les omoplates, bassin au sol. |
 
 ## Consignes
-1. Installe le support au milieu du dos, à la hauteur des omoplates, pas sur les lombaires.
+1. Sur la chaise (version de départ) : assieds-toi bien droit, pieds au sol, chaise contre un mur, le haut du dossier à hauteur des omoplates, pas des lombaires. Sur serviette ou rouleau (couché) : place le support en travers du milieu du dos, sous les omoplates, pas sur les lombaires.
 2. Mains derrière la tête pour soutenir la nuque, coudes devant toi.
-3. Laisse le haut du dos s'arrondir en arrière autour du support, sans cambrer le bas du dos : garde les côtes basses vers le sol.
-4. Expire en t'ouvrant, inspire en revenant à plat.
-5. Déplace le support d'un cran vers le haut ou le bas, puis recommence.
+3. Sur la chaise : laisse le haut du dos s'appuyer et s'arrondir en arrière autour du haut du dossier, sans cambrer le bas du dos ; garde les côtes basses vers l'avant. Couché : même geste autour du support, côtes basses vers le sol.
+4. Expire en t'ouvrant, inspire en revenant à la position de départ.
+5. Change d'un cran la hauteur d'appui, puis recommence : sur la chaise, glisse légèrement le buste vers le haut ou le bas du dossier ; couché, déplace le support.
 
 ## Points d'attention
 - La mobilité vient du haut du dos : le bas du dos reste neutre.
@@ -36,7 +36,8 @@ statut: controle_relecteur
 - Placer le rouleau sous les lombaires.
 
 ## Progression / régression
-- plus-facile : chat-vache-sol
+- plus-facile : aucun
+- alternative (autre mouvement, pas un échelon plus facile) : chat-vache-sol
 - plus-dur : aucun
 
 ## Repères de dosage

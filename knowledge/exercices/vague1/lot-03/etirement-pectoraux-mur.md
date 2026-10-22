@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [deltoides_anterieurs, biceps]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -74,13 +74,13 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Chest_And_Front_Of_Shoulder_Stretch/0.jpg` : affichable : à vérifier (image non regardée)
-- `Chest_And_Front_Of_Shoulder_Stretch/1.jpg` : affichable : à vérifier (image non regardée)
+- `Chest_And_Front_Of_Shoulder_Stretch/0.jpg` : affichable : non (l'entrée montre un bâton levé derrière la tête, pas l'étirement contre le mur : la photo contredit la consigne, règle 12)
+- `Chest_And_Front_Of_Shoulder_Stretch/1.jpg` : affichable : non (même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Étirement de la poitrine et de l'avant de l'épaule | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Chest_And_Front_Of_Shoulder_Stretch » (id vu dans l'index, 22/10/2026, description non lue en détail ; version contre le mur : description de coach) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Étirement des pectoraux contre un mur, avant-bras ou main au mur, buste tourné à l'opposé | description de coach. Corrigé après contrôle `relecteur` : l'entrée free-exercise-db « Chest_And_Front_Of_Shoulder_Stretch » (lue le 22/10/2026) décrit un bâton tenu à deux mains et levé derrière la tête, position différente et plus exigeante pour l'épaule ; elle ne sert pas de source à cette fiche. `Behind_Head_Chest_Stretch` (avec partenaire) et `Dynamic_Chest_Stretch` non retenues. Aucune entrée libre correspondante | - | 2026-10-22 | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

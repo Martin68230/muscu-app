@@ -21,7 +21,7 @@ statut: controle_relecteur
 1. À quatre pattes, dos plat, bassin horizontal.
 2. Lève un genou plié sur le côté, comme pour ouvrir la hanche, sans faire tourner le bassin.
 3. Redescends sans poser le genou, sous contrôle.
-4. Échelon 2 : dessine un petit cercle avec le genou levé, d'abord dans un sens, puis dans l'autre.
+4. Échelon 2 : dessine un cercle lent, d'amplitude confortable, avec le genou levé, d'abord dans un sens, puis dans l'autre.
 5. Fais un côté entier, puis l'autre.
 
 ## Points d'attention
@@ -81,12 +81,14 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- aucune photo (aucune entrée libre trouvée dans les ids lus (recherche par nom, 22/10/2026))
+- `Hip_Circles_prone/0.jpg` : affichable : à vérifier (image non regardée ; correspond à l'échelon 2, cercle du genou plié à quatre pattes)
+- `Hip_Circles_prone/1.jpg` : affichable : à vérifier (image non regardée ; même raison ; l'échelon 1, sans cercle, n'a pas de photo)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Ouverture de hanche à quatre pattes (genou plié levé sur le côté, cercles) | description de coach ; aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) | - | - | NON SOURCÉ |
+| Échelon 2 : à quatre pattes, un genou plié levé qui dessine un grand cercle lent, puis l'autre côté | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Hip_Circles_prone » (description lue le 22/10/2026 ; niveau débutant ; l'entrée classe le muscle comme abducteurs, la fiche garde `moyen_fessier`, choix de coach). Corrigé après contrôle `relecteur` : la fiche disait à tort qu'aucune entrée n'existait | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Échelon 1 : genou plié levé sur le côté, sans cercle | description de coach ; aucune entrée libre correspondante | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

@@ -38,7 +38,7 @@ statut: controle_relecteur
 - plus-dur : aucun
 
 ## Repères de dosage
-Cardio : intensité et durée voir program-logic.md ; aucune valeur propre à ce mouvement (NON SOURCÉ). Repère général : la recommandation OMS sur l'activité d'endurance n'a pas été relue pour cette fiche.
+Cardio : intensité et durée voir program-logic.md ; aucune valeur propre à ce mouvement (NON SOURCÉ). Repère général : recommandation OMS 2020 sur l'activité d'endurance, voir program-logic.md §6 (statut OK) ; elle ne donne pas de durée ni d'intervalles pour cette fiche.
 
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
@@ -60,7 +60,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n1 : marche continue à ton rythme.
 - hanche-n2 : même variante ; aucune augmentation (R2).
 - dos-n2 : marche continue à ton rythme.
-- grossesse : marche en continu à intensité modérée, sans accélérations (G5, plafond ; la HAS cite la marche parmi les activités possibles). Chaleur, humidité et sol glissant évités.
+- grossesse : marche en continu à intensité modérée, sans accélérations (G5, plafond ; NON SOURCÉ : la marche comme activité possible en grossesse n'a pas été relue dans la HAS pour cette fiche). Chaleur, humidité et sol glissant évités.
 - general : le repère « parler sans pouvoir chanter » n'est pas confirmé ici : NON SOURCÉ, à relire dans program-logic.md. Aucune durée ni vitesse sourcée. Version plus douce : marche-rapide-continue.
 
 **Grossesse** : adapter: variante:marche-rapide-continue

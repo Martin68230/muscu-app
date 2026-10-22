@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, mollets]
 source_brouillon: []
-statut: controle_relecteur
+statut: verifie
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -50,7 +50,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | adapter: amplitude:mi-course | adapter: amplitude:mi-course | retirer |
 | Hanche | adapter: amplitude:mi-course | retirer: remplacant:squat-assis-debout | retirer |
 | Cheville | adapter: amplitude:mi-course | retirer: remplacant:squat-assis-debout | retirer |
-| Dos | adapter: variante:accroupi-profond-chaise | adapter: amplitude:mi-course | retirer |
+| Dos | adapter: variante:accroupi-profond-chaise | adapter: variante:accroupi-profond-chaise | retirer |
 
 **Notes**
 - genou-n1 : ne descends pas jusqu'au bout.
@@ -60,11 +60,11 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - cheville-n1 : si les talons se lèvent, remonte.
 - cheville-n2 : remplacé par le squat assis-debout (comme au lot-02).
 - dos-n1 : mains sur le dossier : buste droit, pas d'arrondi du bas du dos.
-- dos-n2 : amplitude réduite ; aucune augmentation (R2).
-- grossesse : mains sur le dossier d'une chaise stable, descente confortable seulement, pas de maintien prolongé ni de rebond (G4 : éviter l'isométrique prolongé, la station immobile et le risque de chute, extrapolation). Post-partum : G7 (sans effet).
+- dos-n2 : même variante avec appui des mains, descente à mi-course ; aucune augmentation (R2).
+- grossesse : exercice retiré (position tenue : G4 évite l'isométrique prolongé et la station immobile, extrapolation) ; remplacé par le squat assis-debout, qui ne se tient pas. Post-partum : G7 (sans effet).
 - general : la profondeur est limitée par ta mobilité : jamais de descente forcée, jamais de charge, pas de blocage de la respiration. Version plus douce : accroupi-profond-chaise.
 
-**Grossesse** : adapter: variante:accroupi-profond-chaise
+**Grossesse** : retirer: remplacant:squat-assis-debout
 **Version plus douce** : accroupi-profond-chaise
 
 **Signes qui doivent faire arrêter**
@@ -76,7 +76,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.
 
 **Objets du quotidien**
-- Chaise stable, sans roulettes, dossier contre un mur, sol non glissant : vérifie-la en tirant dessus comme pendant l'exercice (R8).
+- Chaise stable, sans roulettes, dossier contre un mur, sol non glissant : vérifie-la en t'appuyant dessus comme pendant l'exercice (R8).
 - Sol antidérapant, pieds nus ou chaussures qui tiennent le pied (R8).
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
