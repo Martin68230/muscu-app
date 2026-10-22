@@ -13,7 +13,7 @@ Moteur : tâche planifiée « campagne-fiches » (toutes les 30 min, nouvelle co
   3. Mobilité (thoracique, hanches, chevilles).
   4. Compléter les cases encore sous 3 (tableau de couverture), profil par profil jusqu'à F (salle).
   5. Vague 2.
-- Seuils d'arrêt : limite de 5 h >= 92 % -> ne pas lancer de nouvel agent, finir proprement (commit de ce qui est cohérent) et mettre à jour ce fichier. Après le 22/10/2026 19 h 30 (Paris) : ne plus lancer de lot ; écrire le bilan final.
+- Seuils d'arrêt (décision utilisateur 22/10 08 h 50 : utiliser tout le quota) : continuer tant que la limite de 5 h est < 99 %, même à 80-95 % ; un agent coupé par la limite n'est pas grave, le passage suivant reprend après la remise à zéro. Committer après chaque étape pour ne rien perdre. Après le 22/10/2026 19 h 30 (Paris) : ne plus lancer de lot ; écrire le bilan final.
 
 ## Verrou
 Fichier `knowledge/exercices/.campagne.lock` (non commité) contenant l'heure de début ISO. S'il existe et date de moins de 90 min : un autre passage travaille, sortir sans rien faire.
