@@ -26,7 +26,7 @@ Appli privée pour ~10 amis majeurs (niveaux variés, salle et maison ; surtout 
 19. Ordre des exercices, supersets (antagonistes), durée affichée et ajustable, rotation organisée : program-logic.md.
 20. **Sports en familles + prévention** (sports.md) : foot, danse, volley, raquettes ; FIFA 11+, nordique, épaule OSTRC.
 21. **Séance manquée** (schedule-adaptation.md) : décaler par défaut, jamais de séance double, 48 h par muscle, compensation limitée en volume, jamais en intensité.
-22. **Bibliothèque à deux niveaux** (exercise-catalog.md) : le générateur n'utilise que les fiches « vérifié » ; le brouillon (2 597 variantes / 1 962 mouvements) est consultable avec la mention « non vérifié ».
+22. **Bibliothèque à deux niveaux** (exercise-catalog.md) : le générateur n'utilise que les fiches « vérifié » ou « utilisable » (0 bloquant, 0 erreur au script, réserves limitées à des choix prudents marqués NON SOURCÉ ; décision du 22/10/2026) ; le brouillon (2 597 variantes / 1 962 mouvements) est consultable avec la mention « non vérifié ».
 23. Exercices techniques (snatch, clean) et matériel spécialisé : jamais pour débutants ni à la maison.
 24. **Nutrition** (nutrition-rules.md) : plan de repas généré, Ciqual, compléments ENREGISTRÉS par l'utilisateur (jamais prescrits), planchers et alertes de sécurité.
 
