@@ -16,7 +16,7 @@ Principe : **ce que le générateur lit tient dans une case, une action, un mot 
 | `muscles_principaux` | oui | liste `[a, b]` non vide, valeurs de la liste des muscles ci-dessous |
 | `muscles_secondaires` | oui | liste `[...]`, peut être `[]` ; aucun muscle déjà en principal |
 | `source_brouillon` | oui | liste `[M1418, M0482]` d'identifiants `M` + chiffres ; `[]` = ajout hors du brouillon |
-| `statut` | oui | `brouillon_coach` -> `complete_kine` -> `controle_relecteur` -> `verifie` (seul `verifie` est utilisé par le générateur) |
+| `statut` | oui | `brouillon_coach` -> `complete_kine` -> `controle_relecteur` -> `utilisable` -> `verifie` (le générateur utilise `verifie` et `utilisable`). `utilisable` = 0 bloquant au contrôle de `relecteur`, 0 erreur à `npm run check:fiches`, réserves limitées à des choix prudents marqués NON SOURCÉ ; `verifie` = aucune réserve (décision du 22/10/2026) |
 | `couverture` | non | `substitut` seulement (la fiche ne remplit le schéma qu'à moitié) |
 
 Muscles permis : `pectoraux`, `grand_dorsal`, `trapezes`, `rhomboides`, `dentele_anterieur`, `deltoides_anterieurs`, `deltoides_lateraux`, `deltoides_posterieurs`, `biceps`, `triceps`, `avant_bras`, `abdominaux`, `obliques`, `transverse`, `erecteurs_rachis`, `carre_des_lombes`, `fessiers`, `moyen_fessier`, `quadriceps`, `ischios`, `adducteurs`, `mollets`, `flechisseurs_hanche`. Un autre muscle : l'ajouter d'abord ici et dans le script.

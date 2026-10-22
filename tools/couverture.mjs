@@ -1,6 +1,7 @@
 // Couverture des fiches : node tools/couverture.mjs
-// Tableau profil de matériel (A à F) x grand schéma : nombre de MOUVEMENTS (fiches) au statut `verifie`,
-// puis, entre parenthèses, ceux au statut `controle_relecteur`. Cases avec moins de 3 `verifie` signalées « !! ».
+// Tableau profil de matériel (A à F) x grand schéma : nombre de MOUVEMENTS (fiches) au format
+// « utilisable+verifie=total (controle_relecteur) ». Le générateur utilise `utilisable` et `verifie` (total).
+// Cases avec un total < 3 signalées « !! ».
 //
 // Règle de rattachement à un profil (equipment-taxonomy.md §4, tags de knowledge/materiel-tags.json) :
 // un mouvement compte pour un profil s'il a AU MOINS UNE variante dont TOUS les tags sont dans l'ensemble du profil.
@@ -41,35 +42,36 @@ const SCHEMAS = [
 ];
 
 const count = {}; // count[profil][colonne] = { v, c }
-for (const p of Object.keys(PROFILS)) { count[p] = {}; for (const [n] of SCHEMAS) count[p][n] = { v: 0, c: 0 }; }
+for (const p of Object.keys(PROFILS)) { count[p] = {}; for (const [n] of SCHEMAS) count[p][n] = { u: 0, v: 0, c: 0 }; }
 let total = 0;
 for (const name of listFiches(dir)) {
   const text = readFileSync(join(dir, name), 'utf8');
   const fm = parseFrontmatter(text.replace(/\r\n/g, '\n').split('\n')).data;
-  if (fm.statut !== 'verifie' && fm.statut !== 'controle_relecteur') continue;
+  if (!['utilisable', 'verifie', 'controle_relecteur'].includes(fm.statut)) continue;
   const col = SCHEMAS.find(([, l]) => l.includes(fm.schema))?.[0];
   if (!col) continue;
   total++;
   const { fiche } = parseFiche(text, name);
   for (const [p, set] of Object.entries(PROFILS)) {
-    if (fiche.variants.some((v) => v.tags.length && v.tags.every((t) => set.has(t)))) count[p][col][fm.statut === 'verifie' ? 'v' : 'c']++;
+    if (fiche.variants.some((v) => v.tags.length && v.tags.every((t) => set.has(t)))) count[p][col][{ utilisable: 'u', verifie: 'v', controle_relecteur: 'c' }[fm.statut]]++;
   }
 }
 
-const w0 = 26; const w = 11;
+const w0 = 26; const w = 14;
 const pad = (s, n) => String(s).padEnd(n);
-console.log('Mouvements « verifie » (controle_relecteur) par profil de matériel x grand schéma. !! = moins de 3 verifie.\n');
+console.log('Mouvements « utilisable+verifie=total (controle_relecteur) » par profil de matériel x grand schéma. !! = total sous 3.\n');
 console.log(pad('Profil', w0) + SCHEMAS.map(([n]) => pad(n, w)).join(''));
 const faibles = [];
 for (const p of Object.keys(PROFILS)) {
   let line = pad(LIBELLES[p], w0);
   for (const [n] of SCHEMAS) {
-    const { v, c } = count[p][n];
-    const low = v < 3;
-    if (low) faibles.push(`${p} x ${n} (${v})`);
-    line += pad(`${v} (${c})${low ? ' !!' : ''}`, w);
+    const { u, v, c } = count[p][n];
+    const t = u + v;
+    const low = t < 3;
+    if (low) faibles.push(`${p} x ${n} (${t})`);
+    line += pad(`${u}+${v}=${t} (${c})${low ? ' !!' : ''}`, w);
   }
   console.log(line);
 }
-console.log(`\n${total} fiche(s) verifie ou controle_relecteur prises en compte ; ${faibles.length} case(s) sous 3 sur ${Object.keys(PROFILS).length * SCHEMAS.length}.`);
+console.log(`\n${total} fiche(s) utilisable, verifie ou controle_relecteur prises en compte ; ${faibles.length} case(s) sous 3 sur ${Object.keys(PROFILS).length * SCHEMAS.length}.`);
 if (faibles.length) console.log('Cases < 3 : ' + faibles.join(', '));

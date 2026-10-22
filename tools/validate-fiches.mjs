@@ -8,7 +8,7 @@ import { fileURLToPath, pathToFileURL } from 'node:url';
 export const SCHEMAS = ['squat', 'charniere', 'fente', 'poussee_h', 'poussee_v', 'tirage_h', 'tirage_v', 'gainage', 'anti_rotation', 'rotation', 'porte', 'saut', 'mobilite', 'cardio'];
 export const TYPES = ['force', 'fonctionnel', 'gainage', 'mobilite_recup', 'cardio'];
 export const NIVEAUX = ['debutant', 'intermediaire', 'avance'];
-export const STATUTS = ['brouillon_coach', 'complete_kine', 'controle_relecteur', 'verifie'];
+export const STATUTS = ['brouillon_coach', 'complete_kine', 'controle_relecteur', 'utilisable', 'verifie'];
 export const MUSCLES = ['pectoraux', 'grand_dorsal', 'trapezes', 'rhomboides', 'dentele_anterieur', 'deltoides_anterieurs', 'deltoides_lateraux', 'deltoides_posterieurs', 'biceps', 'triceps', 'avant_bras', 'abdominaux', 'obliques', 'transverse', 'erecteurs_rachis', 'carre_des_lombes', 'fessiers', 'moyen_fessier', 'quadriceps', 'ischios', 'adducteurs', 'mollets', 'flechisseurs_hanche'];
 export const ZONES = ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville'];
 export const AMPLITUDES = ['reduite', 'mi-course', 'sans-gene', 'maintien-court', 'sans-rotation', 'bras-bas', 'bras-au-sol', 'jambes-seules', 'tete-alignee', 'lente'];
@@ -395,7 +395,7 @@ export function listFiches(dir) {
   const walk = (d, rel) => {
     for (const e of readdirSync(d, { withFileTypes: true })) {
       if (e.isDirectory()) { if (e.name !== 'ecartees' && !e.name.startsWith('.')) walk(join(d, e.name), rel ? rel + '/' + e.name : e.name); continue; }
-      if (!e.name.endsWith('.md') || e.name === 'README.md' || e.name === 'CAMPAGNE.md' || e.name === 'DECISIONS-utilisateur.md' || /CONTROLE/i.test(e.name)) continue;
+      if (!e.name.endsWith('.md') || e.name === 'README.md' || e.name === 'CAMPAGNE.md' || e.name === 'DECISIONS-utilisateur.md' || e.name === 'BILAN.md' || /^(RE)?CONTROLE-.*relecteur.*\.md$/.test(e.name)) continue;
       out.push(rel ? rel + '/' + e.name : e.name);
     }
   };
