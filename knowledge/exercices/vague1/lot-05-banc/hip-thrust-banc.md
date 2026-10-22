@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [fessiers]
 muscles_secondaires: [ischios, quadriceps, adducteurs]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -45,7 +45,9 @@ statut: brouillon_coach
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-**Proposition de `coach` (22/10/2026), à reprendre et compléter par `kine`** : le tableau, la ligne Grossesse et la version plus douce ci-dessous sont des choix prudents NON SOURCÉS. Les signes qui doivent faire arrêter, les objets du quotidien (banc, haltères, R8, R9) et les notes détaillées par niveau sont à rédiger par `kine` (règles communes : knowledge/regles-securite-communes.md ; format : knowledge/format-fiches.md §4). Rien ici n'est un diagnostic.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -54,16 +56,40 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Genou | garder | adapter: amplitude:reduite | retirer |
 | Cou | adapter: amplitude:tete-alignee | adapter: amplitude:tete-alignee | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
+| Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
-- dos-n1 : monter moins haut, sans cambrer.
+- dos-n1 : monte moins haut, sans cambrer ; bassin et cuisses alignés au plus.
 - dos-n2 : poids du corps, pas d'augmentation (R2).
-- cou-n1 : menton légèrement rentré, regard devant.
-- grossesse : couché sur le dos, retiré (G4).
-- general : signes d'arrêt à rédiger par kine.
+- cou-n1 : menton légèrement rentré, regard devant toi ; le poids repose sur le haut du dos, pas sur la nuque. Après un choc au cou (C3) : niveau 3.
+- cuisse-n2 : montée à mi-hauteur (les ischios sont secondaires mais travaillent ; choix prudent NON SOURCÉ de `kine`).
+- aine-n2 : pieds moins écartés, montée à mi-hauteur (les adducteurs sont secondaires ; choix prudent NON SOURCÉ).
+- genou-n2 : pieds un peu plus loin des fesses, montée à mi-hauteur.
+- grossesse : haut du dos sur le banc, donc semi-allongé sur le dos : retiré (G4) ; remplaçant : soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
 
-**Grossesse** : retirer
+**Grossesse** : retirer: remplacant:souleve-de-terre-roumain-halteres
 **Version plus douce** : hip-thrust-banc-poids-du-corps
+
+**Points d'attention (kine)**
+- Banc calé contre un mur ou un support : s'il glisse en arrière, tu tombes. Bord du banc sous les omoplates, pas sous la nuque.
+- Ne cambre pas fort le bas du dos en haut : pousse avec les fessiers et arrête-toi quand le buste et les cuisses sont alignés.
+- Avec un haltère (échelon 2) : tenu à deux mains en travers des hanches, serviette pliée dessous ; aucune valeur de charge. Pour finir, pose les fesses au sol puis pose l'haltère à côté de toi, sans le lâcher de haut.
+- Une jambe (échelon 3) : si le bassin bascule d'un côté ou si l'équilibre manque, reviens à deux jambes. Jamais les yeux fermés.
+- Chaussures aux pieds, sol non glissant : les pieds ne doivent pas glisser.
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, à la hanche, au genou, à l'arrière de la cuisse ou à l'aine.
+- Crampe à l'arrière de la cuisse : pause, puis rapproche les pieds des fesses.
+- Douleur ou picotements dans la nuque ou le haut du dos, à l'endroit où le banc appuie.
+- Banc qui glisse ou bascule ; haltère qui glisse des hanches.
+- Vertige en te relevant du sol : reste assis un instant.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé contre un mur si besoin), vis, pieds et réglage en bon état. Avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas.
+- Un canapé, un lit, un pouf, une caisse ou une table ne remplacent pas un banc (ils bougent ou s'affaissent).
+- Banc calé contre un mur : teste en poussant fort sur le bord avec la main, il ne doit pas reculer.
+- Serviette pliée sous l'haltère : elle ne doit pas glisser. Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
 
 ## Photo
 - aucune photo libre (free-exercise-db n'a que la version à la barre)
@@ -76,4 +102,4 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Le hip thrust à la barre donne une plus forte activité EMG du grand fessier que le squat arrière (13 femmes entraînées) | Contreras et al., J Appl Biomech 2015;31(6):452-458, https://pubmed.ncbi.nlm.nih.gov/26214739/ ; résumé lu via moteur de recherche, texte complet non lu | étude EMG, 13 femmes entraînées, hip thrust à la barre ; mesure l'activation seulement, pas la croissance ni la force ; ne porte pas sur le poids du corps | 2026-10-22 | PROVISOIRE (résumé seulement) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), non encore reprises par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (à reprendre par kine, à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

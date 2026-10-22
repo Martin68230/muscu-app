@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -46,23 +46,45 @@ statut: brouillon_coach
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-**Proposition de `coach` (22/10/2026), à reprendre et compléter par `kine`** : le tableau, la ligne Grossesse et la version plus douce ci-dessous sont des choix prudents NON SOURCÉS. Les signes qui doivent faire arrêter, les objets du quotidien (banc, haltères, R8, R9) et les notes détaillées par niveau sont à rédiger par `kine` (règles communes : knowledge/regles-securite-communes.md ; format : knowledge/format-fiches.md §4). Rien ici n'est un diagnostic.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: amplitude:reduite | retirer: remplacant:developpe-au-sol-halteres | retirer |
+| Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
-| Poignet | garder | adapter: charge:legere | retirer |
+| Poignet | adapter: appui:paumes-face-a-face | adapter: charge:legere | retirer |
 | Dos | garder | adapter: charge:legere | retirer |
 
 **Notes**
-- epaule-n1 : descendre moins bas, coudes plus près du buste.
+- epaule-n1 : descends moins bas, coudes plus près du buste.
+- epaule-n2 : le seul remplaçant (développé au sol) serait lui-même adapté par la même zone : la case est un retrait sans remplaçant ; le générateur choisit un autre exercice de poussée horizontale.
+- poignet-n1 : paumes face à face, poignet droit (variante prise neutre).
 - dos-n2 : haltères légers, pas d'augmentation (R2).
-- grossesse : position allongée sur le dos retirée (G4) ; remplacé par le développé épaules assis dossier droit.
-- general : signes d'arrêt à rédiger par kine.
+- grossesse : couché sur le dos, donc retiré (G4 ; extrapolation PROVISOIRE : la HAS parle de la 24e semaine, l'app l'applique dès la coche du réglage) ; remplaçant : développé épaules assis, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres
 **Version plus douce** : developpe-couche-halteres-prise-neutre
+
+**Points d'attention (kine)**
+- Haltères au-dessus des épaules, jamais au-dessus du visage (R9). Pour finir : descends les haltères sur la poitrine, redresse-toi en les ramenant sur les cuisses ; ne les lâche jamais au-dessus de toi.
+- Sans partenaire pour t'aider : choisis une charge avec laquelle tu peux toujours reposer les haltères en contrôle ; arrête la série avant de ne plus pouvoir (jamais jusqu'à l'échec). NON SOURCÉ.
+- Tête, épaules et fesses restent en appui sur le banc ; pieds à plat, bien posés au sol.
+- Un bras à la fois (échelon 2) : le buste ne tourne pas ; l'autre main sur le ventre, pas sur le banc.
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude ou au poignet.
+- Picotements ou engourdissement dans le bras ou la main.
+- Haltère qui part sur le côté ou que tu ne contrôles plus au-dessus de toi.
+- Disque d'un haltère réglable qui bouge ; banc qui bouge ou bascule.
+- Tension dans la nuque quand tu relèves la tête : repose la tête sur le banc.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé contre un mur si besoin), vis, pieds et réglage en bon état. Avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas.
+- Un canapé, un lit, un pouf, une caisse ou une table ne remplacent pas un banc (ils bougent ou s'affaissent).
+- Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
 
 ## Photo
 - `Dumbbell_Bench_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; départ, haltères à hauteur de poitrine ; WebP à créer : public/photos/free-exercise-db/Dumbbell_Bench_Press-0.webp)
@@ -76,4 +98,4 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Un banc horizontal active à la fois le haut et le bas du grand pectoral ; 30 à 45 degrés d'inclinaison changent l'activation à certains moments du mouvement | Lauver, Cayot, Scheuermann, Eur J Sport Sci 2016;16(3):309-316, https://pubmed.ncbi.nlm.nih.gov/25799093/ ; résumé lu via moteur de recherche, texte complet non lu | étude de laboratoire (EMG de surface), 14 hommes entraînés, développé à la BARRE à 65 % du maximum : ne porte ni sur les haltères ni sur des débutants | 2026-10-22 | PROVISOIRE (résumé seulement) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), non encore reprises par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (à reprendre par kine, à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

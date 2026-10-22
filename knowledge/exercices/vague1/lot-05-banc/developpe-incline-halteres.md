@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [deltoides_anterieurs, triceps]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -45,23 +45,45 @@ statut: brouillon_coach
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-**Proposition de `coach` (22/10/2026), à reprendre et compléter par `kine`** : le tableau, la ligne Grossesse et la version plus douce ci-dessous sont des choix prudents NON SOURCÉS. Les signes qui doivent faire arrêter, les objets du quotidien (banc, haltères, R8, R9) et les notes détaillées par niveau sont à rédiger par `kine` (règles communes : knowledge/regles-securite-communes.md ; format : knowledge/format-fiches.md §4). Rien ici n'est un diagnostic.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
-| Poignet | garder | adapter: charge:legere | retirer |
+| Poignet | adapter: appui:paumes-face-a-face | adapter: charge:legere | retirer |
 | Dos | garder | adapter: variante:developpe-incline-halteres-pente-douce | retirer |
 
 **Notes**
-- epaule-n1 : descendre moins bas.
+- epaule-n1 : descends moins bas, coudes plus près du buste ; reste sur la pente douce (plus le dossier se redresse, plus l'épaule travaille). Conseil affiché, non codé.
+- poignet-n1 : paumes face à face, poignet droit.
 - dos-n2 : pente douce, charge qui n'augmente pas (R2).
-- grossesse : position semi-allongée retirée par prudence ; remplacé par le développé épaules assis dossier droit.
-- general : signes d'arrêt à rédiger par kine.
+- grossesse : semi-allongé retiré par prudence (extrapolation de G4, NON SOURCÉ : la HAS ne cite pas la position inclinée) ; remplaçant : développé épaules assis dossier droit, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres
 **Version plus douce** : developpe-incline-halteres-pente-douce
+
+**Points d'attention (kine)**
+- Réglage du dossier bloqué avant chaque série ; il doit tenir quand tu pousses.
+- Haltères au-dessus de la poitrine haute, jamais au-dessus du visage (R9) ; ne les lâche jamais au-dessus de toi. Pour finir, repose-les sur les cuisses.
+- Choisis des haltères plus légers que pour le développé couché, et une charge que tu peux toujours reposer en contrôle ; pas d'échec.
+- Le bas du dos reste en appui sur le dossier, sans cambrure forte.
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude ou au poignet.
+- Picotements ou engourdissement dans le bras ou la main.
+- Haltère que tu ne contrôles plus ; disque qui bouge.
+- Dossier qui descend ou qui bouge ; banc qui bascule.
+- Bas du dos qui se creuse pour finir la poussée.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé contre un mur si besoin), vis, pieds et réglage en bon état. Avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas.
+- Un canapé, un lit, un pouf, une caisse ou une table ne remplacent pas un banc (ils bougent ou s'affaissent).
+- Banc inclinable : cran de réglage bien enclenché ; teste-le en t'appuyant avant de prendre les haltères.
+- Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
 
 ## Photo
 - `Incline_Dumbbell_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; départ, haltères à hauteur des épaules, dossier incliné ; WebP à créer : Incline_Dumbbell_Press-0.webp)
@@ -75,4 +97,4 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Pente douce en échelon 1, pente moyenne en échelon 2 | choix de coach (l'épaule travaille davantage quand le dossier se redresse) | - | 2026-10-22 | NON SOURCÉ |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), non encore reprises par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (à reprendre par kine, à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

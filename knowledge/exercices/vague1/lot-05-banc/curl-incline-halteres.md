@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [biceps]
 muscles_secondaires: [avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
@@ -45,7 +45,9 @@ couverture: substitut
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-**Proposition de `coach` (22/10/2026), à reprendre et compléter par `kine`** : le tableau, la ligne Grossesse et la version plus douce ci-dessous sont des choix prudents NON SOURCÉS. Les signes qui doivent faire arrêter, les objets du quotidien (banc, haltères, R8, R9) et les notes détaillées par niveau sont à rédiger par `kine` (règles communes : knowledge/regles-securite-communes.md ; format : knowledge/format-fiches.md §4). Rien ici n'est un diagnostic.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -54,13 +56,33 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Poignet | garder | adapter: charge:legere | retirer |
 
 **Notes**
-- epaule-n1 : bras moins en arrière (dossier plus relevé).
-- grossesse : semi-allongé retiré par prudence.
-- general : couverture substitut : aucun schéma « curl » dans le format.
-- general : signes d'arrêt à rédiger par kine.
+- coude-n1 : charge de départ légère, jamais augmentée ; coudes immobiles, redescente lente.
+- epaule-n1 : dossier plus relevé (bras moins en arrière) ; descente moins complète. Au niveau 2, retiré.
+- poignet-n2 : charge légère ; prise marteau (paumes face à face) si utile.
+- grossesse : semi-allongé sur un dossier incliné, retiré par prudence (NON SOURCÉ). Post-partum : G7.
+- general : couverture substitut (aucun schéma curl dans le format).
 
 **Grossesse** : retirer
 **Version plus douce** : aucune
+
+**Points d'attention (kine)**
+- Bras pendants derrière le buste : le biceps est étiré sous charge, donc haltères légers ; ne laisse pas les bras tomber en bas, la descente est lente et contrôlée.
+- Coudes immobiles, sous les épaules ou un peu en arrière ; tête et dos contre le dossier.
+- Pose les haltères au sol avant de te lever : en te redressant, ne laisse pas leur poids t'entraîner en avant.
+- Charge que tu peux toujours remonter en contrôle ; pas d'échec.
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au coude, à l'avant de l'épaule ou au poignet.
+- Douleur vive et soudaine, claquement ou sensation de déchirure dans le bras ou au creux du coude : arrête, ne reprends pas avant avis ; si un gonflement ou une perte de force apparaît, consulte (S2).
+- Picotements ou engourdissement dans le bras ou la main.
+- Dossier qui bouge ; haltère que tu ne contrôles plus.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé contre un mur si besoin), vis, pieds et réglage en bon état. Avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas.
+- Un canapé, un lit, un pouf, une caisse ou une table ne remplacent pas un banc (ils bougent ou s'affaissent).
+- Banc inclinable : cran de réglage enclenché, vérifié en t'appuyant avant de t'asseoir.
+- Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
 
 ## Photo
 - `Incline_Dumbbell_Curl/0.jpg` : affichable : oui (vue le 22/10/2026 ; départ, bras pendants ; WebP à créer : Incline_Dumbbell_Curl-0.webp)
@@ -75,4 +97,4 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Chez 22 sujets, le curl incliné et le curl classique donnent une activation du biceps comparable sur toute l'amplitude (différence avec le curl pupitre) | Oliveira et al., J Sports Sci Med 2009;8:24-29, https://www.jssm.org/jssm-08-24.xml-abst ; résumé lu via moteur de recherche, texte complet non lu | étude EMG, 22 sujets, 40 % de la force maximale isométrique ; ne dit pas que l'incliné donne plus de croissance | 2026-10-22 | PROVISOIRE (résumé seulement) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), non encore reprises par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (à reprendre par kine, à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

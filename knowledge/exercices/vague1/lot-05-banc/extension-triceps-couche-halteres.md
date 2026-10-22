@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [triceps]
 muscles_secondaires: [deltoides_anterieurs]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
@@ -45,7 +45,9 @@ couverture: substitut
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-**Proposition de `coach` (22/10/2026), à reprendre et compléter par `kine`** : le tableau, la ligne Grossesse et la version plus douce ci-dessous sont des choix prudents NON SOURCÉS. Les signes qui doivent faire arrêter, les objets du quotidien (banc, haltères, R8, R9) et les notes détaillées par niveau sont à rédiger par `kine` (règles communes : knowledge/regles-securite-communes.md ; format : knowledge/format-fiches.md §4). Rien ici n'est un diagnostic.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -55,12 +57,33 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Cou | garder | adapter: amplitude:tete-alignee | retirer |
 
 **Notes**
-- grossesse : allongé sur le dos retiré (G4).
-- general : haltères près du visage : voir R9 ; couverture substitut.
-- general : signes d'arrêt à rédiger par kine.
+- coude-n1 : charge de départ légère, jamais augmentée ; coudes fixes, descente lente.
+- epaule-n1 : descends moins bas, coudes serrés ; au niveau 2, retiré.
+- cou-n2 : tête posée sur le banc, ne la relève pas. Après un choc au cou (C3) : niveau 3.
+- grossesse : couché sur le dos, donc retiré (G4). Post-partum : G7.
+- general : haltères près du visage (R9) ; couverture substitut.
 
 **Grossesse** : retirer
-**Version plus douce** : aucune
+**Version plus douce** : extension-triceps-assis-halteres
+
+**Points d'attention (kine)**
+- Les haltères passent à côté de la tête, près du visage : charge légère, tenue très ferme, aucun lâcher (R9). Préfère l'option un haltère tenu à deux mains.
+- Haltère fixe de préférence ; si réglable, disques et colliers serrés et vérifiés avant chaque série.
+- Descends sans aller sous la hauteur du front, coudes serrés. Choisis une charge que tu peux toujours remonter ; arrête avant l'échec.
+- Pour finir : ramène les haltères au-dessus de la poitrine puis sur les cuisses en te redressant, sans les lâcher.
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au coude, à l'épaule ou au poignet.
+- Picotements ou engourdissement dans le bras ou la main.
+- Haltère qui glisse de la main ou que tu ne contrôles plus au-dessus de ta tête ; disque qui bouge.
+- Tension dans la nuque ; banc qui bouge.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé contre un mur si besoin), vis, pieds et réglage en bon état. Avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas.
+- Un canapé, un lit, un pouf, une caisse ou une table ne remplacent pas un banc (ils bougent ou s'affaissent).
+- Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
+- Dégage l'espace autour de la tête du banc (pas de meuble, de mur ou d'objet dur à proximité de la tête).
 
 ## Photo
 - `Lying_Dumbbell_Tricep_Extension/0.jpg` : affichable : oui (vue le 22/10/2026 ; haltères descendus près de la tête ; ici bras un peu inclinés vers l'arrière, garde-les verticaux ; WebP à créer : Lying_Dumbbell_Tricep_Extension-0.webp)
@@ -73,4 +96,4 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Étirer la longue portion du triceps (bras au-dessus de la tête) fait davantage grossir le triceps qu'une extension bras le long du corps | Maeo et al., Eur J Sport Sci 2023;23(7):1240-1250, https://pubmed.ncbi.nlm.nih.gov/35819335/ ; résumé lu via moteur de recherche, texte complet non lu | essai de 12 semaines, 21 adultes, à la poulie, bras au-dessus de la tête contre bras le long du corps ; ne porte pas sur cet exercice précis | 2026-10-22 | PROVISOIRE (résumé seulement) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), non encore reprises par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (à reprendre par kine, à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

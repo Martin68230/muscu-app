@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, mollets, moyen_fessier]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -43,23 +43,47 @@ statut: brouillon_coach
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-**Proposition de `coach` (22/10/2026), à reprendre et compléter par `kine`** : le tableau, la ligne Grossesse et la version plus douce ci-dessous sont des choix prudents NON SOURCÉS. Les signes qui doivent faire arrêter, les objets du quotidien (banc, haltères, R8, R9) et les notes détaillées par niveau sont à rédiger par `kine` (règles communes : knowledge/regles-securite-communes.md ; format : knowledge/format-fiches.md §4). Rien ici n'est un diagnostic.
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Genou | adapter: variante:montee-sur-marche-poids-du-corps | retirer | retirer |
 | Hanche | garder | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
 | Cheville | garder | adapter: appui:main-sur-support | retirer |
-| Cuisse | garder | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
+| Cuisse | garder | retirer | retirer |
 
 **Notes**
-- genou-n1 : repasser sur une marche d'escalier, plus basse.
-- cheville-n2 : main sur un support stable.
-- grossesse : banc trop haut, retiré ; remplacé par la montée sur marche (sans haltères).
-- general : signes d'arrêt à rédiger par kine.
+- genou-n1 : repasse sur une marche d'escalier, plus basse, main sur la rampe.
+- genou-n2 : retiré (la marche basse est elle-même limitée par la même zone au niveau 2) ; le générateur choisit un autre exercice de fente.
+- hanche-n2 : marche basse, aucune augmentation (R2).
+- cheville-n2 : main sur un support stable (mur ou meuble lourd, testé).
+- cuisse-n2 : les ischios sont secondaires mais travaillent ; retiré dès la gêne nette (choix prudent NON SOURCÉ de `kine`). La marche n'a pas de ligne cuisse : elle n'est pas désignée comme remplaçant.
+- grossesse : banc plus haut qu'une marche, risque de chute : retiré ; remplaçant : montée sur marche, sans haltères, main sur la rampe. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:montee-sur-marche
 **Version plus douce** : montee-sur-marche
+
+**Points d'attention (kine)**
+- Un banc est plus haut qu'une marche d'escalier : si le genou ou la hanche tire, ou si tu dois te pencher beaucoup pour monter, repasse à la montée sur marche.
+- Aucun haltère sur le banc (décision du 21/10/2026).
+- Pose tout le pied sur le banc, genou au-dessus de la cheville ; pousse avec la jambe du banc, pas avec celle qui reste au sol.
+- Redescends en contrôle, jamais en sautant ni en tombant. Jamais les yeux fermés.
+- Dégage la zone autour du banc ; chaussures aux pieds.
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche, à la cheville ou à l'arrière de la cuisse.
+- Pied qui glisse sur le banc ou talon qui dépasse du bord.
+- Perte d'équilibre ou genou qui rentre nettement vers l'intérieur.
+- Banc qui bouge ou bascule.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé contre un mur si besoin), vis, pieds et réglage en bon état. Avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas.
+- Un canapé, un lit, un pouf, une caisse ou une table ne remplacent pas un banc (ils bougent ou s'affaissent).
+- Banc contre un mur ou calé, surface non glissante (pas de sol mouillé ni de tapis qui glisse) ; éclairage suffisant.
+- Appui (variante cheville) : mur ou meuble lourd testé en appuyant fort ; ni chaise légère, ni porte, ni objet qui roule.
 
 ## Photo
 - `Dumbbell_Step_Ups/0.jpg` : affichable : non (haltères sur un banc, contraire à la décision du 21/10/2026)
@@ -73,4 +97,4 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 | Pas d'haltères sur un banc ou une box haute | décision de l'utilisateur du 21/10/2026, repris dans regles-securite-communes.md §7 | - | 2026-10-22 | NON SOURCÉ (règle de projet) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), non encore reprises par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (à reprendre par kine, à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |
