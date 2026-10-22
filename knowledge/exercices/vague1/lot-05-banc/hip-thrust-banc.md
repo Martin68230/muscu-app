@@ -66,7 +66,8 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 **Version plus douce** : hip-thrust-banc-poids-du-corps
 
 ## Photo
-- aucune photo
+- aucune photo libre (free-exercise-db n'a que la version à la barre)
+- illustration : public/illustrations/hip-thrust-banc.svg : affichable : oui (illustration originale de l'app ; poids du corps, vue de profil)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

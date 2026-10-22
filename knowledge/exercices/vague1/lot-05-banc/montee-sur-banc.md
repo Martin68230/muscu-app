@@ -62,8 +62,9 @@ Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouveme
 **Version plus douce** : montee-sur-marche
 
 ## Photo
-- `Dumbbell_Step_Ups/0.jpg` : affichable : à vérifier (vue le 22/10/2026 ; montre un banc mais avec haltères, ce que la règle du 21/10/2026 interdit sur une box haute : à trancher par l'utilisateur (README, question 1) ; sinon illustration par dev)
-- `Dumbbell_Step_Ups/1.jpg` : affichable : à vérifier (même raison)
+- `Dumbbell_Step_Ups/0.jpg` : affichable : non (haltères sur un banc, contraire à la décision du 21/10/2026)
+- `Dumbbell_Step_Ups/1.jpg` : affichable : non (même raison)
+- illustration : public/illustrations/montee-sur-banc.svg : affichable : oui (illustration originale de l'app ; sans haltères, vue de profil)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

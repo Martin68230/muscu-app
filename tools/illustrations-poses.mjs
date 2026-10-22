@@ -439,4 +439,16 @@ export const EXERCICES = [
     a: { p: [-22, 108], t: 100, h: 100, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [52, 150], bend: 'd' }, armF: { to: [48, 148], bend: 'd' }, back: [['wall', 150, 14], ['anchor', 150, 230]], props: (J) => [['band', [J.haN, [150, 230]]]] },
     b: { p: [-12, 110], t: 94, h: 92, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [16, 186], bend: 'b' }, armF: { to: [12, 182], bend: 'b' }, back: [['wall', 150, 14], ['anchor', 150, 230]], props: (J) => [['band', [J.haN, [150, 230]]], ['arrow', [70, 150], [30, 150]]] },
   },
+  {
+    id: 'hip-thrust-banc', titre: 'Hip thrust, poids du corps : haut du dos sur un banc, hanches qui montent',
+    labels: ['Bassin bas, haut du dos sur le banc', 'Buste et cuisses alignés'],
+    a: { p: [-5, 22], t: 155, h: 165, armN: { to: [10, 28], bend: 'd' }, armF: { to: [6, 28], bend: 'd' }, legN: { to: [40, A], bend: 'f' }, legF: { to: [34, A], bend: 'f' }, back: [['step', -135, -58, 40]] },
+    b: { p: [-5, 54], t: 180, h: 175, armN: { to: [10, 56], bend: 'd' }, armF: { to: [6, 56], bend: 'd' }, legN: { to: [40, A], bend: 'f' }, legF: { to: [34, A], bend: 'f' }, back: [['step', -135, -58, 40]], props: [['arrow', [-5, 82], [-5, 110]]] },
+  },
+  {
+    id: 'montee-sur-banc', titre: 'Montée sur banc, sans charge : un pied sur le banc, on se redresse dessus',
+    labels: ['Un pied posé sur le banc', 'Debout sur le banc, genou levé'],
+    a: { p: [-20, 100], t: 90, h: 90, armN: { a: [-90, -90] }, armF: { a: [-90, -90] }, legN: { to: [30, 48], bend: 'f' }, legF: { to: [-22, A], bend: 'f' }, back: [['step', 12, 92, 40]] },
+    b: { p: [40, 150], t: 90, h: 90, armN: { a: [-90, -90] }, armF: { a: [-90, -90] }, legN: { to: [40, 48], bend: 'f' }, legF: { to: [56, 98], bend: 'f' }, back: [['step', 12, 92, 40]], props: [['arrow', [-30, 60], [-30, 110]]] },
+  },
 ];
