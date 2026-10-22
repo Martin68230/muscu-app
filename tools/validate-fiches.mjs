@@ -5,12 +5,12 @@ import { existsSync, readdirSync, readFileSync } from 'node:fs';
 import { basename, join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
-export const SCHEMAS = ['squat', 'charniere', 'fente', 'poussee_h', 'poussee_v', 'tirage_h', 'tirage_v', 'gainage', 'anti_rotation', 'rotation', 'porte', 'saut', 'mobilite', 'cardio'];
+export const SCHEMAS = ['squat', 'charniere', 'fente', 'poussee_h', 'poussee_v', 'tirage_h', 'tirage_v', 'gainage', 'anti_rotation', 'rotation', 'porte', 'saut', 'mobilite', 'cardio', 'cheville_mollet', 'hanche_laterale'];
 export const TYPES = ['force', 'fonctionnel', 'gainage', 'mobilite_recup', 'cardio'];
 export const NIVEAUX = ['debutant', 'intermediaire', 'avance'];
 export const STATUTS = ['brouillon_coach', 'complete_kine', 'controle_relecteur', 'utilisable', 'verifie'];
-export const MUSCLES = ['pectoraux', 'grand_dorsal', 'trapezes', 'rhomboides', 'dentele_anterieur', 'deltoides_anterieurs', 'deltoides_lateraux', 'deltoides_posterieurs', 'biceps', 'triceps', 'avant_bras', 'abdominaux', 'obliques', 'transverse', 'erecteurs_rachis', 'carre_des_lombes', 'fessiers', 'moyen_fessier', 'quadriceps', 'ischios', 'adducteurs', 'mollets', 'flechisseurs_hanche'];
-export const ZONES = ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville'];
+export const MUSCLES = ['pectoraux', 'grand_dorsal', 'trapezes', 'rhomboides', 'dentele_anterieur', 'deltoides_anterieurs', 'deltoides_lateraux', 'deltoides_posterieurs', 'biceps', 'triceps', 'avant_bras', 'abdominaux', 'obliques', 'transverse', 'erecteurs_rachis', 'carre_des_lombes', 'fessiers', 'moyen_fessier', 'quadriceps', 'ischios', 'adducteurs', 'mollets', 'flechisseurs_hanche', 'coiffe_des_rotateurs', 'peroniers'];
+export const ZONES = ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville', 'cuisse', 'aine'];
 export const AMPLITUDES = ['reduite', 'mi-course', 'sans-gene', 'maintien-court', 'sans-rotation', 'bras-bas', 'bras-au-sol', 'jambes-seules', 'tete-alignee', 'lente'];
 export const APPUIS = ['coussin', 'serviette', 'poings-fermes', 'avant-bras', 'paumes-face-a-face', 'mains-vers-exterieur', 'main-sur-rampe', 'main-sur-support', 'mur', 'assise-rehaussee', 'pieds-ecartes', 'buste-redresse', 'charges-surelevees', 'premiere-marche', 'coudes-pres-du-corps', 'front-pose'];
 
@@ -126,7 +126,7 @@ export function parseFiche(text, file) {
   const fm = parseFrontmatter(lines);
   for (const p of fm.problems) add(p.line, 'frontmatter', p.message);
   const d = fm.data;
-  const fiche = { file, id: d.id, niveauMin: d.niveau_min, variants: [], refs: [] };
+  const fiche = { file, id: d.id, statut: d.statut, niveauMin: d.niveau_min, variants: [], refs: [] };
   const addRef = (line, type, id) => fiche.refs.push({ line, type, id });
 
   // ---- Frontmatter
@@ -370,6 +370,9 @@ export function validateLot(files, options = {}) {
         const rep = options.tags.remplaces?.[t];
         issues.push({ file: fiche.file, line: v.line, categorie: 'tags', severite: 'erreur', message: rep ? `tag « ${t} » remplacé par « ${rep} »` : `tag de matériel inconnu « ${t} » (voir knowledge/materiel-tags.json)` });
       }
+    }
+    if (['utilisable', 'verifie'].includes(fiche.statut) && !fiche.photos.some((ph) => ph.statut === 'oui')) {
+      issues.push({ file: fiche.file, line: 1, categorie: 'image', severite: 'avertissement', message: `fiche ${fiche.statut} sans image « affichable : oui » (D6/D8 ; passera en erreur quand les images auront été relues)` });
     }
     if (options.photosDir) {
       for (const ph of fiche.photos) {

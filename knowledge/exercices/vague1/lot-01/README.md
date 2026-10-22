@@ -71,3 +71,6 @@ Les 9 fiches `a-creer` du pilote sont toutes créées sous le même id : bird-do
 6. **Regroupement** : assis-debout-mains-cuisses pourrait être un échelon de squat-assis-debout au lieu d'une fiche séparée ; on garde la fiche séparée (id cité par le pilote) ?
 
 Réponse provisoire de `kine` (22/10/2026), en attente de la décision de l'utilisateur : pour la question 1 (pompe-equilibre-mur), option la plus prudente retenue dans la fiche : `retirer` dès le niveau 1 pour le cou (tête et cou sous charge), épaule/coude/poignet/dos : adapter au niveau 1 puis retirer au niveau 2, grossesse retirée (remplaçant pompe-chaise). Aucune source lue sur la charge cervicale de cet exercice : NON SOURCÉ. Les fiches du lot sont au statut `complete_kine`, à faire contrôler par `relecteur`.
+
+## Validation utilisateur
+Validé par l'utilisateur le 22/10/2026 (décision D5 : relecture des 102 fiches sur la page de relecture ; ne lève pas un bloquant sécurité de relecteur). Fiches sans bloquant en `utilisable`.

@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "mis_a_jour": "2026-10-21",
+  "mis_a_jour": "2026-10-22",
   "source": "knowledge/equipment-taxonomy.md §2 (vocabulaire unique). Fichier lu par tools/validate-fiches.mjs et, plus tard, par le générateur. En cas de désaccord, equipment-taxonomy.md décide ; mettre à jour les deux.",
   "groupes": {
     "implicite": "Supposé présent partout, sauf case décochée dans le profil.",
@@ -19,7 +19,7 @@
 
     { "id": "halteres", "groupe": "maison", "detail": "Fixes ou réglables ; liste des poids disponibles dans le profil." },
     { "id": "kettlebell", "groupe": "maison", "detail": "Poids dans le profil." },
-    { "id": "elastique", "groupe": "maison", "detail": "Mini-bande, bande longue ou avec poignées ; résistance dans le profil." },
+    { "id": "elastique", "groupe": "maison", "detail": "Bande longue ou bande avec poignées ; résistance dans le profil. La boucle fermée est le tag mini_bande (distinct)." },
     { "id": "barre_traction", "groupe": "maison" },
     { "id": "banc", "groupe": "maison" },
     { "id": "banc_inclinable", "groupe": "maison" },
@@ -34,9 +34,13 @@
     { "id": "bosu", "groupe": "maison" },
     { "id": "barre", "groupe": "maison" },
     { "id": "barre_ez", "groupe": "maison" },
+    { "id": "mini_bande", "groupe": "maison", "detail": "Mini-bande : boucle fermée (distincte de elastique : bande longue ou à poignées). Décision D3, 22/10/2026." },
+    { "id": "rack", "groupe": "maison", "detail": "Rack ou cage à squat avec sécurités. Décision D7, 22/10/2026." },
+    { "id": "disques", "groupe": "maison", "detail": "Disques à placer sur une barre ; poids dans le profil. Décision D7, 22/10/2026." },
 
     { "id": "sac_a_dos", "groupe": "objet_quotidien", "detail": "Sac à dos chargé, fermé, contenu calé, poids connu." },
     { "id": "bidons_ou_sacs", "groupe": "objet_quotidien", "detail": "Packs ou bidons d'eau, sacs de courses solides, poids connu." },
+    { "id": "partenaire_ou_ancrage", "groupe": "objet_quotidien", "detail": "Un partenaire, ou un point d'ancrage fixe et sûr pour bloquer les chevilles (ex. nordique). Non implicite : à cocher dans le profil. Décision D3, 22/10/2026." },
     { "id": "box_ou_step", "groupe": "objet_quotidien", "detail": "Box ou step stable, plus haut qu'une marche d'escalier. Remplace box_stable (décision du 21/10/2026)." },
 
     { "id": "poulie", "groupe": "salle", "salle_uniquement": true },

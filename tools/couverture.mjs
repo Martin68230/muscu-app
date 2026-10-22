@@ -39,6 +39,7 @@ const SCHEMAS = [
   ['squat', ['squat']], ['charnière', ['charniere']], ['fente', ['fente']], ['poussée H', ['poussee_h']], ['poussée V', ['poussee_v']],
   ['tirage H', ['tirage_h']], ['tirage V', ['tirage_v']], ['gainage', ['gainage']], ['porté', ['porte']],
   ['rot./anti-rot.', ['rotation', 'anti_rotation']], ['saut', ['saut']], ['mobilité', ['mobilite']], ['cardio', ['cardio']],
+  ['cheville/mollet', ['cheville_mollet']], ['hanche latérale', ['hanche_laterale']],
 ];
 
 const count = {}; // count[profil][colonne] = { v, c }

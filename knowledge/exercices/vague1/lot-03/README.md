@@ -112,3 +112,6 @@ Questions pour l'utilisateur (kine) :
 - Rotation bûcheron : la ligne Hanche (niveau 1) a été ajoutée par prudence, car la rotation pivote sur la hanche ; à confirmer par `kine`.
 - Mobilité des poignets : en grossesse l'appui quatre pattes est retiré, alors que `grenouille-hanches`, `ouverture-hanche-quatre-pattes` et `chat-vache` le gardent ; à harmoniser par l'utilisateur.
 - Cardio à impact en post-partum : question à `dev` (attribut `impact` par variante) ; couvert pour ce lot par le réglage unique (regles-securite-communes.md §3).
+
+## Validation utilisateur
+Validé par l'utilisateur le 22/10/2026 (décision D5 : relecture des 102 fiches sur la page de relecture ; ne lève pas un bloquant sécurité de relecteur). Fiches sans bloquant en `utilisable`.

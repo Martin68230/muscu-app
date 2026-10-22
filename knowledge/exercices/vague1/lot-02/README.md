@@ -75,3 +75,6 @@ Réponses à la question 3 : équilibre yeux fermés non proposé, `kine` est d'
 9. **Blessure récente aux ischios** : l'app ne connaît pas la date d'une gêne. Le nordique est donc retiré dès le niveau 1 à la hanche ou au genou, avec le curl sur serviette en remplaçant au niveau 1. D'accord, ou on veut une case « récente (moins de X semaines) » dans le profil ?
 10. **Départage de deux `adapter: variante` différents** (ex. genou n1 vers une variante, dos n2 vers une autre) : les fiches du lot évitent la plupart des conflits, mais la règle de `dev` n'est pas écrite. Proposition de `kine` : le niveau le plus élevé gagne, puis la variante d'échelon le plus bas.
 11. **Grossesse, fente latérale et rotations** : choix prudent (retrait de la fente latérale, de la rotation russe, du Copenhague, du nordique, de tous les sauts). Les fentes avant sont gardées avec squat fendu à la main au mur. Pour confirmation, car la HAS ne détaille pas ces exercices.
+
+## Validation utilisateur
+Validé par l'utilisateur le 22/10/2026 (décision D5 : relecture des 102 fiches sur la page de relecture ; ne lève pas un bloquant sécurité de relecteur). Fiches sans bloquant en `utilisable`.

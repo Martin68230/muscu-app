@@ -10,7 +10,7 @@ Principe : **ce que le générateur lit tient dans une case, une action, un mot 
 |---|---|---|
 | `id` | oui | kebab-case ASCII (`a-z`, `0-9`, `-`), égal au nom du fichier sans `.md`, unique dans le lot |
 | `nom` | oui | texte français affiché |
-| `schema` | oui | `squat`, `charniere`, `fente`, `poussee_h`, `poussee_v`, `tirage_h`, `tirage_v`, `gainage`, `anti_rotation`, `rotation`, `porte`, `saut`, `mobilite`, `cardio` |
+| `schema` | oui | `squat`, `charniere`, `fente`, `poussee_h`, `poussee_v`, `tirage_h`, `tirage_v`, `gainage`, `anti_rotation`, `rotation`, `porte`, `saut`, `mobilite`, `cardio`, `cheville_mollet`, `hanche_laterale` |
 | `type` | oui | `force`, `fonctionnel`, `gainage`, `mobilite_recup`, `cardio` |
 | `niveau_min` | oui | `debutant`, `intermediaire`, `avance` (ASCII, sans accent) ; égal au `niveau` de la variante d'échelon 1 |
 | `muscles_principaux` | oui | liste `[a, b]` non vide, valeurs de la liste des muscles ci-dessous |
@@ -19,7 +19,7 @@ Principe : **ce que le générateur lit tient dans une case, une action, un mot 
 | `statut` | oui | `brouillon_coach` -> `complete_kine` -> `controle_relecteur` -> `utilisable` -> `verifie` (le générateur utilise `verifie` et `utilisable`). `utilisable` = 0 bloquant au contrôle de `relecteur`, 0 erreur à `npm run check:fiches`, réserves limitées à des choix prudents marqués NON SOURCÉ ; `verifie` = aucune réserve (décision du 22/10/2026) |
 | `couverture` | non | `substitut` seulement (la fiche ne remplit le schéma qu'à moitié) |
 
-Muscles permis : `pectoraux`, `grand_dorsal`, `trapezes`, `rhomboides`, `dentele_anterieur`, `deltoides_anterieurs`, `deltoides_lateraux`, `deltoides_posterieurs`, `biceps`, `triceps`, `avant_bras`, `abdominaux`, `obliques`, `transverse`, `erecteurs_rachis`, `carre_des_lombes`, `fessiers`, `moyen_fessier`, `quadriceps`, `ischios`, `adducteurs`, `mollets`, `flechisseurs_hanche`. Un autre muscle : l'ajouter d'abord ici et dans le script.
+Muscles permis : `pectoraux`, `grand_dorsal`, `trapezes`, `rhomboides`, `dentele_anterieur`, `deltoides_anterieurs`, `deltoides_lateraux`, `deltoides_posterieurs`, `biceps`, `triceps`, `avant_bras`, `abdominaux`, `obliques`, `transverse`, `erecteurs_rachis`, `carre_des_lombes`, `fessiers`, `moyen_fessier`, `quadriceps`, `ischios`, `adducteurs`, `mollets`, `flechisseurs_hanche`, `coiffe_des_rotateurs`, `peroniers`. Un autre muscle : l'ajouter d'abord ici et dans le script.
 
 Syntaxe : `cle: valeur`, une par ligne ; listes entre crochets ; un commentaire `# ...` en fin de ligne est ignoré. Pas d'autre YAML.
 
@@ -49,7 +49,7 @@ Colonnes, dans cet ordre exact : `| id variante | nom | echelon | niveau | mater
 
 ### 4.1 Tableau zone x niveau
 
-En-tête exact : `| Zone | Niveau 1 | Niveau 2 | Niveau 3 |`. Une ligne par zone, **une seule zone par ligne** (« Coude / poignet » est refusé : deux lignes). Zones : `cou`, `epaule`, `coude`, `poignet`, `dos`, `hanche`, `genou`, `cheville` (écrites avec ou sans accent et majuscule : « Épaule » est accepté). Zone absente = `garder`. Niveaux d'après `regles-securite-communes.md` : 1 gêne légère, 2 gêne nette, 3 douleur.
+En-tête exact : `| Zone | Niveau 1 | Niveau 2 | Niveau 3 |`. Une ligne par zone, **une seule zone par ligne** (« Coude / poignet » est refusé : deux lignes). Zones : `cou`, `epaule`, `coude`, `poignet`, `dos`, `hanche`, `genou`, `cheville`, `cuisse` (face arrière : ischios), `aine` (adducteurs) (écrites avec ou sans accent et majuscule : « Épaule » est accepté). Zone absente = `garder`. Niveaux d'après `regles-securite-communes.md` : 1 gêne légère, 2 gêne nette, 3 douleur.
 
 **Une case = exactement une action**, parmi :
 

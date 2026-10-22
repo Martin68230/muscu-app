@@ -28,7 +28,7 @@ Chaque décision « à appliquer » est prioritaire sur l'ordre des lots de CAMP
 
 ## 22/10/2026 fin de matinée (écrit à la demande de l'utilisateur)
 
-### D5. Validation des 102 fiches par l'utilisateur : à appliquer
+### D5. Validation des 102 fiches par l'utilisateur : appliquée le 22/10/2026 08:40 (commit D5)
 - L'utilisateur a relu les 102 fiches (pilote, lots 01 à 03) sur la page de relecture et les VALIDE sur le fond : contenu, choix d'exercices, échelons et niveaux.
 - Noter « validé par l'utilisateur le 22/10/2026 » dans le README de chaque lot. Cette validation remplace sa relecture humaine ; elle ne lève PAS un point bloquant de `relecteur` sur la sécurité : ceux-là restent à corriger normalement.
 - Les fiches sans point bloquant passent en `utilisable` (règle D1) dès que `check:fiches` est à 0 erreur.
