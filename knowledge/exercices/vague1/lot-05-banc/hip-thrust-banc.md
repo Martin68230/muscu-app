@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [fessiers]
 muscles_secondaires: [ischios, quadriceps, adducteurs]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -82,7 +82,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Crampe à l'arrière de la cuisse : pause, puis rapproche les pieds des fesses.
 - Douleur ou picotements dans la nuque ou le haut du dos, à l'endroit où le banc appuie.
 - Banc qui glisse ou bascule ; haltère qui glisse des hanches.
-- Vertige en te relevant du sol : reste assis un instant.
+- Vertige, même léger : reste assis et ne reprends pas avant avis (règle cou C4).
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [deltoides_lateraux]
 muscles_secondaires: [trapezes]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
@@ -53,11 +53,13 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Épaule | adapter: amplitude:bras-bas | retirer | retirer |
 | Cou | garder | adapter: amplitude:tete-alignee | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
+| Poignet | garder | adapter: charge:legere | retirer |
 
 **Notes**
 - epaule-n1 : bras moins hauts (sous la hauteur des épaules), haltères très légers.
 - epaule-n2 : retiré dès la gêne nette (choix prudent NON SOURCÉ).
 - cou-n2 : épaules loin des oreilles, tête dans l'axe. Après un choc au cou (C3) : niveau 3.
+- poignet-n2 : haltères très légers, poignets droits dans le prolongement de l'avant-bras (choix prudent NON SOURCÉ de `kine`).
 - grossesse : assis, charge légère, respiration continue, jamais jusqu'à l'échec. Post-partum : G7.
 - general : couverture substitut.
 
@@ -70,10 +72,11 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Dos droit, sans balancer le buste ; pose les haltères au sol avant de te lever.
 
 **Signes qui doivent faire arrêter**
-- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au cou ou au coude.
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au cou, au coude ou au poignet.
 - Sensation de pincement en montant les bras.
 - Picotements ou engourdissement dans le bras ou la main.
 - Siège qui bouge ou bascule.
+- Vertige, même léger : reste assis et ne reprends pas avant avis (règle cou C4).
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**

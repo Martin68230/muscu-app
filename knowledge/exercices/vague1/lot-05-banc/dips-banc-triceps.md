@@ -90,8 +90,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Box ou step pour les pieds (échelon 3) : stable, qui ne glisse pas.
 
 ## Photo
-- `Bench_Dips/0.jpg` : affichable : oui (vue le 22/10/2026 ; ici jambes tendues sur une box (échelon 3), départ ; en échelon 1, plie les genoux ; WebP à créer : Bench_Dips-0.webp)
-- `Bench_Dips/1.jpg` : affichable : oui (vue le 22/10/2026 ; bas du mouvement, même remarque ; ne descends pas plus bas que sur la photo ; WebP à créer : Bench_Dips-1.webp)
+- `Bench_Dips/0.jpg` : affichable : oui (vue le 22/10/2026 ; écart assumé : la photo montre la variante dips-banc-pieds-surleves (échelon 3, jambes tendues sur une box), plus dure que l'échelon 1 ; à afficher avec la mention « ici jambes tendues sur une box : commence genoux pliés, pieds au sol » ; WebP : Bench_Dips-0.webp)
+- `Bench_Dips/1.jpg` : affichable : oui (vue le 22/10/2026 ; bas du mouvement, même écart (échelon 3 seulement) et même mention ; ne descends pas plus bas que sur la photo ; WebP : Bench_Dips-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -99,5 +99,5 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Mains sur un banc derrière soi, jambes devant, flexion-extension des coudes | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Bench_Dips » (niveau beginner) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Limite de profondeur à 90 degrés, épaules basses, échelons (genoux pliés, jambes tendues, pieds surélevés) | choix de coach (sécurité de l'épaule) | - | 2026-10-22 | NON SOURCÉ |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
-| Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
+| Banc stable, 4 appuis au sol, qui ne glisse pas (aucun haltère dans cet exercice) | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
 | Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

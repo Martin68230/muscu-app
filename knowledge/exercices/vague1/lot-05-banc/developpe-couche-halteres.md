@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -87,8 +87,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
 
 ## Photo
-- `Dumbbell_Bench_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; départ, haltères à hauteur de poitrine ; WebP à créer : public/photos/free-exercise-db/Dumbbell_Bench_Press-0.webp)
-- `Dumbbell_Bench_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; arrivée, bras tendus ; WebP à créer : Dumbbell_Bench_Press-1.webp)
+- `Dumbbell_Bench_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; départ, haltères à hauteur de poitrine ; écart assumé : prise paumes vers les pieds, donc la variante developpe-couche-halteres-classique ; pour la prise neutre (paumes face à face), à afficher avec la mention « ici paumes vers les pieds : tourne les poignets, paumes face à face » ; WebP à créer : public/photos/free-exercise-db/Dumbbell_Bench_Press-0.webp)
+- `Dumbbell_Bench_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; arrivée, bras tendus ; même écart (prise classique) et même mention pour la prise neutre ; WebP à créer : Dumbbell_Bench_Press-1.webp)
 - `Dumbbell_Bench_Press_with_Neutral_Grip/0.jpg` : affichable : non (vue le 22/10/2026 ; marque d'une machine visible en arrière-plan, non recadrable proprement)
 
 ## Sources

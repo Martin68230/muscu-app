@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, mollets, moyen_fessier]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -50,13 +50,15 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Genou | adapter: variante:montee-sur-marche-poids-du-corps | retirer | retirer |
-| Hanche | garder | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
-| Cheville | garder | adapter: appui:main-sur-support | retirer |
+| Hanche | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
+| Cheville | adapter: variante:montee-sur-marche-poids-du-corps | adapter: appui:main-sur-support | retirer |
 | Cuisse | garder | retirer | retirer |
 
 **Notes**
 - genou-n1 : repasse sur une marche d'escalier, plus basse, main sur la rampe.
-- genou-n2 : retiré (la marche basse est elle-même limitée par la même zone au niveau 2) ; le générateur choisit un autre exercice de fente.
+- genou-n2 : retiré par prudence (choix NON SOURCÉ de `kine`) : le banc est plus haut que la marche, et une gêne nette au genou ne justifie pas de proposer une montée plus haute ; la marche basse n'est pas proposée en remplacement à ce niveau ; le générateur choisit un autre exercice de fente.
+- hanche-n1 : un banc est au moins aussi haut qu'une marche ; comme pour la box haute du pilote, repasse sur la marche d'escalier, plus basse, main sur la rampe.
+- cheville-n1 : même raison que hanche-n1 : repasse sur la marche d'escalier, plus basse, main sur la rampe.
 - hanche-n2 : marche basse, aucune augmentation (R2).
 - cheville-n2 : main sur un support stable (mur ou meuble lourd, testé).
 - cuisse-n2 : les ischios sont secondaires mais travaillent ; retiré dès la gêne nette (choix prudent NON SOURCÉ de `kine`). La marche n'a pas de ligne cuisse : elle n'est pas désignée comme remplaçant.
@@ -96,5 +98,5 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Montée sur un banc, un pied après l'autre, jambe d'appui qui pousse | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Dumbbell_Step_Ups » (niveau intermediate) | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
 | Pas d'haltères sur un banc ou une box haute | décision de l'utilisateur du 21/10/2026, repris dans regles-securite-communes.md §7 | - | 2026-10-22 | NON SOURCÉ (règle de projet) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
-| Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
+| Banc stable, 4 appuis au sol, qui ne glisse pas (aucun haltère dans cet exercice) | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
 | Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

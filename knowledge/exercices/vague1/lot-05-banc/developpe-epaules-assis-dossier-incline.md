@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [deltoides_anterieurs, deltoides_lateraux]
 muscles_secondaires: [triceps, trapezes, dentele_anterieur]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -88,8 +88,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Haltères (R9) : fixes de préférence ; réglables seulement si les disques et les colliers sont serrés, vérifiés avant chaque série ; posés au sol hors des passages ; jamais lâchés au-dessus de toi.
 
 ## Photo
-- `Seated_Dumbbell_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; arrivée, bras tendus ; ici sur banc sans dossier (échelon 2), avec le dossier fais-le dos appuyé ; WebP à créer : Seated_Dumbbell_Press-0.webp)
-- `Seated_Dumbbell_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; départ, haltères à hauteur des épaules ; même remarque ; WebP à créer : Seated_Dumbbell_Press-1.webp)
+- `Seated_Dumbbell_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; arrivée, bras tendus ; écart assumé : la photo montre la variante developpe-epaules-banc-sans-dossier (échelon 2) ; pour developpe-epaules-dossier-droit (échelon 1) fais-le dos appuyé, à afficher avec cette mention ; WebP : Seated_Dumbbell_Press-0.webp)
+- `Seated_Dumbbell_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; départ, haltères à hauteur des épaules ; même écart et même mention ; WebP : Seated_Dumbbell_Press-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

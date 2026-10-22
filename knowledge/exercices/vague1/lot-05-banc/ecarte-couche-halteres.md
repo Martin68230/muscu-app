@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [pectoraux]
 muscles_secondaires: [deltoides_anterieurs, biceps]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -88,7 +88,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 ## Photo
 - `Dumbbell_Flyes/0.jpg` : affichable : oui (vue le 22/10/2026 ; départ, bras au-dessus de la poitrine ; WebP à créer : Dumbbell_Flyes-0.webp)
-- `Dumbbell_Flyes/1.jpg` : affichable : oui (vue le 22/10/2026 ; ici les coudes sont plus pliés que dans la consigne : garde-les à peine pliés ; WebP à créer : Dumbbell_Flyes-1.webp)
+- `Dumbbell_Flyes/1.jpg` : affichable : non (vue le 22/10/2026 ; coudes nettement plus pliés que la consigne, qui en fait une règle de sécurité (coude) ; la photo 0 suffit pour ce geste ; WebP Dumbbell_Flyes-1.webp inutilisé)
 - `Incline_Dumbbell_Flyes/0.jpg` : affichable : oui (vue le 22/10/2026 ; banc incliné, départ ; WebP à créer : Incline_Dumbbell_Flyes-0.webp)
 - `Incline_Dumbbell_Flyes/1.jpg` : affichable : oui (vue le 22/10/2026 ; banc incliné, bras ouverts ; WebP à créer : Incline_Dumbbell_Flyes-1.webp)
 

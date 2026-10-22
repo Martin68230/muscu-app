@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -57,12 +57,16 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Cheville | garder | adapter: amplitude:reduite | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
+| Coude | garder | adapter: variante:squat-banc-sans-charge | retirer: sans-zone:squat-banc-sans-charge |
+| Poignet | garder | adapter: variante:squat-banc-sans-charge | retirer: sans-zone:squat-banc-sans-charge |
 
 **Notes**
 - genou-n2 : banc plus haut ; aucune augmentation de charge (R2).
 - dos-n2 : charge légère, pas d'augmentation (R2).
 - cuisse-n2 : les ischios sont secondaires ; banc plus haut (choix prudent NON SOURCÉ de `kine`).
 - aine-n2 : pieds à largeur des épaules, banc plus haut ; les adducteurs sont secondaires (choix prudent NON SOURCÉ).
+- coude-n2 : les haltères sont tenus par les mains et les avant-bras ; passe au squat au banc sans charge (choix prudent NON SOURCÉ de `kine`).
+- poignet-n2 : même raison ; squat au banc sans charge (choix prudent NON SOURCÉ de `kine`).
 - grossesse : charge légère, respiration continue, jamais jusqu'à l'échec ; banc assez haut pour te relever facilement. Post-partum : G7.
 
 **Grossesse** : adapter: charge:legere

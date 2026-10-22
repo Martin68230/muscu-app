@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [biceps]
 muscles_secondaires: [avant_bras]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

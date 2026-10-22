@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [triceps]
 muscles_secondaires: [deltoides_anterieurs]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
@@ -53,12 +53,14 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 |---|---|---|---|
 | Coude | adapter: charge:legere | retirer | retirer |
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
+| Poignet | garder | adapter: charge:legere | retirer |
 | Cou | garder | adapter: amplitude:tete-alignee | retirer |
 | Dos | garder | adapter: charge:legere | retirer |
 
 **Notes**
 - coude-n1 : charge de départ légère, jamais augmentée ; coudes fixes.
 - epaule-n1 : descends moins bas ; bras levés : si la gêne à l'épaule est nette (niveau 2), retiré.
+- poignet-n2 : charge légère, poignets droits, haltère tenu à deux mains, fermement (choix prudent NON SOURCÉ de `kine`).
 - cou-n2 : tête dans l'axe, ne la penche pas en avant pour laisser passer l'haltère. Après un choc au cou (C3) : niveau 3.
 - dos-n2 : charge légère, dos droit, pas d'augmentation (R2).
 - grossesse : assis, charge légère, respiration continue, jamais jusqu'à l'échec. Post-partum : G7.
@@ -74,10 +76,11 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Pose l'haltère sur les cuisses avant de te lever.
 
 **Signes qui doivent faire arrêter**
-- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude ou au cou.
+- Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude, au poignet ou au cou.
 - Picotements ou engourdissement dans le bras ou la main.
 - Dos qui se creuse ; haltère que tu ne contrôles plus.
 - Siège qui bouge ou bascule.
+- Vertige, même léger : reste assis et ne reprends pas avant avis (règle cou C4).
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**

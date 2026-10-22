@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [triceps]
 muscles_secondaires: [deltoides_anterieurs]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
@@ -77,6 +77,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Picotements ou engourdissement dans le bras ou la main.
 - Haltère qui glisse de la main ou que tu ne contrôles plus au-dessus de ta tête ; disque qui bouge.
 - Tension dans la nuque ; banc qui bouge.
+- Vertige, même léger : reste assis et ne reprends pas avant avis (règle cou C4).
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
@@ -86,8 +87,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Dégage l'espace autour de la tête du banc (pas de meuble, de mur ou d'objet dur à proximité de la tête).
 
 ## Photo
-- `Lying_Dumbbell_Tricep_Extension/0.jpg` : affichable : oui (vue le 22/10/2026 ; haltères descendus près de la tête ; ici bras un peu inclinés vers l'arrière, garde-les verticaux ; WebP à créer : Lying_Dumbbell_Tricep_Extension-0.webp)
-- `Lying_Dumbbell_Tricep_Extension/1.jpg` : affichable : oui (vue le 22/10/2026 ; bras tendus ; même remarque ; WebP à créer : Lying_Dumbbell_Tricep_Extension-1.webp)
+- `Lying_Dumbbell_Tricep_Extension/0.jpg` : affichable : non (vue le 22/10/2026 ; bras nettement inclinés derrière la verticale et haltère tout près du visage, ce qui contredit la consigne (bras verticaux) et le point de sécurité R9 ; WebP Lying_Dumbbell_Tricep_Extension-0.webp inutilisé)
+- `Lying_Dumbbell_Tricep_Extension/1.jpg` : affichable : oui (vue le 22/10/2026 ; bras tendus en haut ; écart assumé : bras un peu inclinés vers l'arrière, à afficher avec la mention « ici bras légèrement inclinés : garde-les verticaux, haltères loin du visage » ; WebP : Lying_Dumbbell_Tricep_Extension-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
