@@ -44,4 +44,4 @@ Fichier `knowledge/exercices/.campagne.lock` (non commité) contenant l'heure de
 | 22/10 14:15 | D9 (dev), D7 écran matériel (dev) ; fin de passage (2 h) | ~70 % -> ~85 % | ~67 % -> ~70 % | voir git log |
 | 22/10 14:08 | Lot-05 banc : coach (13 fiches) ; arrêt à 97 % (reset 5 h 17:30 Paris) | 85 % -> 97 % | 69 % -> 71 % | voir git log |
 | 22/10 17:38 | Lot-05 banc : dev (WebP, 2 SVG), kine, relecteur (0 bloquant, 7 à corriger), corrections coach+kine, recontrôle ; 12 utilisable | 19 % -> ~35 % | 73 % -> ~76 % | voir git log |
-| 22/10 17:38 (suite) | Lot-06 trous : coach (14 fiches), dev (4 WebP, 12 SVG, tibial_anterieur), kine, relecteur (4 bloquants, 12 à corriger), corrections coach/kine/dev, recontrôle 0 bloquant ; 12 utilisable | 35 % -> ~60 % | 76 % -> ~80 % | voir git log |
+| 22/10 17:38 (suite) | Lot-06 trous : coach (14 fiches), dev (4 WebP, 12 SVG, tibial_anterieur), kine, relecteur (4 bloquants, 12 à corriger), corrections coach/kine/dev, recontrôle 0 bloquant ; 12 utilisable | 19 % -> 94 % | 73 % -> 84 % | voir git log |
