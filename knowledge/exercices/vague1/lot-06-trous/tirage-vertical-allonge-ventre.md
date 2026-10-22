@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [trapezes, rhomboides, deltoides_posterieurs, erecteurs_rachis]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 Sans barre de traction ni élastique, on ne peut pas tirer une charge vers le bas. Ce mouvement imite le geste du tirage vertical (bras tendus au-dessus de la tête, coudes qui descendent vers les côtes) sans charge : substitut faute de matériel, pas un équivalent d'une traction ou d'un tirage à la poulie.
@@ -60,7 +60,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 **Notes**
 - epaule-n1 : tirage plus court, bras moins levés devant toi.
-- epaule-n2 : front posé sur les mains, sans décoller la poitrine, aucune augmentation (R2).
+- epaule-n2 : front posé sur une serviette pliée, sans décoller la poitrine, aucune augmentation (R2).
 - cou-n1 : regard vers le sol, nuque dans le prolongement du dos, sans relever la tête.
 - cou-n2 : front posé (la tête repose, le cou ne travaille pas pour la tenir), aucune augmentation (R2).
 - dos-n1 : front posé, sans décoller la poitrine ; au niveau 2 l'exercice est retiré (extension du dos allongé sur le ventre, choix prudent NON SOURCÉ) ; un autre exercice de tirage vertical est proposé.
@@ -71,7 +71,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 **Version plus douce** : tirage-ventre-front-pose
 
 **Points d'attention (kine)**
-- Front posé sur le dos des mains : la nuque reste dans le prolongement du dos. Le décollement de la poitrine (échelon 3) reste petit : il n'est pas là pour cambrer le bas du dos.
+- Front posé sur une serviette pliée : la nuque reste dans le prolongement du dos. Le décollement de la poitrine (échelon 3) reste petit : il n'est pas là pour cambrer le bas du dos.
 - Levée de la poitrine et des bras : si le bas du dos ou le cou tire, redescends à l'échelon 1 (front posé).
 - Descente et retour lents ; respiration continue.
 

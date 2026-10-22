@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [mollets, tibial_anterieur]
 muscles_secondaires: [peroniers]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 La marche sur les talons sollicite le muscle du devant de la jambe (tibial antérieur), la marche sur les pointes les mollets (NON SOURCÉ, description de coach).

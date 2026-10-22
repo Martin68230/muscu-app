@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [trapezes, rhomboides, deltoides_posterieurs, triceps]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 Substitut sans matériel du tirage vertical : une serviette tendue entre les mains, bras levés devant la tête, qu'on « tire » vers le bas en la gardant tendue (tension volontaire, pas de charge extérieure). Moins exigeant que le vrai tirage ; sert à apprendre le geste.

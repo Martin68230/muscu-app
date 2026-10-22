@@ -1,25 +1,25 @@
 # Lot 06 (vague 1) : cases sous 3, 14 fiches
-Rédigé par `coach` le 22/10/2026, sécurité reprise par `kine`, contrôlé par `relecteur` (CONTROLE-relecteur.md : 4 bloquants, 12 à corriger). Statut des fiches : `complete_kine` (aucune n'est encore `utilisable` ; statuts inchangés par cette reprise, à fixer après recontrôle). `npm run check:fiches` : 0 erreur. Aucune valeur chiffrée (séries, répétitions, charges, durées) : rien n'est sourcé.
+Rédigé par `coach` le 22/10/2026, sécurité reprise par `kine`, contrôlé par `relecteur` (CONTROLE-relecteur.md puis RECONTROLE-relecteur.md). Statuts : 12 fiches utilisables (proposées), clam-coquille sans image donc `complete_kine`, releve-mollets-halteres en attente du recontrôle. `npm run check:fiches` : 0 erreur. Aucune valeur chiffrée : rien n'est sourcé.
 
 Reprise `coach` du 22/10/2026 (contenu d'entraînement) : B1, B2, B3, C1, C4, C5, C6, C7, C11, C12, M8 traités. Restent hors de cette reprise : B4 et la sécurité (`kine`), les statuts, les illustrations (`dev`).
 
 ## Fiches
 | id | schéma | niveau | variantes (échelon) | matériel | image |
 |---|---|---|---|---|---|
-| tirage-vertical-allonge-ventre | tirage V (substitut) | débutant | front posé (1), serviette (2), poitrine levée (3) | poids du corps, tapis ; serviette | illustration à créer |
-| tirage-vertical-serviette | tirage V (substitut) | débutant | debout (1), assis (1), une main résiste (2) | serviette ; chaise | illustration à créer |
-| releve-mollets-assis | cheville/mollet | débutant | chaise (1), haltère (2), une jambe (3) | chaise ; halteres | illustration à créer |
-| releve-tibial-mur | cheville/mollet | débutant | assis (1), dos au mur 2 pieds (1), 1 pied (2) | chaise ; mur | illustration à créer |
-| marche-pointes-talons | cheville/mollet | débutant | talons (1), pointes (1), enchaînées (2) | poids du corps | illustration à créer |
-| releve-mollets-halteres | cheville/mollet | débutant | au sol (1), marche avec un seul haltère et une main sur la rampe (2), une jambe (3) | halteres ; marche_escalier | illustration à créer |
-| releve-mollets-machine | cheville/mollet | débutant | debout (1), assise (1) | machine | illustration à créer (photos écartées : logo tiers) |
-| abduction-couchee-cote | hanche latérale | débutant | base (1), dos au mur (1), mini-bande (2) | tapis ; mur ; mini_bande | illustration à créer |
-| clam-coquille | hanche latérale | débutant | pieds joints (1), mini-bande (2) | tapis ; mini_bande | illustration à créer |
-| abduction-hanche-debout | hanche latérale | débutant | chaise (1), mur (1), mini-bande (2) | chaise ; mur ; mini_bande | illustration à créer (photos écartées) |
-| abduction-quatre-pattes | hanche latérale | débutant | sol (1), mini-bande (2) | tapis ; mini_bande | illustration à créer |
-| marche-laterale-poids-du-corps | hanche latérale | débutant | genoux souples (1), demi-squat (2) | poids du corps | illustration à créer |
-| abduction-hanche-poulie | hanche latérale | intermédiaire | debout, sangle cheville (1) | poulie | illustration à créer |
-| abduction-hanche-machine | hanche latérale | débutant | assis (1) | machine | illustration à créer |
+| tirage-vertical-allonge-ventre | tirage V (substitut) | débutant | front posé (1), serviette (2), poitrine levée (3) | poids du corps, tapis ; serviette | illustration SVG |
+| tirage-vertical-serviette | tirage V (substitut) | débutant | debout (1), assis (1), une main résiste (2) | serviette ; chaise | illustration SVG |
+| releve-mollets-assis | cheville/mollet | débutant | chaise (1), haltère (2), une jambe (3) | chaise ; halteres | illustration SVG |
+| releve-tibial-mur | cheville/mollet | débutant | assis (1), dos au mur 2 pieds (1), 1 pied (2) | chaise ; mur | illustration SVG |
+| marche-pointes-talons | cheville/mollet | débutant | talons (1), pointes (1), enchaînées (2) | poids du corps | illustration SVG |
+| releve-mollets-halteres | cheville/mollet | débutant | au sol (1), marche avec un seul haltère et une main sur la rampe (2), une jambe (3) | halteres ; marche_escalier | illustration SVG (fiche en attente du recontrôle) |
+| releve-mollets-machine | cheville/mollet | débutant | debout (1), assise (1) | machine | illustration SVG (photos écartées : logo tiers) |
+| abduction-couchee-cote | hanche latérale | débutant | base (1), dos au mur (1), mini-bande (2) | tapis ; mur ; mini_bande | illustration SVG |
+| clam-coquille | hanche latérale | débutant | pieds joints (1), mini-bande (2) | tapis ; mini_bande | aucune image affichable (illustration retirée) |
+| abduction-hanche-debout | hanche latérale | débutant | chaise (1), mur (1), mini-bande (2) | chaise ; mur ; mini_bande | illustration SVG (photos écartées) |
+| abduction-quatre-pattes | hanche latérale | débutant | sol (1), mini-bande (2) | tapis ; mini_bande | illustration SVG |
+| marche-laterale-poids-du-corps | hanche latérale | débutant | genoux souples (1), demi-squat (2) | poids du corps | illustration SVG |
+| abduction-hanche-poulie | hanche latérale | intermédiaire | debout, sangle cheville (1) | poulie | illustration SVG |
+| abduction-hanche-machine | hanche latérale | débutant | assis (1) | machine | illustration SVG |
 
 ## Couverture visée (une fois `utilisable` ; non vérifiée par `couverture.mjs`, qui ne compte que `utilisable`/`verifie`)
 - **Tirage V** : A 1 + 2 = 3 ; B déjà 3 ; C 2 + 2 = 4 (les variantes poids du corps / serviette / chaise comptent pour C).

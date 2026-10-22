@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [moyen_fessier]
 muscles_secondaires: [fessiers, quadriceps]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 Version de la marche latérale pour les profils sans mini-bande (voir marche-laterale-elastique pour la version avec élastique).

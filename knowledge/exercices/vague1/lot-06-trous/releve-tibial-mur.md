@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [tibial_anterieur]
 muscles_secondaires: []
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 Travaille le muscle du devant de la jambe (tibial antérieur), qui relève la pointe du pied.

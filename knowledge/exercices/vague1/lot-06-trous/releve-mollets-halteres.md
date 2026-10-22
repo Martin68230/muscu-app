@@ -60,10 +60,10 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - genou-n2 : au sol, sans marche ni appui sur une jambe seule.
 - dos-n2 : haltères légers (départ de l'étalonnage, jamais augmentés) ; au niveau 1, garder.
 - hanche-n2 : au sol, sans marche ni appui sur une jambe seule (équilibre).
-- grossesse : debout au sol, une main au mur obligatoire (même si la variante dit « si besoin »), donc un seul haltère ; pas de marche ni d'escalier (risque de chute). Post-partum : G7. Choix prudent NON SOURCÉ.
+- grossesse : retiré (G4, risque de chute). La variante au sol dit « un haltère dans chaque main, un mur si besoin » : elle ne garantit ni un seul haltère ni la main au mur, et la marche est exclue. Remplaçant : montée de mollets assis sur une chaise sans charge (releve-mollets-assis-chaise), qui a sa propre ligne Grossesse (garder). Post-partum : G7. Choix prudent NON SOURCÉ.
 - general : pas de ligne cuisse ni aine (muscles non sollicités).
 
-**Grossesse** : adapter: variante:releve-mollets-halteres-sol
+**Grossesse** : retirer: remplacant:releve-mollets-assis-chaise
 **Version plus douce** : releve-mollets-halteres-sol
 
 **Points d'attention (kine)**
