@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [trapezes, rhomboides]
 muscles_secondaires: [deltoides_posterieurs, grand_dorsal, erecteurs_rachis]
 source_brouillon: [M1818]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 Sans aucun matériel, on ne peut pas faire de vrai tirage vertical. Ce mouvement ressemble au geste d'abaisser et de rapprocher les omoplates qui termine une traction, sans charge (ressemblance non sourcée). C'est un **substitut partiel**, surtout pour le haut du dos et la posture ; il ne remplace pas une traction.

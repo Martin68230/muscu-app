@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [erecteurs_rachis, fessiers, abdominaux]
 muscles_secondaires: [obliques, moyen_fessier, deltoides_anterieurs]
 source_brouillon: [M0458]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ.

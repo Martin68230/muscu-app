@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [deltoides_anterieurs, triceps]
 muscles_secondaires: [trapezes, dentele_anterieur, abdominaux]
 source_brouillon: []  # absent du brouillon comme mouvement séparé : ajout coach (progression de M1695)
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).

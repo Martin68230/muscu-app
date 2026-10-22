@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [biceps, rhomboides, trapezes, deltoides_posterieurs, avant_bras]
 source_brouillon: [M0122, M0137, M0736, M1775, M1505]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ.

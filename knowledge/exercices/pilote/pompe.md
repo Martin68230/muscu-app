@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, dentele_anterieur]
 source_brouillon: [M1803, M1418, M1804, M0482, M1497, M1504, M1053, M0739]
-statut: controle_relecteur
+statut: utilisable
 ---
 Fiche fusionnée le 21/10/2026 (décision de l'utilisateur) : ex-`pompe`, `pompe-inclinee` et `pompe-genoux`, plus l'échelon « pieds surélevés » (M1053). Anciennes fiches : knowledge/exercices/ecartees/. Les variantes qui changent le muscle travaillé ont leur propre fiche : `pompe-diamant`, `pompe-ecartee`, `pompe-archer` ; les pompes piquées (épaules) restent `pompe-piquee` et `pompe-piquee-pieds-sureleves`.
 

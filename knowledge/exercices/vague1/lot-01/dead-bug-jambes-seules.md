@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [flechisseurs_hanche, obliques]
 source_brouillon: [M0517]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ.

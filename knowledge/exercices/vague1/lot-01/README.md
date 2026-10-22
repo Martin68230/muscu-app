@@ -55,12 +55,14 @@ Les 9 fiches `a-creer` du pilote sont toutes créées sous le même id : bird-do
 - **Photos** : les deux « non » sans image regardée (planche-bras-jambe-leves, planche-laterale-jambe-levee) sont passés à « à vérifier ». Aucune image n'a été regardée dans ce lot.
 - **planche-laterale-jambe-levee** : Side_Bridge n'a pas d'instruction, la ligne est NON SOURCÉ (description reprise du pilote).
 - **pallof-elastique** : PROVISOIRE limité à la forme à la poulie, la version élastique est NON SOURCÉ (choix de coach).
-- **gainage-creux** : bras derrière la tête ajoutés à l'échelon 2, niveau de l'échelon 2 noté « à confirmer », décision de la question 5 toujours en attente (ligne de sources ajoutée) : la fiche ne passe pas à `verifie` sans source ou décision écrite.
+- **gainage-creux** : bras derrière la tête ajoutés à l'échelon 2, niveau de l'échelon 2 (intermédiaire) conservé comme choix prudent, décision de la question 5 tranchée par D4/D5 (22/10/2026). Aucune source de preuve lue : le mouvement reste entièrement NON SOURCÉ (choix prudent, lignes Sources mises à jour).
 - **ecartement-elastique** : « une seconde » remplacé par « un instant » (aucune durée sourcée). Le lien plus-dur vers rowing-elastique-assis (autre schéma) est conservé : progression vers un mouvement plus complet, à confirmer.
 - **rowing-sac-a-dos** : précaution du dos recopiée (plus de renvoi vers une fiche invisible).
 - Les niveaux et progressions de planche-bras-jambe-leves, planche-laterale-jambe-levee, pompe-un-bras sont alignés sur le pilote par les cases kine (voir CONTROLE-relecteur.md) ; côté coach, rien d'autre n'était demandé.
 
 ## Questions pour l'utilisateur
+**Toutes tranchées le 22/10/2026 (D4) : choix prudent conservé, aucune action.**
+
 1. **Pompe en équilibre contre un mur** (avancé) : garde-t-on cette fiche ? Le mouvement met la tête et le cou sous charge, et ses sources sont en partie NON SOURCÉ (la seule fiche libre est dos au mur, niveau expert). Option : la retirer du générateur et ne garder que la pompe piquée pieds surélevés comme dernier échelon.
 2. **Élastique et porte** : ces mouvements supposent un ancrage de porte adapté et une porte fermée. On les propose aux profils qui ont coché `elastique` ET `porte`, ou seulement aux profils avec élastique (les variantes sans ancrage étant limitées à rowing-elastique-assis et -penche) ?
 3. **Sac à dos comme charge** (marche, développé, rowing) : on accepte ces mouvements improvisés (poids connu, contenu calé), ou on les réserve à une page « sans matériel » ?

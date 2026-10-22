@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [pectoraux]
 muscles_secondaires: [deltoides_anterieurs, triceps, abdominaux]
 source_brouillon: [M1325, M0739]
-statut: controle_relecteur
+statut: utilisable
 ---
 Variante de la pompe qui insiste sur les pectoraux (moins de triceps) : fiche séparée (décision de l'utilisateur, 21/10/2026). Régression : `pompe-genoux` ou `pompe-chaise` (fiche `pompe`).
 

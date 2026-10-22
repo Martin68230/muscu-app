@@ -10,7 +10,7 @@ Chaque décision « à appliquer » est prioritaire sur l'ordre des lots de CAMP
 - `dev` : ajouter `utilisable` à tools/validate-fiches.mjs (liste STATUTS) et à knowledge/format-fiches.md, mettre à jour knowledge/exercise-catalog.md §2 (niveaux de bibliothèque), et adapter tools/couverture.mjs pour compter séparément `utilisable` et `verifie` (et un total des deux) par profil A-F x schéma. Corriger au passage le point signalé : validate-fiches.mjs ignore tout nom de fichier contenant « controle ».
 - Règle de fin de lot à partir de maintenant : `verifie` si aucune réserve ; `utilisable` si les conditions ci-dessus sont remplies ; sinon `controle_relecteur`.
 
-### D2. Recontrôle rapide des lots 01 et 02 : à appliquer (après D1 et la fin des corrections du lot-03)
+### D2. Recontrôle rapide des lots 01 et 02 : appliquée le 22/10/2026 08:35 (commit D2) - 102 fiches en `utilisable` (réserve : R-1 kine lot-01, R-2 tag elastique pour dev)
 - `relecteur`, sur Sonnet, lancé à neuf : vérifier SEULEMENT les points corrigés après les contrôles des lots vague1/lot-01 et vague1/lot-02 (journaux de corrections des README et rapports CONTROLE-relecteur.md), pas tout le lot. Rapport : RECONTROLE-relecteur.md dans chaque lot.
 - Puis passage en `utilisable` des fiches qui remplissent D1 (et `verifie` si aucune réserve). Faire de même pour le pilote et le lot-03 une fois ses corrections faites.
 
@@ -46,3 +46,13 @@ L'utilisateur veut une image partout : sans image, une fiche n'est pas parlante.
 - Le profil doit proposer TOUT le matériel courant comme option cochable, pas seulement le matériel de maison : banc de musculation (plat, inclinable), barre de traction, barre droite et disques, barre EZ, rack à squat, haltères fixes ou réglables (avec les poids), kettlebells, élastiques (boucle, bande longue, avec poignées), sangles de suspension (TRX, anneaux), roue abdos, swiss ball, medecine ball, step ou box, corde à sauter, gilet lesté, poulie, machines de salle, vélo ou rameur, tapis, + un champ « autre ».
 - Mettre à jour knowledge/materiel-tags.json et equipment-taxonomy.md §2 avec les tags manquants (ex. `rack`, `disques`, `step`, `gilet_leste`, `sangles_suspension`, `velo_ou_rameur`), sans casser les tags existants.
 - Dans les prochains lots, prévoir des fiches et variantes qui utilisent ce matériel, en commençant par le **banc** (développé couché et incliné aux haltères, rowing appuyé sur le banc, hip thrust sur le banc, dips sur banc, step-up sur banc), puis barre et rack, kettlebell, sangles de suspension, poulie et machines (profils E et F).
+
+### D8. Validation automatique des fiches : à appliquer (dès maintenant, pour toutes les fiches présentes et futures)
+- Plus besoin d'attendre l'utilisateur : quand `coach` et `relecteur` sont d'accord (0 point bloquant, 0 erreur à check:fiches, au moins une image affichable), la fiche passe directement en `utilisable` (ou `verifie` s'il ne reste aucune réserve). L'utilisateur n'a plus à relire chaque lot ; il lit seulement le bilan.
+- Les questions de conception restent notées dans le README du lot avec le choix prudent appliqué, sans bloquer la fiche.
+
+### D9. Signaler un problème depuis l'app : à appliquer par `dev` (lecteur de séance et fiche d'exercice)
+- Sur chaque fiche d'exercice et dans le lecteur de séance : un petit bouton discret « ⋯ » (trois points, dans un coin), qui ouvre un menu court avec « Signaler un problème ».
+- Choix rapides : consigne pas claire, image fausse ou manquante, exercice gênant ou douloureux, matériel incorrect, autre ; + un champ de texte facultatif. Envoi en un appui, sans quitter la séance.
+- Enregistré localement avec l'id de la fiche, la variante, la date et l'app hors-ligne comprise ; synchronisé avec Supabase en phase 6 (table `signalements`, visible par l'admin seulement). Un écran ou un export « signalements » permet de les donner à Claude Code pour corriger les fiches.
+- Le bouton reste petit et ne gêne jamais l'action principale de l'écran (règle d'affichage D de CLAUDE.md : zone tactile de 44 px tout de même).

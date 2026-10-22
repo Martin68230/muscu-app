@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [abdominaux]
 muscles_secondaires: [flechisseurs_hanche, transverse, obliques]
 source_brouillon: [M1390]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -81,8 +81,8 @@ Aucune photo libre pour ce mouvement.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Existence du mouvement (hollow hold) | brouillon M1390 (hollow hold, licence de l'image à contrôler) ; aucune autre source lue | base d'exercices | 2026-10-22 | NON SOURCÉ |
-| Consignes, échelons et niveaux (échelon 2 : niveau intermédiaire, jambes tendues et bras derrière la tête, jugement de coach à confirmer) | rédigés par coach, pratique courante ; aucune source lue | - | - | NON SOURCÉ |
-| Décision de garder ou non ce mouvement dans le générateur (question 5 du README) | en attente : soit une source lue, soit décision écrite de l'utilisateur ; sinon la fiche reste hors générateur | - | - | NON SOURCÉ |
+| Consignes, échelons et niveaux (échelon 2 : niveau intermédiaire, jambes tendues et bras derrière la tête, jugement de coach, choix prudent validé le 22/10/2026) | rédigés par coach, pratique courante ; aucune source lue | - | - | NON SOURCÉ (choix prudent) |
+| Décision de garder ce mouvement dans le générateur (question 5 du README) | décision de l'utilisateur du 22/10/2026 (D4 : choix prudents conservés ; D5 : fond validé). Aucune source de preuve lue pour ce mouvement : il reste entièrement NON SOURCÉ, conservé comme choix prudent | - | 2026-10-22 | NON SOURCÉ (choix prudent, décision utilisateur) |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

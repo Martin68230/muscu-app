@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [obliques, transverse]
 muscles_secondaires: [abdominaux, deltoides_anterieurs, dentele_anterieur]
 source_brouillon: [M1677, M1398, M1679]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ.

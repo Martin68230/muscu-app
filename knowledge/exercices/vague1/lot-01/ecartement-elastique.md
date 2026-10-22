@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [deltoides_posterieurs, rhomboides]
 muscles_secondaires: [trapezes]
 source_brouillon: [M0072, M0071]
-statut: controle_relecteur
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

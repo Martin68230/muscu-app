@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [triceps]
 muscles_secondaires: [pectoraux, deltoides_anterieurs, abdominaux]
 source_brouillon: [M0989, M0990, M0740]
-statut: controle_relecteur
+statut: utilisable
 ---
 Variante de la pompe qui déplace l'effort vers les triceps : fiche séparée (décision de l'utilisateur, 21/10/2026). Régression : `pompe-genoux` ou `pompe-sol` (fiche `pompe`).
 

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [moyen_fessier]
 muscles_secondaires: [fessiers, quadriceps]
 source_brouillon: [M1637]
-statut: controle_relecteur
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [mollets]
 muscles_secondaires: []
 source_brouillon: []
-statut: controle_relecteur
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

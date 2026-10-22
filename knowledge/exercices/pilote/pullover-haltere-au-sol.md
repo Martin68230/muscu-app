@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [pectoraux]
 muscles_secondaires: [grand_dorsal, triceps, dentele_anterieur, abdominaux]
 source_brouillon: [M1777, M0410]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Pourquoi cette fiche
 Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (on ne peut pas tirer le corps vers le haut ni une charge vers le bas). Le pull-over sollicite aussi le grand dorsal (la source met les pectoraux en premier), dans un mouvement qui ressemble à un tirage vertical (le bras passe de derrière la tête vers la poitrine). C'est un **substitut faute de mieux avec des haltères**, pas un équivalent. L'achat le plus utile reste une barre de traction ou un élastique.

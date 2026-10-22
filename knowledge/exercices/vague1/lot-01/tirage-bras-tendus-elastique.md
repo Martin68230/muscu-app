@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [triceps, dentele_anterieur, abdominaux]
 source_brouillon: []
-statut: controle_relecteur
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

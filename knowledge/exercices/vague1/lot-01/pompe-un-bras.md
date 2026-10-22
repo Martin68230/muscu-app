@@ -7,7 +7,7 @@ niveau_min: avance
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, obliques]
 source_brouillon: []
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ.

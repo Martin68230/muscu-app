@@ -7,7 +7,7 @@ niveau_min: avance
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, obliques]
 source_brouillon: [M0076]
-statut: controle_relecteur
+statut: utilisable
 ---
 Pompe asymétrique : un bras plie, l'autre reste tendu sur le côté ; marche vers la pompe à un bras. Fiche séparée (décision de l'utilisateur, 21/10/2026). Réservée aux personnes qui font déjà des pompes au sol propres. Régression : `pompe-sol` ou `pompe-ecartee-sol`.
 

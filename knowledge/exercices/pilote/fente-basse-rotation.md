@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [flechisseurs_hanche, ischios]
 muscles_secondaires: [fessiers, adducteurs, quadriceps]
 source_brouillon: [M1259, M1260]
-statut: controle_relecteur
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
