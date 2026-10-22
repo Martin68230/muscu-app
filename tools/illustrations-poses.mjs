@@ -453,16 +453,16 @@ export const EXERCICES = [
   },
   // ================= lot 06 =================
   {
-    id: 'tirage-vertical-allonge-ventre', titre: 'Tirage vertical allongé sur le ventre : bras tendus devant, puis coudes vers les côtes',
-    labels: ['Bras tendus devant', 'Coudes aux côtes, poitrine légèrement levée'],
+    id: 'tirage-vertical-allonge-ventre', titre: 'Tirage vertical allongé sur le ventre : bras tendus devant, puis coudes vers les côtes, poitrine au sol',
+    labels: ['Bras tendus devant', 'Coudes aux côtes, poitrine au sol'],
     a: prone({ armN: { a: [4, 4] }, armF: { a: [2, 2] } }),
-    b: prone({ t: 8, h: 14, armN: { to: [26, 24], bend: 'u' }, armF: { to: [22, 22], bend: 'u' }, props: [['arrow', [110, 50], [70, 50]]] }),
+    b: prone({ armN: { a: [172, 8] }, armF: { a: [174, 6] }, props: [['arrow', [110, 50], [70, 50]]] }),
   },
   {
-    id: 'tirage-vertical-serviette', titre: 'Tirage vertical à la serviette : serviette tendue au-dessus de la tête, puis mains devant la poitrine',
-    labels: ['Serviette tendue au-dessus de la tête', 'Mains devant la poitrine, coudes vers le bas'],
-    a: { p: [0, 112], armN: { to: [14, 200], bend: 'f' }, armF: { to: [-14, 200], bend: 'b' }, props: (J) => [['towel', [J.haF, J.haN]]] },
-    b: { p: [0, 112], armN: { to: [26, 156], bend: 'd' }, armF: { to: [14, 156], bend: 'd' }, props: (J) => [['towel', [J.haF, J.haN]], ['arrow', [64, 200], [64, 150]]] },
+    id: 'tirage-vertical-serviette', titre: 'Tirage vertical à la serviette, vue de face : serviette tendue bras levés, puis mains devant la poitrine',
+    view: 'front', labels: ['Bras levés, serviette tendue', 'Mains devant la poitrine, coudes bas'],
+    a: { p: [0, 112], legN: { to: [12, A], bend: 'f' }, legF: { to: [-12, A], bend: 'b' }, armN: { a: [72, 76] }, armF: { a: [108, 104] }, props: (J) => [['towel', [J.haF, J.haN]]] },
+    b: { p: [0, 112], legN: { to: [12, A], bend: 'f' }, legF: { to: [-12, A], bend: 'b' }, armN: { to: [42, 168], bend: 'd' }, armF: { to: [-42, 168], bend: 'd' }, props: (J) => [['towel', [J.haF, J.haN]], ['arrow', [96, 230], [96, 180]]] },
   },
   {
     id: 'releve-mollets-assis', titre: 'Relevé de mollets assis sur une chaise : talons au sol, puis talons levés',
@@ -489,10 +489,10 @@ export const EXERCICES = [
     b: { p: [0, 128], armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, legN: { to: [8, 24], bend: 'f', foot: -55 }, legF: { to: [-6, 24], bend: 'f', foot: -55 }, props: (J) => [['db', J.haN], ['db', J.haF], ['arrow', [70, 120], [70, 160]]] },
   },
   {
-    id: 'abduction-couchee-cote', titre: 'Abduction couchée sur le côté, vue de face : jambe du dessus levée, jambe du dessous pliée',
-    view: 'front', labels: ['Sur le côté, jambes l\'une sur l\'autre', 'Jambe du dessus levée de côté'],
-    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [4, 4] }, legF: { a: [8, -4] }, back: [['mat', -170, 130]] },
-    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [34, 34] }, legF: { a: [8, -4] }, back: [['mat', -170, 130]], props: [['arrow', [70, 70], [70, 100]]] },
+    id: 'abduction-couchee-cote', titre: 'Abduction couchée sur le côté, vue de face : jambe du dessous pliée, jambe du dessus levée peu haut',
+    view: 'front', labels: ['Sur le côté, jambe du dessous pliée', 'Jambe du dessus levée, peu haut'],
+    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [3, 3] }, legF: { a: [18, -35] }, back: [['mat', -170, 130]] },
+    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [20, 20] }, legF: { a: [18, -35] }, back: [['mat', -170, 130]], props: [['arrow', [70, 70], [70, 100]]] },
   },
   {
     id: 'clam-coquille', titre: 'Coquille (clam), vue de face : allongé sur le côté, genoux fléchis, le genou du dessus s\'ouvre pieds joints',
@@ -513,16 +513,29 @@ export const EXERCICES = [
     b: { p: [20, 100], legN: { to: [48, A], bend: 'f' }, legF: { to: [-8, A], bend: 'b' }, armN: { to: [34, 130], bend: 'd' }, armF: { to: [6, 130], bend: 'd' }, props: [['arrow', [-30, 200], [20, 200]]] },
   },
   {
-    id: 'abduction-hanche-poulie', titre: 'Abduction de hanche à la poulie basse, vue de face : sangle à la cheville, jambe levée de côté',
-    view: 'front', labels: ['Debout, sangle à la cheville', 'Jambe levée de côté, tendue'],
-    a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, back: [['wall', -124, -14], ['anchor', -124, 24]], props: (J) => [['band', [J.anN, [-124, 24]]]] },
-    b: { p: [0, 112], legN: { to: [84, 38], bend: 'u' }, legF: { to: [-14, A], bend: 'b' }, back: [['wall', -124, -14], ['anchor', -124, 24]], props: (J) => [['band', [J.anN, [-124, 24]]], ['arrow', [60, 110], [96, 90]]] },
+    id: 'abduction-hanche-poulie', titre: 'Abduction de hanche à la poulie basse, vue de face : sangle à la cheville, une main sur le montant, jambe levée de côté',
+    view: 'front', labels: ['Une main sur le montant, sangle', 'Jambe levée de côté, tendue'],
+    a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-62, 138], bend: 'b' }, armN: { to: [26, 122], bend: 'f' }, back: [['wall', -124, -14], ['anchor', -124, 24], ['rect', -72, 0, 14, 144, 3]], props: (J) => [['band', [J.anN, [-124, 24]]]] },
+    b: { p: [0, 112], legN: { to: [84, 38], bend: 'u' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-62, 138], bend: 'b' }, armN: { to: [26, 122], bend: 'f' }, back: [['wall', -124, -14], ['anchor', -124, 24], ['rect', -72, 0, 14, 144, 3]], props: (J) => [['band', [J.anN, [-124, 24]]], ['arrow', [60, 110], [96, 90]]] },
   },
   {
     id: 'abduction-hanche-machine', titre: 'Abduction de hanche à la machine, vue de face : assis, genoux qui s\'écartent contre les coussins',
     view: 'front', labels: ['Assis, genoux contre les coussins', 'Genoux écartés'],
     a: { p: [0, 58], armN: { to: [26, 80], bend: 'd' }, armF: { to: [-26, 80], bend: 'd' }, legN: { to: [26, A], bend: 'f' }, legF: { to: [-26, A], bend: 'b' }, back: [['rect', -26, 38, 52, 12, 3], ['rect', -12, 50, 24, 100, 6]], props: (J) => [['rect', J.knN[0] + 2, J.knN[1] - 16, 11, 32, 4], ['rect', J.knF[0] - 13, J.knF[1] - 16, 11, 32, 4]] },
     b: { p: [0, 58], armN: { to: [26, 80], bend: 'd' }, armF: { to: [-26, 80], bend: 'd' }, legN: { to: [62, A], bend: 'f' }, legF: { to: [-62, A], bend: 'b' }, back: [['rect', -26, 38, 52, 12, 3], ['rect', -12, 50, 24, 100, 6]], props: (J) => [['rect', J.knN[0] + 2, J.knN[1] - 16, 11, 32, 4], ['rect', J.knF[0] - 13, J.knF[1] - 16, 11, 32, 4], ['arrow', [50, 110], [92, 110]], ['arrow', [-50, 110], [-92, 110]]] },
+  },
+  {
+    id: 'releve-mollets-machine', titre: 'Relevé de mollets à la machine : debout épaules sous les coussins, puis assis cuisses sous le coussin',
+    labels: ['Debout, talons dans le vide', 'Debout, sur la pointe des pieds', 'Assis, talons levés'],
+    a: { p: [0, 128], armN: { to: [14, 196], bend: 'd' }, armF: { to: [-8, 196], bend: 'd' }, legN: { to: [8, 22], bend: 'f', foot: -15 }, legF: { to: [2, 22], bend: 'f', foot: -15 }, back: [['rect', -50, 0, 12, 250, 2], ['step', -6, 40, 16]], props: (J) => [['rect', J.sh[0] - 16, J.sh[1] - 2, 32, 14, 5], ['rect', -44, J.sh[1] - 2, 36, 10, 2]] },
+    b: { p: [0, 144], armN: { to: [14, 212], bend: 'd' }, armF: { to: [-8, 212], bend: 'd' }, legN: { to: [14, 38], bend: 'f', foot: -60 }, legF: { to: [8, 38], bend: 'f', foot: -60 }, back: [['rect', -50, 0, 12, 250, 2], ['step', -6, 40, 16]], props: (J) => [['rect', J.sh[0] - 16, J.sh[1] - 2, 32, 14, 5], ['rect', -44, J.sh[1] - 2, 36, 10, 2], ['arrow', [78, 60], [78, 100]]] },
+    c: { p: [-50, 94], t: 90, armN: { to: [-30, 94], bend: 'd' }, armF: { to: [-34, 92], bend: 'd' }, legN: { a: [0, -85], foot: -60 }, legF: { a: [0, -85], foot: -60 }, back: [['step', -6, 40, 16], ['rect', -78, 74, 50, 10, 3], ['rect', -84, 74, 8, 90, 3]], props: (J) => [['rect', J.knN[0] - 26, J.knN[1] + 4, 34, 12, 5], ['arrow', [78, 60], [78, 100]]] },
+  },
+  {
+    id: 'abduction-hanche-debout', titre: 'Abduction de hanche debout, vue de face : une main sur le dossier de la chaise, buste droit, jambe levée peu haut',
+    view: 'front', labels: ['Une main sur le dossier, buste droit', 'Jambe levée de côté, peu haut'],
+    a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3]] },
+    b: { p: [0, 112], legN: { to: [55, 22], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3]], props: [['arrow', [66, 90], [96, 80]]] },
   },
 ];
 

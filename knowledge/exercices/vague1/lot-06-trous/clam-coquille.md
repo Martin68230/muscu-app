@@ -84,7 +84,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
-- illustration : public/illustrations/clam-coquille.svg : affichable : oui (illustration originale de l'app ; vue de face : genou du dessus ouvert, pieds joints)
+- illustration : public/illustrations/clam-coquille.svg : affichable : non (relecteur C9 : le moteur ne rend pas l'ouverture du genou pieds joints, vue de face ; à ne pas afficher tant qu'une pose fiable n'existe pas)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

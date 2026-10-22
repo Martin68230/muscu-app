@@ -86,7 +86,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 ## Photo
 - `Side_Leg_Raises/0.jpg` : affichable : non (vue le 2026-10-22 : pieds croisés/serrés et une main sur la hanche, contraire à la consigne ; petit logo « Bodybuilding.com » lisible sur la poitrine)
 - `Side_Leg_Raises/1.jpg` : affichable : non (vue le 2026-10-22 : jambe très haute, buste penché : contredit la consigne, la consigne prime, règle 12)
-- illustration : public/illustrations/abduction-hanche-debout.svg : affichable : non (à créer par dev ; de face, une main sur le dossier, buste droit, jambe levée peu haut, pieds largeur de hanches)
+- illustration : public/illustrations/abduction-hanche-debout.svg : affichable : oui (illustration originale de l'app ; de face, une main sur le dossier d'une chaise, buste droit, jambe levée peu haut)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

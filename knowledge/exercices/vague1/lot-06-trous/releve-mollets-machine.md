@@ -85,7 +85,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 ## Photo
 - `Standing_Calf_Raises/0.jpg` : affichable : non (vue le 2026-10-22 : logo « Bodybuilding.com » lisible dans le dos du pratiquant, non recadrable ; règle 12 ; machine cachée par le pratiquant ; ne montre que la variante debout)
 - `Standing_Calf_Raises/1.jpg` : affichable : non (vue le 2026-10-22 : même logo de tiers lisible ; règle 12)
-- illustration : public/illustrations/releve-mollets-machine.svg : affichable : non (à créer par dev ; une figure de profil, machine debout puis assise, talons dans le vide puis levés ; la fiche reste sans image affichable tant qu'elle n'existe pas)
+- illustration : public/illustrations/releve-mollets-machine.svg : affichable : oui (illustration originale de l'app ; de profil, 3 images : debout talons dans le vide, debout sur la pointe des pieds, assis talons levés)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
