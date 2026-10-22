@@ -77,7 +77,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
-- illustration : public/illustrations/marche-pointes-talons.svg : affichable : non (à créer par dev : vue de profil : marche sur les pointes, puis sur les talons)
+- illustration : public/illustrations/marche-pointes-talons.svg : affichable : oui (illustration originale de l'app ; vue de profil : marche sur les pointes, puis sur les talons)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

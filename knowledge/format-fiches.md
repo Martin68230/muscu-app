@@ -20,7 +20,7 @@ Principe : **ce que le générateur lit tient dans une case, une action, un mot 
 | `couverture` | non | `substitut` seulement (la fiche ne remplit le schéma qu'à moitié) |
 | `doux_pour` | non | liste `[cou]` de zones (valeurs de la liste des zones du §4.1) pour lesquelles la fiche est une alternative douce : le générateur peut la proposer quand cette zone est au niveau 1 ou 2, jamais au niveau 3 (regle-securite-communes.md §9 C1). Exemple : `doux_pour: [cou]`. Une fiche douce doit avoir `retirer` au niveau 3 de chaque zone listée |
 
-Muscles permis : `pectoraux`, `grand_dorsal`, `trapezes`, `rhomboides`, `dentele_anterieur`, `deltoides_anterieurs`, `deltoides_lateraux`, `deltoides_posterieurs`, `biceps`, `triceps`, `avant_bras`, `abdominaux`, `obliques`, `transverse`, `erecteurs_rachis`, `carre_des_lombes`, `fessiers`, `moyen_fessier`, `quadriceps`, `ischios`, `adducteurs`, `mollets`, `flechisseurs_hanche`, `coiffe_des_rotateurs`, `peroniers`. Un autre muscle : l'ajouter d'abord ici et dans le script.
+Muscles permis : `pectoraux`, `grand_dorsal`, `trapezes`, `rhomboides`, `dentele_anterieur`, `deltoides_anterieurs`, `deltoides_lateraux`, `deltoides_posterieurs`, `biceps`, `triceps`, `avant_bras`, `abdominaux`, `obliques`, `transverse`, `erecteurs_rachis`, `carre_des_lombes`, `fessiers`, `moyen_fessier`, `quadriceps`, `ischios`, `adducteurs`, `mollets`, `flechisseurs_hanche`, `coiffe_des_rotateurs`, `peroniers`, `tibial_anterieur`. Un autre muscle : l'ajouter d'abord ici et dans le script.
 
 Syntaxe : `cle: valeur`, une par ligne ; listes entre crochets ; un commentaire `# ...` en fin de ligne est ignoré. Pas d'autre YAML.
 

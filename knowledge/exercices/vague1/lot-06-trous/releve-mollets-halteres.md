@@ -74,7 +74,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (l'entrée free-exercise-db « Standing_Dumbbell_Calf_Raise » n'a pas été regardée)
-- illustration : public/illustrations/releve-mollets-halteres.svg : affichable : non (à créer par dev : debout, haltères le long du corps, talons au sol puis levés)
+- illustration : public/illustrations/releve-mollets-halteres.svg : affichable : oui (illustration originale de l'app ; debout, haltères le long du corps, talons au sol puis levés)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

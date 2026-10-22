@@ -78,7 +78,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (free-exercise-db n'a pas d'entrée adaptée : « Superman » est une extension du dos, pas un tirage)
-- illustration : public/illustrations/tirage-vertical-allonge-ventre.svg : affichable : non (à créer par dev : position de départ bras tendus devant, position d'arrivée coudes aux côtes, vue de profil)
+- illustration : public/illustrations/tirage-vertical-allonge-ventre.svg : affichable : oui (illustration originale de l'app ; position de départ bras tendus devant, position d'arrivée coudes aux côtes, vue de profil)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

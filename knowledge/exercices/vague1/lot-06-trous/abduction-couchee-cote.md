@@ -76,7 +76,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (free-exercise-db n'a pas d'entrée adaptée : « Side_Leg_Raises » est une abduction debout, voir la fiche abduction-hanche-debout)
-- illustration : public/illustrations/abduction-couchee-cote.svg : affichable : non (à créer par dev : vue de face : jambe du dessus levée de côté, jambe du dessous pliée)
+- illustration : public/illustrations/abduction-couchee-cote.svg : affichable : oui (illustration originale de l'app ; vue de face : jambe du dessus levée de côté, jambe du dessous pliée)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

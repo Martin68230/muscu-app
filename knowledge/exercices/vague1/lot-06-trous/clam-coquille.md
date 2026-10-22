@@ -73,7 +73,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
-- illustration : public/illustrations/clam-coquille.svg : affichable : non (à créer par dev : vue de face : genou du dessus ouvert, pieds joints)
+- illustration : public/illustrations/clam-coquille.svg : affichable : oui (illustration originale de l'app ; vue de face : genou du dessus ouvert, pieds joints)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

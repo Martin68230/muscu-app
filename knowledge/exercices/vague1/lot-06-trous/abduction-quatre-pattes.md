@@ -77,7 +77,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (free-exercise-db n'a pas d'entrée correspondante à quatre pattes)
-- illustration : public/illustrations/abduction-quatre-pattes.svg : affichable : non (à créer par dev : vue de dessus ou de profil : genou plié levé de côté)
+- illustration : public/illustrations/abduction-quatre-pattes.svg : affichable : oui (illustration originale de l'app ; vue de dessus ou de profil : genou plié levé de côté)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

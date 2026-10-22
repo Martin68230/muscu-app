@@ -80,7 +80,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
-- illustration : public/illustrations/tirage-vertical-serviette.svg : affichable : non (à créer par dev : debout, serviette tendue au-dessus de la tête puis mains devant la poitrine)
+- illustration : public/illustrations/tirage-vertical-serviette.svg : affichable : oui (illustration originale de l'app ; debout, serviette tendue au-dessus de la tête puis mains devant la poitrine)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

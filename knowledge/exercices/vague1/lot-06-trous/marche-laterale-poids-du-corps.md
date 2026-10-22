@@ -77,7 +77,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
-- illustration : public/illustrations/marche-laterale-poids-du-corps.svg : affichable : non (à créer par dev : vue de face : pas latéral, genoux légèrement fléchis)
+- illustration : public/illustrations/marche-laterale-poids-du-corps.svg : affichable : oui (illustration originale de l'app ; vue de face : pas latéral, genoux légèrement fléchis)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

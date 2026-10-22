@@ -74,7 +74,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante : « Cable_Hip_Adduction » est une adduction)
-- illustration : public/illustrations/abduction-hanche-poulie.svg : affichable : non (à créer par dev : vue de face : debout, sangle à la cheville, jambe levée de côté)
+- illustration : public/illustrations/abduction-hanche-poulie.svg : affichable : oui (illustration originale de l'app ; vue de face : debout, sangle à la cheville, jambe levée de côté)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

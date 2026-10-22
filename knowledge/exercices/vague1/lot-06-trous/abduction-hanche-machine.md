@@ -74,7 +74,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 ## Photo
 - `Thigh_Abductor/0.jpg` : affichable : non (vue le 2026-10-22 : marque Nautilus visible sur la machine, règle 12)
 - `Thigh_Abductor/1.jpg` : affichable : non (vue le 2026-10-22 : même raison)
-- illustration : public/illustrations/abduction-hanche-machine.svg : affichable : non (à créer par dev : assis, genoux écartés contre les coussins, vue de face)
+- illustration : public/illustrations/abduction-hanche-machine.svg : affichable : oui (illustration originale de l'app ; assis, genoux écartés contre les coussins, vue de face)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

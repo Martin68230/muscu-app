@@ -74,7 +74,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 ## Photo
 - `Dumbbell_Seated_One-Leg_Calf_Raise/0.jpg` : affichable : non (vue le 2026-10-22 : le haltère est tenu devant la poitrine et non posé sur la cuisse, banc de salle, une jambe seulement)
 - `Dumbbell_Seated_One-Leg_Calf_Raise/1.jpg` : affichable : non (vue le 2026-10-22 : même raison)
-- illustration : public/illustrations/releve-mollets-assis.svg : affichable : non (à créer par dev : assis sur une chaise, talons au sol puis talons levés)
+- illustration : public/illustrations/releve-mollets-assis.svg : affichable : oui (illustration originale de l'app ; assis sur une chaise, talons au sol puis talons levés)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

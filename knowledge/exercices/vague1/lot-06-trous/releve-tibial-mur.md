@@ -77,7 +77,7 @@ Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles com
 
 ## Photo
 - aucune photo (l'entrée free-exercise-db « Anterior_Tibialis-SMR » est un massage au rouleau, pas ce mouvement)
-- illustration : public/illustrations/releve-tibial-mur.svg : affichable : non (à créer par dev : dos au mur, pieds avancés ; pointes de pieds levées)
+- illustration : public/illustrations/releve-tibial-mur.svg : affichable : oui (illustration originale de l'app ; dos au mur, pieds avancés ; pointes de pieds levées)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

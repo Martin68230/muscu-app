@@ -451,4 +451,78 @@ export const EXERCICES = [
     a: { p: [-20, 100], t: 90, h: 90, armN: { a: [-90, -90] }, armF: { a: [-90, -90] }, legN: { to: [30, 48], bend: 'f' }, legF: { to: [-22, A], bend: 'f' }, back: [['step', 12, 92, 40]] },
     b: { p: [40, 150], t: 90, h: 90, armN: { a: [-90, -90] }, armF: { a: [-90, -90] }, legN: { to: [40, 48], bend: 'f' }, legF: { to: [56, 98], bend: 'f' }, back: [['step', 12, 92, 40]], props: [['arrow', [-30, 60], [-30, 110]]] },
   },
+  // ================= lot 06 =================
+  {
+    id: 'tirage-vertical-allonge-ventre', titre: 'Tirage vertical allongé sur le ventre : bras tendus devant, puis coudes vers les côtes',
+    labels: ['Bras tendus devant', 'Coudes aux côtes, poitrine légèrement levée'],
+    a: prone({ armN: { a: [4, 4] }, armF: { a: [2, 2] } }),
+    b: prone({ t: 8, h: 14, armN: { to: [26, 24], bend: 'u' }, armF: { to: [22, 22], bend: 'u' }, props: [['arrow', [110, 50], [70, 50]]] }),
+  },
+  {
+    id: 'tirage-vertical-serviette', titre: 'Tirage vertical à la serviette : serviette tendue au-dessus de la tête, puis mains devant la poitrine',
+    labels: ['Serviette tendue au-dessus de la tête', 'Mains devant la poitrine, coudes vers le bas'],
+    a: { p: [0, 112], armN: { to: [14, 200], bend: 'f' }, armF: { to: [-14, 200], bend: 'b' }, props: (J) => [['towel', [J.haF, J.haN]]] },
+    b: { p: [0, 112], armN: { to: [26, 156], bend: 'd' }, armF: { to: [14, 156], bend: 'd' }, props: (J) => [['towel', [J.haF, J.haN]], ['arrow', [64, 200], [64, 150]]] },
+  },
+  {
+    id: 'releve-mollets-assis', titre: 'Relevé de mollets assis sur une chaise : talons au sol, puis talons levés',
+    labels: ['Assis, talons au sol', 'Talons levés'],
+    a: { p: [-48, 58], t: 88, armN: { to: [4, 66], bend: 'd' }, armF: { to: [0, 66], bend: 'd' }, legN: { to: [8, A], bend: 'f' }, legF: { to: [2, A], bend: 'f' }, back: [['chair', -75, 46, 1]] },
+    b: { p: [-48, 58], t: 88, armN: { to: [4, 66], bend: 'd' }, armF: { to: [0, 66], bend: 'd' }, legN: { to: [8, 26], bend: 'f', foot: -55 }, legF: { to: [2, 26], bend: 'f', foot: -55 }, back: [['chair', -75, 46, 1]], props: [['arrow', [60, 20], [60, 55]]] },
+  },
+  {
+    id: 'releve-tibial-mur', titre: 'Relevé du tibial contre un mur : dos au mur, pieds avancés, pointes de pieds levées',
+    labels: ['Dos au mur, pieds à plat', 'Pointes de pieds levées, talons au sol'],
+    a: { p: [-14, 108], t: 97, h: 90, armN: { a: [-90, -88] }, armF: { a: [-88, -86] }, legN: { to: [36, A], bend: 'f' }, legF: { to: [28, A], bend: 'f' }, back: [['wall', -26, -14]] },
+    b: { p: [-14, 108], t: 97, h: 90, armN: { a: [-90, -88] }, armF: { a: [-88, -86] }, legN: { to: [36, A], bend: 'f', foot: 28 }, legF: { to: [28, A], bend: 'f', foot: 28 }, back: [['wall', -26, -14]], props: [['arrow', [78, 14], [78, 44]]] },
+  },
+  {
+    id: 'marche-pointes-talons', titre: 'Marche sur les pointes, puis sur les talons : vue de profil',
+    labels: ['Marche sur les pointes', 'Marche sur les talons, pointes levées'],
+    a: stride({ p: [0, 119], legN: { to: [20, 24], bend: 'f', foot: -55 }, legF: { to: [-22, 24], bend: 'f', foot: -55 }, props: walkFwd }),
+    b: stride({ p: [0, 112], legN: { to: [24, A], bend: 'f', foot: 30 }, legF: { to: [-22, A], bend: 'f', foot: 30 }, props: walkFwd }),
+  },
+  {
+    id: 'releve-mollets-halteres', titre: 'Relevé de mollets debout avec deux haltères le long du corps',
+    labels: ['Debout, talons au sol', 'Talons levés, sur la pointe des pieds'],
+    a: { p: [0, 112], armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => [['db', J.haN], ['db', J.haF]] },
+    b: { p: [0, 128], armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, legN: { to: [8, 24], bend: 'f', foot: -55 }, legF: { to: [-6, 24], bend: 'f', foot: -55 }, props: (J) => [['db', J.haN], ['db', J.haF], ['arrow', [70, 120], [70, 160]]] },
+  },
+  {
+    id: 'abduction-couchee-cote', titre: 'Abduction couchée sur le côté, vue de face : jambe du dessus levée, jambe du dessous pliée',
+    view: 'front', labels: ['Sur le côté, jambes l\'une sur l\'autre', 'Jambe du dessus levée de côté'],
+    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [4, 4] }, legF: { a: [8, -4] }, back: [['mat', -170, 130]] },
+    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [34, 34] }, legF: { a: [8, -4] }, back: [['mat', -170, 130]], props: [['arrow', [70, 70], [70, 100]]] },
+  },
+  {
+    id: 'clam-coquille', titre: 'Coquille (clam), vue de face : allongé sur le côté, genoux fléchis, le genou du dessus s\'ouvre pieds joints',
+    view: 'front', labels: ['Sur le côté, genoux fléchis, pieds joints', 'Genou du dessus ouvert, pieds restent joints'],
+    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [14, -26] }, legF: { a: [10, -30] }, back: [['mat', -170, 130]] },
+    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [40, -14] }, legF: { a: [10, -30] }, back: [['mat', -170, 130]], props: [['arrow', [40, 70], [40, 100]]] },
+  },
+  {
+    id: 'abduction-quatre-pattes', titre: 'Abduction à quatre pattes, vue de dessus : genou plié levé de côté',
+    view: 'top', labels: ['À quatre pattes, genoux sous les hanches', 'Genou levé de côté, jambe pliée'],
+    a: { p: [0, 110], t: 90, tl: 70, hl: 18, sw: 22, hw: 14, h: 90, armN: { a: [90, 90] }, armF: { a: [90, 90] }, legN: { a: [-90, -90] }, legF: { a: [-90, -90] }, back: [['rect', -60, 0, 120, 230, 6]] },
+    b: { p: [0, 110], t: 90, tl: 70, hl: 18, sw: 22, hw: 14, h: 90, armN: { a: [90, 90] }, armF: { a: [90, 90] }, legN: { a: [-5, -85] }, legF: { a: [-90, -90] }, back: [['rect', -60, 0, 120, 230, 6]], props: [['arrow', [78, 60], [108, 60]]] },
+  },
+  {
+    id: 'marche-laterale-poids-du-corps', titre: 'Marche latérale sans élastique, vue de face : pas sur le côté, genoux souples',
+    view: 'front', labels: ['Debout, genoux légèrement fléchis', 'Pas sur le côté, bassin bas'],
+    a: { p: [0, 106], legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { to: [14, 130], bend: 'd' }, armF: { to: [-14, 130], bend: 'd' } },
+    b: { p: [20, 100], legN: { to: [48, A], bend: 'f' }, legF: { to: [-8, A], bend: 'b' }, armN: { to: [34, 130], bend: 'd' }, armF: { to: [6, 130], bend: 'd' }, props: [['arrow', [-30, 200], [20, 200]]] },
+  },
+  {
+    id: 'abduction-hanche-poulie', titre: 'Abduction de hanche à la poulie basse, vue de face : sangle à la cheville, jambe levée de côté',
+    view: 'front', labels: ['Debout, sangle à la cheville', 'Jambe levée de côté, tendue'],
+    a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, back: [['wall', -124, -14], ['anchor', -124, 24]], props: (J) => [['band', [J.anN, [-124, 24]]]] },
+    b: { p: [0, 112], legN: { to: [84, 38], bend: 'u' }, legF: { to: [-14, A], bend: 'b' }, back: [['wall', -124, -14], ['anchor', -124, 24]], props: (J) => [['band', [J.anN, [-124, 24]]], ['arrow', [60, 110], [96, 90]]] },
+  },
+  {
+    id: 'abduction-hanche-machine', titre: 'Abduction de hanche à la machine, vue de face : assis, genoux qui s\'écartent contre les coussins',
+    view: 'front', labels: ['Assis, genoux contre les coussins', 'Genoux écartés'],
+    a: { p: [0, 58], armN: { to: [26, 80], bend: 'd' }, armF: { to: [-26, 80], bend: 'd' }, legN: { to: [26, A], bend: 'f' }, legF: { to: [-26, A], bend: 'b' }, back: [['rect', -26, 38, 52, 12, 3], ['rect', -12, 50, 24, 100, 6]], props: (J) => [['rect', J.knN[0] + 2, J.knN[1] - 16, 11, 32, 4], ['rect', J.knF[0] - 13, J.knF[1] - 16, 11, 32, 4]] },
+    b: { p: [0, 58], armN: { to: [26, 80], bend: 'd' }, armF: { to: [-26, 80], bend: 'd' }, legN: { to: [62, A], bend: 'f' }, legF: { to: [-62, A], bend: 'b' }, back: [['rect', -26, 38, 52, 12, 3], ['rect', -12, 50, 24, 100, 6]], props: (J) => [['rect', J.knN[0] + 2, J.knN[1] - 16, 11, 32, 4], ['rect', J.knF[0] - 13, J.knF[1] - 16, 11, 32, 4], ['arrow', [50, 110], [92, 110]], ['arrow', [-50, 110], [-92, 110]]] },
+  },
 ];
+
