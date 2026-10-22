@@ -96,6 +96,32 @@ describe('validateLot', () => {
     expect(r.warnings.some((w) => /à créer/.test(w.message))).toBe(true);
   });
 
+  it('accepte doux_pour: [cou] et refuse une zone inconnue, une liste vide ou une fiche retirée au niveau 1', () => {
+    const fm = (extra: string) => `id: pompe-inclinee
+nom: Pompe inclinée
+schema: poussee_h
+type: force
+niveau_min: debutant
+muscles_principaux: [pectoraux]
+muscles_secondaires: []
+source_brouillon: []
+statut: complete_kine
+${extra}`;
+    const secu = (cou: string) => `| Zone | Niveau 1 | Niveau 2 | Niveau 3 |
+|---|---|---|---|
+| Cou | ${cou} |
+
+**Version plus douce** : aucune
+**Grossesse** : garder`;
+    const err = (extra: string, cou?: string) => msgs(run({ 'pompe-inclinee.md': fiche({ fm: fm(extra), ...(cou ? { secu: secu(cou) } : {}) }) })).join('|');
+    expect(err('doux_pour: [cou]', 'garder | adapter: amplitude:reduite | retirer')).toBe('');
+    expect(err('doux_pour: [nuque]')).toMatch(/zone « nuque » hors de la liste/);
+    expect(err('doux_pour: []')).toMatch(/doux_pour vide/);
+    expect(err('doux_pour: cou')).toMatch(/liste entre crochets/);
+    expect(err('doux_pour: [cou]', 'retirer | retirer | retirer')).toMatch(/ne peut pas être retirée aux niveaux 1 ou 2/);
+    expect(err('doux_pour: [genou]')).toMatch(/pas de ligne/);
+  });
+
   it('refuse un id différent du nom du fichier et un champ obligatoire manquant', () => {
     const r = run({ 'autre.md': fiche({ fm: 'id: pompe-inclinee\nnom: X\nschema: poussee_h\ntype: force\nniveau_min: debutant\nmuscles_principaux: [pectoraux]\nmuscles_secondaires: []\nstatut: verifie' }) });
     const m = msgs(r).join('\n');

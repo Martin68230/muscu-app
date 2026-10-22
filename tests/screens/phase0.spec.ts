@@ -60,7 +60,7 @@ test('parcours phase 0', async ({ page }, info) => {
   await page.getByRole('button', { name: 'Bibliothèque' }).click();
   await shot(page, '04-bibliotheque', info.project.name);
 
-  await page.getByRole('button', { name: 'Profil' }).click();
+  await page.getByRole('button', { name: 'Profil', exact: true }).click();
   await page.getByLabel('Prénom ou surnom').fill('Martin');
   await page.getByLabel('Prénom ou surnom').blur();
   await shot(page, '05-profil', info.project.name);
@@ -109,4 +109,37 @@ test('hors-ligne : tout le nécessaire est mis en cache', async ({ page }) => {
   const manifest = await (await page.request.get('./manifest.webmanifest')).json();
   expect(manifest.display).toBe('standalone');
   expect(manifest.lang).toBe('fr');
+});
+
+test('profil blessures : zone cou et case « choc »', async ({ page }, info) => {
+  const theme = info.project.name.endsWith('clair') ? 'light' : 'dark';
+  await page.addInitScript((t) => {
+    try {
+      localStorage.setItem('muscu.theme', t);
+    } catch {
+      /* ignoré */
+    }
+  }, theme);
+  await page.goto('./');
+  await page.getByText("J'ai 18 ans ou plus.").click();
+  await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
+  await page.getByRole('button', { name: 'Commencer' }).click();
+  await page.getByRole('button', { name: 'Profil', exact: true }).click();
+
+  await page.getByRole('button', { name: 'Cou', exact: true }).click();
+  const shock = page.getByLabel(/Mon cou me fait mal depuis un choc/);
+  await expect(shock).not.toBeChecked();
+  await page.getByRole('button', { name: 'Gêne nette' }).click();
+  await page.getByRole('heading', { name: 'Gênes et blessures' }).scrollIntoViewIfNeeded();
+  await shot(page, '07-blessures-cou', info.project.name);
+
+  await shock.check();
+  await expect(page.getByText(/Douleur de cou après un choc/)).toBeVisible();
+  await expect(page.getByRole('button', { name: 'Douleur' })).toHaveAttribute('aria-pressed', 'true');
+  await shot(page, '08-blessures-cou-choc', info.project.name);
+
+  await page.reload(); // la zone et la case sont conservées (IndexedDB)
+  await page.getByRole('button', { name: 'Profil', exact: true }).click();
+  await page.getByRole('button', { name: /^Cou ·/ }).click();
+  await expect(page.getByLabel(/Mon cou me fait mal depuis un choc/)).toBeChecked();
 });

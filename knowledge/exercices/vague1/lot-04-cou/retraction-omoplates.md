@@ -8,6 +8,7 @@ muscles_principaux: [rhomboides, trapezes]
 muscles_secondaires: [deltoides_posterieurs]
 source_brouillon: []
 statut: controle_relecteur
+doux_pour: [cou]
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

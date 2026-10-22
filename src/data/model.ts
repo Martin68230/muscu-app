@@ -77,6 +77,8 @@ export interface Injury extends SyncFields {
   level: InjuryLevel;
   note: string;
   active: boolean;
+  /** Zone cou : douleur depuis un choc, une chute, un accident ou un coup du lapin (règle C3) -> niveau 3. */
+  afterShock?: boolean;
 }
 
 export interface PlannedExercise {

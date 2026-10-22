@@ -17,7 +17,7 @@ export const APPUIS = ['coussin', 'serviette', 'poings-fermes', 'avant-bras', 'p
 const SECTIONS = ['Variantes', 'Consignes', "Points d'attention", 'Erreurs fréquentes', 'Progression / régression', 'Repères de dosage', 'Sécurité et contre-indications', 'Photo', 'Sources'];
 const VARIANT_COLUMNS = ['id variante', 'nom', 'echelon', 'niveau', 'materiel_tags', 'installation'];
 const FM_REQUIRED = ['id', 'nom', 'schema', 'type', 'niveau_min', 'muscles_principaux', 'muscles_secondaires', 'source_brouillon', 'statut'];
-const FM_OPTIONAL = ['couverture'];
+const FM_OPTIONAL = ['couverture', 'doux_pour'];
 const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const RANK = { garder: 0, adapter: 1, retirer: 2 };
 
@@ -62,6 +62,11 @@ export function parseFrontmatter(lines) {
     }
   }
   return { data, lineOf, end, problems };
+}
+
+/** Frontmatter d'un fichier de fiche (pour les tests et les outils). */
+export function readFrontmatter(path) {
+  return parseFrontmatter(readFileSync(path, 'utf8').replace(/\r\n/g, '\n').split('\n')).data;
 }
 
 /** Découpe le corps en sections `## titre`. */
@@ -126,7 +131,7 @@ export function parseFiche(text, file) {
   const fm = parseFrontmatter(lines);
   for (const p of fm.problems) add(p.line, 'frontmatter', p.message);
   const d = fm.data;
-  const fiche = { file, id: d.id, statut: d.statut, niveauMin: d.niveau_min, variants: [], refs: [] };
+  const fiche = { file, id: d.id, statut: d.statut, niveauMin: d.niveau_min, douxPour: Array.isArray(d.doux_pour) ? d.doux_pour : [], variants: [], refs: [] };
   const addRef = (line, type, id) => fiche.refs.push({ line, type, id });
 
   // ---- Frontmatter
@@ -149,6 +154,14 @@ export function parseFiche(text, file) {
     };
     oneOf('schema', SCHEMAS); oneOf('type', TYPES); oneOf('niveau_min', NIVEAUX); oneOf('statut', STATUTS);
     if ('couverture' in d && d.couverture !== 'substitut') add(L('couverture'), 'frontmatter', 'couverture : seule la valeur « substitut » est permise');
+    if ('doux_pour' in d) {
+      if (!Array.isArray(d.doux_pour)) add(L('doux_pour'), 'frontmatter', 'doux_pour doit être une liste entre crochets : [cou]');
+      else if (d.doux_pour.length === 0) add(L('doux_pour'), 'frontmatter', 'doux_pour vide : retirer le champ');
+      else {
+        for (const z of d.doux_pour) if (!ZONES.includes(z)) add(L('doux_pour'), 'frontmatter', `doux_pour : zone « ${z} » hors de la liste : ${ZONES.join(', ')}`);
+        if (new Set(d.doux_pour).size !== d.doux_pour.length) add(L('doux_pour'), 'frontmatter', 'doux_pour : zone répétée');
+      }
+    }
     const list = (k) => {
       if (!(k in d)) return null;
       if (!Array.isArray(d[k])) { add(L(k), 'frontmatter', `${k} doit être une liste entre crochets : [a, b]`); return null; }
@@ -245,7 +258,7 @@ export function parseFiche(text, file) {
     else {
       const head = cells(rows[hi].text).map((c) => norm(c));
       if (head.join('|') !== 'zone|niveau 1|niveau 2|niveau 3') add(rows[hi].n, 'securite', 'en-tête attendu : | Zone | Niveau 1 | Niveau 2 | Niveau 3 |');
-      const seenZ = new Set();
+      const seenZ = new Set(); const ranksByZone = {};
       for (const r of rows.slice(hi + 1)) {
         if (isSeparator(r.text)) continue;
         const c = cells(r.text);
@@ -254,10 +267,11 @@ export function parseFiche(text, file) {
         if (!ZONES.includes(z)) add(r.n, 'securite', `zone « ${c[0]} » : une seule zone par ligne, parmi ${ZONES.join(', ')}`);
         else if (seenZ.has(z)) add(r.n, 'securite', `zone « ${c[0]} » en double`);
         seenZ.add(z);
-        let prev = -1;
+        let prev = -1; ranksByZone[z] = [];
         c.slice(1).forEach((cell, i) => {
           const niveau = i + 1;
           const pc = parseCase(cell);
+          ranksByZone[z].push(pc.rank);
           if (pc.error) { add(r.n, 'securite', `${c[0]} niveau ${niveau} : ${pc.error}`); return; }
           for (const ref of pc.refs) addRef(r.n, ref.type, ref.id);
           if (niveau === 3 && !pc.retirer) add(r.n, 'securite', `${c[0]} niveau 3 : toujours « retirer » (règle R3), pas « ${cell} »`);
@@ -265,6 +279,11 @@ export function parseFiche(text, file) {
           if (pc.rank < prev) add(r.n, 'securite', `${c[0]} niveau ${niveau} : moins prudent que le niveau précédent`);
           prev = Math.max(prev, pc.rank);
         });
+      }
+      for (const z of fiche.douxPour) {
+        const rk = ranksByZone[z];
+        if (!rk) add(rows[hi].n, 'securite', `doux_pour : « ${z} » n'a pas de ligne dans le tableau zone x niveau`);
+        else if (rk[0] === 2 || rk[1] === 2) add(rows[hi].n, 'securite', `doux_pour : une fiche douce pour « ${z} » ne peut pas être retirée aux niveaux 1 ou 2`);
       }
     }
     const gl = ss.lines.find((l) => /^\*\*Grossesse\*\*/.test(l.text.trim()));

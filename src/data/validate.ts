@@ -37,7 +37,7 @@ export const SPECS: Record<TableName, Spec> = {
     kettlebellWeightsKg: 'array',
   },
   goals: { goalKey: 'string', rank: 'number' },
-  injuries: { zone: 'string', side: 'string?', level: 'number', note: 'string', active: 'boolean' },
+  injuries: { zone: 'string', side: 'string?', level: 'number', note: 'string', active: 'boolean', afterShock: 'boolean?' },
   programs: {
     templateKey: 'string?',
     name: 'string',
@@ -84,6 +84,9 @@ export const SPECS: Record<TableName, Spec> = {
   shares: { dataType: 'string', friendId: 'string?', enabled: 'boolean' },
 };
 
+/** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
+const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = { injuries: ['afterShock'] };
+
 function typeOf(v: unknown): FieldType | 'null' | 'other' {
   if (v === null) return 'null';
   if (Array.isArray(v)) return 'array';
@@ -101,6 +104,7 @@ export function validateRow(table: TableName, row: unknown): string[] {
   for (const [field, spec] of Object.entries({ ...SYNC, ...SPECS[table] })) {
     const nullable = spec.endsWith('?');
     const expected = spec.replace('?', '') as FieldType;
+    if (r[field] === undefined && MAY_BE_MISSING[table]?.includes(field)) continue;
     const actual = typeOf(r[field]);
     if (actual === expected || (nullable && actual === 'null')) continue;
     errors.push(`${table}/${String(r.id ?? '?')} : champ « ${field} » attendu ${spec}, reçu ${actual}`);

@@ -184,6 +184,13 @@ input, select, textarea { font-family: inherit; font-size: 16px; } /* évite le 
   border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 1.0625rem;
 }
 
+.zones { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin-bottom: 12px; }
+.zone-btn {
+  min-height: 48px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line);
+  background: var(--surface-2); color: var(--text); font: inherit; font-weight: 600; touch-action: manipulation;
+}
+.zone-btn[aria-pressed='true'] { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+.segmented button:disabled { opacity: 0.45; }
 .card > h2:first-child { margin-top: 0; }
 .card > p:last-child { margin-bottom: 0; }
 .capitalize { text-transform: capitalize; }

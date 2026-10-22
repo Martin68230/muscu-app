@@ -2,6 +2,7 @@ import { useRef, useState } from 'preact/hooks';
 import type { Profile as ProfileRow } from '../../data/model';
 import { update } from '../../data/repo';
 import { exportData, importData, wipeAllData } from '../../data/backup';
+import { Injuries } from './Injuries';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
 
@@ -129,6 +130,8 @@ export function Profile({ profile, onChange, onWiped }: {
       <button class="btn btn-danger" onClick={() => confirmDialog.current?.showModal()}>
         Supprimer toutes mes données
       </button>
+
+      <Injuries key={profile.id} />
 
       <h2>Santé</h2>
       <button class="btn" onClick={() => noticeDialog.current?.showModal()}>Relire l'avertissement santé</button>
