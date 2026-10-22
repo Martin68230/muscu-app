@@ -46,7 +46,7 @@ Aucune distance ni nombre de sauts sourcé.
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « aine », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app a dix zones : cou, épaule, coude, poignet, dos, hanche, genou, cheville, cuisse (face arrière : ischios) et aine (adducteurs). Une gêne au tendon d'Achille se déclare sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
@@ -55,6 +55,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Dos | retirer | retirer | retirer |
 | Hanche | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
 | Aine | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
+| Cuisse | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
 
 **Notes**
 - cheville-n1 : exercice retiré dès la gêne légère (prudence propre aux sauts et réceptions) ; l'app propose un exercice qui ne sollicite pas la cheville.
@@ -67,6 +68,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n2 : exercice retiré.
 - aine-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1) ; les adducteurs freinent chaque réception latérale. NON SOURCÉ (choix prudent de `kine`).
 - aine-n2 : exercice retiré.
+- cuisse-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1) ; les ischios freinent la réception. NON SOURCÉ (choix prudent de `kine`, aligné sur saut-vertical).
+- cuisse-n2 : exercice retiré.
 - grossesse : aucun saut : risque de chute et d'impact (G4, extrapolation) ; remplacé par la marche latérale à l'élastique au-dessus des genoux. Post-partum : G7.
 - general : version plus douce : le pas latéral glissé sans saut. Conseil non codé : les sauts enchaînés (échelon 3) seulement après l'arrêt stabilisé sur une jambe sans gêne ; jamais fatigué ni la veille d'un match.
 
@@ -102,6 +105,6 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
 | Sauts et réceptions : retrait dès la gêne légère au genou, à la cheville ou au dos ; pas de saut sans prérequis (réception contrôlée d'abord) ; aucun saut en grossesse ni, tant que le réglage est coché, en post-partum | choix de `kine` par prudence ; HAS 2019 (post-partum : aucune activité à impact avant rééducation périnéale et avis médical ; grossesse : éviter les risques de chute) ; aucune étude lue sur le retrait au niveau 1 ni sur les prérequis | recommandation officielle (grossesse, post-partum) ; avis d'expert pour le reste | 2026-10-22 | grossesse et post-partum : PROVISOIRE (G4, G7) ; retrait dès le niveau 1 et prérequis : NON SOURCÉ |
 | Sol antidérapant, chaussures qui tiennent le pied, plafond et espace dégagés, voisins en dessous pour le bruit | raisonnement de `kine` ; aucune source lue | - | 2026-10-22 | NON SOURCÉ |
-| Aine, ischios, tendon d'Achille : rangés sous les zones hanche, genou ou cheville faute de zone dédiée | choix de conception de `kine` (les zones de l'app sont cou, épaule, coude, poignet, dos, hanche, genou, cheville) | - | 2026-10-22 | NON SOURCÉ (conception) |
+| Zones cuisse (ischios) et aine (adducteurs) ajoutées par la décision D3 ; tendon d'Achille rangé sous cheville faute de zone dédiée | choix de conception de `kine` (les zones de l'app sont cou, épaule, coude, poignet, dos, hanche, genou, cheville, cuisse et aine depuis la décision D3 du 22/10/2026) | - | 2026-10-22 | NON SOURCÉ (conception) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-22 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

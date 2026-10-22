@@ -53,6 +53,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: amplitude:reduite | adapter: variante:pont-fessier-une-jambe-sol | retirer |
 | Genou | garder | adapter: variante:pont-fessier-une-jambe-sol | retirer |
 | Cou | garder | adapter: appui:coussin | retirer |
+| Cuisse | adapter: amplitude:reduite | retirer | retirer |
 
 **Notes**
 - dos-n1 : montée moins haute, sans creuser le bas du dos.
@@ -61,6 +62,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - hanche-n2 : pied au sol (échelon 1), pas sur la chaise.
 - genou-n2 : pied au sol (échelon 1), pas sur la chaise.
 - cou-n2 : petit coussin plat sous la tête.
+- cuisse-n1 : montée moins haute (un seul ischio porte la charge). NON SOURCÉ (choix prudent de `kine`).
+- cuisse-n2 : exercice retiré, sans remplaçant (le pont fessier sur deux jambes charge aussi les ischios). NON SOURCÉ (choix prudent de `kine`).
 - grossesse : couché sur le dos : retiré (G4) ; aucun remplaçant dans cette fiche. Post-partum : G7.
 
 **Grossesse** : retirer

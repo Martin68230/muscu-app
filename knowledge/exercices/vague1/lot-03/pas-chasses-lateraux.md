@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [moyen_fessier, quadriceps]
 muscles_secondaires: [adducteurs, mollets]
 source_brouillon: []
-statut: verifie
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -42,13 +42,14 @@ Cardio : intensité et durée voir program-logic.md ; aucune valeur propre à ce
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
-**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app n'a pas de zone « aine », « cuisse » ni « tendon d'Achille » : une gêne à l'aine se déclare sous « hanche », à l'arrière de la cuisse sous « hanche » ou « genou », au tendon d'Achille sous « cheville ».
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3). L'app a dix zones : cou, épaule, coude, poignet, dos, hanche, genou, cheville, cuisse (face arrière : ischios) et aine (adducteurs). Une gêne au tendon d'Achille se déclare sous « cheville ».
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Cheville | adapter: variante:pas-chasses-lents | retirer | retirer |
 | Genou | adapter: variante:pas-chasses-lents | retirer | retirer |
 | Hanche | adapter: variante:pas-chasses-lents | retirer | retirer |
+| Aine | adapter: variante:pas-chasses-lents | retirer | retirer |
 | Dos | garder | adapter: variante:pas-chasses-lents | retirer |
 
 **Notes**
@@ -56,8 +57,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - cheville-n2 : exercice retiré (appuis latéraux répétés).
 - genou-n1 : pas lents, bas.
 - genou-n2 : exercice retiré.
-- hanche-n1 : pas lents, petits (l'aine se déclare ici).
+- hanche-n1 : pas lents, petits.
 - hanche-n2 : exercice retiré.
+- aine-n1 : pas lents, petits (les adducteurs freinent chaque appui latéral). NON SOURCÉ (choix prudent de `kine`, au moins aussi prudent que la hanche).
+- aine-n2 : exercice retiré. NON SOURCÉ (choix prudent de `kine`).
 - dos-n2 : pas lents.
 - grossesse : pas lents, couloir dégagé, sans changement de direction rapide (risque de chute, G4, extrapolation). Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
 - general : échelon rapide : intermédiaire (appuis rapides). Ne croise jamais les pieds. Version plus douce : pas-chasses-lents.
@@ -66,7 +69,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 **Version plus douce** : pas-chasses-lents
 
 **Signes qui doivent faire arrêter**
-- Douleur (pas la simple fatigue musculaire) à la cheville, au genou, à la hanche ou au bas du dos : passe à la version sans impact ou arrête.
+- Douleur (pas la simple fatigue musculaire) à la cheville, au genou, à la hanche, à l'aine ou au bas du dos : passe à la version sans impact ou arrête.
 - Essoufflement qui empêche de parler, vertige, malaise, palpitations, douleur ou serrement dans la poitrine (cou, mâchoire, bras) : arrête la séance (R5) ; si la douleur de poitrine ne passe pas au repos, ou en cas de malaise grave : urgence, voir U1.
 - Cheville qui se tord ou se dérobe, douleur à l'aine : arrête.
 - Fuite d'urine à l'effort ou pesanteur dans le bas-ventre : arrête (G7).

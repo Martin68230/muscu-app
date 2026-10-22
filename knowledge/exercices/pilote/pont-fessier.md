@@ -53,11 +53,13 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Dos | garder | adapter: sans-charge | retirer |
 | Hanche | garder | adapter: sans-charge | retirer |
 | Genou | garder | adapter: sans-charge | retirer |
+| Cuisse | garder | adapter: sans-charge | retirer |
 
 **Notes**
 - dos-n2 : sans charge, bassin à mi-hauteur.
 - hanche-n2 : sans charge, amplitude réduite.
 - genou-n2 : sans charge, pieds un peu plus loin des fesses.
+- cuisse-n2 : sans charge, montée à mi-hauteur (les ischios sont secondaires mais travaillent). NON SOURCÉ (choix prudent de `kine`). Ce pont fessier n'est donc jamais proposé comme remplaçant d'une gêne à l'arrière de la cuisse (règle §0 des remplaçants).
 - grossesse : couché sur le dos, donc retiré ; remplaçant conseillé : soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
 - general : version plus douce = pont-fessier-sol à mi-hauteur.
 

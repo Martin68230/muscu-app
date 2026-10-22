@@ -57,7 +57,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Genou | garder | garder | retirer |
 | Coude | garder | adapter: variante:pont-fessier-sol | retirer: sans-zone:pont-fessier-sol |
 | Poignet | garder | adapter: variante:pont-fessier-sol | retirer: sans-zone:pont-fessier-sol |
-| Cuisse | adapter: amplitude:mi-course | adapter: variante:pont-fessier-sol | retirer |
+| Cuisse | adapter: amplitude:mi-course | retirer | retirer |
 
 **Notes**
 - dos-n1 : descente jusqu'aux genoux seulement.
@@ -66,7 +66,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - coude-n2 : plus d'haltère dans les mains (le pont fessier remplace).
 - poignet-n2 : plus d'haltère dans les mains (le pont fessier remplace).
 - cuisse-n1 : descente jusqu'aux genoux seulement (les ischios sont l'objectif de l'exercice). NON SOURCÉ (choix prudent de `kine`).
-- cuisse-n2 : la case renvoie au pont fessier au sol, sans haltère dans les mains.
+- cuisse-n2 : exercice retiré, sans remplaçant (le pont fessier au sol charge aussi les ischios et est lui-même adapté à la cuisse de niveau 2).
 - grossesse : charge légère, respiration continue, jamais jusqu'à l'échec. Post-partum : G7.
 
 **Grossesse** : adapter: charge:legere

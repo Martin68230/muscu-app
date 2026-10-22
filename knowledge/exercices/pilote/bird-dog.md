@@ -51,14 +51,14 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 |---|---|---|---|
 | Poignet | adapter: appui:poings-fermes | adapter: appui:avant-bras | retirer: remplacant:dead-bug |
 | Genou | adapter: appui:coussin | adapter: appui:coussin | retirer: remplacant:dead-bug |
-| Épaule | adapter: amplitude:bras-bas | retirer: remplacant:dead-bug | retirer |
+| Épaule | adapter: amplitude:bras-bas | retirer | retirer |
 | Dos | adapter: amplitude:reduite | adapter: amplitude:jambes-seules | retirer |
 | Hanche | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - poignet-n1 : poings fermés (poignet droit).
 - genou-n1 : coussin plié sous les genoux ; au niveau 2, coussin plus épais.
-- epaule-n2 : remplacement par dead-bug, bras au sol.
+- epaule-n2 : exercice retiré, sans remplaçant (le dead-bug est lui-même adapté à l'épaule de niveau 2).
 - dos-n2 : seules les jambes bougent, les bras restent au sol.
 - hanche-n2 : petite amplitude, bras et jambe.
 - grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. La version plus douce (dead-bug) se fait couché sur le dos et est retirée en grossesse (G4) : elle n'est alors pas proposée, le bird-dog à maintien court la remplace. Post-partum : G7.

@@ -56,6 +56,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Dos | adapter: amplitude:lente | adapter: amplitude:sans-rotation | retirer |
 | Épaule | adapter: amplitude:bras-bas | adapter: amplitude:bras-bas | retirer |
 | Poignet | adapter: variante:fente-basse-rotation-appui | retirer: remplacant:chat-vache | retirer |
+| Cuisse | adapter: variante:fente-basse-rotation-appui | adapter: variante:fente-basse-rotation-appui | retirer |
 
 **Notes**
 - hanche-n2 : fente moins grande.
@@ -65,6 +66,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - epaule-n2 : sans lever le bras.
 - poignet-n1 : poing fermé sur la marche.
 - poignet-n2 : remplacement par le chat-vache sur les avant-bras.
+- cuisse-n1 : mains sur une marche, fente moins grande (les ischios sont étirés, muscle principal). NON SOURCÉ (choix prudent de `kine`).
+- cuisse-n2 : même case ; aucune augmentation de difficulté (R2). NON SOURCÉ (choix prudent de `kine`).
 - grossesse : version mains sur une marche, fente moins grande. Post-partum : G7.
 
 **Grossesse** : adapter: variante:fente-basse-rotation-appui

@@ -50,7 +50,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Épaule | adapter: charge:legere | retirer | retirer |
-| Dos | adapter: charge:legere | retirer: remplacant:porte-valise | retirer |
+| Dos | adapter: charge:legere | retirer | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
@@ -59,7 +59,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - epaule-n1 : charge légère (départ de l'étalonnage, jamais augmentée).
 - epaule-n2 : exercice retiré ; aucun remplaçant n'est proposé pour l'épaule.
 - dos-n1 : charge légère (départ de l'étalonnage, jamais augmentée).
-- dos-n2 : retrait ; remplaçant : porte-valise, charge légère.
+- dos-n2 : exercice retiré, sans remplaçant (le porte-valise est lui-même adapté au dos de niveau 2).
 - cou-n2 : charge légère (départ de l'étalonnage, jamais augmentée).
 - coude-n2 : charge légère (départ de l'étalonnage, jamais augmentée).
 - poignet-n2 : charge légère (départ de l'étalonnage, jamais augmentée).
