@@ -14,7 +14,7 @@ Chaque décision « à appliquer » est prioritaire sur l'ordre des lots de CAMP
 - `relecteur`, sur Sonnet, lancé à neuf : vérifier SEULEMENT les points corrigés après les contrôles des lots vague1/lot-01 et vague1/lot-02 (journaux de corrections des README et rapports CONTROLE-relecteur.md), pas tout le lot. Rapport : RECONTROLE-relecteur.md dans chaque lot.
 - Puis passage en `utilisable` des fiches qui remplissent D1 (et `verifie` si aucune réserve). Faire de même pour le pilote et le lot-03 une fois ses corrections faites.
 
-### D3. Réponses aux questions du lot-02 : à appliquer (coach puis kine, puis check:fiches, sur les fiches concernées)
+### D3. Réponses aux questions du lot-02 : appliquée le 22/10/2026 08:55 (commits fd0985b, 29c471f) ; fiches modifiées par kine (cuisse/aine, 17 fiches) à recontrôler par relecteur
 - Nordique : nouveau tag `partenaire_ou_ancrage` (à ajouter à knowledge/materiel-tags.json et equipment-taxonomy.md §2 ; non implicite).
 - Sauts : niveau `intermediaire`, avec une réception stabilisée en entrée (échelon ou prérequis noté) ; prioritaires pour les sports de saut (volley, danse, foot) dans sports.md / program-logic.md.
 - Pas d'équilibre yeux fermés (retirer les échelons ou variantes concernés).
