@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [coiffe_des_rotateurs]
 muscles_secondaires: [deltoides_posterieurs, trapezes]
 source_brouillon: []
-statut: controle_relecteur
+statut: utilisable
 couverture: substitut
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

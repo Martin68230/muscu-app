@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [rhomboides, trapezes]
 muscles_secondaires: [deltoides_posterieurs]
 source_brouillon: []
-statut: controle_relecteur
+statut: utilisable
 doux_pour: [cou]
 couverture: substitut
 ---

@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [trapezes]
 muscles_secondaires: [erecteurs_rachis]
 source_brouillon: []
-statut: controle_relecteur
+statut: utilisable
 doux_pour: [cou]
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)

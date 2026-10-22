@@ -59,7 +59,7 @@ L'utilisateur veut une image partout : sans image, une fiche n'est pas parlante.
 
 ## 22/10/2026 08 h 45 (écrit par la session principale, demande de l'utilisateur)
 
-### D10. Cou et arrière d'épaule : à appliquer APRÈS D6 (images)
+### D10. Cou et arrière d'épaule : appliquée le 22/10/2026 14:0x (lot-04-cou : 12 fiches utilisable, B1 codé) ; reste : brancher filterByNeck au générateur
 1. **Cou** : la zone `cou` existe dans le profil blessures, mais aucun exercice dédié. `coach` puis `kine` créent un petit lot « cou » (knowledge/exercices/vague1/lot-NN-cou/), avec sources (`kine` cherche les recommandations sur la douleur cervicale : HAS, NICE, JOSPT, Cochrane…) :
    - mobilité douce (rotations, inclinaisons) ;
    - rentrer le menton (rétraction cervicale) ;
