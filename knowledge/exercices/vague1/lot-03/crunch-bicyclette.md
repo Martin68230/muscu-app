@@ -77,10 +77,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Cross-Body_Crunch/0.jpg` : affichable : à vérifier (image non regardée ; correspond à l'échelon 1, pieds au sol)
-- `Cross-Body_Crunch/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
-- `Air_Bike/0.jpg` : affichable : à vérifier (image non regardée ; correspond à l'échelon 2, pédalage, mais l'entrée place les mains à côté de la tête)
-- `Air_Bike/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
+- `Cross-Body_Crunch/0.jpg` : affichable : oui (vue le 22/10/2026 ; mains derrière la tête sur la photo : ne tire pas sur la nuque, la consigne prime ; fichier public/photos/free-exercise-db/Cross-Body_Crunch-0.webp)
+- `Cross-Body_Crunch/1.jpg` : affichable : oui (vue le 22/10/2026 ; mains derrière la tête sur la photo : ne tire pas sur la nuque, la consigne prime ; fichier public/photos/free-exercise-db/Cross-Body_Crunch-1.webp)
+- `Air_Bike/0.jpg` : affichable : oui (vue le 22/10/2026 ; mains derrière la tête sur la photo : ne tire pas sur la nuque, la consigne prime ; fichier public/photos/free-exercise-db/Air_Bike-0.webp)
+- `Air_Bike/1.jpg` : affichable : oui (vue le 22/10/2026 ; mains derrière la tête sur la photo : ne tire pas sur la nuque, la consigne prime ; fichier public/photos/free-exercise-db/Air_Bike-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

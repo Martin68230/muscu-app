@@ -80,8 +80,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Quad_Stretch/0.jpg` : affichable : non (couché sur le côté avec une ceinture ou une bande, niveau intermédiaire dans la base : pas une variante de cette fiche ; aucune photo debout n'existe)
 - `Quad_Stretch/1.jpg` : affichable : non (même raison)
-- `On_Your_Side_Quad_Stretch/0.jpg` : affichable : à vérifier (image non regardée ; correspond à la variante couchée sur le côté, pied tenu à la main)
-- `On_Your_Side_Quad_Stretch/1.jpg` : affichable : à vérifier (image non regardée ; même raison)
+- `On_Your_Side_Quad_Stretch/0.jpg` : affichable : non (vue le 22/10/2026 : couché sur le ventre avant le mouvement : ne montre pas l'étirement)
+- `On_Your_Side_Quad_Stretch/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/On_Your_Side_Quad_Stretch-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

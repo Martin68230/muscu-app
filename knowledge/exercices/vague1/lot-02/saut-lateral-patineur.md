@@ -89,8 +89,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Lateral_Bound/0.jpg` : affichable : à vérifier (image non regardée ; échelons 2 et 3)
-- `Lateral_Bound/1.jpg` : affichable : à vérifier (image non regardée ; échelons 2 et 3)
+- `Lateral_Bound/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Lateral_Bound-0.webp)
+- `Lateral_Bound/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Lateral_Bound-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

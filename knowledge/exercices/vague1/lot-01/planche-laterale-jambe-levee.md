@@ -80,7 +80,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Side_Bridge/0.jpg` : affichable : à vérifier (image non regardée ; l'entrée Side_Bridge n'a aucune instruction écrite et ne décrit pas de jambe levée : elle ne peut pas illustrer l'échelon jambe levée)
+- `Side_Bridge/0.jpg` : affichable : oui (vue le 22/10/2026 ; planche latérale de base, sans jambe levée ; la jambe levée suit la consigne ; fichier public/photos/free-exercise-db/Side_Bridge-0.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

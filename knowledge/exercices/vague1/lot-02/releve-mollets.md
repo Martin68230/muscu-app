@@ -76,8 +76,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Calf_Raises_-_With_Bands/0.jpg` : affichable : à vérifier (image non regardée ; variante élastique)
-- `Calf_Raises_-_With_Bands/1.jpg` : affichable : à vérifier (image non regardée ; variante élastique)
+- `Calf_Raises_-_With_Bands/0.jpg` : affichable : non (vue le 22/10/2026 : ne montre pas la montée sur la pointe des pieds : talons au sol, bras le long du corps)
+- `Calf_Raises_-_With_Bands/1.jpg` : affichable : non (vue le 22/10/2026 : mains aux épaules, talons au sol : ce n'est pas le relevé de mollets)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

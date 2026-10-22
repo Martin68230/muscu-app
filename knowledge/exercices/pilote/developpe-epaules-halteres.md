@@ -83,10 +83,10 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Assis bien droit, dos près du dossier mais sans te laisser aller en arrière : le dossier est calé contre un mur, donc la chaise ne bascule pas. Une chaise dont le dossier n'est pas calé contre un mur ne convient pas pour cet exercice.
 
 ## Photo
-- `Standing_Dumbbell_Press/0.jpg` : affichable : à vérifier (image non regardée ; variante debout).
-- `Standing_Dumbbell_Press/1.jpg` : affichable : à vérifier (image non regardée).
-- `Dumbbell_Shoulder_Press/0.jpg` : affichable : à vérifier (image non regardée ; sur un banc à dossier : illustration seulement pour la variante assise sur chaise)
-- `Dumbbell_Shoulder_Press/1.jpg` : affichable : à vérifier (image non regardée ; même réserve : banc à dossier)
+- `Standing_Dumbbell_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Standing_Dumbbell_Press-0.webp)
+- `Standing_Dumbbell_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Standing_Dumbbell_Press-1.webp)
+- `Dumbbell_Shoulder_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; montré assis sur un banc à dossier ; fichier public/photos/free-exercise-db/Dumbbell_Shoulder_Press-0.webp)
+- `Dumbbell_Shoulder_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; montré assis sur un banc à dossier ; fichier public/photos/free-exercise-db/Dumbbell_Shoulder_Press-1.webp)
 Variante un bras : aucune photo.
 
 ## Sources

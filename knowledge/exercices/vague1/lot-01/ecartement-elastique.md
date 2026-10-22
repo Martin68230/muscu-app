@@ -78,8 +78,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Band_Pull_Apart/0.jpg` : affichable : à vérifier (image non regardée)
-- `Band_Pull_Apart/1.jpg` : affichable : à vérifier (image non regardée)
+- `Band_Pull_Apart/0.jpg` : affichable : oui (vue le 22/10/2026 ; image recadrée pour retirer le mur d'une salle (logo d'un tiers) ; fichier public/photos/free-exercise-db/Band_Pull_Apart-0.webp)
+- `Band_Pull_Apart/1.jpg` : affichable : oui (vue le 22/10/2026 ; image recadrée pour retirer le mur d'une salle (logo d'un tiers) ; fichier public/photos/free-exercise-db/Band_Pull_Apart-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

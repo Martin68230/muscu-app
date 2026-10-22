@@ -85,8 +85,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Marche : seulement la première marche d'un escalier éclairé et dégagé, stable et sèche, qui ne glisse pas sous les mains (R8).
 
 ## Photo
-- `Worlds_Greatest_Stretch/0.jpg` : affichable : à vérifier (image non regardée).
-- `Worlds_Greatest_Stretch/1.jpg` : affichable : à vérifier (image non regardée).
+- `Worlds_Greatest_Stretch/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Worlds_Greatest_Stretch-0.webp)
+- `Worlds_Greatest_Stretch/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Worlds_Greatest_Stretch-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

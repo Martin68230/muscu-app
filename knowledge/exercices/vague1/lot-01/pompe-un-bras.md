@@ -84,8 +84,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Single-Arm_Push-Up/0.jpg` : affichable : à vérifier (image non regardée ; ne s'applique qu'à l'échelon pompe-un-bras-sol)
-- `Single-Arm_Push-Up/1.jpg` : affichable : à vérifier (image non regardée)
+- `Single-Arm_Push-Up/0.jpg` : affichable : oui (vue le 22/10/2026 ; image recadrée pour retirer le mur d'une salle (logo d'un tiers) ; fichier public/photos/free-exercise-db/Single-Arm_Push-Up-0.webp)
+- `Single-Arm_Push-Up/1.jpg` : affichable : oui (vue le 22/10/2026 ; image recadrée pour retirer le mur d'une salle (logo d'un tiers) ; fichier public/photos/free-exercise-db/Single-Arm_Push-Up-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -77,8 +77,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Dumbbell_Floor_Press/0.jpg` : affichable : à vérifier (image non regardée).
-- `Dumbbell_Floor_Press/1.jpg` : affichable : à vérifier (image non regardée).
+- `Dumbbell_Floor_Press/0.jpg` : affichable : oui (vue le 22/10/2026 ; photo prise dans un rack à squat (barres de sécurité) ; sans rack, même geste ; fichier public/photos/free-exercise-db/Dumbbell_Floor_Press-0.webp)
+- `Dumbbell_Floor_Press/1.jpg` : affichable : oui (vue le 22/10/2026 ; photo prise dans un rack à squat (barres de sécurité) ; sans rack, même geste ; fichier public/photos/free-exercise-db/Dumbbell_Floor_Press-1.webp)
 Variante un bras : aucune photo.
 
 ## Sources

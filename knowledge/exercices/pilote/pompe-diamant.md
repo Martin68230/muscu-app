@@ -70,8 +70,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Push-Ups_-_Close_Triceps_Position/0.jpg` : affichable : à vérifier (image non regardée ; mains rapprochées, pas forcément en losange : la consigne prime)
-- `Push-Ups_-_Close_Triceps_Position/1.jpg` : affichable : à vérifier (image non regardée ; même réserve)
+- `Push-Ups_-_Close_Triceps_Position/0.jpg` : affichable : oui (vue le 22/10/2026 ; mains rapprochées mais pas en losange : la consigne prime ; fichier public/photos/free-exercise-db/Push-Ups_-_Close_Triceps_Position-0.webp)
+- `Push-Ups_-_Close_Triceps_Position/1.jpg` : affichable : oui (vue le 22/10/2026 ; mains rapprochées mais pas en losange : la consigne prime ; fichier public/photos/free-exercise-db/Push-Ups_-_Close_Triceps_Position-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

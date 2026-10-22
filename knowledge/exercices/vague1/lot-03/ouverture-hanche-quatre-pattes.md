@@ -81,8 +81,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Hip_Circles_prone/0.jpg` : affichable : à vérifier (image non regardée ; correspond à l'échelon 2, cercle du genou plié à quatre pattes)
-- `Hip_Circles_prone/1.jpg` : affichable : à vérifier (image non regardée ; même raison ; l'échelon 1, sans cercle, n'a pas de photo)
+- `Hip_Circles_prone/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Hip_Circles_prone-0.webp)
+- `Hip_Circles_prone/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Hip_Circles_prone-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

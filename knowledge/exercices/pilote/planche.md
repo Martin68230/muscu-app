@@ -74,7 +74,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - `Plank/0.jpg` : affichable : non (vue le 21/10/2026 : personne sur un genou, position de départ, ce n'est pas une planche).
-- `Plank/1.jpg` : affichable : à vérifier (vue le 21/10/2026 : planche sur les avant-bras, corps droit ; variante avant-bras seulement ; fichier WebP absent de public/photos, à créer puis revoir avant d'afficher).
+- `Plank/1.jpg` : affichable : oui (vue le 22/10/2026 ; planche sur les avant-bras ; fichier public/photos/free-exercise-db/Plank-1.webp)
 Variante genoux : aucune photo libre.
 
 ## Sources

@@ -85,8 +85,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Plie_Dumbbell_Squat/0.jpg` : affichable : à vérifier (image non regardée ; la source utilise un haltère tenu à la base)
-- `Plie_Dumbbell_Squat/1.jpg` : affichable : à vérifier (image non regardée ; la source utilise un haltère tenu à la base)
+- `Plie_Dumbbell_Squat/0.jpg` : affichable : oui (vue le 22/10/2026 ; un seul haltère tenu à deux mains entre les jambes ; fichier public/photos/free-exercise-db/Plie_Dumbbell_Squat-0.webp)
+- `Plie_Dumbbell_Squat/1.jpg` : affichable : oui (vue le 22/10/2026 ; un seul haltère tenu à deux mains entre les jambes ; fichier public/photos/free-exercise-db/Plie_Dumbbell_Squat-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

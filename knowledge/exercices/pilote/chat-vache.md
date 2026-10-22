@@ -73,8 +73,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Cat_Stretch/0.jpg` : affichable : à vérifier (image non regardée ; la source décrit seulement la position dos rond).
-- `Cat_Stretch/1.jpg` : affichable : à vérifier (image non regardée).
+- `Cat_Stretch/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Cat_Stretch-0.webp)
+- `Cat_Stretch/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Cat_Stretch-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -77,8 +77,8 @@ Niveau 1 du dos : garder, car la consigne limite déjà la montée à l'aligneme
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Butt_Lift_Bridge/0.jpg` : affichable : à vérifier (image non regardée ; variante au sol).
-- `Butt_Lift_Bridge/1.jpg` : affichable : à vérifier (image non regardée).
+- `Butt_Lift_Bridge/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Butt_Lift_Bridge-0.webp)
+- `Butt_Lift_Bridge/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Butt_Lift_Bridge-1.webp)
 Variante haltère : aucune photo libre.
 
 ## Sources

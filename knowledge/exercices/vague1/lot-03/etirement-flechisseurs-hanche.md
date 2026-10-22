@@ -80,10 +80,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Kneeling_Hip_Flexor/0.jpg` : affichable : à vérifier (image non regardée ; à genou)
-- `Kneeling_Hip_Flexor/1.jpg` : affichable : à vérifier (image non regardée ; à genou)
-- `Standing_Hip_Flexors/0.jpg` : affichable : à vérifier (image non regardée ; debout)
-- `Standing_Hip_Flexors/1.jpg` : affichable : à vérifier (image non regardée ; debout)
+- `Kneeling_Hip_Flexor/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Kneeling_Hip_Flexor-0.webp)
+- `Kneeling_Hip_Flexor/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Kneeling_Hip_Flexor-1.webp)
+- `Standing_Hip_Flexors/0.jpg` : affichable : oui (vue le 22/10/2026 ; montré en fente, genou arrière tendu ; fichier public/photos/free-exercise-db/Standing_Hip_Flexors-0.webp)
+- `Standing_Hip_Flexors/1.jpg` : affichable : oui (vue le 22/10/2026 ; montré en fente, genou arrière tendu ; fichier public/photos/free-exercise-db/Standing_Hip_Flexors-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

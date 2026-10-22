@@ -86,14 +86,14 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Scapular_Pull-Up/0.jpg` : affichable : à vérifier (image non regardée ; échelon 1)
-- `Scapular_Pull-Up/1.jpg` : affichable : à vérifier (image non regardée ; échelon 1)
-- `Band_Assisted_Pull-Up/0.jpg` : affichable : à vérifier (image non regardée ; échelon 2)
-- `Band_Assisted_Pull-Up/1.jpg` : affichable : à vérifier (image non regardée ; échelon 2)
-- `Chin-Up/0.jpg` : affichable : à vérifier (image non regardée ; échelon 3)
-- `Chin-Up/1.jpg` : affichable : à vérifier (image non regardée ; échelon 3)
-- `Pullups/0.jpg` : affichable : à vérifier (image non regardée ; échelon 4)
-- `Pullups/1.jpg` : affichable : à vérifier (image non regardée ; échelon 4)
+- `Scapular_Pull-Up/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Scapular_Pull-Up-0.webp)
+- `Scapular_Pull-Up/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Scapular_Pull-Up-1.webp)
+- `Band_Assisted_Pull-Up/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Band_Assisted_Pull-Up-0.webp)
+- `Band_Assisted_Pull-Up/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Band_Assisted_Pull-Up-1.webp)
+- `Chin-Up/0.jpg` : affichable : oui (vue le 22/10/2026 ; vue de dos : prise paumes vers soi comme dans la consigne ; fichier public/photos/free-exercise-db/Chin-Up-0.webp)
+- `Chin-Up/1.jpg` : affichable : oui (vue le 22/10/2026 ; vue de dos : prise paumes vers soi comme dans la consigne ; fichier public/photos/free-exercise-db/Chin-Up-1.webp)
+- `Pullups/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Pullups-0.webp)
+- `Pullups/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Pullups-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

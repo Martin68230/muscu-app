@@ -83,8 +83,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Single_Leg_Glute_Bridge/0.jpg` : affichable : à vérifier (image non regardée ; échelon au sol seulement)
-- `Single_Leg_Glute_Bridge/1.jpg` : affichable : à vérifier (image non regardée)
+- `Single_Leg_Glute_Bridge/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Single_Leg_Glute_Bridge-0.webp)
+- `Single_Leg_Glute_Bridge/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Single_Leg_Glute_Bridge-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

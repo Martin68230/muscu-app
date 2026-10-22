@@ -81,8 +81,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Appuie la main vers le bas, pas vers l'avant : la chaise ne doit pas glisser.
 
 ## Photo
-- `One-Arm_Dumbbell_Row/0.jpg` : affichable : à vérifier (image non regardée ; variante banc : illustration seulement pour la variante chaise).
-- `One-Arm_Dumbbell_Row/1.jpg` : affichable : à vérifier (image non regardée).
+- `One-Arm_Dumbbell_Row/0.jpg` : affichable : oui (vue le 22/10/2026 ; montré avec un banc ; sur une chaise, suis la consigne ; fichier public/photos/free-exercise-db/One-Arm_Dumbbell_Row-0.webp)
+- `One-Arm_Dumbbell_Row/1.jpg` : affichable : oui (vue le 22/10/2026 ; montré avec un banc ; sur une chaise, suis la consigne ; fichier public/photos/free-exercise-db/One-Arm_Dumbbell_Row-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -81,8 +81,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Version haltères : seulement si l'équilibre est sûr sans haltères (tu ne pourras pas te rattraper avec les mains).
 
 ## Photo
-- `Split_Squat_with_Dumbbells/0.jpg` : affichable : à vérifier (non regardée ; pied arrière surélevé, haltères).
-- `Split_Squat_with_Dumbbells/1.jpg` : affichable : à vérifier (non regardée).
+- `Split_Squat_with_Dumbbells/0.jpg` : affichable : oui (vue le 22/10/2026 ; pied arrière sur un banc ; fichier public/photos/free-exercise-db/Split_Squat_with_Dumbbells-0.webp)
+- `Split_Squat_with_Dumbbells/1.jpg` : affichable : oui (vue le 22/10/2026 ; pied arrière sur un banc ; fichier public/photos/free-exercise-db/Split_Squat_with_Dumbbells-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

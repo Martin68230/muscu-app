@@ -84,8 +84,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Version haltères : seulement sur la première ou la deuxième marche, haltères légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; tes mains ne sont plus libres pour la rampe : prends un seul haltère et garde l'autre main sur la rampe, ou reviens sans haltères. Box haute : jamais dans un escalier, jamais avec haltères.
 
 ## Photo
-- `Dumbbell_Step_Ups/0.jpg` : affichable : à vérifier (non regardée ; haltères, box).
-- `Dumbbell_Step_Ups/1.jpg` : affichable : à vérifier (non regardée).
+- `Dumbbell_Step_Ups/0.jpg` : affichable : oui (vue le 22/10/2026 ; montré sur un banc plat : adapte la hauteur de la marche ; fichier public/photos/free-exercise-db/Dumbbell_Step_Ups-0.webp)
+- `Dumbbell_Step_Ups/1.jpg` : affichable : oui (vue le 22/10/2026 ; montré sur un banc plat : adapte la hauteur de la marche ; fichier public/photos/free-exercise-db/Dumbbell_Step_Ups-1.webp)
 Variante poids du corps : illustrable par ces images avec la mention « montré avec haltères », une fois vérifiées.
 
 ## Sources

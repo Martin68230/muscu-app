@@ -84,8 +84,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Stiff-Legged_Dumbbell_Deadlift/0.jpg` : affichable : à vérifier (vue le 21/10/2026 : debout, un haltère de chaque côté ; cohérent avec la consigne ; fichier WebP absent de public/photos, à créer puis revoir avant d'afficher).
-- `Stiff-Legged_Dumbbell_Deadlift/1.jpg` : affichable : à vérifier (vue par `relecteur` : haltères sur les côtés ; flexion des genoux en bas non confirmée, le nom de la source dit « jambes tendues » alors que la consigne dit « légèrement fléchis » : la consigne prime).
+- `Stiff-Legged_Dumbbell_Deadlift/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Stiff-Legged_Dumbbell_Deadlift-0.webp)
+- `Stiff-Legged_Dumbbell_Deadlift/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Stiff-Legged_Dumbbell_Deadlift-1.webp)
 Variante un seul haltère : aucune photo.
 
 ## Sources

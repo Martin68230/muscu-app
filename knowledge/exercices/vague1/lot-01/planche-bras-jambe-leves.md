@@ -83,7 +83,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Plank/1.jpg` : affichable : à vérifier (image non regardée ; la source décrit la planche simple avec un bras ou une jambe qui peut se lever : l'image peut ne pas montrer le membre levé)
+- `Plank/1.jpg` : affichable : oui (vue le 22/10/2026 ; planche de base, sans bras ni jambe levés ; le membre levé suit la consigne ; fichier public/photos/free-exercise-db/Plank-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

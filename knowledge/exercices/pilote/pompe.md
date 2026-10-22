@@ -92,10 +92,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Incline_Push-Up/0.jpg` : affichable : oui (échelon `pompe-chaise` seulement, mention « montré sur une box » : décision de `coach` le 21/10/2026, mains sur une box en bois à peu près à hauteur d'assise ; fichier public/photos/free-exercise-db/Incline_Push-Up-0.webp recadré par `dev`, logo retiré ; `relecteur` doit constater que le recadrage retire bien la bannière et le logo)
 - `Incline_Push-Up/1.jpg` : affichable : non (une bannière sombre avec du texte flou reste visible en haut de l'image ; la recadrer couperait la tête ; box coupée à gauche ; décision de `coach` le 22/10/2026 : seule l'image 0 est affichée)
-- `Pushups/0.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-sol`)
-- `Pushups/1.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-sol`)
-- `Push-Ups_With_Feet_Elevated/0.jpg` : affichable : à vérifier (image non regardée ; pour l'échelon `pompe-pieds-sureleves`, source : pieds sur un banc)
-- `Push-Ups_With_Feet_Elevated/1.jpg` : affichable : à vérifier (image non regardée ; même échelon)
+- `Pushups/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Pushups-0.webp)
+- `Pushups/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Pushups-1.webp)
+- `Push-Ups_With_Feet_Elevated/0.jpg` : affichable : oui (vue le 22/10/2026 ; pieds sur un banc ; fichier public/photos/free-exercise-db/Push-Ups_With_Feet_Elevated-0.webp)
+- `Push-Ups_With_Feet_Elevated/1.jpg` : affichable : oui (vue le 22/10/2026 ; pieds sur un banc ; fichier public/photos/free-exercise-db/Push-Ups_With_Feet_Elevated-1.webp)
 Échelons mur et genoux : aucune photo libre (la photo du brouillon pour les genoux vient de maxwu : interdite). Chaque photo ne s'affiche que pour l'échelon indiqué.
 
 ## Sources

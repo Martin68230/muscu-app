@@ -74,8 +74,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Side_Bridge/0.jpg` : affichable : à vérifier (jugée « version sur les pieds, jambes tendues » par `relecteur` ; fichier WebP absent de public/photos, à créer puis revoir avant d'afficher).
-- `Side_Bridge/1.jpg` : affichable : à vérifier (vue le 21/10/2026 : personne couchée sur le côté sur un tapis, semble la position basse ; non confirmée).
+- `Side_Bridge/0.jpg` : affichable : oui (vue le 22/10/2026 ; planche latérale sur l'avant-bras, jambes tendues ; fichier public/photos/free-exercise-db/Side_Bridge-0.webp)
+- `Side_Bridge/1.jpg` : affichable : oui (vue le 22/10/2026 ; planche latérale sur l'avant-bras, jambes tendues ; fichier public/photos/free-exercise-db/Side_Bridge-1.webp)
 Variante genou : aucune photo libre.
 
 ## Sources

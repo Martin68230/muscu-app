@@ -74,8 +74,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Dead_Bug/0.jpg` : affichable : à vérifier (image non regardée ; la source décrit une seule jambe qui s'étend, bras fixes : proche de l'échelon 2)
-- `Dead_Bug/1.jpg` : affichable : à vérifier (image non regardée)
+- `Dead_Bug/0.jpg` : affichable : oui (vue le 22/10/2026 ; bras fixes levés, une jambe s'étend ; fichier public/photos/free-exercise-db/Dead_Bug-0.webp)
+- `Dead_Bug/1.jpg` : affichable : oui (vue le 22/10/2026 ; bras fixes levés, une jambe s'étend ; fichier public/photos/free-exercise-db/Dead_Bug-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

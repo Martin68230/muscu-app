@@ -69,8 +69,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 ## Photo
-- `Pushups_Close_and_Wide_Hand_Positions/0.jpg` : affichable : à vérifier (image non regardée ; la fiche source couvre les deux positions, large et serrée : n'afficher que si l'image montre les mains larges)
-- `Pushups_Close_and_Wide_Hand_Positions/1.jpg` : affichable : à vérifier (image non regardée ; même réserve)
+- `Pushups_Close_and_Wide_Hand_Positions/0.jpg` : affichable : non (vue le 22/10/2026 : mains rapprochées, pas écartées : ne montre pas la pompe écartée)
+- `Pushups_Close_and_Wide_Hand_Positions/1.jpg` : affichable : non (vue le 22/10/2026 : mains à peine plus larges que les épaules : ne montre pas la pompe écartée)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

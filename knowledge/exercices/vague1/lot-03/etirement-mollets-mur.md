@@ -76,8 +76,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Calf_Stretch_Hands_Against_Wall/0.jpg` : affichable : à vérifier (image non regardée)
-- `Calf_Stretch_Hands_Against_Wall/1.jpg` : affichable : à vérifier (image non regardée)
+- `Calf_Stretch_Hands_Against_Wall/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Calf_Stretch_Hands_Against_Wall-0.webp)
+- `Calf_Stretch_Hands_Against_Wall/1.jpg` : affichable : non (vue le 22/10/2026 : logo d'un tiers lisible au dos du t-shirt, non recadrable sans couper le geste)
 - `Standing_Gastrocnemius_Calf_Stretch/0.jpg` : affichable : non (l'entrée montre le talon posé sur une marche, genou tendu, orteils tirés à la main : pas l'étirement contre le mur, la photo contredit la consigne, règle 12)
 - `Standing_Gastrocnemius_Calf_Stretch/1.jpg` : affichable : non (même raison)
 

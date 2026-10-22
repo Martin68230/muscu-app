@@ -85,8 +85,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- `Shoulder_Press_-_With_Bands/0.jpg` : affichable : à vérifier (image non regardée)
-- `Shoulder_Press_-_With_Bands/1.jpg` : affichable : à vérifier (image non regardée)
+- `Shoulder_Press_-_With_Bands/0.jpg` : affichable : non (vue le 22/10/2026 : vue de dos, logo d'un tiers lisible sur le t-shirt, non recadrable sans couper le geste)
+- `Shoulder_Press_-_With_Bands/1.jpg` : affichable : non (vue le 22/10/2026 : même raison)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

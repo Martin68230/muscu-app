@@ -83,10 +83,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Bodyweight_Walking_Lunge/0.jpg` : affichable : à vérifier (image non regardée ; fente marchée)
-- `Bodyweight_Walking_Lunge/1.jpg` : affichable : à vérifier (image non regardée ; fente marchée)
-- `Dumbbell_Lunges/0.jpg` : affichable : à vérifier (image non regardée ; fente avec haltères)
-- `Dumbbell_Lunges/1.jpg` : affichable : à vérifier (image non regardée ; fente avec haltères)
+- `Bodyweight_Walking_Lunge/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Bodyweight_Walking_Lunge-0.webp)
+- `Bodyweight_Walking_Lunge/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Bodyweight_Walking_Lunge-1.webp)
+- `Dumbbell_Lunges/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Dumbbell_Lunges-0.webp)
+- `Dumbbell_Lunges/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Dumbbell_Lunges-1.webp)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
