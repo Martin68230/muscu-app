@@ -1,0 +1,85 @@
+---
+id: releve-mollets-machine
+nom: Montée sur les pointes à la machine
+schema: cheville_mollet
+type: force
+niveau_min: debutant
+muscles_principaux: [mollets]
+muscles_secondaires: []
+source_brouillon: []
+statut: brouillon_coach
+---
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| releve-mollets-machine-debout | Machine debout | 1 | debutant | machine | Machine à mollets debout : épaules sous les coussins, avant-pieds sur le repose-pieds, talons dans le vide. |
+| releve-mollets-machine-assis | Machine assise | 1 | debutant | machine | Machine à mollets assise : cuisses sous le coussin, avant-pieds sur le repose-pieds. |
+
+## Consignes
+1. Règle la machine à ta taille : charge légère au départ (étalonnage, load-calibration.md), coussins bien calés.
+2. Place l'avant des pieds sur le repose-pieds, pieds droits vers l'avant, talons dans le vide.
+3. Monte sur la pointe des pieds le plus haut possible, chevilles droites.
+4. Marque un court arrêt, puis redescends lentement jusqu'à une position étirée confortable.
+5. Recommence sans rebondir ; pose la charge avant de te lever.
+
+## Points d'attention
+- Descente lente, sans rebond.
+- Machines : se référer à la notice ou à un encadrant de la salle pour le réglage.
+- Aucune durée, série, répétition ni intensité chiffrée (aucune valeur sourcée) : voir program-logic.md et load-calibration.md.
+
+## Erreurs fréquentes
+- Rebondir en bas.
+- Chevilles qui basculent vers l'extérieur.
+- Charge trop lourde qui limite l'amplitude.
+
+## Progression / régression
+- plus-facile : aucun
+- plus-dur : aucun
+
+## Repères de dosage
+Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
+
+## Sécurité et contre-indications
+Brouillon prudent de `coach` du 2026-10-22, à reprendre par `kine`. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS.
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
+
+| Zone | Niveau 1 | Niveau 2 | Niveau 3 |
+|---|---|---|---|
+| Cheville | adapter: charge:legere | adapter: charge:legere | retirer |
+| Genou | garder | adapter: charge:legere | retirer |
+| Dos | garder | adapter: variante:releve-mollets-machine-assis | retirer |
+
+**Notes**
+- cheville-n1 : charge de départ de l'étalonnage, jamais augmentée.
+- dos-n2 : machine assise (pas de charge sur les épaules).
+- grossesse : machine assise, charge légère ; en cas de doute, la fiche montée sur la pointe des pieds au sol suffit. Post-partum : G7.
+
+**Grossesse** : adapter: variante:releve-mollets-machine-assis
+**Version plus douce** : releve-mollets-machine-assis
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) à la cheville, derrière le talon, au mollet, au genou ou au bas du dos.
+- Perte d'équilibre, mouvement qui n'est plus contrôlé : arrête la série.
+- Douleur qui dure, qui s'aggrave ou qui réveille la nuit, gonflement, perte de force, engourdissement ou fourmillements : consulte un professionnel de santé (S1, S2) ; ces signes n'ont pas à être « diagnostiqués » par toi.
+- Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+
+**Objets du quotidien**
+- Machine en bon état, réglages bloqués, goupille de charge enfoncée ; pose la charge avant de descendre.
+- En salle : demande un encadrant en cas de doute sur le réglage.
+
+## Photo
+- `Standing_Calf_Raises/0.jpg` : affichable : oui (vue le 2026-10-22 : machine debout, vue de dos, talons dans le vide ; montre la variante « debout » ; la variante assise n'a pas d'image ; WebP à créer par dev)
+- `Standing_Calf_Raises/1.jpg` : affichable : oui (vue le 2026-10-22 : même machine, position haute, talons levés ; WebP à créer par dev)
+
+## Sources
+| Affirmation | Source | Niveau de preuve | Lu le | Statut |
+|---|---|---|---|---|
+| Montée de mollets à la machine debout | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Standing_Calf_Raises » (machine, niveau beginner) ; images vues le 2026-10-22 | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE |
+| Machine assise : même geste, genoux pliés | aucune source lue ; description de coach | - | - | NON SOURCÉ |
+| Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | - | NON SOURCÉ |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
+| Tableau par zone, grossesse, version plus douce et signes d'arrêt : brouillon prudent de coach, à reprendre par kine | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (brouillon coach, à reprendre par kine) |
