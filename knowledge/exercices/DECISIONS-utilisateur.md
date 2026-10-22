@@ -51,7 +51,7 @@ L'utilisateur veut une image partout : sans image, une fiche n'est pas parlante.
 - Plus besoin d'attendre l'utilisateur : quand `coach` et `relecteur` sont d'accord (0 point bloquant, 0 erreur à check:fiches, au moins une image affichable), la fiche passe directement en `utilisable` (ou `verifie` s'il ne reste aucune réserve). L'utilisateur n'a plus à relire chaque lot ; il lit seulement le bilan.
 - Les questions de conception restent notées dans le README du lot avec le choix prudent appliqué, sans bloquer la fiche.
 
-### D9. Signaler un problème depuis l'app : à appliquer par `dev` (lecteur de séance et fiche d'exercice)
+### D9. Signaler un problème depuis l'app : appliquée le 22/10/2026 14:1x (composant ReportButton, stockage, export Profil ; à brancher sur fiche et lecteur de séance quand ils existeront)
 - Sur chaque fiche d'exercice et dans le lecteur de séance : un petit bouton discret « ⋯ » (trois points, dans un coin), qui ouvre un menu court avec « Signaler un problème ».
 - Choix rapides : consigne pas claire, image fausse ou manquante, exercice gênant ou douloureux, matériel incorrect, autre ; + un champ de texte facultatif. Envoi en un appui, sans quitter la séance.
 - Enregistré localement avec l'id de la fiche, la variante, la date et l'app hors-ligne comprise ; synchronisé avec Supabase en phase 6 (table `signalements`, visible par l'admin seulement). Un écran ou un export « signalements » permet de les donner à Claude Code pour corriger les fiches.

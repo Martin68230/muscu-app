@@ -11,7 +11,7 @@
 // Les tables ne stockent que des identifiants (mouvement, variante, aliment Ciqual), jamais
 // le contenu de la bibliothèque, qui reste un fichier statique de l'app.
 
-export const SCHEMA_VERSION = 1;
+export const SCHEMA_VERSION = 2; // 2 : table signalements (les sauvegardes v1 restent importables)
 
 export interface SyncFields {
   id: string;
@@ -171,6 +171,18 @@ export interface Share extends SyncFields {
   enabled: boolean;
 }
 
+export type ReportChoice = 'consigne' | 'image' | 'douleur' | 'materiel' | 'autre';
+
+/** Signalement d'un problème sur une fiche (D9). Privé ; visible de l'admin seulement une fois synchronisé (phase 6). */
+export interface Report extends SyncFields {
+  /** Id de la fiche (mouvement). */
+  ficheId: string;
+  /** Variante affichée au moment du signalement, ou null. */
+  variantId: string | null;
+  choice: ReportChoice;
+  text: string;
+}
+
 /** Tables synchronisables : nom de table -> type. */
 export interface SyncedTables {
   profile: Profile;
@@ -184,6 +196,7 @@ export interface SyncedTables {
   meals: Meal;
   supplements: Supplement;
   shares: Share;
+  signalements: Report;
 }
 
 export type TableName = keyof SyncedTables;
@@ -203,6 +216,7 @@ export const TABLES: TableName[] = [
   'meals',
   'supplements',
   'shares',
+  'signalements',
 ];
 
 /**

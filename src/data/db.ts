@@ -4,7 +4,7 @@ import { TABLES } from './model';
 
 export const DB_NAME = 'muscu-app';
 /** Version IndexedDB : chaque montée ajoute une étape dans `upgrade`, jamais de modification d'une étape passée. */
-export const DB_VERSION = 1;
+export const DB_VERSION = 2;
 
 type Store<V, I extends Record<string, IDBValidKey> = Record<string, IDBValidKey>> = {
   key: string;
@@ -24,6 +24,7 @@ export interface MuscuDB extends DBSchema {
   meals: Store<SyncedTables['meals'], { updatedAt: string; date: string }>;
   supplements: Store<SyncedTables['supplements'], { updatedAt: string }>;
   shares: Store<SyncedTables['shares'], { updatedAt: string }>;
+  signalements: Store<SyncedTables['signalements'], { updatedAt: string }>;
   device: { key: string; value: DeviceSettings };
 }
 
@@ -50,6 +51,11 @@ export function getDB(): Promise<DB> {
             for (const idx of EXTRA_INDEXES[name] ?? []) store.createIndex(idx, idx);
           }
           db.createObjectStore('device', { keyPath: 'key' });
+        }
+        if (oldVersion === 1) {
+          // v2 : table des signalements (D9).
+          const store = (db as unknown as IDBPDatabase).createObjectStore('signalements', { keyPath: 'id' });
+          store.createIndex('updatedAt', 'updatedAt');
         }
       },
     });

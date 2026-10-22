@@ -243,6 +243,17 @@ dialog {
   border: 1px solid var(--line); border-radius: 18px; background: var(--surface); color: var(--text);
   padding: 20px; width: calc(100% - 32px); max-width: 400px;
 }
+/* Bouton « ⋯ » discret : petit à l'œil, 44 px au doigt. */
+.report-btn {
+  display: inline-flex; align-items: center; justify-content: center; width: 44px; height: 44px; padding: 0;
+  border: 0; border-radius: 12px; background: transparent; color: var(--text-dim); font: inherit; font-size: 1.5rem;
+  line-height: 1; cursor: pointer; touch-action: manipulation;
+}
+.report-btn:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.report-choices { display: grid; gap: 6px; margin-bottom: 10px; }
+.report-choices .zone-btn { min-height: 44px; padding: 6px 12px; font-size: 1rem; }
+.report-choices + label + textarea + .btn, .report-choices + label + textarea + .toast { margin-top: 12px; }
+dialog:has(.report-choices), dialog:has(.report-done) { max-height: calc(100dvh - 24px); overflow-y: auto; }
 dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 
 .toast {

@@ -3,6 +3,7 @@ import type { Profile as ProfileRow } from '../../data/model';
 import { update } from '../../data/repo';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
+import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
 
@@ -132,6 +133,8 @@ export function Profile({ profile, onChange, onWiped }: {
       </button>
 
       <Injuries key={profile.id} />
+
+      <ReportsExport key={message ?? 'r'} />
 
       <h2>Santé</h2>
       <button class="btn" onClick={() => noticeDialog.current?.showModal()}>Relire l'avertissement santé</button>

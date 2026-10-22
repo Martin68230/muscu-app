@@ -82,6 +82,7 @@ export const SPECS: Record<TableName, Spec> = {
     endDate: 'string?',
   },
   shares: { dataType: 'string', friendId: 'string?', enabled: 'boolean' },
+  signalements: { ficheId: 'string', variantId: 'string?', choice: 'string', text: 'string' },
 };
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
