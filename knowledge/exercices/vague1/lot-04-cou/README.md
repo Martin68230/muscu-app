@@ -8,10 +8,10 @@ Rédigé par `coach` le 22/10/2026. Statut des fiches : `controle_relecteur`. Fo
 | rotation-douce-cou | mobilité | débutant | **douce** : garder / amplitude réduite / retirer | illustration |
 | inclinaison-douce-cou | mobilité | débutant | **douce** : garder / amplitude réduite / retirer | illustration |
 | retraction-cervicale (menton rentré) | mobilité | débutant | **douce** : garder / amplitude réduite / retirer | illustration |
-| isometrique-cou (4 directions) | mobilité (type force) | débutant | non douce : maintien court / retirer / retirer | 3 photos |
+| isometrique-cou (4 directions) | mobilité (type force) | débutant | non douce : maintien court / retirer / retirer | 2 photos |
 | retraction-omoplates (serrer les omoplates) | tirage H (substitut) | débutant | **douce** : garder / amplitude réduite / retirer | illustration |
 | face-pull-elastique | tirage H | débutant | tête alignée / tête alignée / retirer | illustration |
-| oiseau-banc-incline | tirage H | débutant | tête alignée / tête alignée / retirer | 2 photos (Reverse_Flyes) |
+| oiseau-banc-incline | tirage H | débutant | tête alignée / tête alignée / retirer | 1 photo (Reverse_Flyes-0) |
 | rotation-externe-poulie | tirage H (substitut) | débutant | (zone cou non listée) | 2 photos |
 | oiseau-un-bras-appuye | tirage H | débutant | tête alignée / tête alignée / retirer | illustration |
 | ecartement-serviette | tirage H (substitut) | débutant | garder / tête alignée / retirer | illustration |
@@ -32,11 +32,11 @@ Déjà existants et NON recréés (cités en progression) : Y-T-W au sol (`ytw-s
 Aucun profil sous 3 (les profils A et C étaient à 2). Les tirages (rowings) comptent le deltoïde postérieur en secondaire : ils ne sont pas comptés ici.
 
 ## Sources (voir chaque fiche)
-- Cou : Blanpied et al., JOSPT 2017 (lignes directrices, grade B) et Gross et al., Cochrane 2015 (27 essais) : **résumés et extraits seulement**, texte intégral non lu (PubMed et le PDF de l'APTA ont refusé l'accès) : PROVISOIRE. Blomgren 2018 (entraînement des fléchisseurs profonds) : résumé seulement. L'exercice précis (rentrer le menton, rotations, inclinaisons douces) n'est PAS dans ces sources : NON SOURCÉ ou PROVISOIRE selon la fiche. Pas de source lue sur les signes d'alerte du cou : le texte de D10 est repris (fourmillements, perte de force, choc, maux de tête inhabituels) ; seuls engourdissement, perte de force et choc rejoignent S2 de regles-securite-communes.md ; maux de tête et vertige : NON SOURCÉ.
+- Cou : Blanpied et al., JOSPT 2017 (lignes directrices, grade B) et Gross et al., Cochrane 2015 (27 essais) : **résumés et extraits seulement**, texte intégral non lu (PubMed et le PDF de l'APTA ont refusé l'accès) : PROVISOIRE. Blomgren 2018 (entraînement des fléchisseurs profonds) : résumé seulement. L'exercice précis (rentrer le menton, rotations, inclinaisons douces) n'est PAS dans ces sources : NON SOURCÉ ou PROVISOIRE selon la fiche. Signes d'alerte du cou : HAS 2020 (imagerie cervicale, cervicalgie non traumatique) lue dans le texte (tableau 1, encadré dissection) ; céphalées seules et vertige seul n'y figurent pas : PROVISOIRE ou NON SOURCÉ (voir §9 de regles-securite-communes.md). Cochrane 2015 et Blanpied 2017 portent sur le renforcement : simple contexte pour les fiches de mobilité, pas une preuve pour elles.
 - Arrière d'épaule : Reinold et al., JOSPT 2004 (EMG, 10 sujets sains) : résumé seulement ; free-exercise-db (Face_Pull, Reverse_Flyes, External_Rotation_with_Cable, Reverse_Machine_Flyes, Isometric_Neck_Exercise, Band_Pull_Apart) : PROVISOIRE. Aucune étude trouvée sur le tirage au visage à l'élastique : NON SOURCÉ.
 
 ## Images (D6)
-- Photos libres regardées le 22/10/2026 (curl + Read) : isométriques du cou (3 images sur 4 retenues), rotation externe à la poulie (2), oiseau à la machine (2, recadrées pour retirer le logo de la machine), `Reverse_Flyes` réutilisée pour l'oiseau sur banc incliné (2). WebP ajoutés dans public/photos/free-exercise-db/ et lignes ajoutées dans tools/photos.md.
+- Photos libres regardées le 22/10/2026 (curl + Read) : isométriques du cou (2 images sur 4 retenues ; Sides/1 retirée : ressemble à l'étirement latéral), rotation externe à la poulie (2), oiseau à la machine (2, recadrées pour retirer le logo de la machine), `Reverse_Flyes` image 0 seule pour l'oiseau sur banc incliné (l'image 1 a la tête relevée, contraire à la consigne). WebP ajoutés dans public/photos/free-exercise-db/ et lignes ajoutées dans tools/photos.md.
 - Photos écartées : `Side_Neck_Stretch` (la main tire la tête, contraire à la consigne douce), `Face_Pull` (poulie avec logo d'un tiers, la fiche est à l'élastique), `Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench` (debout, front sur le banc, pas poitrine appuyée), `Isometric_Neck_Exercise_-_Sides/0` (départ peu lisible).
 - 8 illustrations originales créées dans tools/illustrations-poses.mjs (`node tools/make-illustrations.mjs <id>`) : rotation-douce-cou, inclinaison-douce-cou, retraction-cervicale, retraction-omoplates, face-pull-elastique, oiseau-un-bras-appuye (vue de dessus), ecartement-serviette (vue de dessus), tirage-visage-sangles. Les illustrations de cou sont schématiques (tête sans visage) ; rendu vérifié en PNG, à faire relire par `coach`/`kine` comme les autres.
 
@@ -52,5 +52,5 @@ Aucun profil sous 3 (les profils A et C étaient à 2). Les tirages (rowings) co
 
 ## Ce qui reste à faire
 - `kine` : fait (22/10/2026). Reste : décision utilisateur sur le vertige léger (voir réponse de kine), champ `doux_pour` et schéma `cou` par `dev`.
-- `relecteur` : contrôle à neuf (fidélité aux sources lues par résumé : Blanpied, Cochrane, Reinold à relire dans le texte intégral).
+- `relecteur` : contrôle fait le 22/10/2026 (CONTROLE-relecteur.md) ; corrections d'entraînement appliquées ; restent B1 (exclusion hors zone, `dev`) et les points sécurité (`kine`).
 - Statut des fiches : `controle_relecteur` jusqu'à ce contrôle.

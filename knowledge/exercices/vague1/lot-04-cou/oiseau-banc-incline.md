@@ -81,8 +81,8 @@ Complété par `kine` le 2026-10-22 (version de prudence de `coach` reprise zone
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- `Reverse_Flyes/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Reverse_Flyes-0.webp)
-- `Reverse_Flyes/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Reverse_Flyes-1.webp)
+- `Reverse_Flyes/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Reverse_Flyes-0.webp ; poitrine appuyée, bras pendants ; la tête y est un peu relevée : la consigne prime, regard vers le sol)
+- `Reverse_Flyes/1.jpg` : affichable : non (revue le 22/10/2026 : tête relevée, regard horizontal, nuque en extension, contraire à la consigne « regard vers le sol » ; la consigne prime)
 - `Bent_Over_Dumbbell_Rear_Delt_Raise_With_Head_On_Bench/1.jpg` : affichable : non (vue le 22/10/2026 : debout penché, front sur le banc, et non poitrine appuyée comme dans la fiche)
 
 ## Sources

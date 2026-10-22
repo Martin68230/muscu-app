@@ -22,6 +22,7 @@ statut: controle_relecteur
 2. Pose la main sur le front et pousse la tête vers la main, sans qu'elle bouge : c'est la main qui résiste, pas un mouvement.
 3. Augmente la pression lentement, garde une respiration normale, puis relâche lentement.
 4. Même chose avec la main derrière la tête (tu pousses vers l'arrière), puis avec la main sur le côté de la tête, à droite puis à gauche : 4 directions au total.
+5. Variante mur + serviette (sans les mains) : plie la serviette entre ta tête et le mur, à l'avant, à l'arrière ou sur le côté de la tête selon la direction ; pousse la tête contre la serviette, sans qu'elle bouge, avec la même pression légère, en gardant le tronc droit et immobile ; relâche lentement.
 
 ## Points d'attention
 - Pression légère : tu dois pouvoir parler normalement ; jamais d'effort maximal.
@@ -77,7 +78,7 @@ Complété par `kine` le 2026-10-22 (version de prudence de `coach` reprise zone
 ## Photo
 - `Isometric_Neck_Exercise_-_Front_And_Back/0.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Isometric_Neck_Exercise_-_Front_And_Back-0.webp ; mains sur le front)
 - `Isometric_Neck_Exercise_-_Front_And_Back/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Isometric_Neck_Exercise_-_Front_And_Back-1.webp ; mains derrière la tête)
-- `Isometric_Neck_Exercise_-_Sides/1.jpg` : affichable : oui (vue le 22/10/2026 ; fichier public/photos/free-exercise-db/Isometric_Neck_Exercise_-_Sides-1.webp ; main sur le côté de la tête)
+- `Isometric_Neck_Exercise_-_Sides/1.jpg` : affichable : non (revue le 22/10/2026 : main au-dessus de l'oreille, coude haut, ressemble à l'étirement latéral rejeté ; risque de tirer la tête ; fichier Sides-1.webp conservé mais non affiché)
 - `Isometric_Neck_Exercise_-_Sides/0.jpg` : affichable : non (vue le 22/10/2026 : position de départ peu lisible, main au-dessus de la tête)
 
 ## Sources

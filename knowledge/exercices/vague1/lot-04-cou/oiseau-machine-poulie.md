@@ -25,7 +25,7 @@ statut: controle_relecteur
 
 ## Points d'attention
 - Charge légère au départ.
-- Dos plaqué contre le dossier (machine) ou buste droit (poulies).
+- Poitrine contre le coussin du dossier (machine) ou buste droit (poulies).
 - Épaules basses.
 - Aucune durée, série, répétition ni intensité chiffrée (aucune valeur sourcée) : voir program-logic.md et load-calibration.md.
 
