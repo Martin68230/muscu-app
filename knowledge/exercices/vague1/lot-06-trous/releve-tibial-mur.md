@@ -67,13 +67,13 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 **Version plus douce** : releve-tibial-assis
 
 **Points d'attention (kine)**
-- Dos au mur : fesses et dos contre le mur, talons à la distance d'un petit pas ; les genoux restent tendus sans être verrouillés. Si le dos s'arrondit ou si tu perds l'équilibre, passe à la variante assise.
+- Debout, dos au mur : fesses et dos contre le mur, talons à la distance d'un petit pas ; les genoux restent tendus sans être verrouillés. Si le dos s'arrondit ou si tu perds l'équilibre, passe à la variante assise.
 - Sur un seul pied (échelon 2) : dos au mur obligatoire.
 - Descente lente, sans claquer les pieds ; orteils détendus.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) à la cheville, devant le tibia, au genou ou au bas du dos.
-- Perte d'équilibre, pied qui glisse, dos qui se décolle du mur : arrête la série.
+- Perte d'équilibre, pied qui glisse, chaise qui bouge (assis), dos qui se décolle du mur (debout) : arrête la série.
 - Douleur vive et soudaine à l'avant de la jambe ou de la cheville : arrête et consulte un professionnel de santé (NON SOURCÉ, prudence).
 - Douleur qui dure, qui s'aggrave ou qui réveille la nuit, gonflement, perte de force, engourdissement ou fourmillements : consulte un professionnel de santé (S1, S2) ; ces signes n'ont pas à être « diagnostiqués » par toi.
 - Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.

@@ -60,7 +60,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - genou-n2 : au sol, sans marche ni appui sur une jambe seule.
 - dos-n2 : haltères légers (départ de l'étalonnage, jamais augmentés) ; au niveau 1, garder.
 - hanche-n2 : au sol, sans marche ni appui sur une jambe seule (équilibre).
-- grossesse : debout au sol, une main au mur ; pas de marche ni d'escalier (risque de chute). Post-partum : G7. Choix prudent NON SOURCÉ.
+- grossesse : debout au sol, une main au mur obligatoire (même si la variante dit « si besoin »), donc un seul haltère ; pas de marche ni d'escalier (risque de chute). Post-partum : G7. Choix prudent NON SOURCÉ.
 - general : pas de ligne cuisse ni aine (muscles non sollicités).
 
 **Grossesse** : adapter: variante:releve-mollets-halteres-sol
@@ -68,7 +68,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 **Points d'attention (kine)**
 - Au sol d'abord : l'équilibre se prend à plat avant de monter sur la marche. En cas de doute, reste à l'échelon 1.
-- Marche (échelons 2 et 3) : la première marche seulement, jamais plus haut, avant-pieds entiers sur la marche, rampe ou mur à portée. Descente lente, jamais plus bas qu'une position étirée confortable.
+- Marche (échelons 2 et 3) : la première marche seulement, jamais plus haut, avant-pieds entiers sur la marche, rampe à portée. Un seul haltère sur la marche, l'autre main sur la rampe (§7) : jamais deux haltères sur la marche. Descente lente, jamais plus bas qu'une position étirée confortable.
 - Une jambe (échelon 3) : l'haltère du côté de la jambe qui travaille, l'autre main sur la rampe ; jamais les yeux fermés.
 - Charge de départ par l'étalonnage (load-calibration.md) ; haltères légers pour apprendre le geste.
 
@@ -81,7 +81,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
-- Marche : la première marche d'un escalier éclairé, dégagé et non glissant, rampe à portée, chaussures aux pieds ; jamais une marche plus haute ni un escalier sans rampe (R8, §7). Les haltères restent le long du corps ; ne monte ni ne descends l'escalier avec eux.
+- Marche : la première marche d'un escalier éclairé, dégagé et non glissant, rampe à portée, chaussures aux pieds ; jamais une marche plus haute ni un escalier sans rampe (R8, §7). Un seul haltère sur la marche (échelons 2 et 3), l'autre main sur la rampe, jamais deux haltères ; l'haltère reste le long du corps ; ne monte ni ne descends l'escalier avec lui.
 - Haltères (R9) : fixes de préférence ; réglables seulement si les disques sont serrés, vérifiés avant chaque série ; posés au sol hors des passages.
 - Mur plein ou rampe solide en appui, testés en appuyant fort ; sol non glissant ; pas de chaussettes sur sol lisse.
 

@@ -63,21 +63,21 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - genou-n2 : marche sur les talons seulement, pas courts, mur à portée de main.
 - hanche-n2 : pas courts, aucune augmentation (R2).
 - dos-n2 : pas courts, buste droit, sans se pencher en arrière sur les talons, aucune augmentation (R2).
-- grossesse : risque de chute (équilibre moins sûr) : mur ou couloir à portée de main, une main au mur, pas courts. Post-partum : G7. Choix prudent NON SOURCÉ.
+- grossesse : retiré (G4 : risque de chute ; la marche sur les pointes ou les talons est un équilibre en mouvement, sans appui continu, et un mur n'est à portée que le long du trajet). Remplaçant : relevé de la pointe des pieds assis, talons au sol (releve-tibial-assis), qui a sa propre ligne Grossesse (garder). Post-partum : G7. Choix prudent NON SOURCÉ.
 - general : pas de ligne cuisse ni aine ; jamais d'exercice yeux fermés ; pas d'escalier.
 
-**Grossesse** : adapter: appui:mur
+**Grossesse** : retirer: remplacant:releve-tibial-assis
 **Version plus douce** : marche-talons
 
 **Points d'attention (kine)**
-- Risque de chute : petits pas lents, regard devant, mur ou couloir étroit à portée de main, jamais d'escalier ni de sol mouillé.
+- Risque de chute : petits pas lents, regard devant, mur ou couloir étroit à portée de main, demi-tour toujours pieds à plat (jamais sur les pointes ni sur les talons), jamais d'escalier ni de sol mouillé.
 - Jamais les yeux fermés (décision D3) ; pas de marche arrière sur les pointes.
 - Sur les talons : ne te laisse pas basculer en arrière (buste droit, pointes de pieds levées) ; sur les pointes : ne cherche pas à monter plus haut que ce qui reste stable.
 - Arrête-toi dès que l'équilibre devient incertain ou que le mollet ou le devant de la jambe brûle trop : ne finis pas la série fatigué.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) à la cheville, derrière le talon, au mollet, au devant de la jambe, au genou, à la hanche ou au bas du dos.
-- Perte d'équilibre, cheville qui se dérobe, pied qui accroche le sol : arrête la série et appuie-toi au mur.
+- Perte d'équilibre, cheville qui se dérobe, pied qui accroche le sol, demi-tour qui devient incertain : arrête la série, pose les pieds à plat et appuie-toi au mur.
 - Douleur vive et soudaine derrière le mollet ou le talon : arrête et consulte un professionnel de santé (NON SOURCÉ, prudence).
 - Douleur qui dure, qui s'aggrave ou qui réveille la nuit, gonflement, perte de force, engourdissement ou fourmillements : consulte un professionnel de santé (S1, S2) ; ces signes n'ont pas à être « diagnostiqués » par toi.
 - Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.

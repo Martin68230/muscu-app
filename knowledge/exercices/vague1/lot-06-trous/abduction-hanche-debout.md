@@ -57,7 +57,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 **Notes**
 - hanche-n1 : jambe moins haute, buste droit ; une gêne dans la fesse ou le côté de la hanche se déclare sous « hanche ». hanche-n2 : même amplitude réduite, sans mini-bande ni augmentation (R2).
-- cheville-n1 : la cheville d'appui travaille en équilibre sur un pied ; main bien posée sur un support stable (dossier de chaise appuyé au mur, ou mur), testé en appuyant fort (R8). cheville-n2 : même case, appui plus ferme, aucune augmentation (R2).
+- cheville-n1 : la cheville d'appui travaille en équilibre sur un pied ; main bien posée sur un support stable (dossier de chaise appuyé au mur, ou mur), testé en appuyant fort (R8). cheville-n2 : même case (l'appui main est déjà prévu par toutes les variantes), appui plus ferme et pas de mini-bande (R2), jambe peu levée.
 - grossesse : appui de la main sur un support stable (l'équilibre sur un pied est moins sûr) ; jambe peu levée. Post-partum : G7. Choix prudent NON SOURCÉ.
 - general : pas de ligne cuisse (muscles non sollicités). Jamais les yeux fermés.
 
@@ -66,8 +66,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 **Points d'attention (kine)**
 - Équilibre sur un pied : une main toujours en appui sur un support stable, jambe d'appui légèrement fléchie, genou non verrouillé. Jamais les yeux fermés.
-- Lève la jambe sur le côté seulement tant que le buste reste droit : sur la photo, la jambe est très haute et le buste penché, ce qui n'est pas la consigne.
-- Mini-bande (échelon 2) : boucle fermée, au-dessus des genoux ou des chevilles ; la chaise reste stable bande tendue.
+- Lève la jambe sur le côté seulement tant que le buste reste droit ; un buste qui se penche ou une jambe qui balance veut dire que tu lèves trop haut.
+- Mini-bande (échelon 2) : boucle fermée, au-dessus des genoux seulement (jamais aux chevilles : levier long sur un seul appui) ; la chaise reste stable bande tendue.
 - Descente lente, pied reposé sans claquer.
 
 **Signes qui doivent faire arrêter**
