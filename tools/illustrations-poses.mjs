@@ -390,4 +390,53 @@ export const EXERCICES = [
     a: { p: [0, 58], t: 90, sw: 22, hide: ['legN', 'legF'], armN: { to: [-18, 124], bend: 'u' }, armF: { to: [18, 124], bend: 'u' }, back: [['rect', -46, 40, 92, 10, 3], ['rect', -44, 0, 8, 40, 0], ['rect', 36, 0, 8, 40, 0]] },
     b: { p: [0, 58], t: 90, sw: 9, hide: ['legN', 'legF'], armN: { to: [-12, 124], bend: 'u' }, armF: { to: [14, 124], bend: 'u' }, back: [['rect', -46, 40, 92, 10, 3], ['rect', -44, 0, 8, 40, 0], ['rect', 36, 0, 8, 40, 0]], props: [['arrow', [-70, 200], [-30, 215]]] },
   },
+  // ================= lot 04 (cou et arrière d'épaule) =================
+  {
+    id: 'rotation-douce-cou', titre: 'Rotation douce du cou, vue de face, assis',
+    view: 'front', labels: ['Assis grand, regard devant', 'Tête tournée, épaules relâchées'],
+    a: { p: [0, 58], t: 90, sw: 22, hide: ['legN', 'legF'], armN: { a: [-92, -92] }, armF: { a: [-88, -88] }, back: [['rect', -46, 40, 92, 10, 3], ['rect', -44, 0, 8, 40, 0], ['rect', 36, 0, 8, 40, 0]] },
+    b: { p: [0, 58], t: 90, sw: 22, face: 0, hide: ['legN', 'legF'], armN: { a: [-92, -92] }, armF: { a: [-88, -88] }, back: [['rect', -46, 40, 92, 10, 3], ['rect', -44, 0, 8, 40, 0], ['rect', 36, 0, 8, 40, 0]], props: [['arrow', [-30, 215], [30, 215]]] },
+  },
+  {
+    id: 'inclinaison-douce-cou', titre: 'Inclinaison douce du cou, vue de face, assis',
+    view: 'front', labels: ['Assis grand, regard devant', 'Oreille vers l\'épaule, épaule basse'],
+    a: { p: [0, 58], t: 90, sw: 22, hide: ['legN', 'legF'], armN: { a: [-92, -92] }, armF: { a: [-88, -88] }, back: [['rect', -46, 40, 92, 10, 3], ['rect', -44, 0, 8, 40, 0], ['rect', 36, 0, 8, 40, 0]] },
+    b: { p: [0, 58], t: 90, sw: 22, h: 62, hl: 22, hide: ['legN', 'legF'], armN: { a: [-92, -92] }, armF: { a: [-88, -88] }, back: [['rect', -46, 40, 92, 10, 3], ['rect', -44, 0, 8, 40, 0], ['rect', 36, 0, 8, 40, 0]], props: [['arrow', [-10, 232], [40, 222]]] },
+  },
+  {
+    id: 'retraction-cervicale', titre: 'Rentrer le menton, vue de profil, debout',
+    labels: ['Tête avancée, regard devant', 'Menton rentré, tête reculée'],
+    a: { p: [0, 112], t: 90, h: 28, hl: 26, armN: { a: [-92, -90] }, armF: { a: [-88, -86] } },
+    b: { p: [0, 112], t: 90, h: 90, hl: 20, armN: { a: [-92, -90] }, armF: { a: [-88, -86] }, props: [['arrow', [70, 208], [20, 208]]] },
+  },
+  {
+    id: 'retraction-omoplates', titre: 'Serrer les omoplates, vue de profil, debout',
+    labels: ['Épaules relâchées', 'Omoplates rapprochées'],
+    a: { p: [0, 112], t: 84, h: 75, armN: { a: [-78, -76] }, armF: { a: [-76, -74] } },
+    b: { p: [0, 112], t: 92, h: 90, armN: { a: [-104, -102] }, armF: { a: [-102, -100] }, props: [['arrow', [40, 150], [-10, 150]]] },
+  },
+  {
+    id: 'face-pull-elastique', titre: 'Tirage au visage à l\'élastique, ancré en haut',
+    labels: ['Bras tendus vers l\'ancrage', 'Mains au visage, coudes écartés'],
+    a: { p: [-20, 110], t: 94, h: 90, legN: { to: [0, A], bend: 'f' }, legF: { to: [-8, A], bend: 'f' }, armN: { to: [50, 170], bend: 'd' }, armF: { to: [46, 168], bend: 'd' }, back: [['wall', 150, 14], ['anchor', 150, 214]], props: (J) => [['band', [J.haN, [150, 214]]]] },
+    b: { p: [-20, 110], t: 94, h: 90, legN: { to: [0, A], bend: 'f' }, legF: { to: [-8, A], bend: 'f' }, armN: { to: [14, 190], bend: 'b' }, armF: { to: [10, 186], bend: 'b' }, back: [['wall', 150, 14], ['anchor', 150, 214]], props: (J) => [['band', [J.haN, [150, 214]]], ['arrow', [60, 150], [20, 150]]] },
+  },
+  {
+    id: 'oiseau-un-bras-appuye', titre: 'Oiseau un bras, vue de dessus, une main appuyée sur une chaise',
+    view: 'top', labels: ['Buste penché, bras pendant', 'Bras levé sur le côté'],
+    a: { p: [0, 60], t: 90, tl: 70, hl: 18, sw: 22, hw: 8, h: 90, legN: { a: [-90, -90] }, legF: { a: [-90, -90] }, hide: ['legN', 'legF'], armN: { a: [-35, -35] }, armF: { a: [120, 120] }, back: [['rect', -80, 150, 60, 14, 3]] },
+    b: { p: [0, 60], t: 90, tl: 70, hl: 18, sw: 22, hw: 8, h: 90, legN: { a: [-90, -90] }, legF: { a: [-90, -90] }, hide: ['legN', 'legF'], armN: { a: [0, 0] }, armF: { a: [120, 120] }, back: [['rect', -80, 150, 60, 14, 3]], props: [['arrow', [70, 100], [100, 130]]] },
+  },
+  {
+    id: 'ecartement-serviette', titre: 'Écartement d\'une serviette bras tendus, vue de dessus',
+    view: 'top', labels: ['Serviette tendue', "Mains vers l'extérieur"],
+    a: { p: [0, 40], t: 90, tl: 70, hl: 18, sw: 22, hw: 8, h: 90, hide: ['legN', 'legF'], armN: { to: [24, 172], bend: 'f' }, armF: { to: [-24, 172], bend: 'f' }, props: (J) => [['towel', [J.haF, J.haN]]] },
+    b: { p: [0, 40], t: 90, tl: 70, hl: 18, sw: 22, hw: 8, h: 90, hide: ['legN', 'legF'], armN: { to: [56, 160], bend: 'f' }, armF: { to: [-56, 160], bend: 'f' }, props: (J) => [['towel', [J.haF, J.haN]], ['arrow', [62, 190], [92, 190]], ['arrow', [-62, 190], [-92, 190]]] },
+  },
+  {
+    id: 'tirage-visage-sangles', titre: 'Tirage au visage aux sangles de suspension, corps incliné',
+    labels: ['Bras tendus, corps incliné en arrière', 'Mains au visage, coudes écartés'],
+    a: { p: [-22, 108], t: 100, h: 100, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [52, 150], bend: 'd' }, armF: { to: [48, 148], bend: 'd' }, back: [['wall', 150, 14], ['anchor', 150, 230]], props: (J) => [['band', [J.haN, [150, 230]]]] },
+    b: { p: [-12, 110], t: 94, h: 92, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [16, 186], bend: 'b' }, armF: { to: [12, 182], bend: 'b' }, back: [['wall', 150, 14], ['anchor', 150, 230]], props: (J) => [['band', [J.haN, [150, 230]]], ['arrow', [70, 150], [30, 150]]] },
+  },
 ];
