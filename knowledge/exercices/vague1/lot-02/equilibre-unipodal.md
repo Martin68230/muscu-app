@@ -85,6 +85,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo (aucune entrée libre pour l'équilibre unipodal ; « Balance_Board » demande un plateau)
+- illustration : public/illustrations/equilibre-unipodal.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

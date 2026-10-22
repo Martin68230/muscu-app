@@ -71,6 +71,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Pushups_Close_and_Wide_Hand_Positions/0.jpg` : affichable : non (vue le 22/10/2026 : mains rapprochées, pas écartées : ne montre pas la pompe écartée)
 - `Pushups_Close_and_Wide_Hand_Positions/1.jpg` : affichable : non (vue le 22/10/2026 : mains à peine plus larges que les épaules : ne montre pas la pompe écartée)
+- `Push-Up_Wide/0.jpg` : affichable : oui (vue le 22/10/2026 : mains nettement plus larges que les épaules, corps en planche, bras tendus ; photo sombre, fond de salle sans logo lisible)
+- `Push-Up_Wide/1.jpg` : affichable : oui (vue le 22/10/2026 : bas de la pompe, mains larges, coudes ouverts ; garder la consigne : coudes ouverts mais pas à l'horizontale)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -75,7 +75,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- aucune photo (aucune entrée libre correspondante trouvée (recherche par nom, 22/10/2026))
+- `Ankle_On_The_Knee/0.jpg` : affichable : oui (vue le 22/10/2026 : allongé sur le dos, genoux pliés, une cheville posée sur le genou opposé : départ de la variante allongée ; fond de salle sans logo lisible)
+- `Ankle_On_The_Knee/1.jpg` : affichable : oui (vue le 22/10/2026 : jambes en « 4 », mains qui ramènent la cuisse vers la poitrine : variante allongée seulement, pas la variante assise ; le pied de la jambe croisée est un peu en pointe, garder le pied en flexion comme dans la consigne)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

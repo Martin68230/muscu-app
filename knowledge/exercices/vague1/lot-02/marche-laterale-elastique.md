@@ -79,6 +79,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo : l'entrée libre la plus proche (`Monster_Walk`) montre une marche vers l'avant et l'arrière, pas sur le côté, avec deux bandes ; image non regardée, non affichée
+- illustration : public/illustrations/marche-laterale-elastique.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

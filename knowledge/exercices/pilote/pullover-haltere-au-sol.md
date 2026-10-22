@@ -86,6 +86,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Bent-Arm_Dumbbell_Pullover/0.jpg` : affichable : non (installation en travers d'un banc, tête dans le vide : ni la variante sol ni la variante banc de la fiche).
 - `Bent-Arm_Dumbbell_Pullover/1.jpg` : affichable : non (vue le 21/10/2026 : en travers du banc, tête hors du banc, même raison).
+- illustration : public/illustrations/pullover-haltere-au-sol.svg : affichable : oui (illustration originale de l'app)
 Variante au sol : aucune photo libre.
 
 ## Sources

@@ -118,6 +118,10 @@ Ids : variante ou fiche du lot, ou `a-creer:<id>` pour une fiche prévue mais pa
 
 Une ligne par image : `- \`<DossierFreeExerciseDb>/<n>.jpg\` : affichable : <oui|non|à vérifier>` suivi, entre parenthèses, de la raison. Raison obligatoire pour `non` et `à vérifier`. Seul `oui` s'affiche (règle 12). Pas de photo : une ligne `- aucune photo`. Le fichier affiché est `public/photos/free-exercise-db/<Dossier>-<n>.webp` (voir `tools/photos.md`) ; le script avertit si une image `oui` n'a pas son WebP.
 
+**Illustration originale** (décision D6, quand aucune photo libre ne convient) : une ligne `- illustration : public/illustrations/<id-fiche>.svg : affichable : oui (illustration originale de l'app)`. Le fichier porte exactement l'id de la fiche ; il est généré par `node tools/make-illustrations.mjs` (une entrée de pose par fiche dans `tools/illustrations-poses.mjs`, voir `tools/photos.md`). Elle compte comme image affichable.
+
+**Contrôle** : une fiche `utilisable` ou `verifie` sans au moins une image `affichable : oui` (photo ou illustration) est une ERREUR de `npm run check:fiches` ; une illustration `oui` sans son fichier SVG est aussi une erreur.
+
 ## 7. Exemple minimal valide
 
 ```markdown

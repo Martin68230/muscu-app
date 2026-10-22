@@ -80,6 +80,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo
+- illustration : public/illustrations/souleve-de-terre-roumain-unijambiste.svg : affichable : oui (illustration originale de l'app)
 Aucune photo libre (affichable : sans objet).
 
 ## Sources

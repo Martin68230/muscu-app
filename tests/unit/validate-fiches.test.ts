@@ -219,6 +219,21 @@ describe('validateLot', () => {
     expect(r.warnings.some((w) => /sans fichier WebP/.test(w.message))).toBe(true);
   });
 
+  it('compte une illustration « oui » comme image affichable ; sans image, une fiche utilisable est en erreur', () => {
+    const sans = validateLot([{ name: 'pompe-inclinee.md', text: fiche({ fm: undefined }).replace('statut: complete_kine', 'statut: utilisable') }], { tags: TAGS });
+    expect(sans.errors.some((e) => e.categorie === 'image')).toBe(true);
+    const ill = "- aucune photo\n- illustration : public/illustrations/pompe-inclinee.svg : affichable : oui (illustration originale de l'app)";
+    const avec = validateLot([{ name: 'pompe-inclinee.md', text: fiche({ photo: ill }).replace('statut: complete_kine', 'statut: utilisable') }], { tags: TAGS });
+    expect(avec.errors).toEqual([]);
+    const absent = validateLot([{ name: 'pompe-inclinee.md', text: fiche({ photo: ill }).replace('statut: complete_kine', 'statut: utilisable') }], { tags: TAGS, illustrationsDir: 'dossier-inexistant' });
+    expect(absent.errors.some((e) => /sans fichier/.test(e.message))).toBe(true);
+  });
+
+  it("refuse une illustration dont le nom ne suit pas l'id de la fiche", () => {
+    const r = validateLot([{ name: 'pompe-inclinee.md', text: fiche({ photo: '- illustration : public/illustrations/autre-chose.svg : affichable : oui (x)' }) }], { tags: TAGS });
+    expect(r.errors.some((e) => /id de la fiche/.test(e.message))).toBe(true);
+  });
+
   it('indique le fichier et la ligne de chaque problème', () => {
     const r = run({ 'pompe-inclinee.md': fiche({ consignes: '1. A' }) });
     expect(r.errors[0].file).toBe('pompe-inclinee.md');

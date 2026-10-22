@@ -76,6 +76,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Chest_And_Front_Of_Shoulder_Stretch/0.jpg` : affichable : non (l'entrée montre un bâton levé derrière la tête, pas l'étirement contre le mur : la photo contredit la consigne, règle 12)
 - `Chest_And_Front_Of_Shoulder_Stretch/1.jpg` : affichable : non (même raison)
+- illustration : public/illustrations/etirement-pectoraux-mur.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

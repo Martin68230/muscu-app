@@ -87,6 +87,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo
+- illustration : public/illustrations/porte-serveur.svg : affichable : oui (illustration originale de l'app)
 Aucune photo libre pour ce mouvement.
 
 ## Sources

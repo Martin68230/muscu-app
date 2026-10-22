@@ -85,6 +85,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Farmers_Walk/0.jpg` : affichable : non (vue le 21/10/2026 : poignées de strongman chargées de disques, matériel spécialisé ; CLAUDE.md règle 23).
 - `Farmers_Walk/1.jpg` : affichable : non (vue le 21/10/2026 : mêmes poignées chargées de disques).
+- illustration : public/illustrations/marche-du-fermier.svg : affichable : oui (illustration originale de l'app)
 Fiche sans photo affichable.
 
 ## Sources

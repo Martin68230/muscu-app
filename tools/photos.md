@@ -65,5 +65,18 @@ Pourquoi le recadrage (décision de l'utilisateur, 21/10/2026) : les originaux m
 
 Convention de nommage : `<dossier free-exercise-db>-<numéro>.webp`. Largeur 600 px, qualité 70, environ 20 Ko par image. Le script `npm run check:fiches` avertit (sans bloquer) si une image marquée « oui » n'a pas son fichier WebP ici.
 
+Ajouts du 22/10/2026 (D6, étape 3) : `Push-Up_Wide-0/1.webp` (fiche `pompe-ecartee`) et `Ankle_On_The_Knee-0/1.webp` (fiche `etirement-fessiers-figure-4`, variante allongée seulement), même source et même licence (Unlicense, yuhonas/free-exercise-db), largeur 600 px, WebP qualité 70 (sharp), sans recadrage (aucun logo de marque lisible).
+
+## Illustrations originales de l'app (public/illustrations/)
+
+Quand aucune photo libre ne convient (mauvais mouvement, matériel de salle, logo non recadrable, mouvement absent de la base), la fiche reçoit une illustration dessinée par nous : aucune image d'une autre app, aucune licence à citer.
+
+- **Fichiers** : `public/illustrations/<id-fiche>.svg`, 2 images côte à côte (départ, arrivée ; 3 pour `ytw-sol`), viewBox commun 590 x 330, fond de carte clair ou sombre selon `prefers-color-scheme`, silhouette de profil (ou de face / de dessus quand le geste l'exige : vue notée dans le titre et les légendes), bras et jambe lointains plus clairs, flèches orange pour le sens du mouvement, accessoires (chaise, mur, élastique, haltère, sac, serviette, tapis) dans des tons neutres.
+- **Génération** : `node tools/make-illustrations.mjs [id ...]`. Le moteur (`tools/make-illustrations.mjs`) est une silhouette articulée : segments de longueur fixe, chaque pose donne les angles des segments ou un point visé (cinématique inverse pour les mains et les chevilles). Les poses sont dans `tools/illustrations-poses.mjs`, une entrée par fiche (`id`, `titre`, `labels`, pose `a` de départ, pose `b` d'arrivée, `view` éventuelle). Pour corriger une illustration, on change la pose puis on relance le script ; on ne retouche jamais le SVG à la main.
+- **Fidélité** : chaque pose suit la consigne de la fiche (variante principale quand une fiche en a plusieurs ; la légende le dit). Un écart entre l'illustration et la consigne est un défaut de l'illustration.
+- **Limites connues** : schémas simples (pas de visage, pas de mains) ; certains gestes se voient mal de profil (rotation d'un pied, ouverture des genoux), d'où les vues de face ou de dessus ; l'illustration ne remplace pas la consigne écrite.
+- **Remplacement** : si une photo libre convenable est trouvée plus tard, on ajoute sa ligne `oui` ; l'illustration peut rester comme second visuel.
+- **Contrôle** : `npm run check:fiches` exige un fichier SVG pour toute ligne `illustration ... oui` ; `tests/unit/illustrations.test.ts` vérifie le moteur et que chaque fiche concernée a sa pose.
+
 ## Crédits
 La page « crédits » de l'app doit citer : free-exercise-db (yuhonas, domaine public, photos recadrées). Jamais d'images du dépôt maxwu.

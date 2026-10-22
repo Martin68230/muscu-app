@@ -79,6 +79,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo
+- illustration : public/illustrations/squat-fendu.svg : affichable : oui (illustration originale de l'app)
 Aucune photo affichable (affichable : sans objet). Ne pas utiliser « Split_Squats » (fente sautée) ni « Split_Squat_with_Dumbbells » (pied arrière surélevé = squat bulgare).
 
 ## Sources

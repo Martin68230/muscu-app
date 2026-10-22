@@ -308,8 +308,16 @@ export function parseFiche(text, file) {
     if (bullets.length === 0) add(sph.start + 1, 'photo', 'aucune ligne : écrire une ligne par image, ou « - aucune photo »');
     for (const l of bullets) {
       if (/^\s*[-*]\s*aucune photo\b/i.test(l.text)) continue;
-      const m = l.text.match(/^\s*[-*]\s*`([^`]+)`\s*:\s*affichable\s*:\s*(oui|non|à vérifier|a verifier)\b\s*(?:\((.+)\))?\s*\.?\s*$/);
-      if (!m) { add(l.n, 'photo', 'écriture attendue : « - `Dossier/0.jpg` : affichable : oui | non (raison) | à vérifier (raison) »'); continue; }
+      // Illustration originale de l'app : « - illustration : public/illustrations/<id>.svg : affichable : oui (raison) »
+      const il = l.text.match(/^\s*[-*]\s*illustration\s*:\s*(public\/illustrations\/([a-z0-9]+(?:-[a-z0-9]+)*)\.svg)\s*:\s*affichable\s*:\s*(oui|non|à vérifier|a verifier)\b\s*(?:\((.+)\))?\s*\.?\s*$/);
+      if (il) {
+        if (il[3] !== 'oui' && !il[4]) add(l.n, 'photo', `« ${il[3]} » demande une raison entre parenthèses`);
+        if (fm.data.id && il[2] !== fm.data.id) add(l.n, 'photo', `illustration « ${il[2]}.svg » : le fichier doit porter l'id de la fiche (« ${fm.data.id} »)`);
+        fiche.photos.push({ line: l.n, path: il[1], statut: il[3] === 'a verifier' ? 'à vérifier' : il[3], illustration: true });
+        continue;
+      }
+      const m =l.text.match(/^\s*[-*]\s*`([^`]+)`\s*:\s*affichable\s*:\s*(oui|non|à vérifier|a verifier)\b\s*(?:\((.+)\))?\s*\.?\s*$/);
+      if (!m) { add(l.n, 'photo', 'écriture attendue : « - `Dossier/0.jpg` : affichable : oui | non (raison) | à vérifier (raison) » ou « - illustration : public/illustrations/<id>.svg : affichable : oui (illustration originale de l\'app) »'); continue; }
       if (!/^[A-Za-z0-9_\-]+\/\d+\.jpg$/.test(m[1])) add(l.n, 'photo', `chemin d'image « ${m[1]} » : attendu Dossier/<n>.jpg`);
       if (m[2] !== 'oui' && !m[3]) add(l.n, 'photo', `« ${m[2]} » demande une raison entre parenthèses`);
       fiche.photos.push({ line: l.n, path: m[1], statut: m[2] === 'a verifier' ? 'à vérifier' : m[2] });
@@ -372,11 +380,18 @@ export function validateLot(files, options = {}) {
       }
     }
     if (['utilisable', 'verifie'].includes(fiche.statut) && !fiche.photos.some((ph) => ph.statut === 'oui')) {
-      issues.push({ file: fiche.file, line: 1, categorie: 'image', severite: 'avertissement', message: `fiche ${fiche.statut} sans image « affichable : oui » (D6/D8 ; passera en erreur quand les images auront été relues)` });
+      issues.push({ file: fiche.file, line: 1, categorie: 'image', severite: 'erreur', message: `fiche ${fiche.statut} sans image « affichable : oui » (photo libre ou illustration originale, décision D6)` });
+    }
+    if (options.illustrationsDir) {
+      for (const ph of fiche.photos) {
+        if (ph.illustration && ph.statut === 'oui' && !existsSync(join(options.illustrationsDir, basename(ph.path)))) {
+          issues.push({ file: fiche.file, line: ph.line, categorie: 'photo', severite: 'erreur', message: `illustration « oui » sans fichier : ${ph.path} (lancer node tools/make-illustrations.mjs)` });
+        }
+      }
     }
     if (options.photosDir) {
       for (const ph of fiche.photos) {
-        if (ph.statut !== 'oui') continue;
+        if (ph.statut !== 'oui' || ph.illustration) continue;
         const [dir, f] = ph.path.split('/');
         const webp = join(options.photosDir, `${dir}-${f.replace(/\.jpg$/, '')}.webp`);
         if (!existsSync(webp)) issues.push({ file: fiche.file, line: ph.line, categorie: 'photo', severite: 'avertissement', message: `photo « oui » sans fichier WebP : ${basename(webp)}` });
@@ -412,7 +427,7 @@ function main() {
   const names = listFiches(dir);
   const files = names.map((n) => ({ name: n, text: readFileSync(join(dir, n), 'utf8') }));
   const tags = loadTags(join(root, 'knowledge', 'materiel-tags.json'));
-  const { issues, errors, warnings } = validateLot(files, { tags, photosDir: join(root, 'public', 'photos', 'free-exercise-db') });
+  const { issues, errors, warnings } = validateLot(files, { tags, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations') });
   for (const i of issues) console.log(`${i.file}:${i.line} : [${i.categorie}]${i.severite === 'erreur' ? '' : ' (avertissement)'} ${i.message}`);
   const byCat = {}; const byFile = {};
   for (const e of errors) { byCat[e.categorie] = (byCat[e.categorie] ?? 0) + 1; byFile[e.file] = (byFile[e.file] ?? 0) + 1; }

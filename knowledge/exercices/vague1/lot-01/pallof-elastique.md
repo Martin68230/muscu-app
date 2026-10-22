@@ -83,6 +83,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo
+- illustration : public/illustrations/pallof-elastique.svg : affichable : oui (illustration originale de l'app)
 Aucune photo : « Pallof_Press » (free-exercise-db) est à la poulie, matériel de salle.
 
 ## Sources

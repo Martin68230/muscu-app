@@ -76,6 +76,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 Règle : la consigne prime sur la photo (CLAUDE.md règle 12). Images free-exercise-db (domaine public), regardées le 21/10/2026.
 - `Bodyweight_Squat/0.jpg` : affichable : non (mains derrière la tête, contredit la consigne « bras devant » ; décision utilisateur 21/10/2026).
 - `Bodyweight_Squat/1.jpg` : affichable : non (mains derrière la tête en bas du squat, même raison).
+- illustration : public/illustrations/squat-poids-du-corps.svg : affichable : oui (illustration originale de l'app)
 Fiche sans photo affichable tant qu'aucune image libre ne montre les bras devant.
 
 ## Sources

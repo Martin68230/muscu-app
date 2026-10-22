@@ -78,6 +78,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 ## Photo
 - aucune photo
+- illustration : public/illustrations/tirage-w-allonge.svg : affichable : oui (illustration originale de l'app)
 Aucune photo affichable (affichable : sans objet).
 
 ## Sources

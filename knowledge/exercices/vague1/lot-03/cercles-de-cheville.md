@@ -78,6 +78,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Ankle_Circles/0.jpg` : affichable : non (vue le 22/10/2026 : logo de marque très visible sur le pantalon et cadrage serré sur les pieds : le geste n'est pas lisible)
 - `Ankle_Circles/1.jpg` : affichable : non (vue le 22/10/2026 : même raison)
+- illustration : public/illustrations/cercles-de-cheville.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

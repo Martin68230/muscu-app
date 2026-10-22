@@ -84,6 +84,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Photo
 - `Standing_Cable_Wood_Chop/0.jpg` : affichable : non (version à la poulie, aucune variante de la fiche ne l'utilise)
 - `Standing_Cable_Wood_Chop/1.jpg` : affichable : non (même raison)
+- illustration : public/illustrations/rotation-bucheron.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
