@@ -22,7 +22,7 @@ Communs à chaque fonctionnalité : tests automatiques verts, `npm run check:fic
   - chaque variante a tout son matériel dans le profil ;
   - une blessure de niveau 3 retire les exercices de la zone, les niveaux 1-2 appliquent la case (garder / adapter / retirer) ;
   - zone cou gênée : exercices doux du lot cou proposés (`filterByNeck`) ;
-  - chaque grand muscle est travaillé au moins 2 fois par semaine en 3 jours ; en 2 jours, l'avertissement s'affiche si ce n'est pas possible ;
+  - chaque grand muscle est travaillé au moins 2 fois par semaine, ou l'avertissement V-MSG-FREQ s'affiche (séances courtes de 20-30 min, 2 jours, matériel ou blessure ; décision D15 : pas de durée minimale) ;
   - la durée estimée reste dans la durée choisie ;
   - un schéma impossible avec le matériel donne le meilleur substitut et un message ;
   - jamais d'exercice technique pour un débutant ni de matériel spécialisé à la maison.
