@@ -44,4 +44,13 @@ Appli privée pour ~10 amis majeurs (niveaux variés, salle et maison ; surtout 
 - Chaque entrée de knowledge/ suit le cycle : rédaction (`coach`/`kine`/`nutritionniste`) -> contrôle (`relecteur`, lancé à neuf, sans le contexte de la rédaction) -> statut mis à jour. Les écarts sont corrigés par l'auteur, puis recontrôlés.
 - Ce n'est pas l'équivalent d'un professionnel humain : l'app le dit dans son avertissement.
 - Avant une fonctionnalité : relire le plan et le cahier des charges, plan court, question à l'utilisateur seulement si le choix est vraiment ambigu. Après : tests, déploiement, liste de ce qu'il faut vérifier sur l'iPhone. Un commit par fonctionnalité.
+- **Économie de quota** (décision D16, 23/10/2026) :
+  1. Une conversation par fonctionnalité (F3, F4, F5…) : commit, bilan de 5 lignes dans docs/, puis nouvelle conversation.
+  2. Pendant le développement : seulement les tests du fichier modifié (`npx vitest run <fichier>`). Tests complets et captures iPhone SE (sombre) et grand iPhone (clair) une seule fois par fonctionnalité, à la fin, avant le commit.
+  3. Captures : seulement les écrans modifiés, un seul thème pendant le travail.
+  4. Sonnet pour tout (dev, coach, kine, relecteur). Opus seulement pour les règles du générateur, F3 et l'audit de sécurité final.
+  5. Pas d'agents en parallèle sur le même sujet ; `relecteur` ne reprend que les points corrigés.
+  6. Sorties de commandes toujours limitées (`tail`, `head`, `--reporter=line`) ; ne jamais afficher en entier un fichier de plus de 200 lignes.
+  7. Pas de skills de design externes. Avant d'installer une skill ou un plugin : le vérifier d'abord (skill verif-securite-skills si disponible).
+  8. À chaque fin de fonctionnalité : indiquer le % de quota consommé (avant/après).
 - Modèle : Sonnet par défaut ; Opus pour le modèle de données (phase 0), les règles du générateur (phases 2 et 4), les relectures `relecteur` des règles de sécurité et l'audit de sécurité (phase 6).

@@ -102,3 +102,11 @@ Textes à revoir par `coach` : curl-ischios-serviette (les fesses doivent-elles 
 4. Ne PAS redessiner les 15 illustrations pour l'instant ; les SVG validés restent la solution de secours.
 5. Vérification de sécurité rapide de l'état actuel (secrets, innerHTML, CSP, YouTube nocookie) avec la checklist rapide de la skill « securite-application » (skill de l'utilisateur, disponible dans la session) ; résumé dans docs/securite.md, rapport détaillé hors du dépôt. L'audit complet reste celui de D14, à la fin de la phase 6.
 6. Réponses aux questions du générateur (§10.1 de knowledge/generateur-v1.md) : séance de 20 min en 3 jours acceptée avec l'avertissement V-MSG-FREQ (pas de minimum de 30 min) ; jours consécutifs : garder la prudence (pas de programme risqué), avec un message clair du type « essaie d'ajouter un jour d'écart » plutôt qu'un simple refus.
+
+### D16. F3 validé sur Opus, choix prudents par défaut, règles d'économie de quota (23/10/2026) : appliquée
+1. Codage du générateur F3 sur Opus, un seul agent Opus à la fois (vérifié le 23/10 : un seul agent F3 en cours).
+2. Les 5 choix prudents en attente gardent leurs valeurs par défaut (intermédiaire un échelon sous le plus haut ; gainage 20-30 s et porté 30-40 s ; bloc de 4 semaines ; perte de gras = objectif muscle ; charge la plus légère sous blocage). L'utilisateur les revoit en voyant le programme généré. Séance de 20 min en 3 jours acceptée avec l'avertissement ; jours consécutifs : prudence gardée avec le message « essaie d'ajouter un jour d'écart ».
+3. À la fin de F3 : montrer en texte le programme des 3 profils d'exemple (débutant maison sans matériel 3 jours ; intermédiaire haltères + élastique 2 jours genou gêné niveau 2 ; avancé salle 3 jours enceinte). Puis F4, puis F5.
+4. Règles d'économie de quota : voir CLAUDE.md section C.
+5. Vérifier une skill ou un plugin avant de l'installer : skill verif-securite-skills (si elle n'est pas disponible dans la session, relire le contenu complet à la main et épingler une version, comme pour la skill d'audit D14). Pas de skills de design externes (Taste, Impeccable, Emil).
+6. La checklist rapide de sécurité demandée a déjà été faite le 23/10 (docs/securite.md, rapport hors dépôt, commit 8886030) ; à refaire à chaque fonctionnalité qui touche aux données.
