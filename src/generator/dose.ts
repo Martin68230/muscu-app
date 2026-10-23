@@ -1,0 +1,129 @@
+// Dose de base (V-DOSE §3.2, V-TEMPS §3.3) puis plafonds de sécurité (appliquerPlafonds, V-PRIO §6.0 : P-CAP, P-GROS).
+import { DOSE, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
+import { isChargeable, isUnilateral, type Ctx } from './context';
+import { cappingZones, type Candidate } from './safety';
+import { PILLAR_SLOTS } from './slots';
+import type { ExerciseRole, GenExercise, SlotKey, Tier } from './types';
+
+export function roleOf(slot: SlotKey): ExerciseRole {
+  if (PILLAR_SLOTS.includes(slot)) return 'pilier';
+  if (slot === 'tronc') return 'tronc';
+  if (slot === 'fonctionnel') return 'fonctionnel';
+  return 'autre';
+}
+
+/** Charge de départ (V-ETAL §5.2, P-CAP §6.8 point 1e). */
+export function startLoad(c: Candidate, ctx: Ctx): number | null {
+  const v = c.variant;
+  if (!isChargeable(v)) return null;
+  const h = ctx.history.get(v.id);
+  if (h) return h.lastPainFreeLoadKg; // dernière charge faite sans douleur, sans hausse
+  const lightest = v.tags.includes('halteres') ? ctx.dumbbells[0] ?? null : v.tags.includes('kettlebell') ? ctx.kettlebells[0] ?? null : null;
+  const underCap = c.capped || ctx.pregnant;
+  if (!underCap && ctx.level !== 'debutant') {
+    const declared = ctx.habitual[v.id] ?? ctx.habitual[c.fiche.id];
+    if (declared !== undefined) return declared;
+  }
+  return lightest;
+}
+
+/** Dose de base d'un exercice placé (avant plafonds). */
+function baseDose(c: Candidate, slot: SlotKey, ctx: Ctx) {
+  const v = c.variant;
+  const role = roleOf(slot);
+  const unilateral = isUnilateral(v);
+  const temps = TEMPS[c.fiche.schema];
+  if (temps) {
+    const row = ctx.level === 'debutant' ? temps.debutant : temps.autres;
+    const unit = temps.unit === 'reps' && unilateral ? 'reps_par_cote' : temps.unit;
+    return {
+      sets: temps.sets,
+      repsMin: row.reps?.[0] ?? 0,
+      repsMax: row.reps?.[1] ?? 0,
+      holdSec: row.holdSec ?? null,
+      unit,
+      restSec: temps.restSec,
+      rirTarget: TEMPS_RIR_PLACEHOLDER,
+      rirAsked: false,
+      role,
+    } as const;
+  }
+  const d = DOSE[ctx.family][ctx.level];
+  const charge = isChargeable(v);
+  const pilier = role === 'pilier';
+  const reps = charge ? (pilier && d.repsChargePilier ? d.repsChargePilier : d.repsCharge) : d.repsBodyweight;
+  let rir = d.rir;
+  if (d.rirSafeVariants !== undefined) {
+    const freeWeight = v.tags.some((t) => CHARGEABLE_TAGS.includes(t) && !SAFE_LOAD_TAGS.includes(t));
+    if (!freeWeight) rir = d.rirSafeVariants;
+  }
+  return {
+    sets: pilier ? d.setsPilier : d.setsAutre,
+    repsMin: reps[0],
+    repsMax: reps[1],
+    holdSec: null,
+    unit: 'reps' as const,
+    restSec: pilier ? d.restPilierSec : d.restAutreSec,
+    rirTarget: rir,
+    rirAsked: true,
+    role,
+  };
+}
+
+/** Plafonds (V-PRIO point 3) : ne font que baisser ou bloquer. */
+export function appliquerPlafonds(ex: GenExercise, ctx: Ctx): GenExercise {
+  const out = { ...ex };
+  if (ctx.pregnant) {
+    // P-GROS : répétitions 10-15, réserve >= 3, 1 série (débutante ou niveau absent) ou 2, capped.
+    if (out.unit === 'reps' && out.rirAsked) [out.repsMin, out.repsMax] = PREGNANCY.reps;
+    out.rirTarget = Math.max(out.rirTarget, PREGNANCY.minRir);
+    const maxSets = ctx.level === 'debutant' ? PREGNANCY.setsDebutant : PREGNANCY.setsOther;
+    out.sets = Math.min(out.sets, maxSets);
+    out.capped = true;
+  }
+  // P-CAP : rien à baisser dans la dose de base ; le drapeau bloque toute hausse (V-VOL, étalonnage, E3 à ~75 %).
+  return out;
+}
+
+export function buildExercise(c: Candidate, slot: SlotKey, tier: Tier, ctx: Ctx): GenExercise {
+  const b = baseDose(c, slot, ctx);
+  const capZones = cappingZones(c.fiche, ctx);
+  const ex: GenExercise = {
+    movementId: c.fiche.id,
+    variantId: c.variant.id,
+    ficheId: c.fiche.id,
+    nom: c.fiche.nom,
+    variantNom: c.variant.nom,
+    echelon: c.variant.echelon,
+    schema: c.fiche.schema,
+    slot,
+    role: b.role,
+    sets: b.sets,
+    repsMin: b.repsMin,
+    repsMax: b.repsMax,
+    holdSec: b.holdSec,
+    unit: b.unit,
+    restSec: b.restSec,
+    rirTarget: b.rirTarget,
+    rirAsked: b.rirAsked,
+    supersetGroup: null,
+    warmupSets: [],
+    startLoadKg: null,
+    capped: c.capped || ctx.pregnant,
+    adaptation: c.adaptations[0] ?? null,
+    adaptations: c.adaptations,
+    notes: c.notes,
+    substitut: tier === 'c' || tier === 'd',
+    replaces: c.replaces,
+    tier,
+    chargeable: isChargeable(c.variant),
+    unilateral: isUnilateral(c.variant),
+    isCalibration: !ctx.history.has(c.variant.id),
+    musclesPrincipaux: c.fiche.musclesPrincipaux,
+    musclesSecondaires: c.fiche.musclesSecondaires,
+    cappedLabel: capZones.length ? `Charge maintenue : gêne ${capZones.join(', ')}` : ctx.pregnant ? 'Charge maintenue : grossesse ou post-partum' : null,
+  };
+  const capped = appliquerPlafonds(ex, ctx);
+  capped.startLoadKg = startLoad({ ...c, capped: capped.capped }, ctx);
+  return capped;
+}

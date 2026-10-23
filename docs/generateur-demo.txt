@@ -1,0 +1,103 @@
+
+=== 1. Maison sans matériel, débutant, 3 jours, 30 min, objectif santé ===
+3 séances par semaine en corps entier : chaque grand muscle travaille 3 fois.
+Objectif forme : des séances simples et régulières, sans aller jusqu'à l'échec.
+Durée choisie 30 min ; bloc de 4 semaines ; famille sante.
+
+ Séance A (lundi) — environ 25 min (1448 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Assis-debout, mains sur les cuisses / Deux mains sur les cuisses (éch. 1) : 2 x 10-15, réserve 3, repos 90 s
+   - [poussee_1] Pompe / Au mur (éch. 1) : 2 x 10-15, réserve 3, repos 90 s
+   - [tirage_1] Écartement d'une serviette bras tendus / Debout, serviette tendue devant la poitrine (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [substitut]
+   - [charniere] Curl des ischios en glissant sur une serviette / Deux jambes, talons sur la serviette (éch. 1) : 2 x 10-15, réserve 3, repos 60 s
+   - [tronc] Gainage en creux (hollow hold) / Genoux pliés (éch. 1) : 2 x 20 s, repos 60 s
+
+ Séance B (mercredi) — environ 30 min (1520 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Montée sur marche / Poids du corps (éch. 1) : 2 x 10-15, réserve 3, repos 90 s
+   - [poussee_1] Pompe piquée (en V) / Mains sur une marche (éch. 1) : 2 x 10-15, réserve 3, repos 90 s
+   - [tirage_1] Tirage vertical au sol, sur le ventre / Front posé sur une serviette pliée, mains glissant sur le sol (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [substitut]
+   - [charniere] Pont fessier / Au sol (éch. 1) : 2 x 10-15, réserve 3, repos 60 s
+   - [tronc] Bird dog (quadrupédie bras-jambe opposés) / Au sol (éch. 1) : 2 x 6-8/côté, repos 60 s
+
+ Séance C (vendredi) — environ 30 min (1552 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Squat assis-debout sur chaise / Sur une chaise (éch. 1) : 2 x 10-15, réserve 3, repos 90 s
+   - [poussee_1] Pompe / Au mur (éch. 1) : 2 x 10-15, réserve 3, repos 90 s
+   - [tirage_1] Oiseau (écartement des bras vers l'arrière) / Sans charge, assis penché (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [substitut]
+   - [charniere] Curl des ischios en glissant sur une serviette / Deux jambes, talons sur la serviette (éch. 1) : 2 x 10-15, réserve 3, repos 60 s
+   - [tronc] Crunch bicyclette / Pieds au sol, coude vers le genou (éch. 1) : 2 x 8-10/côté, repos 60 s
+
+ Messages :
+  - [V-MSG-SUBST A] Avec ton matériel, pas de vrai tirage horizontal : Écartement d'une serviette bras tendus le remplace en partie.
+  - [V-MSG-SUBST B] Avec ton matériel, pas de vrai tirage vertical : Tirage vertical au sol, sur le ventre le remplace en partie.
+  - [V-MSG-SUBST C] Avec ton matériel, pas de vrai tirage horizontal : Oiseau (écartement des bras vers l'arrière) le remplace en partie.
+  - [V-MSG-OBJET] As-tu un sac à dos ? Coche-le dans Mon matériel : il permet 3 exercice(s) de plus.
+
+=== 2. Haltères + élastique, intermédiaire, 2 jours, 45 min, muscle, genou niveau 2 ===
+2 séances par semaine en corps entier : chaque grand muscle travaille 2 fois.
+Objectif muscle : 3 séries de 10-15 répétitions, en gardant environ 2 répétitions en réserve.
+Durée choisie 45 min ; bloc de 4 semaines ; famille muscle.
+
+ Séance A (lundi) — environ 45 min (2646 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Assis-debout, mains sur les cuisses / Deux mains sur les cuisses (éch. 1) : 3 x 10-15, réserve 2, repos 120 s [charge bloquée ; appui:assise-rehaussee]
+   - [poussee_1] Développé au sol aux haltères / Deux haltères (éch. 1) : 4 x 8-12, réserve 2, repos 120 s, départ 4 kg
+   - [tirage_1] Rowing buste penché aux haltères / Paumes vers l'arrière (éch. 1) : 3 x 8-12, réserve 2, repos 90 s, départ 4 kg
+   - [charniere] Soulevé de terre roumain aux haltères / Deux haltères (éch. 1) : 3 x 8-12, réserve 2, repos 90 s, départ 4 kg [charge bloquée]
+   - [poussee_2] Développé épaules aux haltères / Debout (éch. 2) : 3 x 8-12, réserve 2, repos 90 s, départ 4 kg
+   - [tronc] Gainage en creux (hollow hold) / Genoux pliés (éch. 1) : 2 x 30 s, repos 60 s
+
+ Séance B (jeudi) — environ 45 min (2600 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Montée sur marche / Poids du corps (éch. 1) : 3 x 10-15, réserve 2, repos 120 s [charge bloquée ; variante:montee-sur-marche-poids-du-corps]
+   - [poussee_1] Développé épaules aux haltères / Debout (éch. 2) : 3 x 8-12, réserve 2, repos 120 s, départ 4 kg
+   - [tirage_1] Tirage vertical à l'élastique ancré en haut / Assis sur une chaise (éch. 1) : 3 x 10-15, réserve 2, repos 90 s [charge bloquée ; variante:tirage-vertical-elastique-assis]
+   - [charniere] Soulevé de terre roumain aux haltères / Deux haltères (éch. 1) : 3 x 8-12, réserve 2, repos 90 s, départ 4 kg [charge bloquée]
+   - [poussee_2] Développé au sol aux haltères / Deux haltères (éch. 1) : 3 x 8-12, réserve 2, repos 90 s, départ 4 kg
+   - [tronc] Dead bug (insecte sur le dos) / Poids du corps (éch. 1) : 2 x 8-10/côté, repos 60 s
+
+ Messages :
+  - [V-MSG-VOL] Quadriceps : 6 séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.
+  - [V-MSG-VOL] Pectoraux : 7 séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.
+  - [V-MSG-VOL] Grand dorsal : 6 séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.
+  - [V-MSG-PLANS] Poitrine et dos sont travaillés une fois à plat, une fois vers le haut.
+
+=== 3. Salle, avancé, 3 jours, sans limite, objectif force, enceinte ===
+3 séances par semaine en corps entier : chaque grand muscle travaille 3 fois.
+Grossesse ou après un accouchement : séances modérées, 2 série(s) de 10 à 15 répétitions, sans effort maximal.
+Durée choisie 60 min ; bloc de 4 semaines ; famille sante.
+
+ Séance A (lundi) — environ 40 min (2332 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Assis-debout, mains sur les cuisses / Deux mains sur les cuisses (éch. 1) : 2 x 10-15, réserve 3, repos 90 s [charge bloquée]
+   - [poussee_1] Pompe / Mains sur une chaise (éch. 2) : 2 x 10-15, réserve 3, repos 90 s [charge bloquée ; variante:pompe-chaise]
+   - [tirage_1] Tirage au visage à l'élastique / Poulie haute avec une corde (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; charge:legere]
+   - [charniere] Soulevé de terre roumain aux haltères / Deux haltères (éch. 1) : 2 x 10-15, réserve 3, repos 60 s, départ 2 kg [charge bloquée ; charge:legere]
+   - [poussee_2] Développé épaules assis (dossier presque droit ou banc) / Dossier presque droit (éch. 1) : 2 x 10-15, réserve 3, repos 60 s, départ 2 kg [charge bloquée ; variante:developpe-epaules-dossier-droit]
+   - [tirage_2] Tirage vertical à l'élastique ancré en haut / Assis sur une chaise (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:tirage-vertical-elastique-assis]
+   - [jambes_2] Fente arrière / Main au mur (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:fente-arriere-mur]
+   - [tronc] Bird dog (quadrupédie bras-jambe opposés) / Au sol (éch. 1) : 2 x 8-10/côté, repos 60 s [charge bloquée ; amplitude:maintien-court]
+
+ Séance B (mercredi) — environ 40 min (2120 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Montée sur marche / Poids du corps (éch. 1) : 2 x 10-15, réserve 3, repos 90 s [charge bloquée ; variante:montee-sur-marche-poids-du-corps]
+   - [poussee_1] Développé épaules assis (dossier presque droit ou banc) / Dossier presque droit (éch. 1) : 2 x 10-15, réserve 3, repos 90 s, départ 2 kg [charge bloquée ; variante:developpe-epaules-dossier-droit]
+   - [tirage_1] Tirage vertical à l'élastique ancré en haut / Assis sur une chaise (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:tirage-vertical-elastique-assis]
+   - [charniere] Soulevé de terre roumain sur une jambe / Poids du corps, main au mur (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:sdt-unijambiste-mur]
+   - [poussee_2] Pompe / Mains sur une chaise (éch. 2) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:pompe-chaise]
+   - [tirage_2] Tirage au visage à l'élastique / Poulie haute avec une corde (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; charge:legere]
+   - [tronc] Bird dog, jambe seule ou bras seul / Jambe seule au sol (éch. 1) : 2 x 8-10/côté, repos 60 s [charge bloquée ; amplitude:maintien-court]
+
+ Séance C (vendredi) — environ 35 min (2024 s)
+   Échauffement : Marche rapide en intervalles (Marche rapide continue) 120 s ; Mobilité de cheville genou au mur (Debout, pied face au mur), Glissement des bras contre le mur (Dos et avant-bras contre le mur)
+   - [jambes_genou] Squat assis-debout sur chaise / Sur une chaise (éch. 1) : 2 x 10-15, réserve 3, repos 90 s [charge bloquée]
+   - [poussee_1] Pompe / Mains sur une chaise (éch. 2) : 2 x 10-15, réserve 3, repos 90 s [charge bloquée ; variante:pompe-chaise]
+   - [tirage_1] Rowing à l'élastique / Debout sur l'élastique, buste penché (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; charge:legere]
+   - [charniere] Soulevé de terre roumain aux haltères / Deux haltères (éch. 1) : 2 x 10-15, réserve 3, repos 60 s, départ 2 kg [charge bloquée ; charge:legere]
+   - [poussee_2] Développé épaules à l'élastique / Assis sur une chaise (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:developpe-epaules-elastique-assis]
+   - [tirage_2] Tirage vertical à l'élastique ancré en haut / Assis sur une chaise (éch. 1) : 2 x 10-15, réserve 3, repos 60 s [charge bloquée ; variante:tirage-vertical-elastique-assis]
+   - [tronc] Bûcheron (rotation en diagonale) / Sans charge, mains jointes (éch. 1) : 2 x 10-12/côté, repos 60 s [charge bloquée ; variante:rotation-bucheron-sans-charge]
+
+ Messages :
+  - [V-MSG-GROS-DUREE] Grossesse ou après un accouchement : séances de 60 min au plus. Ta séance est ramenée à 60 min.
