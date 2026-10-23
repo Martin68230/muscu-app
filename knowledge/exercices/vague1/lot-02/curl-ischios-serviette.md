@@ -14,15 +14,15 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| curl-ischios-serviette-pont | Deux jambes, talons sur la serviette | 1 | debutant | poids_du_corps, tapis, serviette | Sur le dos, talons sur une serviette posée sur un sol lisse, hanches montées. |
+| curl-ischios-serviette-pont | Deux jambes, talons sur la serviette | 1 | debutant | poids_du_corps, tapis, serviette | Sur le dos, talons sur une serviette posée sur un sol lisse, fesses décollées du sol (position de pont). |
 | curl-ischios-serviette-une-jambe | Une jambe | 2 | intermediaire | poids_du_corps, tapis, serviette | Même installation ; un seul talon sur la serviette, l'autre jambe levée. |
 
 ## Consignes
 1. Allongé sur le dos, un talon (ou les deux) sur une serviette posée sur un sol lisse, genoux pliés.
-2. Monte le bassin en serrant les fessiers et garde-le haut pendant tout le mouvement.
+2. Pousse sur les talons pour décoller les fesses du sol : le corps forme une ligne droite des épaules aux genoux. Serre les fessiers et garde les fesses décollées du sol pendant toute la série.
 3. Glisse les talons loin de toi en tendant les jambes, le plus loin que tu peux en gardant le bassin haut.
 4. Ramène les talons vers les fesses en tirant avec l'arrière des cuisses.
-5. Redescends le bassin seulement à la fin de la série.
+5. Les fesses ne touchent pas le sol entre deux répétitions ; pose-les seulement à la fin de la série.
 
 ## Points d'attention
 - Version douce du travail des ischios : l'amplitude se règle par la distance de glissement.
@@ -30,7 +30,7 @@ statut: utilisable
 - Si une tension forte apparaît à l'arrière de la cuisse, réduis l'amplitude.
 
 ## Erreurs fréquentes
-- Bassin qui retombe pendant la glissade.
+- Fesses qui retombent au sol pendant la glissade.
 - Dos qui se creuse.
 - Glisser trop loin et perdre le contrôle.
 

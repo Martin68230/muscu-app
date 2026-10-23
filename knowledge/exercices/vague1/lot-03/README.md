@@ -54,7 +54,7 @@ Cases sous 3 (en comptant les fiches `controle_relecteur` ; la contrainte « `ve
 ## Points à traiter par `kine` (avant tout autre)
 - Épaule : passage de bras serviette, cercles de bras, étirement des pectoraux (position coude/épaule), traction (suspension).
 - Hanche/aine/genou : grenouille, ouverture de hanche, accroupi profond tenu, fléchisseurs à genou, quadriceps (genou plié), figure 4.
-- Dos : extension thoracique (cambrure), crunch bicyclette (flexion et rotation), rotation assise, bûcheron.
+- Dos : extension du haut du dos (cambrure), crunch bicyclette (flexion et rotation), rotation assise, bûcheron.
 - Cheville : cercles, étirement des mollets (marche, tendon d'Achille), jumping jacks, montées de genoux, pas chassés (impact : prérequis des sauts, lot-02 question 8, même choix prudent : échelon à impact en `intermediaire`).
 - Poignet : mobilité des poignets, mountain climbers.
 - Grossesse : mountain climbers, crunch bicyclette (sur le dos), jumping jacks, montées de genoux course, pas chassés rapides, traction (effort) : classement à proposer.
@@ -70,7 +70,7 @@ Cases sous 3 (en comptant les fiches `controle_relecteur` ; la contrainte « `ve
 ## Questions pour l'utilisateur
 1. **Cardio sans matériel** : les 6 fiches cardio sont en profil A. On les garde ainsi, ou on exige un tag « espace dégagé / sol antidérapant » ? (le moteur ne peut pas le vérifier aujourd'hui).
 2. **Tirage vertical sans barre ni élastique** : on accepte de laisser ce trou (message « achète un élastique »), ou on crée un substitut au poids du corps (par exemple un tirage isométrique) pour A et C, sachant qu'il serait faible ?
-3. **Extension thoracique sur rouleau** : la fiche est `debutant` grâce à la variante chaise (profil A) ; les variantes serviette et rouleau demandent du matériel. On garde cette fiche telle quelle ?
+3. **Extension du haut du dos sur rouleau** : la fiche est `debutant` grâce à la variante chaise (profil A) ; les variantes serviette et rouleau demandent du matériel. On garde cette fiche telle quelle ?
 4. **Tractions** : la fiche est `debutant` seulement par l'échelon 1 (tirage d'épaules suspendu). On demande à `kine` un prérequis (par exemple « sans gêne à l'épaule »), ou on passe la fiche entière en `intermediaire` ?
 5. **Cardio et durée** : sans valeur sourcée, aucune fiche cardio ne donne de durée ; veux-tu que `coach` cherche la recommandation OMS sur l'endurance pour la citer dans program-logic.md ?
 

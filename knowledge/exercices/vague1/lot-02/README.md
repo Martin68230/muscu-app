@@ -78,3 +78,7 @@ Réponses à la question 3 : équilibre yeux fermés non proposé, `kine` est d'
 
 ## Validation utilisateur
 Validé par l'utilisateur le 22/10/2026 (décision D5 : relecture des 102 fiches sur la page de relecture ; ne lève pas un bloquant sécurité de relecteur). Fiches sans bloquant en `utilisable`.
+
+## Consignes d'image à respecter (D13, 23/10/2026)
+- curl-ischios-serviette : les fesses restent décollées du sol pendant toute la série (position de pont, ligne droite épaules-genoux) ; talons sur la serviette, jambes qui glissent vers l'avant puis reviennent. Source : curl des ischios en glissant, bassin haut ; une image avec les fesses au sol est fausse.
+- pompe-plus : bras tendus, mains au sol ; deux positions du haut du dos, affaissé (omoplates rapprochées) puis poussé vers le haut (omoplates écartées, dos légèrement arrondi) ; coudes jamais pliés.

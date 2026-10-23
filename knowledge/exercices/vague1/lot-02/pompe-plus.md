@@ -21,9 +21,9 @@ couverture: substitut
 
 ## Consignes
 1. Bras tendus, mains sous les épaules (ou à hauteur d'épaules au mur), corps bien droit.
-2. Sans plier les coudes, laisse la poitrine descendre entre les épaules : les omoplates se rapprochent.
-3. Pousse ensuite dans les mains pour écarter les omoplates et arrondir légèrement le haut du dos.
-4. Le mouvement est petit : seules les omoplates bougent.
+2. Garde les bras tendus et laisse le haut du dos s'affaisser un peu : les deux omoplates se rapprochent l'une de l'autre dans le dos.
+3. Pousse ensuite fort sur le sol (ou le mur) avec les mains, sans plier les coudes : les omoplates s'écartent et le haut du dos monte et s'arrondit légèrement.
+4. Le mouvement est petit : seules les omoplates bougent, les bras restent tendus.
 5. Recommence lentement.
 
 ## Points d'attention
