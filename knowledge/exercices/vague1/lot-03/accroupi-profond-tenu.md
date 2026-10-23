@@ -51,6 +51,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: amplitude:mi-course | retirer: remplacant:squat-assis-debout | retirer |
 | Cheville | adapter: amplitude:mi-course | retirer: remplacant:squat-assis-debout | retirer |
 | Dos | adapter: variante:accroupi-profond-chaise | adapter: variante:accroupi-profond-chaise | retirer |
+| Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - genou-n1 : ne descends pas jusqu'au bout.
@@ -63,6 +64,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n2 : même variante avec appui des mains, descente à mi-course ; aucune augmentation (R2).
 - grossesse : exercice retiré (position tenue : G4 évite l'isométrique prolongé et la station immobile, extrapolation) ; remplacé par le squat assis-debout, qui ne se tient pas. Post-partum : G7 (sans effet).
 - general : la profondeur est limitée par ta mobilité : jamais de descente forcée, jamais de charge, pas de blocage de la respiration. Version plus douce : accroupi-profond-chaise.
+- aine-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 
 **Grossesse** : retirer: remplacant:squat-assis-debout
 **Version plus douce** : accroupi-profond-chaise
@@ -91,4 +93,5 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-22 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

@@ -53,6 +53,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: amplitude:reduite | adapter: variante:squat-fendu-mur | retirer |
 | Cheville | adapter: variante:squat-fendu-mur | adapter: variante:squat-assis-debout | retirer |
 | Dos | adapter: sans-charge | adapter: variante:squat-fendu-mur | retirer |
+| Cuisse | garder | adapter: amplitude:reduite | retirer |
+| Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - genou-n1 : squat fendu avec la main au mur à la place de la fente (le pas avant freine plus le corps).
@@ -65,6 +67,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n2 : squat fendu avec la main au mur.
 - grossesse : squat fendu avec la main au mur, sans haltère ; respiration continue (G4). Post-partum : G7 (sans effet : la fente n'est pas un saut).
 - general : plus exigeante que la fente arrière : cases au moins aussi restrictives. Version plus douce : le squat fendu avec la main au mur.
+- cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
+- aine-n2 : idem (NON SOURCÉ)
 
 **Grossesse** : adapter: variante:squat-fendu-mur
 **Version plus douce** : squat-fendu-mur
@@ -97,5 +101,6 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Lien avec les sports à freinages (foot, raquettes) | knowledge/sports.md, famille « sprints et changements de direction » (liste de qualités, pas une étude) | - | 2026-10-21 | PROVISOIRE |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-22 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

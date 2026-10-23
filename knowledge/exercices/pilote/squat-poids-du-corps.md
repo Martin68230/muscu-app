@@ -54,12 +54,16 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | garder | adapter: variante:squat-assis-debout | retirer |
 | Dos | garder | adapter: variante:squat-assis-debout | retirer |
 | Cheville | adapter: appui:pieds-ecartes | adapter: variante:squat-assis-debout | retirer |
+| Cuisse | garder | adapter: amplitude:reduite | retirer |
+| Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - genou-n2 : la chaise limite la descente.
 - cheville-n1 : pieds un peu plus ouverts, talons au sol.
 - cheville-n2 : amplitude réduite possible.
 - grossesse : un appui au mur ou une chaise à portée si l'équilibre change. Post-partum : G7.
+- cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
+- aine-n2 : idem (NON SOURCÉ)
 
 **Grossesse** : garder
 **Version plus douce** : squat-assis-debout
@@ -88,6 +92,7 @@ Fiche sans photo affichable tant qu'aucune image libre ne montre les bras devant
 | Bras devant ou mains croisées sur la poitrine plutôt que mains derrière la tête (la source autorise les mains derrière la tête) | choix de coach, confirmé par l'utilisateur le 21/10/2026 : la consigne prime sur la photo | - | - | NON SOURCÉ (décision utilisateur) |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

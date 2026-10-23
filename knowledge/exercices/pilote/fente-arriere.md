@@ -55,6 +55,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | garder | adapter: variante:squat-fendu-mur | retirer |
 | Cheville | adapter: variante:fente-arriere-mur | adapter: variante:squat-fendu-mur | retirer |
 | Dos | adapter: sans-charge | adapter: variante:fente-arriere-mur | retirer |
+| Cuisse | garder | adapter: amplitude:reduite | retirer |
+| Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - genou-n1 : amplitude sans gêne.
@@ -64,6 +66,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - dos-n1 : sans haltères (fente-arriere-poids-du-corps).
 - dos-n2 : sans haltères, main au mur.
 - grossesse : main au mur, sans haltères. Post-partum : G7.
+- cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
+- aine-n2 : idem (NON SOURCÉ)
 
 **Grossesse** : adapter: variante:fente-arriere-mur
 **Version plus douce** : squat-fendu-mur
@@ -89,5 +93,6 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Niveau débutant (la source dit intermédiaire) | choix de coach avec l'échelon main au mur, tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

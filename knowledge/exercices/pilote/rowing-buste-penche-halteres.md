@@ -55,6 +55,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: variante:rowing-penche-paumes-face | retirer |
+| Cuisse | garder | adapter: charge:legere | retirer |
 
 **Notes**
 - dos-n1 : main d'appui sur la chaise.
@@ -63,6 +64,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - coude-n2 : charge légère, paumes face à face.
 - poignet-n2 : paumes face à face, charge légère.
 - grossesse : version à un bras, charge légère. Post-partum : G7.
+- cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 
 **Grossesse** : adapter: variante:rowing-unilateral-haltere
 **Version plus douce** : rowing-unilateral-haltere
@@ -89,5 +91,6 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Repli vers la version avec appui si le bas du dos fatigue | choix de coach | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

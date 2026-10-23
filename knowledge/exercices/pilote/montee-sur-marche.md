@@ -58,12 +58,14 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
 | Cheville | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
 | Dos | adapter: sans-charge | adapter: sans-charge | retirer |
+| Cuisse | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - genou-n1 : version sans haltères, main sur la rampe ; la box haute n'est pas proposée dès la gêne légère au genou, à la hanche ou à la cheville.
 - genou-n2 : aucune augmentation de charge ni de difficulté (R2).
 - general : haltères autorisés seulement sur la première ou la deuxième marche (décision de l'utilisateur), légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; avec haltères les mains ne sont pas libres pour la rampe : un seul haltère et l'autre main sur la rampe, ou sans haltères. Box haute : jamais avec haltères, jamais dans un escalier.
 - grossesse : version sans haltères, main sur la rampe ; la box haute est retirée. Post-partum : G7.
+- cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 
 **Grossesse** : adapter: variante:montee-sur-marche-poids-du-corps
 **Version plus douce** : montee-sur-marche-poids-du-corps
@@ -99,6 +101,7 @@ Variante poids du corps : illustrable par ces images avec la mention « montré 
 | Haltères autorisés sur la première ou la deuxième marche (haltères légers, escalier dégagé et non glissant, chaussures, option un seul haltère avec rampe), échelon sans charge d'abord : l'échelon 2 est classé `intermediaire` pour que le générateur ne le propose pas à un débutant (option la plus prudente, choix de coach du 22/10/2026) | décision de l'utilisateur du 21/10/2026 (résout le bloquant R1 de `relecteur`) ; précautions de `coach`, aucune source | - | 2026-10-21 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |
 | Avertissement de stabilité de la marche (première marche, rampe) | règle R8 de knowledge/regles-securite-communes.md §7 (`kine`) ; exercise-catalog.md §5 ne parle pas de marche ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-21 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

@@ -56,6 +56,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Cheville | garder | adapter: amplitude:reduite | retirer |
 | Coude | garder | adapter: variante:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
 | Poignet | garder | adapter: variante:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
+| Cuisse | garder | adapter: charge:legere | retirer |
+| Aine | garder | adapter: charge:legere | retirer |
 
 **Notes**
 - genou-n2 : le squat assis-debout est aussi possible.
@@ -63,6 +65,8 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - cheville-n2 : descente moins profonde, talons au sol.
 - coude-n3 : le squat au poids du corps laisse les bras libres (idem poignet).
 - grossesse : charge légère, respiration continue. Post-partum : G7.
+- cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
+- aine-n2 : idem (NON SOURCÉ)
 
 **Grossesse** : adapter: charge:legere
 **Version plus douce** : squat-poids-du-corps
@@ -91,6 +95,7 @@ Variante haltère : aucune photo libre fidèle.
 | Variante haltère | brouillon M1252 (« Dumbbell Goblet Squat », wger + maxwu) : prouve seulement que le mouvement existe ; page wger non lue | - | 2026-10-21 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
+| Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://www.has-sante.fr/jcms/c_2961499/fr/prise-en-charge-du-patient-presentant-une-lombalgie-commune (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 (https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf) ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Haltère tenu contre la poitrine, près du visage : haltère fixe ou réglable vérifié, prise en coupe | règle de prudence de `kine` (R9) ; aucune source trouvée | - | 2026-10-21 | NON SOURCÉ |
