@@ -15,6 +15,8 @@ export const SCHEMA_VERSION = 3;
 // 2 : table signalements (D9)
 // 3 : F1 + F3 — zones cuisse et aine, lieu, grossesse et fin de parcours dans le profil, champs d'étalonnage des séries
 //     et du programme. Les sauvegardes v1 et v2 restent importables (champs ajoutés = facultatifs à l'import).
+// (F5, sans changement de version : programme actif (empreinte, messages), séance en cours (curseur, repos, plan), zone de douleur des séries.
+//     tous facultatifs, donc aucune migration IndexedDB ni changement de SCHEMA_VERSION.)
 
 export interface SyncFields {
   id: string;
@@ -138,10 +140,30 @@ export interface PlannedExercise {
   substitut: boolean;
 }
 
+/** Échauffement d'une séance (F5) : exercices de la fiche, pas de série à saisir. */
+export interface PlannedWarmupItem {
+  ficheId: string;
+  variantId: string;
+  nom: string;
+  sec: number;
+}
+export interface PlannedWarmup {
+  generalSec: number;
+  general: PlannedWarmupItem | null;
+  mobility: PlannedWarmupItem[];
+  cooldown: PlannedWarmupItem | null;
+}
+
 export interface ProgramDay {
   dayIndex: number;
   label: string;
   exercises: PlannedExercise[];
+  // Ajoutés par F5 : peuvent manquer dans une ancienne sauvegarde.
+  /** 0 = lundi ... 6 = dimanche. */
+  weekday?: number;
+  /** Durée affichée, arrondie aux 5 min supérieures. */
+  estimatedMin?: number;
+  warmup?: PlannedWarmup;
 }
 
 export interface Program extends SyncFields {
@@ -152,7 +174,26 @@ export interface Program extends SyncFields {
   weeks: number;
   active: boolean;
   days: ProgramDay[];
+  // Ajoutés par F5 : peuvent manquer dans une ancienne sauvegarde.
+  /** Empreinte stable des entrées du générateur (profil, matériel, blessures, objectifs) : si elle change, on régénère. */
+  inputsHash?: string;
+  generatorVersion?: string;
+  /** Explication de 2 lignes (V-EXPL) et messages du générateur (V-MSG-*), pour l'écran d'aperçu. */
+  explanation?: string[];
+  messages?: { id: string; text: string; session?: string; data?: Record<string, unknown> }[];
+  durationMin?: number;
+  /** Famille de l'objectif (muscle, force, sante), pour l'affichage. */
+  family?: string;
 }
+
+/** Position dans la séance (F5) : exercice du jour, série de travail, face du superset (0 = A, 1 = B), pas global. */
+export interface SessionCursor {
+  exercise: number;
+  set: number;
+  face: number;
+  step: number;
+}
+export type SessionEndReason = 'terminee' | 'abandon' | 'symptome';
 
 export interface WorkoutSession extends SyncFields {
   programId: string | null;
@@ -162,6 +203,22 @@ export interface WorkoutSession extends SyncFields {
   startedAt: string | null;
   endedAt: string | null;
   note: string;
+  // Ajoutés par F5 (reprise après fermeture) : peuvent manquer dans une ancienne sauvegarde.
+  cursor?: SessionCursor | null;
+  /** Fin du repos en cours, en millisecondes (heure réelle) ; null = pas de repos. */
+  restEndsAt?: number | null;
+  restTotalMs?: number | null;
+  restKind?: 'repos' | 'transition' | null;
+  phase?: 'echauffement' | 'exercices' | 'fin' | null;
+  skippedExercises?: number[];
+  /** Exercices arrêtés par « ça fait mal » dans cette séance. */
+  painExercises?: number[];
+  /** Charge en cours par exercice (index -> kg), pour préremplir la série suivante. */
+  loadsKg?: Record<string, number | null>;
+  /** Copie du jour de programme suivi : la reprise ne dépend pas d'une régénération du programme. */
+  plan?: ProgramDay | null;
+  lastActionAt?: string | null;
+  endReason?: SessionEndReason | null;
 }
 
 export interface SetLog extends SyncFields {
@@ -193,6 +250,8 @@ export interface SetLog extends SyncFields {
   holdSec?: number | null;
   side?: 'gauche' | 'droite' | null;
   capped?: boolean;
+  /** Zone de la douleur signalée (« ça fait mal »), ou 'inconnu' (« je ne sais pas »). */
+  painZone?: InjuryZone | 'inconnu' | null;
 }
 
 export interface BodyWeight extends SyncFields {
