@@ -4,3 +4,5 @@
 - Libellés français dans `src/data/labels.ts` ; `cleanText` retire codes de règle (R8, G4...) et identifiants des textes des fiches.
 - Sécurité : CSP au build, iframe `sandbox`, `npm run check:securite` dans le déploiement.
 - Tests : `tests/unit/fiche-screen.test.tsx` (38 avec video-button) ; captures `tests/screens/f4-fiches.spec.ts`.
+
+- Quota F4 + lot de corrections avant F4 : limite de 5 h 27 % -> 57 %, semaine 33 % -> 37 % (session principale sur Sonnet + agents Sonnet). Tests : 220 OK, tsc, build, check:fiches (0 erreur), check:securite OK.
