@@ -42,3 +42,8 @@
 | Caféine | EFSA 2015 via presse spécialisée | https://beveragedaily.com/Article/2015/07/17/france-sets-limits-for-caffeine-carnitine-creatine-lycopene | article | PROVISOIRE |
 | Ciqual | data.gouv (Licence Ouverte) ; version actualisée DOI 10.57745/RDMHWY | https://www.data.gouv.fr/datasets/table-de-composition-nutritionnelle-des-aliments-ciqual-2020/informations | page lue | OK |
 | Carte musculaire | react-body-highlighter (MIT) | https://github.com/giavinh79/react-body-highlighter | page lue | PROVISOIRE (licence du projet d'origine à vérifier) |
+
+## Outils de sécurité
+| Outil | Source | Version | Licence | Note |
+|---|---|---|---|---|
+| Skill d'audit de sécurité (dossier skills/security-audit seulement, copié sans npx dans .claude/skills/security-audit/) | https://github.com/cloudflare/security-audit-skill | commit c1c8a8c1471069fb0e188eeaff69b8e8db6564a8 (14/09/2026) | MIT (Cloudflare, Inc.), copie dans LICENSE-cloudflare | Contenu relu le 23/10/2026 : guides Markdown + 2 validateurs Node locaux (lecture de fichiers, sans réseau). Utilisé une seule fois, en audit complet, à la fin de la phase 6 (décision D14). |

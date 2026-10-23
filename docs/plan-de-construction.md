@@ -24,6 +24,7 @@ Graphiques (charges, volume), records, régularité, poids lissé, carte muscula
 
 ## Phase 6 : Comptes et amis
 Supabase (région UE), **inscriptions fermées** (« Allow new users to sign up » désactivé : l'utilisateur invite ses amis un par un depuis Supabase, décision du 21/10/2026), SMTP externe pour les emails, synchronisation, règles d'accès testées, réglages de partage, fil d'amis (séances terminées, réactions, séries de jours, défis hebdomadaires), suppression de compte. Audit de sécurité (Opus).
+**Condition bloquante avant toute invitation (décision D14)** : audit de sécurité complet avec la skill .claude/skills/security-audit (Opus, une seule fois), rapport écrit HORS du dépôt (~/security-audit-skill/muscu-app/run-1, jamais poussé sur GitHub tant que les failles ne sont pas corrigées), correction de toutes les failles « confirmed », vérification ciblée des corrections, résumé simple pour l'utilisateur.
 Jalon : inviter 2-3 amis, puis tout le groupe.
 
 ## Phase 7 : Nutrition
