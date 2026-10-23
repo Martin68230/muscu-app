@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'preact/hooks';
 import type { MainGoalKey, Profile } from '../../data/model';
 import { update } from '../../data/repo';
 import {
-  DAYS_CHOICES, DURATIONS, NIVEAUX, OBJECTIFS, PLACES, PREGNANCY_CHOICES, PREGNANCY_TEXT, PROFILE_STEPS, WEEKDAYS,
+  DAYS_CHOICES, DURATIONS, NIVEAUX, OBJECTIFS, PLACES, PREGNANCY_CHOICES, PREGNANCY_EFFECT_TEXT, PREGNANCY_STOP_TEXT, PREGNANCY_TEXT, PREGNANCY_URGENCE_TEXT, PROFILE_STEPS, WEEKDAYS,
   completeProfile, freeDaysEnough, getMainGoal, isSupportedDays, setMainGoal, unsupportedDaysMessage, type ProfileStep,
 } from '../../data/profile-setup';
 import { Equipment } from './Equipment';
@@ -180,11 +180,14 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
         return (
           <>
             <p class="dim">{PREGNANCY_TEXT}</p>
+            <p class="dim">{PREGNANCY_EFFECT_TEXT}</p>
             <div class="choice-grid choice-grid-3" role="group" aria-label="Grossesse ou post-partum">
               {PREGNANCY_CHOICES.map((c) => (
                 <Choice key={c.value} selected={profile.pregnancy === c.value} label={c.label} onClick={() => save({ pregnancy: c.value })} />
               ))}
             </div>
+            <p class="dim small">{PREGNANCY_STOP_TEXT}</p>
+            <div class="notice" role="note"><p>{PREGNANCY_URGENCE_TEXT}</p></div>
           </>
         );
     }
@@ -197,6 +200,10 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
           <h1>Ton profil est prêt</h1>
           <div class="card">
             <p>Tout est enregistré sur ce téléphone. Tu peux tout modifier depuis l'onglet Profil.</p>
+            <p class="dim small">L'appli n'est pas un avis médical et ne remplace pas un professionnel de santé. Si un exercice fait mal, arrête-le. Une douleur qui dure, un gonflement, une douleur la nuit, une perte de force ou des fourmillements : consulte. En cas de douleur dans la poitrine ou de malaise : appelle le 15 (SAMU) ou le 112.</p>
+            {profile.pregnancy && profile.pregnancy !== 'non' && (
+              <p class="dim small">Enceinte ou après un accouchement : l'appli te propose les charges les plus légères, sans hausse, des séances de 60 minutes au plus. Demande l'avis du professionnel qui te suit.</p>
+            )}
             {days !== null && !isSupportedDays(days) ? (
               <p class="dim">{unsupportedDaysMessage(days)}</p>
             ) : (

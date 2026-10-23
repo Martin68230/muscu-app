@@ -34,6 +34,8 @@ Ce que SRC1 dit, et ne dit pas (utile pour toute la suite) : au moins 2 séances
 - **À corriger par `dev` avant F3** : `InjuryZone` ne contient pas `cuisse` ni `aine`, alors que les fiches et `regles-securite-communes.md` ont 10 zones.
 - Fiches : seulement `statut` = `utilisable` ou `verifie` (CLAUDE.md règle 22), lues depuis le JSON de F0.
 
+**Définitions d'affichage des niveaux et des objectifs (textes validés par `coach` le 23/10, src/data/profile-setup.ts ; NON SOURCÉ, choix de présentation)** : débutant = moins de 6 mois d'entraînement régulier (au moins 2 séances par semaine) ou reprise après une longue pause ; intermédiaire = 6 mois à 2 ans, mouvements de base connus ; avancé = plus de 2 ans, technique maîtrisée et charges connues. En cas de doute, la personne est invitée à choisir le niveau du dessous (cohérent avec V-ECHELON §6.3 : intermédiaire = un échelon sous le plus haut). Objectifs affichés : muscle (répétitions moyennes), force (charges lourdes, repos longs), santé et forme (séances plus douces), perte de gras (même musculation que « muscle », V-OBJ §1.3 ; l'alimentation n'est pas réglée par l'appli en v1).
+
 ### 1.2 Périmètre v1 (règle V-PER)
 | Entrée | v1 | Hors v1 (message, pas de programme faux) |
 |---|---|---|

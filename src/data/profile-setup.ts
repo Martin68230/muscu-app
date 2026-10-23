@@ -46,21 +46,21 @@ export const PLACES: { value: TrainingPlace; label: string; hint: string }[] = [
 ];
 
 /**
- * Phrases concrètes des niveaux.
- * À VALIDER PAR `coach` : aucune définition dans knowledge/ à ce jour. La phrase « débutant » est celle
- * demandée par le propriétaire ; les deux autres sont des propositions de `dev` à confirmer.
+ * Phrases concrètes des niveaux et des objectifs (textes d'affichage relus par `coach` le 23/10 ;
+ * « régulier » = au moins 2 séances par semaine, dit dans knowledge/generateur-v1.md §1). Le niveau choisi décide de la dose et de l'échelon
+ * des variantes (knowledge/generateur-v1.md §3.2 et §6.3) : en cas de doute, choisis le niveau du dessous.
  */
 export const NIVEAUX: { value: Level; label: string; hint: string }[] = [
   { value: 'debutant', label: 'Débutant', hint: "Moins de 6 mois d'entraînement régulier, ou reprise après une longue pause." },
-  { value: 'intermediaire', label: 'Intermédiaire', hint: "Entre 6 mois et 2 ans d'entraînement régulier ; tu connais les mouvements de base." },
-  { value: 'avance', label: 'Avancé', hint: "Plus de 2 ans d'entraînement régulier ; tu connais ta charge sur la plupart des exercices." },
+  { value: 'intermediaire', label: 'Intermédiaire', hint: "Entre 6 mois et 2 ans d'entraînement régulier ; tu connais les mouvements de base et tu sais les faire proprement." },
+  { value: 'avance', label: 'Avancé', hint: "Plus de 2 ans d'entraînement régulier ; tu maîtrises la technique et tu connais ta charge sur la plupart des exercices." },
 ];
 
 export const OBJECTIFS: { value: MainGoalKey; label: string; hint: string }[] = [
-  { value: 'muscle', label: 'Muscle général', hint: 'Gagner en muscle sur tout le corps.' },
-  { value: 'force', label: 'Force', hint: 'Devenir plus fort sur les mouvements de base.' },
-  { value: 'sante', label: 'Santé et forme', hint: 'Rester actif, en forme, sans objectif chiffré.' },
-  { value: 'perte_gras', label: 'Perte de gras', hint: 'Perdre du gras en gardant ton muscle.' },
+  { value: 'muscle', label: 'Muscle général', hint: 'Gagner en muscle sur tout le corps, avec des séries de répétitions moyennes.' },
+  { value: 'force', label: 'Force', hint: 'Devenir plus fort sur les mouvements de base : charges plus lourdes, moins de répétitions, repos plus longs.' },
+  { value: 'sante', label: 'Santé et forme', hint: 'Rester actif et en forme, sans objectif chiffré : séances plus douces, plus de répétitions.' },
+  { value: 'perte_gras', label: 'Perte de gras', hint: "Garder ton muscle pendant que tu perds du gras. L'alimentation compte beaucoup : l'appli règle la musculation." },
 ];
 
 export const PREGNANCY_CHOICES: { value: PregnancyStatus; label: string }[] = [
@@ -69,9 +69,21 @@ export const PREGNANCY_CHOICES: { value: PregnancyStatus; label: string }[] = [
   { value: 'post_partum', label: 'Post-partum' },
 ];
 
-/** Texte prudent de la carte grossesse (à relire par `kine`). */
+/**
+ * Textes de la carte grossesse (G1, G2, G3, G5, G6, G7, U1 de knowledge/regles-securite-communes.md ; P-GROS de generateur-v1.md §6.0).
+ * Aucun diagnostic, aucune question de dépistage. À relire par `kine` puis `relecteur`.
+ */
 export const PREGNANCY_TEXT =
-  "Facultatif. Cette réponse reste sur ce téléphone et n'est jamais partagée. Si tu es enceinte ou si tu as accouché récemment, l'appli adapte les exercices et limite l'intensité. Demande aussi l'avis de ton médecin ou de ta sage-femme avant de t'entraîner : l'appli ne remplace pas un avis médical.";
+  "Facultatif. Cette réponse reste sur ce téléphone et n'est jamais partagée. La grossesse et le post-partum changent ce qui est sûr, et cette appli n'est pas un avis médical. Demande l'avis de ton médecin ou de ta sage-femme (ou du professionnel qui te suit) avant de t'entraîner. S'il t'a déconseillé le sport, ne suis pas ces exercices.";
+
+export const PREGNANCY_EFFECT_TEXT =
+  "Si tu choisis « Enceinte » ou « Post-partum », l'appli prend des précautions : charge la plus légère, aucune hausse de charge, séance de 60 minutes au plus, pas de superset, effort modéré sans aller jusqu'à l'échec, et certains exercices retirés (position allongée sur le dos ou le ventre, risque de chute, maintiens longs ; après un accouchement, aucun saut). L'appli ne te fera pas progresser tant que ce réglage est coché ; choisis « Non » quand ton professionnel de santé te le permet. Après un accouchement, la reprise du sport se discute avec ta sage-femme ou ton médecin (consultation postnatale, rééducation du périnée).";
+
+export const PREGNANCY_STOP_TEXT =
+  "Arrête la séance et contacte ton médecin ou ta sage-femme si tu as : un essoufflement qui ne passe pas au repos, des vertiges, un malaise ou des maux de tête, des contractions régulières et douloureuses, un saignement, une perte de liquide, une douleur ou un gonflement d'un mollet, une faiblesse qui gêne l'équilibre. Après un accouchement : fuite d'urine à l'effort, sensation de pesanteur dans le bas-ventre, douleur de cicatrice ou saignement qui reprend.";
+
+export const PREGNANCY_URGENCE_TEXT =
+  "Urgence : appelle le 15 (SAMU) ou le 112 en cas de douleur ou de pression dans la poitrine, de saignement, de perte des eaux ou de contractions régulières douloureuses.";
 
 /** Libellés pour les résumés. */
 export function labelOf<T extends string | number | null>(list: { value: T; label: string }[], v: T | undefined): string {

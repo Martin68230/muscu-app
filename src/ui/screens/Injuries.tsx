@@ -63,7 +63,7 @@ export function Injuries() {
   return (
     <section aria-labelledby="inj-title">
       <h2 id="inj-title">Gênes et blessures</h2>
-      <p class="dim small">Facultatif. Reste sur ce téléphone, jamais partagé. Touche une zone qui te gêne : l'appli adapte ou retire les exercices concernés.</p>
+      <p class="dim small">Facultatif. Reste sur ce téléphone, jamais partagé. Touche une zone qui te gêne : l'appli adapte ou retire les exercices concernés. « Cuisse » = face arrière (ischio-jambiers) ; « Aine » = intérieur de la cuisse. L'appli ne pose aucun diagnostic.</p>
       <div class="zones" role="group" aria-label="Zones du corps">
         {ZONES.map(([z, label]) => (
           <button key={z} class="zone-btn" aria-pressed={!!rowOf(z)} onClick={() => toggleZone(z)}>
@@ -90,7 +90,10 @@ export function Injuries() {
           )}
           {shock && <div class="notice" role="status"><p>{NECK_SHOCK_MESSAGE}</p></div>}
           {level === 3 && !shock && (
-            <div class="notice" role="status"><p>Une douleur demande l'avis d'un professionnel de santé : consulte avant de reprendre. L'appli n'en propose aucun exercice pour cette zone.</p></div>
+            <div class="notice" role="status"><p>Douleur signalée : demande l'avis d'un professionnel de santé avant de reprendre les exercices de cette zone. L'appli n'en propose aucun pour cette zone.</p></div>
+          )}
+          {level >= 2 && (
+            <p class="dim small">Consulte si tu as aussi : un gonflement, une perte de force, un engourdissement ou des fourmillements, une douleur après une chute ou un choc, une douleur la nuit ou au repos, ou une douleur qui dure plus de 2 semaines. Pendant un exercice, une douleur vive dans l'articulation : arrête l'exercice.</p>
           )}
           <button class="btn" onClick={() => remove(current)}>Enlever cette zone</button>
         </div>
