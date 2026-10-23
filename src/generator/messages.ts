@@ -3,6 +3,9 @@ import { NECK_SHOCK_MESSAGE } from '../data/injury-rules';
 import type { GG } from './config';
 import type { GenMessage, MessageId } from './types';
 
+/** Nombre décimal affiché à l'utilisateur : virgule française, une décimale au plus (« 7,5 »). */
+export const frNum = (n: number): string => String(Math.round(n * 10) / 10).replace('.', ',');
+
 export const WEEKDAY_NAMES = ['lundi', 'mardi', 'mercredi', 'jeudi', 'vendredi', 'samedi', 'dimanche'];
 export const GG_LABEL: Record<GG, string> = {
   GG1: 'Le devant des cuisses',
@@ -78,7 +81,7 @@ export const msg = {
   freq: (gg: GG, n: number, fix: string | null) =>
     m(
       'V-MSG-FREQ',
-      `${GG_LABEL[gg]} n'est travaillé que ${n} fois par semaine. Le repère est d'au moins 2 fois.` + (fix ? ` Pour corriger : ${fix}.` : ''),
+      `${GG_LABEL[gg]} n'est travaillé que ${frNum(n)} fois par semaine. Le repère est d'au moins 2 fois.` + (fix ? ` Pour corriger : ${fix}.` : ''),
       { data: { gg, n } },
     ),
   plans: () => m('V-MSG-PLANS', 'Poitrine et dos sont travaillés une fois à plat, une fois vers le haut.'),
@@ -106,7 +109,7 @@ export const msg = {
   force: () =>
     m('V-MSG-FORCE', 'La force maximale progresse surtout avec des charges lourdes. Sans elles, on travaille avec des variantes plus difficiles.'),
   vol: (muscle: string, n: number) =>
-    m('V-MSG-VOL', `${cap(muscle)} : ${Math.round(n * 10) / 10} séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.`, {
+    m('V-MSG-VOL', `${cap(muscle)} : ${frNum(n)} séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.`, {
       data: { muscle, n },
     }),
   duree: (durMin: number, removed: string[], session: string, realMin: number | null) =>

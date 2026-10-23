@@ -40,3 +40,43 @@ export function loadLessText(deltaKg: number): string {
 export function fmtKg(kg: number): string {
   return String(Math.round(kg * 100) / 100).replace('.', ',');
 }
+
+// ----- Écran « J'ai un symptôme » : textes fixes en français simple (regles-securite-communes.md G6 et C4) -----
+/** G6 : grossesse ou post-partum cochés. Statut : liste OK (HAS) ; orientation d'urgence PROVISOIRE (choix de `kine`). */
+export const G6_TITLE = 'Grossesse ou après un accouchement';
+export const G6_STOP_TEXT = 'Arrête la séance et contacte ton médecin ou ta sage-femme si tu as l’un de ces signes.';
+export const G6_SIGNS: readonly string[] = [
+  'Un essoufflement qui ne passe pas au repos',
+  'Des contractions régulières et douloureuses',
+  'Un saignement',
+  'Une perte de liquide',
+  'Des vertiges, un malaise ou des maux de tête',
+  'Une faiblesse dans les muscles qui gêne ton équilibre',
+  'Une douleur ou un gonflement dans un mollet',
+];
+export const G6_URGENT_TEXT = 'Saignement, perte de liquide, contractions régulières ou douleur dans la poitrine : appelle la maternité ou le 15.';
+
+/** C4 : zone « cou » déclarée. Statut : liste HAS OK ; signes d’AVC PROVISOIRE ; vertige même léger NON SOURCÉ (choix prudent). */
+export const C4_TITLE = 'Cou';
+export const C4_URGENT_SIGNS: readonly string[] = [
+  'Visage qui tombe d’un côté',
+  'Faiblesse ou engourdissement brutal d’un bras ou d’une jambe',
+  'Difficulté soudaine à parler',
+  'Perte de la vue d’un œil ou vision double',
+  'Gros problème d’équilibre ou de marche d’un coup',
+  'Mal de tête brutal, très fort et inhabituel',
+];
+export const C4_STOP_TEXT = 'Arrête la séance et consulte si tu as l’un de ces signes.';
+export const C4_STOP_SIGNS: readonly string[] = [
+  'Fourmillements, engourdissement ou décharge dans le bras ou la main',
+  'Faiblesse du bras ou de la main (des objets tombent)',
+  'Maux de tête inhabituels, surtout avec une douleur de cou inhabituelle',
+  'Douleur de cou inhabituelle qui dure ou qui s’aggrave, ou qui te réveille la nuit',
+  'Vertige ou étourdissement, même léger',
+  'Fièvre ou amaigrissement sans raison',
+  'Maladresse nouvelle des mains ou trouble de l’équilibre',
+];
+
+export const SYMPTOM_RESUME_CONFIRM = 'Tu n’as plus aucun de ces signes et tu te sens bien ?';
+export const SOUND_NOTE = 'Le minuteur se met à jour quand tu reviens sur l’appli ; il ne sonne pas écran verrouillé.';
+export const WAKE_LOCK_BANNER = 'Ton écran peut s’éteindre pendant la séance. Touche l’écran de temps en temps.';

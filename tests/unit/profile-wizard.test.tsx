@@ -4,12 +4,14 @@ import { afterEach, describe, expect, it } from 'vitest';
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/preact';
 import type { Profile } from '../../src/data/model';
 import { ensureLocalUser, acceptOnboarding } from '../../src/data/bootstrap';
-import { list } from '../../src/data/repo';
+import { list, update } from '../../src/data/repo';
 import {
   freeDaysEnough, getMainGoal, isProfileComplete, isSupportedDays, unsupportedDaysMessage,
 } from '../../src/data/profile-setup';
 import { ProfileWizard } from '../../src/ui/screens/ProfileWizard';
 import { Home } from '../../src/ui/screens/Home';
+import { setFichesForTests, type Fiche } from '../../src/data/fiches';
+import { FICHES } from './generator-helpers';
 
 afterEach(cleanup);
 
@@ -128,14 +130,17 @@ describe('Accueil', () => {
   it("propose « Créer mon programme » tant que le profil est incomplet", async () => {
     const p = await freshProfile();
     let started = false;
-    render(<Home profile={p} onStart={() => { started = true; }} />);
+    render(<Home profile={p} onStart={() => { started = true; }} onEditStep={() => {}} onResume={() => {}} onOpenSession={() => {}} />);
     fireEvent.click(screen.getByRole('button', { name: 'Créer mon programme' }));
     expect(started).toBe(true);
   });
-  it('profil terminé avec 4 jours : message clair, pas de programme', async () => {
-    const p = await freshProfile();
-    render(<Home profile={{ ...p, daysPerWeek: 4, profileCompletedAt: '2026-10-23T10:00:00.000Z' }} onStart={() => {}} />);
-    expect(screen.getByText(/4 jours par semaine arrive dans une prochaine version/)).toBeTruthy();
+  it('profil terminé avec 4 jours : message du moteur, bouton « Modifier mes jours », pas de programme', async () => {
+    setFichesForTests(FICHES as unknown as Fiche[]);
+    const p0 = await freshProfile();
+    const p = await update('profile', p0.id, { daysPerWeek: 4, level: 'debutant', sessionDurationMin: 45, profileCompletedAt: '2026-10-23T10:00:00.000Z' });
+    render(<Home profile={p} onStart={() => {}} onEditStep={() => {}} onResume={() => {}} onOpenSession={() => {}} />);
+    await waitFor(() => expect(screen.getByText(/Ce rythme arrive dans une prochaine version/)).toBeTruthy());
+    expect(screen.getByRole('button', { name: 'Modifier mes jours' })).toBeTruthy();
     expect(screen.queryByRole('button', { name: 'Créer mon programme' })).toBeNull();
   });
 });

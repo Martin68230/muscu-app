@@ -10,6 +10,20 @@ import { Fiche } from './ui/screens/Fiche';
 import { Profile } from './ui/screens/Profile';
 import { ProfileWizard } from './ui/screens/ProfileWizard';
 import type { ProfileStep } from './data/profile-setup';
+import type { Program } from './data/model';
+import { loadFiches, type Fiche as FicheData } from './data/fiches';
+import { SessionController } from './session/store';
+import { SessionPreview } from './ui/screens/Preview';
+import { SessionPlayer } from './ui/screens/Player';
+import { loadPlayerData, type PlayerData } from './ui/session/launch';
+
+/** #/seance : aperçu de la séance du jour. */
+const previewFromHash = (): boolean => location.hash === '#/seance';
+
+interface Playing {
+  controller: SessionController;
+  data: PlayerData;
+}
 
 const TAB_IDS: Tab[] = ['accueil', 'calendrier', 'bibliotheque', 'profil'];
 
@@ -29,6 +43,9 @@ export function App() {
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [tab, setTab] = useState<Tab>(tabFromHash());
   const [ficheId, setFicheId] = useState<string | null>(ficheFromHash());
+  const [preview, setPreview] = useState(previewFromHash());
+  /** Séance en cours dans le lecteur (plein écran, sans barre d'onglets). */
+  const [playing, setPlaying] = useState<Playing | null>(null);
   /** Parcours du profil : 'all' = les cartes à la suite ; sinon une seule carte (modification depuis Profil). */
   const [wizard, setWizard] = useState<ProfileStep | 'all' | null>(null);
 
@@ -39,6 +56,7 @@ export function App() {
     const onHash = () => {
       setTab(tabFromHash());
       setFicheId(ficheFromHash());
+      setPreview(previewFromHash());
     };
     addEventListener('hashchange', onHash);
     return () => removeEventListener('hashchange', onHash);
@@ -48,12 +66,49 @@ export function App() {
     location.hash = `#/${t}`;
     setTab(t);
     setFicheId(null);
+    setPreview(false);
+  };
+
+  const begin = async (program: Program, dayIndex: number, fiches: FicheData[]) => {
+    if (!profile) return;
+    const data = await loadPlayerData(fiches, profile);
+    const controller = await SessionController.start(program, dayIndex, data.ctx);
+    // Un rechargement pendant la séance revient sur l'Accueil, qui propose de la reprendre.
+    location.hash = '#/accueil';
+    setPlaying({ controller, data });
+  };
+  const resume = async (sessionId: string) => {
+    if (!profile) return;
+    const fiches = await loadFiches();
+    const data = await loadPlayerData(fiches, profile, sessionId);
+    const controller = await SessionController.resume(sessionId, data.ctx);
+    setPlaying({ controller, data });
+  };
+  const closePlayer = () => {
+    setPlaying(null);
+    location.hash = '#/accueil';
+    setPreview(false);
   };
 
   if (!profile) return null;
 
   if (!profile.healthDisclaimerAcceptedAt || !profile.adultConfirmedAt) {
     return <Onboarding onAccept={async () => setProfile(await acceptOnboarding(profile.id))} />;
+  }
+
+  if (playing) {
+    return (
+      <SessionPlayer
+        controller={playing.controller}
+        data={playing.data}
+        profile={profile}
+        onClose={closePlayer}
+        onEditInjuries={() => {
+          setPlaying(null);
+          setWizard('blessures');
+        }}
+      />
+    );
   }
 
   if (wizard) {
@@ -73,8 +128,17 @@ export function App() {
 
   return (
     <div class="shell">
-      <main class="screen" key={ficheId ? `fiche-${ficheId}` : tab}>
-        {tab === 'accueil' && <Home profile={profile} onStart={() => setWizard('all')} />}
+      <main class="screen" key={ficheId ? `fiche-${ficheId}` : preview ? 'seance' : tab}>
+        {tab === 'accueil' && !preview && (
+          <Home
+            profile={profile}
+            onStart={() => setWizard('all')}
+            onEditStep={(s) => setWizard(s)}
+            onResume={(id) => void resume(id)}
+            onOpenSession={() => (location.hash = '#/seance')}
+          />
+        )}
+        {tab === 'accueil' && preview && <SessionPreview profile={profile} onBegin={begin} />}
         {tab === 'calendrier' && <Calendar />}
         {tab === 'bibliotheque' && !ficheId && <Library />}
         {tab === 'bibliotheque' && ficheId && <Fiche id={ficheId} pregnancy={profile.pregnancy} />}

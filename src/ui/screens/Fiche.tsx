@@ -43,14 +43,14 @@ export function displayImages(f: FicheData) {
   return f.images.filter((i) => i.type === 'illustration').slice(0, 1);
 }
 
-function FicheImages({ fiche }: { fiche: FicheData }) {
+export function FicheImages({ fiche, compact = false }: { fiche: FicheData; compact?: boolean }) {
   const imgs = displayImages(fiche);
   const [broken, setBroken] = useState<string[]>([]);
-  const shown = imgs.filter((i) => !broken.includes(i.src));
+  const shown = imgs.filter((i) => !broken.includes(i.src)).slice(0, compact ? 1 : 2);
   if (shown.length === 0) return null;
   const legende = shown.find((i) => i.legende)?.legende;
   return (
-    <figure class="fiche-figure">
+    <figure class={`fiche-figure${compact ? ' compact' : ''}`}>
       <div class={`fiche-imgs${shown.length > 1 ? ' fiche-imgs-2' : ''}`}>
         {shown.map((img, k) => (
           <img
