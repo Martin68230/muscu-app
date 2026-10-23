@@ -28,6 +28,9 @@ export const SPECS: Record<TableName, Spec> = {
     sports: 'array',
     heightCm: 'number?',
     aiEnabled: 'boolean',
+    place: 'string?',
+    pregnancy: 'string?',
+    profileCompletedAt: 'string?',
   },
   equipment: {
     preset: 'string',
@@ -73,6 +76,14 @@ export const SPECS: Record<TableName, Spec> = {
     pain: 'boolean',
     comment: 'string',
     completedAt: 'string?',
+    targetRir: 'number?',
+    isCalibration: 'boolean',
+    isWarmup: 'boolean',
+    echelon: 'number?',
+    bandResistance: 'string?',
+    holdSec: 'number?',
+    side: 'string?',
+    capped: 'boolean',
   },
   bodyWeights: { date: 'string', kg: 'number' },
   meals: { date: 'string', time: 'string?', label: 'string', items: 'array' },
@@ -90,8 +101,16 @@ export const SPECS: Record<TableName, Spec> = {
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
+  profile: ['place', 'pregnancy', 'profileCompletedAt'],
+  sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped'],
   injuries: ['afterShock'],
   equipment: ['dumbbellKind', 'platesKg', 'other'],
+};
+
+/** Valeurs permises des champs qui pilotent la sécurité (un import ne doit pas en introduire d'inconnues). */
+const ENUMS: Partial<Record<TableName, Record<string, string[]>>> = {
+  profile: { place: ['maison', 'salle'], pregnancy: ['non', 'enceinte', 'post_partum'], level: ['debutant', 'intermediaire', 'avance'] },
+  injuries: { zone: ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville', 'cuisse', 'aine'] },
 };
 
 function typeOf(v: unknown): FieldType | 'null' | 'other' {
@@ -115,6 +134,10 @@ export function validateRow(table: TableName, row: unknown): string[] {
     const actual = typeOf(r[field]);
     if (actual === expected || (nullable && actual === 'null')) continue;
     errors.push(`${table}/${String(r.id ?? '?')} : champ « ${field} » attendu ${spec}, reçu ${actual}`);
+  }
+  for (const [field, allowed] of Object.entries(ENUMS[table] ?? {})) {
+    const v = r[field];
+    if (typeof v === 'string' && !allowed.includes(v)) errors.push(`${table}/${String(r.id ?? '?')} : champ « ${field} » valeur inconnue « ${v} »`);
   }
   if (typeof r.updatedAt === 'string' && Number.isNaN(Date.parse(r.updatedAt))) {
     errors.push(`${table}/${String(r.id)} : date de modification invalide`);

@@ -78,6 +78,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - `Chest_And_Front_Of_Shoulder_Stretch/1.jpg` : affichable : non (même raison)
 - illustration : public/illustrations/etirement-pectoraux-mur.svg : affichable : oui (illustration originale de l'app)
 
+## Vidéo
+- video : youtube:yx8nPhe6zRE | Hope Physical Therapy and Aquatics | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

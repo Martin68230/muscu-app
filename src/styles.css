@@ -278,3 +278,36 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .credit h2 { margin-top: 0; font-size: 1.125rem; }
 .credit a { color: var(--accent); min-height: 44px; display: inline-flex; align-items: center; }
 .credit summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }
+
+/* Profil en cartes (F1) */
+.wizard-progress { margin-bottom: 8px; }
+.wizard-progress p { margin: 6px 0 0; }
+.wizard-bar { height: 8px; border-radius: 4px; background: var(--surface-2); overflow: hidden; }
+.wizard-bar-fill { height: 100%; background: var(--accent); border-radius: 4px; transition: width 0.2s; }
+.choice-list { display: grid; gap: 10px; margin-bottom: 12px; }
+.choice-grid { display: grid; gap: 10px; margin-bottom: 12px; }
+.choice-grid-2 { grid-template-columns: 1fr 1fr; }
+.choice-grid-3 { grid-template-columns: 1fr 1fr 1fr; }
+.choice {
+  display: flex; flex-direction: column; align-items: flex-start; justify-content: center; gap: 2px; min-height: 56px;
+  padding: 10px 14px; border-radius: 14px; border: 2px solid var(--line); background: var(--surface); color: var(--text);
+  font: inherit; text-align: left; touch-action: manipulation; cursor: pointer;
+}
+.choice-label { font-size: 1.0625rem; font-weight: 700; }
+.choice-hint { font-size: 0.875rem; color: var(--text-dim); }
+.choice[aria-pressed='true'] { border-color: var(--accent); background: var(--surface-2); box-shadow: inset 0 0 0 1px var(--accent); }
+.choice[aria-pressed='true'] .choice-hint { color: var(--text); }
+.choice-big { min-height: 72px; align-items: center; }
+.choice-big .choice-label { font-size: 1.75rem; }
+.weekdays { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 4px; margin-bottom: 12px; }
+.weekday {
+  min-height: 56px; border-radius: 12px; border: 2px solid var(--line); background: var(--surface); color: var(--text);
+  font: inherit; font-size: 1.0625rem; font-weight: 700; touch-action: manipulation;
+}
+.weekday[aria-pressed='true'] { background: var(--danger-bg); border-color: var(--danger); color: var(--danger); }
+.step-nav { display: flex; gap: 10px; }
+.step-nav .btn { width: auto; flex: 1; margin-top: 0; }
+.step-nav .btn-primary { flex: 2; }
+.screen-wizard { display: flex; flex-direction: column; }
+.screen-wizard > * { flex: none; }
+.screen-wizard > .thumb-zone { margin-top: auto; }

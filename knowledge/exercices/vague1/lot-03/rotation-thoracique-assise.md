@@ -76,6 +76,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - aucune photo (aucune entrée libre trouvée pour une rotation du haut du dos assis (recherche par nom, 22/10/2026))
 - illustration : public/illustrations/rotation-thoracique-assise.svg : affichable : oui (illustration originale de l'app)
 
+## Vidéo
+- video : youtube:_71vJV2fZng | E3 Rehab Exercise Library | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

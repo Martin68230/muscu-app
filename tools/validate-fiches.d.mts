@@ -22,3 +22,9 @@ export function parseFrontmatter(lines: string[]): { data: Record<string, string
 export function validateLot(files: { name: string; text: string }[], options?: { tags?: TagList; photosDir?: string; illustrationsDir?: string }): LotResult;
 export function loadTags(path: string): TagList;
 export function readFrontmatter(path: string): Record<string, string | string[]>;
+export function norm(s: string): string;
+export function cells(line: string): string[];
+export function isSeparator(line: string): boolean;
+export function splitSections(lines: string[], from: number): { title: string; start: number; lines: { n: number; text: string }[] }[];
+export function parseFiche(text: string, file: string): { fiche: any; issues: Issue[] };
+export function listFiches(dir: string): string[];

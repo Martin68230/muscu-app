@@ -85,6 +85,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - aucune photo (aucune entrée libre correspondante trouvée (recherche par nom, 22/10/2026))
 - illustration : public/illustrations/pas-chasses-lateraux.svg : affichable : oui (illustration originale de l'app)
 
+## Vidéo
+- video : youtube:iBmvPEWt5og | MedStar Health | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

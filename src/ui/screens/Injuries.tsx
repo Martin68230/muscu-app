@@ -12,6 +12,8 @@ const ZONES: [InjuryZone, string][] = [
   ['hanche', 'Hanche'],
   ['genou', 'Genou'],
   ['cheville', 'Cheville'],
+  ['cuisse', 'Cuisse (arrière)'],
+  ['aine', 'Aine'],
 ];
 
 const LEVELS: [InjuryLevel, string][] = [

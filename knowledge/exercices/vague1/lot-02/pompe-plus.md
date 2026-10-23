@@ -84,6 +84,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - aucune photo (aucune entrée libre trouvée pour ce mouvement)
 - illustration : public/illustrations/pompe-plus.svg : affichable : oui (illustration originale de l'app)
 
+## Vidéo
+- video : youtube:3vHi5SNSlsA | Revival Performance Physical Therapy | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

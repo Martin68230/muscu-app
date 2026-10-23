@@ -78,6 +78,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - aucune photo (aucune entrée libre pour ce mouvement ; « 90_90_Hamstring » est un étirement des ischios)
 - illustration : public/illustrations/mobilite-hanches-90-90.svg : affichable : oui (illustration originale de l'app)
 
+## Vidéo
+- video : youtube:-3bcB4HEh0s | Cara Giusti, PT, DPT (B3 Physical Therapy) | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

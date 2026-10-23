@@ -221,7 +221,7 @@ export const EXERCICES = [
     id: 'tirage-vertical-elastique-haut', titre: 'Tirage vertical à l\'élastique, à genoux face à l\'ancrage',
     labels: ['Bras tendus vers le haut', 'Coudes vers le bas et l\'arrière'],
     a: { p: [-5, 64], t: 90, armN: { a: [60, 62] }, armF: { a: [58, 60] }, legN: { a: [-90, 180], foot: 180 }, legF: { a: [-90, 180], foot: 180 }, back: [['mat', -140, 130], ['wall', 106, 14], ['anchor', 106, 225]], props: (J) => [['band', [J.haN, [106, 225]]]] },
-    b: { p: [-5, 64], t: 90, armN: { to: [26, 134], bend: 'b' }, armF: { to: [22, 132], bend: 'b' }, legN: { a: [-90, 180], foot: 180 }, legF: { a: [-90, 180], foot: 180 }, back: [['mat', -140, 130], ['wall', 106, 14], ['anchor', 106, 225]], props: (J) => [['band', [J.haN, [106, 225]]]] },
+    b: { p: [-5, 64], t: 90, armN: { to: [24, 122], bend: 'd' }, armF: { to: [20, 120], bend: 'd' }, legN: { a: [-90, 180], foot: 180 }, legF: { a: [-90, 180], foot: 180 }, back: [['mat', -140, 130], ['wall', 106, 14], ['anchor', 106, 225]], props: (J) => [['band', [J.haN, [106, 225]]]] },
   },
 
   // ================= lot 02 =================

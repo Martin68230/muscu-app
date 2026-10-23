@@ -4,7 +4,7 @@ import { TABLES } from './model';
 
 export const DB_NAME = 'muscu-app';
 /** Version IndexedDB : chaque montée ajoute une étape dans `upgrade`, jamais de modification d'une étape passée. */
-export const DB_VERSION = 2;
+export const DB_VERSION = 3;
 
 type Store<V, I extends Record<string, IDBValidKey> = Record<string, IDBValidKey>> = {
   key: string;
@@ -42,20 +42,34 @@ let dbPromise: Promise<DB> | null = null;
 export function getDB(): Promise<DB> {
   if (!dbPromise) {
     dbPromise = openDB<MuscuDB>(DB_NAME, DB_VERSION, {
-      upgrade(db, oldVersion) {
-        if (oldVersion < 1) {
-          for (const name of TABLES) {
-            // Les types génériques d'idb ne suivent pas une boucle sur les noms : conversion locale.
-            const store = (db as unknown as IDBPDatabase).createObjectStore(name, { keyPath: 'id' });
-            store.createIndex('updatedAt', 'updatedAt');
-            for (const idx of EXTRA_INDEXES[name] ?? []) store.createIndex(idx, idx);
-          }
-          db.createObjectStore('device', { keyPath: 'key' });
-        }
-        if (oldVersion === 1) {
-          // v2 : table des signalements (D9).
-          const store = (db as unknown as IDBPDatabase).createObjectStore('signalements', { keyPath: 'id' });
+      async upgrade(db, oldVersion, _newVersion, tx) {
+        // Chaque montée (quelle que soit la version de départ) crée seulement ce qui manque.
+        for (const name of TABLES) {
+          if (db.objectStoreNames.contains(name)) continue;
+          // Les types génériques d'idb ne suivent pas une boucle sur les noms : conversion locale.
+          const store = (db as unknown as IDBPDatabase).createObjectStore(name, { keyPath: 'id' });
           store.createIndex('updatedAt', 'updatedAt');
+          for (const idx of EXTRA_INDEXES[name] ?? []) store.createIndex(idx, idx);
+        }
+        if (!db.objectStoreNames.contains('device')) db.createObjectStore('device', { keyPath: 'key' });
+
+        if (oldVersion >= 1 && oldVersion < 3) {
+          // v3 : profil. Les nouveaux champs reçoivent leur valeur neutre. Pour un profil existant, le
+          // parcours en cartes n'est pas fait : l'Accueil proposera « Créer mon programme ».
+          const store = tx.objectStore('profile');
+          let cursor = await store.openCursor();
+          while (cursor) {
+            const row = cursor.value;
+            if (row.place === undefined || row.pregnancy === undefined || row.profileCompletedAt === undefined) {
+              await cursor.update({
+                ...row,
+                place: row.place ?? null,
+                pregnancy: row.pregnancy ?? null,
+                profileCompletedAt: row.profileCompletedAt ?? null,
+              });
+            }
+            cursor = await cursor.continue();
+          }
         }
       },
     });

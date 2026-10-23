@@ -22,14 +22,14 @@ const FM_OPTIONAL = ['couverture', 'doux_pour'];
 const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const RANK = { garder: 0, adapter: 1, retirer: 2 };
 
-const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
+export const norm = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().trim();
 
 /** Découpe une ligne de tableau Markdown en cellules (sans les barres extérieures). */
-function cells(line) {
+export function cells(line) {
   const t = line.trim().replace(/^\|/, '').replace(/\|$/, '');
   return t.split('|').map((c) => c.trim());
 }
-const isSeparator = (line) => /^\|?\s*:?-{2,}/.test(line.trim());
+export const isSeparator = (line) => /^\|?\s*:?-{2,}/.test(line.trim());
 
 /** Mini-parseur du frontmatter : `cle: valeur`, listes `[a, b]`, commentaires `# ...`. */
 export function parseFrontmatter(lines) {
@@ -71,7 +71,7 @@ export function readFrontmatter(path) {
 }
 
 /** Découpe le corps en sections `## titre`. */
-function splitSections(lines, from) {
+export function splitSections(lines, from) {
   const secs = [];
   for (let i = from; i < lines.length; i++) {
     const m = lines[i].match(/^##\s+(.*?)\s*$/);
@@ -328,6 +328,15 @@ export function parseFiche(text, file) {
     if (bullets.length === 0) add(sph.start + 1, 'photo', 'aucune ligne : écrire une ligne par image, ou « - aucune photo »');
     for (const l of bullets) {
       if (/^\s*[-*]\s*aucune photo\b/i.test(l.text)) continue;
+      // Légende affichable sous les images de la fiche : « - légende : <texte> » (une seule, 120 caractères au plus)
+      const lg = l.text.match(/^\s*[-*]\s*l[ée]gende\s*:\s*(.*?)\s*$/i);
+      if (lg) {
+        if (!lg[1]) add(l.n, 'photo', 'légende vide : « - légende : <texte> »');
+        else if (lg[1].length > 120) add(l.n, 'photo', `légende trop longue (${lg[1].length} caractères, 120 au plus)`);
+        else if (fiche.legende) add(l.n, 'photo', 'une seule légende par fiche');
+        else fiche.legende = lg[1];
+        continue;
+      }
       // Illustration originale de l'app : « - illustration : public/illustrations/<id>.svg : affichable : oui (raison) »
       const il = l.text.match(/^\s*[-*]\s*illustration\s*:\s*(public\/illustrations\/([a-z0-9]+(?:-[a-z0-9]+)*)\.svg)\s*:\s*affichable\s*:\s*(oui|non|à vérifier|a verifier)\b\s*(?:\((.+)\))?\s*\.?\s*$/);
       if (il) {

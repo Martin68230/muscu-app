@@ -8,3 +8,4 @@ playwright-report/
 screenshots/
 knowledge/exercices/.campagne.lock
 images-a-trouver/
+public/data/fiches.json

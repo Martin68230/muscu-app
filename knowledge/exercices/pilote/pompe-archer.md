@@ -73,6 +73,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - illustration : public/illustrations/pompe-archer.svg : affichable : oui (illustration originale de l'app)
 Aucune photo affichable (la seule du brouillon vient de maxwu : interdite).
 
+## Vidéo
+- video : youtube:wJKLatFY-aU | PureGym | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

@@ -75,6 +75,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - aucune photo (aucune entrée libre pour ce mouvement)
 - illustration : public/illustrations/cheville-elastique.svg : affichable : oui (illustration originale de l'app)
 
+## Vidéo
+- video : youtube:wJXzCKIjaT4 | OrthoIndy | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

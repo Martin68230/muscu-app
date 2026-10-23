@@ -1,10 +1,14 @@
-import { useRef, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import type { Profile as ProfileRow } from '../../data/model';
 import { update } from '../../data/repo';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
 import { Equipment } from './Equipment';
 import { Credits } from './Credits';
+import {
+  DURATIONS, NIVEAUX, OBJECTIFS, PLACES, PREGNANCY_CHOICES, WEEKDAYS, getMainGoal, labelOf, type ProfileStep,
+} from '../../data/profile-setup';
+import type { MainGoalKey } from '../../data/model';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
@@ -34,11 +38,17 @@ async function saveFile(name: string, text: string): Promise<void> {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function Profile({ profile, onChange, onWiped }: {
+export function Profile({ profile, onChange, onWiped, onEditStep }: {
   profile: ProfileRow;
   onChange: (p: ProfileRow) => void;
   onWiped: () => void;
+  /** Ouvre une carte du parcours (undefined = tout le parcours). */
+  onEditStep: (step?: ProfileStep) => void;
 }) {
+  const [goal, setGoal] = useState<MainGoalKey | null>(null);
+  useEffect(() => {
+    getMainGoal().then(setGoal);
+  }, []);
   const [theme, setTheme] = useState<ThemePref>(getThemePref());
   const [name, setName] = useState(profile.displayName);
   const [message, setMessage] = useState<string | null>(null);
@@ -108,6 +118,25 @@ export function Profile({ profile, onChange, onWiped }: {
           onBlur={saveName}
         />
       </div>
+
+      <h2>Mon entraînement</h2>
+      <div class="card">
+        {([
+          ['jours', 'Jours par semaine', profile.daysPerWeek === null ? '—' : String(profile.daysPerWeek)],
+          ['bloques', 'Jours impossibles', profile.blockedWeekdays.length ? profile.blockedWeekdays.map((i) => WEEKDAYS[i]?.long.slice(0, 3)).join(', ') : 'aucun'],
+          ['duree', 'Durée de séance', profile.sessionDurationMin === null && !profile.profileCompletedAt ? '—' : labelOf(DURATIONS, profile.sessionDurationMin)],
+          ['lieu', 'Lieu', labelOf(PLACES, profile.place ?? null)],
+          ['niveau', 'Niveau', labelOf(NIVEAUX, profile.level)],
+          ['objectif', 'Objectif', labelOf(OBJECTIFS, goal)],
+          ['grossesse', 'Grossesse', labelOf(PREGNANCY_CHOICES, profile.pregnancy ?? null)],
+        ] as [ProfileStep, string, string][]).map(([step, label, value]) => (
+          <button key={step} class="row" onClick={() => onEditStep(step)}>
+            <span>{label}</span>
+            <span class="dim">{value}</span>
+          </button>
+        ))}
+      </div>
+      <button class="btn" onClick={() => onEditStep()}>Refaire le parcours</button>
 
       <h2>Affichage</h2>
       <div class="segmented" role="group" aria-label="Thème">

@@ -17,6 +17,9 @@ export async function ensureLocalUser(): Promise<Profile> {
       sports: [],
       heightCm: null,
       aiEnabled: false,
+      place: null,
+      pregnancy: null,
+      profileCompletedAt: null,
     }));
 
   if ((await list('equipment')).length === 0) {

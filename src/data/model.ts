@@ -11,7 +11,10 @@
 // Les tables ne stockent que des identifiants (mouvement, variante, aliment Ciqual), jamais
 // le contenu de la bibliothèque, qui reste un fichier statique de l'app.
 
-export const SCHEMA_VERSION = 2; // 2 : table signalements (les sauvegardes v1 restent importables)
+export const SCHEMA_VERSION = 3;
+// 2 : table signalements (D9)
+// 3 : F1 + F3 — zones cuisse et aine, lieu, grossesse et fin de parcours dans le profil, champs d'étalonnage des séries
+//     et du programme. Les sauvegardes v1 et v2 restent importables (champs ajoutés = facultatifs à l'import).
 
 export interface SyncFields {
   id: string;
@@ -24,7 +27,14 @@ export interface SyncFields {
 }
 
 export type Level = 'debutant' | 'intermediaire' | 'avance';
-export type InjuryZone = 'cou' | 'epaule' | 'coude' | 'poignet' | 'dos' | 'hanche' | 'genou' | 'cheville';
+/** 10 zones, comme les fiches (format-fiches.md §4.1) ; `cuisse` = face arrière (ischios), `aine` = adducteurs. */
+export type InjuryZone = 'cou' | 'epaule' | 'coude' | 'poignet' | 'dos' | 'hanche' | 'genou' | 'cheville' | 'cuisse' | 'aine';
+/** Lieu d'entraînement. */
+export type TrainingPlace = 'maison' | 'salle';
+/** Réglage facultatif, privé, jamais partagé (ce n'est pas un ShareDataType). null = pas renseigné, traité comme « non ». */
+export type PregnancyStatus = 'non' | 'enceinte' | 'post_partum';
+/** Objectif principal (table `goals`, rang 1) : clés de la famille v1 (generateur-v1.md §1.3). */
+export type MainGoalKey = 'muscle' | 'force' | 'sante' | 'perte_gras';
 /** 1 = gêne légère, 2 = gêne nette, 3 = douleur (règles détaillées : kine, à valider). */
 export type InjuryLevel = 1 | 2 | 3;
 export type Side = 'gauche' | 'droite' | 'les_deux' | null;
@@ -53,6 +63,12 @@ export interface Profile extends SyncFields {
   sports: string[];
   heightCm: number | null;
   aiEnabled: boolean;
+  /** Ajoutés par F1 : peuvent manquer dans une ancienne sauvegarde (lire avec ?? null). */
+  place?: TrainingPlace | null;
+  /** Privé, jamais partagé, jamais envoyé à l'IA sans choix explicite. */
+  pregnancy?: PregnancyStatus | null;
+  /** Date de fin du parcours « profil en cartes » ; null = à faire (l'Accueil propose « Créer mon programme »). */
+  profileCompletedAt?: string | null;
 }
 
 export interface EquipmentProfile extends SyncFields {
@@ -87,6 +103,15 @@ export interface Injury extends SyncFields {
   afterShock?: boolean;
 }
 
+export type ExerciseUnit = 'reps' | 'sec' | 'reps_par_cote';
+export type ExerciseRole = 'pilier' | 'autre' | 'tronc' | 'fonctionnel';
+export interface WarmupSet {
+  reps: number;
+  /** Pourcentage de la charge de travail, ou null si on utilise un échelon. */
+  percent: number | null;
+  echelon: number | null;
+}
+
 export interface PlannedExercise {
   movementId: string;
   variantId: string;
@@ -96,6 +121,21 @@ export interface PlannedExercise {
   restSec: number;
   /** Même valeur = enchaînés en superset ; null = seul. */
   supersetGroup: string | null;
+  // Ajoutés par F3 (generateur-v1.md §5.3) :
+  /** Réserve cible (répétitions en réserve). */
+  rirTarget: number;
+  unit: ExerciseUnit;
+  holdSec: number | null;
+  warmupSets: WarmupSet[];
+  role: ExerciseRole;
+  /** Emplacement de la séance (generateur-v1.md §2.2), ex. `jambes_genou`. */
+  slot: string;
+  startLoadKg: number | null;
+  /** Charge bloquée (charge:legere, niveau 2, grossesse) : jamais de hausse automatique. */
+  capped: boolean;
+  /** Case de sécurité appliquée (charge:legere, amplitude:<v>, appui:<v>), pour l'affichage. */
+  adaptation: string | null;
+  substitut: boolean;
 }
 
 export interface ProgramDay {
@@ -140,6 +180,19 @@ export interface SetLog extends SyncFields {
   pain: boolean;
   comment: string;
   completedAt: string | null;
+  // Ajoutés par F1 (generateur-v1.md §5.3) : peuvent manquer dans une ancienne sauvegarde.
+  /** Réserve cible de la série. */
+  targetRir?: number | null;
+  isCalibration?: boolean;
+  isWarmup?: boolean;
+  /** Échelon de la variante faite (progression au poids du corps). */
+  echelon?: number | null;
+  /** Élastiques : résistance utilisée. */
+  bandResistance?: string | null;
+  /** Schémas à durée : secondes tenues. */
+  holdSec?: number | null;
+  side?: 'gauche' | 'droite' | null;
+  capped?: boolean;
 }
 
 export interface BodyWeight extends SyncFields {

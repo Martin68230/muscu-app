@@ -121,6 +121,8 @@ Une ligne par image : `- \`<DossierFreeExerciseDb>/<n>.jpg\` : affichable : <oui
 
 **Illustration originale** (décision D6, quand aucune photo libre ne convient) : une ligne `- illustration : public/illustrations/<id-fiche>.svg : affichable : oui (illustration originale de l'app)`. Le fichier porte exactement l'id de la fiche ; il est généré par `node tools/make-illustrations.mjs` (une entrée de pose par fiche dans `tools/illustrations-poses.mjs`, voir `tools/photos.md`). Elle compte comme image affichable.
 
+**Légende** (facultative) : une ligne `- légende : <texte>` dans la section Photo (une seule par fiche, 120 caractères au plus, texte français simple). Elle s'applique à toutes les images affichables de la fiche : `tools/build-fiches.mjs` l'écrit dans `images[].legende` et l'app l'affiche sous l'image. Exemple : `- légende : À la poulie ou à l'élastique : même placement.`
+
 **Contrôle** : une fiche `utilisable` ou `verifie` sans au moins une image `affichable : oui` (photo ou illustration) est une ERREUR de `npm run check:fiches` ; une illustration `oui` sans son fichier SVG est aussi une erreur.
 
 ## 6 bis. Vidéo (facultative, D12)

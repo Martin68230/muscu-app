@@ -7,6 +7,8 @@ import { Home } from './ui/screens/Home';
 import { Calendar } from './ui/screens/Calendar';
 import { Library } from './ui/screens/Library';
 import { Profile } from './ui/screens/Profile';
+import { ProfileWizard } from './ui/screens/ProfileWizard';
+import type { ProfileStep } from './data/profile-setup';
 
 const TAB_IDS: Tab[] = ['accueil', 'calendrier', 'bibliotheque', 'profil'];
 
@@ -18,6 +20,8 @@ function tabFromHash(): Tab {
 export function App() {
   const [profile, setProfile] = useState<ProfileRow | null>(null);
   const [tab, setTab] = useState<Tab>(tabFromHash());
+  /** Parcours du profil : 'all' = les cartes à la suite ; sinon une seule carte (modification depuis Profil). */
+  const [wizard, setWizard] = useState<ProfileStep | 'all' | null>(null);
 
   const load = () => ensureLocalUser().then(setProfile);
 
@@ -39,13 +43,28 @@ export function App() {
     return <Onboarding onAccept={async () => setProfile(await acceptOnboarding(profile.id))} />;
   }
 
+  if (wizard) {
+    return (
+      <ProfileWizard
+        profile={profile}
+        onChange={setProfile}
+        only={wizard === 'all' ? undefined : wizard}
+        onExit={() => {
+          const toProfile = wizard !== 'all';
+          setWizard(null);
+          go(toProfile ? 'profil' : 'accueil');
+        }}
+      />
+    );
+  }
+
   return (
     <div class="shell">
       <main class="screen" key={tab}>
-        {tab === 'accueil' && <Home profile={profile} go={go} />}
+        {tab === 'accueil' && <Home profile={profile} onStart={() => setWizard('all')} />}
         {tab === 'calendrier' && <Calendar />}
         {tab === 'bibliotheque' && <Library />}
-        {tab === 'profil' && <Profile profile={profile} onChange={setProfile} onWiped={load} />}
+        {tab === 'profil' && <Profile profile={profile} onChange={setProfile} onWiped={load} onEditStep={(s) => setWizard(s ?? 'all')} />}
       </main>
       <TabBar current={tab} onSelect={go} />
     </div>

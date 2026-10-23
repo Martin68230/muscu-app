@@ -91,6 +91,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - illustration : public/illustrations/tirage-vertical-elastique-haut.svg : affichable : oui (illustration originale de l'app)
 Aucune photo libre pour ce mouvement.
 
+## Vidéo
+- video : youtube:sJI-cnNAdYU | Rehab My Patient | vérifiée le 2026-10-23
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

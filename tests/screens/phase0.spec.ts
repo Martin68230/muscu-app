@@ -95,7 +95,10 @@ test('hors-ligne : tout le nécessaire est mis en cache', async ({ page }) => {
       }
       return urls;
     });
-  await expect.poll(async () => (await readCache()).length, { timeout: 15_000 }).toBeGreaterThanOrEqual(8);
+  // Le précache est plus gros depuis les photos : attendre que les fichiers de l'app soient dedans, pas seulement N entrées.
+  await expect
+    .poll(async () => (await readCache()).some((u) => /\/assets\/index-.*\.css$/.test(u)) && (await readCache()).some((u) => /\/assets\/index-.*\.js$/.test(u)), { timeout: 60_000 })
+    .toBe(true);
   const cached = await readCache();
   const has = (re: RegExp) => cached.some((u) => re.test(u));
   expect(has(/\/index\.html$/)).toBe(true);
