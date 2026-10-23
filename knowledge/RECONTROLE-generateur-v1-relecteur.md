@@ -51,3 +51,39 @@ Vérifications faites :
 - 4 remarques (N6 à N9).
 
 Recontrôle court des points N1 à N5 après correction, avant le codage de F3.
+
+## Recontrôle 2 (relecteur, 23/10/2026, commit d901d07)
+Vérifications faites :
+- diff complet de generateur-v1.md depuis 654446f ;
+- relecture de D15 point 6 (DECISIONS-utilisateur.md) ;
+- relecture du critère F3 (docs/phase-2-criteres.md, ligne 25, désormais aligné : « ou V-MSG-FREQ, pas de durée minimale ») ;
+- confrontation avec G1-G8 de regles-securite-communes.md.
+
+| n° | État | Commentaire |
+|---|---|---|
+| N1 | résolu | Dans §5.2 (ligne « Interdits ») et dans P-GROS : grossesse = `capped` sur tous les exercices, aucune hausse « ni à l'étalonnage ni ensuite », baisses permises. T43. |
+| N2 | résolu | §6.3, §5.2, P-CAP et P-GROS disent la même chose. Sans historique : charge la plus légère et échelon le plus bas. Avec historique : variante et dernière charge sans douleur conservées, sans hausse. T44. |
+| N3 | résolu | « Vide » se compte après les replis a à d du §7.1 et seulement si la cause est « santé », séance par séance. Le programme est refusé dès qu'une séance atteint 3 emplacements vides. T46. |
+| N4 | résolu | La sous-clé « niveau de la personne » du §6.7 est désactivée sous plafond ; la fiche de `niveau_min` le plus bas est alors préférée. T45. |
+| N5 | résolu | La ligne 1 de l'explication est calculée sur la semaine finale (m = 3, m = 2, m < 2 ; la ligne 2 jours avec un groupe < 2 fois est conservée). T47. |
+| N6 | résolu | T1 admet l'exception « piliers seuls » (T3bis). |
+| N7 | résolu | V-MSG-JOURS2 couvre aussi le cas « 3 jours ramenés à 2 ». Le message suit D15 point 6 : bouton « Modifier mes jours » et jour proposé calculé de façon déterministe. T41 étendu. |
+| N8 | résolu | Toutes les valeurs NON SOURCÉ sont codées comme des réglages modifiables (fichier de configuration, référence V-… en commentaire), conformément à CLAUDE.md règle 10. Les questions 6 et 7 sont tranchées par l'utilisateur (D15). |
+| N9 | résolu | Le calcul est couvert par T3c, indépendant de la bibliothèque ; T3 est marqué « dépend de la bibliothèque ». |
+
+**Cohérence de « grossesse : jamais de hausse » avec G1-G8.** La règle est cohérente et plus prudente que les sources :
+- G5 dit que l'app sert de **plafond, pas de prescription** (intensité modérée, 8-15 répétitions jusqu'à fatigue modérée, jamais d'effort maximal) : geler les hausses ne dépasse aucun repère HAS.
+- G4 : les lignes Grossesse s'appliquent toujours.
+- G7 : aucune fiche `saut`.
+- G1, G2, G3, G6 : affichages et écrans fixes, non touchés.
+- G8 : pas de plan alimentaire, hors de ce fichier.
+
+Effet à connaître, sans danger : une personne enceinte reste à la charge la plus légère de son profil pendant toute la durée du réglage, puisque le gel ne se lève qu'en décochant. C'est une limite d'utilité, pas un risque. Le statut est bien noté (NON SOURCÉ, prudence, à relire par `kine`).
+
+**Nouveaux points** : aucun bloquant, aucun à corriger.
+- Une seule remarque : le gel des hausses en grossesse et ses effets (charge la plus légère pendant toute la grossesse) devraient être expliqués dans le texte affiché à la coche du réglage, à côté de G1. Cela relève de l'écran du réglage, pas du générateur.
+
+### Verdict final : **validé**
+- Les points n° 1 à 24 du contrôle et N1 à N9 du recontrôle sont résolus. Seule reste ouverte la demande à `dev` du n° 24 (`InjuryZone` + `cuisse`, `aine`), à faire avant F3.
+- Les valeurs PROVISOIRE et NON SOURCÉ restent soumises à la règle 10 (réglages modifiables, choix par défaut 1 à 5 en attente de l'utilisateur).
+- Le contenu de sécurité ajouté (P-GROS, gel en grossesse) reste à relire par `kine`, comme l'indique le fichier.
