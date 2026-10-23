@@ -530,5 +530,18 @@ export const EXERCICES = [
     a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3]] },
     b: { p: [0, 112], legN: { to: [55, 22], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3]], props: [['arrow', [66, 90], [96, 80]]] },
   },
+  {
+    id: 'dips-banc-triceps', titre: 'Dips sur banc : genoux pliés puis jambes tendues, mains sur le banc derrière soi',
+    labels: ['Départ : bras tendus, genoux pliés', 'Bas : coudes à 90°, pas plus', 'Échelon 2 : jambes tendues'],
+    a: { p: [18, 53], t: 90, h: 90, armN: { to: [-4, 46], bend: 'b' }, armF: { to: [-6, 46], bend: 'b' }, legN: { to: [72, A], bend: 'f' }, legF: { to: [66, A], bend: 'f' }, back: [['step', -90, 4, 46]] },
+    b: { p: [18, 30], t: 90, h: 90, armN: { to: [-4, 46], bend: 'b' }, armF: { to: [-6, 46], bend: 'b' }, legN: { to: [72, A], bend: 'f' }, legF: { to: [66, A], bend: 'f' }, back: [['step', -90, 4, 46]], props: [['arrow', [-40, 70], [-40, 100]]] },
+    c: { p: [18, 30], t: 90, h: 90, armN: { to: [-4, 46], bend: 'b' }, armF: { to: [-6, 46], bend: 'b' }, legN: { to: [114, A], bend: 'f' }, legF: { to: [108, A], bend: 'f' }, back: [['step', -90, 4, 46]], props: [['arrow', [-40, 70], [-40, 100]]] },
+  },
+  {
+    id: 'clam-coquille', titre: 'Coquille (clam) : couché sur le côté, genoux pliés, pieds joints, le genou du dessus qui s ouvre',
+    view: 'front', labels: ['Genoux pliés, pieds joints', 'Genou du dessus ouvert, pieds joints'],
+    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [12, -25] }, legF: { a: [20, -20] }, back: [['mat', -170, 130]] },
+    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [12, -25] }, legF: { a: [50, -30] }, back: [['mat', -170, 130]], props: [['arrow', [30, 50], [30, 80]]] },
+  },
 ];
 

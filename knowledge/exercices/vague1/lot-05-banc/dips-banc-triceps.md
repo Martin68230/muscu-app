@@ -92,6 +92,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 ## Photo
 - `Bench_Dips/0.jpg` : affichable : oui (vue le 22/10/2026 ; écart assumé : la photo montre la variante dips-banc-pieds-surleves (échelon 3, jambes tendues sur une box), plus dure que l'échelon 1 ; à afficher avec la mention « ici jambes tendues sur une box : commence genoux pliés, pieds au sol » ; WebP : Bench_Dips-0.webp)
 - `Bench_Dips/1.jpg` : affichable : oui (vue le 22/10/2026 ; bas du mouvement, même écart (échelon 3 seulement) et même mention ; ne descends pas plus bas que sur la photo ; WebP : Bench_Dips-1.webp)
+- illustration : public/illustrations/dips-banc-triceps.svg : affichable : oui (illustration originale de l'app, 23/10/2026 ; 3 images : départ bras tendus genoux pliés pieds au sol (échelon 1, valable aussi pour la chaise), bas à 90 degrés au coude, puis bas avec jambes tendues talons au sol (échelon 2))
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

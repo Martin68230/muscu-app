@@ -28,13 +28,13 @@ describe('moteur d\'illustrations', () => {
 });
 
 describe('illustrations des fiches', () => {
-  it('chaque entrée de pose produit un SVG avec deux images (trois pour ytw-sol) et un titre', () => {
+  it('chaque entrée de pose produit un SVG avec deux images (trois pour ytw-sol et dips-banc-triceps) et un titre', () => {
     for (const ex of EXERCICES) {
       const svg = buildSvg(ex);
       expect(svg.startsWith('<svg')).toBe(true);
       expect(svg).toContain('<title');
       expect(svg).not.toContain('NaN');
-      expect((svg.match(/class="bg"/g) ?? []).length).toBe(ex.id === 'ytw-sol' ? 3 : 2);
+      expect((svg.match(/class="bg"/g) ?? []).length).toBe(['ytw-sol', 'dips-banc-triceps'].includes(ex.id) ? 3 : 2);
     }
   });
   it('ids de pose uniques et fichiers SVG générés présents', () => {
