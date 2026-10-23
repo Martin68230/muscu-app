@@ -1,6 +1,7 @@
 ---
 id: dead-bug
-nom: Dead bug (insecte sur le dos)
+nom: Insecte sur le dos
+alias: [dead bug]
 schema: anti_rotation
 type: gainage
 niveau_min: debutant

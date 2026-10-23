@@ -1,6 +1,7 @@
 ---
 id: clam-coquille
-nom: Coquille (clam) : ouverture du genou couché
+nom: Coquille : ouverture du genou couché
+alias: [clam]
 schema: hanche_laterale
 type: force
 niveau_min: debutant

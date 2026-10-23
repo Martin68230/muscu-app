@@ -34,7 +34,7 @@ couverture: substitut
 ## Erreurs fréquentes
 - Haltères trop lourds.
 - Coudes qui s'écartent.
-- Bras qui bougent d'avant en arrière (pull-over).
+- Bras qui bougent d'avant en arrière (mouvement de l'haltère passé derrière la tête).
 - Se cambrer.
 
 ## Progression / régression

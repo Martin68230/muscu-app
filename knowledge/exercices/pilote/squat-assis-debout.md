@@ -1,6 +1,6 @@
 ---
 id: squat-assis-debout
-nom: Squat assis-debout sur chaise
+nom: Squat assis-debout
 schema: squat
 type: force
 niveau_min: debutant

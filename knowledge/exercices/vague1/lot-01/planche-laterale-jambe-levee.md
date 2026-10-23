@@ -57,7 +57,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - epaule-n1 : remplacé par la planche latérale sur le genou, sans jambe levée (plus facile).
-- epaule-n2 : exercice retiré, sans remplaçant : la planche latérale est retirée et le dead bug est adapté à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
+- epaule-n2 : exercice retiré, sans remplaçant : la planche latérale est retirée et l'insecte sur le dos est adapté à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
 - poignet-n1 : appui sur l'avant-bras plutôt que sur la main.
 - poignet-n3 : l'appui sur l'avant-bras ne charge pas le poignet.
 - dos-n1 : jambe levée moins haut.

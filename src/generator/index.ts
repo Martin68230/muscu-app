@@ -227,6 +227,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     if (ctx.goalKey === 'cardio' || ctx.goalKey === 'endurance') msgs.push(msg.objCardio());
     if (ctx.goalKey === 'sport') msgs.push(msg.objSport());
   }
+  if (ctx.pregnant) msgs.push(msg.grosAvis());
   for (const z of ctx.zones) {
     if (z.isG || z.level !== 3) continue;
     if (z.key === 'cou' && ctx.neckShock) msgs.push(msg.c3());
@@ -379,6 +380,13 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   // Achat le plus utile (V-ACHAT §7.2).
   const achat = computeAchat(input, ctx, labels, fills, meta, getCause, slotList, pool);
   if (achat) msgs.push(OBJETS_QUOTIDIEN.includes(achat.tag) ? msg.objet(achat.tag, achat.gain) : msg.achat(achat.tag, achat.gain));
+
+  // V-MSG-EPAULES (§8.2) : aucune fiche poussee_v admissible pour la personne.
+  const pushV = (c: Ctx) => pool.some((f) => f.schema === 'poussee_v' && resolveFiche(f, c).candidates.length > 0);
+  if (!pushV(ctx)) {
+    const tags = ACHAT_CANDIDATES.filter((t) => !ctx.available.has(t) && pushV(buildCtx(input, { extraTags: [t] })));
+    msgs.push(msg.epaules(tags, !!achat));
+  }
 
   const explanation = explain(ctx, nDays, coverage, dur, sessions, forceNoLoad);
   const messages = dedupe(msgs);

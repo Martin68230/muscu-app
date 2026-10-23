@@ -1,6 +1,7 @@
 ---
 id: montee-sur-banc
-nom: Montée sur banc (step-up)
+nom: Montée sur banc
+alias: [step-up]
 schema: fente
 type: force
 niveau_min: intermediaire

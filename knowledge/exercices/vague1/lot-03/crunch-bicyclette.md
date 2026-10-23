@@ -1,6 +1,7 @@
 ---
 id: crunch-bicyclette
-nom: Crunch bicyclette
+nom: Abdominaux bicyclette
+alias: [crunch bicyclette]
 schema: rotation
 type: force
 niveau_min: debutant
@@ -54,7 +55,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - dos-n1 : pieds au sol, bas du dos plaqué.
-- dos-n2 : retiré (flexion et rotation répétées) ; remplacé par le bird-dog sur une jambe seule.
+- dos-n2 : retiré (flexion et rotation répétées) ; remplacé par la quadrupédie, jambe seule ou bras seul.
 - cou-n1 : ne tire pas sur la nuque ; regard vers les genoux, menton non collé à la poitrine.
 - cou-n2 : même consigne ; aucune augmentation (R2).
 - hanche-n1 : pieds au sol (pas de pédalage).

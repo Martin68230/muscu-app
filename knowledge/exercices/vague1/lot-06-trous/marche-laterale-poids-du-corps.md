@@ -1,6 +1,6 @@
 ---
 id: marche-laterale-poids-du-corps
-nom: Marche latérale sans élastique
+nom: Marche latérale
 schema: hanche_laterale
 type: fonctionnel
 niveau_min: debutant

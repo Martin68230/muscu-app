@@ -1,6 +1,6 @@
 ---
 id: squat-gobelet-banc
-nom: Squat au banc (assis-debout contrôlé avec haltères)
+nom: Squat au banc (assis-debout contrôlé)
 schema: squat
 type: force
 niveau_min: debutant

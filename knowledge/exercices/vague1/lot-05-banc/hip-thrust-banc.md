@@ -1,6 +1,7 @@
 ---
 id: hip-thrust-banc
-nom: Hip thrust (poussée de hanches, épaules sur banc)
+nom: Poussée de hanches, épaules sur banc
+alias: [hip thrust]
 schema: charniere
 type: force
 niveau_min: debutant
@@ -99,7 +100,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Épaules contre un banc, pieds au sol, poussée de hanches jusqu'à l'alignement du buste et des cuisses | Pas de fiche free-exercise-db avec banc + poids du corps ou haltère (seule la version à la barre existe) ; description de coach | - | 2026-10-22 | NON SOURCÉ |
-| Le hip thrust à la barre donne une plus forte activité EMG du grand fessier que le squat arrière (13 femmes entraînées) | Contreras et al., J Appl Biomech 2015;31(6):452-458, https://pubmed.ncbi.nlm.nih.gov/26214739/ ; résumé lu via moteur de recherche, texte complet non lu | étude EMG, 13 femmes entraînées, hip thrust à la barre ; mesure l'activation seulement, pas la croissance ni la force ; ne porte pas sur le poids du corps | 2026-10-22 | PROVISOIRE (résumé seulement) |
+| La poussée de hanches à la barre donne une plus forte activité EMG du grand fessier que le squat arrière (13 femmes entraînées) | Contreras et al., J Appl Biomech 2015;31(6):452-458, https://pubmed.ncbi.nlm.nih.gov/26214739/ ; résumé lu via moteur de recherche, texte complet non lu | étude EMG, 13 femmes entraînées, hip thrust à la barre ; mesure l'activation seulement, pas la croissance ni la force ; ne porte pas sur le poids du corps | 2026-10-22 | PROVISOIRE (résumé seulement) |
 | Échelons, niveaux, muscles principaux et secondaires | choix de coach | - | 2026-10-22 | NON SOURCÉ |
 | Banc stable, réglage bloqué ; haltère fixe de préférence, disques serrés si réglable | regles-securite-communes.md §7 et R8, R9 | - | 2026-10-22 | NON SOURCÉ |
 | Tableau par zone, grossesse et version plus douce : propositions de coach (prudence), reprises par kine le 22/10/2026 | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (repris par kine, à contrôler par relecteur) |

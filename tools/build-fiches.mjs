@@ -112,6 +112,7 @@ export function buildFiche(text, file, { publicDir } = {}) {
     musclesSecondaires: d.muscles_secondaires,
     ...(d.couverture ? { couverture: d.couverture } : {}),
     douxPour: d.doux_pour ?? [],
+    alias: d.alias ?? [],
     variantes,
     consignes,
     pointsAttention,

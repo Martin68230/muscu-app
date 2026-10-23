@@ -89,7 +89,7 @@ export interface GeneratorInput {
 export type MessageId =
   | 'V-MSG-FREQ' | 'V-MSG-PLANS' | 'V-MSG-PLAN' | 'V-MSG-SUBST' | 'V-MSG-IMPOS' | 'V-MSG-ZONE' | 'V-MSG-ACHAT' | 'V-MSG-OBJET'
   | 'V-MSG-FORCE' | 'V-MSG-VOL' | 'V-MSG-DUREE' | 'V-MSG-JOURS' | 'V-MSG-HORS' | 'V-MSG-JOURS2' | 'V-MSG-PRO'
-  | 'V-MSG-GROS-DUREE' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ';
+  | 'V-MSG-GROS-DUREE' | 'V-MSG-GROS-AVIS' | 'V-MSG-EPAULES' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ';
 export interface GenMessage {
   id: MessageId;
   text: string;

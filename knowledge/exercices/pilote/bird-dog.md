@@ -1,6 +1,7 @@
 ---
 id: bird-dog
-nom: Bird dog (quadrupédie bras-jambe opposés)
+nom: Quadrupédie bras-jambe opposés
+alias: [bird dog]
 schema: anti_rotation
 type: gainage
 niveau_min: debutant
@@ -61,7 +62,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - epaule-n2 : exercice retiré, sans remplaçant (le dead-bug est lui-même adapté à l'épaule de niveau 2).
 - dos-n2 : seules les jambes bougent, les bras restent au sol.
 - hanche-n2 : petite amplitude, bras et jambe.
-- grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. La version plus douce (dead-bug) se fait couché sur le dos et est retirée en grossesse (G4) : elle n'est alors pas proposée, le bird-dog à maintien court la remplace. Post-partum : G7.
+- grossesse : sans pause en position tendue (pas de maintien prolongé), respiration continue. La version plus douce (insecte sur le dos) se fait couché sur le dos et est retirée en grossesse (G4) : elle n'est alors pas proposée, le bird-dog à maintien court la remplace. Post-partum : G7.
 
 **Grossesse** : adapter: amplitude:maintien-court
 **Version plus douce** : dead-bug

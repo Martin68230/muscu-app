@@ -1,6 +1,7 @@
 ---
 id: dips-banc-triceps
-nom: Dips sur banc (triceps)
+nom: Flexion des bras en appui arrière (triceps)
+alias: [dips]
 schema: poussee_h
 type: force
 niveau_min: debutant

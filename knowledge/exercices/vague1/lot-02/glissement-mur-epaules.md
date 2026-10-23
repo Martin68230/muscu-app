@@ -1,6 +1,6 @@
 ---
 id: glissement-mur-epaules
-nom: Glissement des bras contre le mur
+nom: Glissement des bras dos appuyé
 schema: mobilite
 type: mobilite_recup
 niveau_min: debutant

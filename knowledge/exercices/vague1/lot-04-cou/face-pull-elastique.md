@@ -1,6 +1,6 @@
 ---
 id: face-pull-elastique
-nom: Tirage au visage à l'élastique
+nom: Tirage au visage
 schema: tirage_h
 type: force
 niveau_min: debutant

@@ -65,7 +65,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n1 : coussin entre les genoux ou sous le genou d'appui.
 - genou-n2 : même case ; aucune augmentation de difficulté (R2).
 - grossesse : amplitude réduite, rotation sans forcer ; couché sur le côté ou à quatre pattes, jamais sur le dos. Post-partum : G7.
-- general : cases au moins aussi restrictives que le chat-vache au sol, plus facile. Version plus douce : chat-vache au sol.
+- general : cases au moins aussi restrictives que le dos rond, dos creux au sol, plus facile. Version plus douce : chat-vache au sol.
 
 **Grossesse** : adapter: amplitude:reduite
 **Version plus douce** : chat-vache-sol

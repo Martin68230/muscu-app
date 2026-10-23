@@ -1,6 +1,6 @@
 ---
 id: etirement-ischios-serviette
-nom: Étirement des ischios avec une serviette
+nom: Étirement des ischios
 schema: mobilite
 type: mobilite_recup
 niveau_min: debutant

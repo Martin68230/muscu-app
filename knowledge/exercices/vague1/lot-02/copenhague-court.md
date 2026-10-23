@@ -57,7 +57,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - epaule-n1 : genou du dessus sur la chaise, levier court (échelon 1).
-- epaule-n2 : exercice retiré, sans remplaçant : le dead bug et la planche latérale sont eux-mêmes retirés ou adaptés à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
+- epaule-n2 : exercice retiré, sans remplaçant : l'insecte sur le dos et la planche latérale sont eux-mêmes retirés ou adaptés à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
 - coude-n1 : serviette pliée sous l'avant-bras.
 - coude-n2 : genou du dessus sur la chaise, levier court.
 - dos-n1 : genou du dessus sur la chaise, levier court.
@@ -68,7 +68,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n2 : exercice retiré (le genou du dessus porte sur l'assise).
 - aine-n1 : exercice retiré dès la gêne légère à l'aine (adducteurs : l'exercice les sollicite au maximum) ; remplacé par la planche latérale sur le genou. NON SOURCÉ (choix prudent de `kine`).
 - aine-n2 : même case : exercice retiré, remplacé par la planche latérale sur le genou.
-- grossesse : retiré : gainage latéral isométrique et pression abdominale (G4) ; remplacé par le bird-dog sur une jambe seule. Post-partum : G7.
+- grossesse : retiré : gainage latéral isométrique et pression abdominale (G4) ; remplacé par la quadrupédie, jambe seule ou bras seul. Post-partum : G7.
 - general : plus exigeant que la planche latérale : cases au moins aussi restrictives. Version plus douce : la planche latérale sur le genou. Sur la chaise instable, arrêt.
 
 **Grossesse** : retirer: remplacant:bird-dog-jambe-seule

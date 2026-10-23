@@ -1,6 +1,7 @@
 ---
 id: pullover-haltere-au-sol
-nom: Pull-over à l'haltère au sol
+nom: Haltère passé derrière la tête
+alias: [pull-over, pullover]
 schema: tirage_v
 couverture: substitut  # proposition de champ : ce n'est PAS un vrai tirage vertical
 type: force
@@ -11,7 +12,7 @@ source_brouillon: [M1777, M0410]
 statut: utilisable
 ---
 ## Pourquoi cette fiche
-Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (on ne peut pas tirer le corps vers le haut ni une charge vers le bas). Le pull-over sollicite aussi le grand dorsal (la source met les pectoraux en premier), dans un mouvement qui ressemble à un tirage vertical (le bras passe de derrière la tête vers la poitrine). C'est un **substitut faute de mieux avec des haltères**, pas un équivalent. L'achat le plus utile reste une barre de traction ou un élastique.
+Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (on ne peut pas tirer le corps vers le haut ni une charge vers le bas). L'haltère passé derrière la tête sollicite aussi le grand dorsal (la source met les pectoraux en premier), dans un mouvement qui ressemble à un tirage vertical (le bras passe de derrière la tête vers la poitrine). C'est un **substitut faute de mieux avec des haltères**, pas un équivalent. L'achat le plus utile reste une barre de traction ou un élastique.
 
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile (même fiche, rangé du plus facile au plus dur). Les variantes qui ne changent que le matériel ou la charge (haltère, kettlebell, chaise ou box de même hauteur) gardent le même échelon. `niveau` : debutant / intermediaire / avance. Échelons et niveaux : choix de coach, NON SOURCÉ (décision de format de l'utilisateur, 21/10/2026).
@@ -96,7 +97,7 @@ Variante au sol : aucune photo libre.
 | Muscles : la source met les pectoraux en premier (grand dorsal, épaules, triceps en secondaire) ; la fiche suit la source (pectoraux principal ; grand dorsal en secondaire ; deltoïdes non repris ; dentelé antérieur et abdominaux ajoutés par coach) | même fiche | idem | 2026-10-21 | PROVISOIRE |
 | Niveau : la source dit intermédiaire ; la variante au sol est mise en débutant (le sol limite l'amplitude, `kine` d'accord) ; la variante banc reste intermédiaire | choix de coach, tracé le 21/10/2026 | - | - | NON SOURCÉ |
 | Variante banc dans la longueur (la source est en travers du banc) | adaptation de coach pour la sécurité | - | - | NON SOURCÉ |
-| Le pull-over comme substitut du tirage vertical | choix de coach ; trou mesuré dans equipment-taxonomy.md §4 | - | 2026-10-21 | NON SOURCÉ (à trancher) |
+| L'haltère passé derrière la tête comme substitut du tirage vertical | choix de coach ; trou mesuré dans equipment-taxonomy.md §4 | - | 2026-10-21 | NON SOURCÉ (à trancher) |
 | Tag du brouillon M0410 = halteres seulement alors que la source utilise un banc | constat de nettoyage | - | 2026-10-21 | NON SOURCÉ (constat de nettoyage, à corriger dans le brouillon) |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |

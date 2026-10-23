@@ -1,6 +1,7 @@
 ---
 id: gainage-creux
-nom: Gainage en creux (hollow hold)
+nom: Gainage en creux
+alias: [hollow hold]
 schema: gainage
 type: gainage
 niveau_min: debutant

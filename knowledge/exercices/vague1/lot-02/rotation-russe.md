@@ -55,12 +55,12 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Notes**
 - dos-n1 : pieds au sol (l'échelon 1) ; plus de pieds levés ni d'haltère.
-- dos-n2 : exercice retiré (flexion et rotation du bas du dos) ; remplacé par le bird-dog sur une jambe seule.
+- dos-n2 : exercice retiré (flexion et rotation du bas du dos) ; remplacé par la quadrupédie, jambe seule ou bras seul.
 - hanche-n1 : pieds au sol (l'échelon 1).
 - hanche-n2 : même variante ; aucune augmentation de difficulté (R2).
 - epaule-n1 : bras moins tendus devant (amplitude réduite).
 - epaule-n2 : même case ; aucune augmentation de difficulté (R2), pas d'haltère plus lourd.
-- grossesse : retiré : assis incliné en arrière, pression sur le ventre, rotation (G4, extrapolation prudente) ; remplacé par le bird-dog sur une jambe seule. Post-partum : G7.
+- grossesse : retiré : assis incliné en arrière, pression sur le ventre, rotation (G4, extrapolation prudente) ; remplacé par la quadrupédie, jambe seule ou bras seul. Post-partum : G7.
 - general : version plus douce : l'ouverture du livre. Cases au moins aussi restrictives que le Pallof à l'élastique, plus facile.
 
 **Grossesse** : retirer: remplacant:bird-dog-jambe-seule

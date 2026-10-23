@@ -1,6 +1,7 @@
 ---
 id: mountain-climbers
-nom: Grimpeur (mountain climbers)
+nom: Grimpeur
+alias: [mountain climbers]
 schema: cardio
 type: cardio
 niveau_min: debutant

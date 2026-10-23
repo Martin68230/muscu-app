@@ -18,7 +18,7 @@ export const VIDEO_MAX_BYTES = 500_000;
 const SECTIONS = ['Variantes', 'Consignes', "Points d'attention", 'Erreurs fréquentes', 'Progression / régression', 'Repères de dosage', 'Sécurité et contre-indications', 'Photo', 'Sources'];
 const VARIANT_COLUMNS = ['id variante', 'nom', 'echelon', 'niveau', 'materiel_tags', 'installation'];
 const FM_REQUIRED = ['id', 'nom', 'schema', 'type', 'niveau_min', 'muscles_principaux', 'muscles_secondaires', 'source_brouillon', 'statut'];
-const FM_OPTIONAL = ['couverture', 'doux_pour'];
+const FM_OPTIONAL = ['couverture', 'doux_pour', 'alias'];
 const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const RANK = { garder: 0, adapter: 1, retirer: 2 };
 

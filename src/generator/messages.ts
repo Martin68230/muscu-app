@@ -59,6 +59,21 @@ export const msg = {
     ),
   pro: () => m('V-MSG-PRO', "Avec les gênes déclarées, l'app ne peut pas proposer de séance sûre. Demande l'avis d'un professionnel de santé."),
   grosDuree: () => m('V-MSG-GROS-DUREE', 'Grossesse ou après un accouchement : séances de 60 min au plus. Ta séance est ramenée à 60 min.'),
+  grosAvis: () =>
+    m(
+      'V-MSG-GROS-AVIS',
+      "Demande l'avis de ton médecin ou de ta sage-femme avant de t'entraîner. Cette appli n'est pas un avis médical : si l'un d'eux t'a déconseillé le sport, ne suis pas ces exercices.",
+    ),
+  epaules: (tags: string[], withAchat: boolean) => {
+    const opts = tags.map((t) => ACHAT_LABEL[t] ?? t);
+    const orList = opts.length <= 1 ? opts.join('') : `${opts.slice(0, -1).join(', ')} ou ${opts[opts.length - 1]}`;
+    return m(
+      'V-MSG-EPAULES',
+      'Avec ton matériel, pas de poussée vers le haut : tes épaules sont peu travaillées.' +
+        (!withAchat && opts.length ? ` ${cap(orList)} en ${opts.length > 1 ? 'ajouteraient' : 'ajouterait'}.` : ''),
+      { data: { tags } },
+    );
+  },
   dureeMin: (min: number) => m('V-MSG-DUREE-MIN', `Durée ramenée à ${min} min, le minimum pour une séance.`),
   freq: (gg: GG, n: number, fix: string | null) =>
     m(

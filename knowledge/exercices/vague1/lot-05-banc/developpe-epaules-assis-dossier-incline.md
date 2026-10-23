@@ -1,6 +1,6 @@
 ---
 id: developpe-epaules-assis-dossier-incline
-nom: Développé épaules assis (dossier presque droit ou banc)
+nom: Développé épaules assis aux haltères
 schema: poussee_v
 type: force
 niveau_min: debutant

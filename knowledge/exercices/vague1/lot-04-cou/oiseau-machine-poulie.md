@@ -1,6 +1,6 @@
 ---
 id: oiseau-machine-poulie
-nom: Oiseau à la machine ou aux poulies
+nom: Oiseau guidé
 schema: tirage_h
 type: force
 niveau_min: debutant

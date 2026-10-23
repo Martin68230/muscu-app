@@ -1,6 +1,7 @@
 ---
 id: pallof-elastique
-nom: Pallof press à l'élastique
+nom: Poussée anti-rotation à l'élastique
+alias: [pallof press]
 schema: anti_rotation
 type: fonctionnel
 niveau_min: debutant
@@ -94,7 +95,7 @@ Source : free-exercise-db (yuhonas), Unlicense, entrée « Pallof_Press_With_Rot
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Pallof press : de profil, poignée contre la poitrine, pousser les bras devant sans tourner, maintien, côtés alternés (à la poulie) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Pallof_Press » ; lu le 2026-10-22 ; adaptation à l'élastique par coach | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE pour la forme du mouvement (à la poulie) ; la version à l'élastique ancré est un choix de coach, NON SOURCÉ |
+| Poussée anti-rotation (nom anglais de la source : Pallof press) : de profil, poignée contre la poitrine, pousser les bras devant sans tourner, maintien, côtés alternés (à la poulie) | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db, entrée « Pallof_Press » ; lu le 2026-10-22 ; adaptation à l'élastique par coach | base d'exercices (pratique, pas une étude) | 2026-10-22 | PROVISOIRE pour la forme du mouvement (à la poulie) ; la version à l'élastique ancré est un choix de coach, NON SOURCÉ |
 | Échelons (genoux, debout, pieds rapprochés) et niveaux | choix de coach | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |

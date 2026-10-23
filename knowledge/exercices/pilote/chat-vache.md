@@ -1,6 +1,7 @@
 ---
 id: chat-vache
-nom: Chat-vache (dos rond, dos creux)
+nom: Dos rond, dos creux
+alias: [chat-vache, cat-cow]
 schema: mobilite
 type: mobilite_recup
 niveau_min: debutant

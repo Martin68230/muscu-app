@@ -1,6 +1,7 @@
 ---
 id: bird-dog-pause
-nom: Bird dog avec pause (et coude-genou)
+nom: Quadrupédie bras-jambe avec pause (et coude-genou)
+alias: [bird dog]
 schema: anti_rotation
 type: gainage
 niveau_min: intermediaire
@@ -18,14 +19,14 @@ statut: utilisable
 | bird-dog-coude-genou | Coude-genou sous le ventre | 2 | intermediaire | poids_du_corps, tapis | À quatre pattes sur un tapis ; après la position tendue, tu ramènes coude et genou opposés l'un vers l'autre sous le ventre. |
 
 ## Consignes
-1. Mets-toi en bird dog : à quatre pattes, bras droit et jambe gauche tendus à l'horizontale (puis l'inverse).
+1. Mets-toi en quadrupédie bras-jambe opposés : à quatre pattes, bras droit et jambe gauche tendus à l'horizontale (puis l'inverse).
 2. Marque une pause en position tendue : ventre serré, bassin et épaules qui ne bougent pas, respiration continue.
 3. Pour le coude-genou : ramène lentement le coude et le genou l'un vers l'autre sous ton ventre, sans arrondir le dos, puis retends.
 4. Reviens à quatre pattes en contrôlant, puis change de côté.
 
 ## Points d'attention
 - La durée de la pause n'est pas fixée ici (aucune valeur sourcée) : garde une pause que tu tiens sans que le bassin bouge.
-- Si le bassin tourne, raccourcis la pause ou reviens à bird-dog.
+- Si le bassin tourne, raccourcis la pause ou reviens à la quadrupédie sans pause.
 - Pas de balancement : le coude-genou se fait lentement.
 
 ## Erreurs fréquentes
@@ -61,10 +62,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n1 : coussin plié sous la zone d'appui ; plus épais au niveau 2.
 - epaule-n1 : amplitude bras-bas.
 - epaule-n2 : exercice retiré, remplacé par dead-bug-jambes-seules.
-- dos-n1 : retour au bird dog sans pause.
+- dos-n1 : retour à la quadrupédie bras-jambe opposés sans pause.
 - dos-n2 : seule la jambe bouge, les mains restent au sol.
 - hanche-n1 : amplitude réduite, dans la zone sans gêne.
-- hanche-n2 : bird dog classique, sans pause.
+- hanche-n2 : quadrupédie bras-jambe opposés classique, sans pause.
 - grossesse : la pause est un maintien prolongé : retirée ; remplaçant : bird-dog (maintien court). Post-partum : G7.
 - general : quand une case du profil demande une autre variante ou un retrait, cette autre variante s'applique à la place de la pause et du coude-genou.
 
@@ -88,7 +89,7 @@ Aucune photo libre pour cette variante.
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Position de base du bird dog (voir fiche bird-dog) | ACE Exercise Library « Bird dog » https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/ ; lue le 2026-10-21 par coach | organisme de certification, pratique professionnelle | 2026-10-21 | PROVISOIRE |
+| Position de base de la quadrupédie bras-jambe opposés (voir fiche bird-dog) | ACE Exercise Library « Bird dog » https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/ ; lue le 2026-10-21 par coach | organisme de certification, pratique professionnelle | 2026-10-21 | PROVISOIRE |
 | Pause et coude-genou comme progressions | choix de coach (la fiche bird-dog du pilote parle d'une pause) ; aucune source lue | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |

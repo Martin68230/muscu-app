@@ -1,6 +1,7 @@
 ---
 id: bird-dog-jambe-seule
-nom: Bird dog, jambe seule ou bras seul
+nom: Quadrupédie, jambe seule ou bras seul
+alias: [bird dog]
 schema: anti_rotation
 type: gainage
 niveau_min: debutant
@@ -66,7 +67,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n2 : amplitude réduite, aucune augmentation (R2).
 - hanche-n2 : amplitude réduite, dans la zone sans gêne.
 - grossesse : sans maintien en position tendue, respiration continue ; la version couchée sur le dos (dead-bug) est retirée en grossesse (G4) : elle n'est alors pas proposée. Post-partum : G7.
-- general : c'est déjà l'échelon le plus simple du bird dog : pas de version plus douce dans la fiche, réduis l'amplitude.
+- general : c'est déjà l'échelon le plus simple de la quadrupédie bras-jambe opposés : pas de version plus douce dans la fiche, réduis l'amplitude.
 
 **Grossesse** : adapter: amplitude:maintien-court
 **Version plus douce** : aucune
@@ -89,7 +90,7 @@ Aucune photo libre pour cette variante.
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Position à quatre pattes, gainage, un membre tendu vers l'horizontale, hanches et épaules de niveau, tête alignée | ACE Exercise Library « Bird dog » https://www.acefitness.org/resources/everyone/exercise-library/14/bird-dog/ ; page lue le 2026-10-21 pour la fiche bird-dog, réécrite par coach | organisme de certification, pratique professionnelle | 2026-10-21 | PROVISOIRE |
-| Réduire à un seul membre comme version plus facile du bird dog | choix de coach (pas de source lue) | - | - | NON SOURCÉ |
+| Réduire à un seul membre comme version plus facile de la quadrupédie bras-jambe opposés | choix de coach (pas de source lue) | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |

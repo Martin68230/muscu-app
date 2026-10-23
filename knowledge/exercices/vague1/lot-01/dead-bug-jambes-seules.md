@@ -1,6 +1,7 @@
 ---
 id: dead-bug-jambes-seules
-nom: Dead bug, jambes seules
+nom: Insecte sur le dos, jambes seules
+alias: [dead bug]
 schema: anti_rotation
 type: gainage
 niveau_min: debutant

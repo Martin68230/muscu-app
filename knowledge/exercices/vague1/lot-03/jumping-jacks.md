@@ -1,6 +1,7 @@
 ---
 id: jumping-jacks
-nom: Jumping jacks (écartés sautés)
+nom: Écartés sautés
+alias: [jumping jacks]
 schema: cardio
 type: cardio
 niveau_min: debutant
@@ -89,7 +90,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
-| Jumping jacks sans et avec saut | description de coach ; aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) | - | - | NON SOURCÉ |
+| Écartés sautés sans et avec saut | description de coach ; aucune entrée free-exercise-db correspondante trouvée (recherche par nom, 22/10/2026) | - | - | NON SOURCÉ |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Faire l'échelon sans saut sans gêne, réception souple, avant l'échelon avec saut | conseil de coach ; aucune source ; sports.md règle 5 (pas de saut intensif la veille d'un match) est un autre sujet | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |

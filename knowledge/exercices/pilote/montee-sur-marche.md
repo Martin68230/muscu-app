@@ -1,6 +1,7 @@
 ---
 id: montee-sur-marche
 nom: Montée sur marche
+alias: [step-up]
 schema: fente
 type: force
 niveau_min: debutant
@@ -17,11 +18,12 @@ statut: utilisable
 | montee-sur-marche-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, marche_escalier | La première marche d'un escalier (éclairé, dégagé), main sur la rampe si besoin. |
 | montee-sur-marche-halteres | Haltères légers | 2 | intermediaire | halteres, marche_escalier | Haltères légers, un dans chaque main, bras le long du corps ; seulement sur la première ou la deuxième marche d'un escalier éclairé, dégagé et non glissant, chaussures aux pieds. Option : un seul haltère, l'autre main libre sur la rampe. À réserver aux personnes qui maîtrisent l'échelon 1 (sans haltères). |
 | montee-sur-box-haute | Box stable plus haute | 3 | intermediaire | poids_du_corps, box_ou_step | Box ou banc stable, plus haut qu'une marche d'escalier (jamais une marche plus haute dans un escalier). Jamais avec haltères. |
+| montee-sur-chaise | Chaise solide calée contre un mur | 3 | intermediaire | poids_du_corps, chaise, mur | Chaise solide, sans roulettes, dossier calé contre un mur, assise sèche qui ne glisse pas ; pose tout un pied au milieu de l'assise. Plus haute qu'une marche d'escalier : même échelon que la box ou le banc (règle « chaise ou box de même hauteur », ci-dessus). Jamais avec haltères. Sécurité à compléter par `kine`. |
 
 Tags (décision de l'utilisateur, 21/10/2026) : `marche_escalier` = marche d'un escalier (implicite) ; `box_ou_step` = box, step ou banc stable (à cocher, jamais implicite). Chaque variante utilise celui qui correspond, pour afficher les bonnes précautions. Les échelons 1 et 2 ne changent pas l'id des variantes.
 
 ## Consignes
-1. Face à la marche, pose tout un pied dessus.
+1. Face à une marche, une chaise solide ou un banc, pose tout un pied dessus (chaise : sans roulettes, calée contre un mur).
 2. Pousse dans ce pied pour monter, sans t'aider de la jambe du bas.
 3. Termine bien droit, l'autre pied rejoint la marche.
 4. Redescends en contrôlant, d'abord le pied qui est monté en dernier.
@@ -41,7 +43,7 @@ Tags (décision de l'utilisateur, 21/10/2026) : `marche_escalier` = marche d'un 
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : montee-sur-marche-halteres, montee-sur-box-haute
+- plus-dur : montee-sur-marche-halteres, montee-sur-box-haute, montee-sur-chaise
 **montee-sur-marche-poids-du-corps** (marche basse, échelon 1) -> montee-sur-marche-halteres (haltères légers, échelon 2 ; on ne charge qu'après avoir maîtrisé l'échelon 1) -> montee-sur-box-haute (box stable plus haute, tag `box_ou_step`, échelon 3, sans charge) ; jamais d'haltères sur une box haute
 
 ## Repères de dosage
@@ -64,24 +66,29 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - genou-n1 : version sans haltères, main sur la rampe ; la box haute n'est pas proposée dès la gêne légère au genou, à la hanche ou à la cheville.
 - genou-n2 : aucune augmentation de charge ni de difficulté (R2).
 - general : haltères autorisés seulement sur la première ou la deuxième marche (décision de l'utilisateur), légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; avec haltères les mains ne sont pas libres pour la rampe : un seul haltère et l'autre main sur la rampe, ou sans haltères. Box haute : jamais avec haltères, jamais dans un escalier.
-- grossesse : version sans haltères, main sur la rampe ; la box haute est retirée. Post-partum : G7.
+- grossesse : version sans haltères, main sur la rampe ; la box haute et la chaise sont retirées (assise plus haute et sans rampe : risque de perte d'équilibre). Post-partum : G7.
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
+- general : variante `montee-sur-chaise` (échelon 3), ajoutée à la demande expresse de l'utilisateur (« une marche, une chaise solide ou un banc »). le tableau ci-dessus vaut pour toute la fiche, donc pour la chaise aussi. Genou, hanche, cheville dès le niveau 1 : la chaise (assise plus haute qu'une marche) est remplacée par `montee-sur-marche-poids-du-corps` (comme la box haute) ; une box plus basse serait aussi acceptable, mais le format n'encode qu'une variante par case. Dos : sans charge (la chaise est déjà sans charge) ; niveau 3 : retirer. Cuisse : n1 garder, n2 amplitude réduite, n3 retirer. Aine : pas de ligne, les adducteurs ne sont pas un muscle de cette fiche (zone non listée = garder) ; si une gêne à l'aine apparaît pendant la montée sur chaise, signe d'arrêt ci-dessous.
+- general : chaise sans roulettes (jamais de chaise de bureau), ni pliante ni empilable instable ; dossier calé contre un mur (ou mur derrière l'assise) pour qu'elle ne recule pas ; assise sèche qui ne glisse pas (pas de coussin, pas de chiffon, sol non glissant) ; chaussures aux pieds (pas de chaussettes seules) ; ne pas partir en poussant sur le dossier ni en s'appuyant dessus ; l'assise est plus haute qu'une marche : monter sans élan ni saut, tout le pied au milieu de l'assise, descendre lentement et contrôlé, un pied après l'autre, jamais en sautant. Pas de haltères. Pour un débutant, la chaise reste à éviter : `niveau` intermédiaire, échelon 3 (déjà le cas), le générateur ne la propose pas à un débutant.
 
 **Grossesse** : adapter: variante:montee-sur-marche-poids-du-corps
 **Version plus douce** : montee-sur-marche-poids-du-corps
 
-**Variantes** : `montee-sur-box-haute` est remplacée par `montee-sur-marche-poids-du-corps` dès la gêne légère au genou, à la hanche ou à la cheville.
+**Variantes** : `montee-sur-box-haute` et `montee-sur-chaise` sont remplacées par `montee-sur-marche-poids-du-corps` dès la gêne légère au genou, à la hanche ou à la cheville.
 
 
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche ou à la cheville.
-- Pied qui glisse ou talon qui dépasse de la marche.
+- Pied qui glisse ou talon qui dépasse de la marche, de la box ou de l'assise.
 - Perte d'équilibre.
+- Chaise qui bouge, recule ou grince : arrête et recale-la ou change de support.
+- Douleur ou tiraillement à l'aine ou à l'arrière de la cuisse pendant la montée.
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
 - Marche d'escalier : sans haltères, la première marche du bas ; avec haltères, la première ou la deuxième marche (voir ci-dessous). Escalier éclairé et dégagé, main sur la rampe si possible. Box ou banc : stable, qui ne glisse pas.
+- Chaise : solide, sans roulettes, ni pliante ni empilable instable, dossier calé contre un mur, assise sèche qui ne glisse pas (ni coussin ni tissu), chaussures aux pieds ; ne pousse pas sur le dossier pour partir ; plus haute qu'une marche : monte sans élan ni saut, descends lentement, un pied après l'autre. Jamais avec haltères.
 - Jamais au-delà de la deuxième marche d'un escalier (risque de chute en arrière) : pour monter plus haut, utilise une box stable, sans haltères.
 - Version haltères : seulement sur la première ou la deuxième marche, haltères légers, escalier dégagé, éclairé et non glissant, chaussures aux pieds ; tes mains ne sont plus libres pour la rampe : prends un seul haltère et garde l'autre main sur la rampe, ou reviens sans haltères. Box haute : jamais dans un escalier, jamais avec haltères.
 
@@ -100,6 +107,7 @@ Variante poids du corps : illustrable par ces images avec la mention « montré 
 | Box haute séparée de la marche d'escalier (tag `box_ou_step`, ex-`box_stable`) | point 48 de `relecteur` ; règle R8 de `kine` | - | - | NON SOURCÉ |
 | Haltères autorisés sur la première ou la deuxième marche (haltères légers, escalier dégagé et non glissant, chaussures, option un seul haltère avec rampe), échelon sans charge d'abord : l'échelon 2 est classé `intermediaire` pour que le générateur ne le propose pas à un débutant (option la plus prudente, choix de coach du 22/10/2026) | décision de l'utilisateur du 21/10/2026 (résout le bloquant R1 de `relecteur`) ; précautions de `coach`, aucune source | - | 2026-10-21 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-21 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
+| Précautions de la chaise (sans roulettes, calée contre un mur, assise qui ne glisse pas, chaussures, pas d'appui sur le dossier, montée sans élan, descente contrôlée) et cases de la variante `montee-sur-chaise` | règle R8 (objets du quotidien) de knowledge/regles-securite-communes.md §7 ; variante demandée expressément par l'utilisateur le 23/10/2026 ; aucune source trouvée sur la montée sur chaise | - | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-21 | NON SOURCÉ (extrapolation, à valider) |
 | Lignes cuisse / aine (muscles secondaires ischios / adducteurs), décision D11 | choix de `kine` par extrapolation de §0 de regles-securite-communes.md ; aucune étude ne teste ces adaptations | avis d'expert (extrapolation) | 2026-10-23 | NON SOURCÉ (extrapolation, à valider) |
 | Gêne au genou ou à la hanche de niveau 1-2 : adapter plutôt que tout retirer | Bannuru et al., OARSI 2019, Osteoarthritis Cartilage https://wrap.warwick.ac.uk/125416/ (exercice structuré = traitement de base de l'arthrose du genou et de la hanche) | recommandation internationale (méthode GRADE) ; résumé lu | 2026-10-21 | PROVISOIRE (extrapolation : public arthrosique ; l'app ne pose aucun diagnostic) |

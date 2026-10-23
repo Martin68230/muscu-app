@@ -66,7 +66,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - dos-n2 : fente seule, sans rotation.
 - epaule-n2 : sans lever le bras.
 - poignet-n1 : poing fermé sur la marche.
-- poignet-n2 : remplacement par le chat-vache sur les avant-bras.
+- poignet-n2 : remplacement par le dos rond, dos creux sur les avant-bras.
 - cuisse-n1 : mains sur une marche, fente moins grande (les ischios sont étirés, muscle principal). NON SOURCÉ (choix prudent de `kine`).
 - cuisse-n2 : même case ; aucune augmentation de difficulté (R2). NON SOURCÉ (choix prudent de `kine`).
 - grossesse : version mains sur une marche, fente moins grande. Post-partum : G7.
