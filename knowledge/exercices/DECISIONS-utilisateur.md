@@ -71,3 +71,9 @@ L'utilisateur veut une image partout : sans image, une fiche n'est pas parlante.
 ### D6-bis. Images trouvées par l'utilisateur : EN COURS (22/10 12:5x : aucun dépôt dans images-a-trouver/ ; étape wger non faite ; illustrations SVG déjà posées en attendant, à remplacer si l'utilisateur dépose mieux)
 - Dossier `images-a-trouver/` à la racine du projet (ignoré par git), avec un sous-dossier par fiche sans image (et par variante si besoin), un `A-LIRE.txt` et une page `images-a-trouver/LISTE.html` avec des liens de recherche. Généré par `python3 images-a-trouver/.gen.py` (relancer pour mettre à jour : il ne crée des dossiers que pour les fiches encore sans image).
 - Ordre pour D6 : (1) photos free-exercise-db regardées ; (2) images wger à licence compatible ; puis **relancer .gen.py pour que la liste ne contienne que les manques** ; (3) à chaque passage, regarder si l'utilisateur a déposé des images dans `images-a-trouver/<id>/` : vérifier l'image (bon mouvement, sûr), vérifier la licence grâce au `source.txt` (Wikimedia Commons, Pexels, Unsplash, Creative Commons ou photo personnelle de l'utilisateur : OK ; sans source ou licence inconnue : ne pas utiliser, le noter dans A-LIRE.txt), convertir en WebP léger dans public/photos/, renseigner la section Photo et les crédits ; (4) les illustrations SVG faites par `dev` seulement pour ce qui reste.
+
+## 23/10/2026 (session principale, demande de l'utilisateur)
+
+### D11. Zones cuisse et aine dans les fiches à ischios ou adducteurs secondaires : à appliquer (kine, puis check:fiches, puis contrôle rapide de relecteur sur Sonnet)
+- Les fiches qui ont `ischios` ou `adducteurs` en muscles secondaires (13 au 23/10) reçoivent une ligne `cuisse` (ischios) ou `aine` (adducteurs) dans leur tableau de sécurité, avec un choix prudent marqué NON SOURCÉ (extrapolation de §0 de regles-securite-communes.md).
+- La campagne est terminée (tâche planifiée désactivée le 23/10) : D11 est fait dans la session principale.
