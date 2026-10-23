@@ -20,6 +20,9 @@ export function isValidVideo(v: VideoRef | null | undefined): v is VideoRef {
   return v.kind === 'youtube' ? YOUTUBE_ID_RE.test(v.id) : v.kind === 'fichier' && FILE_RE.test(v.file);
 }
 
+/** Le lecteur n'a que les droits dont il a besoin (docs/securite.md) : pas de formulaire, pas de navigation du haut de page. */
+export const IFRAME_SANDBOX = 'allow-scripts allow-same-origin allow-presentation allow-popups';
+
 export function embedUrl(id: string): string {
   return `https://www.youtube-nocookie.com/embed/${id}?rel=0&playsinline=1`;
 }
@@ -68,6 +71,7 @@ export function VideoButton({ video, title }: { video: VideoRef | null | undefin
         <iframe
           class="video-frame"
           title={`Vidéo : ${title}`}
+          sandbox={IFRAME_SANDBOX}
           src={embedUrl(video.id)}
           allow="encrypted-media; picture-in-picture"
           allowFullScreen

@@ -14,16 +14,7 @@
     <link rel="icon" href="./icons/favicon.svg" type="image/svg+xml" />
     <link rel="apple-touch-icon" href="./icons/apple-touch-icon.png" />
     <title>Muscu entre amis</title>
-    <script>
-      // Thème appliqué avant le premier affichage (pas de flash blanc). Sombre par défaut.
-      (function () {
-        var t = 'dark';
-        try { t = localStorage.getItem('muscu.theme') || 'dark'; } catch (e) {}
-        if (t === 'system') t = matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark';
-        document.documentElement.dataset.theme = t;
-        document.querySelector('meta[name=theme-color]').content = t === 'light' ? '#f6f7f9' : '#0f1115';
-      })();
-    </script>
+    <script src="./theme-boot.js"></script>
   </head>
   <body>
     <div id="app"></div>

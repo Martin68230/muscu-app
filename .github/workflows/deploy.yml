@@ -20,12 +20,16 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0 # historique complet pour la recherche de secrets
       - uses: actions/setup-node@v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci
       - run: npm test
+      # Secrets dans l'historique, fonctions dangereuses (XSS), dépendances vulnérables : bloquant.
+      - run: npm run check:securite
       # Format des fiches d'exercices : non bloquant tant que les fiches ne sont pas conformes (à rendre bloquant ensuite).
       - run: npm run check:fiches
         continue-on-error: true

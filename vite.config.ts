@@ -1,6 +1,32 @@
-import { defineConfig } from 'vite';
+import { defineConfig, type Plugin } from 'vite';
 import preact from '@preact/preset-vite';
 import { VitePWA } from 'vite-plugin-pwa';
+
+/** Politique de sécurité du contenu : ajoutée au build seulement (le serveur de développement a besoin de scripts en ligne). */
+export const CSP = [
+  "default-src 'self'",
+  "script-src 'self'",
+  "style-src 'self' 'unsafe-inline'",
+  "img-src 'self' data:",
+  "media-src 'self'",
+  "frame-src https://www.youtube-nocookie.com",
+  "connect-src 'self'",
+  "object-src 'none'",
+  "base-uri 'self'",
+  "form-action 'self'",
+  "worker-src 'self'",
+  "manifest-src 'self'",
+].join('; ');
+
+const cspPlugin: Plugin = {
+  name: 'csp-meta',
+  apply: 'build',
+  transformIndexHtml: {
+    order: 'post',
+    handler: (html) => html.replace('<meta charset="UTF-8" />', (m) => `${m}
+    <meta http-equiv="Content-Security-Policy" content="${CSP}" />`),
+  },
+};
 
 // base './' : le site fonctionne quel que soit le nom du dépôt GitHub Pages.
 export default defineConfig({
@@ -10,6 +36,7 @@ export default defineConfig({
   },
   plugins: [
     preact(),
+    cspPlugin,
     VitePWA({
       registerType: 'autoUpdate',
       injectRegister: 'auto',

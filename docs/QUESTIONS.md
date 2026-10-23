@@ -21,3 +21,8 @@ Une entrée par question : contexte, choix prudent appliqué, option alternative
 - **Contexte** : la pompe piquée passe à `intermediaire` (pas pour un débutant à la maison). Sans matériel, un débutant n'a donc plus de fiche de poussée verticale ; knowledge/generateur-v1.md §7.1 (ligne « poussée V », l. 376) la donne encore comme `pompe-piquee (débutant)` et couverte.
 - **Choix prudent appliqué** : aucune poussée verticale sans matériel pour un débutant ; la règle de repli du générateur (autre schéma ou haltères assis) s'applique.
 - **Option alternative** : écrire une fiche plus douce (ex. élévation latérale / développé avec bouteilles d'eau ou sac à dos, déjà : `developpe-epaules-sac-a-dos`) et corriger le §7.1.
+
+## Q4. Texte de sécurité écrit par dev pour le post-partum (23/10/2026) : à valider par kine
+- **Contexte** : la fiche d'exercice affiche, pour le réglage « post-partum », la note de la fiche et une phrase générale écrite par `dev` : « Reprends progressivement et demande l'avis de ton médecin ou de ta sage-femme. » (src/ui/screens/Fiche.tsx).
+- **Choix prudent appliqué** : la phrase reste affichée (elle va dans le sens de G1-G3 et G7 de regles-securite-communes.md).
+- **À faire** : `kine` relit ou réécrit la phrase ; statut à fixer (aujourd'hui NON SOURCÉ).

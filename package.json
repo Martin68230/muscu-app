@@ -12,6 +12,7 @@
     "screens": "playwright test",
     "icons": "node tools/make-icons.mjs",
     "check:fiches": "node tools/validate-fiches.mjs",
+    "check:securite": "node tools/check-securite.mjs",
     "fiches": "node tools/build-fiches.mjs",
     "credits": "node tools/make-credits.mjs",
     "page:images": "node tools/page-images.mjs"

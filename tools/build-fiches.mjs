@@ -64,6 +64,14 @@ export function buildFiche(text, file, { publicDir } = {}) {
 
   const consignes = sec('Consignes').lines.filter((l) => /^\d+\.\s/.test(l.text)).map((l) => clean(l.text.replace(/^\d+\.\s*/, '')));
   const pointsAttention = bullets(sec("Points d'attention").lines);
+  const erreursFrequentes = sec('Erreurs fréquentes') ? bullets(sec('Erreurs fréquentes').lines) : [];
+  // Progression : « - plus-facile : id1, id2 » ; « aucun » et les fiches pas encore créées (a-creer:) sont ignorés.
+  const progLine = (key) => {
+    const l = (sec('Progression')?.lines ?? []).find((x) => new RegExp(`^\\s*[-*]\\s*${key}\\s*:`).test(x.text));
+    if (!l) return [];
+    return l.text.replace(/^[^:]*:/, '').split(',').map((s) => clean(s)).filter((s) => /^[a-z0-9]+(?:-[a-z0-9]+)*$/.test(s) && s !== 'aucun');
+  };
+  const progression = { plusFacile: progLine('plus-facile'), plusDur: progLine('plus-dur') };
 
   // Sécurité
   const ss = sec('Sécurité').lines;
@@ -116,6 +124,8 @@ export function buildFiche(text, file, { publicDir } = {}) {
     variantes,
     consignes,
     pointsAttention,
+    erreursFrequentes,
+    progression,
     securite: { zones, grossesse, versionPlusDouce: vpd === 'aucune' ? null : vpd, signesArret, objetsQuotidien, notes },
     images,
     video: v ? { kind: v.kind, ref: v.ref } : null,
