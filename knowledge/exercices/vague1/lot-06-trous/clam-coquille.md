@@ -84,7 +84,7 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 ## Photo
 - aucune photo (aucune entrée free-exercise-db correspondante)
-- illustration : public/illustrations/clam-coquille.svg : affichable : oui (illustration originale de l'app, refaite le 23/10/2026 : couché sur le côté, genoux pliés, pieds joints ; arrivée : genou du dessus ouvert, pieds restent joints ; vue de face, simplifiée)
+- illustration : public/illustrations/clam-coquille.svg : affichable : oui (illustration originale de l'app, refaite le 23/10/2026 : couché sur le côté, genoux pliés, pieds joints ; arrivée : genou du dessus ouvert, pieds restent joints ; vue de dessus, hanches fléchies environ 45 degrés, genoux environ 90 degrés)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

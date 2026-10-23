@@ -535,13 +535,13 @@ export const EXERCICES = [
     labels: ['Départ : bras tendus, genoux pliés', 'Bas : coudes à 90°, pas plus', 'Échelon 2 : jambes tendues'],
     a: { p: [18, 53], t: 90, h: 90, armN: { to: [-4, 46], bend: 'b' }, armF: { to: [-6, 46], bend: 'b' }, legN: { to: [72, A], bend: 'f' }, legF: { to: [66, A], bend: 'f' }, back: [['step', -90, 4, 46]] },
     b: { p: [18, 30], t: 90, h: 90, armN: { to: [-4, 46], bend: 'b' }, armF: { to: [-6, 46], bend: 'b' }, legN: { to: [72, A], bend: 'f' }, legF: { to: [66, A], bend: 'f' }, back: [['step', -90, 4, 46]], props: [['arrow', [-40, 70], [-40, 100]]] },
-    c: { p: [18, 30], t: 90, h: 90, armN: { to: [-4, 46], bend: 'b' }, armF: { to: [-6, 46], bend: 'b' }, legN: { to: [114, A], bend: 'f' }, legF: { to: [108, A], bend: 'f' }, back: [['step', -90, 4, 46]], props: [['arrow', [-40, 70], [-40, 100]]] },
+    c: { p: [0, 30], t: 90, h: 90, armN: { to: [-22, 46], bend: 'b' }, armF: { to: [-24, 46], bend: 'b' }, legN: { to: [112, A], bend: 'f' }, legF: { to: [107, A], bend: 'f' }, back: [['step', -108, -14, 46]], props: [['arrow', [-58, 70], [-58, 100]]] },
   },
   {
-    id: 'clam-coquille', titre: 'Coquille (clam) : couché sur le côté, genoux pliés, pieds joints, le genou du dessus qui s ouvre',
-    view: 'front', labels: ['Genoux pliés, pieds joints', 'Genou du dessus ouvert, pieds joints'],
-    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [12, -25] }, legF: { a: [20, -20] }, back: [['mat', -170, 130]] },
-    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { a: [12, -25] }, legF: { a: [50, -30] }, back: [['mat', -170, 130]], props: [['arrow', [30, 50], [30, 80]]] },
+    id: 'clam-coquille', titre: 'Coquille (clam), vue de dessus : couché sur le côté, hanches et genoux pliés, pieds joints, le genou du dessus qui s ouvre',
+    view: 'top', labels: ['Hanches et genoux pliés, pieds joints', 'Genou du dessus ouvert, pieds joints'],
+    a: { p: [-40, 120], t: 180, tl: 68, hl: 20, h: 180, sw: 6, hw: 6, legN: { to: [36, 122], bend: 'f' }, legF: { to: [36, 122], bend: 'b' }, armN: { a: [90, 90] }, armF: { a: [92, 92] }, back: [['rect', -140, 30, 300, 190, 0]] },
+    b: { p: [-40, 120], t: 180, tl: 68, hl: 20, h: 180, sw: 6, hw: 6, legN: { to: [36, 122], bend: 'f' }, legF: { to: [28, 124], bend: 'b' }, armN: { a: [90, 90] }, armF: { a: [92, 92] }, back: [['rect', -140, 30, 300, 190, 0]], props: [['arrow', [20, 185], [20, 210]]] },
   },
 ];
 
