@@ -1,7 +1,7 @@
 // Validation des fiches d'exercices : node tools/validate-fiches.mjs [dossier]
 // Spécification : knowledge/format-fiches.md. Aucune dépendance (mini-parseur YAML du frontmatter).
 // Sortie en français : fichier:ligne : [catégorie] problème. Code de sortie 1 s'il y a des erreurs.
-import { existsSync, readdirSync, readFileSync } from 'node:fs';
+import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { basename, join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 
@@ -14,6 +14,7 @@ export const ZONES = ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'gen
 export const AMPLITUDES = ['reduite', 'mi-course', 'sans-gene', 'maintien-court', 'sans-rotation', 'bras-bas', 'bras-au-sol', 'jambes-seules', 'tete-alignee', 'lente'];
 export const APPUIS = ['coussin', 'serviette', 'poings-fermes', 'avant-bras', 'paumes-face-a-face', 'mains-vers-exterieur', 'main-sur-rampe', 'main-sur-support', 'mur', 'assise-rehaussee', 'pieds-ecartes', 'buste-redresse', 'charges-surelevees', 'premiere-marche', 'coudes-pres-du-corps', 'front-pose'];
 
+export const VIDEO_MAX_BYTES = 500_000;
 const SECTIONS = ['Variantes', 'Consignes', "Points d'attention", 'Erreurs fréquentes', 'Progression / régression', 'Repères de dosage', 'Sécurité et contre-indications', 'Photo', 'Sources'];
 const VARIANT_COLUMNS = ['id variante', 'nom', 'echelon', 'niveau', 'materiel_tags', 'installation'];
 const FM_REQUIRED = ['id', 'nom', 'schema', 'type', 'niveau_min', 'muscles_principaux', 'muscles_secondaires', 'source_brouillon', 'statut'];
@@ -343,6 +344,28 @@ export function parseFiche(text, file) {
     }
   }
 
+  // ---- Vidéo (facultative, décision D12) : « - video : youtube:<id> | <chaîne> | vérifiée le AAAA-MM-JJ »
+  // ou « - video : fichier:<nom>.mp4 | <auteur> | ajoutée le AAAA-MM-JJ » (fichier dans public/videos/) ; « - aucune vidéo ».
+  const sv2 = sec('Vidéo');
+  fiche.videos = [];
+  if (sv2) {
+    const bullets = sv2.lines.filter((l) => /^\s*[-*]\s/.test(l.text));
+    if (bullets.length === 0) add(sv2.start + 1, 'video', 'aucune ligne : écrire « - video : ... » ou « - aucune vidéo »');
+    for (const l of bullets) {
+      if (/^\s*[-*]\s*aucune vid[ée]o/i.test(l.text)) continue;
+      const m = l.text.match(/^\s*[-*]\s*video\s*:\s*(youtube|fichier)\s*:\s*([^|\s]+)\s*\|\s*([^|]+?)\s*\|\s*(?:v[ée]rifi[ée]e|ajout[ée]e)\s+le\s+(\d{4}-\d{2}-\d{2})\s*$/);
+      if (!m) { add(l.n, 'video', "écriture attendue : « - video : youtube:<id> | <chaîne> | vérifiée le AAAA-MM-JJ » ou « - video : fichier:<nom>.mp4 | <auteur> | ajoutée le AAAA-MM-JJ »"); continue; }
+      const [, kind, ref, who, date] = m;
+      if (Number.isNaN(Date.parse(date))) add(l.n, 'video', `date « ${date} » invalide`);
+      if (kind === 'youtube') {
+        if (!/^[A-Za-z0-9_-]{11}$/.test(ref)) add(l.n, 'video', `identifiant YouTube « ${ref} » : 11 caractères (lettres, chiffres, - et _) attendus`);
+      } else {
+        if (!/^[a-z0-9]+(?:-[a-z0-9]+)*\.mp4$/.test(ref)) add(l.n, 'video', `fichier « ${ref} » : nom en kebab-case, extension .mp4`);
+      }
+      fiche.videos.push({ line: l.n, kind, ref, who, date });
+    }
+  }
+
   // ---- Sources
   const ssr = sec('Sources');
   if (ssr) {
@@ -408,6 +431,14 @@ export function validateLot(files, options = {}) {
         }
       }
     }
+    if (options.videosDir) {
+      for (const v of fiche.videos) {
+        if (v.kind !== 'fichier' || !/^[a-z0-9]+(?:-[a-z0-9]+)*\.mp4$/.test(v.ref)) continue;
+        const p = join(options.videosDir, v.ref);
+        if (!existsSync(p)) issues.push({ file: fiche.file, line: v.line, categorie: 'video', severite: 'erreur', message: `fichier vidéo absent : public/videos/${v.ref}` });
+        else if (statSync(p).size > VIDEO_MAX_BYTES) issues.push({ file: fiche.file, line: v.line, categorie: 'video', severite: 'erreur', message: `fichier vidéo trop lourd : ${Math.round(statSync(p).size / 1024)} Ko (maximum ${VIDEO_MAX_BYTES / 1000} Ko)` });
+      }
+    }
     if (options.photosDir) {
       for (const ph of fiche.photos) {
         if (ph.statut !== 'oui' || ph.illustration) continue;
@@ -446,7 +477,7 @@ function main() {
   const names = listFiches(dir);
   const files = names.map((n) => ({ name: n, text: readFileSync(join(dir, n), 'utf8') }));
   const tags = loadTags(join(root, 'knowledge', 'materiel-tags.json'));
-  const { issues, errors, warnings } = validateLot(files, { tags, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations') });
+  const { issues, errors, warnings } = validateLot(files, { tags, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations'), videosDir: join(root, 'public', 'videos') });
   for (const i of issues) console.log(`${i.file}:${i.line} : [${i.categorie}]${i.severite === 'erreur' ? '' : ' (avertissement)'} ${i.message}`);
   const byCat = {}; const byFile = {};
   for (const e of errors) { byCat[e.categorie] = (byCat[e.categorie] ?? 0) + 1; byFile[e.file] = (byFile[e.file] ?? 0) + 1; }

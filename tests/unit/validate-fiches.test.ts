@@ -266,3 +266,22 @@ ${extra}`;
     expect(r.errors[0].line).toBeGreaterThan(0);
   });
 });
+
+describe('section Vidéo (facultative, D12)', () => {
+  const withVideo = (line: string) => fiche() + `## Vidéo
+${line}
+`;
+  const check = (line: string, opts = {}) => validateLot([{ name: 'pompe-inclinee.md', text: withVideo(line) }], { tags: TAGS, ...opts });
+
+  it('accepte une fiche sans section Vidéo, « aucune vidéo » et une ligne YouTube valide', () => {
+    expect(run({ 'pompe-inclinee.md': fiche() }).errors).toEqual([]);
+    expect(check('- aucune vidéo').errors).toEqual([]);
+    expect(check('- video : youtube:dQw4w9WgXcQ | Kiné Sport | vérifiée le 2026-10-23').errors).toEqual([]);
+  });
+
+  it('refuse un identifiant mal formé, une date invalide ou une ligne illisible', () => {
+    expect(check('- video : youtube:trop-court | Chaîne | vérifiée le 2026-10-23').errors.map((e) => e.message).join()).toMatch(/11 caractères/);
+    expect(check('- video : youtube:dQw4w9WgXcQ | Chaîne | vérifiée le 2026-13-45').errors.map((e) => e.message).join()).toMatch(/invalide/);
+    expect(check('- https://youtu.be/dQw4w9WgXcQ').errors.map((e) => e.message).join()).toMatch(/écriture attendue/);
+  });
+});

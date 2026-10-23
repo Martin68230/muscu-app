@@ -1,0 +1,23 @@
+{
+  "sources": [
+    {
+      "id": "free-exercise-db",
+      "titre": "free-exercise-db (yuhonas)",
+      "detail": "Photos d'exercices, recadrées et réduites pour l'app.",
+      "licence": "Unlicense (domaine public)",
+      "licenceUrl": "https://unlicense.org/",
+      "url": "https://github.com/yuhonas/free-exercise-db",
+      "images": 147
+    },
+    {
+      "id": "illustrations",
+      "titre": "Illustrations de l'app",
+      "detail": "Dessins schématiques créés pour cette app. Ils ne reprennent aucune image d'une autre application.",
+      "licence": "Création de l'app",
+      "licenceUrl": null,
+      "url": null,
+      "images": 82
+    }
+  ],
+  "videos": "Les vidéos affichées par le bouton « Voir une vidéo » sont des vidéos YouTube publiques, lues avec le lecteur officiel (mode sans cookies) et seulement après ton appui. Elles restent la propriété de leurs auteurs ; l'app ne les copie pas."
+}

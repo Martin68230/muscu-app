@@ -97,5 +97,15 @@ Quand aucune photo libre ne convient (mauvais mouvement, matériel de salle, log
 - **Remplacement** : si une photo libre convenable est trouvée plus tard, on ajoute sa ligne `oui` ; l'illustration peut rester comme second visuel.
 - **Contrôle** : `npm run check:fiches` exige un fichier SVG pour toute ligne `illustration ... oui` ; `tests/unit/illustrations.test.ts` vérifie le moteur et que chaque fiche concernée a sa pose.
 
+## Licences vérifiées (D12, 23/10/2026)
+- **Everkinetic** (github.com/everkinetic/data) : le dépôt contient `LICENSE.md` = texte intégral de CC BY-SA 4.0 (lu) et l'API GitHub indique `cc-by-sa-4.0`. Réutilisable avec attribution (« Everkinetic, Greg Priday ») et partage dans les mêmes conditions (images recadrées restent CC BY-SA). Le site everkinetic.com n'a pas pu être lu (certificat invalide) ; le dépôt fait foi. Le dépôt ne propose que des exercices de salle (barre, haltères, machines) : aucun ne correspond aux 16 fiches D13. **Aucune image retenue.**
+- **wger** (API publique `/api/v2/exerciseimage/`, 383 images, lue le 23/10/2026) : licence par image. 83 images = Everkinetic (CC BY-SA 3.0), 101 images CC BY-SA 4.0 SANS auteur renseigné (attribution impossible : exclues), environ 190 images CC BY-SA 4.0 avec auteur nommé, 2 images CC BY-SA 3.0 « wger.de ». Aucune CC0 ni CC BY. Usage permis seulement avec auteur et licence de l'image dans `public/photos/wger/credits.json`. Les images examinées (Pallof à la poulie en schéma musculaire, étirement mollet à la bande, rotations couchées) ne correspondent pas aux consignes. **Aucune image retenue.**
+- Ajout D13 (free-exercise-db, Unlicense) : `Pallof_Press_With_Rotation-0/1.webp` (fiche `pallof-elastique`), recadrage x 250 à 700 sur 850 (retire la machine), largeur 600 px, WebP qualité 70. Photo à la poulie.
+- Candidats free-exercise-db regardés et refusés : One_Arm_Against_Wall (bras au-dessus de l'épaule, contredit la consigne), Split_Squats (fente sautée, déjà exclue par coach), Spinal_Stretch (flexion avant, bras derrière la tête), Peroneals_Stretch (étirement passif), Ball_Leg_Curl (ballon, pas serviette), Platform_Hamstring_Slides (fesses au sol : faux).
+- Pour ajouter une image Everkinetic ou wger : fichier dans `public/photos/<source>/`, entrée dans `public/photos/<source>/credits.json` (voir `tools/make-credits.mjs`), puis `npm run credits`.
+
+## Vidéos (D12)
+Aucun fichier copié. Fiche : section `## Vidéo`, ligne `- video : youtube:<id> | <chaîne> | vérifiée le AAAA-MM-JJ` ou `- video : fichier:<nom>.mp4 | <auteur> | ajoutée le AAAA-MM-JJ` (MP4 de l'utilisateur dans `public/videos/`, moins de 500 Ko). Bouton : `src/ui/VideoButton.tsx`.
+
 ## Crédits
-La page « crédits » de l'app doit citer : free-exercise-db (yuhonas, domaine public, photos recadrées). Jamais d'images du dépôt maxwu.
+La page « crédits » de l'app doit citer : free-exercise-db (yuhonas, domaine public, photos recadrées). La page est générée par `npm run credits` (src/data/credits.json, aussi lancé par `npm run build`) : Everkinetic et wger n'y apparaissent que si des images de ces sources sont dans le dépôt. Jamais d'images du dépôt maxwu.

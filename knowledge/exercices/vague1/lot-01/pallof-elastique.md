@@ -82,9 +82,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 
 ## Photo
-- aucune photo
+- `Pallof_Press_With_Rotation/0.jpg` : affichable : oui (D13, 23/10/2026 : debout de profil, mains jointes contre la poitrine ; photo prise à la poulie, l'élastique se tient de la même façon ; recadrée pour retirer la machine et la salle)
+- `Pallof_Press_With_Rotation/1.jpg` : affichable : oui (même photo, bras tendus devant la poitrine, buste de face qui ne tourne pas ; la rotation de la source n'est pas montrée)
 - illustration : public/illustrations/pallof-elastique.svg : affichable : oui (illustration originale de l'app)
-Aucune photo : « Pallof_Press » (free-exercise-db) est à la poulie, matériel de salle.
+Source : free-exercise-db (yuhonas), Unlicense, entrée « Pallof_Press_With_Rotation » ; crédit dans tools/photos.md.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

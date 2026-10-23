@@ -267,3 +267,14 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .eq-title { margin: 0 0 4px; font-size: 1rem; }
 .eq-extra { margin: 0 0 8px 38px; }
 .eq-extra .segmented { margin-bottom: 8px; }
+
+/* Bouton et lecteur vidéo (D12) : bouton >= 44 px, lecteur 16/9 sur toute la largeur. */
+.video-btn { min-height: 48px; margin-top: 10px; }
+.video-box { margin-top: 10px; }
+.video-frame { display: block; width: 100%; aspect-ratio: 16 / 9; border: 0; border-radius: 12px; background: #000; }
+
+/* Page Crédits */
+.back-btn { width: auto; min-height: 48px; margin-bottom: 8px; }
+.credit h2 { margin-top: 0; font-size: 1.125rem; }
+.credit a { color: var(--accent); min-height: 44px; display: inline-flex; align-items: center; }
+.credit summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; }

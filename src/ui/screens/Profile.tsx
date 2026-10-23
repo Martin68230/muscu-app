@@ -4,6 +4,7 @@ import { update } from '../../data/repo';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
 import { Equipment } from './Equipment';
+import { Credits } from './Credits';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
@@ -41,6 +42,7 @@ export function Profile({ profile, onChange, onWiped }: {
   const [theme, setTheme] = useState<ThemePref>(getThemePref());
   const [name, setName] = useState(profile.displayName);
   const [message, setMessage] = useState<string | null>(null);
+  const [showCredits, setShowCredits] = useState(false);
   const fileInput = useRef<HTMLInputElement>(null);
   const confirmDialog = useRef<HTMLDialogElement>(null);
   const noticeDialog = useRef<HTMLDialogElement>(null);
@@ -86,6 +88,8 @@ export function Profile({ profile, onChange, onWiped }: {
     await wipeAllData();
     onWiped();
   };
+
+  if (showCredits) return <Credits onBack={() => setShowCredits(false)} />;
 
   return (
     <>
@@ -141,6 +145,9 @@ export function Profile({ profile, onChange, onWiped }: {
 
       <h2>Santé</h2>
       <button class="btn" onClick={() => noticeDialog.current?.showModal()}>Relire l'avertissement santé</button>
+
+      <h2>À propos</h2>
+      <button class="btn" onClick={() => setShowCredits(true)}>Crédits et licences</button>
 
       <p class="dim small version">Version {__APP_VERSION__}</p>
 

@@ -11,7 +11,9 @@
     "noUnusedParameters": true,
     "skipLibCheck": true,
     "isolatedModules": true,
+    "resolveJsonModule": true,
     "types": ["vite/client", "vite-plugin-pwa/client"]
   },
-  "include": ["src", "tests/unit"]
+  "include": ["src", "tests/unit"],
+  "exclude": ["tests/unit/validate-videos.test.ts"]
 }

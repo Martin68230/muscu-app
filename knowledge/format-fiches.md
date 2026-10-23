@@ -123,6 +123,14 @@ Une ligne par image : `- \`<DossierFreeExerciseDb>/<n>.jpg\` : affichable : <oui
 
 **Contrôle** : une fiche `utilisable` ou `verifie` sans au moins une image `affichable : oui` (photo ou illustration) est une ERREUR de `npm run check:fiches` ; une illustration `oui` sans son fichier SVG est aussi une erreur.
 
+## 6 bis. Vidéo (facultative, D12)
+
+Section `## Vidéo` (après `Photo`, hors des 9 sections obligatoires). Une ligne par vidéo :
+- `- video : youtube:<id> | <chaîne> | vérifiée le AAAA-MM-JJ` : id de 11 caractères ; seul l'identifiant est stocké, jamais la vidéo.
+- `- video : fichier:<nom>.mp4 | <auteur> | ajoutée le AAAA-MM-JJ` : vidéo de l'utilisateur dans `public/videos/` (3 à 5 s, moins de 500 Ko, prioritaire sur YouTube).
+- `- aucune vidéo`.
+`npm run check:fiches` contrôle l'écriture, l'id, la date, la présence et le poids du fichier (erreurs). L'app affiche le bouton « Voir une vidéo » (`src/ui/VideoButton.tsx`) seulement en ligne ; le lecteur `youtube-nocookie.com` n'est chargé qu'après l'appui.
+
 ## 7. Exemple minimal valide
 
 ```markdown
