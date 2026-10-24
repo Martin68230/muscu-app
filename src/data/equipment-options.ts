@@ -120,3 +120,19 @@ export function parseWeights(text: string): number[] {
 export function formatWeights(w: number[]): string {
   return w.map((n) => String(n).replace('.', ',')).join('; ');
 }
+
+/** Poids rapides proposés en boutons (le clavier de l'iPhone n'a pas de point-virgule). */
+export const QUICK_WEIGHTS_KG = [1, 2, 2.5, 4, 5, 6, 8, 10, 12, 15, 20] as const;
+
+export function formatKg(n: number): string {
+  return String(n).replace('.', ',');
+}
+
+/** Ajoute un poids saisi (virgule ou point acceptés) ; texte invalide : liste inchangée. */
+export function addWeight(list: number[], text: string): number[] {
+  return parseWeights([...list.map(String), text.trim().replace(/[;\s]+/g, '')].join(' '));
+}
+
+export function removeWeight(list: number[], kg: number): number[] {
+  return list.filter((n) => n !== kg);
+}

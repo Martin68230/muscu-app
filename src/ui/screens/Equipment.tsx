@@ -2,8 +2,49 @@ import { useEffect, useState } from 'preact/hooks';
 import type { EquipmentProfile } from '../../data/model';
 import { list, update } from '../../data/repo';
 import {
-  EQUIPMENT_GROUPS, formatWeights, normalizeEquipment, type NormalizedEquipment, parseWeights, toggleTag, type EquipmentOption,
+  EQUIPMENT_GROUPS, addWeight, formatKg, normalizeEquipment, type NormalizedEquipment, QUICK_WEIGHTS_KG, removeWeight, toggleTag, type EquipmentOption,
 } from '../../data/equipment-options';
+
+/** Poids choisis : boutons rapides, champ « autre poids », pastilles retirables d'un appui. */
+function WeightPicker({ id, label, weights: saved, onChange }: { id: string; label: string; weights: number[]; onChange: (w: number[]) => void }) {
+  const [weights, setWeights] = useState(saved);
+  const [other, setOther] = useState('');
+  const change = (next: number[]) => {
+    setWeights(next);
+    onChange(next);
+  };
+  const add = () => {
+    const next = addWeight(weights, other);
+    if (next.length !== weights.length) change(next);
+    setOther('');
+  };
+  return (
+    <div>
+      <p class="small dim" id={`${id}-l`}>{label}</p>
+      <div class="chips" role="group" aria-label="Poids rapides">
+        {QUICK_WEIGHTS_KG.map((kg) => (
+          <button key={kg} type="button" class="chip" aria-pressed={weights.includes(kg)} onClick={() => change(weights.includes(kg) ? removeWeight(weights, kg) : addWeight(weights, String(kg)))}>
+            {formatKg(kg)}
+          </button>
+        ))}
+      </div>
+      <div class="weight-add">
+        <input id={id} class="field" type="text" inputmode="decimal" enterkeyhint="done" placeholder="Autre poids, ex. 12,5" aria-labelledby={`${id}-l`}
+          value={other} onInput={(e) => setOther(e.currentTarget.value)} onKeyDown={(e) => e.key === 'Enter' && add()} />
+        <button type="button" class="btn" onClick={add}>Ajouter</button>
+      </div>
+      {weights.length > 0 && (
+        <div class="chips" aria-label="Poids choisis">
+          {weights.map((kg) => (
+            <button key={kg} type="button" class="chip" aria-label={`Retirer ${formatKg(kg)} kg`} onClick={() => change(removeWeight(weights, kg))}>
+              {formatKg(kg)} kg ✕
+            </button>
+          ))}
+        </div>
+      )}
+    </div>
+  );
+}
 
 const WEIGHT_LABEL = {
   dumbbell: ['Poids des haltères (kg)', 'dumbbellWeightsKg'],
@@ -14,7 +55,6 @@ const WEIGHT_LABEL = {
 /** Matériel : tout est une case à cocher, privé, stocké dans le profil matériel (décision D7). */
 export function Equipment() {
   const [eq, setEq] = useState<NormalizedEquipment | null>(null);
-  const [draft, setDraft] = useState<Record<string, string>>({});
 
   useEffect(() => {
     list('equipment').then((rows) => rows[0] && setEq(normalizeEquipment(rows[0])));
@@ -39,21 +79,7 @@ export function Equipment() {
             ))}
           </div>
         )}
-        <label for={id} class="small dim">{label}, séparés par des points-virgules</label>
-        <input
-          id={id}
-          class="field"
-          type="text"
-          inputmode="decimal"
-          placeholder="ex. 4; 6; 8; 12,5"
-          value={draft[key] ?? formatWeights(eq[key])}
-          onInput={(e) => setDraft({ ...draft, [key]: e.currentTarget.value })}
-          onBlur={() => {
-            const w = parseWeights(draft[key] ?? formatWeights(eq[key]));
-            setDraft({ ...draft, [key]: formatWeights(w) });
-            save({ [key]: w });
-          }}
-        />
+        <WeightPicker id={id} label={label} weights={eq[key]} onChange={(w) => save({ [key]: w })} />
       </div>
     );
   };
