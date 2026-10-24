@@ -193,3 +193,27 @@ Ids de 11 caractères, tous valides ; oEmbed répond pour les 7 ; chaîne confor
 | releve-mollets-debout-barre | utilisable | C7 corrigé ; illustration, réserve |
 
 **Verdict global : plus aucun point bloquant. 16 fiches proposées `utilisable` (le changement de statut revient à l'auteur) ; 3 fiches restent `complete_kine` jusqu'à N1 (`kine`, texte), N2 (`kine`, 2 cases), N3 (`dev`, illustration), puis recontrôle de ces seuls points.**
+
+# Recontrôle 2 `relecteur` du 24/10/2026 (N1, N2, N3 seulement, lancé à neuf)
+
+Rien n'a été corrigé, aucun statut n'a été changé. Lu : section « Recontrôle » ci-dessus, README « Corrections kine 3 », les 3 fiches (zones corrigées), commit 006be7b, `rowing-barre-ez.svg` (rendu en PNG et regardé), comparé au titre et aux légendes de `rowing-barre-penche.svg`. `npm run check:fiches` : 179 fiches, 0 erreur, 0 avertissement. Aucune source nouvelle n'est citée par ces corrections (raisonnement mécanique NON SOURCÉ, écrit comme tel), donc rien à ouvrir en ligne.
+
+| n° | Verdict | Constat |
+|---|---|---|
+| N1 | **corrigé** (remarque R1) | Conduite en montée cohérente avec les barres « juste sous la barre au contact du banc » : à mi-montée la barre est au-dessus d'elles, la fiche le dit, interdit de se laisser tomber, ordonne de redescendre en contrôle jusqu'au banc, le toucher, puis la sortie du bas (buste penché, barre sur les barres, dégagement par l'avant). Même texte dans « Points d'attention » et « Sécurité pour l'utilisateur seul ». L'ancienne manœuvre (penche le buste en haut de la montée) a disparu. Prévention « 2 répétitions en réserve, jamais d'échec » reliée à cette conduite, marquée NON SOURCÉ, « à essayer à vide ». Aucune contradiction avec le tableau, les dosages ou la grossesse. **R1 (remarque)** : « la descente demande moins de force que la montée » n'a pas de balise propre dans la section sécurité (la balise NON SOURCÉ ne couvre que la fin de la phrase du point d'attention) ; à marquer NON SOURCÉ pour la cohérence. |
+| N2 | **corrigé** | Genou n3 et cheville n3 = `retirer` (hanche et dos déjà retirés), notes alignées sur le rowing penché (appui des jambes sous barre chargée = zone sollicitée). Plus aucune occurrence de `sans-zone` dans la fiche. Tableau et notes cohérents. |
+| N3 | **partiellement corrigé** (nouvel écart N9) | Pose conforme : buste à 45 degrés (hanche (120,188), épaule (168,140)), hanches hautes, genoux fléchis, barre EZ vue en bout, prise sous les épaules, pose 2 = barre vers le bas du ventre avec flèche. Mais le libellé « barre au sol » (légende, titre accessible, légende de la fiche et ligne photo « barre au sol bras tendus ») n'est pas acceptable : sur le dessin la barre pend à hauteur du genou, environ 80 px au-dessus du sol (plus que la longueur du tibia), plateau loin du sol, alors que la fiche écrit « départ au sol, puis la barre reste à quelques centimètres du sol ». Le dessin montre la barre en suspension, comme `rowing-barre-penche.svg` (« barre qui pend »). |
+
+## Nouvel écart
+| n° | Fiche | Gravité | Problème |
+|---|---|---|---|
+| N9 | rowing-barre-ez (illustration, `tools/illustrations-poses.mjs`, ligne de la fiche) | à corriger (texte seul, ne montre pas une pose dangereuse) | Soit remplacer le libellé « Buste penché, barre au sol » et le titre « la barre part du sol » par « Buste penché, barre qui pend » (comme le rowing penché) et ajuster la ligne photo de la fiche, soit abaisser la barre à quelques centimètres du sol. La première solution est la plus simple et reste fidèle à la consigne. |
+
+## Statut proposé
+| Fiche | Statut proposé | Motif |
+|---|---|---|
+| squat-barre-repere-banc | **utilisable** | N1 levé ; R1 remarque, non bloquant |
+| rowing-pendlay-barre | **utilisable** | N2 levé |
+| rowing-barre-ez | **reste complete_kine** | N9 (libellé « barre au sol » contredit le dessin) ; pose du corps conforme |
+
+**Verdict : 0 bloquant ; 2 fiches proposées `utilisable`, 1 reste `complete_kine` jusqu'à N9 (libellé, `dev`), puis recontrôle de ce seul point.**
