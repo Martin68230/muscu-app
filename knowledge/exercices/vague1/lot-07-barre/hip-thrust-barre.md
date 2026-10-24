@@ -115,6 +115,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Barbell_Hip_Thrust/0.jpg` : affichable : oui (banc, barre sur les hanches, dos sur le banc ; zone floutée en haut à droite (maillot d'un tiers) ; vue le 24/10/2026)
 - `Barbell_Hip_Thrust/1.jpg` : affichable : oui (banc, barre sur les hanches, dos sur le banc ; zone floutée en haut à droite (maillot d'un tiers) ; vue le 24/10/2026)
 
+## Vidéo
+- video : youtube:pUdIL5x0fWg | Nuffield Health | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

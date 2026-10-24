@@ -105,6 +105,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - aucune photo (la base free-exercise-db n'a pas de Pendlay)
 - illustration : public/illustrations/rowing-pendlay-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Rowing Pendlay, vue de profil : barre au sol, buste parallèle, barre tirée vers le bas de la poitrine)
 
+## Vidéo
+- video : youtube:C_p-s66KBpg | The Physio Fix (kiné) | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

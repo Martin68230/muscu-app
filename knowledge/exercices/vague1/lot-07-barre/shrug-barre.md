@@ -112,6 +112,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Barbell_Shrug/0.jpg` : affichable : oui (barre au rack (échelon 1), épaules qui montent ; zones floutées sur des logos de rack ; vue le 24/10/2026)
 - `Barbell_Shrug/1.jpg` : affichable : oui (barre au rack (échelon 1), épaules qui montent ; zones floutées sur des logos de rack ; vue le 24/10/2026)
 
+## Vidéo
+- video : youtube:M_MjF5Nm_h4 | Renaissance Periodization (Dr Mike Israetel) | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

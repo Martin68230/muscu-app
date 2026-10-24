@@ -112,6 +112,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Incline_Bench_Pull/0.jpg` : affichable : oui (variante appuyée sur banc incliné (échelon 1), barre au sol ; vue le 24/10/2026)
 - `Incline_Bench_Pull/1.jpg` : affichable : oui (variante appuyée sur banc incliné (échelon 1), barre au sol ; vue le 24/10/2026)
 
+## Vidéo
+- video : youtube:ZathOyxYZ3M | Nuffield Health | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

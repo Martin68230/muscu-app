@@ -115,6 +115,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Stiff-Legged_Barbell_Deadlift/1.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
 - légende : Photos : départ du sol. Au rack (échelon 1), la barre part à hauteur des cuisses.
 
+## Vidéo
+- video : youtube:7j-2w4-P14I | Nuffield Health | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

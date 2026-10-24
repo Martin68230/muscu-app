@@ -105,3 +105,13 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 - **Contexte** : le lot contenait trois fiches « débutant » à risque : squat avec repère de profondeur, développé couché au sol dans le rack, relevé de mollets debout avec barre sur le dos ; et deux fiches « avancé » qui chargent fortement le bas du dos : good morning et rowing Pendlay.
 - **Choix prudent appliqué** : les trois fiches « débutant » passent à **intermédiaire** (le débutant utilise squat gobelet, développé couché aux haltères, mollets sans barre ou aux haltères) ; good morning et Pendlay sont **gardés au niveau avancé** (retirés dès une gêne légère au bas du dos) avec réserves ; ni l'un ni l'autre n'est indispensable.
 - **Option alternative** : écarter le good morning et le Pendlay (le plus prudent : le roumain et les autres rowings couvrent les schémas), ou garder les trois au niveau débutant avec guidage et poids de barre connu (moins prudent).
+
+## Q19. Vidéos à filmer par l'utilisateur, lot-07-barre (24/10/2026, coach, D12)
+- **Contexte** : pour 5 fiches, aucune vidéo YouTube trouvée qui respecte à la fois notre consigne (barres de sécurité pour l'utilisateur seul) et le critère de chaîne sérieuse. Les vidéos trouvées règlent les barres de sécurité autrement (développé couché : « sous les côtes » ou « au niveau de la poitrine », barre qui touche la poitrine) ou n'en montrent pas ; une vidéo sans son n'a pas pu être vérifiée.
+- **À filmer** (MP4 sans son, 3 à 5 s, moins de 500 Ko, à déposer dans images-a-trouver/<id>/) :
+  - `developpe-couche-barre` : barres de sécurité jaunes réglées à quelques centimètres au-dessus de la poitrine, barre qui descend jusqu'à la hauteur des sécurités sans toucher la poitrine, poussée, repose sur les supports.
+  - `squat-barre-repere-banc` : barres de sécurité juste sous la barre quand les fesses touchent le banc ; toucher le banc sans s'asseoir, repartir tout de suite.
+  - `releve-mollets-debout-barre` : barre sur le haut du dos dans le rack, pieds à plat (pas de plateforme), barres de sécurité réglées en quart de squat ; montée sur les pointes, arrêt, descente lente.
+  - `developpe-militaire-barre` : barres de sécurité à hauteur des épaules, barre sur la poitrine, menton reculé sans cambrer, poussée au-dessus des oreilles.
+  - `rowing-barre-ez` : buste à plat ventre sur un banc incliné, barre EZ posée au sol, tirage vers le bas de la poitrine puis retour bras presque tendus (une vidéo de coach privé correspondait mais sa qualification n'est pas vérifiable).
+- Vidéos retenues (7) : voir README du lot-07 « Corrections coach 2 ». Non vues à l'écran : voir ce README.

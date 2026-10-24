@@ -108,6 +108,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Barbell_Curl/0.jpg` : affichable : oui (barre droite, même geste ; vue le 24/10/2026)
 - `Barbell_Curl/1.jpg` : affichable : oui (barre droite, même geste ; vue le 24/10/2026)
 
+## Vidéo
+- video : youtube:FAEWpmb9YQs | Nuffield Health | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|

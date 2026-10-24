@@ -121,6 +121,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Rack_Pulls/1.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
 - légende : Photo : départ du sol (échelon 2). Au rack, la barre part du genou. Suis la consigne pour le dos.
 
+## Vidéo
+- video : youtube:6TA4VaweLWk | Nuffield Health | vérifiée le 2026-10-24
+
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
