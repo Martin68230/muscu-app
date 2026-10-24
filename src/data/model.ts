@@ -116,7 +116,8 @@ export interface Injury extends SyncFields {
 }
 
 export type ExerciseUnit = 'reps' | 'sec' | 'reps_par_cote';
-export type ExerciseRole = 'pilier' | 'autre' | 'tronc' | 'fonctionnel';
+/** `cardio` (B4) : bloc ou séance de cardio, une « série » à durée (unit `sec`), effort modéré. */
+export type ExerciseRole = 'pilier' | 'autre' | 'tronc' | 'fonctionnel' | 'cardio';
 export interface WarmupSet {
   reps: number;
   /** Pourcentage de la charge de travail, ou null si on utilise un échelon. */

@@ -1,4 +1,5 @@
 import type { ComponentChildren } from 'preact';
+import { CARDIO_TEXT } from '../../generator/messages';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { InjuryZone, PlannedExercise, Profile } from '../../data/model';
 import { list } from '../../data/repo';
@@ -528,7 +529,8 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
             </div>
           </div>
         )}
-        {ex.unit === 'sec' && <p class="dim small">Tiens la position, puis touche « Série faite ».</p>}
+        {ex.unit === 'sec' && ex.role !== 'cardio' && <p class="dim small">Tiens la position, puis touche « Série faite ».</p>}
+        {ex.role === 'cardio' && <p class="dim small">Effort modéré (5-6 sur 10). {CARDIO_TEXT.T7} Touche « Série faite » à la fin.</p>}
       </div>
       <div class="player-foot">
         <button type="button" class="btn btn-primary btn-big" onClick={doneSet}>Série faite</button>

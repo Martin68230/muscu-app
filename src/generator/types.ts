@@ -69,7 +69,7 @@ export interface GeneratorInput {
     platesKg?: number[];
   };
   injuries?: InjuryInput[];
-  /** Objectifs classés ; seul le rang 1 décide en v1 (V-OBJ). */
+  /** Objectifs classés ; le rang 1 décide (V-OBJ) ; `cardio` en rang 2 ou plus ajoute des blocs limités (B4). */
   goals?: { goalKey: string; rank: number }[];
   fiches: Fiche[];
   history?: HistorySet[];
@@ -89,7 +89,10 @@ export interface GeneratorInput {
 export type MessageId =
   | 'V-MSG-FREQ' | 'V-MSG-PLANS' | 'V-MSG-PLAN' | 'V-MSG-SUBST' | 'V-MSG-IMPOS' | 'V-MSG-ZONE' | 'V-MSG-ACHAT' | 'V-MSG-OBJET'
   | 'V-MSG-FORCE' | 'V-MSG-VOL' | 'V-MSG-DUREE' | 'V-MSG-JOURS' | 'V-MSG-HORS' | 'V-MSG-JOURS2' | 'V-MSG-PRO'
-  | 'V-MSG-GROS-DUREE' | 'V-MSG-GROS-AVIS' | 'V-MSG-EPAULES' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ';
+  | 'V-MSG-GROS-DUREE' | 'V-MSG-GROS-AVIS' | 'V-MSG-EPAULES' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ'
+  // Cardio (B4, knowledge/cardio-regles.md) : textes de `kine` T0-T5 et messages du générateur.
+  | 'T0' | 'T1' | 'T1u' | 'T3' | 'T4' | 'T5' | 'V-MSG-CARDIO-OMS' | 'V-MSG-CARDIO-TEMPS' | 'V-MSG-CARDIO-IMPOS' | 'V-MSG-CARDIO-MACHINE'
+  | 'V-MSG-CARDIO-JOURS';
 export interface GenMessage {
   id: MessageId;
   text: string;
@@ -138,6 +141,29 @@ export interface WarmupItem {
   sec: number;
   adaptations: string[];
 }
+/** Cardio (B4) : un bloc après la musculation, ou une séance dédiée ; effort modéré seulement en v1. */
+export interface CardioItem {
+  kind: 'bloc' | 'seance';
+  ficheId: string;
+  variantId: string;
+  nom: string;
+  /** Durée de la semaine 1 (min). */
+  minutes: number;
+  /** Plan des 4 semaines du bloc (min) : +10 % au plus, arrondi vers le bas, plafonné ; 4e semaine allégée (cardio-regles.md §3.5). */
+  weekMin: number[];
+  /** Plafond retenu (niveau, temps disponible, 25 % en secondaire). */
+  capMin: number;
+  intensity: 'moderee';
+  /** Repère affiché pendant l'effort (T7 de `kine`). */
+  note: string;
+}
+export interface GenCardioSession {
+  /** Libellé affiché : « Cardio », « Cardio 2 »… */
+  label: string;
+  weekday: number;
+  cardio: CardioItem;
+  estimatedMin: number;
+}
 export interface GenSession {
   label: 'A' | 'B' | 'C';
   /** 0 = lundi … 6 = dimanche. */
@@ -151,6 +177,10 @@ export interface GenSession {
   removedCore: SlotKey[];
   /** Séance réduite aux piliers qui dépasse encore la durée choisie (seul cas où T > D). */
   overBudget: boolean;
+  /** Bloc de cardio après la musculation (B4), ou absent. */
+  cardio?: CardioItem | null;
+  /** Durée totale estimée (s) : musculation + bloc de cardio. */
+  totalSec?: number;
 }
 export interface GenProgram {
   split: 'corps_entier';
@@ -169,6 +199,10 @@ export interface GenProgram {
   coverage: Record<GG, number>;
   substitutes: { session: string; slot: SlotKey; ficheId: string; nom: string; schema: string }[];
   achat: { tag: string; gain: number } | null;
+  /** Cardio (B4) : rôle de l'objectif cardio, séances dédiées, total de la semaine 1 (min). */
+  cardioRole?: 'principal' | 'secondaire' | null;
+  cardioSessions?: GenCardioSession[];
+  cardioMinWeek?: number;
 }
 export type GenerateResult =
   | { ok: true; program: GenProgram; messages: GenMessage[] }

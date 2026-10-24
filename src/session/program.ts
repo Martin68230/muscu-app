@@ -3,11 +3,11 @@
 import { list, create, update, get } from '../data/repo';
 import type { Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import { BLOCK_WEEKS, MIN_GAP_DAYS } from '../generator/config';
-import { generateProgram, toProgramDays } from '../generator';
+import { generateProgram, isCardioDay, toProgramDays } from '../generator';
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.1';
+export const GENERATOR_VERSION = 'v1.2'; // v1.2 (B4) : cardio principal / secondaire (knowledge/cardio-regles.md)
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 
@@ -113,22 +113,7 @@ export async function getActiveProgram(): Promise<Program | undefined> {
 }
 
 function toStoredProgram(gen: GenProgram, hash: string, todayIso: string): NewRow<'programs'> {
-  const days: ProgramDay[] = toProgramDays(gen).map((d, i) => {
-    const s = gen.sessions[i];
-    const item = (w: { ficheId: string; variantId: string; nom: string; sec: number } | null) =>
-      w ? { ficheId: w.ficheId, variantId: w.variantId, nom: w.nom, sec: w.sec } : null;
-    return {
-      ...d,
-      weekday: s.weekday,
-      estimatedMin: s.estimatedMin,
-      warmup: {
-        generalSec: s.warmup.generalSec,
-        general: item(s.warmup.general),
-        mobility: s.warmup.mobility.map((m) => item(m)!),
-        cooldown: item(s.warmup.cooldown),
-      },
-    };
-  });
+  const days: ProgramDay[] = toProgramDays(gen);
   return {
     templateKey: PROGRAM_TEMPLATE_KEY,
     name: 'Programme corps entier',
@@ -197,9 +182,16 @@ export function nextSession(program: Program, sessions: readonly WorkoutSession[
     .sort((a, b) => ((a.endedAt ?? a.startedAt ?? a.plannedDate) < (b.endedAt ?? b.startedAt ?? b.plannedDate) ? -1 : 1));
   const last = done[done.length - 1];
   const dayIndex = last && last.programDayIndex !== null ? (last.programDayIndex + 1) % n : 0;
-  const endedMs = last ? Date.parse(last.endedAt ?? last.startedAt ?? last.plannedDate) : NaN;
-  const availableAtMs = Number.isFinite(endedMs) ? endedMs + MIN_GAP_DAYS * DAY_MS : null;
   const day = program.days[dayIndex];
+  // 48 h entre deux séances de musculation (V-JOURS) ; une séance de cardio dédiée (B4, effort modéré) n'attend pas et ne
+  // compte pas comme séance de musculation (cardio-regles.md §3.6 : le cardio modéré reste permis).
+  const isMuscu = (s: WorkoutSession) => {
+    const d = s.programDayIndex !== null ? program.days[s.programDayIndex] : undefined;
+    return !d || !isCardioDay(d);
+  };
+  const lastMuscu = [...done].reverse().find(isMuscu);
+  const endedMs = lastMuscu ? Date.parse(lastMuscu.endedAt ?? lastMuscu.startedAt ?? lastMuscu.plannedDate) : NaN;
+  const availableAtMs = !isCardioDay(day) && Number.isFinite(endedMs) ? endedMs + MIN_GAP_DAYS * DAY_MS : null;
   const weekdayToday = (new Date(nowMs).getDay() + 6) % 7;
   return {
     dayIndex,

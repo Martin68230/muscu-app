@@ -3,7 +3,8 @@ import { ensureLocalUser } from '../../src/data/bootstrap';
 import { create, list, update } from '../../src/data/repo';
 import { importData, exportData, wipeAllData } from '../../src/data/backup';
 import type { Program, WorkoutSession } from '../../src/data/model';
-import { computeInputsHash, ensureActiveProgram, getActiveProgram, nextSession, programPreview } from '../../src/session/program';
+import { computeInputsHash, ensureActiveProgram, GENERATOR_VERSION, getActiveProgram, nextSession, programPreview } from '../../src/session/program';
+import { isCardioDay } from '../../src/generator';
 import { FICHES, mk, PROFILES } from './generator-helpers';
 
 const MON = Date.parse('2026-10-26T08:00:00.000Z'); // lundi
@@ -237,5 +238,47 @@ describe('séance complète sur un vrai programme généré (avec supersets)', (
     const row = await ctl.finishSession();
     expect(row.status).toBe('faite');
     expect(currentView(days[0], ctl.state).progress.done).toBe(expected);
+  });
+});
+
+describe('cardio (B4, knowledge/cardio-regles.md)', () => {
+  it('l’objectif secondaire change (cardio ajouté, puis remplacé) : le programme est régénéré', async () => {
+    await seedProfile();
+    const first = await ensureActiveProgram(FICHES);
+    const cardio = await create('goals', { goalKey: 'cardio', rank: 2 });
+    const second = await ensureActiveProgram(FICHES);
+    expect(second.ok && second.regenerated).toBe(true);
+    await update('goals', cardio.id, { goalKey: 'force' });
+    const third = await ensureActiveProgram(FICHES);
+    expect(third.ok && third.regenerated).toBe(true);
+    const hashes = [first, second, third].map((r) => (r.ok ? r.program.inputsHash : ''));
+    expect(new Set(hashes).size).toBe(3);
+    expect(third.ok && third.program.generatorVersion).toBe(GENERATOR_VERSION);
+  });
+
+  it('cardio principal à 4 jours : séances de cardio enregistrées dans l’ordre de la semaine ; pas d’attente de 48 h pour le cardio', async () => {
+    const { profile } = await seedProfile({ days: 4 });
+    const [g] = await list('goals');
+    await update('goals', g.id, { goalKey: 'cardio' });
+    void profile;
+    const r = await ensureActiveProgram(FICHES, { todayIso: '2026-10-26' });
+    if (!r.ok) throw new Error('attendu ok');
+    const days = r.program.days;
+    expect(days).toHaveLength(4);
+    expect(days.map((d) => d.weekday)).toEqual([...days.map((d) => d.weekday!)].sort((a, b) => a - b));
+    expect(days.filter(isCardioDay)).toHaveLength(2);
+    expect(r.program.explanation![0]).toContain('cardio');
+    expect((r.program.messages ?? []).some((m) => m.id === 'T1')).toBe(true);
+    // Après une séance de musculation (jour 0), la séance suivante est du cardio : pas d’avertissement « trop tôt ».
+    const muscu0 = days.findIndex((d) => !isCardioDay(d));
+    const s = { id: 'x', programId: r.program.id, programDayIndex: muscu0, status: 'faite', endedAt: '2026-10-25T20:00:00.000Z', startedAt: '2026-10-25T19:00:00.000Z', plannedDate: '2026-10-25', deletedAt: null } as WorkoutSession;
+    const next = nextSession(r.program, [s], MON)!;
+    expect(isCardioDay(next.day)).toBe(true);
+    expect(next.tooSoon).toBe(false);
+    // Après le cardio, la musculation suivante compte 48 h depuis la dernière séance de MUSCULATION.
+    const c = { ...s, id: 'y', programDayIndex: next.dayIndex, endedAt: '2026-10-26T07:00:00.000Z', startedAt: '2026-10-26T06:30:00.000Z' } as WorkoutSession;
+    const after = nextSession(r.program, [s, c], MON)!;
+    expect(isCardioDay(after.day)).toBe(false);
+    expect(after.availableAtMs).toBe(Date.parse('2026-10-27T20:00:00.000Z'));
   });
 });

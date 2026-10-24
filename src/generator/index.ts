@@ -3,20 +3,23 @@
 // ni hasard ; les départages suivent l'ordre des ids (V-CLASSE clé 7).
 import type { Level, PlannedExercise, ProgramDay } from '../data/model';
 import {
-  ACHAT_CANDIDATES, BLOCK_WEEKS, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
-  OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
+  ACCESSORY_REMOVAL_ORDER, ACHAT_CANDIDATES, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
+  OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
 } from './config';
+import { blockCap, cardioItem, cardioLevel, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, type CardioRole } from './cardio';
 import { buildCtx, type Ctx } from './context';
 import { chooseDays } from './days';
 import { buildExercise } from './dose';
 import { ajusterDuree, estimerDuree, formAllPairs, units, type DurSession } from './duration';
-import { dedupe, GG_LABEL, GOAL_LABEL, msg } from './messages';
+import { cardioMsg, dedupe, GG_LABEL, GOAL_LABEL, msg } from './messages';
 import { resolveFiche, USABLE_STATUTS } from './safety';
 import { CORE_SLOTS, fillSession, isCore, SLOT_ORDER, slotDef, tierRank, type SlotFill } from './slots';
-import type { Fiche, GenerateResult, GeneratorInput, GenExercise, GenMessage, GenProgram, GenSession, SlotKey, Tier } from './types';
+import type {
+  CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenMessage, GenProgram, GenSession, SlotKey, Tier,
+} from './types';
 import { cooldown, e3Sets, generalWarmup, mobilityWarmup } from './warmup';
 
-export type { GenerateResult, GeneratorInput, GenProgram, GenSession, GenExercise, GenMessage } from './types';
+export type { CardioItem, GenCardioSession, GenerateResult, GeneratorInput, GenProgram, GenSession, GenExercise, GenMessage } from './types';
 export { estimerDuree, ajusterDuree } from './duration';
 export { nextCalibrationStep, painProposals } from './calibration';
 
@@ -142,7 +145,7 @@ function enforcePlaf(sessions: DurSession<GenExercise>[]) {
 }
 
 /** V-VOL (famille muscle, intermédiaire/avancé, hors grossesse) : +1 série (max 4) tant que durée et plafonds le permettent ; sinon V-MSG-VOL. */
-function applyVolume(sessions: DurSession<GenExercise>[], dSec: number, ctx: Ctx, out: GenMessage[]) {
+function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession<GenExercise>) => number, ctx: Ctx, out: GenMessage[]) {
   if (ctx.family !== 'muscle' || ctx.level === 'debutant' || ctx.pregnant) return;
   const targets = [...VOLUME.muscles, 'deltoides'];
   for (const m of targets) {
@@ -156,7 +159,7 @@ function applyVolume(sessions: DurSession<GenExercise>[], dSec: number, ctx: Ctx
           if (!e.musclesPrincipaux.some((x) => (m === 'deltoides' ? x.startsWith(VOLUME.deltoidPrefix) : x === m))) continue;
           const trial = { ...s, exercises: s.exercises.map((x) => (x === e ? { ...x, sets: x.sets + 1 } : x)) };
           const all = sessions.map((x) => (x === s ? trial : x));
-          if (estimerDuree(trial) <= dSec && sessionCapsOk(trial) && weekCapsOk(all)) {
+          if (estimerDuree(trial) <= budget(s) && sessionCapsOk(trial) && weekCapsOk(all)) {
             s.exercises = trial.exercises;
             done = true;
             break;
@@ -211,8 +214,13 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   const msgs: GenMessage[] = [];
   const p = input.profile;
   const want = p.daysPerWeek;
-  if (want !== 2 && want !== 3) return { ok: false, code: 'HORS', messages: [msg.hors()] };
-  const dc = chooseDays(p.blockedWeekdays ?? [], want);
+  // B4 (cardio-regles.md §3.2) : cardio principal = 2 séances de musculation (3 à 6 jours) + cardio, de 2 à 6 jours.
+  const cardioRole: CardioRole = cardioRoleOf(input.goals);
+  const principal = cardioRole === 'principal';
+  const okDays = principal ? !!want && want >= 2 && want <= 6 && !!CARDIO.principalMuscuByDays[want] : want === 2 || want === 3;
+  if (!okDays || !want) return { ok: false, code: 'HORS', messages: [msg.hors()] };
+  const muscuWant: 2 | 3 = principal ? CARDIO.principalMuscuByDays[want] : (want as 2 | 3);
+  const dc = chooseDays(p.blockedWeekdays ?? [], muscuWant);
   if (!dc.ok) return { ok: false, code: 'JOURS2', messages: [msg.jours2(dc.suggestion)] };
   if (dc.reduced) msgs.push(msg.jours(dc.days));
   const nDays = dc.days.length as 2 | 3;
@@ -224,7 +232,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   // Messages d'objectif (V-OBJ) et de santé (R3 une fois par zone, C3).
   if (!ctx.pregnant) {
     if (ctx.goalKey === 'perte_gras') msgs.push(msg.objGras());
-    if (ctx.goalKey === 'cardio' || ctx.goalKey === 'endurance') msgs.push(msg.objCardio());
+    if (ctx.goalKey === 'endurance') msgs.push(msg.objCardio());
     if (ctx.goalKey === 'sport') msgs.push(msg.objSport());
   }
   if (ctx.pregnant) msgs.push(msg.grosAvis());
@@ -233,6 +241,8 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     if (z.key === 'cou' && ctx.neckShock) msgs.push(msg.c3());
     else msgs.push(msg.r3(z.key));
   }
+  // Les messages du cardio (B4) se placent ici, après ceux de l'objectif et de la santé.
+  const cardioMsgAt = msgs.length;
 
   const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1));
   const slotList = SLOT_ORDER.filter((s) => s !== 'fonctionnel' || ctx.fonctionnelEnabled);
@@ -264,10 +274,8 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   }
 
   // Séances : N emplacements de départ, échauffement, supersets, durée, ajout.
-  const durSessions: DurSession<GenExercise>[] = [];
-  const meta = new Map<Label, { removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> }>();
-  const general = generalWarmup(ctx);
-  for (const l of labels) {
+  type Built = { s: DurSession<GenExercise>; actions: string[]; removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> };
+  const build = (l: Label, budgetSec: number, addBudgetSec: number): Built => {
     const f = fills.get(l)!;
     const active = slotList.slice(0, dur.startN);
     const mk = (slot: SlotKey): GenExercise | null => {
@@ -281,34 +289,78 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     const mob = mobilityWarmup(ctx, exercises.some((e) => e.slot === 'charniere'));
     let s: DurSession<GenExercise> = { label: l, days: nDays, level: ctx.level, pregnant: ctx.pregnant, exercises, e1Sec: WARMUP.generalSec, e2Count: mob.length };
     if (ctx.gagnerDuTemps) s = formAllPairs(s);
-    const adj = ajusterDuree(s, dSec);
+    const adj = ajusterDuree(s, budgetSec);
     s = adj.session;
     const attempted = [...active];
     if (!adj.actions.length) {
       // Ajout (§4.4) : si T < D - 10 min et N < 8, emplacement suivant tant que T <= D et que les plafonds tiennent.
       for (const slot of slotList) {
         if (attempted.includes(slot)) continue;
-        if (s.exercises.length >= VOLUME.maxExercisesPerSession || estimerDuree(s) >= addSec - TIME.addIfUnderMarginSec) break;
+        if (s.exercises.length >= VOLUME.maxExercisesPerSession || estimerDuree(s) >= addBudgetSec - TIME.addIfUnderMarginSec) break;
         const ex = mk(slot);
         attempted.push(slot);
         if (!ex) continue;
         const trial = { ...s, exercises: [...s.exercises, ex] };
-        if (estimerDuree(trial) <= Math.min(dSec, addSec) && sessionCapsOk(trial)) s = trial;
+        if (estimerDuree(trial) <= Math.min(budgetSec, addBudgetSec) && sessionCapsOk(trial)) s = trial;
         else break;
       }
     }
-    durSessions.push(s);
-    meta.set(l, { removedCore: adj.removedCore, overBudget: adj.overBudget, attempted, warm: mob });
+    return { s, actions: adj.actions, removedCore: adj.removedCore, overBudget: adj.overBudget, attempted, warm: mob };
+  };
+
+  // Cardio (B4) : type choisi selon le lieu, le matériel et la santé (cardio-regles.md §4-§5) ; blocs après la musculation
+  // (cardio secondaire, ou principal à 2 jours, §3.4). La place du bloc est réservée avant l'ajout d'accessoires (goal-resolver.md
+  // règle 5 : accessoires coupés avant le cardio) mais jamais au prix d'un emplacement du noyau, d'une série, de l'échauffement
+  // ni d'un pilier (le cardio est alors retiré en premier).
+  const cardioChoice = cardioRole ? chooseCardio(ctx) : null;
+  const blockRole: 'principal' | 'secondaire' | null =
+    cardioRole === 'secondaire' ? 'secondaire' : principal && CARDIO.principalDedicatedByDays[want] === 0 ? 'principal' : null;
+  const maxBlocks = blockRole === 'secondaire' ? CARDIO.secondaryBlocksMax : nDays;
+  const reserveSec = CARDIO.blockStartMin * 60;
+  const softActions = (a: string) => a.startsWith('paire:') || ACCESSORY_REMOVAL_ORDER.some((x) => a === `retrait:${x}`);
+  const budget = new Map<Label, number>();
+  let cardioTimeShort = false;
+
+  const durSessions: DurSession<GenExercise>[] = [];
+  const meta = new Map<Label, { removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> }>();
+  const general = generalWarmup(ctx);
+  for (const l of labels) {
+    let chosen = build(l, dSec, addSec);
+    if (blockRole && cardioChoice && budget.size < maxBlocks) {
+      // §3.4 (c) : pilier lourd (4-6 répétitions) et durée déjà serrée -> pas de bloc (on coupe le bloc, jamais le pilier).
+      const heavy = chosen.s.exercises.some((e) => e.role === 'pilier' && e.unit === 'reps' && e.repsMax <= 6);
+      let placed = false;
+      if (!(heavy && chosen.actions.length) && dSec > reserveSec) {
+        const red = build(l, dSec - reserveSec, addSec - reserveSec);
+        const extra = red.actions.filter((a) => !chosen.actions.includes(a));
+        const cap = blockCap(ctx, blockRole, estimerDuree(red.s), dSec);
+        if (!red.overBudget && extra.every(softActions) && red.removedCore.length <= chosen.removedCore.length && cap >= CARDIO.blockMinMin) {
+          chosen = red;
+          budget.set(l, dSec - reserveSec);
+          placed = true;
+        }
+      }
+      if (!placed) cardioTimeShort = true;
+    }
+    durSessions.push(chosen.s);
+    meta.set(l, { removedCore: chosen.removedCore, overBudget: chosen.overBudget, attempted: chosen.attempted, warm: chosen.warm });
   }
 
   enforcePlaf(durSessions);
-  applyVolume(durSessions, dSec, ctx, msgs);
+  applyVolume(durSessions, (s) => budget.get(s.label as Label) ?? dSec, ctx, msgs);
 
   // Finalisation des séances.
   const sessions: GenSession[] = durSessions.map((s, i) => {
     const m = meta.get(s.label)!;
     const est = estimerDuree(s);
-    return {
+    let cardio: CardioItem | null = null;
+    if (budget.has(s.label as Label) && cardioChoice && blockRole) {
+      const cap = blockCap(ctx, blockRole, est, dSec);
+      if (cap >= CARDIO.blockMinMin) cardio = cardioItem('bloc', cardioChoice, CARDIO.blockStartMin, cap, BLOCK_WEEKS, ctx);
+      else cardioTimeShort = true;
+    }
+    const total = est + (cardio ? cardio.minutes * 60 : 0);
+    const base: GenSession = {
       label: s.label,
       weekday: dc.days[i],
       warmup: {
@@ -319,11 +371,44 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       },
       exercises: orderExercises(s.exercises),
       estimatedSec: est,
-      estimatedMin: Math.ceil(est / 60 / TIME.displayRoundMin) * TIME.displayRoundMin,
+      estimatedMin: Math.ceil(total / 60 / TIME.displayRoundMin) * TIME.displayRoundMin,
       removedCore: m.removedCore,
       overBudget: est > dSec,
     };
+    return cardioRole ? { ...base, cardio, totalSec: total } : base;
   });
+
+  // Séances de cardio dédiées (cardio principal, 3 à 6 jours, §3.2-§3.3) : jours libres seulement, jamais de séance double.
+  const cardioSessions: GenCardioSession[] = [];
+  if (principal && cardioChoice) {
+    const planned = Math.min(CARDIO.principalDedicatedByDays[want], CARDIO.maxDedicated[cardioLevel(ctx)], want - nDays);
+    const days = chooseCardioDays(p.blockedWeekdays ?? [], dc.days, planned);
+    if (days.length < planned) msgs.push(cardioMsg.jours(planned, days.length));
+    const mins = dedicatedMinutes(ctx, dur.targetMin);
+    days.forEach((d, i) => {
+      const item = cardioItem('seance', cardioChoice, mins.start, mins.cap, BLOCK_WEEKS, ctx);
+      cardioSessions.push({
+        label: days.length > 1 ? `Cardio ${i + 1}` : 'Cardio',
+        weekday: d,
+        cardio: item,
+        estimatedMin: Math.ceil(item.minutes / TIME.displayRoundMin) * TIME.displayRoundMin,
+      });
+    });
+  }
+  const blocks = sessions.map((s) => s.cardio).filter((c): c is CardioItem => !!c);
+  const cardioMinWeek = blocks.reduce((a, c) => a + c.minutes, 0) + cardioSessions.reduce((a, c) => a + c.cardio.minutes, 0);
+  const cardioMsgs: GenMessage[] = [];
+  if (cardioRole) {
+    if (!cardioChoice) cardioMsgs.push(cardioMsg.impos());
+    else if (cardioMinWeek > 0) {
+      // Textes de `kine` (§9bis) : T0 + T4 une fois, T3 à la première ouverture du cardio, T1 et T1u (signes d'arrêt, urgence).
+      cardioMsgs.push(cardioMsg.t0(), cardioMsg.t4(), cardioMsg.t3(), cardioMsg.t1(), cardioMsg.t1u());
+      if (ctx.pregnant) cardioMsgs.push(cardioMsg.t5(), cardioMsg.omsGrossesse(cardioMinWeek));
+      else cardioMsgs.push(cardioMsg.oms(cardioMinWeek));
+      if (ctx.available.has('machine_cardio')) cardioMsgs.push(cardioMsg.machine());
+    }
+    if (cardioChoice && (cardioTimeShort || (blockRole && !blocks.length))) cardioMsgs.push(cardioMsg.temps());
+  }
 
   // Messages des replis (§7.1), durée, plans, force.
   const causeCache = new Map<string, Cause>();
@@ -388,8 +473,9 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     msgs.push(msg.epaules(tags, !!achat));
   }
 
-  const explanation = explain(ctx, nDays, coverage, dur, sessions, forceNoLoad);
-  const messages = dedupe(msgs);
+  let explanation = explain(ctx, nDays, coverage, dur, sessions, forceNoLoad);
+  if (cardioRole) explanation = explainCardio(explanation, cardioRole, !!cardioChoice, nDays, sessions, cardioSessions, cardioMinWeek, dur.dMin, ctx.pregnant);
+  const messages = dedupe([...msgs.slice(0, cardioMsgAt), ...cardioMsgs, ...msgs.slice(cardioMsgAt)]);
   const program: GenProgram = {
     split: 'corps_entier',
     weeks: BLOCK_WEEKS,
@@ -407,6 +493,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       s.exercises.filter((e) => e.substitut).map((e) => ({ session: s.label, slot: e.slot, ficheId: e.ficheId, nom: e.nom, schema: e.schema })),
     ),
     achat,
+    ...(cardioRole ? { cardioRole, cardioSessions, cardioMinWeek } : {}),
   };
   return { ok: true, program, messages };
 }
@@ -479,20 +566,80 @@ function explain(ctx: Ctx, nDays: 2 | 3, coverage: Record<GG, number>, dur: Dura
   return [l1, l2];
 }
 
+/**
+ * V-EXPL (goal-resolver.md règle 6) avec cardio : toujours 2 lignes, qui citent le cardio (cardio-regles.md §7).
+ * Cardio principal : ligne 1 = répartition musculation + cardio ; ligne 2 = repère OMS (C1, OK) ou ligne grossesse.
+ * Cardio secondaire : lignes du programme de musculation, la ligne 2 ajoute le bloc de cardio (ou son absence).
+ */
+function explainCardio(
+  base: [string, string], role: 'principal' | 'secondaire', possible: boolean, nDays: number, sessions: GenSession[],
+  dedicated: GenCardioSession[], totalMin: number, dMin: number, pregnant: boolean,
+): [string, string] {
+  const blocks = sessions.filter((s) => s.cardio);
+  const bMin = blocks[0]?.cardio?.minutes;
+  const why = !possible ? 'aucun cardio sûr avec tes réglages' : `pas assez de temps dans ${dMin} min, il est retiré en premier`;
+  const oms = `Le repère de l'OMS est 150 à 300 min par semaine : ton programme en compte environ ${totalMin} min.`;
+  if (role === 'principal') {
+    let l1: string;
+    if (dedicated.length) {
+      const m = dedicated[0].cardio.minutes;
+      l1 = `${nDays + dedicated.length} jours : ${nDays} séances de musculation corps entier + ${dedicated.length} séance${dedicated.length > 1 ? 's' : ''} de cardio (${m} min, effort modéré).`;
+    } else if (blocks.length) {
+      l1 = `${nDays} jours : ${nDays} séances de musculation corps entier, ${blocks.length === nDays ? 'chacune suivie' : `dont ${blocks.length} suivie${blocks.length > 1 ? 's' : ''}`} de ${bMin} min de cardio (effort modéré).`;
+    } else l1 = `${base[0]} Cardio : ${why}.`;
+    return [l1, pregnant || totalMin === 0 ? base[1] : oms];
+  }
+  const add = blocks.length
+    ? ` Cardio en plus : ${bMin} min après ${blocks.length} séance${blocks.length > 1 ? 's' : ''}, après la musculation, jamais un jour de plus.`
+    : ` Cardio : ${why}.`;
+  return [base[0], `${base[1]}${add}`];
+}
+
 /** Conversion vers le modèle stocké (Program.days / PlannedExercise de src/data/model.ts). */
 export function toProgramDays(p: GenProgram): ProgramDay[] {
-  return p.sessions.map((s, i) => ({
-    dayIndex: i,
+  const item = (w: { ficheId: string; variantId: string; nom: string; sec: number } | null) =>
+    w ? { ficheId: w.ficheId, variantId: w.variantId, nom: w.nom, sec: w.sec } : null;
+  const muscu = p.sessions.map((s) => ({
     label: `Séance ${s.label}`,
-    exercises: s.exercises.map(
-      (e): PlannedExercise => ({
-        movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
-        supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
-        slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, adaptation: e.adaptation, substitut: e.substitut,
-      }),
-    ),
+    weekday: s.weekday,
+    estimatedMin: s.estimatedMin,
+    warmup: { generalSec: s.warmup.generalSec, general: item(s.warmup.general), mobility: s.warmup.mobility.map((m) => item(m)!), cooldown: item(s.warmup.cooldown) },
+    exercises: [
+      ...s.exercises.map(
+        (e): PlannedExercise => ({
+          movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
+          supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
+          slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, adaptation: e.adaptation, substitut: e.substitut,
+        }),
+      ),
+      // B4 : bloc de cardio après la musculation et le retour au calme (cardio-regles.md §3.4 b).
+      ...(s.cardio ? [cardioPlanned(s.cardio)] : []),
+    ],
   }));
+  const cardio = (p.cardioSessions ?? []).map((c) => ({
+    label: c.label,
+    weekday: c.weekday,
+    estimatedMin: c.estimatedMin,
+    warmup: { generalSec: 0, general: null, mobility: [], cooldown: null },
+    exercises: [cardioPlanned(c.cardio)],
+  }));
+  // Semaine type dans l'ordre des jours : la rotation (séance suivante) suit la semaine.
+  return [...muscu, ...cardio]
+    .sort((x, y) => x.weekday - y.weekday)
+    .map((d, i) => ({ dayIndex: i, ...d }));
 }
+
+/** Cardio (B4) -> exercice stocké : une « série » à durée (minutes de la semaine 1), effort modéré, sans réserve ni hausse automatique. */
+export function cardioPlanned(c: CardioItem): PlannedExercise {
+  return {
+    movementId: c.ficheId, variantId: c.variantId, sets: 1, repsMin: 1, repsMax: 1, restSec: 0, supersetGroup: null,
+    rirTarget: TEMPS_RIR_PLACEHOLDER, unit: 'sec', holdSec: c.minutes * 60, warmupSets: [], role: 'cardio', slot: 'cardio',
+    startLoadKg: null, capped: true, adaptation: null, substitut: false,
+  };
+}
+
+/** Le jour ne contient que du cardio (séance dédiée). */
+export const isCardioDay = (d: Pick<ProgramDay, 'exercises'>): boolean => d.exercises.length > 0 && d.exercises.every((e) => e.role === 'cardio');
 
 /** Utilitaire : niveaux de base, pour les tests. */
 export const LEVEL_LIST: Level[] = ['debutant', 'intermediaire', 'avance'];

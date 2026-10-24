@@ -44,8 +44,12 @@ export const GOAL_FAMILY: Record<string, Family> = {
   mobilite: 'sante',
   fonctionnel: 'sante',
 };
-/** Objectifs qui ont leur propre famille (pas de préfixe « en attendant la version dédiée », V-EXPL). */
-export const NATIVE_GOALS: readonly string[] = ['muscle', 'force', 'sante', 'forme'];
+/**
+ * Objectifs qui ont leur propre famille (pas de préfixe « en attendant la version dédiée », V-EXPL).
+ * B4 : `cardio` n'est plus « ramené » (séances et blocs de cardio : knowledge/cardio-regles.md) ; `endurance`, `sport`,
+ * `perte_gras`, `mobilite`, `fonctionnel` restent ramenés comme avant.
+ */
+export const NATIVE_GOALS: readonly string[] = ['muscle', 'force', 'sante', 'forme', 'cardio'];
 /** Objectifs qui activent l'emplacement 9 `fonctionnel` (§2.2). NON SOURCÉ. */
 export const GOALS_WITH_FONCTIONNEL: readonly string[] = ['mobilite', 'fonctionnel'];
 
@@ -270,3 +274,67 @@ export const PAIN_SESSIONS_FOR_PROPOSAL = 2;
 // Profils de matériel A à F (tools/couverture.mjs) : utilisés par les tests, la démo, et le preset F (V-MAT §6.2)
 // ---------------------------------------------------------------------------------------------
 export const IMPLICIT_TAGS: readonly string[] = ['poids_du_corps', 'tapis', 'chaise', 'mur', 'marche_escalier', 'serviette', 'porte'];
+
+// ---------------------------------------------------------------------------------------------
+// Cardio (B4) — knowledge/cardio-regles.md (validé sous réserve par `relecteur` le 24/10/2026, 10 réserves du recontrôle).
+// Choix prudents appliqués tant que l'utilisateur n'a pas décidé (docs/QUESTIONS.md Q5-Q10) : aucun saut, aucune corde,
+// aucune course, aucun cardio dehors, aucune fiche machine (réserve n° 8 du recontrôle), aucun intervalle soutenu (3.3bis non codé), effort modéré.
+// ---------------------------------------------------------------------------------------------
+export interface CardioType {
+  /** Variante de fiche (échelon 1, sans saut). */
+  variantId: string;
+  /** Niveau minimal pour ce type (§4, §5). */
+  minLevel: Level;
+  /** Permis avec le réglage « enceinte » (§5 Grossesse). */
+  grossesse: boolean;
+  /** Permis avec le réglage « post-partum » (§5 Post-partum : liste blanche marche rapide, vélo assis, escaliers avec rampe). */
+  postPartum: boolean;
+  /** Zones qui retirent ce type dès le niveau 1, en plus des cases de la fiche (§5 Blessures, « en cas de doute : retiré »). */
+  excludeZones: readonly string[];
+}
+export const CARDIO = {
+  goalKey: 'cardio',
+  /**
+   * §4 : types proposés, par ordre de préférence (départage par cet ordre ; marche rapide d'abord, possible pour tout profil).
+   * Choix des types : NON SOURCÉ (§4, §5). Fiches existantes seulement (lot-03) : aucune fiche vélo, rameur, tapis de course,
+   * elliptique, corde, step ou escaliers (§4 « Manquent »). Exclus : `jumping-jacks-saut`, `montees-genoux-course`,
+   * `pas-chasses-rapides`, `mountain-climbers-rapide` (saut / course / effort non modéré, Q5-Q6), `marche-rapide-alternee`
+   * (fractionné doux : seulement après 4 semaines, §3.3, non codé en v1).
+   */
+  types: [
+    { variantId: 'marche-rapide-continue', minLevel: 'debutant', grossesse: true, postPartum: true, excludeZones: [] },
+    { variantId: 'montees-genoux-marche', minLevel: 'debutant', grossesse: true, postPartum: false, excludeZones: [] },
+    { variantId: 'pas-chasses-lents', minLevel: 'debutant', grossesse: true, postPartum: false, excludeZones: [] },
+    { variantId: 'jumping-jacks-sans-saut', minLevel: 'debutant', grossesse: false, postPartum: false, excludeZones: [] },
+    { variantId: 'boxe-vide-lente', minLevel: 'debutant', grossesse: false, postPartum: false, excludeZones: [] },
+    // §4 / correction kine R-e : intermédiaire minimum, jamais en grossesse / post-partum ; Q10 : épaule / poignet -> retiré.
+    { variantId: 'mountain-climbers-chaise', minLevel: 'intermediaire', grossesse: false, postPartum: false, excludeZones: ['epaule', 'poignet'] },
+  ] as readonly CardioType[],
+  /** §3.2 : séances de musculation corps entier quand le cardio est l'objectif principal, selon N. NON SOURCÉ. */
+  principalMuscuByDays: { 2: 2, 3: 2, 4: 2, 5: 2, 6: 3 } as Record<number, 2 | 3>,
+  /** §3.2 : séances de cardio dédiées selon N (N = 2 : blocs après chaque séance). NON SOURCÉ. */
+  principalDedicatedByDays: { 2: 0, 3: 1, 4: 2, 5: 3, 6: 3 } as Record<number, number>,
+  /** §3.2 : plafond de séances dédiées par semaine ; débutant 2 (Q7 : décision de l'utilisateur en attente). NON SOURCÉ. */
+  maxDedicated: { debutant: 2, intermediaire: 3, avance: 3 } as Record<Level, number>,
+  /** §3.3 / §6.1-6.3 : durée de départ d'une séance dédiée (min) ; avancé « 30-45 au départ » -> 30 (bas). NON SOURCÉ. */
+  dedicatedStartMin: { debutant: 20, intermediaire: 30, avance: 30 } as Record<Level, number>,
+  /** §3.3 : durée maximale d'une séance dédiée (min), jamais plus que D. NON SOURCÉ. */
+  dedicatedMaxMin: { debutant: 40, intermediaire: 45, avance: 60 } as Record<Level, number>,
+  /** §3.4 : durée d'un bloc après la musculation : départ au bas de la fourchette (10, §3.1 point 4 « départ bas »), maximum par niveau. NON SOURCÉ. */
+  blockStartMin: 10,
+  blockMaxMin: { debutant: 15, intermediaire: 20, avance: 25 } as Record<Level, number>,
+  /** §3.4 (a), §6.8 : sous 10 min, pas de bloc. NON SOURCÉ. */
+  blockMinMin: 10,
+  /** §3.4 (d), §6.4 : cardio secondaire : 2 blocs par semaine au plus, 25 % de la durée de la séance de musculation au plus. NON SOURCÉ. */
+  secondaryBlocksMax: 2,
+  secondaryMaxShare: 0.25,
+  /** §3.5 : +10 % de durée au plus par semaine, arrondi vers le bas (garde-fou 110 % : PROVISOIRE, C8 extrapolé). */
+  weeklyIncrease: 0.1,
+  /** §3.5 : semaine de récupération toutes les 4 semaines (= 4e semaine du bloc), durée -30 %. NON SOURCÉ. */
+  recoveryWeek: 4,
+  recoveryFactor: 0.7,
+  /** 9bis Q4(d), réserve n° 10 du recontrôle : grossesse / post-partum : durées du débutant, sans progression (lecture la plus prudente). NON SOURCÉ. */
+  pregnancyLevel: 'debutant' as Level,
+  /** §2 : repère OMS affiché (C1 : OK), jamais imposé. */
+  omsMin: [150, 300] as [number, number],
+};

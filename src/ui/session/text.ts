@@ -25,6 +25,7 @@ export function durationText(sec: number): string {
 
 /** « 10-15 répétitions · réserve 3 », « 20 s », « 8-10 répétitions par côté ». */
 export function targetText(ex: PlannedExercise): string {
+  if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · effort modéré`;
   if (ex.unit === 'sec') return `${ex.holdSec ?? ex.repsMin} s`;
   const range = ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
   if (ex.unit === 'reps_par_cote') return `${range} répétitions par côté`;
@@ -33,6 +34,8 @@ export function targetText(ex: PlannedExercise): string {
 
 /** Ligne de la liste d'aperçu : « 3 × 10-15 · repos 1 min 30 ». */
 export function lineText(ex: PlannedExercise): string {
+  // Cardio (B4) : durée et effort modéré (OMS : 5-6 sur 10, cardio-regles.md §2), pas de série ni de repos.
+  if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · effort modéré (5-6 sur 10)`;
   const t = ex.unit === 'sec' ? `${ex.holdSec ?? ex.repsMin} s` : ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
   const unit = ex.unit === 'reps_par_cote' ? ' par côté' : '';
   return `${ex.sets} × ${t}${unit} · repos ${durationText(ex.restSec)}`;

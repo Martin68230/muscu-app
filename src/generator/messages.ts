@@ -1,5 +1,6 @@
 // Textes des messages (§8.2) et de l'explication (§8.1). Rédaction NON SOURCÉ, sauf R3 et C3 (repris des règles de sécurité).
 import { NECK_SHOCK_MESSAGE } from '../data/injury-rules';
+import { U1_TEL, U1_TEXT } from '../session/messages';
 import type { GG } from './config';
 import type { GenMessage, MessageId } from './types';
 
@@ -122,6 +123,7 @@ export const msg = {
     ),
   objGras: () =>
     m('V-MSG-OBJ', "La perte de gras dépend surtout de l'alimentation ; le plan de repas arrive dans une prochaine version. Repère OMS : 150 à 300 min d'activité modérée par semaine."),
+  /** Objectif `endurance` (toujours ramené à la famille sante en v1). Le cardio a ses propres messages (cardioMsg, B4). */
   objCardio: () => m('V-MSG-OBJ', "Repère OMS : 150 à 300 min d'activité modérée par semaine."),
   objSport: () => m('V-MSG-OBJ', 'Les programmes par sport arrivent dans une prochaine version.'),
 };
@@ -143,4 +145,49 @@ export const GOAL_LABEL: Record<string, string> = {
   sport: 'Sport',
   mobilite: 'Mobilité',
   fonctionnel: 'Fonctionnel',
+};
+
+// ---------------------------------------------------------------------------------------------
+// Cardio (B4) : textes de `kine` repris MOT POUR MOT de knowledge/cardio-regles.md §9bis (T0-T5, T7 ; PROVISOIRE) ; ne pas
+// les réécrire ici. T1u : U1 identique partout (src/session/messages.ts), déclencheurs en ligne séparée au-dessus.
+// ---------------------------------------------------------------------------------------------
+export const CARDIO_TEXT = {
+  T0: "Le cardio fait travailler ton cœur et ta respiration. Cette appli n'est pas un avis médical et ne remplace pas un médecin. Commence doucement, écoute ton corps, et arrête si quelque chose ne va pas.",
+  T1: "Arrête la séance si tu ressens : une douleur ou un serrement dans la poitrine, le cou, la mâchoire, l'épaule, le dos ou le bras, qui apparaît ou augmente à l'effort ; un malaise ; un vertige ou la vue qui se brouille ; un essoufflement anormal, qui ne se calme pas quelques minutes après l'arrêt ; des battements de cœur très rapides ou irréguliers ; des sueurs froides, une nausée ou une faiblesse inhabituelles. Assieds-toi, bois un peu d'eau, et ne reprends pas aujourd'hui. Ne reprends pas le cardio avant d'avoir eu l'avis d'un médecin.",
+  T1uTriggers: 'Douleur ou pression dans la poitrine qui ne passe pas quand tu te reposes, perte de connaissance, difficulté à respirer au repos.',
+  T3: "Si tu n'as pas bougé depuis longtemps, si tu reviens après une maladie ou une opération, ou si un médecin t'a parlé de ton cœur ou de ta tension, demande-lui son avis avant de reprendre. Sinon, commence tout doucement : marche, effort facile.",
+  T4: "Bouger est bon pour presque tout le monde, y compris avec une tension élevée ou une maladie chronique, s'il n'y a pas de contre-indication. Si ton médecin t'a déconseillé le sport, ne suis pas ce programme.",
+  T5: "Ici le cardio reste toujours modéré : tu dois pouvoir parler. Pas de saut, pas de course. Évite la chaleur. Arrête au moindre saignement, perte de liquide, vertige, contraction régulière ou douleur de poitrine. En cas de saignement, de perte des eaux, de contractions régulières douloureuses ou de douleur de poitrine : appelle la maternité ou le 15. Pour un vertige ou un autre malaise : appelle ton médecin ou ta sage-femme.",
+  T7: 'Si tu ne peux plus dire une phrase, ralentis.',
+};
+
+export const cardioMsg = {
+  t0: () => m('T0', CARDIO_TEXT.T0),
+  t4: () => m('T4', CARDIO_TEXT.T4),
+  t3: () => m('T3', CARDIO_TEXT.T3),
+  t1: () => m('T1', CARDIO_TEXT.T1),
+  t1u: () => m('T1u', `${CARDIO_TEXT.T1uTriggers} ${U1_TEXT}`, { data: { tel: U1_TEL } }),
+  t5: () => m('T5', CARDIO_TEXT.T5),
+  /** §2 : repère OMS (C1 : OK), affiché comme repère, jamais comme objectif. Formulation de `coach` (proposition §2). */
+  oms: (x: number) =>
+    m('V-MSG-CARDIO-OMS', `Repère de l'OMS : 150 à 300 min d'effort modéré par semaine (ou 75 à 150 min d'effort soutenu). Ton programme en compte environ ${x} min.`, { data: { min: x } }),
+  /** §2, correction coach R-h : grossesse, repère non affiché comme objectif. */
+  omsGrossesse: (x: number) =>
+    m(
+      'V-MSG-CARDIO-OMS',
+      `L'OMS recommande au moins 150 min d'effort modéré par semaine pendant la grossesse, quand tout va bien ; ton programme en compte ${x}. Fais ce qui est proposé, à ton rythme : ton médecin ou ta sage-femme peut t'en dire plus.`,
+      { data: { min: x } },
+    ),
+  /** §7 : avertissement quand le temps manque (texte de `coach`). */
+  temps: (session?: string) => m('V-MSG-CARDIO-TEMPS', 'Pas assez de temps pour le cardio ce jour-là : il est retiré avant tout le reste du programme.', session ? { session } : {}),
+  /** Aucun type de cardio possible (gênes, réglage, matériel) : jamais d'exercice hors profil. Rédaction `dev`, NON SOURCÉ. */
+  impos: () => m('V-MSG-CARDIO-IMPOS', "Avec tes réglages et tes gênes déclarées, l'app ne peut pas proposer de cardio sûr. Demande l'avis d'un professionnel de santé."),
+  /** Réserve n° 8 du recontrôle : `machine_cardio` coché mais aucune fiche machine relue. Rédaction `dev`, NON SOURCÉ. */
+  machine: () =>
+    m('V-MSG-CARDIO-MACHINE', "Vélo, rameur, tapis de course : pas encore d'exercice relu pour ces appareils. Le cardio proposé est la marche rapide, sur place ou dans ton logement."),
+  /** §3.2 : moins de jours libres que de séances de cardio prévues (jamais de séance double). Rédaction `dev`, NON SOURCÉ. */
+  jours: (planned: number, placed: number) =>
+    m('V-MSG-CARDIO-JOURS', `Tes jours libres ne laissent de la place que pour ${placed} séance(s) de cardio sur ${planned} : jamais deux séances le même jour.`, {
+      data: { planned, placed },
+    }),
 };
