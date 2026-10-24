@@ -108,3 +108,88 @@ Vérifié en ligne : résumés PubMed / Europe PMC de Hartmann 2013, Aasa 2017, 
 - Fiches écartées (`ecartees/tirage-menton-barre`, `fentes-marchees-barre`) : en-tête `ecartee: 2026-10-24`, motif écrit ; non comptées dans les 20.
 
 Les écarts sont à corriger par l'auteur (`coach`/`kine`/`dev`) puis recontrôlés : B1, B2, B3, S1 à S8 et l'image de rowing-barre-ez demandent un nouveau contrôle ; les corrections de texte seul (C1 à C9, M) peuvent être reprises par `relecteur` sur les seuls points corrigés.
+
+# Recontrôle `relecteur` du 24/10/2026 (points corrigés seulement, lancé à neuf)
+
+Rien n'a été corrigé, aucun statut n'a été changé. Lu : ce rapport, README du lot (Corrections kine 2, Corrections coach 2, Images refaites), `git log` et `git diff` du dossier depuis le contrôle, les fiches modifiées (zones corrigées en entier), tools/photos.md, les 8 SVG nouveaux ou refaits (rendus en PNG, agrandis pour le hip thrust et le rowing EZ), les 6 jeux de photos conservées, les 3 fiches écartées.
+Vérifié en ligne : McAllister 2014 (résumé Europe PMC, PMID 24149748) ; oEmbed YouTube des 7 vidéos.
+`npm run check:fiches` : 160 fiches, 0 erreur, 0 avertissement (161 moins `fente-barre`). Le dossier compte 19 fiches (21 .md moins CONTROLE et README) : compte cohérent. Aucune valeur NON SOURCÉ ou PROVISOIRE n'est présentée OK : les seules lignes « OK » sont la phrase ACSM « l'échec n'est pas nécessaire », avec les deux autres parties de la ligne marquées PROVISOIRE et NON SOURCÉ.
+
+**Bilan : B1, B2, B3 levés (0 bloquant). 16 fiches proposées `utilisable`, 3 restent `complete_kine` (squat-barre-repere-banc, rowing-pendlay-barre, rowing-barre-ez). 3 nouveaux écarts à corriger (N1 à N3), 5 remarques (N4 à N8).**
+
+## Point par point
+
+| n° | Verdict | Constat |
+|---|---|---|
+| B1 | **corrigé** (+ nouvel écart N1) | Barres de sécurité « juste sous la barre quand tu touches le banc » dans le tableau des variantes, consigne 1, points d'attention, sécurité, objets du quotidien ; plus aucun « sous le banc » (recherche dans knowledge/, docs/, tools/). Illustration refaite regardée : banc visible, barre jaune environ 5 cm sous la barre au contact du banc (au lieu de 50 cm), pose cohérente avec la fiche. Sortie de secours du bas (buste vers l'avant, barre sur les barres, essai à vide) cohérente. |
+| B2 | **corrigé** | Les 2 photos `Barbell_Hip_Thrust` sont `non`, les WebP supprimés (plus de maillot flouté, plus de Nike). Illustration regardée : haut du dos sur un banc calé contre le rack, serviette, bas puis haut, bassin et cuisses alignés en haut : conforme. Réserves mineures N6. |
+| B3 | **corrigé** | Règle unique partout (variantes, consigne 3, points d'attention, erreurs fréquentes, sécurité, signes d'arrêt, R9) : la barre s'arrête à quelques centimètres au-dessus de la poitrine, à la hauteur des barres de sécurité, sans la toucher ; au sol, arrêt aux coudes, barres obligatoires aussi. Plus de « descends jusqu'à la poitrine ». Illustration à 3 images regardée (banc bras tendus, banc arrêt sans toucher, sol arrêt aux coudes) : barre jaune juste sous la barre, conforme. |
+| S1 | **corrigé** | Légende supprimée ; Floor_Press et Barbell_Bench_Press tous deux `non`, même règle. |
+| S2 | **corrigé** | « En te redressant » supprimé (aucune occurrence). Les barres « ne protègent pas le dos » ; sortie pas à pas (genoux fléchis, hanches basses, barre sur les barres, essai à vide) ; réglage « hauteur de la barre buste presque parallèle moins quelques centimètres » : la manœuvre est mécaniquement réalisable. |
+| S3 | **corrigé** | Référence exacte (28(6):1573-1580, PMID 24149748, titre exact) ; 85 % = charge ; conclusion ischios max au roumain et au glute-ham raise, semi-tendineux plus actif que biceps fémoral ; érecteurs « non classables ». Fidèle au résumé Europe PMC lu. Même ligne dans le roumain et le good morning. |
+| S4 | **corrigé (fiche écartée)** | `ecartees/fente-barre.md` : `ecartee: 2026-10-24`, motif écrit, illustration supprimée, plus de référence active ailleurs (voir remarque N8). |
+| S5 | **corrigé** | Sortie = laisser la barre derrière la tête (sol ou banc), 1 m libre, essai à vide, plus de « sur la poitrine » ; points d'attention et signes d'arrêt alignés. Choix de `kine` NON SOURCÉ, écrit comme tel ; manœuvre plausible, non testable par le relecteur. |
+| S6 | **partiellement corrigé** | L'illustration est refaite et ne montre plus le faux appui sur banc : buste penché debout, barre au sol puis tirée. Mais la pose ne suit pas la consigne de la variante libre : cuisses horizontales (hanches à environ 50 cm du sol, genoux à 90 degrés, position de squat bas) et buste à environ 25 degrés de l'horizontale (consigne : genoux fléchis, buste environ 45 degrés). Comparer à `rowing-barre-penche.svg` (hanches hautes, bon). À refaire (N3). |
+| S7 | **corrigé** | curl-barre et shrug-barre : genou, hanche, cheville n3 = `retirer`, notes réécrites. Voir N2 pour une fiche oubliée. |
+| S8 | **non corrigé** | rowing-barre-ez : cases n3 corrigées, mais toujours une seule image, inexacte sur la pose (S6). Couvert par N3. |
+| C1 | **corrigé** | Légende « hauteur des cuisses » = variante ; cuisse-n2 « limitée à la hauteur des genoux » ; « même départ que la reprise du sol (échelon 2) ». |
+| C2 | **corrigé** | « Plus la pente est forte… » passé en NON SOURCÉ, nouvelle ligne Sources (pente de 30 degrés, choix de coach NON SOURCÉ). |
+| C3 | **corrigé** | Curl, rowing EZ, Pendlay : « plus doux pour les poignets » et « charge plus légère » marqués observation de pratique NON SOURCÉ avec ligne Sources ; Fenwick 2009 signalé extrapolation (barre droite testée). |
+| C4 | **corrigé pour les 5 fiches** (reste N2) | Prise serrée, incliné, militaire, rowing penché, rowing EZ : genou, hanche, cheville n3 = `retirer`, même note partout. |
+| C5 | **corrigé** | Rowing penché et EZ : « départ au sol, puis la barre reste en l'air pendant toute la série (à quelques centimètres du sol) ». |
+| C6 | **corrigé** | Box « conçue pour porter ton poids plus celui de la barre », step plastique ou creux exclu, hauteur de step signalée ; « en bas » corrigé. Le niveau `expert` de `Barbell_Squat_To_A_Bench` n'est pas signalé (seul Box_Squat l'est) : sans conséquence. |
+| C7 | **corrigé** | (a) Barres « juste sous la barre en quart de squat », sortie de secours écrite, illustration réalignée (environ 30 cm sous la barre debout, cohérent avec un quart de squat ; réserve mineure). (b) Dosage : 12 à 15 répétitions, 2 séries, 60 s, pas de réserve cible : conforme à generateur-v1.md §3.3 (ligne cheville_mollet, 12-15 intermédiaire) ; règle de 2 répétitions en réserve gardée en sécurité. |
+| C8 | **corrigé** | Poignet n1 = `charge:legere`, indépendant de la barre EZ. |
+| C9 | **corrigé** | Doublon banc/box supprimé. |
+| M1 | corrigé | « 24 pratiquants », grandeurs mesurées précisées. |
+| M2 | corrigé | Hartmann : forces et contraintes rétro-patellaires, sans « maximales vers 90 degrés » (3 fiches). |
+| M3 | corrigé | « mi-tibia avec des disques de 45 cm ». |
+| M4, M5 | corrigés | « paumes vers les cuisses » ; phrase du partenaire et des barres de sécurité remplacée dans les 3 soulevés de terre. |
+| M6, M7, M14 | non traités | Illustrations squat arrière, squat avant (« en reculant d'un pas » inclus), Pendlay : inchangées, acceptables avec réserve, non bloquant. |
+| M8 | corrigé | Menton reculé sans cambrer la nuque ; dos n2 = `retirer` (remplaçant développé épaules aux haltères, fiche pilote existante). |
+| M9 | **partiellement** | Plus aucune photo floutée n'est publiée (5 jeux retirés ; les 6 jeux conservés n'ont aucun flou, vérifiés à l'image ; crédits régénérés). Restent visibles de petits logos de vêtements ou de gants (EZ-Bar_Curl, Barbell_Curl, Incline_Bench_Pull, Standing_Military_Press, Romanian_Deadlift) : non recadrables, connus du README, non bloquant (même décision que le lot 06). Aucune marque d'une autre app. |
+| M10, M11, M12, M13, M15 | corrigés | Légende « suis la consigne pour le dos » ; cas « autre exercice » écrit dans les dosages ; sumo dos n1 = variante conventionnel au rack ; curl grossesse (la note renvoie à G5) ; Kolber retiré des sources. |
+| M16 | sans écart | Inchangé. |
+
+## Fiches écartées
+`tirage-menton-barre`, `fentes-marchees-barre`, `fente-barre` : en-tête `ecartee: 2026-10-24`, motif écrit, aucune utilisation par le générateur ni la bibliothèque, non comptées dans les 19.
+
+## Vidéos (7)
+Ids de 11 caractères, tous valides ; oEmbed répond pour les 7 ; chaîne conforme à la fiche : Nuffield Health (hip thrust, soulevé de terre, roumain, rowing penché, curl), The Physio Fix (Pendlay), Renaissance Periodization (shrug). Limites déjà écrites par `coach` : images des vidéos non regardées (la vidéo du curl est un « Barbell Curl » général, celle du hip thrust ne précise pas la barre) ; la date de publication n'est pas dans les fiches (seule « vérifiée le 2026-10-24 »). À confirmer par l'utilisateur à la première lecture (mains sur la barre et serviette pour le hip thrust). Les 5 fiches sans vidéo ont leur dossier `images-a-trouver/` (A-LIRE.txt présent).
+
+## Nouveaux écarts
+| n° | Fiche | Gravité | Problème |
+|---|---|---|---|
+| N1 | squat-barre-repere-banc | à corriger (empêche `utilisable`) | Point d'attention « Si tu bloques en haut de la montée … même manœuvre, penche le buste en avant jusqu'aux barres » : les barres sont à quelques centimètres sous la barre au contact du banc ; à mi-montée la barre est bien plus haut et la manœuvre décrite ne l'atteint pas. Écrire la bonne conduite (redescendre en contrôle jusqu'au banc, puis la sortie du bas), à faire par `kine`. |
+| N2 | rowing-pendlay-barre | à corriger (texte seul, empêche `utilisable`) | Cases genou n3 et cheville n3 encore `retirer: sans-zone:rowing-pendlay-barre-sol` (note « jambes en appui sans effort propre »), alors que la règle C4/S7 appliquée aux autres fiches est : barre chargée debout, appui des jambes = zone sollicitée = `retirer` ; la hanche est déjà retirée. À aligner. |
+| N3 | rowing-barre-ez | à corriger (empêche `utilisable`) | Illustration à refaire (voir S6) : hanches hautes, buste environ 45 degrés ; la version appuyée n'est pas montrée (la légende le dit honnêtement). |
+| N4 | README du lot | remarque | Table : la ligne `fente-barre` barrée a une cellule en trop ; « Couverture visée : Fente 1, total 20 fiches » et la section « Images » (« 8 fiches avec photos, 12 illustrations, 0 sans image ») sont périmées. |
+| N5 | tools/photos.md, public/photos | remarque | Les WebP `Floor_Press-0/1` et leurs lignes de crédit sont toujours là alors que les photos sont `non` : à retirer ou à garder volontairement. |
+| N6 | hip-thrust-barre (illustration) | remarque | La tête repose sur le banc (consigne : haut du dos au bord du banc) ; les mains sur la barre ne se lisent qu'en pose haute. Lisible, non bloquant. |
+| N7 | souleve-de-terre-barre (illustration) | remarque | Départ du sol avec hanches au niveau des genoux (très bas), épaules à l'aplomb de la barre : acceptable (même remarque que M10). |
+| N8 | motif de fentes-marchees-barre, docs/QUESTIONS.md Q16 | remarque | Ils disent encore que `fente-barre` (squat fendu à la barre) couvre le schéma ; cette fiche est écartée à son tour (couverture : `fente-arriere` et `squat-fendu`). Aucune décision « fente-barre écartée » n'est inscrite dans QUESTIONS.md. |
+
+## Statut proposé par fiche (après recontrôle)
+| Fiche | Statut proposé | Motif |
+|---|---|---|
+| squat-arriere-barre | utilisable | M2 corrigé ; M6 réserve |
+| squat-avant-barre | utilisable | M2 corrigé ; M7 réserve |
+| squat-barre-repere-banc | **reste complete_kine** | B1 levé ; N1 à corriger |
+| souleve-de-terre-barre | utilisable | M3, M4, M5, M10 ; illustration nouvelle, vidéo ; N7 |
+| souleve-de-terre-sumo-barre | utilisable | M1, M4, M5, M12 |
+| souleve-de-terre-roumain-barre | utilisable | S3, C1 corrigés ; photos Romanian conservées |
+| good-morning-barre | utilisable | S2, S3 corrigés |
+| hip-thrust-barre | utilisable | B2 levé ; N6 |
+| developpe-couche-barre | utilisable | B3, S1 levés, 3 illustrations conformes |
+| developpe-couche-prise-serree-barre | utilisable | C4, C8 corrigés |
+| developpe-incline-barre | utilisable | C2, C4 corrigés |
+| developpe-militaire-barre | utilisable | M8, C4 corrigés ; photo debout seule |
+| rowing-barre-penche | utilisable | C4, C5 corrigés ; photo Incline_Bench_Pull + illustration |
+| rowing-pendlay-barre | **reste complete_kine** | C3 corrigé ; N2 à corriger (2 cases) |
+| rowing-barre-ez | **reste complete_kine** | N3 (illustration, S6) |
+| curl-barre | utilisable | S7, C3, M13 corrigés |
+| shrug-barre | utilisable | S7 corrigé |
+| extension-triceps-barre-ez-allonge | utilisable | S5 corrigé |
+| releve-mollets-debout-barre | utilisable | C7 corrigé ; illustration, réserve |
+
+**Verdict global : plus aucun point bloquant. 16 fiches proposées `utilisable` (le changement de statut revient à l'auteur) ; 3 fiches restent `complete_kine` jusqu'à N1 (`kine`, texte), N2 (`kine`, 2 cases), N3 (`dev`, illustration), puis recontrôle de ces seuls points.**
