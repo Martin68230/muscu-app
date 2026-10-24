@@ -10,3 +10,9 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - B4 FAIT (24/10/2026) : cardio dans le générateur (src/generator/cardio.ts, CARDIO dans config.ts), fusion principal/secondaire, textes T0-T5, GENERATOR_VERSION v1.2 ; tests 430/430, tsc OK, check:fiches 0 erreur ; captures WebKit tests/screens/b4-cardio.spec.ts (SE sombre, grand iPhone clair). Bilan : docs/F6bis-lot-B.md ; décisions ouvertes : docs/QUESTIONS.md Q11.
 - Prochaine action exacte : lot D (12 matériels sans fiche) avec `coach` — commencer par les fiches cardio manquantes (vélo assis, escaliers avec rampe, step) listées en Q11 ; puis brancher le plan de 4 semaines du cardio sur l'historique (lecteur de séance).
 - Lot D puis F7 ensuite.
+
+## LOT D (24/10/2026, 13 h 50) — en cours
+- Lot-07-barre (barre, disques, rack, barre_ez : squat, développé couché, soulevé de terre, rowing, développé militaire, hip thrust…) : ÉTAPE ACTUELLE = coach rédige knowledge/exercices/vague1/lot-07-barre/ (20-24 fiches).
+- Suite du lot : kine → `npm run check:fiches` 0 erreur → dev (images WebP/SVG) → relecteur → corrections → statut utilisable → commit. Un fichier à la fois, jamais à moitié modifié.
+- Lots suivants : lot-08 roue abdos (niveau avancé ; dos, grossesse, post-partum, blessures), lot-09 swiss ball + medicine ball, lot-10 corde, lest, sac de sable, bosu, vélo/rameur/machine_cardio (attention Q5-Q11 de docs/QUESTIONS.md : sauts, corde, tags machine).
+- Puis F7 (historique et accueil).
