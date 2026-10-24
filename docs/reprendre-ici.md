@@ -27,3 +27,8 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - lot-07-barre : 18 fiches `utilisable` (squat-barre-repere-banc et rowing-pendlay-barre validés au recontrôle 2, liens de progression restaurés). Reste `complete_kine` : rowing-barre-ez (libellé « barre au sol » corrigé en « barre qui pend » le 24/10 : à faire confirmer par relecteur, N9).
 - lot-08-ballons-roue : 19 fiches `complete_kine` (kine fait, commit 2095795) ; dev fait les images (en cours) ; ensuite relecteur lancé à neuf sur le lot.
 - Puis lot-09 (corde, lest, sac de sable, bosu, vélo/rameur/machine_cardio : voir Q5-Q11 sur sauts/corde et tags machine), puis F7.
+
+## Mise à jour 19 h 05 (24/10/2026) — DÉPLOIEMENT RÉPARÉ
+- Déploiement #61 VERT, commit b77f8ef en ligne à 19 h 02 (heure de Paris) : https://martin68230.github.io/muscu-app/ (index, JS, fiches.json 158 fiches vérifiés). Cause des échecs #54-#60 et corrections : docs/deploiement-notes.md. Règle ajoutée à CLAUDE.md (section C).
+- lot-08-ballons-roue : kine (2c7adfa) et coach (447e55a) ont corrigé ; il reste dev (illustrations lancer-bas-haut-mur S2, extension-dorsale-ballon sans mur, lancer-rotation-mur M10, photo 1 de genoux-poitrine-ballon S3), puis recontrôle relecteur des points corrigés, puis statuts. rowing-barre-ez (lot-07) : libellé corrigé, à confirmer par relecteur.
+- Pas poussé depuis b77f8ef : tout commit suivant doit être poussé en UNE fois, puis vérifié vert (CLAUDE.md).
