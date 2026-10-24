@@ -119,7 +119,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 ## Photo
 - `Box_Squat/0.jpg` : affichable : non (le pratiquant est assis sur la box, relâché (la consigne : effleurer sans se relâcher), barre vue par le bout, cadrage différent entre les deux images)
 - `Box_Squat/1.jpg` : affichable : non (le pratiquant est assis sur la box, relâché (la consigne : effleurer sans se relâcher), barre vue par le bout, cadrage différent entre les deux images)
-- illustration : public/illustrations/squat-barre-repere-banc.svg : affichable : non (illustration originale de l'app, 24/10/2026 ; Squat avec repère, vue de profil : on effleure le banc derrière soi, barres de sécurité jaunes ; ATTENTION : l'illustration actuelle place les barres de sécurité sous le banc, ce qui est faux, elle est à refaire par dev avec les barres juste sous la barre au contact du banc ; ne pas afficher en attendant)
+- illustration : public/illustrations/squat-barre-repere-banc.svg : affichable : oui (illustration originale de l'app, refaite le 24/10/2026 ; Squat avec repère, vue de profil : barre sur le haut du dos, fesses au contact du banc sans s'asseoir, barres de sécurité jaunes 3 à 5 cm sous la barre au contact du banc)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

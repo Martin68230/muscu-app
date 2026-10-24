@@ -110,7 +110,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 ## Photo
 - `Standing_Barbell_Calf_Raise/0.jpg` : affichable : non (pieds sur une plateforme (la consigne : pieds à plat au sol, plateforme supprimée) ; la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
 - `Standing_Barbell_Calf_Raise/1.jpg` : affichable : non (pieds sur une plateforme (la consigne : pieds à plat au sol, plateforme supprimée) ; la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
-- illustration : public/illustrations/releve-mollets-debout-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Relevé de mollets debout, vue de profil : barre sur le haut du dos, pieds à plat puis pointe des pieds, rack avec barres de sécurité jaunes ; réserve kine : l'illustration place les barres environ 60 cm sous la barre, plus bas que le réglage « quart de squat » de la fiche ; à refaire par dev)
+- illustration : public/illustrations/releve-mollets-debout-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Relevé de mollets debout, vue de profil : barre sur le haut du dos, pieds à plat puis pointe des pieds, rack avec barres de sécurité jaunes, réglées juste sous la barre en quart de squat ; alignée sur la fiche le 24/10/2026)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -120,6 +120,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Barbell_Bench_Press_-_Medium_Grip/1.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; développé couché sans barres de sécurité visibles, barre au-dessus du visage)
 - `Floor_Press/0.jpg` : affichable : non (même règle que Barbell_Bench_Press : pas de barres de sécurité visibles, la consigne prime ; décision kine du 24/10/2026, règle la plus prudente appliquée aux deux variantes)
 - `Floor_Press/1.jpg` : affichable : non (même règle que Barbell_Bench_Press : pas de barres de sécurité visibles, la consigne prime ; décision kine du 24/10/2026, règle la plus prudente appliquée aux deux variantes)
+- illustration : public/illustrations/developpe-couche-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Développé couché, vue de profil, 3 images : sur banc dans le rack bras tendus, sur banc barre arrêtée juste au-dessus de la poitrine sans la toucher à la hauteur des barres de sécurité jaunes, au sol arrêt quand les coudes touchent le sol)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

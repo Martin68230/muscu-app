@@ -55,6 +55,12 @@ const benchAlong = (J) => {
   return [['lin', [a, b], 10], ['lin', [mid, [mid[0] + 8, 0]], 6], ['lin', [[a[0] - 6, 0], [a[0] + 36, 0]], 6], ['lin', [a, [a[0] + 36, a[1]]], 8]];
 };
 
+// Barre vue par le bout, petite bague : les barres de sécurité jaunes se dessinent juste dessous (corrections images du lot 07)
+const barEnd = (J) => [['plate', J.haN, 9]];
+const barEnd7 = (J) => [['plate', J.haN, 7]];
+const benchFlat = [['rect', -92, 36, 172, 10, 3], ['rect', -78, 0, 8, 36, 2], ['rect', 56, 0, 8, 36, 2]];
+const benchSq = [['rect', -105, 40, 75, 10, 3], ['rect', -98, 0, 8, 40, 2], ['rect', -44, 0, 8, 40, 2]];
+
 export const EXERCICES = [
   // ================= pilote =================
   {
@@ -573,10 +579,10 @@ export const EXERCICES = [
     b: { p: [-28, 62], t: 76, h: 80, armN: { to: [-3, 140], bend: 'f' }, armF: { to: [-5, 139], bend: 'f' }, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, back: rackBack(-100, 168, 108), props: (J) => [...barPlate(J), ['arrow', [78, 90], [78, 150]]] },
   },
   {
-    id: 'squat-barre-repere-banc', titre: 'Squat avec repère : on descend jusqu\'à effleurer un banc placé derrière soi, barres de sécurité (jaune) sous le banc',
-    labels: ['Barre sur le dos, banc derrière', 'Effleure le banc, sans te relâcher'],
-    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: [['rect', -112, 36, 80, 10, 3], ['rect', -106, 0, 8, 36, 2], ['rect', -50, 0, 8, 36, 2], ...rackBack(-132, 168, 30, 36)], props: (J) => barPlate(J) },
-    b: { p: [-42, 62], t: 66, h: 72, armN: { to: [-15, 121], bend: 'b' }, armF: { to: [-17, 120], bend: 'b' }, legN: { to: [6, A], bend: 'f' }, legF: { to: [0, A], bend: 'f' }, back: [['rect', -112, 36, 80, 10, 3], ['rect', -106, 0, 8, 36, 2], ['rect', -50, 0, 8, 36, 2], ...rackBack(-132, 168, 30, 36)], props: (J) => [...barPlate(J), ['arrow', [78, 90], [78, 150]]] },
+    id: 'squat-barre-repere-banc', titre: 'Squat avec repère : on touche le banc derrière soi sans s\'asseoir ; barres de sécurité (jaune) 3 à 5 cm sous la barre quand on touche le banc',
+    labels: ['Debout, barre sur le dos', 'Touche le banc, sans t\'asseoir'],
+    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: [...benchSq, ['post', -132, 172], ['safe', -132, 22, 108]], props: barEnd },
+    b: { p: [-40, 57], t: 66, h: 72, armN: { to: [-17, 119], bend: 'b' }, armF: { to: [-19, 118], bend: 'b' }, legN: { to: [6, A], bend: 'f' }, legF: { to: [0, A], bend: 'f' }, back: [...benchSq, ['post', -132, 172], ['safe', -132, 22, 108]], props: (J) => [...barEnd(J), ['arrow', [78, 90], [78, 150]]] },
   },
   {
     id: 'souleve-de-terre-sumo-barre', titre: 'Soulevé de terre sumo, vue de face : pieds très écartés, mains étroites à l\'intérieur des genoux',
@@ -615,10 +621,10 @@ export const EXERCICES = [
     b: { p: [-70, 86], t: 8, h: 0, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { a: [150, -75] }, armF: { a: [152, -77] }, props: (J) => [...barPlate(J), ['arrow', [60, 30], [60, 80]]] },
   },
   {
-    id: 'rowing-barre-ez', titre: 'Rowing à la barre EZ, poitrine appuyée sur un banc incliné : la barre part du sol, les coudes reculent',
-    labels: ['Bras tendus, barre au sol', 'Barre tirée vers la poitrine'],
-    a: { p: [-14, 42], t: 55, h: 40, legN: { to: [-66, A], bend: 'f', foot: -40 }, legF: { to: [-72, A], bend: 'f', foot: -40 }, armN: { a: [-90, -88] }, armF: { a: [-88, -86] }, back: (J) => benchAlong(J), props: (J) => barPlate(J) },
-    b: { p: [-14, 42], t: 55, h: 40, legN: { to: [-66, A], bend: 'f', foot: -40 }, legF: { to: [-72, A], bend: 'f', foot: -40 }, armN: { to: [22, 68], bend: 'b' }, armF: { to: [20, 66], bend: 'b' }, back: (J) => benchAlong(J), props: (J) => [...barPlate(J), ['arrow', [72, 40], [72, 80]]] },
+    id: 'rowing-barre-ez', titre: 'Rowing à la barre EZ, buste penché debout : la barre part du sol, bras tendus, puis les coudes reculent et la barre monte vers le bas de la poitrine',
+    labels: ['Buste penché, barre au sol', 'Barre tirée vers le ventre'],
+    a: { p: [-48, 57], t: 25, h: 33, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => [['plate', J.haN, 14]] },
+    b: { p: [-48, 57], t: 25, h: 33, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { to: [8, 73], bend: 'b' }, armF: { to: [6, 72], bend: 'b' }, props: (J) => [['plate', J.haN, 14], ['arrow', [72, 30], [72, 70]]] },
   },
   {
     id: 'extension-triceps-barre-ez-allonge', titre: 'Extension des triceps à la barre EZ, allongé au sol : les coudes restent fixes, la barre descend vers le front',
@@ -627,9 +633,40 @@ export const EXERCICES = [
     b: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 200] }, armF: { a: [88, 198] }, props: (J) => [...barPlate(J), ['arrow', [-40, 100], [-86, 70]]] }),
   },
   {
-    id: 'releve-mollets-debout-barre', titre: 'Relevé de mollets debout avec une barre sur le haut du dos : pieds à plat au sol, on monte sur la pointe des pieds ; rack à barres de sécurité (jaune)',
+    id: 'releve-mollets-debout-barre', titre: 'Relevé de mollets debout avec une barre sur le haut du dos : pieds à plat au sol, on monte sur la pointe des pieds ; barres de sécurité (jaune) juste sous la barre en quart de squat',
     labels: ['Pieds à plat, barre sur le dos', 'Monte sur la pointe des pieds'],
-    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: rackBack(-100, 168, 106), props: (J) => barPlate(J) },
-    b: { p: [0, 126], t: 90, armN: { to: [-3, 193], bend: 'b' }, armF: { to: [-5, 192], bend: 'b' }, legN: { to: [8, 22], bend: 'f', foot: -60 }, legF: { to: [2, 22], bend: 'f', foot: -60 }, back: rackBack(-100, 168, 106), props: (J) => [...barPlate(J), ['arrow', [78, 40], [78, 80]]] },
+    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: [['post', -110, 172], ['safe', -110, 22, 149]], props: barEnd },
+    b: { p: [0, 126], t: 90, armN: { to: [-3, 193], bend: 'b' }, armF: { to: [-5, 192], bend: 'b' }, legN: { to: [8, 22], bend: 'f', foot: -60 }, legF: { to: [2, 22], bend: 'f', foot: -60 }, back: [['post', -110, 172], ['safe', -110, 22, 149]], props: (J) => [...barEnd(J), ['arrow', [78, 40], [78, 80]]] },
+  },
+  {
+    id: 'developpe-couche-barre', titre: 'Développé couché à la barre : sur banc puis au sol, dans le rack ; barres de sécurité (jaune) juste au-dessus de la poitrine, la barre s\'arrête sans la toucher (au sol : arrêt quand les coudes touchent le sol)',
+    labels: ['Banc : bras tendus', 'Banc : arrêt sans toucher', 'Sol : arrêt aux coudes'],
+    a: { p: [0, 57], t: 180, h: 180, legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, back: [...benchFlat, ['post', -110, 135], ['safe', -110, -30, 69.5]], props: (J) => [...barEnd7(J), ['arrow', [-62, 175], [-62, 150]]] },
+    b: { p: [0, 57], t: 180, h: 180, legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { to: [-58, 80], bend: 'f' }, armF: { to: [-60, 80], bend: 'f' }, back: [...benchFlat, ['post', -110, 135], ['safe', -110, -30, 69.5]], props: (J) => [...barEnd7(J), ['arrow', [-62, 150], [-62, 115]]] },
+    c: { p: [-5, 11], t: 180, h: 180, legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { to: [-34, 42], bend: 'd' }, armF: { to: [-36, 42], bend: 'd' }, back: [['post', -110, 125], ['safe', -110, -20, 31.5]], props: (J) => [...barEnd7(J), ['arrow', [-34, 100], [-34, 62]]] },
+  },
+  {
+    id: 'hip-thrust-barre', titre: 'Poussée de hanches à la barre : haut du dos contre un banc calé contre un mur, barre sur les hanches avec une serviette dessous, deux mains sur la barre',
+    labels: ['Hanches presque au sol', 'Buste et cuisses alignés'],
+    a: { p: [-2, 24], t: 163, h: 170, legN: { to: [52, A], bend: 'u' }, legF: { to: [46, A], bend: 'u' }, armN: { to: [-2, 42], bend: 'd' }, armF: { to: [-4, 42], bend: 'd' }, back: [['wall', -125, 14], ['rect', -111, 26, 62, 10, 3], ['rect', -104, 0, 8, 26, 2], ['rect', -64, 0, 8, 26, 2]], props: (J) => [['towel', [[-9, 36], [5, 36]]], ...barEnd7(J)] },
+    b: { p: [0, 58], t: 193, h: 200, legN: { to: [55, A], bend: 'u' }, legF: { to: [49, A], bend: 'u' }, armN: { to: [0, 76], bend: 'd' }, armF: { to: [-2, 76], bend: 'd' }, back: [['wall', -125, 14], ['rect', -111, 26, 62, 10, 3], ['rect', -104, 0, 8, 26, 2], ['rect', -64, 0, 8, 26, 2]], props: (J) => [['towel', [[-7, 70], [7, 70]]], ...barEnd7(J), ['arrow', [40, 100], [40, 130]]] },
+  },
+  {
+    id: 'souleve-de-terre-barre', titre: 'Soulevé de terre à la barre : départ du sol, dos plat, barre contre les jambes ; on monte en poussant le sol, jusqu\'à debout',
+    labels: ['Départ du sol, dos plat', 'Debout, barre contre les cuisses'],
+    a: { p: [-52, 52], t: 40, h: 48, legN: { to: [-10, A], bend: 'f' }, legF: { to: [-16, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => barPlate(J) },
+    b: { p: [0, 112], t: 90, armN: { a: [-92, -90] }, armF: { a: [-90, -88] }, props: (J) => [...barPlate(J), ['arrow', [78, 70], [78, 130]]] },
+  },
+  {
+    id: 'shrug-barre', titre: 'Shrug à la barre : debout, barre tenue bras tendus devant les cuisses, les épaules montent vers les oreilles sans plier les coudes ; barre prise au rack',
+    labels: ['Debout, bras tendus', 'Épaules vers les oreilles'],
+    a: { p: [0, 112], t: 90, armN: { to: [4, 105], bend: 'd' }, armF: { to: [2, 105], bend: 'd' }, back: [['post', -110, 100]], props: (J) => barPlate(J) },
+    b: { p: [0, 112], t: 90, armN: { to: [4, 113], bend: 'd' }, armF: { to: [2, 113], bend: 'd' }, back: [['post', -110, 100]], props: (J) => [...barPlate(J), ['arrow', [78, 90], [78, 125]]] },
+  },
+  {
+    id: 'rowing-barre-penche', titre: 'Rowing à la barre, buste penché sans appui : dos plat, la barre pend devant les genoux puis monte vers le bas de la poitrine, coudes vers l\'arrière',
+    labels: ['Buste penché, barre qui pend', 'Barre tirée vers le ventre'],
+    a: { p: [-45, 98], t: 35, h: 42, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => barPlate(J) },
+    b: { p: [-45, 98], t: 35, h: 42, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { to: [4, 108], bend: 'b' }, armF: { to: [2, 107], bend: 'b' }, props: (J) => [...barPlate(J), ['arrow', [72, 70], [72, 110]]] },
   },
 ];

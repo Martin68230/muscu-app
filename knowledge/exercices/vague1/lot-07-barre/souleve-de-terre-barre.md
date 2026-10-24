@@ -115,11 +115,12 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Disques « bumper » ou de grand diamètre pour la variante au sol : sinon rehausse la barre sur des cales stables, jamais sur des objets instables.
 
 ## Photo
-- `Barbell_Deadlift/0.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre contre les jambes ; zone floutée sur un logo de rack ; vue le 24/10/2026)
-- `Barbell_Deadlift/1.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre contre les jambes ; zone floutée sur un logo de rack ; vue le 24/10/2026)
+- `Barbell_Deadlift/0.jpg` : affichable : non (logo de rack flouté (retiré 24/10/2026 : l'utilisateur ne veut pas de logo flouté publié) ; remplacée par l'illustration)
+- `Barbell_Deadlift/1.jpg` : affichable : non (logo de rack flouté (retiré 24/10/2026 : l'utilisateur ne veut pas de logo flouté publié) ; remplacée par l'illustration)
 - `Rack_Pulls/0.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
 - `Rack_Pulls/1.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
-- légende : Photo : départ du sol (échelon 2). Au rack, la barre part du genou. Suis la consigne pour le dos.
+- légende : Illustration : départ du sol (échelon 2). Au rack, la barre part du genou. Suis la consigne pour le dos.
+- illustration : public/illustrations/souleve-de-terre-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Soulevé de terre, vue de profil : départ du sol dos plat, puis debout barre contre les cuisses)
 
 ## Vidéo
 - video : youtube:6TA4VaweLWk | Nuffield Health | vérifiée le 2026-10-24

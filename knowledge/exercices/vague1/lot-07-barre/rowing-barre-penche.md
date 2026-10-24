@@ -107,10 +107,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Bent_Over_Barbell_Row/0.jpg` : affichable : oui (variante libre (échelon 2), dos plat ; zone floutée sur un logo de rack ; vue le 24/10/2026)
-- `Bent_Over_Barbell_Row/1.jpg` : affichable : oui (variante libre (échelon 2), dos plat ; zone floutée sur un logo de rack ; vue le 24/10/2026)
+- `Bent_Over_Barbell_Row/0.jpg` : affichable : non (logo de rack flouté (retiré 24/10/2026 : l'utilisateur ne veut pas de logo flouté publié) ; remplacée par l'illustration)
+- `Bent_Over_Barbell_Row/1.jpg` : affichable : non (logo de rack flouté (retiré 24/10/2026 : l'utilisateur ne veut pas de logo flouté publié) ; remplacée par l'illustration)
 - `Incline_Bench_Pull/0.jpg` : affichable : oui (variante appuyée sur banc incliné (échelon 1), barre au sol ; vue le 24/10/2026)
 - `Incline_Bench_Pull/1.jpg` : affichable : oui (variante appuyée sur banc incliné (échelon 1), barre au sol ; vue le 24/10/2026)
+- illustration : public/illustrations/rowing-barre-penche.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Rowing penché sans appui (variante libre, échelon 2), vue de profil : barre qui pend puis tirée vers le bas de la poitrine ; la photo Incline_Bench_Pull montre la variante appuyée)
 
 ## Vidéo
 - video : youtube:ZathOyxYZ3M | Nuffield Health | vérifiée le 2026-10-24

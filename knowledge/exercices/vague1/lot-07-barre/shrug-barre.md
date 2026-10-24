@@ -109,8 +109,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Barbell_Shrug/0.jpg` : affichable : oui (barre au rack (échelon 1), épaules qui montent ; zones floutées sur des logos de rack ; vue le 24/10/2026)
-- `Barbell_Shrug/1.jpg` : affichable : oui (barre au rack (échelon 1), épaules qui montent ; zones floutées sur des logos de rack ; vue le 24/10/2026)
+- `Barbell_Shrug/0.jpg` : affichable : non (logo de rack flouté (retiré 24/10/2026 : l'utilisateur ne veut pas de logo flouté publié) ; remplacée par l'illustration)
+- `Barbell_Shrug/1.jpg` : affichable : non (logo de rack flouté (retiré 24/10/2026 : l'utilisateur ne veut pas de logo flouté publié) ; remplacée par l'illustration)
+- illustration : public/illustrations/shrug-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Shrug, vue de profil : debout, barre bras tendus devant les cuisses, épaules vers les oreilles ; barre prise au rack)
 
 ## Vidéo
 - video : youtube:M_MjF5Nm_h4 | Renaissance Periodization (Dr Mike Israetel) | vérifiée le 2026-10-24

@@ -162,6 +162,9 @@ const PROPS = {
     line([[x, hookY], [x + side * 16, hookY]], 'prl', 6, c),
     line([[x, safeY], [x + side * len, safeY]], 'sf', 7, c),
   ].join(''),
+  // Poteau de rack seul (crochet gris) et barre de sécurité jaune qui va jusque sous la barre (x1 -> x2 à la hauteur y)
+  post: (c, x, hookY) => rect(c, x - 5, 0, 10, 236, 'pr', 2) + line([[x, hookY], [x + 16, hookY]], 'prl', 6, c),
+  safe: (c, x1, x2, y) => line([[x1, y], [x2, y]], 'sf', 7, c),
   barfront: (c, y, half = 84) => line([[-half, y], [half, y]], 'db', 5, c, ' stroke-linecap="butt"') + rect(c, -half - 4, y - 22, 9, 44, 'pl2', 2) + rect(c, half - 5, y - 22, 9, 44, 'pl2', 2),
   ring: (c, at, r = 18) => { const [a, b] = px(at, c); return `<circle class="arc" cx="${a}" cy="${b}" r="${r}"/>`; },
 };

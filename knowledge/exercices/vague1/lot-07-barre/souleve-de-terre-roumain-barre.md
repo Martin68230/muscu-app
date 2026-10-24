@@ -111,8 +111,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 ## Photo
 - `Romanian_Deadlift/0.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre près des jambes ; vue le 24/10/2026)
 - `Romanian_Deadlift/1.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre près des jambes ; vue le 24/10/2026)
-- `Stiff-Legged_Barbell_Deadlift/0.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
-- `Stiff-Legged_Barbell_Deadlift/1.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
+- `Stiff-Legged_Barbell_Deadlift/0.jpg` : affichable : non (logos de rack floutés (retirée 24/10/2026) ; les photos Romanian_Deadlift restent)
+- `Stiff-Legged_Barbell_Deadlift/1.jpg` : affichable : non (logos de rack floutés (retirée 24/10/2026) ; les photos Romanian_Deadlift restent)
 - légende : Photos : départ du sol. Au rack (échelon 1), la barre part à hauteur des cuisses.
 
 ## Vidéo

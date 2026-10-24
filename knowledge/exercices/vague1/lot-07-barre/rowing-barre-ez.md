@@ -103,7 +103,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo (aucune entrée barre EZ dans la base free-exercise-db)
-- illustration : public/illustrations/rowing-barre-ez.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Rowing barre EZ, poitrine appuyée sur un banc incliné, vue de profil : barre au sol puis tirée vers la poitrine)
+- illustration : public/illustrations/rowing-barre-ez.svg : affichable : oui (illustration originale de l'app, refaite le 24/10/2026 ; Rowing barre EZ, version buste penché debout, vue de profil : barre au sol bras tendus puis tirée vers le bas de la poitrine)
+- légende : Illustration : version buste penché (échelon 2). La version appuyée sur banc suit la même consigne.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
