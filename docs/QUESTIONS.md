@@ -32,3 +32,27 @@ Contrôle des tags de « Mon matériel » dans public/data/fiches.json (fiches v
 `roue_abdos`, `barre`, `disques`, `barre_ez`, `rack`, `swiss_ball`, `medecine_ball`, `corde_a_sauter`, `lest`, `sac_de_sable`, `bosu`, `machine_cardio`.
 Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` (2), `rouleau_massage` (1), `barre_traction` (4).
 À faire (coach, puis relecteur) : fiches pour au moins une variante par matériel ci-dessus. Roue abdominale : niveau minimum « avancé » ; exclure dos fragile, grossesse, post-partum, blessure lombaire/épaule (kine à relire). En attendant, l'écran Matériel pourrait préciser « pas encore d'exercice avec ce matériel » (décision à prendre).
+
+## Q5. Sauts et corde à sauter dans le cardio dès « intermédiaire » (24/10/2026, kine, cardio-regles.md §5)
+- **Contexte** : la décision D3 (22/10/2026) limitait les sauts aux programmes sport. `coach` propose de les ouvrir au cardio dès le niveau intermédiaire.
+- **Choix prudent appliqué** : aucun saut dans le cardio tant que tu n'as pas décidé. Si tu acceptes : niveau 0 exigé sur genou, cheville, hanche et dos, pas en reprise après pause, pas en grossesse / post-partum, séries de 30 s puis 60 s au plus, 1 séance avec sauts par semaine (NON SOURCÉ).
+- **Option alternative** : ouvrir les sauts avec ces conditions (moins prudent).
+
+## Q6. Course à pied dans le cardio (24/10/2026, kine, cardio-regles.md §5)
+- **Contexte** : `coach` propose la course pour intermédiaire et avancé (dehors ou sur tapis).
+- **Choix prudent appliqué** : course non proposée. Si tu acceptes : mêmes conditions que Q5, intervalles marche / course au départ, règle +10 % de durée (PROVISOIRE, coureurs).
+- **Option alternative** : proposer la course avec ces conditions.
+
+## Q7. Plafond de séances de cardio dédiées (24/10/2026, kine, cardio-regles.md §3.2)
+- **Contexte** : plafond proposé : 3 par semaine, 2 pour un débutant (NON SOURCÉ, aucune étude).
+- **Choix prudent appliqué** : plafond conservé tel quel (3 ; débutant 2), jamais de séance double, jours en trop laissés libres. Le plus prudent serait 2 pour tout le monde (moins de cardio principal à 5-6 jours).
+- **Option alternative** : plafond de 2 pour tous.
+
+## Q8. Option « extérieur » dans le profil (24/10/2026, kine, cardio-regles.md §8)
+- **Contexte** : le profil n'a que maison / salle ; vélo dehors, côte et course exigeraient une option « j'ai un trajet dehors ».
+- **Choix prudent appliqué** : pas d'option, aucun cardio dehors codé ; seule la marche rapide (sans option) reste proposée. Texte chaleur T6 prêt si l'option est ajoutée (aucun seuil de température sourcé).
+- **Option alternative** : ajouter l'option facultative, avec rappel chaleur et sécurité sur la route (non rédigé).
+
+## Q9. Textes de sécurité cardio proposés par kine (24/10/2026)
+- **Contexte** : textes T0 à T7 dans knowledge/cardio-regles.md (9bis) : avertissement cardio, signes d'arrêt, urgence 15 / 112 seulement pour douleur de poitrine persistante, perte de connaissance, difficulté à respirer au repos ; conseil de consulter avant de reprendre après longue pause ou maladie du cœur, sans blocage ni questionnaire.
+- **Choix prudent appliqué** : aucun affichage tant que `relecteur` n'a pas contrôlé ; statut PROVISOIRE (ACOG 804 non lu directement, Riebe 2015 résumé seulement).
