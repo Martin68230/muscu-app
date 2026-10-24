@@ -6,7 +6,7 @@ import { Injuries } from './Injuries';
 import { Equipment } from './Equipment';
 import { Credits } from './Credits';
 import {
-  DURATIONS, NIVEAUX, OBJECTIFS, PLACES, PREGNANCY_CHOICES, WEEKDAYS, getMainGoal, labelOf, type ProfileStep,
+  DURATIONS, NIVEAUX, PLACES, PREGNANCY_CHOICES, WEEKDAYS, getGoals, goalsSummary, labelOf, type ProfileStep,
 } from '../../data/profile-setup';
 import type { MainGoalKey } from '../../data/model';
 import { ReportsExport } from '../ReportsExport';
@@ -46,8 +46,12 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
   onEditStep: (step?: ProfileStep) => void;
 }) {
   const [goal, setGoal] = useState<MainGoalKey | null>(null);
+  const [others, setOthers] = useState<MainGoalKey[]>([]);
   useEffect(() => {
-    getMainGoal().then(setGoal);
+    getGoals().then((g) => {
+      setGoal(g.main);
+      setOthers(g.others);
+    });
   }, []);
   const [theme, setTheme] = useState<ThemePref>(getThemePref());
   const [name, setName] = useState(profile.displayName);
@@ -127,7 +131,7 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
           ['duree', 'Durée de séance', profile.sessionDurationMin === null && !profile.profileCompletedAt ? '—' : labelOf(DURATIONS, profile.sessionDurationMin)],
           ['lieu', 'Lieu', labelOf(PLACES, profile.place ?? null)],
           ['niveau', 'Niveau', labelOf(NIVEAUX, profile.level)],
-          ['objectif', 'Objectif', labelOf(OBJECTIFS, goal)],
+          ['objectif', 'Objectifs', goalsSummary(goal, others)],
           ['grossesse', 'Grossesse', labelOf(PREGNANCY_CHOICES, profile.pregnancy ?? null)],
         ] as [ProfileStep, string, string][]).map(([step, label, value]) => (
           <button key={step} class="row" onClick={() => onEditStep(step)}>

@@ -1,5 +1,5 @@
 import type { Level, MainGoalKey, PregnancyStatus, Profile, TrainingPlace } from './model';
-import { create, list, update } from './repo';
+import { create, list, softDelete, update } from './repo';
 
 // Parcours « profil en cartes » (F1) : choix proposés, phrases affichées, règles de périmètre v1.
 // Aucune valeur sport/nutrition ici : les phrases de niveau sont des définitions d'affichage
@@ -57,9 +57,10 @@ export const NIVEAUX: { value: Level; label: string; hint: string }[] = [
 ];
 
 export const OBJECTIFS: { value: MainGoalKey; label: string; hint: string }[] = [
-  { value: 'muscle', label: 'Muscle général', hint: 'Gagner en muscle sur tout le corps, avec des séries de répétitions moyennes.' },
+  { value: 'muscle', label: 'Prise de muscle', hint: 'Gagner en muscle sur tout le corps, avec des séries de répétitions moyennes.' },
   { value: 'force', label: 'Force', hint: 'Devenir plus fort sur les mouvements de base : charges plus lourdes, moins de répétitions, repos plus longs.' },
   { value: 'sante', label: 'Santé et forme', hint: 'Rester actif et en forme, sans objectif chiffré : séances plus douces, plus de répétitions.' },
+  { value: 'cardio', label: 'Cardio', hint: "Améliorer ton souffle et ton endurance : de la marche rapide, du vélo ou de la course, à ton rythme." },
   { value: 'perte_gras', label: 'Perte de gras', hint: "Garder ton muscle pendant que tu perds du gras. L'alimentation compte beaucoup : l'appli règle la musculation." },
 ];
 
@@ -109,17 +110,37 @@ export const PROFILE_STEPS = [
 ] as const;
 export type ProfileStep = (typeof PROFILE_STEPS)[number];
 
-/** Objectif principal = ligne de rang 1 de la table `goals`. */
-export async function getMainGoal(): Promise<MainGoalKey | null> {
-  const goals = (await list('goals')).sort((a, b) => a.rank - b.rank);
-  const key = goals[0]?.goalKey;
-  return OBJECTIFS.some((o) => o.value === key) ? (key as MainGoalKey) : null;
+/** Objectifs choisis : rang 1 = principal, rangs suivants = secondaires dans l'ordre choisi (table `goals`). */
+export async function getGoals(): Promise<{ main: MainGoalKey | null; others: MainGoalKey[] }> {
+  const keys = (await list('goals')).sort((a, b) => a.rank - b.rank).map((g) => g.goalKey).filter((k): k is MainGoalKey => OBJECTIFS.some((o) => o.value === k));
+  return { main: keys[0] ?? null, others: [...new Set(keys.slice(1))].filter((k) => k !== keys[0]) };
 }
 
+export async function setGoals(main: MainGoalKey, others: MainGoalKey[]): Promise<void> {
+  const keys = [main, ...others.filter((k, i) => k !== main && others.indexOf(k) === i)];
+  const rows = (await list('goals')).sort((a, b) => a.rank - b.rank);
+  for (const [i, key] of keys.entries()) {
+    if (rows[i]) await update('goals', rows[i].id, { goalKey: key, rank: i + 1 });
+    else await create('goals', { goalKey: key, rank: i + 1 });
+  }
+  for (const extra of rows.slice(keys.length)) await softDelete('goals', extra.id);
+}
+
+/** Objectif principal = ligne de rang 1 de la table `goals`. */
+export async function getMainGoal(): Promise<MainGoalKey | null> {
+  return (await getGoals()).main;
+}
+
+/** Change le principal ; les secondaires sont gardés (sauf celui qui devient principal). */
 export async function setMainGoal(key: MainGoalKey): Promise<void> {
-  const goals = (await list('goals')).sort((a, b) => a.rank - b.rank);
-  if (goals[0]) await update('goals', goals[0].id, { goalKey: key, rank: 1 });
-  else await create('goals', { goalKey: key, rank: 1 });
+  await setGoals(key, (await getGoals()).others);
+}
+
+/** Libellé de la carte du profil : « Prise de muscle + Cardio, Force ». */
+export function goalsSummary(main: MainGoalKey | null, others: MainGoalKey[]): string {
+  if (!main) return '—';
+  const name = (k: MainGoalKey) => OBJECTIFS.find((o) => o.value === k)?.label ?? k;
+  return others.length ? `${name(main)} + ${others.map(name).join(', ')}` : name(main);
 }
 
 /** Le parcours a été terminé : sinon l'Accueil propose « Créer mon programme ». */

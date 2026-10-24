@@ -36,7 +36,7 @@ export type TrainingPlace = 'maison' | 'salle';
 /** Réglage facultatif, privé, jamais partagé (ce n'est pas un ShareDataType). null = pas renseigné, traité comme « non ». */
 export type PregnancyStatus = 'non' | 'enceinte' | 'post_partum';
 /** Objectif principal (table `goals`, rang 1) : clés de la famille v1 (generateur-v1.md §1.3). */
-export type MainGoalKey = 'muscle' | 'force' | 'sante' | 'perte_gras';
+export type MainGoalKey = 'muscle' | 'force' | 'sante' | 'perte_gras' | 'cardio';
 /** 1 = gêne légère, 2 = gêne nette, 3 = douleur (règles détaillées : kine, à valider). */
 export type InjuryLevel = 1 | 2 | 3;
 export type Side = 'gauche' | 'droite' | 'les_deux' | null;

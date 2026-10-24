@@ -3,7 +3,7 @@ import type { MainGoalKey, Profile } from '../../data/model';
 import { update } from '../../data/repo';
 import {
   DAYS_CHOICES, DURATIONS, NIVEAUX, OBJECTIFS, PLACES, PREGNANCY_CHOICES, PREGNANCY_EFFECT_TEXT, PREGNANCY_STOP_TEXT, PREGNANCY_TEXT, PREGNANCY_URGENCE_TEXT, PROFILE_STEPS, WEEKDAYS,
-  completeProfile, freeDaysEnough, getMainGoal, isSupportedDays, setMainGoal, unsupportedDaysMessage, type ProfileStep,
+  completeProfile, freeDaysEnough, getGoals, isSupportedDays, setGoals, unsupportedDaysMessage, type ProfileStep,
 } from '../../data/profile-setup';
 import { Equipment } from './Equipment';
 import { Injuries } from './Injuries';
@@ -45,12 +45,16 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
   const [index, setIndex] = useState(single ? PROFILE_STEPS.indexOf(only) : 0);
   const [done, setDone] = useState(false);
   const [goal, setGoal] = useState<MainGoalKey | null>(null);
+  const [others, setOthers] = useState<MainGoalKey[]>([]);
   const [durationChosen, setDurationChosen] = useState(profile.sessionDurationMin !== null || !!profile.profileCompletedAt);
   const screen = useRef<HTMLElement>(null);
   const step = PROFILE_STEPS[index];
 
   useEffect(() => {
-    getMainGoal().then(setGoal);
+    getGoals().then((g) => {
+      setGoal(g.main);
+      setOthers(g.others);
+    });
   }, []);
   useEffect(() => {
     screen.current?.scrollTo?.(0, 0);
@@ -159,20 +163,47 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
         );
       case 'objectif':
         return (
-          <div class="choice-list" role="group" aria-label="Objectif principal">
-            {OBJECTIFS.map((o) => (
-              <Choice
-                key={o.value}
-                selected={goal === o.value}
-                label={o.label}
-                hint={o.hint}
-                onClick={async () => {
-                  setGoal(o.value);
-                  await setMainGoal(o.value);
-                }}
-              />
-            ))}
-          </div>
+          <>
+            <div class="choice-list" role="group" aria-label="Objectif principal">
+              {OBJECTIFS.map((o) => (
+                <Choice
+                  key={o.value}
+                  selected={goal === o.value}
+                  label={o.label}
+                  hint={o.hint}
+                  onClick={async () => {
+                    const rest = others.filter((k) => k !== o.value);
+                    setGoal(o.value);
+                    setOthers(rest);
+                    await setGoals(o.value, rest);
+                  }}
+                />
+              ))}
+            </div>
+            {goal && (
+              <>
+                <h3>En plus (facultatif)</h3>
+                <p class="dim small">Tu peux en ajouter. L'objectif principal décide en cas de conflit.</p>
+                <div class="chips" role="group" aria-label="Objectifs en plus">
+                  {OBJECTIFS.filter((o) => o.value !== goal).map((o) => (
+                    <button
+                      key={o.value}
+                      type="button"
+                      class="chip"
+                      aria-pressed={others.includes(o.value)}
+                      onClick={async () => {
+                        const next = others.includes(o.value) ? others.filter((k) => k !== o.value) : [...others, o.value];
+                        setOthers(next);
+                        await setGoals(goal, next);
+                      }}
+                    >
+                      {o.label}
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
+          </>
         );
       case 'blessures':
         return <Injuries />;

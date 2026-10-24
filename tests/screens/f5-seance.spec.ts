@@ -85,7 +85,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByRole('button', { name: /Avancé/ }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
-  await page.getByRole('button', { name: /Muscle général/ }).click();
+  await page.getByRole('button', { name: /Prise de muscle/ }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByRole('button', { name: 'Suivant' }).click(); // blessures : aucune
   await page.getByRole('button', { name: 'Terminer' }).click();

@@ -43,7 +43,7 @@ async function setup(page: Page, info: { project: { name: string } }, problems: 
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByRole('button', { name: /Avancé/ }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
-  await page.getByRole('button', { name: /Muscle général/ }).click();
+  await page.getByRole('button', { name: /Prise de muscle/ }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByRole('button', { name: 'Terminer' }).click();
