@@ -9,3 +9,8 @@ screenshots/
 knowledge/exercices/.campagne.lock
 images-a-trouver/
 public/data/fiches.json
+# Sauvegardes et exports de données personnelles de l'utilisateur : jamais dans le dépôt public
+muscu-sauvegarde*.json
+muscu-export*.json
+muscu-signalements*.json
+*.muscu-backup

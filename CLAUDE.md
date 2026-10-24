@@ -44,6 +44,11 @@ Appli privée pour ~10 amis majeurs (niveaux variés, salle et maison ; surtout 
 - Chaque entrée de knowledge/ suit le cycle : rédaction (`coach`/`kine`/`nutritionniste`) -> contrôle (`relecteur`, lancé à neuf, sans le contexte de la rédaction) -> statut mis à jour. Les écarts sont corrigés par l'auteur, puis recontrôlés.
 - Ce n'est pas l'équivalent d'un professionnel humain : l'app le dit dans son avertissement.
 - Avant une fonctionnalité : relire le plan et le cahier des charges, plan court, question à l'utilisateur seulement si le choix est vraiment ambigu. Après : tests, déploiement, liste de ce qu'il faut vérifier sur l'iPhone. Un commit par fonctionnalité.
+- **Déploiement vérifié avant de dire « en ligne »** (décision du 24/10/2026, après les échecs #54 à #60 restés inaperçus) :
+  1. Après chaque envoi sur GitHub, vérifier que le déploiement du dernier commit est VERT avant d'écrire « en ligne » ou de demander un test sur l'iPhone : `gh run list --limit 3` (ou l'API publique `https://api.github.com/repos/Martin68230/muscu-app/actions/runs`) puis, pour un échec, `gh run view <id> --log-failed`.
+  2. Si le déploiement échoue : le dire tout de suite à l'utilisateur et le corriger en priorité, avant toute autre tâche.
+  3. Ne pas envoyer deux commits à quelques secondes d'écart (le premier déploiement est annulé par `concurrency`) : grouper les commits puis envoyer une seule fois.
+  4. Avant d'envoyer : rejouer les étapes du workflow dans un clone propre du dépôt (`git clone . $TEMP/clone`, `npm ci`, `npm run fiches`, `npm test`, `npm run check:securite`, `npm run check:fiches`, `npm run build`) : `public/data/fiches.json` est généré et non versionné.
 - **Économie de quota** (décision D16, 23/10/2026) :
   1. Une conversation par fonctionnalité (F3, F4, F5…) : commit, bilan de 5 lignes dans docs/, puis nouvelle conversation.
   2. Pendant le développement : seulement les tests du fichier modifié (`npx vitest run <fichier>`). Tests complets et captures iPhone SE (sombre) et grand iPhone (clair) une seule fois par fonctionnalité, à la fin, avant le commit.
