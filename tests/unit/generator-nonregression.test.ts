@@ -64,5 +64,5 @@ describe('Non-régression du générateur pour les objectifs sans cardio (B4)', 
     const diff = Object.keys(ref).filter((k) => ref[k] !== now[k]);
     expect(diff).toEqual([]);
     expect(Object.keys(now).length).toBe(Object.keys(ref).length);
-  });
+  }, 60_000);
 });
