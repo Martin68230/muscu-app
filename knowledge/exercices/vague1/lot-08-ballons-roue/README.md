@@ -5,33 +5,32 @@ Les fiches ont été produites une par une par un gabarit commun (sections, case
 ## Fiches
 | id | schéma | niveau_min | variantes (échelon) | matériel | image |
 |---|---|---|---|---|---|
-| roue-abdos | gainage | **intermédiaire** | à genoux contre un mur, amplitude courte (1), à genoux (2), debout (3, avancé) | roue_abdos, tapis, mur | Ab_Roller (à vérifier), illustration à faire |
-| planche-ballon | gainage | intermédiaire | avant-bras sur le ballon (1), tibias sur le ballon (2, avancé) | swiss_ball | illustration à faire |
-| planche-cercles-ballon | gainage | intermédiaire | petits cercles pieds écartés (1), grands cercles pieds serrés (2, avancé) | swiss_ball | illustration à faire |
-| rollout-ballon | gainage | intermédiaire | roulé court (1), roulé long (2) | swiss_ball | illustration à faire |
-| genoux-poitrine-ballon | gainage | intermédiaire | genoux vers la poitrine (1), hanches vers le plafond (2, avancé) | swiss_ball | Exercise_Ball_Pull-In (à vérifier) |
-| curl-ischios-ballon | charnière | intermédiaire | deux jambes (1), une jambe (2, avancé) | swiss_ball | Ball_Leg_Curl (à vérifier) |
-| pont-fessier-ballon | charnière | débutant | haut du dos sur le ballon (1), talons sur le ballon (2), une jambe (3, avancé) | swiss_ball | Physioball_Hip_Bridge (à vérifier) |
-| extension-dorsale-ballon | charnière | débutant | bras croisés jusqu'à l'alignement (1), mains derrière la tête (2) | swiss_ball | Weighted_Ball_Hyperextension (à vérifier, disque à exclure) |
-| pompe-mains-ballon | poussée H | intermédiaire | ballon calé contre un mur (1), ballon libre (2) | swiss_ball, mur | illustration à faire |
-| pompe-pieds-ballon | poussée H | **avancé** | tibias sur le ballon (1), pointes de pieds (2) | swiss_ball | Push-Ups_With_Feet_On_An_Exercise_Ball (à vérifier) |
-| developpe-couche-halteres-ballon | poussée H | intermédiaire | pieds écartés (1), pieds rapprochés (2, avancé) | halteres, swiss_ball | illustration à faire |
-| squat-mur-ballon | squat | débutant | sans charge (1), avec un haltère (2) | swiss_ball, mur (halteres) | illustration à faire |
-| lancer-poitrine-mur | poussée H | débutant | sans rattraper (1), avec rattrapage (2, intermédiaire) | medecine_ball, mur | Medicine_Ball_Chest_Pass (à vérifier) |
-| lancer-rotation-mur | rotation | intermédiaire | pieds fixes (1), pivot du pied arrière (2, avancé) | medecine_ball, mur | illustration à faire |
-| lancer-bas-haut-mur | charnière | intermédiaire | pieds à plat, sans saut (1) | medecine_ball, mur | Medicine_Ball_Scoop_Throw (à vérifier : la base montre un saut) |
-| rotation-assise-ballon-lest | rotation | intermédiaire | pieds au sol (1), pieds levés (2, avancé) | medecine_ball, tapis | Russian_Twist (à vérifier) |
-| bucheron-ballon-lest | rotation | débutant | de haut en bas (1), de bas en haut (2) | medecine_ball | Standing_Cable_Wood_Chop (à vérifier : poulie) |
-| squat-ballon-lest | squat | débutant | contre la poitrine (1), bras tendus (1) | medecine_ball | illustration à faire |
-| squat-lancer-mur | squat | intermédiaire | lancer de poitrine, pieds à plat (1) | medecine_ball, mur | illustration à faire |
-| porte-ballon-lest | porté | débutant | contre la poitrine (1), bras tendus devant (2, intermédiaire) | medecine_ball | illustration à faire |
+| roue-abdos | gainage | intermédiaire | à genoux contre un mur, amplitude courte (1), à genoux (2), debout (3, avancé) | roue_abdos, tapis, mur | illustration |
+| planche-ballon | gainage | intermédiaire | avant-bras sur le ballon (1), tibias sur le ballon (2, avancé) | swiss_ball, tapis | illustration |
+| planche-cercles-ballon | gainage | intermédiaire | petits cercles pieds écartés (1), grands cercles pieds serrés (2, avancé) | swiss_ball, tapis | illustration |
+| rollout-ballon | gainage | intermédiaire | roulé court (1), roulé long (2) | swiss_ball, tapis | illustration |
+| genoux-poitrine-ballon | gainage | intermédiaire | genoux vers la poitrine (1), hanches vers le plafond (2, avancé) | swiss_ball, tapis | 2 photos Exercise_Ball_Pull-In (photo 1 : voir S3) |
+| curl-ischios-ballon | charnière | intermédiaire | deux jambes (1), une jambe (2, avancé) | swiss_ball, tapis | illustration |
+| pont-fessier-ballon | charnière | intermédiaire (Q25) | haut du dos sur le ballon (1), talons sur le ballon (2), une jambe (3, avancé) | swiss_ball, tapis | illustration |
+| extension-dorsale-ballon | charnière | intermédiaire (Q25) | bras croisés jusqu'à l'alignement (1), mains derrière la tête (2) ; mur plein obligatoire | swiss_ball, tapis, mur | illustration (mur à ajouter par `dev`) |
+| pompe-mains-ballon | poussée H | intermédiaire | ballon calé contre un mur (1) ; variante « ballon libre » retirée (Q25) | swiss_ball, mur | illustration |
+| pompe-pieds-ballon | poussée H | avancé | tibias sur le ballon (1), pointes de pieds (2) | swiss_ball, tapis | 2 photos Push-Ups_With_Feet_On_An_Exercise_Ball |
+| squat-mur-ballon | squat | débutant | sans charge (1), avec un haltère (2) | swiss_ball, mur (halteres) | illustration |
+| lancer-poitrine-mur | poussée H | débutant | sans rattraper (1), avec rattrapage (2, intermédiaire) | medecine_ball, mur | illustration |
+| lancer-rotation-mur | rotation | intermédiaire | pieds fixes (1), pivot du pied arrière (2, avancé) | medecine_ball, mur | illustration |
+| lancer-bas-haut-mur | charnière | intermédiaire | pieds à plat, sans saut (1) | medecine_ball, mur | illustration (à refaire, S2) |
+| rotation-assise-ballon-lest | rotation | intermédiaire | pieds au sol (1), pieds levés (2, avancé) | medecine_ball, tapis | illustration |
+| bucheron-ballon-lest | rotation | débutant (bas-haut : intermédiaire, Q25) | de haut en bas (1), de bas en haut (2) | medecine_ball, tapis | illustration |
+| squat-ballon-lest | squat | débutant | contre la poitrine (1), bras tendus (1) | medecine_ball, tapis | illustration |
+| squat-lancer-mur | squat | intermédiaire | lancer de poitrine, pieds à plat (1) | medecine_ball, mur | illustration |
+| porte-ballon-lest | porté | débutant | contre la poitrine (1), bras tendus devant (2, intermédiaire) | medecine_ball, tapis | illustration |
 
-Identifiants free-exercise-db : tous vérifiés dans `dist/exercises.json` (copie du 24/10/2026, 876 entrées ; niveau et matériel de chaque entrée recopiés dans la ligne Sources de la fiche). **Aucune image n'a été vue** : tout est « à vérifier » ou « illustration à faire par `dev` ». Pas d'image maxwu.
+Total : 19 fiches `complete_kine` (statuts inchangés). `developpe-couche-halteres-ballon` est écartée (dossier ecartees/, R9 et Q22). Tableau mis à jour le 24/10/2026 (coach 2) d'après les fiches. Identifiants free-exercise-db vérifiés dans `dist/exercises.json` (copie du 24/10/2026) ; images faites par `dev` (4 WebP, 17 illustrations), détail dans tools/photos.md. Pas d'image maxwu.
 
 ## Couverture visée
-- Gainage 5 (roue + 4 ballon), charnière 4, poussée H 4, squat 3, rotation 3, porté 1. Total 20.
+- Gainage 5 (roue + 4 ballon), charnière 4, poussée H 3, squat 3, rotation 3, porté 1 : total 19.
 - Profils concernés : E (roue + swiss ball) et tout profil avec `swiss_ball`, `roue_abdos` ou `medecine_ball`. Aucune fiche n'exige un autre matériel que ces tags plus mur, tapis et, pour 2 variantes, des haltères.
-- Le débutant a : pont fessier sur ballon, extension dorsale sur ballon, squat au mur avec ballon, lancer de poitrine sans rattrapage, bûcheron avec ballon, squat avec ballon lesté, marche avec ballon. La roue et les exercices à fort levier (rollout, genoux-poitrine, pompes sur ballon) sont réservés à l'intermédiaire ou à l'avancé.
+- Le débutant a : squat au mur avec ballon, lancer de poitrine sans rattrapage, bûcheron de haut en bas, squat avec ballon lesté, marche avec ballon. Pont fessier et extension dorsale sur ballon, bûcheron de bas en haut : intermédiaire (Q25). La roue et les exercices à fort levier (rollout, genoux-poitrine, pompes sur ballon) sont réservés à l'intermédiaire ou à l'avancé.
 - Règles 22 et 23 : aucun saut (tous les lancers : pieds au sol, voir Q5), aucun exercice technique.
 
 ## Écartés (justification)
@@ -85,3 +84,13 @@ Sociétés savantes et études lues par **résumé seulement** via un moteur de 
 - S5 : distance au mur « au moins 2 m (environ trois grands pas) » dans les 4 fiches de lancers (variantes, consigne 1) ; le rattrapage ne rapproche jamais du mur. S6 bucheron : dos n2 = retirer partout. M11 : sortie de secours « un pas devant toi ».
 - C3 genoux-poitrine-ballon : sortie de secours de la variante hanches vers le plafond écrite. C4 planche-ballon : dos n1 = variante avant-bras. C8 pompe-mains-ballon : cases sans effet remplacées (amplitude), dos n2 et cou n2 retirés. M2, M3 (roue, rollout : tapis long dès la consigne 1, progression d'amplitude harmonisée), M7 (squat au ballon lesté : profondeur bornée), M8 (porte-ballon).
 - Non traités ici : S2 (illustration de lancer-bas-haut-mur : consigne 3 maintenant bornée à la poitrine, image à refaire par `dev`), S3 (photo 1 de genoux-poitrine-ballon : la fiche n'en dépend pas, légende à adapter par `dev` selon la décision), M10 (illustration lancer-rotation-mur, à aligner sur B1 : rotation courte, pieds pas trop écartés), C1, C2, C5 à C7, C9, M6, M12 (coach, sources, dosage, README). Aucun statut modifié.
+
+## Corrections coach 2 (24/10/2026, sources, dosage et README, d'après CONTROLE-relecteur.md ; à recontrôler par `relecteur` sur ces points seuls)
+- C1 Lehman 2006 : référence corrigée après relecture du résumé sur PMC1508143 (Lehman, MacMillan, MacIntyre, Chivers, Fluter, Dyn Med 2006;5:7 ; 13 hommes ; EMG en % du maximum volontaire, non « non normalisée »). Contenu inchangé (mains sur le ballon : triceps et droit de l'abdomen plus actifs ; pectoral inchangé ; pieds sur le ballon : aucun changement). Statut PROVISOIRE inchangé.
+- C2 ligne CSEP (10 fiches) : « le ballon sert surtout au gainage » n'est pas dans les résumés lus (Europe PMC, Behm et coll. 2010, revue pp. 91-108 ; prise de position pp. 109-112, texte complet non lu). Reformulée : le sol et les charges libres restent la base ; l'instabilité peut servir en rééducation, dans un programme périodisé ou comme variété pour la population générale. Imai 2010 (planche-ballon) : résumé relu, résultat mitigé écrit (activité accrue sauf transverse au curl-up et pont dorsal) ; « parfois moins de précision » retiré.
+- C5 planche-cercles-ballon : la règle citée est V-TEMPS ligne « gainage » (2 séries, repos 60 s) ; le décompte des cercles est un repère de coach NON SOURCÉ (5 à 8 par sens au plus) ; la ligne « anti_rotation » n'est citée que comme analogie.
+- C6 roue-abdos, rollout-ballon, genoux-poitrine-ballon : V-DOSE (10 à 15 répétitions) ne s'applique pas à un schéma « gainage » ; règle citée V-TEMPS « gainage » ; son unité (maintien 20 à 30 s) ne convient pas à un mouvement dynamique ; repère de coach NON SOURCÉ : 2 séries, repos 60 s, au plus 6 à 8 répétitions lentes. À signaler à `dev` : aucune règle du générateur ne couvre le gainage dynamique classé `gainage` (même remarque que Q23).
+- C7 lancers (lancer-poitrine-mur, lancer-rotation-mur, lancer-bas-haut-mur, squat-lancer-mur) : valeur unique « 2 séries de 6 à 8 lancers (par côté pour la rotation), repos 60 à 90 s », choix prudent NON SOURCÉ, texte identique dans les 4 fiches ; V-DOSE et V-TEMPS à ne pas appliquer. La réponse de l'utilisateur à Q23 n'est pas enregistrée ; la règle « lancer » (ou l'exclusion) reste à décider par `dev`.
+- C9 pompe-pieds-ballon : légende précisée (variante pointes de pieds, échelon 2) ; régression `genoux-poitrine-ballon-genoux` retirée de « plus-facile » (schéma gainage, pas une pompe) : restent pompe-sol et pompe-pieds-sureleves.
+- M2 roue-abdos : Escamilla 2006 nomme un « Ab Roller » (appareil à berceau), pas la roue libre : phrase corrigée. M6 curl-ischios-ballon : « environ 60 % » = curl à deux jambes sur surface stable (Youdas 2015). M12 : tableau du README mis à jour (19 fiches, niveaux, images, développé écarté).
+- Non traités ici : sécurité (kine), images et photos (S2, S3, M10 : `dev`), statuts (aucun modifié). `npm run check:fiches` : 179 fiches, 0 erreur, 0 avertissement.

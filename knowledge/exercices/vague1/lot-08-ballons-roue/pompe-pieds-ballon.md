@@ -40,7 +40,7 @@ statut: complete_kine
 - Ballon qui roule de côté.
 
 ## Progression / régression
-- plus-facile : pompe-sol, pompe-pieds-sureleves, genoux-poitrine-ballon-genoux
+- plus-facile : pompe-sol, pompe-pieds-sureleves
 - plus-dur : aucun
 
 ## Repères de dosage
@@ -105,14 +105,14 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 ## Photo
 - `Push-Ups_With_Feet_On_An_Exercise_Ball/0.jpg` : affichable : oui (pompe, bas du mouvement, pieds et chevilles sur le ballon, corps en ligne ; aucun logo lisible ; vue le 24/10/2026)
 - `Push-Ups_With_Feet_On_An_Exercise_Ball/1.jpg` : affichable : oui (pompe, haut du mouvement, bras presque tendus ; aucun logo lisible ; vue le 24/10/2026)
-- légende : Sur la photo, le ballon est sous les chevilles : plus dur que sous les tibias (commence par les tibias).
+- légende : Variante « pointes de pieds » (échelon 2), plus dure que les tibias ; commence par les tibias.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Geste de base (installation, trajet, consignes de départ) : Push-Ups_With_Feet_On_An_Exercise_Ball (niveau « intermediate », matériel « exercise ball ») ; la base écarte les mains de 36 pouces (environ 90 cm), nous gardons un peu plus larges que les épaules | free-exercise-db (domaine public) https://github.com/yuhonas/free-exercise-db ; fichier dist/exercises.json relu le 2026-10-24 pour vérifier l'existence de l'entrée, son niveau et son matériel ; consignes réécrites par coach | base d'exercices (pratique, pas une étude) | 2026-10-24 | PROVISOIRE |
-| Pompe avec les mains ou les pieds sur un ballon de gym : mains sur le ballon = triceps et droit de l'abdomen plus actifs, pectoral inchangé ; pieds sur le ballon = aucun changement mesuré | Lehman, Gilas, Patel, Dynamic Medicine 2006;5:7, https://pmc.ncbi.nlm.nih.gov/articles/PMC1508143 ; 13 étudiants ; EMG non normalisée ; résumé lu via moteur de recherche | étude de laboratoire, 13 hommes jeunes ; mesure l'activité, pas l'effet à long terme | 2026-10-24 | PROVISOIRE (résumé seulement) |
-| Instabilité (ballon de gym) : à ne pas rechercher pour elle-même ; les exercices au sol et les charges libres restent la base ; le ballon sert surtout au gainage, à la rééducation ou à la variété | Behm, Drinkwater, Willardson, Cowley, CSEP position stand « The use of instability to train the core in athletic and nonathletic conditioning », Appl Physiol Nutr Metab 2010;35(1):109-112 ; résumés et commentaires lus via moteur de recherche (texte complet non lu) | prise de position d'une société savante (CSEP) ; résumé seulement | 2026-10-24 | PROVISOIRE (résumé seulement) |
+| Pompe avec les mains ou les pieds sur un ballon de gym : mains sur le ballon = triceps et droit de l'abdomen plus actifs, pectoral inchangé ; pieds sur le ballon = aucun changement mesuré | Lehman, MacMillan, MacIntyre, Chivers, Fluter, « Shoulder muscle EMG activity during push up variations on and off a Swiss ball », Dyn Med 2006;5:7, https://pmc.ncbi.nlm.nih.gov/articles/PMC1508143 ; 13 hommes ; EMG en % du maximum volontaire ; résumé relu sur PMC le 24/10/2026 | étude de laboratoire, 13 hommes jeunes ; mesure l'activité, pas l'effet à long terme | 2026-10-24 | PROVISOIRE (résumé seulement) |
+| Instabilité (ballon de gym) : à ne pas rechercher pour elle-même ; les exercices au sol et les charges libres restent la base ; l'instabilité peut avoir sa place en rééducation, dans un programme périodisé ou comme variété pour la population générale (le ballon n'est donc pas réservé au gainage) | Behm, Drinkwater, Willardson, Cowley, « The use of instability to train the core musculature », revue et prise de position CSEP, Appl Physiol Nutr Metab 2010;35(1):91-108 (revue) et 109-112 (prise de position) ; résumé de la revue relu le 24/10/2026 (Europe PMC) ; texte complet non lu | prise de position d'une société savante (CSEP) ; résumé seulement | 2026-10-24 | PROVISOIRE (résumé seulement) |
 | Échelons, niveaux, muscles principaux et secondaires, variantes guidées | choix de coach | - | 2026-10-24 | NON SOURCÉ |
 | Choix du ballon (taille, gonflage, anti-éclatement), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
