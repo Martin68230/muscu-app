@@ -96,3 +96,73 @@ Images : les 4 WebP regardés puis agrandis (chaussures, cols, ballon) ; les 17 
 | (lot 07) rowing-barre-ez | reste `complete_kine` | N9 non levé (libellé « barre au sol » visible) |
 
 **Verdict global : 1 bloquant (B1, `lancer-rotation-mur`). Lot non validé. Après correction de B1, S1 à S6 par leurs auteurs (`kine` : B1, S1, S4, S6, C3 ; `dev` : S2 image, S3 photo, C7 règle de code ; `coach` : textes C1 à C9), recontrôle des seuls points corrigés par `relecteur`. Les écarts C2 (ligne CSEP) et C7 (Q23) concernent plusieurs fiches : une seule correction dans le gabarit suffit.**
+
+# Recontrôle (24/10/2026, `relecteur` lancé à neuf, points corrigés seulement)
+
+Lus : ce rapport, README du lot (« Corrections kine 2 », « Corrections coach 2 »), les fiches concernées après les commits 2c7adfa (kine), 447e55a (coach), 3ec4f53 (dev, images), docs/QUESTIONS.md Q23 et Q25, tools/photos.md. Regardés (rendus PNG) : les 4 SVG refaits ou recadrés (extension-dorsale-ballon, lancer-bas-haut-mur, lancer-rotation-mur, planche-ballon). Pas de nouvelle lecture en ligne : Lehman 2006, Youdas 2015, Imai 2010 et Behm 2010 avaient été vérifiés dans le contrôle initial, et les nouvelles lignes sont comparées à ces résumés. `npm run check:fiches` : 179 fiches, 0 erreur, 0 avertissement. Rien n'a été corrigé, aucun statut changé (les 19 fiches sont toujours `complete_kine`).
+
+## Point par point
+
+| Point | Résultat | Constat |
+|---|---|---|
+| B1 lancer-rotation-mur / bucheron | **Corrigé** | Une seule règle écrite partout dans lancer-rotation-mur (variantes, consigne 3, points d'attention, erreurs, notes genou-n1 et hanche, sécurité, signes d'arrêt) : le genou ne se tord jamais ; pivot (talon arrière qui se lève, le genou suit) ou pieds fixes avec rotation courte, genoux dans l'axe des orteils ; en cas de torsion : pieds fixes seulement, puis arrêt. Plus de renvoi vers un réglage décrit comme dangereux. Résidu : N1. |
+| S1 extension-dorsale-ballon | **Corrigé** | Mur plein obligatoire dans les deux variantes, la consigne 1, les points d'attention, la sécurité (« sans mur plein, ne fais pas cet exercice ») ; tag `mur` ajouté aux deux variantes. Illustration regardée : mur plein à gauche, pointes de pieds contre lui dans les deux poses, buste qui monte jusqu'à l'alignement. |
+| S2 lancer-bas-haut-mur | **Corrigé** | Illustration refaite : pose d'arrivée à hauteur de poitrine, flèche horizontale vers le mur, libellé « Poitrine au plus, mur à 2 m ». Consigne 3 bornée (à hauteur de la poitrine, jamais au-dessus de la tête, bras devant toi). Résidu : N2. |
+| S3 genoux-poitrine-ballon | **Corrigé** | Photo 1 passée à `affichable : non` avec le motif ; la photo 0 reste (ligne droite, bras tendus). Légende réécrite. C3 (sortie de secours de la variante hanches vers le plafond : regard entre les mains, genoux au tapis) écrit. Résidu : N3. |
+| S4 pont-fessier-ballon | **Corrigé** | Consigne 3 : regard devant, menton légèrement rentré, jamais la tête en arrière ni la nuque cambrée ; alignée sur les notes et la sécurité. |
+| S5 distance au mur | **Corrigé** | Les 4 fiches (poitrine, rotation, bas-haut, squat-lancer) : « au moins deux mètres (environ trois grands pas) » dans les variantes, la consigne 1 et la sécurité ; le rattrapage dit « jamais plus près ». |
+| S6 bucheron-ballon-lest | **Corrigé** | Dos n2 = `retirer` dans le tableau, la note et les points d'attention. |
+| C1 Lehman 2006 | **Corrigé** | Auteurs (Lehman, MacMillan, MacIntyre, Chivers, Fluter), titre, Dyn Med 2006;5:7, 13 hommes, EMG en % du maximum : conformes à PMC1508143, dans les 2 fiches de pompes. PROVISOIRE inchangé. |
+| C2 ligne CSEP, Imai | **Corrigé** | Les 10 fiches portent la même ligne reformulée (sol et charges libres = base ; instabilité possible en rééducation, programme périodisé ou variété), fidèle aux résumés lus, PROVISOIRE (résumé seulement). Imai : résultat mitigé écrit, « parfois moins de précision » retiré. Plus de « surtout au gainage » dans les fiches (reste N5 dans le README). |
+| C3 | **Corrigé** | Voir S3. |
+| C4 planche-ballon | **Corrigé** | Dos n1 = variante avant-bras (note en choix prudent NON SOURCÉ). Illustration recadrée : la jambe de la seconde pose est dans le cadre. |
+| C5 planche-cercles-ballon | **Corrigé** | Règle citée = V-TEMPS ligne `gainage` ; décompte « 5 à 8 cercles par sens au plus » = repère de coach NON SOURCÉ ; `anti_rotation` seulement par analogie, déclarée. |
+| C6 roue, rollout, genoux-poitrine | **Corrigé (texte) ; reste côté `dev`** | V-DOSE n'est plus citée ; V-TEMPS `gainage` citée, unité de maintien écartée, repère « 2 séries, repos 60 s, au plus 6 à 8 répétitions lentes » NON SOURCÉ, arrêt dès que le dos se creuse. Aucune règle de code ne couvre ce gainage dynamique : N4. |
+| C7 valeur unique des lancers | **Valeur corrigée ; décision `dev` non enregistrée** | Texte identique dans les 4 fiches : 2 séries de 6 à 8 lancers (par côté pour la rotation), repos 60 à 90 s, plafond, NON SOURCÉ, V-DOSE et V-TEMPS à ne pas appliquer ; l'incohérence « 8 à 10 puis 10 à 12 » a disparu. Mais la réponse à Q23 n'est pas enregistrée et `src/` ne contient aucune règle « lancer » ni exclusion : N4. |
+| C8 pompe-mains-ballon | **Corrigé** | Cases sans effet remplacées par `amplitude:mi-course`, `lente`, `reduite`, `tete-alignee` ; dos n2 et cou n2 = `retirer` (notes « choix prudent, NON SOURCÉ »). |
+| C9 pompe-pieds-ballon | **Corrigé** | Légende « variante pointes de pieds (échelon 2) » ; régression vers `genoux-poitrine-ballon-genoux` retirée. |
+| M2, M3, M6, M7, M8, M11 | **Corrigés** | Tapis long dès la consigne 1, progression d'amplitude harmonisée, Escamilla 2006 (Ab Roller) nuancé, Youdas « sur surface stable », profondeur du squat bornée, ballon qui cache le sol, sortie de secours « un pas devant toi ». |
+| M10 lancer-rotation-mur (image) | **Corrigé** | Pieds à peine plus larges que les épaules, genoux peu fléchis, pieds à plat ; rotation lisible. |
+| M12 README | **Partiellement corrigé** | Tableau et totaux mis à jour ; mentions périmées restantes : N5. |
+| Trois choix prudents de `kine` | **Conformes** | pompe-mains-ballon dos n2 et cou n2 = `retirer` ; pont-fessier-ballon cuisse n1 et n2 = variante haut du dos (extrapolation de Lehman 2005 signalée) ; planche-ballon dos n1 = variante avant-bras. Tous marqués NON SOURCÉ, aucun présenté comme prouvé. |
+| Sources et statuts | **Conformes** | Aucune valeur NON SOURCÉ ou PROVISOIRE présentée OK ; les 19 fiches restent `complete_kine`. |
+
+## Nouveaux écarts et restes
+
+| n° | Fiche | Gravité | Problème |
+|---|---|---|---|
+| N1 | bucheron-ballon-lest vs lancer-rotation-mur | remarque | La règle du genou est la même, mais bucheron écrit « jamais pied planté pendant que le tronc tourne » et annonce « la même règle que pour le lancer », alors que lancer-rotation-mur autorise les pieds fixes (rotation courte). Défendable (diagonale ample contre rotation courte), mais la différence n'est pas dite : ajouter « la rotation est ample, donc le pied pivote ». |
+| N2 | lancer-bas-haut-mur | à corriger (une ligne) | La ligne d'image décrit encore l'illustration comme « lancer vers l'avant et le haut » : remplacer par « lancer vers le mur à hauteur de la poitrine » (règle 12). |
+| N3 | genoux-poitrine-ballon | remarque | Consigne « tibias » alors que la seule photo affichée montre le ballon sous les chevilles ; la légende le dit honnêtement. Le fichier est passé de CRLF à LF (121 lignes dans le diff de 3ec4f53 pour 2 lignes de contenu) : sans effet, à rétablir pour des diffs lisibles. |
+| N4 | les 4 lancers ; roue-abdos, rollout-ballon, genoux-poitrine-ballon, planche-cercles-ballon | **bloquant pour le statut des 4 lancers** ; à faire par `dev` avant génération pour les 4 autres | Aucune règle du générateur ne dose le gainage dynamique (le schéma `gainage` appliquerait un maintien de 20 à 30 s à un roulé ou une roue) ni les lancers (ni règle « lancer » ni exclusion dans `src/`). Les fiches le disent et chiffrent honnêtement, mais sans décision de `dev` enregistrée (règle ou exclusion, réponse à Q23), une fiche `utilisable` serait mal dosée. |
+| N5 | README du lot | à corriger | Mentions périmées : tableau (« photo 1 : voir S3 », « mur à ajouter par dev », « à refaire, S2 »), « La légende de ces deux photos note que le ballon est sous les chevilles » (photo 1 retirée), question 3 (développé sur ballon, fiche écartée, « surtout pour le gainage »), « 180 fiches » (179), « Non traités ici : S2, S3, M10 » (faits par `dev` au commit 3ec4f53, sans section dédiée). Sans conséquence de sécurité. |
+| N6 | extension-dorsale-ballon | remarque | La ligne d'image et la légende ne mentionnent pas le mur désormais dessiné. |
+
+## Statut proposé par fiche (après recontrôle)
+
+| Fiche | Statut proposé | Condition |
+|---|---|---|
+| roue-abdos | `utilisable` | N4 (décision `dev`, avant génération) |
+| planche-ballon | `utilisable` | rien |
+| planche-cercles-ballon | `utilisable` | N4 (décision `dev`) |
+| rollout-ballon | `utilisable` | N4 (décision `dev`) |
+| genoux-poitrine-ballon | `utilisable` | N4 (décision `dev`) ; N3 facultatif |
+| curl-ischios-ballon | `utilisable` | rien |
+| pont-fessier-ballon | `utilisable` | rien |
+| extension-dorsale-ballon | `utilisable` | N6 facultatif |
+| pompe-mains-ballon | `utilisable` | rien |
+| pompe-pieds-ballon | `utilisable` | rien |
+| squat-mur-ballon | `utilisable` | rien |
+| lancer-poitrine-mur | **reste `complete_kine`** | N4 : décision `dev` (règle « lancer » ou exclusion) et réponse Q23 enregistrées |
+| lancer-rotation-mur | **reste `complete_kine`** | N4 (B1 levé) |
+| lancer-bas-haut-mur | **reste `complete_kine`** | N4 et N2 |
+| squat-lancer-mur | **reste `complete_kine`** | N4 |
+| rotation-assise-ballon-lest | `utilisable` | rien |
+| bucheron-ballon-lest | `utilisable` | N1 (une phrase, facultatif) |
+| squat-ballon-lest | `utilisable` | rien |
+| porte-ballon-lest | `utilisable` | rien |
+| (lot 07) rowing-barre-ez | inchangé (`complete_kine`) | N9 non revérifié ici |
+
+## Verdict global du recontrôle
+
+**Le bloquant B1 est levé ; S1 à S6 et C1 à C9 sont corrigés dans les fiches ; aucune dérive de sécurité nouvelle.** 15 fiches sont proposées `utilisable` (dont 4 de gainage dynamique, avec la décision `dev` de N4 à enregistrer avant la génération). 4 fiches de lancers restent `complete_kine`, uniquement à cause de N4 (ni règle de code ni réponse à Q23 : une fiche `utilisable` serait dosée par V-DOSE ou V-TEMPS). Lot non validé en entier tant que N4 reste ouvert pour les lancers ; N2 et N5 sont des corrections de texte d'une ligne.
