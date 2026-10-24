@@ -70,3 +70,38 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 - **T6 (chaleur)** non affiché : réserve n° 1 (T1 contre T6) non tranchée, et aucun cardio dehors.
 - **Perte de gras, forme / santé** : aucun cardio ajouté automatiquement (seulement si « Cardio » est choisi en principal ou en secondaire) ; goal-resolver.md dit « vers le haut du repère OMS » pour la perte de gras : à décider.
 - **Cardio principal à 5 jours, débutant** : 2 séances de musculation + 2 de cardio (plafond débutant), le 5e jour reste libre (§3.2) ; l'explication dit « 4 jours ».
+
+## Q12. Poids de la barre dans le profil (24/10/2026, kine, lot-07-barre)
+- **Contexte** : une barre olympique pèse 20 kg (parfois 10 à 15 kg pour les barres « femme » ou d'entraînement ; la barre EZ seule est plus légère). Le générateur dit « barre seule » sans connaître son poids ; pour une personne peu entraînée, c'est déjà une charge qui peut dépasser l'étalonnage prévu (load-calibration.md).
+- **Choix prudent appliqué** : aucune hypothèse sur le poids de la barre. Les 20 fiches du lot avertissent que la barre seule pèse souvent 20 kg et renvoient à la version aux haltères quand c'est trop lourd. Les niveaux « débutant » à la barre sont réduits au minimum (hip thrust, rowing appuyé, curl, shrug au rack).
+- **Option alternative** : ajouter au profil un champ facultatif « poids de ma barre » (et de la barre EZ), utilisé par le générateur : si la charge d'étalonnage est inférieure à la barre seule, ne pas proposer l'exercice à la barre (demande à `dev`).
+
+## Q13. Tag « rack » et barres de sécurité (24/10/2026, kine, lot-07-barre)
+- **Contexte** : presque toutes les variantes à la barre exigent le tag `rack` (décrit dans materiel-tags.json comme « rack ou cage à squat avec sécurités »). Une personne qui a banc + barre sans rack n'aura pas de développé couché ni de squat à la barre.
+- **Choix prudent appliqué** : tag conservé tel quel, défini comme rack **avec barres de sécurité** ; chaque fiche le rappelle (« sans barres de sécurité, ne coche pas rack »). Pas de développé couché ni de squat chargé sans rack ; les versions aux haltères les remplacent.
+- **Option alternative** : séparer deux tags, `rack` (supports seuls) et `barres_securite`, pour distinguer un simple support d'une vraie cage. Le plus prudent reste de ne rien proposer sans barres de sécurité (demande à `dev` et à l'auteur de equipment-taxonomy.md).
+
+## Q14. Soulevé de terre et roumain à la barre pour un débutant (24/10/2026, kine, lot-07-barre)
+- **Contexte** : `coach` proposait le soulevé de terre et le roumain depuis le rack (course courte, barre légère) dès le niveau débutant.
+- **Choix prudent appliqué** : réservés à l'**intermédiaire**, même depuis le rack (charge élevée sur la colonne, aucune barre de sécurité possible, personne pour corriger le geste). Le débutant fait le roumain aux haltères. Niveau changé dans les fiches `souleve-de-terre-barre` et `souleve-de-terre-roumain-barre` (NON SOURCÉ).
+- **Option alternative** : accepter le départ depuis le rack pour le débutant, avec le poids de la barre connu (Q12) et un geste appris avec les haltères d'abord.
+
+## Q15. Tirage menton à la barre (24/10/2026, kine, lot-07-barre)
+- **Contexte** : la montée limitée au milieu de la poitrine réduit le risque, mais l'épaule reste en rotation interne, bras haut, charge à la barre ; l'app ne contrôle pas la hauteur réelle.
+- **Choix prudent appliqué** : fiche **écartée** (knowledge/exercices/vague1/lot-07-barre/ecartees/tirage-menton-barre.md). L'élévation latérale aux haltères et le haussement d'épaules couvrent les mêmes muscles. NON SOURCÉ (les études sur l'épaule lues par résumé ne tranchent pas).
+- **Option alternative** : garder la fiche avec la barre EZ limitée au milieu de la poitrine, retirée dès une gêne légère à l'épaule (réserves).
+
+## Q16. Fentes marchées avec barre et mollets sur plateforme (24/10/2026, kine, lot-07-barre)
+- **Contexte** : avec une barre sur le dos, la marche ou la plateforme n'ont aucun filet (pas de barres de sécurité utilisables), chute possible, personne pour réagir.
+- **Choix prudent appliqué** : fentes marchées à la barre **écartées** (ecartees/) ; fente arrière à la barre supprimée de la fiche `fente-barre` (reste le squat fendu, pieds immobiles au centre du rack) ; variante « plateforme » supprimée de `releve-mollets-debout-barre` (pieds à plat). La fente arrière sans barre et les mollets sans barre restent disponibles.
+- **Option alternative** : accepter ces variantes uniquement à la salle, avec une charge légère et un rack à proximité (non rédigé).
+
+## Q17. Grossesse et barres lourdes (24/10/2026, kine, lot-07-barre)
+- **Contexte** : `coach` retirait toutes les barres lourdes par prudence ; la HAS ne se prononce pas sur la barre (elle recommande le renforcement modéré, d'éviter l'apnée, le couché sur le dos et les risques de chute).
+- **Choix prudent appliqué** : confirmé : squats, soulevés de terre, good morning, hip thrust, développés, rowings, fente, relevé de mollets à la barre : retirés (remplaçants aux haltères). **Ajustement** : le curl à la barre EZ est gardé en grossesse (debout, charge légère) ; le curl à la barre droite et le shrug sont retirés, car la barre droite pèse souvent 20 kg. NON SOURCÉ.
+- **Option alternative** : tout retirer, curl EZ compris (le plus prudent), ou autoriser des barres légères avec charge:legere (moins prudent).
+
+## Q18. Niveaux minimum des autres barres et gardes-fous avancés (24/10/2026, kine, lot-07-barre)
+- **Contexte** : le lot contenait trois fiches « débutant » à risque : squat avec repère de profondeur, développé couché au sol dans le rack, relevé de mollets debout avec barre sur le dos ; et deux fiches « avancé » qui chargent fortement le bas du dos : good morning et rowing Pendlay.
+- **Choix prudent appliqué** : les trois fiches « débutant » passent à **intermédiaire** (le débutant utilise squat gobelet, développé couché aux haltères, mollets sans barre ou aux haltères) ; good morning et Pendlay sont **gardés au niveau avancé** (retirés dès une gêne légère au bas du dos) avec réserves ; ni l'un ni l'autre n'est indispensable.
+- **Option alternative** : écarter le good morning et le Pendlay (le plus prudent : le roumain et les autres rowings couvrent les schémas), ou garder les trois au niveau débutant avec guidage et poids de barre connu (moins prudent).

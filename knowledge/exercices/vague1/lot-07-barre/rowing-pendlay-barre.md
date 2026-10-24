@@ -8,7 +8,7 @@ niveau_min: avance
 muscles_principaux: [grand_dorsal, rhomboides]
 muscles_secondaires: [trapezes, deltoides_posterieurs, biceps, erecteurs_rachis, avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -44,7 +44,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE) : exercice avancé, charge légère à modérée : muscle 8 à 12 répétitions (10 à 12 pour un débutant), 2 à 3 séries, 2 à 3 répétitions en réserve, repos 90 s ; force : 8 à 12 répétitions pour les exercices d'appoint. Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Étalonnage (load-calibration.md) : première séance avec la charge la plus légère disponible, puis montée par petits paliers réels de disques ; double progression. **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (proposition prudente, **à compléter et corriger par `kine`**). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -55,25 +55,37 @@ Rédigé par `coach` le 2026-10-24 (proposition prudente, **à compléter et cor
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
 | Genou | garder | garder | retirer: sans-zone:rowing-pendlay-barre-sol |
-| Hanche | garder | garder | retirer: sans-zone:rowing-pendlay-barre-sol |
+| Hanche | garder | garder | retirer |
 | Cheville | garder | garder | retirer: sans-zone:rowing-pendlay-barre-sol |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
+- general : La barre seule pèse souvent 20 kg (parfois moins) : c'est déjà une charge. Si elle est trop lourde pour garder le geste propre, passe à la version aux haltères (NON SOURCÉ ; question Q12 de docs/QUESTIONS.md).
+- general : niveau avancé seulement, gardé avec réserves (question Q18 de docs/QUESTIONS.md) ; redondant avec les autres rowings.
 - dos-n1 : dès une gêne légère au bas du dos : retiré (buste parallèle, charge lombaire élevée) ; remplaçant rowing un bras aux haltères avec appui.
 - epaule-n2 : retiré.
-- grossesse : barre au sol, buste parallèle (pression abdominale) : retiré par prudence (NON SOURCÉ) ; remplaçant : rowing un bras aux haltères, avec appui. Post-partum : G7.
+- genou-n3 : jambes en appui sans effort propre : la variante reste permise.
+- cheville-n3 : jambes en appui sans effort propre : la variante reste permise.
+- hanche-n3 : la hanche, fléchie sous charge, est retirée au niveau 3.
+- grossesse : barre au sol, buste parallèle (pression abdominale) : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : rowing un bras aux haltères, avec appui. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:rowing-unilateral-haltere
 **Version plus douce** : rowing-unilateral-haltere
 
 **Sécurité pour l'utilisateur seul**
-- La barre se pose au sol à chaque répétition : sol plat et non glissant, chaussures plates.
-- Colliers des deux côtés ; barre contrôlée ; pas d'échec.
+- La barre se pose au sol à chaque répétition : sol plat, non glissant, chaussures plates à semelle ferme. Pas de barres de sécurité possibles.
+- Charge plus légère que le rowing libre ; arrête dès que le buste se relève ou que le dos s'arrondit.
+- Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
+- Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger.
+- Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut aider, mais il ne remplace jamais les barres de sécurité.
 
 **Points d'attention (kine)**
-- À rédiger et corriger par `kine` (étape suivante du cycle). Points de départ proposés par coach : voir « Sécurité pour l'utilisateur seul » ci-dessus et les notes par zone.
-- Dos : bas du dos sous charge en flexion de hanche ; « avancé seulement » : à valider.
+- Dos : buste parallèle au sol, bas du dos sous charge en position fléchie (Fenwick 2009, résumé, PROVISOIRE). Le mouvement est gardé avancé seulement et retiré dès une gêne légère au bas du dos.
+- Le buste reste parallèle et immobile : tout le tirage vient du dos. Un buste qui se relève ou une barre qui part de l'élan = charge trop lourde.
+- Pose de la barre au sol à chaque répétition, sans rebond, pour repartir de la même position ; ne laisse pas tomber la barre de haut.
+- Épaule, coude, poignet : tirage vers le bas du sternum, coudes proches du buste ; gêne : charge légère puis retiré (cases du tableau).
+- Niveau : avancé. Chemin conseillé : rowing appuyé, rowing libre, puis cette fiche.
+- Grossesse et post-partum : retiré.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, à l'épaule ou au poignet.
@@ -81,10 +93,13 @@ Rédigé par `coach` le 2026-10-24 (proposition prudente, **à compléter et cor
 - Perte de contrôle de la barre ou impression que tu ne pourras pas finir la répétition : arrête la série, ne force pas.
 - Picotements, engourdissement ou faiblesse dans un bras ou une jambe.
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+- Voile devant les yeux, vertige ou tête qui tourne en fin de série (souvent un blocage de la respiration) : repose la barre, assieds-toi, ne reprends pas la séance (R5).
+- Colliers qui bougent ou disques de travers : repose la barre avant tout.
+- Douleur nouvelle au bas du dos : pose la barre au sol, arrête la série.
 
 **Objets du quotidien**
-- - Barre et disques : colliers de serrage (clips) posés et serrés des deux côtés avant chaque série ; mêmes disques de chaque côté ; barre droite (ni tordue, ni jeu dans les manchons) ; disques jamais posés « sans collier » même pour une série légère.
-- - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
+- Barre et disques : colliers de serrage (clips) posés et serrés des deux côtés avant chaque série ; mêmes disques de chaque côté ; barre droite (ni tordue, ni jeu dans les manchons) ; disques jamais posés « sans collier » même pour une série légère.
+- Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
 - aucune photo (la base free-exercise-db n'a pas de Pendlay ; illustration originale à demander à dev)
@@ -98,7 +113,8 @@ Rédigé par `coach` le 2026-10-24 (proposition prudente, **à compléter et cor
 | Pas de série menée jusqu'à l'échec en pratique libre seul (barre lourde) | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul avec une barre est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Zones de blessures les plus fréquentes chez les haltérophiles et les pratiquants de force athlétique (colonne, épaule, genou) : justifie un tableau complet par zone | Aasa et coll., Br J Sports Med 2017;51(4):211-219, https://pubmed.ncbi.nlm.nih.gov/27707741/ ; revue systématique de 9 études, la plupart de faible qualité ; résumé lu via moteur de recherche | revue systématique, athlètes de compétition, qualité faible ; ne concerne pas les pratiquants de loisir | 2026-10-24 | PROVISOIRE (résumé seulement) |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à compléter par kine puis contrôler par relecteur) |
-| Grossesse et post-partum : barre chargée retirée par prudence (équilibre, apnée, chute de la barre) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas la barre chargée | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à valider par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 24/10/2026, à contrôler par relecteur) |
+| Grossesse et post-partum : barre chargée retirée par prudence (équilibre, apnée, chute de la barre) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas la barre chargée | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmée par kine le 24/10/2026 comme choix prudent, à contrôler par relecteur) |
 | Rowing buste penché à la barre : activation large et symétrique du dos, mais charge sur la colonne lombaire et rigidité les plus élevées des trois rowings comparés | Fenwick, Brown, McGill, J Strength Cond Res 2009;23(2):350-358, https://pubmed.ncbi.nlm.nih.gov/19197209/ ; résumé lu via moteur de recherche | étude de laboratoire, 7 hommes sains ; petit échantillon | 2026-10-24 | PROVISOIRE (résumé seulement) |
 | Rowing Pendlay : technique, buste parallèle, barre posée au sol à chaque répétition | pratique courante de force athlétique, pas de source lue | - | 2026-10-24 | NON SOURCÉ |
+| Niveau minimum, barres de sécurité et repli en cas de blocage, colliers, pas d'échec seul, cases par zone et par niveau, grossesse, remplaçants, points d'attention (kine) | Raisonnement de `kine` à partir des règles communes (regles-securite-communes.md) et des études déjà citées dans cette fiche (résumés seulement). Aucune source nouvelle lue pour cette passe ; aucune étude ne teste ces choix exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (choix prudents de kine, à contrôler par relecteur) |
