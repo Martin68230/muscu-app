@@ -617,8 +617,8 @@ export const EXERCICES = [
   {
     id: 'rowing-barre-ez', titre: 'Rowing à la barre EZ, buste penché debout : la barre part du sol, bras tendus, puis les coudes reculent et la barre monte vers le bas de la poitrine',
     labels: ['Buste penché, barre au sol', 'Barre tirée vers le ventre'],
-    a: { p: [-48, 57], t: 25, h: 33, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => [['plate', J.haN, 14]] },
-    b: { p: [-48, 57], t: 25, h: 33, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { to: [8, 73], bend: 'b' }, armF: { to: [6, 72], bend: 'b' }, props: (J) => [['plate', J.haN, 14], ['arrow', [72, 30], [72, 70]]] },
+    a: { p: [-28, 104], t: 45, h: 52, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-12, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => [['plate', J.haN, 14]] },
+    b: { p: [-28, 104], t: 45, h: 52, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-12, A], bend: 'f' }, armN: { to: [8, 112], bend: 'b' }, armF: { to: [6, 111], bend: 'b' }, props: (J) => [['plate', J.haN, 14], ['arrow', [62, 80], [62, 118]]] },
   },
   {
     id: 'extension-triceps-barre-ez-allonge', titre: 'Extension des triceps à la barre EZ, allongé au sol : les coudes restent fixes, la barre descend vers le front',
