@@ -104,8 +104,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : squat, dos appuyé sur un ballon calé contre un mur, vue de profil, haut puis bas ; aucune entrée de free-exercise-db ne correspond.
+- illustration : public/illustrations/squat-mur-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : dos sur le ballon calé contre un mur, pieds avancés ; le ballon roule, genoux à 90 degrés au plus)
+- légende : Version sans charge ; avec un haltère contre la poitrine, c'est le même geste.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

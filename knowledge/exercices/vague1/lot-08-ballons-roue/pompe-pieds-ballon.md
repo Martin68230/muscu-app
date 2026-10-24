@@ -103,8 +103,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Chaussures fermées à semelle plate qui accroche, ou pieds nus sur un tapis antidérapant selon l'exercice (la fiche le dit) ; jamais de chaussettes seules sur le sol.
 
 ## Photo
-- `Push-Ups_With_Feet_On_An_Exercise_Ball/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit pieds sur le ballon, pompe ; vérifier la position et l'absence de logo ; la fiche source dit mains écartées à 90 cm, la nôtre dit un peu plus larges que les épaules)
-- `Push-Ups_With_Feet_On_An_Exercise_Ball/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Push-Ups_With_Feet_On_An_Exercise_Ball/0.jpg` : affichable : oui (pompe, bas du mouvement, pieds et chevilles sur le ballon, corps en ligne ; aucun logo lisible ; vue le 24/10/2026)
+- `Push-Ups_With_Feet_On_An_Exercise_Ball/1.jpg` : affichable : oui (pompe, haut du mouvement, bras presque tendus ; aucun logo lisible ; vue le 24/10/2026)
+- légende : Sur la photo, le ballon est sous les chevilles : plus dur que sous les tibias (commence par les tibias).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

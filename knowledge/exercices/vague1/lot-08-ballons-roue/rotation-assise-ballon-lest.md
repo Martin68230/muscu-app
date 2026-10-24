@@ -97,8 +97,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Aucun mur ni rebond ici : le ballon ne se lance pas, il reste dans les mains ; s'il glisse, tu le laisses tomber sur le tapis.
 
 ## Photo
-- `Russian_Twist/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée Russian_Twist est au poids du corps (rotation russe), sans ballon lesté nécessairement ; vérifier la position du dos ; ne montre peut-être pas le ballon)
-- `Russian_Twist/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Russian_Twist/0.jpg` : affichable : non (le pratiquant tient un disque, pieds coincés sous un banc ; la fiche demande un ballon lesté, talons au sol ; remplacée par l'illustration)
+- `Russian_Twist/1.jpg` : affichable : non (le pratiquant tient un disque, pieds coincés sous un banc ; la fiche demande un ballon lesté, talons au sol ; remplacée par l'illustration)
+- illustration : public/illustrations/rotation-assise-ballon-lest.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de face, assis genoux fléchis, buste un peu en arrière : le ballon devant la poitrine passe sur le côté, la rotation vient du buste)
+- légende : Variante pieds au sol, vue de face. La variante pieds levés n'est pas dessinée.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

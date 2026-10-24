@@ -98,8 +98,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Un ballon qui rebondit fort revient vite vers le visage : choisis un ballon peu rebondissant si tu as le choix, et garde de la distance (NON SOURCÉ).
 
 ## Photo
-- `Medicine_Ball_Chest_Pass/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit un lancer à deux mains devant la poitrine (avec partenaire ou contre un mur) ; vérifier la position et l'absence de logo)
-- `Medicine_Ball_Chest_Pass/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Medicine_Ball_Chest_Pass/0.jpg` : affichable : non (passe à deux personnes, pas de mur ; affiches avec texte et personnes reconnaissables en arrière-plan ; remplacée par l'illustration)
+- `Medicine_Ball_Chest_Pass/1.jpg` : affichable : non (passe à deux personnes, pas de mur ; affiches avec texte et personnes reconnaissables en arrière-plan ; remplacée par l'illustration)
+- illustration : public/illustrations/lancer-poitrine-mur.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : ballon contre la poitrine, puis bras tendus et ballon qui part droit vers le mur, pieds à plat)
+- légende : Même geste avec ou sans rattrapage ; les pieds restent au sol.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

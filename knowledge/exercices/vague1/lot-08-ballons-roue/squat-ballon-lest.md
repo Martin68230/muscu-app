@@ -100,8 +100,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : squat avec un ballon lesté contre la poitrine, vue de profil, haut puis bas ; aucune entrée de free-exercise-db ne correspond.
+- illustration : public/illustrations/squat-ballon-lest.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : ballon contre la poitrine, debout puis squat, dos droit)
+- légende : Ballon contre la poitrine. Bras tendus devant : même squat.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -98,10 +98,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Chaussures fermées à semelle plate qui accroche, ou pieds nus sur un tapis antidérapant selon l'exercice (la fiche le dit) ; jamais de chaussettes seules sur le sol.
 
 ## Photo
-- `Physioball_Hip_Bridge/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit le haut du dos sur le ballon, pieds au sol (variante 1) ; vérifier la position et l'absence de logo)
-- `Physioball_Hip_Bridge/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
-
-Les variantes 2 et 3 (talons sur le ballon) : illustration à faire par `dev` (photo Ball_Leg_Curl possible après vérification, voir curl-ischios-ballon).
+- `Physioball_Hip_Bridge/0.jpg` : affichable : non (logo « Cybex » lisible sur une machine à l'arrière-plan, personnes en arrière-plan, photo non recadrable ; remplacée par l'illustration)
+- `Physioball_Hip_Bridge/1.jpg` : affichable : non (logo « Cybex » lisible sur une machine à l'arrière-plan, personnes en arrière-plan, photo non recadrable ; remplacée par l'illustration)
+- illustration : public/illustrations/pont-fessier-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : haut du dos sur le ballon, pieds à plat, le bassin descend puis monte jusqu'à l'alignement buste-cuisses)
+- légende : Variante 1 (haut du dos sur le ballon). Les variantes talons sur le ballon ne sont pas dessinées.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

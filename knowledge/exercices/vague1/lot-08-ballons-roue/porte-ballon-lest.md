@@ -98,8 +98,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : marche avec un ballon contre la poitrine, vue de profil ; aucune entrée de free-exercise-db ne correspond (Farmers_Walk est un porté de charges latérales).
+- illustration : public/illustrations/porte-ballon-lest.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : marche, ballon contre la poitrine, buste droit, pas courts)
+- légende : Ballon contre la poitrine. Bras tendus devant : même marche.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

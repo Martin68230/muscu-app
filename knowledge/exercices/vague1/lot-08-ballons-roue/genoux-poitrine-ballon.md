@@ -102,8 +102,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Chaussures fermées à semelle plate qui accroche, ou pieds nus sur un tapis antidérapant selon l'exercice (la fiche le dit) ; jamais de chaussettes seules sur le sol.
 
 ## Photo
-- `Exercise_Ball_Pull-In/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit tibias sur le ballon en position de pompe, genoux ramenés vers la poitrine ; vérifier la position du bassin et l'absence de logo)
-- `Exercise_Ball_Pull-In/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Exercise_Ball_Pull-In/0.jpg` : affichable : oui (position de pompe, tibias et pieds sur le ballon, corps en ligne ; la variante hanches vers le plafond n'est pas montrée ; aucun logo lisible ; vue le 24/10/2026)
+- `Exercise_Ball_Pull-In/1.jpg` : affichable : oui (genoux ramenés vers la poitrine, pieds sur le ballon, mains sous les épaules ; aucun logo lisible ; vue le 24/10/2026)
+- légende : Sur la photo, le ballon est sous les chevilles ; la consigne le place sous les tibias.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

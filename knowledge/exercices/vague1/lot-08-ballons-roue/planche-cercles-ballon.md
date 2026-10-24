@@ -103,8 +103,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : planche avant-bras sur le ballon avec flèche circulaire ; aucune entrée de free-exercise-db ne correspond.
+- illustration : public/illustrations/planche-cercles-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : avant-bras sur le ballon, le ballon se déplace en petit cercle, le corps reste en ligne)
+- légende : Petits cercles avec les avant-bras ; le reste du corps ne bouge pas.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

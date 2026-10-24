@@ -119,10 +119,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Chaussures fermées à semelle plate pour la variante debout ; pas de chaussettes seules sur un sol lisse.
 
 ## Photo
-- `Ab_Roller/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée de la base décrit un roulé à genoux avec la roue ; vérifier la position du dos et l'absence de logo ; ne montre pas la variante au mur)
-- `Ab_Roller/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
-
-Illustration à faire par `dev` pour la variante au mur (butée visible) et la variante debout.
+- `Ab_Roller/0.jpg` : affichable : non (logo de marque lisible sur la chaussure ; la photo ne montre ni le mur ni la butée de la variante 1 ; remplacée par l'illustration)
+- `Ab_Roller/1.jpg` : affichable : non (logo de marque lisible sur la chaussure ; la photo ne montre ni le mur ni la butée de la variante 1 ; remplacée par l'illustration)
+- illustration : public/illustrations/roue-abdos.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; à genoux face à un mur, vue de profil : roue sous les épaules puis roulé court, la roue touche le mur)
+- légende : Variante au mur (échelon 1). Les variantes à genoux libre et debout ne sont pas dessinées.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

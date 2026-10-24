@@ -104,8 +104,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : roulé du ballon vu de profil, à genoux, avant-bras sur le ballon, départ puis arrivée ; aucune entrée de free-exercise-db ne correspond (Ab_Roller est à la roue).
+- illustration : public/illustrations/rollout-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : à genoux sur un tapis, avant-bras sur le ballon, le ballon roule vers l'avant, dos plat)
+- légende : Roulé court puis plus long : même position, le ballon va plus loin.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

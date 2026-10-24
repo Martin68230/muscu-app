@@ -57,7 +57,7 @@ Identifiants free-exercise-db : tous vérifiés dans `dist/exercises.json` (copi
 
 ## Pour `dev`
 - Tags `swiss_ball` et `medecine_ball` : absents de la liste « chargeable » de V-DOSE (generateur-v1.md §3.2) ; un lancer de ballon lesté est un exercice de puissance, hors des lignes V-DOSE et V-TEMPS (les fiches de lancers donnent un repère NON SOURCÉ, voir leur « Repères de dosage »). Un schéma ou une règle « lancer » reste à décider.
-- Images : 12 illustrations à créer (liste dans le tableau ci-dessus), 10 groupes de photos à regarder avant `affichable : oui`. Aucun WebP ajouté.
+- Images (24/10/2026, `dev`) : 2 groupes de photos retenus (genoux-poitrine-ballon, pompe-pieds-ballon ; 4 WebP, environ 74 Ko), 17 illustrations originales, 0 fiche sans image. Les 8 autres groupes de photos ont été regardés et refusés (raisons dans la section Photo de chaque fiche et dans tools/photos.md). La légende de ces deux photos note que le ballon est sous les chevilles et non sous les tibias.
 - Plusieurs fiches ont une variante à plusieurs matériels : `developpe-couche-halteres-ballon` (halteres + swiss_ball), `squat-mur-ballon-halteres` (swiss_ball + mur + halteres).
 
 ## Questions pour l'utilisateur

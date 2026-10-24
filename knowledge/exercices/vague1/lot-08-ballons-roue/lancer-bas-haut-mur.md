@@ -101,8 +101,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Un ballon qui rebondit fort revient vite vers le visage : choisis un ballon peu rebondissant si tu as le choix, et garde de la distance (NON SOURCÉ).
 
 ## Photo
-- `Medicine_Ball_Scoop_Throw/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit un lancer avec saut, que la fiche exclut : ne l'afficher que si la personne garde les pieds au sol)
-- `Medicine_Ball_Scoop_Throw/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente (saut possible sur l'image))
+- `Medicine_Ball_Scoop_Throw/0.jpg` : affichable : non (lancer avec saut, que la fiche exclut (règle 23, Q5) ; texte lisible sur une banderole ; remplacée par l'illustration)
+- `Medicine_Ball_Scoop_Throw/1.jpg` : affichable : non (lancer avec saut, que la fiche exclut (règle 23, Q5) ; texte lisible sur une banderole ; remplacée par l'illustration)
+- illustration : public/illustrations/lancer-bas-haut-mur.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : hanches en arrière et ballon entre les jambes, puis hanches en avant et lancer vers l'avant et le haut, pieds au sol)
+- légende : Pieds à plat, sans saut.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

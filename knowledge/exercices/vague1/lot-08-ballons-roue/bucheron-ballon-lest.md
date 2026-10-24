@@ -98,8 +98,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Ici le ballon n'est ni lancé ni rattrapé : il reste dans les mains ; s'il glisse, il tombe au sol.
 
 ## Photo
-- `Standing_Cable_Wood_Chop/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée est à la poulie, pas au ballon ; geste voisin mais matériel différent : ne l'afficher que si la consigne et la photo concordent)
-- `Standing_Cable_Wood_Chop/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Standing_Cable_Wood_Chop/0.jpg` : affichable : non (exercice à la poulie, pas au ballon ; logo « Bodybuilding.com » sur le T-shirt et logo de la machine lisibles ; remplacée par l'illustration)
+- `Standing_Cable_Wood_Chop/1.jpg` : affichable : non (exercice à la poulie, pas au ballon ; logo « Bodybuilding.com » sur le T-shirt et logo de la machine lisibles ; remplacée par l'illustration)
+- illustration : public/illustrations/bucheron-ballon-lest.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de face : ballon près d'une épaule, puis descente en diagonale vers la hanche opposée)
+- légende : Variante de haut en bas. De bas en haut : même diagonale dans l'autre sens.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

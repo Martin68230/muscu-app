@@ -105,8 +105,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : lancer de côté contre un mur, vue de face : départ hanche arrière puis lancer ; aucune entrée de free-exercise-db ne correspond (Medicine_Ball_Full_Twist est une passe en duo, dos à dos).
+- illustration : public/illustrations/lancer-rotation-mur.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de face, mur à droite : ballon près de la hanche arrière, puis rotation et lancer à hauteur de poitrine, pieds au sol)
+- légende : Variante pieds fixes. La variante avec pivot du pied arrière n'est pas dessinée.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

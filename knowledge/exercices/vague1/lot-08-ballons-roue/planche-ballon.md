@@ -103,8 +103,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : planche avant-bras sur le ballon, vue de profil, ligne droite ; puis tibias sur le ballon. Aucune entrée de free-exercise-db ne correspond (l'entrée Plank est une planche au sol sans ballon).
+- illustration : public/illustrations/planche-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : avant-bras sur le ballon, pieds au sol, ligne droite ; puis avant-bras au sol, tibias sur le ballon)
+- légende : À gauche : avant-bras sur le ballon (échelon 1). À droite : tibias sur le ballon (avancé).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

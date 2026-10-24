@@ -98,8 +98,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Chaussures fermées à semelle plate qui accroche, ou pieds nus sur un tapis antidérapant selon l'exercice (la fiche le dit) ; jamais de chaussettes seules sur le sol.
 
 ## Photo
-- `Weighted_Ball_Hyperextension/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit un disque sous le menton ou derrière la nuque, ce que la fiche ne propose pas ; ne l'afficher que si la personne photographiée n'a pas de poids ou après recadrage)
-- `Weighted_Ball_Hyperextension/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Weighted_Ball_Hyperextension/0.jpg` : affichable : non (le pratiquant tient un disque contre la poitrine, que la fiche ne propose pas (charge, règle C6) ; bras non croisés ; remplacée par l'illustration)
+- `Weighted_Ball_Hyperextension/1.jpg` : affichable : non (le pratiquant tient un disque contre la poitrine, que la fiche ne propose pas (charge, règle C6) ; bras non croisés ; remplacée par l'illustration)
+- illustration : public/illustrations/extension-dorsale-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : à plat ventre, hanches sur le ballon, bras croisés ; le buste monte jusqu'à l'alignement avec les jambes, pas plus)
+- légende : Variante bras croisés. Monte seulement jusqu'à l'alignement.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

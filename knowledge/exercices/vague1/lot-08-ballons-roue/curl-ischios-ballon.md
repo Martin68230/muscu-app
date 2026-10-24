@@ -101,8 +101,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Chaussures fermées à semelle plate qui accroche, ou pieds nus sur un tapis antidérapant selon l'exercice (la fiche le dit) ; jamais de chaussettes seules sur le sol.
 
 ## Photo
-- `Ball_Leg_Curl/0.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; l'entrée décrit talons sur le ballon, hanches soulevées ; vérifier la position et l'absence de logo)
-- `Ball_Leg_Curl/1.jpg` : affichable : à vérifier (image non vue le 2026-10-24 ; à vérifier comme la précédente)
+- `Ball_Leg_Curl/0.jpg` : affichable : non (jambes pliées, pieds posés sur le dessus du ballon, bassin posé : ne montre pas la consigne (talons, jambes tendues, hanches hautes) ; logo lisible sur le ballon et sur les chaussures ; remplacée par l'illustration)
+- `Ball_Leg_Curl/1.jpg` : affichable : non (jambes pliées, pieds posés sur le dessus du ballon, bassin posé : ne montre pas la consigne (talons, jambes tendues, hanches hautes) ; logo lisible sur le ballon et sur les chaussures ; remplacée par l'illustration)
+- illustration : public/illustrations/curl-ischios-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : couché sur le dos, hanches hautes, talons sur le ballon jambes tendues ; puis genoux fléchis, le ballon roule vers les fessiers)
+- légende : Variante deux jambes. La variante une jambe se fait au même endroit.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

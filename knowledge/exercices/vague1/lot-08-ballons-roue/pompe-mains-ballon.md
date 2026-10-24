@@ -96,8 +96,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : pompe mains sur un ballon calé contre un mur, vue de profil ; aucune entrée de free-exercise-db ne correspond (Push-Ups_With_Feet_On_An_Exercise_Ball a les pieds sur le ballon).
+- illustration : public/illustrations/pompe-mains-ballon.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : mains sur le dessus du ballon calé contre un mur, pieds reculés ; poitrine vers le ballon, le ballon ne bouge pas)
+- légende : Le ballon reste calé contre le mur ; le ballon libre n'est pas proposé.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

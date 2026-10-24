@@ -102,8 +102,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - aucune photo
-
-Illustration à faire par `dev` : squat puis lancer de poitrine contre un mur, vue de profil ; aucune entrée de free-exercise-db ne correspond.
+- illustration : public/illustrations/squat-lancer-mur.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; vue de profil : squat avec le ballon contre la poitrine, puis on remonte et le ballon part droit contre le mur, pieds à plat)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

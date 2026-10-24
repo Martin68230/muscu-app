@@ -7,7 +7,7 @@
       "licence": "Unlicense (domaine public)",
       "licenceUrl": "https://unlicense.org/",
       "url": "https://github.com/yuhonas/free-exercise-db",
-      "images": 159
+      "images": 163
     },
     {
       "id": "illustrations",
@@ -16,7 +16,7 @@
       "licence": "Création de l'app",
       "licenceUrl": null,
       "url": null,
-      "images": 99
+      "images": 115
     }
   ],
   "videos": "Les vidéos affichées par le bouton « Voir une vidéo » sont des vidéos YouTube publiques, lues avec le lecteur officiel (mode sans cookies) et seulement après ton appui. Elles restent la propriété de leurs auteurs ; l'app ne les copie pas."
