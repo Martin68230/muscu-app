@@ -289,7 +289,7 @@ describe('vidéo, signalement, images', () => {
     const btn = screen.getByRole('button', { name: /signaler un problème/i });
     fireEvent.click(btn);
     fireEvent.click(screen.getByRole('button', { name: 'Consigne pas claire' }));
-    fireEvent.click(screen.getByRole('button', { name: 'Envoyer' }));
+    fireEvent.click(screen.getByRole('button', { name: 'Enregistrer' }));
     await waitFor(async () => {
       const r = await listReports();
       expect(r.length).toBe(1);

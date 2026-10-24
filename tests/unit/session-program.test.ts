@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { ensureLocalUser } from '../../src/data/bootstrap';
 import { create, list, update } from '../../src/data/repo';
-import { importData, exportData } from '../../src/data/backup';
+import { importData, exportData, wipeAllData } from '../../src/data/backup';
 import type { Program, WorkoutSession } from '../../src/data/model';
 import { computeInputsHash, ensureActiveProgram, getActiveProgram, nextSession, programPreview } from '../../src/session/program';
 import { FICHES, mk, PROFILES } from './generator-helpers';
@@ -136,6 +136,34 @@ describe('programme actif', () => {
       delete (p as Partial<Program>).messages;
     }
     expect((await importData(old)).ok).toBe(true);
+  });
+});
+
+describe('sauvegarde : export puis import (Profil)', () => {
+  it('restitue profil, matériel, programme et historique (séances et séries)', async () => {
+    const { profile, eqId } = await seedProfile();
+    await update('equipment', eqId, { dumbbellWeightsKg: [2.5, 12.5] });
+    const prog = await ensureActiveProgram(FICHES);
+    if (!prog.ok) throw new Error('attendu ok');
+    const sess = await create('sessions', {
+      programId: prog.program.id, programDayIndex: 0, plannedDate: '2026-10-26', status: 'faite',
+      startedAt: '2026-10-26T08:00:00.000Z', endedAt: '2026-10-26T08:45:00.000Z', note: '',
+    } as never);
+    await create('sets', {
+      sessionId: sess.id, movementId: 'pompe', variantId: 'pompe-base', exerciseIndex: 0, setIndex: 0, targetRepsMin: 8, targetRepsMax: 12,
+      reps: 10, loadKg: 12.5, rir: 2, pain: false, comment: '', completedAt: '2026-10-26T08:10:00.000Z',
+    } as never);
+    const file = JSON.parse(JSON.stringify(await exportData()));
+
+    await wipeAllData();
+    expect(await list('sessions')).toHaveLength(0);
+    const res = await importData(file);
+    expect(res.ok).toBe(true);
+    expect((await list('profile'))[0]).toMatchObject({ id: profile.id, level: 'intermediaire', daysPerWeek: 3 });
+    expect((await list('equipment'))[0]).toMatchObject({ id: eqId, dumbbellWeightsKg: [2.5, 12.5] });
+    expect((await list('programs')).map((p) => p.id)).toEqual([prog.program.id]);
+    expect((await list('sessions')).map((x) => x.id)).toEqual([sess.id]);
+    expect(await list('sets')).toMatchObject([{ reps: 10, loadKg: 12.5 }]);
   });
 });
 

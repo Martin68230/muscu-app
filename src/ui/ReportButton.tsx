@@ -43,7 +43,7 @@ export function ReportButton({ ficheId, variantId = null }: { ficheId: string; v
         {sent ? (
           <>
             <h2 id={`report-title-${ficheId}`}>Merci !</h2>
-            <p class="dim small">Signalement enregistré sur ce téléphone. Tu retrouves la liste dans Profil.</p>
+            <p class="dim small">Signalement enregistré sur ce téléphone seulement. Rien n'est envoyé en ligne. Tu retrouves la liste dans Profil.</p>
             <button type="button" class="btn btn-primary" autofocus onClick={close}>Fermer</button>
           </>
         ) : (
@@ -62,6 +62,7 @@ export function ReportButton({ ficheId, variantId = null }: { ficheId: string; v
                 </button>
               ))}
             </div>
+            <p class="dim small">Ce signalement reste sur ton téléphone : rien n'est envoyé en ligne.</p>
             <label for={`report-text-${ficheId}`} class="small dim">Précision (facultatif)</label>
             <textarea
               id={`report-text-${ficheId}`}
@@ -72,7 +73,7 @@ export function ReportButton({ ficheId, variantId = null }: { ficheId: string; v
               onInput={(e) => setText(e.currentTarget.value)}
             />
             {error && <div class="toast" role="alert">Enregistrement impossible. Réessaie.</div>}
-            <button type="button" class="btn btn-primary" disabled={!choice} onClick={send}>Envoyer</button>
+            <button type="button" class="btn btn-primary" disabled={!choice} onClick={send}>Enregistrer</button>
             <button type="button" class="btn" onClick={close}>Annuler</button>
           </>
         )}

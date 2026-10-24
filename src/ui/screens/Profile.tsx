@@ -148,7 +148,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
       </div>
 
       <h2>Mes données</h2>
-      <p class="dim small">Tout reste sur ce téléphone. Fais une sauvegarde de temps en temps.</p>
+      <p class="dim small">Tes données restent sur ton téléphone, rien n'est envoyé en ligne.</p>
+      <p class="dim small">Sans compte, tes données ne sont que sur ce téléphone : fais une sauvegarde de temps en temps.</p>
       {message && <div class="toast" role="status">{message}</div>}
       <button class="btn" onClick={doExport}>Exporter une sauvegarde</button>
       <button class="btn" onClick={() => fileInput.current?.click()}>Importer une sauvegarde</button>
