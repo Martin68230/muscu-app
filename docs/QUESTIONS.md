@@ -115,3 +115,31 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
   - `developpe-militaire-barre` : barres de sécurité à hauteur des épaules, barre sur la poitrine, menton reculé sans cambrer, poussée au-dessus des oreilles.
   - `rowing-barre-ez` : buste à plat ventre sur un banc incliné, barre EZ posée au sol, tirage vers le bas de la poitrine puis retour bras presque tendus (une vidéo de coach privé correspondait mais sa qualification n'est pas vérifiable).
 - Vidéos retenues (7) : voir README du lot-07 « Corrections coach 2 ». Non vues à l'écran : voir ce README.
+
+## Q20. Lancer de ballon au sol (slam) et lancers par-dessus la tête, lot-08-ballons-roue (24/10/2026, coach puis kine)
+- **Contexte** : le ballon rebondissant revient vers le visage, le bras au-dessus de la tête cambre le bas du dos, gain faible par rapport au lancer contre un mur.
+- **Choix prudent appliqué** : aucune fiche de slam ni de lancer par-dessus la tête. Seuls les lancers de poitrine, de rotation et de bas en haut contre un mur, pieds au sol, sans rattrapage risqué. NON SOURCÉ.
+- **Option alternative** : autoriser le slam avec une case de profil « ballon sans rebond » (non rédigé).
+
+## Q21. Roue abdominale : dos niveau 1 (24/10/2026, coach puis kine, lot-08-ballons-roue)
+- **Contexte** : dès une gêne légère au bas du dos, ramener la roue à la variante au mur ou la retirer.
+- **Choix prudent appliqué** : `roue-abdos` est **retirée dès le niveau 1 du dos** (mur compris) ; intermédiaire minimum, debout réservé à l'avancé, sortie de secours écrite (ventre puis poitrine sur le tapis ; genoux d'abord en version debout). Le roulé du ballon (`rollout-ballon`, avant-bras sur le ballon, levier plus court) garde « roulé court » au niveau 1 du dos et est retiré au niveau 2. NON SOURCÉ.
+- **Option alternative** : variante au mur au niveau 1 du dos (moins prudent).
+
+## Q22. Développé aux haltères sur ballon de gym (24/10/2026, coach puis kine, lot-08-ballons-roue)
+- **Contexte** : deux haltères au-dessus du visage, appui instable (règle R9), seul, sans pareur ; le CSEP déconseille l'instabilité pour la force.
+- **Choix prudent appliqué** : fiche **écartée** (lot-08-ballons-roue/ecartees/developpe-couche-halteres-ballon.md). Le développé au sol aux haltères reste disponible. NON SOURCÉ.
+- **Option alternative** : garder la fiche à charge légère, pieds écartés, haltères fixes, niveau intermédiaire (garde-fous R9).
+
+## Q23. Dosage des lancers au ballon lesté (24/10/2026, coach puis kine, lot-08-ballons-roue)
+- **Contexte** : aucune ligne du générateur ne couvre les lancers (V-DOSE ne connaît pas `medecine_ball`).
+- **Choix prudent appliqué** : repère de coach conservé comme **plafond** : 2 séries de 6 à 8 lancers, repos 60 à 90 s, arrêt dès que la vitesse baisse, ballon léger, mur à 2 m au moins, pas de rattrapage risqué. NON SOURCÉ. `dev` ne doit pas appliquer les 10 à 15 répétitions de V-DOSE à ces fiches.
+- **Option alternative** : une règle « lancer » dédiée dans le générateur.
+
+## Q24. Doublons ballon lesté / ballon de gym avec les fiches existantes (24/10/2026, coach puis kine)
+- **Choix prudent appliqué** : une fiche par matériel, aucune fusion (on ne touche pas aux fiches déjà vérifiées). Fusion possible plus tard (décision de `dev` et de l'utilisateur).
+
+## Q25. Pompe mains sur ballon libre et niveaux relevés (24/10/2026, kine, lot-08-ballons-roue)
+- **Contexte** : mains sur une surface qui roule : chute vers le visage, le poignet ou l'épaule, sans gain mesuré pour le pectoral (Lehman 2006, résumé lu).
+- **Choix prudent appliqué** : variante « ballon libre » de `pompe-mains-ballon` retirée (reste : ballon calé contre un mur). `pont-fessier-ballon` et `extension-dorsale-ballon` passent de débutant à **intermédiaire** (chute, aucun gain net). `bucheron-ballon-lest` bas-haut passe à intermédiaire ; bûcheron au ballon retiré dès le niveau 2 du dos (comme `rotation-bucheron`). NON SOURCÉ.
+- **Option alternative** : garder ces deux fiches au niveau débutant avec mur et tapis (moins prudent).

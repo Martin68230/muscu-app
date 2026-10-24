@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, deltoides_anterieurs, dentele_anterieur, fessiers]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,7 +47,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.3, règle V-TEMPS, NON SOURCÉ en entier) : maintien de 20 s (débutant) à 30 s (intermédiaire et avancé), 2 séries, repos 60 s, pas de réserve demandée : la série s'arrête dès que la position ou le contrôle se dégrade. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -74,20 +74,24 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 **Version plus douce** : planche-genoux
 
 **Sécurité pour l'utilisateur seul**
-- Place le ballon contre un mur ou un meuble lourd la première fois, pour qu'il ne s'enfuie pas ; si tu perds l'équilibre, tombe vers le sol (genoux, puis avant-bras), pas vers le côté.
+- Variante 1 : place un mur ou un meuble lourd devant le ballon, pour qu'il ne s'enfuie pas. Variante 2 : mur ou meuble lourd derrière tes pieds, à une distance où le ballon s'y arrête, rien d'autre sur sa trajectoire (NON SOURCÉ).
+- Sortie de secours si tu perds l'équilibre ou si le ballon part : tombe vers le sol, jamais vers le côté. Variante 1 : avance les pieds, pose les genoux puis le ventre sur le tapis. Variante 2 : les avant-bras sont déjà au sol, plie les genoux puis pose-les sur le tapis ; ne rattrape pas le ballon. Essaie cette sortie une fois, ballon peu avancé, avant la première vraie série.
 - Pose un tapis ferme sous toi ; pieds nus ou chaussures qui accrochent, sol non glissant.
 - Variante 2 (tibias sur le ballon) : réservée aux avancés qui tiennent la planche au sol sans creuser le dos, et jamais avec un ballon neuf mal gonflé.
 - Arrête la série quand la ligne se casse (bassin qui tombe), même si la durée prévue n'est pas atteinte.
 
-**Points d'attention (sécurité)**
-- Dos : une planche instable demande de contrôler le bas du dos sous fatigue ; arrêt de la série quand le bassin tombe.
+**Points d'attention (kine)**
+- Dos : une planche instable demande de contrôler le bas du dos sous fatigue ; arrêt de la série quand le bassin tombe ; dès une gêne légère, maintien plus court ; dès une gêne nette, retirée (NON SOURCÉ).
+- Cou : la tête reste dans le prolongement du dos (regard vers le sol) ; pas de tête relevée ni qui tombe.
 - Épaule : la charge est sur les épaules et les avant-bras ; plus l'appui est loin (variante 2), plus c'est lourd pour l'épaule.
-- Grossesse et post-partum : retirée (G4, G7).
+- Grossesse et post-partum : retirée (G4, G7) : maintien prolongé, pression abdominale, chute du ballon ; fuite d'urine, pesanteur dans le bas-ventre ou bombement du ventre à l'effort : arrêt et avis de la sage-femme.
+- Niveau : intermédiaire minimum (avancé pour les tibias sur le ballon), par prudence (NON SOURCÉ).
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, à l'épaule ou au cou.
 - Ballon qui roule vite, glisse ou qui devient mou : pose les genoux au sol et arrête.
 - Bassin qui tombe ou impossibilité de garder la ligne : arrête la série.
+- En post-partum : fuite d'urine à l'effort, pesanteur dans le bas-ventre, bombement du ventre : arrêt et avis de la sage-femme (G7).
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 - Picotements, engourdissement ou faiblesse dans un bras ou une jambe : arrête.
 
@@ -113,5 +117,5 @@ Illustration à faire par `dev` : planche avant-bras sur le ballon, vue de profi
 | Choix du ballon (taille, gonflage, anti-éclatement), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à reprendre par kine, puis à contrôler par relecteur) |
-| Grossesse et post-partum : planche sur ballon retirée (isométrique, pression abdominale, chute) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à confirmer par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-24, à contrôler par relecteur) |
+| Grossesse et post-partum : planche sur ballon retirée (isométrique, pression abdominale, chute) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmé par kine, NON SOURCÉ) |

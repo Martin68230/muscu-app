@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [flechisseurs_hanche, deltoides_anterieurs, triceps, dentele_anterieur]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,7 +47,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026, SRC1 : 2 à 3 séries par exercice) : cet exercice est sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire ou un avancé en « muscle » (2 pour un exercice « autre » en force) ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s (120 s pour un exercice pilier d'intermédiaire). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Comme la roue, le nombre de répétitions est un plafond ; la série s'arrête quand le bassin tombe ou que le contrôle disparaît. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -63,7 +63,7 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 
 **Notes**
-- dos-n1 : variante 1 seulement (genoux vers la poitrine).
+- dos-n1 : variante 1 seulement (genoux vers la poitrine), amplitude courte, bassin stable ; dès que le bassin tombe ou que le bas du dos tire : arrêt. Choix de kine, NON SOURCÉ : c'est une position de pompe avec levier long sur le bas du dos (pour la roue, retirée dès ce niveau, la distance est libre ; ici elle est limitée par les genoux).
 - dos-n2 : retiré : pompe instable avec le bassin à contrôler sous fatigue (choix prudent, NON SOURCÉ).
 - epaule-n1 : variante 1 seulement ; aucune augmentation dès le niveau 2.
 - poignet-n1 : poings fermés, poignets droits ; retiré dès le niveau 2.
@@ -74,20 +74,24 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 **Version plus douce** : planche-ballon-avant-bras
 
 **Sécurité pour l'utilisateur seul**
-- Tapis ferme devant le ballon ; ballon bien gonflé (les tibias ne doivent pas l'écraser).
-- Si le ballon part, laisse-toi tomber doucement sur les genoux et les mains, pas sur le côté.
-- Garde les premiers essais à un seul aller-retour pour sentir le ballon.
+- Tapis ferme devant le ballon ; ballon bien gonflé (les tibias ne doivent pas l'écraser) ; mur ou meuble lourd derrière toi, assez loin pour que le ballon qui part en arrière s'y arrête, rien d'autre sur la trajectoire (NON SOURCÉ).
+- Sortie de secours si le ballon part ou si tu perds l'équilibre : les mains restent au sol ; plie les genoux et pose-les sur le tapis, puis les hanches, comme pour te mettre en position de pompe à genoux. Ne te jette pas sur le côté, ne rattrape pas le ballon. Essaie cette sortie une fois à vide avant la première vraie série.
+- Garde les premiers essais à un seul aller-retour pour sentir le ballon. Variante hanches vers le plafond : jamais plus haut que les hanches à l'aplomb des épaules ; ballon qui roule trop vers les mains = arrêt (risque de basculer vers l'avant, tête vers le sol).
+- Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (sécurité)**
+**Points d'attention (kine)**
 - Dos : le bassin doit rester stable pendant tout le trajet du ballon ; arrêt au premier affaissement.
 - Épaule : bras tendus sous charge ; retiré dès la gêne nette.
 - Poignet : appui avec les mains à plat (ou poings fermés) selon la gêne.
-- Grossesse et post-partum : retiré.
+- Cou : tête dans le prolongement du dos, regard vers le sol entre les mains ; la tête ne tombe pas, ne se relève pas.
+- Grossesse et post-partum : retiré (position de pompe sur ballon, ventre non soutenu, chute, pression abdominale) ; fuite d'urine, pesanteur dans le bas-ventre ou bombement du ventre : arrêt et avis de la sage-femme (G7).
+- Niveau : intermédiaire minimum (avancé pour la variante hanches vers le plafond), par prudence (NON SOURCÉ).
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, à l'épaule ou au poignet.
 - Bassin qui tombe ou ballon qui part de côté : arrête la série.
 - Perte de contrôle du ballon : arrête.
+- En post-partum : fuite d'urine à l'effort, pesanteur dans le bas-ventre, bombement du ventre : arrêt et avis de la sage-femme (G7).
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 - Picotements, engourdissement ou faiblesse dans un bras ou une jambe : arrête.
 
@@ -111,5 +115,5 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 | Choix du ballon (taille, gonflage, anti-éclatement), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à reprendre par kine, puis à contrôler par relecteur) |
-| Grossesse et post-partum : position de pompe sur ballon retirée (ventre non soutenu, chute) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à confirmer par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-24, à contrôler par relecteur) |
+| Grossesse et post-partum : position de pompe sur ballon retirée (ventre non soutenu, chute) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmé par kine, NON SOURCÉ) |

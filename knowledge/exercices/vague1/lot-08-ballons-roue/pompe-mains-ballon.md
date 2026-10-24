@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, dentele_anterieur]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -16,14 +16,13 @@ statut: brouillon_coach
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pompe-mains-ballon-mur | Ballon calé contre un mur | 1 | intermediaire | swiss_ball, mur | Mains sur le ballon, ballon calé contre un mur plein, pieds reculés pour former une ligne ; le mur empêche le ballon de fuir. |
-| pompe-mains-ballon-libre | Ballon libre | 2 | intermediaire | swiss_ball, tapis | Mains sur le ballon sur un tapis, pieds reculés ; le ballon peut bouger : beaucoup plus instable. |
 
 ## Consignes
 1. Variante au mur : cale le ballon contre un mur plein. Pose les mains un peu plus larges que les épaules sur le dessus du ballon, pieds reculés pour former une ligne droite.
 2. Serre le ventre et les fessiers, garde le regard devant les mains.
 3. Plie les coudes pour amener la poitrine vers le ballon, en gardant le ballon immobile sous les mains.
 4. Pousse avec les bras pour remonter jusqu'à presque tendre les coudes.
-5. Variante libre : même mouvement, le ballon peut glisser : réserve-la aux séances où tu maîtrises la variante au mur. Pose les genoux au sol pour finir.
+5. Fin de série : pose les genoux au sol avant de lâcher le ballon. Le ballon libre (sans mur) n'est pas proposé : mains sur une surface qui roule, la chute vers l'avant ou le côté se fait sur le visage, le poignet ou l'épaule (choix de kine, NON SOURCÉ, question Q25 de docs/QUESTIONS.md).
 
 ## Points d'attention
 - Mains sur le ballon : le corps est incliné vers le haut, plus facile qu'au sol pour la poitrine mais plus instable pour les poignets et les épaules.
@@ -47,7 +46,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026, SRC1 : 2 à 3 séries par exercice) : cet exercice est sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire ou un avancé en « muscle » (2 pour un exercice « autre » en force) ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s (120 s pour un exercice pilier d'intermédiaire). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Si le tableau du générateur donne 10 à 15 répétitions, arrête avant dès que le ballon bouge ou que le bassin tombe. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -61,6 +60,7 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 | Cou | adapter: amplitude:tete-alignee | adapter: variante:pompe-mains-ballon-mur | retirer |
 
 **Notes**
+- general : la variante « ballon libre » a été retirée par kine (question Q25 de docs/QUESTIONS.md).
 - epaule-n1 : ballon calé contre un mur ; aucune augmentation dès le niveau 2.
 - epaule-n2 : retiré : épaule chargée sur surface instable.
 - poignet-n1 : ballon calé ; poignets droits ; retiré dès le niveau 2.
@@ -71,14 +71,16 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 **Version plus douce** : pompe-mains-ballon-mur
 
 **Sécurité pour l'utilisateur seul**
-- Ballon calé contre un mur plein et pieds sur un sol non glissant ; si le ballon part, ne le rattrape pas, lâche-le et pose les genoux au sol.
+- Ballon calé contre un mur plein et pieds sur un sol non glissant, tapis ferme sous les pieds et les genoux ; le ballon ne doit pas pouvoir glisser sur le côté (mur large, ballon centré).
+- Sortie de secours si une main glisse ou si le ballon part : ne te retiens pas avec un bras tendu ; plie les coudes et laisse-toi descendre vers le ballon ou le mur en pliant les genoux, jusqu'à poser les genoux sur le tapis. Essaie cette sortie une fois, bras presque tendus, avant la première vraie série. Premier essai : une répétition à amplitude courte.
 - Le dessus du ballon doit pouvoir porter ton poids : ballon bien gonflé.
-- La variante libre est réservée à celles et ceux qui font bien la variante au mur.
+- Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (sécurité)**
-- Épaule et poignet : la surface instable augmente le travail des stabilisateurs ; retirer dès la gêne nette.
+**Points d'attention (kine)**
+- Épaule et poignet : la surface instable augmente le travail des stabilisateurs ; dès la gêne légère, variante au mur (la seule) et tempo lent, dès la gêne nette retiré (NON SOURCÉ).
 - Cou : regard devant les mains, nuque dans le prolongement du dos.
-- Grossesse et post-partum : retirée.
+- Grossesse et post-partum : retirée (instabilité, ventre proche du ballon) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
+- Niveau : intermédiaire minimum (la pompe sur chaise et la pompe au mur couvrent le débutant), par prudence, NON SOURCÉ.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente à l'épaule, au coude, au poignet ou au cou.
@@ -107,5 +109,5 @@ Illustration à faire par `dev` : pompe mains sur un ballon calé contre un mur,
 | Choix du ballon (taille, gonflage, anti-éclatement), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à reprendre par kine, puis à contrôler par relecteur) |
-| Grossesse et post-partum : pompe mains sur ballon retirée (instabilité, ventre près du ballon) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à confirmer par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-24, à contrôler par relecteur) |
+| Grossesse et post-partum : pompe mains sur ballon retirée (instabilité, ventre près du ballon) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmé par kine, NON SOURCÉ) |

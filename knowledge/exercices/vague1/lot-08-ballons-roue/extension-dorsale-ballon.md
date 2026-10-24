@@ -4,18 +4,18 @@ nom: Extension du dos sur un ballon de gym
 alias: [back extension swiss ball, hyperextension ballon]
 schema: charniere
 type: force
-niveau_min: debutant
+niveau_min: intermediaire
 muscles_principaux: [erecteurs_rachis]
 muscles_secondaires: [fessiers, ischios, rhomboides, trapezes]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| extension-dorsale-ballon-bras-croises | Bras croisés, jusqu'à l'alignement | 1 | debutant | swiss_ball, tapis | À plat ventre sur le ballon, hanches et ventre sur le ballon, pointes de pieds au sol (ou contre un mur), bras croisés sur la poitrine ; tu soulèves le buste jusqu'à l'alignement, pas plus. |
+| extension-dorsale-ballon-bras-croises | Bras croisés, jusqu'à l'alignement | 1 | intermediaire | swiss_ball, tapis | À plat ventre sur le ballon, hanches et ventre sur le ballon, pointes de pieds au sol (ou contre un mur), bras croisés sur la poitrine ; tu soulèves le buste jusqu'à l'alignement, pas plus. |
 | extension-dorsale-ballon-mains-tete | Mains derrière la tête | 2 | intermediaire | swiss_ball, tapis | Même position, mains légèrement posées derrière la tête, coudes ouverts : le bras de levier est plus long. |
 
 ## Consignes
@@ -47,7 +47,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026, SRC1 : 2 à 3 séries par exercice) : cet exercice est sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire ou un avancé en « muscle » (2 pour un exercice « autre » en force) ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s (120 s pour un exercice pilier d'intermédiaire). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -74,14 +74,15 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 **Version plus douce** : extension-dorsale-ballon-bras-croises
 
 **Sécurité pour l'utilisateur seul**
-- Pieds contre un mur plein ou écartés sur un tapis antidérapant ; ballon bien gonflé.
-- Si tu glisses du ballon, laisse-toi tomber doucement vers le sol sur les mains et les genoux.
-- Aucun poids dans les mains, ni disque derrière la nuque (comme dans l'entrée de la base), sans validation de kine.
+- Pointes de pieds contre un mur plein (ou la plinthe), pieds écartés : obligatoire, pour que les pieds ne glissent pas et que le ballon ne parte pas vers l'avant ; tapis ferme antidérapant devant le ballon ; ballon bien gonflé (NON SOURCÉ).
+- Sortie de secours si le ballon glisse ou si tu perds l'équilibre : décroise les bras, pose les mains au sol devant le ballon, plie les genoux pour poser le ventre puis les genoux sur le tapis. Essaie cette sortie une fois, sans monter, avant la première vraie série ; si tu ne peux pas poser les mains au sol depuis la position de départ (ballon trop gros), choisis un ballon plus petit ou ne fais pas l'exercice.
+- Aucun poids dans les mains, ni disque derrière la nuque (comme dans l'entrée de la base) : charge sur la nuque non retenue (règle C6 du cou).
 
-**Points d'attention (sécurité)**
+**Points d'attention (kine)**
 - Dos : exercice d'extension du bas du dos ; amplitude limitée à l'alignement, retiré dès la gêne nette.
-- Cou : tête dans le prolongement ; ne pas regarder vers le haut.
-- Grossesse et post-partum : retiré.
+- Cou : tête dans le prolongement ; ne pas regarder vers le haut ; dès une gêne nette, tête alignée (déjà la consigne), dès la douleur retiré.
+- Grossesse et post-partum : retiré (à plat ventre sur le ballon, pression sur le ventre) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
+- Niveau : intermédiaire minimum (position à plat ventre sur appui instable, risque de chute vers l'avant ; le bird-dog couvre le débutant), par prudence, NON SOURCÉ.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, au cou ou à l'arrière de la cuisse.
@@ -110,5 +111,5 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 | Choix du ballon (taille, gonflage, anti-éclatement), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à reprendre par kine, puis à contrôler par relecteur) |
-| Grossesse et post-partum : extension du dos sur ballon retirée (à plat ventre sur un ballon) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à confirmer par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-24, à contrôler par relecteur) |
+| Grossesse et post-partum : extension du dos sur ballon retirée (à plat ventre sur un ballon) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmé par kine, NON SOURCÉ) |

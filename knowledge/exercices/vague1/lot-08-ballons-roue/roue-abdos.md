@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, grand_dorsal, deltoides_anterieurs, flechisseurs_hanche]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -53,13 +53,13 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026, SRC1 : 2 à 3 séries par exercice) : cet exercice est sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire ou un avancé en « muscle » (2 pour un exercice « autre » en force) ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s (120 s pour un exercice pilier d'intermédiaire). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Le tableau du générateur donne 10 à 15 répétitions au poids du corps : à la roue c'est un plafond, pas un objectif. La série s'arrête dès que le dos se creuse ou que le ventre lâche, même s'il ne reste que 3 à 5 répétitions propres (plafond de sécurité spécifique, NON SOURCÉ). Le générateur ne doit pas imposer un nombre de répétitions à cet exercice. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: variante:roue-abdos-mur-genoux | retirer | retirer |
+| Dos | retirer | retirer | retirer |
 | Épaule | adapter: variante:roue-abdos-mur-genoux | retirer | retirer |
 | Coude | adapter: variante:roue-abdos-mur-genoux | retirer | retirer |
 | Poignet | adapter: variante:roue-abdos-mur-genoux | retirer | retirer |
@@ -70,8 +70,8 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 
 **Notes**
 - general : La roue n'est pas proposée au niveau débutant. Aucune charge ajoutée : la difficulté vient du bras de levier (distance de la roue).
-- dos-n1 : même au moindre signe de gêne au bas du dos, retour à la variante au mur, amplitude courte.
-- dos-n2 : retiré : le bas du dos est la zone la plus sollicitée quand le ventre lâche (choix très prudent, NON SOURCÉ).
+- dos-n1 : retiré dès une gêne légère au bas du dos, y compris la variante au mur (choix prudent demandé, NON SOURCÉ ; question Q21 de docs/QUESTIONS.md). Le mur limite la distance mais ne protège pas le dos si le ventre lâche.
+- dos-n2 : retiré, comme au niveau 1 : le bas du dos est la zone la plus sollicitée quand le ventre lâche (NON SOURCÉ).
 - epaule-n1 : variante au mur, amplitude courte ; aucune augmentation (R2 dès le niveau 2).
 - epaule-n2 : retiré : bras tendus en avant, charge sur l'épaule.
 - coude-n1 : variante au mur, coudes tendus mais sans se bloquer.
@@ -91,13 +91,16 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 - Variante au mur : la roue ne peut pas partir plus loin que le mur ; vérifie que le mur est plein et dégagé et que tes genoux ne glissent pas.
 - Vérifie la roue (poignées serrées, sans jeu) et le tapis (qui ne glisse pas) avant la première série.
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve et dès que le bas du dos se creuse ; en cas de doute sur l'amplitude, reste plus près.
-- Si tu ne peux plus revenir : ne lâche pas la roue d'un coup : plie les coudes, pose doucement le ventre et la poitrine sur le tapis (il doit être assez long pour ça), puis relève-toi.
+- Si tu ne peux plus revenir (sortie de secours) : ne lâche pas la roue d'un coup et ne te jette pas en arrière. À genoux : plie les coudes et pose doucement le ventre puis la poitrine sur le tapis (il doit être assez long pour que le buste y tienne en entier), puis relève-toi. Debout : pose d'abord les genoux sur le tapis, puis le ventre et la poitrine. Essaie cette sortie une fois à vide, roue peu avancée, avant la première vraie série ; si tu ne peux pas la faire ou si le tapis est trop court, ne fais pas l'exercice (NON SOURCÉ).
+- Variante debout : seulement sur un sol non glissant, chaussures fermées aux pieds, tapis long posé devant toi dans l'axe ; à ne faire que si la version à genoux est maîtrisée sur toute l'amplitude depuis plusieurs semaines.
+- Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (sécurité)**
-- Dos : tout le sujet de cette fiche. Le ventre qui lâche laisse le bas du dos se creuser sous charge : arrêt immédiat à la première sensation de cambrure (plafond de coach, NON SOURCÉ).
+**Points d'attention (kine)**
+- Dos : tout le sujet de cette fiche. Le ventre qui lâche laisse le bas du dos se creuser sous charge : arrêt immédiat à la première sensation de cambrure ; dès une gêne légère au bas du dos, l'exercice n'est plus proposé (NON SOURCÉ).
+- Poignet, coude : les deux poignets restent droits sur la roue ; une douleur à la face du coude ou au poignet = arrêt, retour à la variante au mur au niveau 1, retrait au niveau 2.
 - Épaule : bras tendus au-dessus de la tête en fin de course : amplitude limitée, jamais jusqu'à la fin de la course si l'épaule tire.
 - Hanche : les fléchisseurs de hanche tirent aussi ; si c'est surtout l'avant de la hanche ou de la cuisse qui travaille, l'amplitude est trop grande.
-- Grossesse et post-partum : retirée.
+- Grossesse et post-partum : retirée (pression abdominale, séparation des grands droits) ; fuite d'urine, pesanteur dans le bas-ventre ou bombement du ventre à l'effort : arrêt et avis de la sage-femme.
 - Niveau : intermédiaire minimum, par choix de prudence de coach (les études mesurent le muscle, pas le risque pour un débutant).
 
 **Signes qui doivent faire arrêter**
@@ -133,5 +136,5 @@ Illustration à faire par `dev` pour la variante au mur (butée visible) et la v
 | Roue, tapis, mur, sol | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à reprendre par kine, puis à contrôler par relecteur) |
-| Grossesse et post-partum : roue retirée (pression abdominale, diastasis) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à confirmer par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-24, à contrôler par relecteur) |
+| Grossesse et post-partum : roue retirée (pression abdominale, diastasis) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmé par kine, NON SOURCÉ) |

@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [deltoides_anterieurs, triceps, pectoraux, abdominaux]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -25,7 +25,7 @@ statut: brouillon_coach
 5. Recommence à vitesse maîtrisée ; arrête la série quand la vitesse baisse.
 
 ## Points d'attention
-- Aucun saut : les pieds restent au sol, tu peux te hisser à peine sur les orteils à la fin de la poussée.
+- Aucun saut : les deux pieds restent à plat au sol pendant toute la poussée, talons compris.
 - Le dos reste droit en bas et en haut.
 - Ballon le plus léger au début.
 - Le lancer part de la poitrine, pas au-dessus de la tête.
@@ -46,13 +46,13 @@ statut: brouillon_coach
 Aucune ligne du générateur ne couvre les lancers au ballon lesté (generateur-v1.md §3.2 et §3.3). Repère prudent de coach, NON SOURCÉ, à valider par kine et par l'utilisateur : 2 séries de 6 à 8 lancers, repos 60 à 90 s, pas de réserve chiffrée ; la série s'arrête dès que la vitesse du lancer baisse ou que la posture se dégrade (un lancer fatigué n'est plus un lancer de puissance). Note pour dev : le tag medecine_ball n'est pas dans la liste « chargeable » de V-DOSE ; ce mouvement doit être classé comme un exercice de puissance, pas comme un exercice de répétitions 10 à 15. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 (à contrôler par `relecteur`). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: variante:squat-lancer-mur-pieds-a-plat | retirer | retirer |
+| Dos | adapter: amplitude:reduite | retirer | retirer |
 | Épaule | garder | adapter: amplitude:bras-bas | retirer |
 | Coude | garder | adapter: amplitude:reduite | retirer |
 | Poignet | garder | adapter: amplitude:reduite | retirer |
@@ -74,14 +74,18 @@ Rédigé par `coach` le 2026-10-24 (à reprendre par `kine`, puis à contrôler 
 **Version plus douce** : squat-ballon-lest
 
 **Sécurité pour l'utilisateur seul**
-- Mur plein à deux grands pas ou plus ; sol non glissant ; chaussures à semelle qui accroche.
-- Ne rattrape pas un ballon qui revient trop vite.
+- Mur plein et solide, à au moins deux mètres de toi (environ trois grands pas) ; vise le mur à hauteur de la poitrine ; sol non glissant ; chaussures fermées à semelle qui accroche ; personne, animal ni objet fragile devant toi (NON SOURCÉ).
+- Ne rattrape pas le ballon : laisse-le rebondir et retomber, protège ton visage avec les avant-bras s'il revient vers toi, puis ramasse-le en pliant les genoux, dos droit. Pas de rattrapage risqué.
+- Sortie de secours : si le dos s'arrondit, si le genou tire ou si tu perds l'équilibre, lâche le ballon vers l'avant, pose les deux pieds à plat et arrête la série ; ne cherche pas à rattraper un ballon qui part.
 - Pas d'échec ni de série menée à fatigue : la technique d'abord.
+- Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (sécurité)**
+**Points d'attention (kine)**
 - Genou et dos : squat rapide avec charge légère ; amplitude réduite dès la première gêne.
 - Épaule : lancer à hauteur de la poitrine, jamais plus haut.
-- Grossesse et post-partum : retiré.
+- Cuisse, aine, hanche : un tiraillement à l'arrière de la cuisse ou à l'aine au bas du squat = squat moins profond, puis arrêt.
+- Grossesse et post-partum : retiré (lancer explosif, rebond vers le ventre) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
+- Niveau : intermédiaire minimum (squat rapide avec charge et poussée explosive ; le squat gobelet et le squat au ballon couvrent le débutant), choix de kine, NON SOURCÉ.
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au genou, à la hanche, au bas du dos ou à l'épaule.
@@ -110,5 +114,5 @@ Illustration à faire par `dev` : squat puis lancer de poitrine contre un mur, v
 | Ballon lesté (poids, état), mur, rebond, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; Grgic et coll., J Sport Health Sci 2022;11(2):202-211 (15 études : pas de différence nette force et hypertrophie entre séries à l'échec ou non) ; résumé lu via moteur de recherche. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; méta-analyse 15 études (résumé seulement) ; la règle de sécurité n'est pas une conclusion des études | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; PROVISOIRE pour Grgic (résumé) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (à reprendre par kine, puis à contrôler par relecteur) |
-| Grossesse et post-partum : squat et lancer retirés (geste explosif, ballon vers le ventre) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, à confirmer par kine) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-24, à contrôler par relecteur) |
+| Grossesse et post-partum : squat et lancer retirés (geste explosif, ballon vers le ventre) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmé par kine, NON SOURCÉ) |
