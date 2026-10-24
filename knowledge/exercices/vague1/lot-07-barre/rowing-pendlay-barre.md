@@ -54,9 +54,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | adapter: charge:legere | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:rowing-pendlay-barre-sol |
+| Genou | garder | garder | retirer |
 | Hanche | garder | garder | retirer |
-| Cheville | garder | garder | retirer: sans-zone:rowing-pendlay-barre-sol |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -64,8 +64,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - general : niveau avancé seulement, gardé avec réserves (question Q18 de docs/QUESTIONS.md) ; redondant avec les autres rowings.
 - dos-n1 : dès une gêne légère au bas du dos : retiré (buste parallèle, charge lombaire élevée) ; remplaçant rowing un bras aux haltères avec appui.
 - epaule-n2 : retiré.
-- genou-n3 : jambes en appui sans effort propre : la variante reste permise.
-- cheville-n3 : jambes en appui sans effort propre : la variante reste permise.
+- genou-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- cheville-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
 - hanche-n3 : la hanche, fléchie sous charge, est retirée au niveau 3.
 - grossesse : barre au sol, buste parallèle (pression abdominale) : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : rowing un bras aux haltères, avec appui. Post-partum : G7.
 
