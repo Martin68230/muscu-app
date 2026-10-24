@@ -25,7 +25,7 @@ statut: complete_kine
 5. Replace la barre sur les supports en la guidant vers l'arrière.
 
 ## Points d'attention
-- Pente douce : plus la pente est forte, plus l'épaule travaille.
+- Pente douce seulement, par prudence : on suppose qu'une pente forte fait travailler davantage l'épaule, mais aucune source citée ici ne le mesure (NON SOURCÉ).
 - Charge plus légère qu'au banc plat.
 - Mêmes règles de sécurité que le développé couché (barres de sécurité, colliers, pas d'échec).
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
@@ -84,7 +84,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 **Points d'attention (kine)**
 - Même règle de sécurité que le développé couché : barres de sécurité obligatoires, réglées pour la pente du banc avant la première série.
-- Épaule : plus la pente est forte, plus l'épaule travaille ; pente douce seulement. Descends moins bas si l'épaule tire ; gêne nette : retiré.
+- Épaule : par prudence, pente douce seulement (choix NON SOURCÉ). Descends moins bas si l'épaule tire ; gêne nette : retiré.
 - Charge plus légère qu'au banc plat. Tête contre le dossier, jamais relevée.
 - Charge au-dessus du visage (R9 appliqué à la barre).
 - Niveau : intermédiaire. Chemin conseillé : développé incliné aux haltères.
@@ -124,4 +124,5 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 24/10/2026, à contrôler par relecteur) |
 | Grossesse et post-partum : barre chargée retirée par prudence (équilibre, apnée, chute de la barre) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas la barre chargée | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmée par kine le 24/10/2026 comme choix prudent, à contrôler par relecteur) |
 | Un banc horizontal active à la fois le haut et le bas du grand pectoral ; 30 à 45 degrés d'inclinaison changent l'activation à certains moments du mouvement | Lauver, Cayot, Scheuermann, Eur J Sport Sci 2016;16(3):309-316, https://pubmed.ncbi.nlm.nih.gov/25799093/ ; résumé lu via moteur de recherche, texte complet non lu | étude de laboratoire (EMG), 14 hommes entraînés, développé à la barre à 65 % du maximum | 2026-10-24 | PROVISOIRE (résumé seulement) |
+| Pente douce d'environ 30 degrés, rôle de la pente sur l'épaule : choix prudent de coach ; l'étude de Lauver ci-dessus parle du pectoral et ne rapporte pas l'activité du deltoïde antérieur | choix de coach | - | 2026-10-24 | NON SOURCÉ |
 | Niveau minimum, barres de sécurité et repli en cas de blocage, colliers, pas d'échec seul, cases par zone et par niveau, grossesse, remplaçants, points d'attention (kine) | Raisonnement de `kine` à partir des règles communes (regles-securite-communes.md) et des études déjà citées dans cette fiche (résumés seulement). Aucune source nouvelle lue pour cette passe ; aucune étude ne teste ces choix exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (choix prudents de kine, à contrôler par relecteur) |

@@ -17,7 +17,7 @@ statut: complete_kine
 |---|---|---|---|---|---|
 | souleve-de-terre-roumain-barre-rack | Barre prise au rack, genoux légèrement pliés | 1 | intermediaire | barre, disques, rack | Barre posée sur les supports à hauteur de cuisses, tu la prends et tu recules d'un pas ; genoux légèrement pliés et fixes, descente jusqu'aux genoux ou mi-tibia. |
 | souleve-de-terre-roumain-barre-sol | Barre reprise du sol, descente plus longue | 2 | intermediaire | barre, disques | Tu pars du sol (soulevé), puis tu descends la barre par une charnière de hanches jusqu'à ce que l'arrière des cuisses tire, sans la poser entre les répétitions. |
-| souleve-de-terre-jambes-tendues-barre | Jambes presque tendues | 2 | intermediaire | barre, disques | Même départ, genoux à peine pliés : l'étirement de l'arrière des cuisses est plus grand, la charge doit être plus légère. |
+| souleve-de-terre-jambes-tendues-barre | Jambes presque tendues | 2 | intermediaire | barre, disques | Même départ que la reprise du sol (échelon 2), genoux à peine pliés : l'étirement de l'arrière des cuisses est plus grand, la charge doit être plus légère. |
 
 ## Consignes
 1. Prends la barre au rack (ou lève-la du sol) à la largeur des épaules, bras tendus, barre contre les cuisses ; pieds à la largeur du bassin, genoux légèrement pliés.
@@ -70,7 +70,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - dos-n1 : variante barre prise au rack (course courte, pas de reprise au sol, pas de jambes tendues) ; charge qui ne monte pas tant que la gêne persiste.
 - dos-n2 : charge sur la colonne : retiré ; remplaçant roumain aux haltères (le générateur choisit un autre exercice si celui-ci est adapté).
 - cuisse-n1 : ischios principaux : charge légère.
-- cuisse-n2 : barre prise au rack, descente plus courte (genoux ou au-dessus), genoux légèrement pliés.
+- cuisse-n2 : barre prise au rack, descente limitée à la hauteur des genoux (sans aller jusqu'à mi-tibia), genoux légèrement pliés.
 - hanche-n2 : descente plus courte.
 - grossesse : barre chargée et flexion du buste (équilibre, blocage de la respiration) : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : roumain aux haltères, charge légère (G4). Post-partum : G7.
 
@@ -113,7 +113,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Romanian_Deadlift/1.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre près des jambes ; vue le 24/10/2026)
 - `Stiff-Legged_Barbell_Deadlift/0.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
 - `Stiff-Legged_Barbell_Deadlift/1.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
-- légende : Photos : départ du sol. Au rack (échelon 1), la barre part à hauteur du genou.
+- légende : Photos : départ du sol. Au rack (échelon 1), la barre part à hauteur des cuisses.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
@@ -126,5 +126,5 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 24/10/2026, à contrôler par relecteur) |
 | Grossesse et post-partum : barre chargée retirée par prudence (équilibre, apnée, chute de la barre) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas la barre chargée | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach, confirmée par kine le 24/10/2026 comme choix prudent, à contrôler par relecteur) |
-| Soulevé de terre roumain et good morning : activité des ischios et des érecteurs mesurée à 85 % du maximum (12 hommes entraînés, une répétition) | McAllister et coll., J Strength Cond Res 2014;28(1):105-113, https://digitalcommons.memphis.edu/facpubs/9934 ; résumé lu via moteur de recherche, tableaux non lus ; EMG non normalisée selon une critique | étude de laboratoire (EMG), 12 hommes entraînés ; mesure l'activation seulement, pas la croissance ni la sécurité | 2026-10-24 | PROVISOIRE (résumé seulement) |
+| Activité des ischios selon l'exercice : le soulevé de terre roumain et le glute-ham raise donnent l'activité la plus élevée parmi quatre exercices comparés (leg curl, good morning, glute-ham raise, roumain) ; le semi-tendineux est nettement plus actif que le biceps fémoral dans les quatre | McAllister et coll., « Muscle activation during various hamstring exercises », J Strength Cond Res 2014;28(6):1573-1580, PMID 24149748, DOI 10.1519/JSC.0000000000000302 ; 12 hommes entraînés en force, une répétition à 85 % de leur maximum sur une répétition (85 % est la charge, pas l'activité) ; EMG de surface ; résumé lu via Europe PMC le 2026-10-24, tableaux non lus | étude de laboratoire (EMG), 12 hommes entraînés ; mesure l'activation seulement, pas la croissance ni la sécurité ; ne permet pas de classer les érecteurs du rachis | 2026-10-24 | PROVISOIRE (résumé seulement) |
 | Niveau minimum, barres de sécurité et repli en cas de blocage, colliers, pas d'échec seul, cases par zone et par niveau, grossesse, remplaçants, points d'attention (kine) | Raisonnement de `kine` à partir des règles communes (regles-securite-communes.md) et des études déjà citées dans cette fiche (résumés seulement). Aucune source nouvelle lue pour cette passe ; aucune étude ne teste ces choix exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (choix prudents de kine, à contrôler par relecteur) |

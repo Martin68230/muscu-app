@@ -16,7 +16,7 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | souleve-de-terre-barre-rack | Depuis le rack, barre à hauteur du genou | 1 | intermediaire | barre, disques, rack | Barre posée sur les supports du rack à hauteur du genou (ou juste sous le genou) : trajet court, charge légère au début. |
-| souleve-de-terre-barre-sol | Depuis le sol | 2 | intermediaire | barre, disques | Barre au sol, disques de grand diamètre pour que la barre parte à la bonne hauteur (environ au milieu du mollet). |
+| souleve-de-terre-barre-sol | Depuis le sol | 2 | intermediaire | barre, disques | Barre au sol, disques de grand diamètre pour que la barre parte à la bonne hauteur (environ à mi-tibia avec des disques de 45 cm de diamètre). |
 
 ## Consignes
 1. Place-toi devant la barre, pieds à la largeur du bassin, barre au-dessus du milieu du pied ; descends attraper la barre à la largeur des épaules, bras tendus.
@@ -119,7 +119,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - `Barbell_Deadlift/1.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre contre les jambes ; zone floutée sur un logo de rack ; vue le 24/10/2026)
 - `Rack_Pulls/0.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
 - `Rack_Pulls/1.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
-- légende : Photo : départ du sol (échelon 2). Au rack, la barre part à hauteur du genou.
+- légende : Photo : départ du sol (échelon 2). Au rack, la barre part du genou. Suis la consigne pour le dos.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
