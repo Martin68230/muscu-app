@@ -597,12 +597,6 @@ export const EXERCICES = [
     b: { p: [-45, 99], t: 20, h: 24, armN: { to: [11, 125], bend: 'b' }, armF: { to: [9, 124], bend: 'b' }, legN: { to: [6, A], bend: 'f' }, legF: { to: [0, A], bend: 'f' }, back: rackBack(-100, 168, 108), props: (J) => [...barPlate(J), ['arrow', [-30, 160], [-82, 160]]] },
   },
   {
-    id: 'fente-barre', titre: 'Squat fendu à la barre : un pied devant, un pied derrière, les pieds ne bougent pas ; rack à barres de sécurité (jaune)',
-    labels: ['Un pied devant, un derrière', 'Descente droite, genou arrière bas'],
-    a: { p: [0, 104], t: 90, armN: { to: [-3, 171], bend: 'b' }, armF: { to: [-5, 170], bend: 'b' }, legN: { to: [45, A], bend: 'f' }, legF: { to: [-45, 19], bend: 'f', foot: -40 }, back: rackBack(-110, 160, 92), props: (J) => barPlate(J) },
-    b: { p: [0, 64], t: 90, armN: { to: [-3, 131], bend: 'b' }, armF: { to: [-5, 130], bend: 'b' }, legN: { to: [45, A], bend: 'f' }, legF: { to: [-45, 19], bend: 'd', foot: -40 }, back: rackBack(-110, 160, 92), props: (J) => [...barPlate(J), ['arrow', [86, 150], [86, 100]]] },
-  },
-  {
     id: 'developpe-couche-prise-serree-barre', titre: 'Développé couché prise serrée : banc dans le rack, barres de sécurité (jaune) juste au-dessus de la poitrine, coudes près du buste',
     labels: ['Barre au-dessus de la poitrine', 'Descente lente, coudes près du buste'],
     a: { p: [0, 57], t: 180, h: 180, legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, back: [['rect', -92, 36, 172, 10, 3], ['rect', -78, 0, 8, 36, 2], ['rect', 56, 0, 8, 36, 2], ...rackBack(-110, 140, 74, 76)], props: (J) => barPlate(J) },
