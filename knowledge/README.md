@@ -5,6 +5,7 @@ Fichiers :
 - program-logic.md : bases ACSM 2026, ordre, répartition, volume, charges, supersets, cardio, rotation, progression, fonctionnel.
 - load-calibration.md : étalonnage, réserve, double progression.
 - goal-resolver.md : fusion des objectifs.
+- cardio-regles.md : règles du cardio (objectif Cardio principal ou secondaire : repères OMS, séances par niveau, type selon matériel, sauts, combinaison avec la muscu ; brouillon `coach` du 24/10/2026, à contrôler).
 - schedule-adaptation.md : séances manquées.
 - rest-and-volume-rules.md : repos et volume (en cours).
 - sports.md : familles et prévention.
