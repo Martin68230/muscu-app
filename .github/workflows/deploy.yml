@@ -27,12 +27,13 @@ jobs:
           node-version: 24
           cache: npm
       - run: npm ci
+      # fiches.json est généré (non versionné) depuis knowledge/exercices : les tests le lisent, donc génération AVANT les tests.
+      - run: npm run fiches
       - run: npm test
       # Secrets dans l'historique, fonctions dangereuses (XSS), dépendances vulnérables : bloquant.
       - run: npm run check:securite
-      # Format des fiches d'exercices : non bloquant tant que les fiches ne sont pas conformes (à rendre bloquant ensuite).
+      # Format des fiches d'exercices : bloquant (0 erreur depuis le 24/10/2026).
       - run: npm run check:fiches
-        continue-on-error: true
       - run: npm run build
       - uses: actions/upload-pages-artifact@v3
         with:
