@@ -62,7 +62,7 @@ export function summaryText(s: Summary, o: SummaryTextOptions): SummaryText {
     default:
   }
 
-  out.stats = [...dur, { label: 'Séries', value: s.status === 'douleur' ? `${fmtInt(s.setsDone)} faites` : `${fmtInt(s.setsDone)} sur ${fmtInt(s.setsPlanned)}` }];
+  out.stats = [...dur, { label: 'Séries', value: s.status === 'douleur' ? `${fmtInt(s.setsDone)} ${s.setsDone >= 2 ? 'faites' : 'faite'}` : `${fmtInt(s.setsDone)} sur ${fmtInt(s.setsPlanned)}` }];
   if (s.repsDone !== null && s.status !== 'douleur') out.stats.push({ label: 'Répétitions', value: s.repsPlanned ? `${fmtInt(s.repsDone)} sur ${fmtInt(s.repsPlanned)}` : fmtInt(s.repsDone) });
   if (s.holdDoneSec !== null && s.status !== 'douleur') out.stats.push({ label: 'Maintiens', value: s.holdPlannedSec ? `${fmtInt(s.holdDoneSec)} s sur ${fmtInt(s.holdPlannedSec)} s` : `${fmtInt(s.holdDoneSec)} s` });
   if (s.restAvgSec !== null) out.stats.push({ label: s.restKind === 'repos' ? 'Repos moyen' : 'Temps entre deux séries', value: fmtRest(s.restAvgSec) });

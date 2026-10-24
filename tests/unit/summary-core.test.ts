@@ -154,6 +154,8 @@ describe('statuts, grossesse, déterminisme (V-BILAN-9, V-BILAN-G)', () => {
     expect(txt).not.toMatch(/aurais dû|seulement/);
     expect(summaryText(r, { names, hasGentler: () => false }).paragraphs.join(' ')).toContain('On garde cette version, sans chercher à monter.');
     expect(t.stats.map((x) => x.value).join(' ')).not.toMatch(/sur \d/);
+    expect(t.stats.find((x) => x.label === 'Séries')?.value).toBe('2 faites');
+    expect(summaryText({ ...r, setsDone: 1 }, { names, hasGentler: () => true }).stats.find((x) => x.label === 'Séries')?.value).toBe('1 faite');
   });
   it('T32/T41 : abandon et symptôme : aucun chiffre, aucun record ; textes de sécurité', () => {
     const ab = run({ ...withPlan('a', 3, [ex(3)]), status: 'sautee', endReason: 'abandon' }, []);
