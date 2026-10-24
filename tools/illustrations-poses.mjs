@@ -616,7 +616,7 @@ export const EXERCICES = [
   },
   {
     id: 'rowing-barre-ez', titre: 'Rowing à la barre EZ, buste penché debout : la barre pend bras tendus, puis les coudes reculent et la barre monte vers le bas de la poitrine',
-    labels: ['Buste penché, barre au sol', 'Barre tirée vers le ventre'],
+    labels: ['Buste penché, barre qui pend', 'Barre tirée vers le ventre'],
     a: { p: [-28, 104], t: 45, h: 52, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-12, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => [['plate', J.haN, 14]] },
     b: { p: [-28, 104], t: 45, h: 52, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-12, A], bend: 'f' }, armN: { to: [8, 112], bend: 'b' }, armF: { to: [6, 111], bend: 'b' }, props: (J) => [['plate', J.haN, 14], ['arrow', [62, 80], [62, 118]]] },
   },
