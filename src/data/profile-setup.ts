@@ -60,7 +60,7 @@ export const OBJECTIFS: { value: MainGoalKey; label: string; hint: string }[] = 
   { value: 'muscle', label: 'Prise de muscle', hint: 'Gagner en muscle sur tout le corps, avec des séries de répétitions moyennes.' },
   { value: 'force', label: 'Force', hint: 'Devenir plus fort sur les mouvements de base : charges plus lourdes, moins de répétitions, repos plus longs.' },
   { value: 'sante', label: 'Santé et forme', hint: 'Rester actif et en forme, sans objectif chiffré : séances plus douces, plus de répétitions.' },
-  { value: 'cardio', label: 'Cardio', hint: "Améliorer ton souffle et ton endurance : de la marche rapide, du vélo ou de la course, à ton rythme." },
+  { value: 'cardio', label: 'Cardio', hint: "Améliorer ton souffle et ton endurance : de la marche rapide et des exercices sans saut, à ton rythme (effort modéré)." },
   { value: 'perte_gras', label: 'Perte de gras', hint: "Garder ton muscle pendant que tu perds du gras. L'alimentation compte beaucoup : l'appli règle la musculation." },
 ];
 

@@ -1,0 +1,6 @@
+# Lot B (objectifs multiples et cardio), 24/10/2026
+1. B1-B2 : « Prise de muscle », objectifs classés (principal + secondaires, `cardio` possible) ; B3 : knowledge/cardio-regles.md (coach, kine, relecteur : validé sous réserve, 10 réserves).
+2. B4 : cardio dans le générateur (src/generator/cardio.ts, CARDIO dans config.ts avec statuts) : principal = 2 séances corps entier (3 à 6 jours) + séances dédiées selon N (bloc après chaque séance à 2 jours) ; secondaire = 2 blocs au plus, 25 % de la séance, réservés avant les accessoires ; textes T0-T5 de kine mot pour mot ; GENERATOR_VERSION v1.2.
+3. Choix prudents : marche rapide d'abord, aucun saut / corde / course / machine / dehors, aucun intervalle soutenu ; grossesse et post-partum aux durées du débutant sans progression ; mountain climbers intermédiaire minimum, retirés pour épaule / poignet.
+4. Tests : tests/unit/generator-cardio.test.ts (29), non-régression des objectifs sans cardio (empreintes d'avant B4), 2 tests de session-program (régénération, 48 h non appliquées au cardio).
+5. À décider (docs/QUESTIONS.md Q11) : 25 % de la musculation ou de la durée choisie, fiches vélo / rameur / escaliers manquantes, progression à brancher sur l'historique, levée de l'avis médical après T1.
