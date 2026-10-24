@@ -28,7 +28,7 @@ statut: complete_kine
 ## Points d'attention
 - Mouvement contrôlé, pas de lancer : le ballon reste dans les mains.
 - Le mouvement vient des hanches et du buste, pas seulement des bras.
-- Le pied pivote avec le mouvement : pas de genou tordu pied fixé.
+- Règle du genou, la même que pour le lancer en rotation : il ne se tord jamais. Le pied pivote avec le mouvement (le talon se lève), le genou suit le pied ; jamais pied planté pendant que le tronc tourne.
 - Le ballon ne monte pas au-dessus du front : pas de cambrure du bas du dos.
 - Le ballon est plus encombrant qu'un haltère : choisis le plus léger.
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
@@ -79,7 +79,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - La variante de bas en haut ne dépasse jamais le front et est réservée aux personnes sans gêne au dos ni à l'épaule.
 
 **Points d'attention (kine)**
-- Dos : rotation et flexion du tronc avec charge ; retiré à sans-charge dès la gêne nette.
+- Dos : rotation et flexion du tronc avec charge ; retiré dès la gêne nette (comme le tableau et rotation-bucheron), sans version sans charge de remplacement dans cette fiche ; dès la gêne légère, de haut en bas seulement.
 - Épaule : bras tendus, ballon plus encombrant qu'un haltère ; le haut-bas supprime le travail au-dessus de la tête.
 - Genou : le pied pivote avec le mouvement, jamais pied fixé pendant que le tronc tourne.
 - Grossesse : sans charge, rotation douce, amplitude modérée, sans compression du ventre ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).

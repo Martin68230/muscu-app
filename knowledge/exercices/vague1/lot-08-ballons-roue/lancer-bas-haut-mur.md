@@ -15,12 +15,12 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| lancer-bas-haut-mur-pieds-a-plat | Pieds à plat, sans saut | 1 | intermediaire | medecine_ball, mur | Debout face à un mur plein à environ deux grands pas, ballon tenu à deux mains entre les jambes à hauteur de genoux, hanches en arrière ; les pieds restent au sol. |
+| lancer-bas-haut-mur-pieds-a-plat | Pieds à plat, sans saut | 1 | intermediaire | medecine_ball, mur | Debout face à un mur plein, à au moins deux mètres (environ trois grands pas), ballon tenu à deux mains entre les jambes à hauteur de genoux, hanches en arrière ; les pieds restent au sol. |
 
 ## Consignes
-1. Place-toi face à un mur plein à environ deux grands pas, pieds à la largeur des épaules, genoux légèrement fléchis.
+1. Place-toi face à un mur plein, à au moins deux mètres (environ trois grands pas), pieds à la largeur des épaules, genoux légèrement fléchis.
 2. Pousse les hanches en arrière, dos plat, ballon tenu à deux mains entre les jambes, au niveau des genoux, bras tendus.
-3. Pousse les hanches vers l'avant en te redressant et lance le ballon vers l'avant et vers le haut, contre le mur, bras tendus ; tes pieds restent au sol.
+3. Pousse les hanches vers l'avant en te redressant et lance le ballon vers l'avant contre le mur, à hauteur de la poitrine (jamais au-dessus de la tête : à l'arrivée, les bras sont devant toi, pas levés), bras tendus ; tes pieds restent au sol.
 4. Laisse le ballon rebondir et rouler, puis ramasse-le en pliant les genoux, dos droit.
 5. Recommence à vitesse maîtrisée ; arrête la série quand la vitesse baisse.
 
@@ -77,7 +77,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Mur plein et solide, à au moins deux mètres de toi (environ trois grands pas) ; vise le mur à hauteur de la poitrine ; sol non glissant, chaussures fermées à semelle qui accroche ; personne, animal ni objet fragile devant toi (NON SOURCÉ).
 - Ne lance pas par-dessus la tête ni vers l'arrière : le ballon part vers le mur, devant toi.
 - Ballon léger : le dos ne doit pas s'arrondir en bas ni se cambrer en haut. Le ballon ne se rattrape pas : laisse-le rebondir et retomber, protège ton visage avec les avant-bras s'il revient vers toi, puis ramasse-le en pliant les genoux, dos droit.
-- Sortie de secours : si le dos tire ou si tu perds l'équilibre, lâche le ballon vers le bas devant toi (pas vers tes pieds), pose les deux pieds à plat et arrête la série ; ne cherche pas à rattraper un ballon qui part.
+- Sortie de secours : si le dos tire ou si tu perds l'équilibre, lâche le ballon vers le bas, un pas devant toi (pas sur tes pieds), pose les deux pieds à plat et arrête la série ; ne cherche pas à rattraper un ballon qui part.
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
 **Points d'attention (kine)**

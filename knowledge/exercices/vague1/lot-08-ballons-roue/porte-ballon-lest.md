@@ -20,7 +20,7 @@ statut: complete_kine
 
 ## Consignes
 1. Debout, ballon à deux mains contre la poitrine, coudes sous le ballon, dos droit, ventre serré.
-2. Marche en ligne droite sur un sol dégagé, pas courts, regard devant toi (le ballon ne cache pas le sol à ta vue).
+2. Marche en ligne droite sur un sol dégagé, pas courts, regard devant toi (si le ballon cache le sol devant toi, avance plus lentement ou pose-le).
 3. Garde le buste droit, les épaules loin des oreilles, sans te pencher en arrière pour compenser le poids.
 4. Variante bras tendus : ballon à hauteur de la poitrine, bras tendus, même marche.
 5. Fais demi-tour doucement et reviens ; pose le ballon au sol en pliant les genoux, dos droit.

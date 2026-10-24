@@ -19,7 +19,7 @@ statut: complete_kine
 | rollout-ballon-long | Roulé long | 2 | intermediaire | swiss_ball, tapis | Même position, avec une amplitude plus grande, bras presque tendus vers l'avant, uniquement si le dos reste plat. |
 
 ## Consignes
-1. Mets un tapis épais sous les genoux. Agenouille-toi derrière le ballon, pose les avant-bras dessus, mains jointes ou à plat.
+1. Mets un tapis épais et assez long pour que ton buste y tienne en entier sous les genoux et devant toi. Agenouille-toi derrière le ballon, pose les avant-bras dessus, mains jointes ou à plat.
 2. Serre le ventre et les fessiers, rentre légèrement le bassin ; le corps forme une ligne des genoux à la tête.
 3. En soufflant, fais rouler le ballon vers l'avant en allongeant les bras, seulement tant que ton dos reste plat.
 4. Marque une pause d'une seconde, puis ramène le ballon vers toi en serrant le ventre.
@@ -79,7 +79,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sortie de secours si tu ne peux plus revenir : n'essaie pas de rattraper le ballon ; laisse-le rouler, baisse-toi doucement avec les avant-bras sur le ballon jusqu'à poser le ventre puis la poitrine sur le tapis (il doit être assez long pour que le buste y tienne), puis relève-toi à genoux. Essaie cette sortie une fois à vide, ballon peu avancé, avant la première vraie série.
 - Si le ballon part de côté : arrête, pose les mains au sol, ne cherche pas à le rattraper.
 - Quelqu'un dans la maison, à portée de voix, de préférence.
-- Commence par l'amplitude la plus courte et augmente de quelques centimètres par séance, pas plus (NON SOURCÉ).
+- Commence par l'amplitude la plus courte et augmente de quelques centimètres par séance au plus, sur plusieurs semaines, jamais en une séance (NON SOURCÉ).
 
 **Points d'attention (kine)**
 - Dos : même risque que la roue, en moins fort grâce à l'appui sur les avant-bras ; arrêt à la première cambrure.

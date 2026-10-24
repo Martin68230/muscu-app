@@ -22,7 +22,7 @@ statut: complete_kine
 ## Consignes
 1. Variante 1 : assieds-toi sur le ballon, avance les pieds en roulant jusqu'à avoir le haut du dos et les épaules sur le ballon, pieds à plat et écartés, cuisses horizontales.
 2. Garde le ventre serré, le bassin bas : descends le bassin sans toucher le sol, puis pousse sur les talons pour monter jusqu'à aligner buste et cuisses.
-3. Serre les fessiers en haut une seconde, regard devant ou vers le haut sans cambrer la nuque.
+3. Serre les fessiers en haut une seconde, regard devant, menton légèrement rentré, sans jamais laisser la tête tomber en arrière ni cambrer la nuque.
 4. Redescends lentement. Variantes 2 et 3 : couché sur le dos, talons sur le ballon, soulève le bassin en poussant sur les talons, jambes tendues.
 5. Pose le bassin au sol en fin de série avant de bouger le ballon ; ne roule pas le ballon d'un coup.
 
@@ -59,14 +59,15 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Genou | garder | adapter: amplitude:reduite | retirer |
 | Cheville | garder | adapter: amplitude:reduite | retirer |
 | Cou | adapter: amplitude:tete-alignee | adapter: amplitude:tete-alignee | retirer |
-| Cuisse | garder | adapter: variante:pont-fessier-ballon-haut-du-dos | retirer |
+| Cuisse | adapter: variante:pont-fessier-ballon-haut-du-dos | adapter: variante:pont-fessier-ballon-haut-du-dos | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - dos-n1 : bassin moins haut, sans cambrer.
 - dos-n2 : variante 1, aucune augmentation (R2).
 - cou-n1 : regard devant, menton légèrement rentré.
-- cuisse-n2 : variante 1 (ischios peu sollicités), NON SOURCÉ.
+- cuisse-n1 : variante 1 (ischios peu sollicités), NON SOURCÉ.
+- cuisse-n2 : variante 1 (ischios peu sollicités), aucune augmentation (R2), NON SOURCÉ.
 - grossesse : retiré : semi-allongé sur le dos ou allongé sur le dos (G4) ; remplaçant : roumain aux haltères, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:souleve-de-terre-roumain-halteres
@@ -80,7 +81,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Points d'attention (kine)**
 - Dos : en haut du pont, éviter la cambrure ; amplitude réduite dès la première gêne ; dès une gêne nette, variante 1 sans augmentation (R2), dès la douleur retiré.
 - Cou : variante 1, la tête dépasse le ballon : regard devant, menton légèrement rentré, jamais la tête qui tombe en arrière ; dès une gêne nette au cou, tête alignée et amplitude réduite, dès la douleur retiré (NON SOURCÉ).
-- Cuisse : variantes talons sur le ballon = ischios très sollicités ; variante 1 retenue dès cuisse n2.
+- Cuisse : variantes talons sur le ballon = ischios très sollicités ; variante 1 retenue dès la gêne légère (choix prudent, NON SOURCÉ). Extrapolation à signaler : l'étude sur le pont dorsal (Lehman 2005) portait sur un pont à pieds ou talons, pas sur la variante haut du dos sur le ballon.
 - Grossesse et post-partum : retiré (couché ou semi-allongé sur le dos, instabilité) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre à l'effort : arrêt et avis de la sage-femme (G7).
 - Niveau : intermédiaire minimum (le pont au sol couvre le débutant ; l'ajout du ballon donne un risque de chute sans gain net, CSEP), par prudence, NON SOURCÉ ; avancé pour une jambe.
 

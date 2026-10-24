@@ -15,11 +15,11 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| lancer-poitrine-mur-sans-rattraper | Sans rattraper | 1 | debutant | medecine_ball, mur | Debout face à un mur plein à environ deux grands pas, pieds à plat à la largeur des épaules ; tu lances et tu laisses le ballon retomber ou rouler, puis tu le ramasses en pliant les genoux. |
-| lancer-poitrine-mur-rattrape | Avec rattrapage | 2 | intermediaire | medecine_ball, mur | Même position, un peu plus loin du mur ; tu rattrapes le ballon à deux mains en amortissant, coudes fléchis. |
+| lancer-poitrine-mur-sans-rattraper | Sans rattraper | 1 | debutant | medecine_ball, mur | Debout face à un mur plein, à au moins deux mètres (environ trois grands pas), pieds à plat à la largeur des épaules ; tu lances et tu laisses le ballon retomber ou rouler, puis tu le ramasses en pliant les genoux. |
+| lancer-poitrine-mur-rattrape | Avec rattrapage | 2 | intermediaire | medecine_ball, mur | Même position, à au moins deux mètres du mur (jamais plus près) ; tu rattrapes le ballon à deux mains en amortissant, coudes fléchis. |
 
 ## Consignes
-1. Place-toi face à un mur plein, à environ deux grands pas, pieds à plat à la largeur des épaules, genoux légèrement fléchis.
+1. Place-toi face à un mur plein, à au moins deux mètres (environ trois grands pas), pieds à plat à la largeur des épaules, genoux légèrement fléchis.
 2. Tiens le ballon à deux mains devant la poitrine, coudes sous le ballon, dos droit, ventre serré.
 3. Pousse le ballon droit devant toi contre le mur en tendant les bras ; tes pieds ne bougent pas et ne sautent pas.
 4. Variante 1 : laisse le ballon retomber, puis ramasse-le en pliant les genoux, dos droit. Variante 2 : rattrape-le à deux mains en amortissant, coudes fléchis.

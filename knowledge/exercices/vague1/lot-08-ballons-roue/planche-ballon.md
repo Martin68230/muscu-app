@@ -53,7 +53,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: amplitude:maintien-court | retirer | retirer |
+| Dos | adapter: variante:planche-ballon-avant-bras | retirer | retirer |
 | Épaule | adapter: variante:planche-ballon-avant-bras | retirer | retirer |
 | Coude | garder | adapter: amplitude:maintien-court | retirer |
 | Hanche | garder | adapter: amplitude:maintien-court | retirer |
@@ -62,7 +62,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Cou | adapter: amplitude:tete-alignee | adapter: amplitude:maintien-court | retirer |
 
 **Notes**
-- dos-n1 : maintien plus court, bassin légèrement rentré.
+- dos-n1 : variante 1 (avant-bras sur le ballon, pieds au sol, la moins instable), maintien plus court que d'habitude, bassin légèrement rentré (choix prudent, NON SOURCÉ).
 - dos-n2 : retiré : une planche instable demande de contrôler le bas du dos sous fatigue (choix prudent, NON SOURCÉ) ; remplaçant non proposé (la planche au sol est elle-même adaptée par le dos).
 - epaule-n1 : variante 1 (avant-bras sur le ballon, pieds au sol) ; aucune augmentation dès le niveau 2.
 - genou-n2 : variante 1, pieds au sol.
@@ -81,7 +81,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Arrête la série quand la ligne se casse (bassin qui tombe), même si la durée prévue n'est pas atteinte.
 
 **Points d'attention (kine)**
-- Dos : une planche instable demande de contrôler le bas du dos sous fatigue ; arrêt de la série quand le bassin tombe ; dès une gêne légère, maintien plus court ; dès une gêne nette, retirée (NON SOURCÉ).
+- Dos : une planche instable demande de contrôler le bas du dos sous fatigue ; arrêt de la série quand le bassin tombe ; dès une gêne légère, variante avant-bras et maintien plus court ; dès une gêne nette, retirée (NON SOURCÉ).
 - Cou : la tête reste dans le prolongement du dos (regard vers le sol) ; pas de tête relevée ni qui tombe.
 - Épaule : la charge est sur les épaules et les avant-bras ; plus l'appui est loin (variante 2), plus c'est lourd pour l'épaule.
 - Grossesse et post-partum : retirée (G4, G7) : maintien prolongé, pression abdominale, chute du ballon ; fuite d'urine, pesanteur dans le bas-ventre ou bombement du ventre à l'effort : arrêt et avis de la sage-femme.

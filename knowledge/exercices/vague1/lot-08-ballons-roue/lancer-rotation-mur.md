@@ -15,29 +15,30 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| lancer-rotation-mur-pieds-fixes | Pieds fixes, sans pivot | 1 | intermediaire | medecine_ball, mur | Debout de côté à environ deux grands pas d'un mur plein, pieds à plat à la largeur des épaules, ballon tenu près de la hanche arrière ; les pieds restent plantés. |
-| lancer-rotation-mur-pivot | Avec pivot du pied arrière | 2 | avance | medecine_ball, mur | Même position ; le pied arrière tourne sur lui-même (talon qui se lève) pendant le lancer, sans quitter le sol ni sauter. |
+| lancer-rotation-mur-pieds-fixes | Pieds fixes, sans pivot | 1 | intermediaire | medecine_ball, mur | Debout de côté à au moins deux mètres d'un mur plein (environ trois grands pas), pieds à plat à la largeur des épaules, ballon tenu près de la hanche arrière ; les pieds restent à plat et ne bougent pas, la rotation reste courte et vient du buste : les genoux ne tournent pas, ils restent dans la direction des orteils. |
+| lancer-rotation-mur-pivot | Avec pivot du pied arrière | 2 | avance | medecine_ball, mur | Même position à au moins deux mètres ; le pied arrière tourne sur lui-même (talon qui se lève) avec les hanches pendant le lancer, sans quitter le sol ni sauter : le genou suit le pied, il ne se tord jamais. |
 
 ## Consignes
-1. Place-toi de côté par rapport à un mur plein, à environ deux grands pas, pieds à plat à la largeur des épaules, genoux légèrement fléchis.
+1. Place-toi de côté par rapport à un mur plein, à au moins deux mètres (environ trois grands pas), pieds à plat à la largeur des épaules, genoux légèrement fléchis.
 2. Tiens le ballon à deux mains près de la hanche du côté opposé au mur, bras presque tendus, ventre serré.
-3. Tourne les hanches, puis le buste, puis les bras, et lance le ballon contre le mur à hauteur de poitrine ; les pieds ne sautent pas.
+3. Tourne le buste (avec les hanches si tu pivotes), puis les bras, et lance le ballon contre le mur à hauteur de poitrine ; les pieds ne sautent pas. Pieds fixes : rotation courte, genoux dans la direction des orteils. Avec pivot : le talon arrière se lève et le genou suit le pied.
 4. Laisse le ballon rebondir et retomber, puis ramasse-le en pliant les genoux, dos droit.
 5. Fais toutes les répétitions d'un côté, puis change de côté en te plaçant de l'autre côté du mur.
 
 ## Points d'attention
-- La rotation vient d'abord des hanches, puis du buste : pas seulement des bras.
-- Pas de saut : un pied qui pivote reste en contact avec le sol.
+- La rotation vient du buste (et des hanches avec le pivot) : pas seulement des bras.
+- Règle unique pour le genou : il ne se tord jamais. Soit le pied pivote avec le genou (variante pivot), soit les pieds restent à plat et la rotation reste courte, sans que le genou tourne (variante pieds fixes).
+- Pas de saut : un pied qui pivote reste en contact avec le sol (seul le talon se lève).
 - Pas de rattrapage au départ : ramasse le ballon.
 - Lancer à vitesse maîtrisée ; une fatigue marquée en rotation du tronc = arrête.
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
 ## Erreurs fréquentes
 - Bras seuls, sans rotation des hanches.
-- Genou qui se tord pied planté.
+- Genou qui se tord : pied planté avec une rotation trop grande, ou pivot qui ne suit pas le genou.
 - Ballon trop lourd.
 - Dos qui se creuse.
-- Trop près du mur.
+- Trop près du mur (moins de deux mètres).
 
 ## Progression / régression
 - plus-facile : rotation-bucheron, pallof-elastique
@@ -67,24 +68,24 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - general : Rotation du tronc sous charge, geste explosif : niveau intermédiaire minimum. Aucun saut.
 - dos-n1 : pieds fixes, ballon léger, rotation modérée ; retiré dès le niveau 2.
 - dos-n2 : retiré : rotation rapide du tronc sous charge (choix prudent, NON SOURCÉ) ; le bûcheron (rotation-bucheron) est lui-même adapté puis retiré par le dos : aucun remplaçant fixe, le générateur choisit un autre exercice du schéma rotation qui convient (regles-securite-communes.md §0).
-- genou-n1 : pieds fixes : pas de pivot sur le genou.
-- hanche-n1 : pieds fixes.
-- hanche-n2 : pieds fixes, aucune augmentation (R2).
+- genou-n1 : pieds fixes, ballon léger, rotation courte ; le genou ne tourne pas (pas de pivot).
+- hanche-n1 : pieds fixes, rotation courte (pas de pivot).
+- hanche-n2 : pieds fixes, rotation courte, aucune augmentation (R2).
 - grossesse : retiré : rotation rapide du tronc, ballon projeté puis rebond vers l'abdomen (G4, extrapolation) ; remplaçant : bûcheron sans charge. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:rotation-bucheron-sans-charge
 **Version plus douce** : rotation-bucheron
 
 **Sécurité pour l'utilisateur seul**
-- Mur plein et solide, à au moins deux mètres de toi (environ trois grands pas) ; vise le mur à hauteur de poitrine ; personne, animal ni obstacle de chaque côté ni dans l'axe du rebond ; sol non glissant (NON SOURCÉ).
-- Les pieds sont chaussés (chaussures fermées à semelle qui accroche) et ne glissent pas, surtout pour la variante avec pivot ; le talon du pied arrière se lève, le pied ne reste jamais planté pendant que le tronc tourne.
+- Mur plein et solide, à au moins deux mètres de toi (environ trois grands pas), pour toutes les variantes ; vise le mur à hauteur de poitrine ; personne, animal ni obstacle de chaque côté ni dans l'axe du rebond ; sol non glissant (NON SOURCÉ).
+- Les pieds sont chaussés (chaussures fermées à semelle qui accroche) et ne glissent pas, surtout pour la variante avec pivot. Règle du genou, la même partout : il ne se tord jamais. Avec pivot, le talon du pied arrière se lève et le genou suit le pied ; pieds fixes, la rotation reste courte et le genou ne tourne pas.
 - Ballon léger au début, jamais rattrapé : laisse-le rebondir et retomber, puis ramasse-le en pliant les genoux, dos droit (pas de rattrapage risqué). S'il rebondit vers toi, laisse-le passer et protège ton visage avec les avant-bras.
 - Sortie de secours : au moindre déséquilibre ou tiraillement, lâche le ballon, pose les deux pieds à plat et arrête la série ; ne cherche pas à rattraper un ballon qui part.
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
 **Points d'attention (kine)**
-- Dos : rotation rapide du tronc sous charge ; dès la gêne légère, pieds fixes et ballon le plus léger (choix de kine, NON SOURCÉ) ; retiré dès la gêne nette.
-- Genou et hanche : pivot du pied arrière réservé à ceux qui n'ont aucune gêne.
+- Dos : rotation rapide du tronc sous charge ; dès la gêne légère, pieds fixes, rotation courte et ballon le plus léger (choix de kine, NON SOURCÉ) ; retiré dès la gêne nette.
+- Genou et hanche : pivot du pied arrière réservé à ceux qui n'ont aucune gêne ; avec une gêne légère, pieds fixes mais rotation courte, le genou ne tourne pas (choix de kine, NON SOURCÉ).
 - Ischios, aine : un tiraillement à l'arrière de la cuisse ou à l'aine en tournant = arrêt (ligne aine du tableau ; la ligne cuisse n'est pas nécessaire, les ischios sont peu sollicités).
 - Épaule, coude : le lancer accélère le bras ; dès la gêne nette, pieds fixes, dès la douleur retiré.
 - Grossesse et post-partum : retiré (rotation rapide du tronc, rebond vers l'abdomen) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
@@ -93,7 +94,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) qui apparaît ou augmente au bas du dos, à la hanche, au genou ou à l'épaule.
 - Ballon qui part de travers, glisse des mains ou rebondit vers le visage : arrête et reprends avec un ballon plus léger ou plus de distance.
-- Torsion du genou pied planté : arrête et passe à la variante pieds fixes.
+- Torsion ou tiraillement du genou (pied planté ou pivot) : arrête la série. Si tu étais en pivot, ne reprends qu'en pieds fixes avec une rotation courte ; si cela revient, arrête l'exercice.
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
 - Picotements, engourdissement ou faiblesse dans un bras ou une jambe : arrête.
 

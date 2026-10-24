@@ -20,7 +20,7 @@ statut: complete_kine
 | roue-abdos-debout | Debout (avancé) | 3 | avance | roue_abdos, tapis | Debout, jambes tendues ou à peine fléchies, pieds à la largeur du bassin, roue au sol devant les pieds ; réservée aux avancés qui font la version à genoux sur toute l'amplitude sans creuser le dos. |
 
 ## Consignes
-1. Mets un tapis épais sous les genoux. Agenouille-toi, genoux à la largeur du bassin, tiens la roue à deux mains, roue posée au sol sous les épaules, bras tendus.
+1. Mets un tapis épais et assez long pour que ton buste y tienne en entier sous les genoux et devant toi. Agenouille-toi, genoux à la largeur du bassin, tiens la roue à deux mains, roue posée au sol sous les épaules, bras tendus.
 2. Rentre le ventre, serre les fessiers et garde les côtes « collées » vers le bassin : le bas du dos ne doit jamais se creuser.
 3. En soufflant, fais rouler la roue lentement devant toi, bras tendus, seulement aussi loin que ton dos reste plat. Le mouvement vient des épaules et du ventre.
 4. Dès que le bas du dos veut se creuser ou que le ventre se relâche, arrête-toi (même tôt) et marque une pause d'une seconde.
@@ -28,7 +28,7 @@ statut: complete_kine
 6. Variante au mur : laisse la roue toucher doucement le mur, sans la cogner. En fin de série, pose les genoux et la roue en douceur.
 
 ## Points d'attention
-- Le risque principal est la cambrure du bas du dos quand le ventre lâche : l'amplitude se gagne sur plusieurs semaines, jamais en une séance (NON SOURCÉ).
+- Le risque principal est la cambrure du bas du dos quand le ventre lâche : l'amplitude se gagne sur plusieurs semaines, de quelques centimètres par séance au plus, jamais en une séance (NON SOURCÉ).
 - Commence par le mur : la butée limite l'amplitude et rassure ; la version à genoux libre vient ensuite ; la version debout est réservée aux avancés.
 - Les fessiers ne partent pas vers l'arrière ni vers les talons ; le bassin ne tombe pas vers le sol.
 - Les coudes restent tendus mais sans se bloquer violemment ; les épaules ne montent pas vers les oreilles.

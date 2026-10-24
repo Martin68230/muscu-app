@@ -15,10 +15,10 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| squat-lancer-mur-pieds-a-plat | Lancer de poitrine en remontant, pieds à plat | 1 | intermediaire | medecine_ball, mur | Debout face à un mur plein à environ deux grands pas, ballon contre la poitrine ; tu descends en squat, puis tu remontes en poussant le ballon contre le mur, les pieds restent au sol. |
+| squat-lancer-mur-pieds-a-plat | Lancer de poitrine en remontant, pieds à plat | 1 | intermediaire | medecine_ball, mur | Debout face à un mur plein, à au moins deux mètres (environ trois grands pas), ballon contre la poitrine ; tu descends en squat, puis tu remontes en poussant le ballon contre le mur, les pieds restent au sol. |
 
 ## Consignes
-1. Place-toi face à un mur plein à environ deux grands pas, pieds un peu plus larges que les épaules, ballon contre la poitrine.
+1. Place-toi face à un mur plein, à au moins deux mètres (environ trois grands pas), pieds un peu plus larges que les épaules, ballon contre la poitrine.
 2. Descends en squat, dos droit, genoux dans l'axe des pieds, ballon contre la poitrine.
 3. Remonte en poussant sur les talons, et pousse le ballon droit devant toi contre le mur en tendant les bras ; tes pieds ne sautent pas.
 4. Laisse le ballon rebondir et retomber, puis ramasse-le en pliant les genoux, dos droit.

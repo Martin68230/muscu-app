@@ -76,6 +76,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Sécurité pour l'utilisateur seul**
 - Tapis ferme devant le ballon ; ballon bien gonflé (les tibias ne doivent pas l'écraser) ; mur ou meuble lourd derrière toi, assez loin pour que le ballon qui part en arrière s'y arrête, rien d'autre sur la trajectoire (NON SOURCÉ).
 - Sortie de secours si le ballon part ou si tu perds l'équilibre : les mains restent au sol ; plie les genoux et pose-les sur le tapis, puis les hanches, comme pour te mettre en position de pompe à genoux. Ne te jette pas sur le côté, ne rattrape pas le ballon. Essaie cette sortie une fois à vide avant la première vraie série.
+- Sortie de secours de la variante hanches vers le plafond (jambes tendues) : si le ballon roule trop vers tes mains ou si tu sens que tu bascules vers l'avant, plie tout de suite les genoux et abaisse les hanches, les mains et les bras restent au sol, le regard reste entre les mains (la tête ne plonge pas vers le sol) ; laisse le ballon partir, pose les genoux sur le tapis, puis arrête la série. Essaie aussi cette sortie une fois, avec les hanches à peine soulevées, avant la première vraie série.
 - Garde les premiers essais à un seul aller-retour pour sentir le ballon. Variante hanches vers le plafond : jamais plus haut que les hanches à l'aplomb des épaules ; ballon qui roule trop vers les mains = arrêt (risque de basculer vers l'avant, tête vers le sol).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 

@@ -21,7 +21,7 @@ statut: complete_kine
 ## Consignes
 1. Debout, pieds un peu plus larges que les épaules, pointes légèrement ouvertes, ballon contre la poitrine ou bras tendus devant.
 2. Descends en poussant les hanches en arrière et en pliant les genoux, genoux dans l'axe des pieds, dos droit.
-3. Descends aussi bas que tu peux, dos droit et talons au sol ; le ballon ne touche pas les cuisses.
+3. Descends seulement tant que le dos reste droit, que les talons restent au sol et que rien ne tire au genou ou à la hanche (cuisses au plus à l'horizontale pour commencer) ; le ballon ne touche pas les cuisses.
 4. Pousse sur les talons pour remonter, ventre serré.
 5. Respire sans bloquer : inspire en descendant, souffle en remontant.
 

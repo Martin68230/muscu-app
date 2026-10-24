@@ -15,11 +15,11 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| extension-dorsale-ballon-bras-croises | Bras croisés, jusqu'à l'alignement | 1 | intermediaire | swiss_ball, tapis | À plat ventre sur le ballon, hanches et ventre sur le ballon, pointes de pieds au sol (ou contre un mur), bras croisés sur la poitrine ; tu soulèves le buste jusqu'à l'alignement, pas plus. |
-| extension-dorsale-ballon-mains-tete | Mains derrière la tête | 2 | intermediaire | swiss_ball, tapis | Même position, mains légèrement posées derrière la tête, coudes ouverts : le bras de levier est plus long. |
+| extension-dorsale-ballon-bras-croises | Bras croisés, jusqu'à l'alignement | 1 | intermediaire | swiss_ball, tapis, mur | À plat ventre sur le ballon, hanches et ventre sur le ballon, pointes de pieds au sol contre un mur plein (obligatoire), bras croisés sur la poitrine ; tu soulèves le buste jusqu'à l'alignement, pas plus. |
+| extension-dorsale-ballon-mains-tete | Mains derrière la tête | 2 | intermediaire | swiss_ball, tapis, mur | Même position, pointes de pieds contre le mur plein, mains légèrement posées derrière la tête, coudes ouverts : le bras de levier est plus long. |
 
 ## Consignes
-1. Mets-toi à plat ventre sur le ballon, hanches et bas du ventre sur le ballon, pointes de pieds au sol bien écartées, bras croisés sur la poitrine.
+1. Mets-toi à plat ventre sur le ballon, hanches et bas du ventre sur le ballon, pointes de pieds au sol bien écartées et appuyées contre un mur plein (obligatoire), bras croisés sur la poitrine.
 2. Laisse le buste descendre doucement vers le sol, le dos arrondi sans forcer.
 3. Soulève le buste en contractant le bas du dos et les fessiers, jusqu'à ce que le buste soit aligné avec les jambes, pas plus haut.
 4. Marque une pause d'une seconde, tête dans le prolongement du dos, puis redescends lentement.
@@ -28,7 +28,7 @@ statut: complete_kine
 ## Points d'attention
 - L'amplitude s'arrête à l'alignement : monter plus haut cambre le bas du dos sans bénéfice (choix de prudence, NON SOURCÉ).
 - Pas d'élan : le mouvement est lent des deux côtés.
-- Les pieds, bien écartés, donnent l'équilibre ; contre un mur, ils ne glissent pas.
+- Les pieds, bien écartés, donnent l'équilibre ; le mur plein est obligatoire : il empêche les pieds de glisser.
 - Aucune charge ajoutée : la base propose un disque derrière la nuque, que nous ne gardons pas.
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
@@ -74,7 +74,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Version plus douce** : extension-dorsale-ballon-bras-croises
 
 **Sécurité pour l'utilisateur seul**
-- Pointes de pieds contre un mur plein (ou la plinthe), pieds écartés : obligatoire, pour que les pieds ne glissent pas et que le ballon ne parte pas vers l'avant ; tapis ferme antidérapant devant le ballon ; ballon bien gonflé (NON SOURCÉ).
+- Pointes de pieds contre un mur plein, pieds écartés : obligatoire (sans mur plein, ne fais pas cet exercice), pour que les pieds ne glissent pas et que le ballon ne parte pas vers l'avant ; tapis ferme antidérapant devant le ballon ; ballon bien gonflé (NON SOURCÉ).
 - Sortie de secours si le ballon glisse ou si tu perds l'équilibre : décroise les bras, pose les mains au sol devant le ballon, plie les genoux pour poser le ventre puis les genoux sur le tapis. Essaie cette sortie une fois, sans monter, avant la première vraie série ; si tu ne peux pas poser les mains au sol depuis la position de départ (ballon trop gros), choisis un ballon plus petit ou ne fais pas l'exercice.
 - Aucun poids dans les mains, ni disque derrière la nuque (comme dans l'entrée de la base) : charge sur la nuque non retenue (règle C6 du cou).
 

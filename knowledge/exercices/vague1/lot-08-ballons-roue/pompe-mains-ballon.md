@@ -52,19 +52,22 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter: variante:pompe-mains-ballon-mur | retirer |
-| Épaule | adapter: variante:pompe-mains-ballon-mur | retirer | retirer |
-| Coude | adapter: variante:pompe-mains-ballon-mur | retirer | retirer |
-| Poignet | adapter: variante:pompe-mains-ballon-mur | retirer | retirer |
-| Hanche | garder | adapter: variante:pompe-mains-ballon-mur | retirer |
-| Cou | adapter: amplitude:tete-alignee | adapter: variante:pompe-mains-ballon-mur | retirer |
+| Dos | garder | retirer | retirer |
+| Épaule | adapter: amplitude:mi-course | retirer | retirer |
+| Coude | adapter: amplitude:lente | retirer | retirer |
+| Poignet | adapter: amplitude:reduite | retirer | retirer |
+| Hanche | garder | adapter: amplitude:reduite | retirer |
+| Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 
 **Notes**
 - general : la variante « ballon libre » a été retirée par kine (question Q25 de docs/QUESTIONS.md).
-- epaule-n1 : ballon calé contre un mur ; aucune augmentation dès le niveau 2.
+- epaule-n1 : seule variante (ballon calé contre un mur), moitié de la descente ; aucune augmentation dès le niveau 2.
 - epaule-n2 : retiré : épaule chargée sur surface instable.
-- poignet-n1 : ballon calé ; poignets droits ; retiré dès le niveau 2.
-- coude-n1 : ballon calé, tempo lent.
+- poignet-n1 : seule variante (ballon calé), amplitude réduite, poignets droits ; retiré dès le niveau 2.
+- coude-n1 : seule variante (ballon calé), tempo lent ; retiré dès le niveau 2.
+- dos-n2 : retiré, choix prudent (pompe sur surface instable, NON SOURCÉ).
+- cou-n2 : retiré, choix prudent (NON SOURCÉ).
+- hanche-n2 : amplitude réduite, aucune augmentation (R2).
 - grossesse : retirée : ballon instable avec ventre proche du ballon, risque de chute ; remplaçant : pompe sur chaise. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:pompe-chaise
