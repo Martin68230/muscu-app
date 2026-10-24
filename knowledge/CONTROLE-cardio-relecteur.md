@@ -65,3 +65,54 @@ Le §2 est fidèle à l'OMS : fourchettes, forte/conditionnelle, MET et 5-6/7-8 
 1. `coach` / `kine` corrigent B1 à B4 (et idéalement R-a à R-k), puis `relecteur` ne reprend que ces points.
 2. Rien de PROVISOIRE ou NON SOURCÉ du fichier ne se code en dur avant la décision de l'utilisateur (QUESTIONS.md Q5 à Q9) et ce second contrôle.
 3. Sources à relire en entier avant d'augmenter le niveau de preuve : Garber 2011, Schumann 2022, Vieira 2022, derniers 13 720 caractères de l'OMS.
+
+---
+
+# Recontrôle par `relecteur` (24/10/2026, lancé à neuf, points corrigés seulement)
+Vérifié : cardio-regles.md relu après « Corrections kine » et « Corrections coach » ; regles-securite-communes.md (R5, U1) ; CDC (page rouverte : modéré = « peut parler, mais pas chanter » ; soutenu = « pas plus de quelques mots sans reprendre son souffle » ; la section du test de la parole ne donne aucune équivalence 0-10, la page place modéré à 5-6 et soutenu à 7-8 dans une section séparée sans les relier) ; fiches lot-03 (mountain-climbers, jumping-jacks, marche-rapide-*). Rien n'est corrigé par `relecteur`.
+
+**VERDICT : VALIDÉ SOUS RÉSERVE.** Les 4 bloquants B1 à B4 sont levés dans le fichier. Plus aucun point bloquant dans cardio-regles.md. Les 10 réserves ci-dessous sont à corriger avant codage ; les fiches lot-03 non alignées restent un préalable au codage (pas au statut du fichier, qui dit que sa règle prudente prime).
+
+## Statut par point
+| Point | Résultat | Remarque |
+|---|---|---|
+| B1 parole / 5-6/10 | **Corrigé** | C12 (CDC) confirmé pour les deux définitions, PROVISOIRE ; équivalence avec 5-6/10 NON SOURCÉ ; « OK (C1) » limité aux MET et 5-6 / 7-8. §10 et tableau « codable » cohérents. |
+| B2 reprise après signe cardiaque | **Corrigé** | T1, Q3, §3.5, §6.7, §6.11 alignés sur R5 et Q1(c) (avis médical avant reprise). Voir S1, S2. |
+| B3 corde 30-60 s | **Corrigé** (§4, §5, §6.2) | Aucun saut / corde / course tant que Q5-Q6 ouvertes, `jumping-jacks-saut` exclu. Restes : S3, S4, S5. |
+| B4 post-partum | **Corrigé dans le fichier** | Liste blanche {marche rapide, vélo assis, escaliers avec rampe}, remplaçant `montees-genoux-marche` interdit. Fiches non alignées (S9). Voir S6. |
+| R-a | **Corrigé** | C9 = absence de différence ; C8 = distance ; arrondi vers le bas (garantit <= 110 %) ; phrase incompréhensible supprimée. |
+| R-b | **Corrigé en §3.4, non en §3.6** | S7. |
+| R-c | **Partiellement corrigé** | Règle prudente d'exclusions + « après séparation des tags (Q10) ». Pour quelqu'un qui n'a qu'un vélo, §4 (Salle) propose encore rameur / tapis / elliptique tant que le tag est unique : acceptable seulement parce que ces fiches n'existent pas et que §10 les marque non codables (S8). |
+| R-d ski-erg | **Corrigé** | Exclu par défaut partout. |
+| R-e mountain climbers | **Fichier corrigé, fiche non** | Fiche : `niveau_min: debutant`, post-partum = grossesse (S9). |
+| R-f | **Corrigé** en 3.1, 3.3, §6.3 | Résidu dans Q9 (S3). |
+| R-g | **Corrigé** | Format 3.3bis codable, statut NON SOURCÉ honnête, chiffres cohérents (4-8 répétitions, récupération double, cumul 4-8 / 4-16 min). Écart S4. |
+| R-h grossesse | **Partiellement corrigé** | Texte du repère OMS corrigé (§2). S10. |
+| R-i | **Corrigé** | Exception du débutant et T3 sans blocage en 3.5 et §6.7. Gras imbriqué cassé en 3.5 (mise en forme). |
+| R-j | **Corrigé** | Cible 250-300 min retirée, repère non visé. |
+| R-k | **Corrigé** | T5 et T1u alignés sur U1 / G6 ; texte U1 repris mot pour mot (vérifié). |
+| R-l | **Corrigé** | T1 reprend épaule, nausée, et qualifie la douleur « à l'effort ». |
+| R-m | **Corrigé dans le fichier** | S9 : la fiche concernée est `marche-rapide-intervalles` (`marche-rapide-continue` n'existe pas dans lot-03). |
+| R-n | **Corrigé** | Rameur : dos dès niveau 1, épaule / poignet niveau 2-3 ; cohérent avec Q10. |
+| R-o | **Corrigé** | Deux avis sur C7 ; mention ACSM de Q3 retirée ; lien K6 mis à jour. U1 reste PROVISOIRE dans regles-securite-communes.md alors que K6 dit OK (S9). |
+| DOI | **Corrigés** | Schumann, Frandsen, Reed et Pipe conformes à mes vérifications. Buist (DOI) et Vieira « à recouper », signalés honnêtement. |
+| Format 3.3bis vs 3.3 / 3.5 | **Cohérent** | Mêmes conditions ; « +1 répétition par semaine » = même variable (intensité). |
+
+## Écarts restants : BLOQUANT
+Aucun.
+
+## Écarts restants : RÉSERVES (à corriger avant codage)
+- **S1. T1 (nouvelle règle B2) contre T6 / Q8.** Q8 envoie les symptômes de chaleur (mal de tête, vertige, nausée) vers « arrêt (T1) », donc « pas de reprise avant un avis médical », alors que T6 dit « arrête et mets-toi au frais ». Trancher.
+- **S2. Levée de l'avis médical.** Le fichier exige l'avis avant reprise sans dire comment l'app le sait (case cochée ?). À spécifier avec `dev`, sans dépistage.
+- **S3. Q9 (9bis) contient encore « jamais deux jours de suite »** alors que la correction n° 9 dit l'avoir supprimée ; §10 écrit encore « séries de 30-60 s de corde » (remplacer par « 30 s, puis 60 s au plus »).
+- **S4. 3.3bis contre §5 avancé.** 3.3bis : aucun intervalle avec saut ; §5 avancé : « intervalles avec sauts permis ». Garder la version la plus prudente.
+- **S5. Q12 renvoie encore à « 10-20 min »**, remplacé par 3.3bis.
+- **S6. Q5 écrit « pas chassés rapides »**, §5 et correction 12 « même lents ». Aligner Q5.
+- **S7. §3.6 : « OK » sur la base de C5 (résumé seulement).** Même défaut que R-b ; passer PROVISOIRE (le §10 le range déjà ainsi : contradiction interne).
+- **S8. `machine_cardio`.** Ne coder aucune fiche machine tant que les tags ne sont pas séparés ; equipment-taxonomy.md §2 à mettre à jour par son auteur. Numérotation : QUESTIONS.md place Q10 avant Q9, et « Q10 » désigne aussi la réponse Rameur de 9bis.
+- **S9. Fiches et fichiers voisins non alignés** (à corriger par leurs auteurs, ou `dev` applique la règle de cardio-regles.md) : `mountain-climbers` (niveau débutant, post-partum = grossesse, remplaçant `montees-genoux-marche`), `jumping-jacks`, `montees-genoux-sur-place`, `pas-chasses-lateraux`, `boxe-dans-le-vide` (post-partum = grossesse), `marche-rapide-intervalles` (« dehors »), U1 de regles-securite-communes.md (source des numéros PROVISOIRE). Corriger le nom `marche-rapide-continue` dans cardio-regles.md.
+- **S10. Grossesse, durée (R-h).** Le plafond (Q4d) n'est que dans 9bis ; ni §3.5 ni §5 ne bornent la progression +10 % alors que la correction coach l'affirme ; « 20 min » est la durée de départ du débutant (3.3 : jusqu'à 30-40), pas un plafond : préciser.
+
+## Ce qui doit se passer ensuite
+1. `coach` / `kine` corrigent S1, S3 à S7, S10 ; `dev` / auteurs des fiches traitent S2, S8, S9. `relecteur` ne reprend que ces points.
+2. Rien de PROVISOIRE ou NON SOURCÉ ne se code avant la décision de l'utilisateur (QUESTIONS.md Q5 à Q10).
