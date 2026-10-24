@@ -194,6 +194,9 @@ export interface Program extends SyncFields {
   durationMin?: number;
   /** Famille de l'objectif (muscle, force, sante), pour l'affichage. */
   family?: string;
+  /** Empreinte du matériel seul, et vrai si ce programme remplace un programme généré avec un autre matériel (message à l'accueil). */
+  equipmentHash?: string;
+  equipmentChanged?: boolean;
 }
 
 /** Position dans la séance (F5) : exercice du jour, série de travail, face du superset (0 = A, 1 = B), pas global. */

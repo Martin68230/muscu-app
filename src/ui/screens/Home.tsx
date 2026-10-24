@@ -13,8 +13,24 @@ type Status =
   | { kind: 'profil' }
   | { kind: 'erreur'; text: string }
   | { kind: 'refus'; code: string; messages: GenMessage[] }
-  | { kind: 'seance'; next: NextSession; resume: Resumable | null }
+  | { kind: 'seance'; next: NextSession; resume: Resumable | null; equipmentChangedId?: string }
   | { kind: 'reprise'; resume: Resumable };
+
+const NOTICE_KEY = 'muscu.equipmentNoticeDismissed';
+function noticeDismissed(programId: string): boolean {
+  try {
+    return localStorage.getItem(NOTICE_KEY) === programId;
+  } catch {
+    return false;
+  }
+}
+function dismissNotice(programId: string): void {
+  try {
+    localStorage.setItem(NOTICE_KEY, programId);
+  } catch {
+    /* sans stockage : le message reviendra */
+  }
+}
 
 /** Bouton de correction proposé quand le générateur répond « pas de programme ». */
 export function refusalAction(code: string): { step: ProfileStep; label: string } {
@@ -65,9 +81,16 @@ function ResumeCard({ r, onResume, onCloseStale }: { r: Resumable; onResume: (id
 export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale }: HomeViewProps) {
   const hello = profile.displayName ? `Salut ${profile.displayName}` : 'Salut';
   const complete = isProfileComplete(profile);
+  const [hidden, setHidden] = useState(false);
   return (
     <>
       <h1>{hello}</h1>
+      {status.kind === 'seance' && status.equipmentChangedId && !hidden && (
+        <div class="notice" role="status">
+          <p>Ton matériel a changé : ton programme a été mis à jour.</p>
+          <button type="button" class="btn" onClick={() => { dismissNotice(status.equipmentChangedId!); setHidden(true); }}>OK</button>
+        </div>
+      )}
       {status.kind === 'reprise' && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
       {status.kind !== 'reprise' && (
         <div class="card">
@@ -133,7 +156,8 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession }: 
       }
       if (resume) return setStatus({ kind: 'reprise', resume });
       const next = await getNextSession(Date.now());
-      setStatus(next ? { kind: 'seance', next, resume: null } : { kind: 'erreur', text: 'Aucune séance disponible pour l’instant.' });
+      const equipmentChangedId = res.program.equipmentChanged && !noticeDismissed(res.program.id) ? res.program.id : undefined;
+      setStatus(next ? { kind: 'seance', next, resume: null, equipmentChangedId } : { kind: 'erreur', text: 'Aucune séance disponible pour l’instant.' });
     } catch (e) {
       setStatus({ kind: 'erreur', text: e instanceof Error && e.message ? e.message : FICHES_ERROR });
     }

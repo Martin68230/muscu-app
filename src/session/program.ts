@@ -58,6 +58,10 @@ export function computeInputsHash(input: GeneratorInput): string {
   return hashString(JSON.stringify(canonical(input, fichesSignature(input.fiches))));
 }
 
+export function computeEquipmentHash(input: GeneratorInput): string {
+  return hashString(JSON.stringify((canonical(input, '') as { equipment: unknown }).equipment));
+}
+
 // ----- Lecture des entrées dans IndexedDB -----
 /** Séries de travail terminées -> historique du générateur (charge de départ, étalonnage). */
 export function historyFromSets(sets: readonly SetLog[]): HistorySet[] {
@@ -162,7 +166,10 @@ export async function ensureActiveProgram(fiches: Fiche[], opts: { force?: boole
   for (const p of (await list('programs')).filter((x) => x.active)) await update('programs', p.id, { active: false });
   if (!result.ok) return { ok: false, code: result.code, messages: result.messages };
   const today = opts.todayIso ?? new Date().toISOString().slice(0, 10);
-  const program = await create('programs', toStoredProgram(result.program, hash, today));
+  const equipmentHash = computeEquipmentHash(loaded.input);
+  // Le matériel a changé depuis le programme précédent (seulement si celui-ci connaissait son matériel) : message à l'accueil.
+  const equipmentChanged = !!active?.equipmentHash && active.equipmentHash !== equipmentHash;
+  const program = await create('programs', { ...toStoredProgram(result.program, hash, today), equipmentHash, equipmentChanged });
   return { ok: true, program, regenerated: true };
 }
 

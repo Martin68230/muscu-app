@@ -78,6 +78,33 @@ describe('programme actif', () => {
     expect(hashes.size).toBe(4);
   });
 
+  it('matériel coché ou décoché : nouveau programme et message ; séance en cours et historique intacts', async () => {
+    const { eqId } = await seedProfile();
+    const first = await ensureActiveProgram(FICHES);
+    if (!first.ok) throw new Error('attendu ok');
+    expect(first.program.equipmentChanged).toBe(false);
+    const plan = first.program.days[0];
+    const running = await create('sessions', {
+      programId: first.program.id, programDayIndex: 0, plannedDate: '2026-10-26', status: 'en_cours',
+      startedAt: '2026-10-26T08:00:00.000Z', endedAt: null, note: '', plan,
+    } as never);
+
+    await update('equipment', eqId, { tags: [...PROFILES.C.tags, 'roue_abdos'] });
+    const withWheel = await ensureActiveProgram(FICHES);
+    expect(withWheel.ok && withWheel.regenerated && withWheel.program.equipmentChanged).toBe(true);
+    await update('equipment', eqId, { tags: PROFILES.C.tags });
+    const without = await ensureActiveProgram(FICHES);
+    expect(without.ok && without.regenerated && without.program.equipmentChanged).toBe(true);
+
+    const [after] = (await list('sessions')).filter((x) => x.id === running.id);
+    expect(after.programId).toBe(first.program.id);
+    expect(after.plan).toEqual(plan);
+    expect(after.status).toBe('en_cours');
+    const programs = await list('programs');
+    expect(programs.find((p) => p.id === first.program.id)?.active).toBe(false);
+    expect(programs.filter((p) => p.active)).toHaveLength(1);
+  });
+
   it('jours non gérés (4 par semaine) : aucun programme actif, message clair', async () => {
     const { profile } = await seedProfile();
     await ensureActiveProgram(FICHES);

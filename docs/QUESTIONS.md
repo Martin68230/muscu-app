@@ -26,3 +26,9 @@ Une entrée par question : contexte, choix prudent appliqué, option alternative
 - **Contexte** : la fiche d'exercice affiche, pour le réglage « post-partum », la note de la fiche et une phrase générale écrite par `dev` : « Reprends progressivement et demande l'avis de ton médecin ou de ta sage-femme. » (src/ui/screens/Fiche.tsx).
 - **Choix prudent appliqué** : la phrase reste affichée (elle va dans le sens de G1-G3 et G7 de regles-securite-communes.md).
 - **À faire** : `kine` relit ou réécrit la phrase ; statut à fixer (aujourd'hui NON SOURCÉ).
+
+## Pour coach — matériel sans fiche utilisable (24/10/2026, lot A.3)
+Contrôle des tags de « Mon matériel » dans public/data/fiches.json (fiches vérifiées ou utilisables, 140 fiches) : **aucune variante** n'exige ces matériels, donc les cocher ne change rien au programme :
+`roue_abdos`, `barre`, `disques`, `barre_ez`, `rack`, `swiss_ball`, `medecine_ball`, `corde_a_sauter`, `lest`, `sac_de_sable`, `bosu`, `machine_cardio`.
+Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` (2), `rouleau_massage` (1), `barre_traction` (4).
+À faire (coach, puis relecteur) : fiches pour au moins une variante par matériel ci-dessus. Roue abdominale : niveau minimum « avancé » ; exclure dos fragile, grossesse, post-partum, blessure lombaire/épaule (kine à relire). En attendant, l'écran Matériel pourrait préciser « pas encore d'exercice avec ce matériel » (décision à prendre).
