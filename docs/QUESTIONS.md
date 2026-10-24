@@ -53,6 +53,11 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 - **Choix prudent appliqué** : pas d'option, aucun cardio dehors codé ; seule la marche rapide (sans option) reste proposée. Texte chaleur T6 prêt si l'option est ajoutée (aucun seuil de température sourcé).
 - **Option alternative** : ajouter l'option facultative, avec rappel chaleur et sécurité sur la route (non rédigé).
 
+## Q10. Séparer les tags d'appareils de cardio (24/10/2026, kine, suite au contrôle relecteur)
+- **Contexte** : le profil n'offre que « vélo ou rameur » et un seul tag `machine_cardio` (vélo, rameur, tapis de course, elliptique). Quelqu'un qui n'a qu'un vélo se voit proposer rameur, tapis de course ou elliptique ; or le rameur et le tapis de course sont à retirer en grossesse, post-partum et pour le dos.
+- **Choix prudent appliqué** (cardio-regles.md §5) : aucun rameur ni tapis de course en grossesse, post-partum ou zone dos ; elliptique retiré en grossesse / post-partum ; ski-erg exclu par défaut ; vélo assis ou marche en remplacement. Conséquence : le cardio sur machine est proposé plus rarement qu'il ne pourrait l'être.
+- **Option alternative** : séparer les tags (`velo`, `rameur`, `tapis_de_course`, `elliptique`) et le choix dans « Mon matériel » ; chaque fiche suit alors sa propre ligne. Demande à `dev` / `coach` (equipment-taxonomy.md à mettre à jour par son auteur).
+
 ## Q9. Textes de sécurité cardio proposés par kine (24/10/2026)
 - **Contexte** : textes T0 à T7 dans knowledge/cardio-regles.md (9bis) : avertissement cardio, signes d'arrêt, urgence 15 / 112 seulement pour douleur de poitrine persistante, perte de connaissance, difficulté à respirer au repos ; conseil de consulter avant de reprendre après longue pause ou maladie du cœur, sans blocage ni questionnaire.
 - **Choix prudent appliqué** : aucun affichage tant que `relecteur` n'a pas contrôlé ; statut PROVISOIRE (ACOG 804 non lu directement, Riebe 2015 résumé seulement).
