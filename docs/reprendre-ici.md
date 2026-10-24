@@ -16,3 +16,9 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - Suite du lot : kine → `npm run check:fiches` 0 erreur → dev (images WebP/SVG) → relecteur → corrections → statut utilisable → commit. Un fichier à la fois, jamais à moitié modifié.
 - Lots suivants : lot-08 roue abdos (niveau avancé ; dos, grossesse, post-partum, blessures), lot-09 swiss ball + medicine ball, lot-10 corde, lest, sac de sable, bosu, vélo/rameur/machine_cardio (attention Q5-Q11 de docs/QUESTIONS.md : sauts, corde, tags machine).
 - Puis F7 (historique et accueil).
+
+## LOT D — état à 14 h 50 (24/10/2026)
+- lot-07-barre : 16 fiches `utilisable` (verdict relecteur, 0 bloquant) ; 3 restent `complete_kine` : squat-barre-repere-banc (N1 : manœuvre de secours « bloqué en haut » ne rejoint pas les barres → kine), rowing-pendlay-barre (N2 : cases genou/cheville niveau 3 encore `sans-zone` → kine), rowing-barre-ez (N3 : illustration, buste ~25° au lieu de 45°, cuisses horizontales → dev). Ensuite recontrôle relecteur de ces seuls points.
+- À RESTAURER quand ces 3 fiches seront `utilisable` : progression « plus-facile : squat-barre-repere-banc » dans squat-arriere-barre.md (l. 45) et squat-avant-barre.md (l. 41) ; « plus-dur : rowing-pendlay-barre » dans rowing-barre-penche.md (l. 43). (Retirés pour qu'aucun lien ne mène nulle part.)
+- 5 vidéos à filmer : images-a-trouver/ (Q19). Décisions utilisateur : docs/QUESTIONS.md Q5-Q19.
+- Prochains lots : lot-08 roue abdos, lot-09 swiss ball + medicine ball, lot-10 corde/lest/sac de sable/bosu/vélo-rameur. Puis F7.

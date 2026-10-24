@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal, rhomboides]
 muscles_secondaires: [trapezes, deltoides_posterieurs, biceps, erecteurs_rachis, avant_bras]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -40,7 +40,7 @@ statut: complete_kine
 
 ## Progression / régression
 - plus-facile : rowing-buste-penche-halteres, rowing-poitrine-appuyee-banc
-- plus-dur : rowing-pendlay-barre
+- plus-dur : aucun
 
 ## Repères de dosage
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026, SRC1 : force = charges lourdes, 2 à 3 séries par exercice, exercice prioritaire en début de séance) : force intermédiaire et avancé 4 à 6 répétitions, 3 séries, 2 répétitions en réserve, repos 180 s (exercice pilier, emplacements 1 et 2) ; si le générateur place ce mouvement en exercice « autre » (emplacements 3 à 8), force intermédiaire et avancé : 8 à 12 répétitions, 2 séries, 2 en réserve, repos 90 s (120 s pour l'avancé) ; force débutant 6 à 10 répétitions, 2 séries, 3 en réserve, repos 120 s ; muscle 8 à 12 répétitions (10 à 12 pour un débutant), 2 à 3 en réserve, repos 90 à 120 s. Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Étalonnage (load-calibration.md) : première séance avec la barre seule (ou la charge la plus légère du profil), puis on ajoute les disques par petits paliers réels ; après chaque série, une question : « combien de répétitions te restait-il ? » ; double progression (on monte les répétitions, puis la charge). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : jamais 0 répétition en réserve, jamais de série menée jusqu'à l'échec ; si la vitesse de la barre chute nettement ou si la technique se dégrade, la série est finie.

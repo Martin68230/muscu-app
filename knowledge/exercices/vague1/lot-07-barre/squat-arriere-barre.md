@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis, abdominaux]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -42,7 +42,7 @@ statut: complete_kine
 - Sortir du rack avec les barres de sécurité mal réglées ou sans collier.
 
 ## Progression / régression
-- plus-facile : squat-barre-repere-banc, squat-gobelet
+- plus-facile : squat-gobelet
 - plus-dur : squat-arriere-barre-pause, squat-avant-barre
 
 ## Repères de dosage

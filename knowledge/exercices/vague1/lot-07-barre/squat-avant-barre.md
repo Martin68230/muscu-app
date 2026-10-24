@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps]
 muscles_secondaires: [fessiers, adducteurs, erecteurs_rachis, abdominaux, trapezes]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -38,7 +38,7 @@ statut: complete_kine
 - Talons qui décollent.
 
 ## Progression / régression
-- plus-facile : squat-barre-repere-banc, squat-gobelet
+- plus-facile : squat-gobelet
 - plus-dur : aucun
 
 ## Repères de dosage

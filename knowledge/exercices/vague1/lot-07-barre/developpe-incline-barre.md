@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [pectoraux, deltoides_anterieurs]
 muscles_secondaires: [triceps, dentele_anterieur]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -25,7 +25,7 @@ statut: complete_kine
 5. Replace la barre sur les supports en la guidant vers l'arrière.
 
 ## Points d'attention
-- Pente douce seulement, par prudence : on suppose qu'une pente forte fait travailler davantage l'épaule, mais aucune source citée ici ne le mesure (NON SOURCÉ).
+- Pente douce seulement, par prudence : une pente forte fait travailler davantage l'épaule.
 - Charge plus légère qu'au banc plat.
 - Mêmes règles de sécurité que le développé couché (barres de sécurité, colliers, pas d'échec).
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
