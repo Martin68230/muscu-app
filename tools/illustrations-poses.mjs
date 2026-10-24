@@ -674,7 +674,7 @@ export const EXERCICES = [
     id: 'planche-ballon', titre: 'Planche sur un ballon de gym : avant-bras sur le ballon, pieds au sol ; puis avant-bras au sol et tibias sur le ballon',
     labels: ['Avant-bras sur le ballon', 'Avant-bras au sol, tibias sur le ballon'],
     a: { p: [-30.5, 79], t: 32, h: 22, armN: { to: [54, 76], bend: 'd' }, armF: { to: [50, 76], bend: 'd' }, legN: { to: [-121, 22], bend: 'd', foot: -60 }, legF: { to: [-121, 22], bend: 'd', foot: -60 }, back: [['ball', [45, 36], 36]] },
-    b: { p: [-20.6, 56.9], t: -12, h: -20, armN: { to: [72, 9], bend: 'd' }, armF: { to: [68, 9], bend: 'd' }, legN: { to: [-126, 74], bend: 'd', foot: 180 }, legF: { to: [-126, 74], bend: 'd', foot: 180 }, back: [['ball', [-100, 36], 36]] },
+    b: { p: [-4.6, 56.9], t: -12, h: -20, armN: { to: [88, 9], bend: 'd' }, armF: { to: [84, 9], bend: 'd' }, legN: { to: [-110, 74], bend: 'd', foot: 180 }, legF: { to: [-110, 74], bend: 'd', foot: 180 }, back: [['ball', [-84, 36], 36]] },
   },
   {
     id: 'planche-cercles-ballon', titre: 'Planche, avant-bras sur un ballon de gym : de petits cercles avec les avant-bras, le corps reste en ligne',
@@ -701,10 +701,10 @@ export const EXERCICES = [
     b: { p: [10, 60], t: 165, h: 160, armN: { to: [30, 62], bend: 'd' }, armF: { to: [26, 62], bend: 'd' }, legN: { to: [65, A], bend: 'u' }, legF: { to: [59, A], bend: 'u' }, back: [['ball', [-50, 34], 34]], props: [['arrow', [10, 98], [10, 124]]] },
   },
   {
-    id: 'extension-dorsale-ballon', titre: 'Extension du dos sur un ballon de gym : à plat ventre, hanches sur le ballon, le buste monte jusqu\'à l\'alignement, bras croisés',
+    id: 'extension-dorsale-ballon', titre: 'Extension du dos sur un ballon de gym : à plat ventre, hanches sur le ballon, le buste monte jusqu\'à l\'alignement, bras croisés, pointes de pieds contre un mur plein',
     labels: ['Buste qui pend, bras croisés', 'Buste aligné avec les jambes'],
-    a: { p: [-5, 80], t: -30, h: -40, armN: { a: [-125, 55] }, armF: { a: [-120, 50] }, legN: { to: [-92, 20], bend: 'u', foot: -60 }, legF: { to: [-92, 20], bend: 'u', foot: -60 }, back: [['mat', -140, 90], ['ball', [-5, 34], 34]] },
-    b: { p: [-5, 80], t: 36, h: 30, armN: { a: [-100, 70] }, armF: { a: [-95, 65] }, legN: { to: [-92, 20], bend: 'u', foot: -60 }, legF: { to: [-92, 20], bend: 'u', foot: -60 }, back: [['mat', -140, 90], ['ball', [-5, 34], 34]], props: [['arrow', [70, 70], [84, 100]]] },
+    a: { p: [-5, 80], t: -30, h: -40, armN: { a: [-125, 55] }, armF: { a: [-120, 50] }, legN: { to: [-92, 20], bend: 'u', foot: -120 }, legF: { to: [-92, 20], bend: 'u', foot: -120 }, back: [['wall', -104, -14], ['mat', -110, 90], ['ball', [-5, 34], 34]] },
+    b: { p: [-5, 80], t: 36, h: 30, armN: { a: [-100, 70] }, armF: { a: [-95, 65] }, legN: { to: [-92, 20], bend: 'u', foot: -120 }, legF: { to: [-92, 20], bend: 'u', foot: -120 }, back: [['wall', -104, -14], ['mat', -110, 90], ['ball', [-5, 34], 34]], props: [['arrow', [70, 70], [84, 100]]] },
   },
   {
     id: 'pompe-mains-ballon', titre: 'Pompe mains sur un ballon de gym calé contre un mur : poitrine vers le ballon, le ballon ne bouge pas',
@@ -725,16 +725,16 @@ export const EXERCICES = [
     b: { p: [0, 108], t: 90, h: 90, armN: { to: [68, 172], bend: 'd' }, armF: { to: [64, 172], bend: 'd' }, legN: { to: [12, A], bend: 'f' }, legF: { to: [-8, A], bend: 'f' }, back: [['wall', 128, 14]], props: [['mball', [84, 174]], ['arrow', [102, 174], [122, 174]]] },
   },
   {
-    id: 'lancer-rotation-mur', titre: 'Lancer en rotation contre un mur, vue de face : ballon lesté près de la hanche, puis lancer à hauteur de poitrine',
+    id: 'lancer-rotation-mur', titre: 'Lancer en rotation contre un mur, vue de face : ballon lesté près de la hanche, puis lancer à hauteur de poitrine ; pieds fixes à peu près à la largeur des épaules, rotation courte, genoux dans l’axe des orteils',
     view: 'front', labels: ['Ballon près de la hanche', 'Rotation puis lancer'],
-    a: { p: [-6, 106], t: 90, legN: { to: [18, A], bend: 'f' }, legF: { to: [-24, A], bend: 'b' }, armN: { to: [-50, 106], bend: 'f' }, armF: { to: [-46, 104], bend: 'f' }, back: [['wall', 126, 14]], props: [['mball', [-52, 100]]] },
-    b: { p: [0, 108], t: 90, legN: { to: [20, A], bend: 'f' }, legF: { to: [-22, A], bend: 'b' }, armN: { to: [70, 166], bend: 'f' }, armF: { to: [66, 164], bend: 'f' }, back: [['wall', 126, 14]], props: [['mball', [84, 168]], ['arrow', [98, 168], [120, 168]]] },
+    a: { p: [-4, 112], t: 90, legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, sa: -10, armN: { to: [-50, 106], bend: 'f' }, armF: { to: [-46, 104], bend: 'f' }, back: [['wall', 126, 14]], props: [['mball', [-52, 100]]] },
+    b: { p: [0, 112], t: 90, legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, sa: 10, armN: { to: [70, 166], bend: 'f' }, armF: { to: [66, 164], bend: 'f' }, back: [['wall', 126, 14]], props: [['mball', [84, 168]], ['arrow', [98, 168], [120, 168]]] },
   },
   {
-    id: 'lancer-bas-haut-mur', titre: 'Lancer de bas en haut contre un mur : hanches en arrière, ballon entre les jambes, puis hanches en avant et lancer, pieds au sol',
-    labels: ['Hanches en arrière, ballon bas', 'Hanches en avant : lancer'],
-    a: { p: [-45, 98], t: 38, h: 40, armN: { to: [14, 68], bend: 'f' }, armF: { to: [10, 68], bend: 'f' }, legN: { to: [4, A], bend: 'f' }, legF: { to: [-4, A], bend: 'f' }, back: [['wall', 130, 14]], props: [['mball', [26, 64]]] },
-    b: { p: [0, 112], t: 90, h: 90, armN: { a: [50, 50] }, armF: { a: [48, 48] }, legN: { to: [4, A], bend: 'f' }, legF: { to: [-4, A], bend: 'f' }, back: [['wall', 130, 14]], props: [['mball', [60, 226]], ['arrow', [84, 218], [112, 240]]] },
+    id: 'lancer-bas-haut-mur', titre: 'Lancer de bas en haut contre un mur : hanches en arrière, ballon entre les jambes, puis hanches en avant et lancer à hauteur de poitrine, jamais au-dessus de la tête, mur à 2 m au moins, pieds au sol',
+    labels: ['Hanches en arrière, ballon bas', 'Poitrine au plus, mur à 2 m'],
+    a: { p: [-115, 98], t: 38, h: 40, armN: { to: [-56, 68], bend: 'f' }, armF: { to: [-60, 68], bend: 'f' }, legN: { to: [-66, A], bend: 'f' }, legF: { to: [-74, A], bend: 'f' }, back: [['wall', 140, 14]], props: [['mball', [-44, 64]]] },
+    b: { p: [-70, 112], t: 90, h: 90, armN: { to: [-6, 158], bend: 'd' }, armF: { to: [-10, 158], bend: 'd' }, legN: { to: [-66, A], bend: 'f' }, legF: { to: [-74, A], bend: 'f' }, back: [['wall', 140, 14]], props: [['mball', [10, 162]], ['arrow', [30, 162], [64, 166]]] },
   },
   {
     id: 'rotation-assise-ballon-lest', titre: 'Rotation assise avec un ballon lesté, vue de face : buste légèrement en arrière, le ballon passe d\'un côté à l\'autre',

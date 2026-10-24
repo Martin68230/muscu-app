@@ -104,8 +104,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 ## Photo
 - `Exercise_Ball_Pull-In/0.jpg` : affichable : oui (position de pompe, tibias et pieds sur le ballon, corps en ligne ; la variante hanches vers le plafond n'est pas montrée ; aucun logo lisible ; vue le 24/10/2026)
-- `Exercise_Ball_Pull-In/1.jpg` : affichable : oui (genoux ramenés vers la poitrine, pieds sur le ballon, mains sous les épaules ; aucun logo lisible ; vue le 24/10/2026)
-- légende : Sur la photo, le ballon est sous les chevilles ; la consigne le place sous les tibias.
+- `Exercise_Ball_Pull-In/1.jpg` : affichable : non (relecteur S3, 24/10/2026 : coudes nettement fléchis, tête tombée au niveau des mains, dos arrondi, ce que la consigne classe en erreurs ; la consigne prime, règle 12)
+- légende : Départ : bras tendus, corps en ligne. Photo : ballon sous les chevilles ; la consigne le place sous les tibias.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
