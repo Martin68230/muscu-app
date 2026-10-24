@@ -38,7 +38,7 @@ statut: utilisable
 - Talons qui décollent.
 
 ## Progression / régression
-- plus-facile : squat-gobelet
+- plus-facile : squat-barre-repere-banc, squat-gobelet
 - plus-dur : aucun
 
 ## Repères de dosage

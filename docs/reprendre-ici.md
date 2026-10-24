@@ -22,3 +22,8 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - À RESTAURER quand ces 3 fiches seront `utilisable` : progression « plus-facile : squat-barre-repere-banc » dans squat-arriere-barre.md (l. 45) et squat-avant-barre.md (l. 41) ; « plus-dur : rowing-pendlay-barre » dans rowing-barre-penche.md (l. 43). (Retirés pour qu'aucun lien ne mène nulle part.)
 - 5 vidéos à filmer : images-a-trouver/ (Q19). Décisions utilisateur : docs/QUESTIONS.md Q5-Q19.
 - Prochains lots : lot-08 roue abdos, lot-09 swiss ball + medicine ball, lot-10 corde/lest/sac de sable/bosu/vélo-rameur. Puis F7.
+
+## Mise à jour 15 h 30 (24/10/2026)
+- lot-07-barre : 18 fiches `utilisable` (squat-barre-repere-banc et rowing-pendlay-barre validés au recontrôle 2, liens de progression restaurés). Reste `complete_kine` : rowing-barre-ez (libellé « barre au sol » corrigé en « barre qui pend » le 24/10 : à faire confirmer par relecteur, N9).
+- lot-08-ballons-roue : 19 fiches `complete_kine` (kine fait, commit 2095795) ; dev fait les images (en cours) ; ensuite relecteur lancé à neuf sur le lot.
+- Puis lot-09 (corde, lest, sac de sable, bosu, vélo/rameur/machine_cardio : voir Q5-Q11 sur sauts/corde et tags machine), puis F7.

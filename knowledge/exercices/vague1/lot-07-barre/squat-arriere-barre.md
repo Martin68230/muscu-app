@@ -42,7 +42,7 @@ statut: utilisable
 - Sortir du rack avec les barres de sécurité mal réglées ou sans collier.
 
 ## Progression / régression
-- plus-facile : squat-gobelet
+- plus-facile : squat-barre-repere-banc, squat-gobelet
 - plus-dur : squat-arriere-barre-pause, squat-avant-barre
 
 ## Repères de dosage
