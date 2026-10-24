@@ -110,11 +110,16 @@ describe('proposition de progression (la v1 propose, n’impose pas)', () => {
     expect(proposeProgression({ exercise: hold, sets, ...halteres }).reason).toBe('maintien');
   });
 
-  it('poids du corps : échelon supérieur seulement s’il est disponible', () => {
+  it('poids du corps : suivi par (fiche, échelon) ; la montée exige 2 séances valables (F6, la règle a changé avec la spécification)', () => {
     const bw = ex({ variantId: 'v', sets: 3, repsMin: 10, repsMax: 15, startLoadKg: null });
-    const sets = topSession('a', D1, 10).map((s) => ({ ...s, loadKg: null, reps: 15 }));
-    expect(proposeProgression({ exercise: bw, sets, pregnant: false, echelon: 2, availableEchelons: [1, 2, 3] })).toMatchObject({ action: 'hausse', echelon: 3 });
-    expect(proposeProgression({ exercise: bw, sets, pregnant: false, echelon: 3, availableEchelons: [1, 2, 3] }).action).toBe('garder');
+    const vars = [1, 2, 3].map((e) => ({ id: `w${e}`, nom: `W${e}`, echelon: e, niveau: 'debutant' as const, materielOk: true, rank: 0 }));
+    const mk = (id: string, at: string) => topSession(id, at, 10).map((s) => ({ ...s, loadKg: null, reps: 15, rir: 2, targetRir: 2, targetRepsMin: 10, targetRepsMax: 15, echelon: 2, variantId: `w2-${id}` }));
+    const one = mk('a', D1);
+    const input = { exercise: bw, pregnant: false, echelon: 2, bodyweight: { variants: vars, level: 'intermediaire' as const } };
+    expect(proposeProgression({ ...input, sets: one }).action).toBe('garder');
+    const sets = [...one, ...mk('b', D2)];
+    expect(proposeProgression({ ...input, sets })).toMatchObject({ action: 'hausse', echelon: 3 });
+    expect(proposeProgression({ ...input, sets, echelon: 3, bodyweight: { ...input.bodyweight, variants: vars } }).action).toBe('etalonnage');
   });
 });
 

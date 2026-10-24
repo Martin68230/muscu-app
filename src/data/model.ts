@@ -71,7 +71,17 @@ export interface Profile extends SyncFields {
   pregnancy?: PregnancyStatus | null;
   /** Date de fin du parcours « profil en cartes » ; null = à faire (l'Accueil propose « Créer mon programme »). */
   profileCompletedAt?: string | null;
+  /** Ajouté par F6 : décisions de progression (montée, descente, refus, niveau). Local, jamais partagé. Peut manquer. */
+  progressionLog?: ProgressionEvent[];
 }
+
+/** F6 (progression-et-bilan-v1.md §1) : ce que la personne a accepté ou refusé. Une ligne par décision. */
+export type ProgressionEvent =
+  | { type: 'montee' | 'descente'; movementId: string; from: number; to: number; variantId: string; at: string }
+  | { type: 'refus'; kind: 'montee' | 'descente'; movementId: string; from: number; to: number; at: string }
+  | { type: 'niveau'; accepted: boolean; at: string }
+  /** Montée ou descente acceptée puis annulée parce que le programme a été régénéré entre-temps. */
+  | { type: 'annule'; movementId: string; at: string };
 
 export interface EquipmentProfile extends SyncFields {
   preset: EquipmentPreset;
@@ -219,6 +229,11 @@ export interface WorkoutSession extends SyncFields {
   plan?: ProgramDay | null;
   lastActionAt?: string | null;
   endReason?: SessionEndReason | null;
+  /** Ajoutés par F6 : échelon changé pendant la séance (index d'exercice -> échelon, variante, échelon de départ) et exercices déjà décidés. */
+  echelonSwitches?: Record<string, { echelon: number; variantId: string; from: number }>;
+  calibDecided?: number[];
+  /** Bilan calculé à la fin (recalculable à partir des séries) ; absent si séance abandonnée ou arrêtée par un symptôme. */
+  summary?: Record<string, unknown> | null;
 }
 
 export interface SetLog extends SyncFields {
@@ -252,6 +267,8 @@ export interface SetLog extends SyncFields {
   capped?: boolean;
   /** Zone de la douleur signalée (« ça fait mal »), ou 'inconnu' (« je ne sais pas »). */
   painZone?: InjuryZone | 'inconnu' | null;
+  /** Ajouté par F6 : repos réellement pris après cette série de travail (secondes), absent si sauté, interrompu ou hors travail. */
+  restTakenSec?: number | null;
 }
 
 export interface BodyWeight extends SyncFields {

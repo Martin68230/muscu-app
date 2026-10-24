@@ -29,6 +29,7 @@ export const PROGRESSION_TEXT = {
   sommet: 'Tu es au plus lourd de ton matériel : ajoute des répétitions.',
   maintien: 'Pour les maintiens, la durée n’augmente pas dans cette version.',
   garder: 'Garde la même charge.',
+  symptome: 'Pas d’augmentation tant qu’une séance n’est pas terminée sans symptôme.',
 } as const;
 
 export function loadMoreText(deltaKg: number): string {
@@ -80,3 +81,26 @@ export const C4_STOP_SIGNS: readonly string[] = [
 export const SYMPTOM_RESUME_CONFIRM = 'Tu n’as plus aucun de ces signes et tu te sens bien ?';
 export const SOUND_NOTE = 'Le minuteur se met à jour quand tu reviens sur l’appli ; il ne sonne pas écran verrouillé.';
 export const WAKE_LOCK_BANNER = 'Ton écran peut s’éteindre pendant la séance. Touche l’écran de temps en temps.';
+
+// ----- F6 : progression par échelons (progression-et-bilan-v1.md §1) : français simple, sans reproche. Statut : NON SOURCÉ (texte de conception). -----
+export const ECHELON_TEXT = {
+  upTitle: (nom: string): string => `Prêt pour l’échelon suivant : ${nom} ?`,
+  upBody: 'Tu as réussi toutes tes séries plusieurs séances de suite. Cette version est un peu plus difficile ; la première fois, on commence doucement.',
+  downTitle: (nom: string): string => `Essayer une version plus facile : ${nom} ?`,
+  downBody: 'Les dernières séances étaient dures. Une version plus facile te permet de bien travailler. Ce n’est pas un échec.',
+  floorGentler: 'Essaie une version plus douce de cet exercice (voir la fiche).',
+  floorKeep: 'Garde cet exercice tel quel, sans chercher à monter ; si ça reste dur, parles-en à un professionnel de santé.',
+  accept: 'Accepter',
+  cancelled: 'La proposition d’échelon est annulée parce que ton programme a changé.',
+  later: 'Plus tard',
+  levelTitle: 'Passer au niveau intermédiaire ?',
+  levelBody: 'Tu as fait le tour de ce qui est prévu à ton niveau pour plusieurs exercices. Tu peux passer au niveau intermédiaire dans ton profil, ou rester ici.',
+  levelNote: 'Ça ajoute des exercices plus difficiles ; chaque nouvel exercice démarre doucement, avec un essai léger.',
+  levelAccept: 'Passer au niveau intermédiaire',
+  levelStay: 'Rester ici',
+  /** Première séance à un nouvel échelon : essai léger (V-ETAL-E7). */
+  arrival: 'Nouvelle version : commence doucement, on règle la difficulté après la première série.',
+  switchedUp: (nom: string): string => `Pour les séries qui restent : passe à « ${nom} » (un peu plus difficile).`,
+  switchedDown: (nom: string): string => `Pour les séries qui restent : passe à « ${nom} » (un peu plus facile).`,
+  nextTime: (nom: string): string => `${nom} : on te proposera la version suivante à la prochaine séance.`,
+} as const;

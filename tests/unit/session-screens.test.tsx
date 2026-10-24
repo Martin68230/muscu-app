@@ -141,7 +141,7 @@ describe('parcours complet d’une séance générée', () => {
     await click('Échauffement fait');
 
     let sets = 0;
-    for (let guard = 0; guard < 400 && !screen.queryByText('Séance terminée'); guard++) {
+    for (let guard = 0; guard < 400 && !screen.queryByText(/Séance terminée|Première séance faite|Séance écourtée/); guard++) {
       expectCleanText(ids);
       const skip = screen.queryByRole('button', { name: /Passer le repos|Série suivante/ });
       if (skip) {
@@ -161,10 +161,10 @@ describe('parcours complet d’une séance générée', () => {
       }
       await tick(5);
     }
-    expect(screen.getByRole('heading', { name: 'Séance terminée' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: /Séance terminée|Première séance faite/ })).toBeTruthy();
     expect(sets).toBe(buildSteps(dayPlan.exercises).length);
     expect(fetchSpy).not.toHaveBeenCalled();
-    expect(screen.getByText(/Séries faites/)).toBeTruthy();
+    expect(screen.getByText('Séries')).toBeTruthy();
     await click('Retour à l’accueil');
     expect(closed).toHaveBeenCalled();
     const [session] = await list('sessions');
@@ -242,7 +242,7 @@ describe('douleur', () => {
     await click('Épaule');
     await click('J’arrête cet exercice');
     await waitFor(() => expect(ctl.state.painExercises).toEqual([0]));
-    expect(screen.getByText(/Exercice arrêté : pas de progression/)).toBeTruthy();
+    expect(await screen.findByText(/Exercice arrêté : pas de progression/)).toBeTruthy();
     const [s] = await list('sets');
     expect(s).toMatchObject({ pain: true, painZone: 'epaule' });
     await click('Continuer la séance');
@@ -310,7 +310,7 @@ describe('quitter', () => {
     await click('Quitter');
     await click('Abandonner la séance');
     await waitFor(() => expect(ctl.state.outcome).toBe('abandon'));
-    expect(screen.getByRole('heading', { name: 'Séance arrêtée' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Séance arrêtée' })).toBeTruthy();
   });
 });
 
@@ -351,7 +351,7 @@ describe('« J’ai un symptôme »', () => {
     await click('Non, je reste à l’arrêt');
     await click('Arrêter la séance');
     await waitFor(() => expect(ctl.state.outcome).toBe('symptome'));
-    expect(screen.getByRole('heading', { name: 'Séance arrêtée' })).toBeTruthy();
+    expect(await screen.findByRole('heading', { name: 'Séance arrêtée' })).toBeTruthy();
     expect(screen.getByText('Urgence : appelle le 15 (SAMU) ou le 112.')).toBeTruthy();
     const [session] = await list('sessions');
     expect(session).toMatchObject({ status: 'sautee', endReason: 'symptome' });

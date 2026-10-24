@@ -8,7 +8,8 @@
 import type { InjuryZone, PlannedExercise, ProgramDay, SessionCursor } from '../data/model';
 import { nextCalibrationStep, type CalibrationStep } from '../generator/calibration';
 import { TIME, WARMUP } from '../generator/config';
-import { adjustRest as adjustRestState, REST_ADJUST_STEP_SEC, startRest, type RestState } from './timer';
+import { echelonCalibrationStep } from './progression';
+import { adjustRest as adjustRestState, REST_ADJUST_STEP_SEC, remainingMs, startRest, type RestState } from './timer';
 
 export class SessionError extends Error {}
 
@@ -77,6 +78,25 @@ export function buildSteps(exercises: readonly PlannedExercise[]): Step[] {
   return steps;
 }
 
+/**
+ * Exercice sans charge à échelons (poids du corps, élastique) : ce que le moteur doit savoir pour l'étalonnage (progression-et-bilan-v1.md §2).
+ * `null` pour un exercice à charge. Construit par l'interface depuis les fiches, l'historique et les décisions de la personne.
+ */
+export interface EchelonInfo {
+  /** Échelon du programme pour cet exercice. */
+  echelon: number;
+  /** Séance d'étalonnage de la fiche : aucune série faite à ce couple (fiche, échelon), ou séance d'arrivée après une montée ou une descente acceptée. */
+  calibration: boolean;
+  /** Plafond d'étalonnage (V-ETAL-E (e), E7) : jamais de montée au-dessus. `null` = pas d'autre plafond que `up`. */
+  ceiling: number | null;
+  /** Aucune montée possible : fiche `capped`, grossesse, symptôme récent, retour de gêne (R7), exercice adapté. */
+  noRaise: boolean;
+  /** Échelon `e+1` permis (niveau, matériel) et sa variante, ou null. */
+  up: { echelon: number; variantId: string } | null;
+  /** Échelon `e-1` et sa variante, ou null. */
+  down: { echelon: number; variantId: string } | null;
+}
+
 /** Contexte d'exécution (jamais enregistré) : matériel, grossesse, étalonnage. Construit par store.ts depuis le profil et l'historique. */
 export interface EngineContext {
   /** Grossesse / post-partum : jamais de hausse (V-PRIO). */
@@ -87,6 +107,8 @@ export interface EngineContext {
   availableLoadsKg(ex: PlannedExercise, currentKg: number | null): number[];
   availableEchelons?(ex: PlannedExercise): number[];
   echelonOf?(ex: PlannedExercise): number | undefined;
+  /** F6 : étalonnage des échelons pour un exercice sans charge ; null pour un exercice à charge. */
+  echelonInfo?(ex: PlannedExercise): EchelonInfo | null;
 }
 export const NEUTRAL_CONTEXT: EngineContext = {
   pregnant: false,
@@ -107,6 +129,10 @@ export interface EngineState {
   /** Charge en cours par exercice (préremplit la série suivante). */
   loads: Record<number, number | null>;
   workSetsDone: number;
+  /** F6 : échelon changé pendant la séance par exercice (une seule fois, à la première série de travail). */
+  echelonSwitches: Record<number, { echelon: number; variantId: string; from: number }>;
+  /** F6 : exercices dont la première série de travail a déjà décidé de l'échelon. */
+  calibDecided: number[];
 }
 
 export interface SetInput {
@@ -142,6 +168,8 @@ export interface SetEntry {
   isCalibration: boolean;
   capped: boolean;
   echelon: number | null;
+  /** Variante réellement faite (change si l'échelon change pendant la séance). */
+  variantId: string;
 }
 
 export interface SetResult {
@@ -149,6 +177,8 @@ export interface SetResult {
   entry: SetEntry;
   /** Étalonnage : charge (ou échelon) proposée pour la série suivante ; null hors étalonnage. */
   suggestion: CalibrationStep | null;
+  /** F6 : l'échelon change pour les séries restantes de l'exercice (étalonnage d'un exercice sans charge). */
+  echelonChange: { exercise: number; from: number; to: number; variantId: string } | null;
 }
 
 // ----- Aides -----
@@ -157,7 +187,14 @@ function nextStepIndex(steps: readonly Step[], from: number, skipped: readonly n
   while (i < steps.length && skipped.includes(steps[i].exercise)) i++;
   return i;
 }
-const clone = (s: EngineState): EngineState => ({ ...s, skipped: [...s.skipped], painExercises: [...s.painExercises], loads: { ...s.loads } });
+const clone = (s: EngineState): EngineState => ({
+  ...s,
+  skipped: [...s.skipped],
+  painExercises: [...s.painExercises],
+  loads: { ...s.loads },
+  echelonSwitches: { ...s.echelonSwitches },
+  calibDecided: [...s.calibDecided],
+});
 
 function hasWarmup(day: ProgramDay): boolean {
   const w = day.warmup;
@@ -196,6 +233,8 @@ export function startSession(day: ProgramDay, now: number): EngineState {
     outcome: 'en_cours',
     loads,
     workSetsDone: 0,
+    echelonSwitches: {},
+    calibDecided: [],
   };
 }
 
@@ -234,8 +273,11 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     if (ex.unit === 'sec' ? (holdSec ?? ex.holdSec) === null : reps === null) throw new SessionError('Saisis les répétitions faites.');
   }
 
-  const calibrating = st.kind === 'work' && ctx.isCalibration(ex);
+  const info = ctx.echelonInfo?.(ex) ?? null;
+  const sw = state.echelonSwitches[st.exercise];
+  const calibrating = st.kind === 'work' && (info ? info.calibration : ctx.isCalibration(ex));
   const capped = ex.capped || ctx.pregnant;
+  const curEchelon = sw ? sw.echelon : info ? info.echelon : null;
   const entry: SetEntry = {
     exercise: st.exercise,
     step: cur,
@@ -256,13 +298,16 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     targetRir: st.kind === 'work' && ex.unit !== 'sec' ? ex.rirTarget : null,
     isCalibration: calibrating,
     capped,
-    echelon: ctx.echelonOf?.(ex) ?? null,
+    // Exercice à charge : pas d'échelon enregistré (progression-et-bilan-v1.md §2 point 4) dès que le contexte sait les distinguer.
+    echelon: curEchelon ?? (ctx.echelonInfo ? null : ctx.echelonOf?.(ex) ?? null),
+    variantId: sw ? sw.variantId : ex.variantId,
   };
 
   const next = clone(state);
   if (st.kind === 'work') next.workSetsDone += 1;
 
   let suggestion: CalibrationStep | null = null;
+  let echelonChange: SetResult['echelonChange'] = null;
   if (pain) {
     // R4 : l'exercice s'arrête, séries restantes annulées, charge gelée, pas de repos.
     next.skipped.push(st.exercise);
@@ -271,7 +316,25 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     next.step = nextStepIndex(steps, cur + 1, next.skipped);
   } else {
     if (st.kind === 'work') {
-      if (calibrating && entry.rir !== null && entry.reps !== null && ex.unit !== 'sec') {
+      if (info && calibrating && ex.unit !== 'sec') {
+        // F6 §2 : la première série de travail de la fiche décide de l'échelon pour les séries restantes (une seule fois par séance).
+        if (!state.calibDecided.includes(st.exercise)) {
+          next.calibDecided.push(st.exercise);
+          if (entry.rir !== null && entry.reps !== null && curEchelon !== null) {
+            const canRaise = !capped && !info.noRaise && (info.ceiling === null || curEchelon < info.ceiling);
+            const step = echelonCalibrationStep({
+              reps: entry.reps, rir: entry.rir, repsMin: ex.repsMin, repsMax: ex.repsMax, rirTarget: ex.rirTarget,
+              echelon: curEchelon, up: info.up, down: info.down, canRaise,
+            });
+            suggestion = { action: step.action, loadKg: null, echelon: step.echelon };
+            if (step.action !== 'garder' && step.variantId) {
+              next.echelonSwitches[st.exercise] = { echelon: step.echelon, variantId: step.variantId, from: curEchelon };
+              echelonChange = { exercise: st.exercise, from: curEchelon, to: step.echelon, variantId: step.variantId };
+            }
+          }
+        }
+        next.loads[st.exercise] = entry.loadKg;
+      } else if (calibrating && entry.rir !== null && entry.reps !== null && ex.unit !== 'sec') {
         suggestion = nextCalibrationStep({
           rir: entry.rir,
           reps: entry.reps,
@@ -301,7 +364,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     next.phase = 'fin';
     next.rest = null;
   }
-  return { state: next, entry, suggestion };
+  return { state: next, entry, suggestion, echelonChange };
 }
 
 /** « Ça fait mal » : même effet que `completeSet({pain: true})`. La série en cours est enregistrée avec pain = true. */
@@ -320,6 +383,22 @@ export function skipRest(state: EngineState): EngineState {
   assertRunning(state);
   if (!state.rest) return state;
   return { ...clone(state), rest: null };
+}
+
+/**
+ * Repos réellement pris (secondes) quand la personne quitte l'écran de repos ; null si : repos sauté avant la fin (exclu de la moyenne),
+ * transition de superset, repos d'échauffement, pas de série de travail ensuite, ou pause plus longue que `maxSec`
+ * (progression-et-bilan-v1.md §3.1 point 2). `prev` = dernière série enregistrée : le repos a commencé à son heure.
+ */
+export function restTaken(day: ProgramDay, state: EngineState, prev: { completedAt: number; isWarmup: boolean } | null, now: number, maxSec: number): number | null {
+  const rest = state.rest;
+  if (!rest || rest.kind !== 'repos' || !prev || prev.isWarmup) return null;
+  if (remainingMs(rest, now) > 0) return null;
+  const steps = buildSteps(day.exercises);
+  const next = steps[nextStepIndex(steps, state.step, state.skipped)];
+  if (!next || next.kind !== 'work') return null;
+  const sec = Math.round((now - prev.completedAt) / 1000);
+  return sec > 0 && sec <= maxSec ? sec : null;
 }
 
 export function adjustRest(state: EngineState, deltaSec: number, now: number): EngineState {
@@ -396,7 +475,10 @@ export function currentView(day: ProgramDay, state: EngineState): SessionView {
   const steps = buildSteps(day.exercises);
   const cur = nextStepIndex(steps, state.step, state.skipped);
   const st = state.phase === 'exercices' && cur < steps.length ? steps[cur] : null;
-  const ex = st ? day.exercises[st.exercise] : null;
+  const base = st ? day.exercises[st.exercise] : null;
+  const sw = st ? state.echelonSwitches[st.exercise] : undefined;
+  // F6 : après un changement d'échelon, l'exercice affiché est la nouvelle variante (même fiche).
+  const ex = base && sw ? { ...base, variantId: sw.variantId } : base;
   const group = ex?.supersetGroup ?? null;
   const partners = group ? day.exercises.map((e, i) => (e.supersetGroup === group && i !== st!.exercise ? i : -1)).filter((i) => i >= 0) : [];
   const kept = steps.map((s, i) => ({ s, i })).filter(({ s }) => s.kind === 'work' && !state.skipped.includes(s.exercise));

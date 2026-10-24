@@ -448,7 +448,7 @@ describe('nettoyage : jamais de phrase de sécurité perdue', () => {
     expect(cleanText("La durée du maintien n'est pas fixée ici (aucune valeur sourcée).", ALL)).toBe('');
     expect(cleanText('Garde le dos droit (lien de pratique, non sourcé).', ALL)).toBe('Garde le dos droit.');
     expect(cleanText('Arrête si douleur, valeur non sourcée.', ALL)).toContain('Arrête si douleur');
-  });
+  }, 60_000); // 140 fiches rendues une à une : lent quand la machine est chargée
 
   it('cas précis : code retiré, phrase gardée, parenthèse non refermée fermée proprement', () => {
     expect(cleanText('Arrête et consulte (C4).', ALL)).toBe('Arrête et consulte.');

@@ -31,6 +31,7 @@ export const SPECS: Record<TableName, Spec> = {
     place: 'string?',
     pregnancy: 'string?',
     profileCompletedAt: 'string?',
+    progressionLog: 'array?',
   },
   equipment: {
     preset: 'string',
@@ -78,6 +79,9 @@ export const SPECS: Record<TableName, Spec> = {
     plan: 'object?',
     lastActionAt: 'string?',
     endReason: 'string?',
+    echelonSwitches: 'object?',
+    calibDecided: 'array?',
+    summary: 'object?',
   },
   sets: {
     sessionId: 'string',
@@ -102,6 +106,7 @@ export const SPECS: Record<TableName, Spec> = {
     side: 'string?',
     capped: 'boolean',
     painZone: 'string?',
+    restTakenSec: 'number?',
   },
   bodyWeights: { date: 'string', kg: 'number' },
   meals: { date: 'string', time: 'string?', label: 'string', items: 'array' },
@@ -119,10 +124,10 @@ export const SPECS: Record<TableName, Spec> = {
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
-  profile: ['place', 'pregnancy', 'profileCompletedAt'],
+  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog'],
   programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family'],
-  sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason'],
-  sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone'],
+  sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'summary'],
+  sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec'],
   injuries: ['afterShock'],
   equipment: ['dumbbellKind', 'platesKg', 'other'],
 };
@@ -158,6 +163,15 @@ export function validateRow(table: TableName, row: unknown): string[] {
   for (const [field, allowed] of Object.entries(ENUMS[table] ?? {})) {
     const v = r[field];
     if (typeof v === 'string' && !allowed.includes(v)) errors.push(`${table}/${String(r.id ?? '?')} : champ « ${field} » valeur inconnue « ${v} »`);
+  }
+  // F6 : repos pris plausible ; décisions de progression d'un type connu (un import ne doit pas en introduire d'inconnues).
+  if (table === 'sets' && typeof r.restTakenSec === 'number' && (r.restTakenSec < 0 || r.restTakenSec > 3600)) {
+    errors.push(`${table}/${String(r.id ?? '?')} : champ « restTakenSec » hors limites`);
+  }
+  if (table === 'profile' && Array.isArray(r.progressionLog)) {
+    const kinds = ['montee', 'descente', 'refus', 'niveau', 'annule'];
+    const bad = r.progressionLog.some((e) => typeOf(e) !== 'object' || !kinds.includes(String((e as Record<string, unknown>).type)));
+    if (bad) errors.push(`${table}/${String(r.id ?? '?')} : champ « progressionLog » contient une décision inconnue`);
   }
   if (typeof r.updatedAt === 'string' && Number.isNaN(Date.parse(r.updatedAt))) {
     errors.push(`${table}/${String(r.id)} : date de modification invalide`);

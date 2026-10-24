@@ -1,12 +1,12 @@
 import type { ComponentChildren } from 'preact';
-import { useEffect, useMemo, useRef, useState } from 'preact/hooks';
+import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { InjuryZone, PlannedExercise, Profile } from '../../data/model';
 import { list } from '../../data/repo';
 import { ZONE_LABEL } from '../../data/labels';
-import { buildSteps, type SetInput } from '../../session/engine';
-import { gentlerAlternative, lastTime, painCheck, proposeProgression } from '../../session/history';
+import type { SetInput } from '../../session/engine';
+import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression } from '../../session/history';
 import {
-  C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
+  C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
   PAIN_HELP_TEXT, PAIN_STOP_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
 } from '../../session/messages';
 import { loadGeneratorInput } from '../../session/program';
@@ -14,6 +14,7 @@ import type { SessionController } from '../../session/store';
 import { formatClock, startDisplayTick } from '../../session/timer';
 import { ReportButton } from '../ReportButton';
 import { FicheImages, FicheView } from './Fiche';
+import { SummaryScreen } from './Summary';
 import { asGenFiches, type PlayerData } from '../session/launch';
 import { playRestEnd, vibrateRestEnd } from '../session/sound';
 import { acquireWakeLock, releaseWakeLock, useWakeLockOk } from '../session/wakelock';
@@ -92,7 +93,9 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   const hasRest = !!state.rest;
 
   // ----- Écran allumé, arrière-plan, minuteur -----
-  useEffect(() => {
+  // Écran allumé : redemandé à l'ouverture, relâché IMMÉDIATEMENT à la fermeture de l'écran (effet de mise en page : son nettoyage
+  // s'exécute pendant le démontage, sans attendre le prochain cycle d'affichage).
+  useLayoutEffect(() => {
     void acquireWakeLock();
     return () => {
       void releaseWakeLock();
@@ -176,7 +179,11 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   // ----- Données de l'exercice courant -----
   const variant = ex ? variantOf(all, ex) : undefined;
   const loadable = isLoadable(variant);
-  const last = useMemo(() => (ex ? lastTime(data.sets, ex.variantId, ctl.sessionId) : null), [ex?.variantId]);
+  const bodyweight = ex ? data.bodyweightOf(ex) : undefined;
+  const last = useMemo(
+    () => (ex ? (bodyweight && variant ? lastTimeEchelon(data.sets, ex.movementId, variant.echelon, ctl.sessionId) : lastTime(data.sets, ex.variantId, ctl.sessionId)) : null),
+    [ex?.variantId],
+  );
   const prog = useMemo(
     () =>
       ex
@@ -188,16 +195,21 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
             equipment: data.equipment ?? undefined,
             echelon: variant?.echelon,
             excludeSessionId: ctl.sessionId,
+            sessions: data.sessions,
+            frozenBySymptom: data.frozen,
+            bodyweight,
           })
         : null,
     [ex?.variantId],
   );
 
   const cursorStep = v.cursor?.step ?? -1;
+  const switched = !!ex && v.exerciseIndex !== null && ex.variantId !== day.exercises[v.exerciseIndex].variantId;
   const initialForm = (): Form => ({
     step: cursorStep,
     loadText: v.loadKg === null ? '' : fmtKg(v.loadKg),
-    reps: ex && last?.reps != null && !v.isWarmupSet ? Math.min(500, last.reps) : (ex?.repsMin ?? 0),
+    // V-PROG-E10 : après tout changement d'échelon, la suggestion est le bas de la fourchette ; sans charge, le suivi est par (fiche, échelon).
+    reps: ex && !v.isWarmupSet && switched ? ex.repsMin : ex && !v.isWarmupSet && (bodyweight ? data.startReps(ex) : last?.reps) != null ? Math.min(500, (bodyweight ? data.startReps(ex) : last?.reps) as number) : (ex?.repsMin ?? 0),
     rir: null,
   });
   const form: Form = formRaw && formRaw.step === cursorStep ? formRaw : initialForm();
@@ -221,7 +233,10 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           : { reps: form.reps, loadKg: loadable || v.loadKg !== null ? curLoad : null, rir: ex.unit === 'reps' ? form.rir : null };
       const r = await ctl.completeSet(input);
       const s = r.suggestion;
-      if (s && s.loadKg !== null && input.loadKg != null && s.loadKg !== input.loadKg) {
+      if (r.echelonChange) {
+        const nom = all.flatMap((f) => f.variantes).find((x) => x.id === r.echelonChange!.variantId)?.nom ?? 'la version suivante';
+        setSuggestion({ exercise: r.entry.exercise, text: r.echelonChange.to > r.echelonChange.from ? ECHELON_TEXT.switchedUp(nom) : ECHELON_TEXT.switchedDown(nom) });
+      } else if (s && s.loadKg !== null && input.loadKg != null && s.loadKg !== input.loadKg) {
         const d = Math.abs(s.loadKg - input.loadKg);
         setSuggestion({ exercise: r.entry.exercise, text: s.loadKg > input.loadKg ? loadMoreText(d) : loadLessText(d) });
       } else if (s && s.action === 'garder') setSuggestion({ exercise: r.entry.exercise, text: 'Garde la même charge.' });
@@ -355,7 +370,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     return <div class="player"><p class="dim player-scroll" role="status">Enregistrement de ta séance…</p></div>;
   }
   if (state.outcome !== 'en_cours') {
-    return <EndScreen ctl={ctl} data={data} onClose={onClose} onEditInjuries={onEditInjuries} />;
+    return <SummaryScreen ctl={ctl} data={data} pregnancy={profile.pregnancy} onClose={onClose} onEditInjuries={onEditInjuries} />;
   }
 
   // ----- Échauffement -----
@@ -433,7 +448,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     if (!last || last.reps === null) return null;
     return last.loadKg !== null ? `Dernière fois : ${fmtKg(last.loadKg)} kg × ${last.reps}` : `Dernière fois : ${last.reps} répétitions`;
   })();
-  const progLine = suggestion && suggestion.exercise === v.exerciseIndex ? suggestion.text : v.setNumber === 1 && prog ? prog.text : null;
+  const progLine = suggestion && suggestion.exercise === v.exerciseIndex ? suggestion.text : v.setNumber === 1 && prog && !prog.echelonProposal ? prog.text : null;
   const showLoad = !v.isWarmupSet && ex.unit !== 'sec' && (loadable || v.loadKg !== null);
   const askRir = !v.isWarmupSet && ex.unit === 'reps';
   const askReps = !v.isWarmupSet && ex.unit !== 'sec';
@@ -572,74 +587,6 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           <button type="button" class="btn btn-primary" onClick={closePain}>Continuer la séance</button>
         </Sheet>
       )}
-    </div>
-  );
-}
-
-// ---------------------------------------------------------------------------------------------
-function EndScreen({ ctl, data, onClose, onEditInjuries }: { ctl: SessionController; data: PlayerData; onClose: () => void; onEditInjuries?: () => void }) {
-  const state = ctl.state;
-  const day = ctl.day;
-  const outcome = state.outcome;
-  const planned = buildSteps(day.exercises).filter((s) => s.kind === 'work').length;
-  const minutes = Math.max(1, Math.round(((state.endedAt ?? state.startedAt) - state.startedAt) / 60000));
-  const [lines, setLines] = useState<string[]>([]);
-  const [pain, setPain] = useState<{ text: string | null; s1: string | null }>({ text: null, s1: null });
-
-  useEffect(() => {
-    void releaseWakeLock();
-    (async () => {
-      try {
-        const [sets, sessions, injuries] = await Promise.all([list('sets'), list('sessions'), list('injuries')]);
-        const out: string[] = [];
-        if (outcome === 'terminee') {
-          day.exercises.forEach((exo, i) => {
-            if (state.skipped.includes(i) && !state.painExercises.includes(i)) return;
-            const variant = variantOf(data.fiches, exo);
-            const p = proposeProgression({
-              exercise: exo, sets, pregnant: data.pregnant, variantTags: variant?.tags, equipment: data.equipment ?? undefined, echelon: variant?.echelon,
-            });
-            if (p.action === 'hausse' || p.action === 'baisse' || p.reason === 'douleur') out.push(`${exName(data.fiches, exo)} : ${p.text}`);
-          });
-        }
-        setLines(out);
-        const check = painCheck(sets, sessions, injuries);
-        setPain({ text: check.proposals[0]?.text ?? null, s1: check.s1Text });
-      } catch {
-        /* ignoré : le bilan reste affiché sans les propositions */
-      }
-    })();
-  }, []);
-
-  return (
-    <div class="player">
-      <div class="player-scroll">
-        {outcome === 'symptome' && (
-          <section class="notice notice-urgent" aria-label="Urgence">
-            <p><strong>{U1_TEXT}</strong></p>
-            <a class="btn btn-danger" href={U1_TEL}>Appeler le 15</a>
-            <p>{R5_STOP_TEXT}</p>
-          </section>
-        )}
-        <h1>{outcome === 'terminee' ? 'Séance terminée' : 'Séance arrêtée'}</h1>
-        {outcome !== 'terminee' && <p class="dim">Les séries déjà faites sont gardées.</p>}
-        <section class="card end-stats">
-          <p><span class="dim small">Durée</span><br /><strong>{minutes} min</strong></p>
-          <p><span class="dim small">Séries faites</span><br /><strong>{state.workSetsDone} sur {planned}</strong></p>
-        </section>
-        {lines.length > 0 && (
-          <section class="card" aria-label="La prochaine fois">
-            <h2>La prochaine fois</h2>
-            <ul class="fiche-liste">{lines.map((l, i) => <li key={i}>{l}</li>)}</ul>
-          </section>
-        )}
-        {pain.text && <div class="notice"><p>{pain.text}</p></div>}
-        {pain.s1 && <div class="notice"><p>{pain.s1}</p></div>}
-        {pain.text && onEditInjuries && <button type="button" class="btn" onClick={onEditInjuries}>Mettre à jour mes blessures</button>}
-      </div>
-      <div class="player-foot">
-        <button type="button" class="btn btn-primary btn-big" onClick={onClose}>Retour à l’accueil</button>
-      </div>
     </div>
   );
 }
