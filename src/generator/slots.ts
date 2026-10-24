@@ -187,7 +187,13 @@ export function fillSlot(slot: SlotKey, st: SessionState, used: Set<string>, pre
   if (!ranked.length) return { slot, tier: 'e', cand: null, schemaRank: 0 };
   let pick = ranked[0];
   if (prevUsed.has(pick.cand.fiche.id)) {
-    const alt = ranked.find((r) => !prevUsed.has(r.cand.fiche.id) && r.tier === pick.tier && r.cand.adapted === pick.cand.adapted && r.key[1] === pick.key[1]);
+    // Sous plafond (zone au niveau 2, grossesse), la rotation ne monte jamais vers une fiche de niveau_min plus haut (V-PRIO, T45).
+    const underCap = pick.cand.capped || ctx.pregnant;
+    const alt = ranked.find(
+      (r) =>
+        !prevUsed.has(r.cand.fiche.id) && r.tier === pick.tier && r.cand.adapted === pick.cand.adapted && r.key[1] === pick.key[1] &&
+        (!underCap || levelIdx(r.cand.fiche.niveauMin) <= levelIdx(pick.cand.fiche.niveauMin)),
+    );
     if (alt) pick = alt;
   }
   return { slot, tier: pick.tier, cand: pick.cand, schemaRank: pick.key[1] as number };

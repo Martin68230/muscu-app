@@ -1,6 +1,6 @@
 // Non-régression du générateur (B4, cardio) : pour les objectifs SANS cardio, le programme doit rester identique à celui
 // produit avant l'ajout du cardio (empreintes enregistrées dans tests/fixtures/generator-baseline.json, générées par le
-// code d'avant B4 avec WRITE_BASELINE=1). Si les fiches changent, régénérer la référence volontairement.
+// code d'avant B4 avec WRITE_BASELINE=1). Si les fiches changent, régénérer la référence volontairement. Référence régénérée le 24/10/2026 après l'arrivée des fiches barre (lot 07) : seuls les programmes du profil F (salle) et 2 cas de grossesse changent.
 // @ts-ignore -- types Node absents du tsconfig de l'app ; ce fichier ne tourne que sous Vitest (Node)
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
