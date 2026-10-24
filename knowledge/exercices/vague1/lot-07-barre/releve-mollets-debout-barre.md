@@ -108,8 +108,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Standing_Barbell_Calf_Raise/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier : pieds à plat (pas de plateforme) ? logo à recadrer)
-- `Standing_Barbell_Calf_Raise/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Standing_Barbell_Calf_Raise/0.jpg` : affichable : non (pieds sur une plateforme (la consigne : pieds à plat au sol, plateforme supprimée) ; la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- `Standing_Barbell_Calf_Raise/1.jpg` : affichable : non (pieds sur une plateforme (la consigne : pieds à plat au sol, plateforme supprimée) ; la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- illustration : public/illustrations/releve-mollets-debout-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Relevé de mollets debout, vue de profil : barre sur le haut du dos, pieds à plat puis pointe des pieds, rack avec barres de sécurité jaunes)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

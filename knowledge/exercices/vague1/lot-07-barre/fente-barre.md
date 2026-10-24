@@ -112,8 +112,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Barbell_Lunge/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier : fente arrière ou avant ? une photo qui contredit la consigne n'est pas affichée)
-- `Barbell_Lunge/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Barbell_Lunge/0.jpg` : affichable : non (image 0 : pieds joints debout (fente avec pas) alors que la consigne est un squat fendu aux pieds fixes ; image 1 : la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; logo de rack lisible)
+- `Barbell_Lunge/1.jpg` : affichable : non (image 0 : pieds joints debout (fente avec pas) alors que la consigne est un squat fendu aux pieds fixes ; image 1 : la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; logo de rack lisible)
+- illustration : public/illustrations/fente-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Squat fendu à la barre, vue de profil : pieds immobiles, rack avec barres de sécurité jaunes)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

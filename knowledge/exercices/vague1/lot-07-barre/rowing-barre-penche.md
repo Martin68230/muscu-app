@@ -107,10 +107,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Bent_Over_Barbell_Row/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante libre ; vérifier dos plat, logo à recadrer)
-- `Bent_Over_Barbell_Row/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Incline_Bench_Pull/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante appuyée ; vérifier)
-- `Incline_Bench_Pull/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Bent_Over_Barbell_Row/0.jpg` : affichable : oui (variante libre (échelon 2), dos plat ; zone floutée sur un logo de rack ; vue le 24/10/2026)
+- `Bent_Over_Barbell_Row/1.jpg` : affichable : oui (variante libre (échelon 2), dos plat ; zone floutée sur un logo de rack ; vue le 24/10/2026)
+- `Incline_Bench_Pull/0.jpg` : affichable : oui (variante appuyée sur banc incliné (échelon 1), barre au sol ; vue le 24/10/2026)
+- `Incline_Bench_Pull/1.jpg` : affichable : oui (variante appuyée sur banc incliné (échelon 1), barre au sol ; vue le 24/10/2026)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

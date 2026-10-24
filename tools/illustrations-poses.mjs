@@ -39,6 +39,22 @@ const stride = (o = {}) => ({
   ...o,
 });
 
+
+// ---- Lot 07 (barre) : barre vue par le bout (bague), rack de profil avec barre de sécurité jaune ----
+const barPlate = (J) => [['plate', J.haN]];
+const rackBack = (x, hookY, safeY, len = 38) => [['rack', x, 1, hookY, safeY, len]];
+// Banc incliné dessiné le long du tronc (dossier, assise, pieds) : s'adapte à la pose
+const benchAlong = (J) => {
+  const dx = J.neck[0] - J.hip[0], dy = J.neck[1] - J.hip[1], L = Math.hypot(dx, dy);
+  const u = [dx / L, dy / L];
+  const n1 = [u[1], -u[0]], n2 = [-u[1], u[0]];
+  const n = n1[1] < n2[1] ? n1 : n2;
+  const o = (pt, k) => [pt[0] + n[0] * 15 + u[0] * k, pt[1] + n[1] * 15 + u[1] * k];
+  const a = o(J.hip, -8), b = o(J.neck, 12);
+  const mid = [(a[0] + b[0]) / 2, (a[1] + b[1]) / 2];
+  return [['lin', [a, b], 10], ['lin', [mid, [mid[0] + 8, 0]], 6], ['lin', [[a[0] - 6, 0], [a[0] + 36, 0]], 6], ['lin', [a, [a[0] + 36, a[1]]], 8]];
+};
+
 export const EXERCICES = [
   // ================= pilote =================
   {
@@ -543,5 +559,77 @@ export const EXERCICES = [
     a: { p: [-40, 120], t: 180, tl: 68, hl: 20, h: 180, sw: 6, hw: 6, legN: { to: [36, 122], bend: 'f' }, legF: { to: [36, 122], bend: 'b' }, armN: { a: [90, 90] }, armF: { a: [92, 92] }, back: [['rect', -140, 30, 300, 190, 0]] },
     b: { p: [-40, 120], t: 180, tl: 68, hl: 20, h: 180, sw: 6, hw: 6, legN: { to: [36, 122], bend: 'f' }, legF: { to: [28, 124], bend: 'b' }, armN: { a: [90, 90] }, armF: { a: [92, 92] }, back: [['rect', -140, 30, 300, 190, 0]], props: [['arrow', [20, 185], [20, 210]]] },
   },
+  // ================= lot 07 (barre) : illustrations des fiches sans photo adaptée =================
+  {
+    id: 'squat-arriere-barre', titre: 'Squat arrière à la barre : barre sur le haut du dos dans un rack à barres de sécurité (jaune), descente jusqu\'aux cuisses parallèles',
+    labels: ['Barre sur le haut du dos', 'Cuisses parallèles au sol'],
+    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: rackBack(-100, 168, 106), props: (J) => [...barPlate(J), ['arrow', [78, 190], [78, 130]]] },
+    b: { p: [-32, 60], t: 62, h: 70, armN: { to: [-5, 120], bend: 'b' }, armF: { to: [-7, 119], bend: 'b' }, legN: { to: [8, A], bend: 'f' }, legF: { to: [2, A], bend: 'f' }, back: rackBack(-100, 168, 106), props: (J) => [...barPlate(J), ['arrow', [78, 90], [78, 150]]] },
+  },
+  {
+    id: 'squat-avant-barre', titre: 'Squat avant à la barre : barre sur l\'avant des épaules, coudes hauts, rack à barres de sécurité (jaune)',
+    labels: ['Barre sur l\'avant des épaules', 'Buste droit, coudes hauts'],
+    a: { p: [0, 112], t: 90, armN: { to: [8, 184], bend: 'f' }, armF: { to: [5, 183], bend: 'f' }, back: rackBack(-100, 168, 106), props: (J) => [...barPlate(J), ['arrow', [78, 190], [78, 130]]] },
+    b: { p: [-28, 62], t: 76, h: 80, armN: { to: [-3, 140], bend: 'f' }, armF: { to: [-5, 139], bend: 'f' }, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, back: rackBack(-100, 168, 108), props: (J) => [...barPlate(J), ['arrow', [78, 90], [78, 150]]] },
+  },
+  {
+    id: 'squat-barre-repere-banc', titre: 'Squat avec repère : on descend jusqu\'à effleurer un banc placé derrière soi, barres de sécurité (jaune) sous le banc',
+    labels: ['Barre sur le dos, banc derrière', 'Effleure le banc, sans te relâcher'],
+    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: [['rect', -112, 36, 80, 10, 3], ['rect', -106, 0, 8, 36, 2], ['rect', -50, 0, 8, 36, 2], ...rackBack(-132, 168, 30, 36)], props: (J) => barPlate(J) },
+    b: { p: [-42, 62], t: 66, h: 72, armN: { to: [-15, 121], bend: 'b' }, armF: { to: [-17, 120], bend: 'b' }, legN: { to: [6, A], bend: 'f' }, legF: { to: [0, A], bend: 'f' }, back: [['rect', -112, 36, 80, 10, 3], ['rect', -106, 0, 8, 36, 2], ['rect', -50, 0, 8, 36, 2], ...rackBack(-132, 168, 30, 36)], props: (J) => [...barPlate(J), ['arrow', [78, 90], [78, 150]]] },
+  },
+  {
+    id: 'souleve-de-terre-sumo-barre', titre: 'Soulevé de terre sumo, vue de face : pieds très écartés, mains étroites à l\'intérieur des genoux',
+    view: 'front', labels: ['Pieds très écartés, mains étroites', 'Debout, barre contre les jambes'],
+    a: { p: [0, 52], tl: 56, legN: { to: [56, A], bend: 'f' }, legF: { to: [-56, A], bend: 'b' }, armN: { to: [14, 24], bend: 'd' }, armF: { to: [-14, 24], bend: 'd' }, props: [['barfront', 22]] },
+    b: { p: [0, 108], legN: { to: [48, A], bend: 'f' }, legF: { to: [-48, A], bend: 'b' }, armN: { to: [15, 102], bend: 'd' }, armF: { to: [-15, 102], bend: 'd' }, props: [['barfront', 102], ['arrow', [112, 60], [112, 140]]] },
+  },
+  {
+    id: 'good-morning-barre', titre: 'Good morning : barre sur le haut du dos dans un rack à barres de sécurité (jaune), les hanches reculent, le dos reste plat',
+    labels: ['Debout, barre sur le haut du dos', 'Hanches en arrière, dos plat'],
+    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: rackBack(-100, 168, 108), props: (J) => barPlate(J) },
+    b: { p: [-45, 99], t: 20, h: 24, armN: { to: [11, 125], bend: 'b' }, armF: { to: [9, 124], bend: 'b' }, legN: { to: [6, A], bend: 'f' }, legF: { to: [0, A], bend: 'f' }, back: rackBack(-100, 168, 108), props: (J) => [...barPlate(J), ['arrow', [-30, 160], [-82, 160]]] },
+  },
+  {
+    id: 'fente-barre', titre: 'Squat fendu à la barre : un pied devant, un pied derrière, les pieds ne bougent pas ; rack à barres de sécurité (jaune)',
+    labels: ['Un pied devant, un derrière', 'Descente droite, genou arrière bas'],
+    a: { p: [0, 104], t: 90, armN: { to: [-3, 171], bend: 'b' }, armF: { to: [-5, 170], bend: 'b' }, legN: { to: [45, A], bend: 'f' }, legF: { to: [-45, 19], bend: 'f', foot: -40 }, back: rackBack(-110, 160, 92), props: (J) => barPlate(J) },
+    b: { p: [0, 64], t: 90, armN: { to: [-3, 131], bend: 'b' }, armF: { to: [-5, 130], bend: 'b' }, legN: { to: [45, A], bend: 'f' }, legF: { to: [-45, 19], bend: 'd', foot: -40 }, back: rackBack(-110, 160, 92), props: (J) => [...barPlate(J), ['arrow', [86, 150], [86, 100]]] },
+  },
+  {
+    id: 'developpe-couche-prise-serree-barre', titre: 'Développé couché prise serrée : banc dans le rack, barres de sécurité (jaune) juste au-dessus de la poitrine, coudes près du buste',
+    labels: ['Barre au-dessus de la poitrine', 'Descente lente, coudes près du buste'],
+    a: { p: [0, 57], t: 180, h: 180, legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, back: [['rect', -92, 36, 172, 10, 3], ['rect', -78, 0, 8, 36, 2], ['rect', 56, 0, 8, 36, 2], ...rackBack(-110, 140, 74, 76)], props: (J) => barPlate(J) },
+    b: { p: [0, 57], t: 180, h: 180, legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { to: [-58, 80], bend: 'f' }, armF: { to: [-60, 80], bend: 'f' }, back: [['rect', -92, 36, 172, 10, 3], ['rect', -78, 0, 8, 36, 2], ['rect', 56, 0, 8, 36, 2], ...rackBack(-110, 140, 74, 76)], props: (J) => [...barPlate(J), ['arrow', [-62, 150], [-62, 112]]] },
+  },
+  {
+    id: 'developpe-incline-barre', titre: 'Développé incliné à la barre : pente douce (environ 30 degrés), barres de sécurité (jaune) juste au-dessus de la poitrine',
+    labels: ['Barre bras tendus, pente douce', 'Descente lente vers le haut du torse'],
+    a: { p: [0, 52], t: 150, h: 150, legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, back: (J) => [...benchAlong(J), ...rackBack(-124, 150, 97, 78)], props: (J) => barPlate(J) },
+    b: { p: [0, 52], t: 150, h: 150, legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { to: [-50, 103], bend: 'f' }, armF: { to: [-52, 103], bend: 'f' }, back: (J) => [...benchAlong(J), ...rackBack(-124, 150, 97, 78)], props: (J) => [...barPlate(J), ['arrow', [-50, 170], [-50, 135]]] },
+  },
+  {
+    id: 'rowing-pendlay-barre', titre: 'Rowing Pendlay : buste parallèle au sol, la barre repart du sol à chaque répétition et monte vers le bas de la poitrine',
+    labels: ['Barre au sol, buste parallèle', 'Barre tirée vers la poitrine'],
+    a: { p: [-70, 86], t: 8, h: 0, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { a: [-92, -88] }, armF: { a: [-90, -86] }, props: (J) => barPlate(J) },
+    b: { p: [-70, 86], t: 8, h: 0, legN: { to: [-8, A], bend: 'f' }, legF: { to: [-14, A], bend: 'f' }, armN: { a: [150, -75] }, armF: { a: [152, -77] }, props: (J) => [...barPlate(J), ['arrow', [60, 30], [60, 80]]] },
+  },
+  {
+    id: 'rowing-barre-ez', titre: 'Rowing à la barre EZ, poitrine appuyée sur un banc incliné : la barre part du sol, les coudes reculent',
+    labels: ['Bras tendus, barre au sol', 'Barre tirée vers la poitrine'],
+    a: { p: [-14, 42], t: 55, h: 40, legN: { to: [-66, A], bend: 'f', foot: -40 }, legF: { to: [-72, A], bend: 'f', foot: -40 }, armN: { a: [-90, -88] }, armF: { a: [-88, -86] }, back: (J) => benchAlong(J), props: (J) => barPlate(J) },
+    b: { p: [-14, 42], t: 55, h: 40, legN: { to: [-66, A], bend: 'f', foot: -40 }, legF: { to: [-72, A], bend: 'f', foot: -40 }, armN: { to: [22, 68], bend: 'b' }, armF: { to: [20, 66], bend: 'b' }, back: (J) => benchAlong(J), props: (J) => [...barPlate(J), ['arrow', [72, 40], [72, 80]]] },
+  },
+  {
+    id: 'extension-triceps-barre-ez-allonge', titre: 'Extension des triceps à la barre EZ, allongé au sol : les coudes restent fixes, la barre descend vers le front',
+    labels: ['Bras tendus au-dessus de la poitrine', 'Coudes fixes, barre vers le front'],
+    a: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, props: (J) => barPlate(J) }),
+    b: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 200] }, armF: { a: [88, 198] }, props: (J) => [...barPlate(J), ['arrow', [-40, 100], [-86, 70]]] }),
+  },
+  {
+    id: 'releve-mollets-debout-barre', titre: 'Relevé de mollets debout avec une barre sur le haut du dos : pieds à plat au sol, on monte sur la pointe des pieds ; rack à barres de sécurité (jaune)',
+    labels: ['Pieds à plat, barre sur le dos', 'Monte sur la pointe des pieds'],
+    a: { p: [0, 112], t: 90, armN: { to: [-3, 179], bend: 'b' }, armF: { to: [-5, 178], bend: 'b' }, back: rackBack(-100, 168, 106), props: (J) => barPlate(J) },
+    b: { p: [0, 126], t: 90, armN: { to: [-3, 193], bend: 'b' }, armF: { to: [-5, 192], bend: 'b' }, legN: { to: [8, 22], bend: 'f', foot: -60 }, legF: { to: [2, 22], bend: 'f', foot: -60 }, back: rackBack(-100, 168, 106), props: (J) => [...barPlate(J), ['arrow', [78, 40], [78, 80]]] },
+  },
 ];
-

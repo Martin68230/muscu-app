@@ -111,8 +111,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Front_Barbell_Squat/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier prise (croisée ou doigts), coudes hauts, logo à recadrer)
-- `Front_Barbell_Squat/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Front_Barbell_Squat/0.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- `Front_Barbell_Squat/1.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- illustration : public/illustrations/squat-avant-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Squat avant, vue de profil : barre sur l'avant des épaules, coudes hauts, rack avec barres de sécurité jaunes)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -108,8 +108,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier la pente et la barre de sécurité)
-- `Barbell_Incline_Bench_Press_-_Medium_Grip/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Barbell_Incline_Bench_Press_-_Medium_Grip/0.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- `Barbell_Incline_Bench_Press_-_Medium_Grip/1.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- illustration : public/illustrations/developpe-incline-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Développé incliné, vue de profil, pente douce : barres de sécurité jaunes juste au-dessus de la poitrine)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

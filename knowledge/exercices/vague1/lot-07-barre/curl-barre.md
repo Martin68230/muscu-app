@@ -103,10 +103,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `EZ-Bar_Curl/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante barre EZ ; vérifier)
-- `EZ-Bar_Curl/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Barbell_Curl/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante barre droite ; vérifier)
-- `Barbell_Curl/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `EZ-Bar_Curl/0.jpg` : affichable : oui (barre EZ, debout, coudes fixes ; vue le 24/10/2026)
+- `EZ-Bar_Curl/1.jpg` : affichable : oui (barre EZ, debout, coudes fixes ; vue le 24/10/2026)
+- `Barbell_Curl/0.jpg` : affichable : oui (barre droite, même geste ; vue le 24/10/2026)
+- `Barbell_Curl/1.jpg` : affichable : oui (barre droite, même geste ; vue le 24/10/2026)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

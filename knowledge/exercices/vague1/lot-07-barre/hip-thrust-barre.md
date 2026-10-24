@@ -112,8 +112,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Barbell_Hip_Thrust/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier banc, barre, alignement ; logo à recadrer)
-- `Barbell_Hip_Thrust/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Barbell_Hip_Thrust/0.jpg` : affichable : oui (banc, barre sur les hanches, dos sur le banc ; zone floutée en haut à droite (maillot d'un tiers) ; vue le 24/10/2026)
+- `Barbell_Hip_Thrust/1.jpg` : affichable : oui (banc, barre sur les hanches, dos sur le banc ; zone floutée en haut à droite (maillot d'un tiers) ; vue le 24/10/2026)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

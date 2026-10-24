@@ -102,7 +102,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- aucune photo (aucune entrée barre EZ dans la base ; illustration originale à demander à dev)
+- aucune photo (aucune entrée barre EZ dans la base free-exercise-db)
+- illustration : public/illustrations/rowing-barre-ez.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Rowing barre EZ, poitrine appuyée sur un banc incliné, vue de profil : barre au sol puis tirée vers la poitrine)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -106,8 +106,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Disques « bumper » ou de grand diamètre pour la hauteur de départ ; sinon cales stables.
 
 ## Photo
-- `Sumo_Deadlift/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier largeur des pieds et dos plat, logo à recadrer)
-- `Sumo_Deadlift/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Sumo_Deadlift/0.jpg` : affichable : non (vue de profil : on ne voit pas la largeur des pieds ni les mains à l'intérieur des genoux ; tableau d'affichage avec logos en arrière-plan)
+- `Sumo_Deadlift/1.jpg` : affichable : non (vue de profil : on ne voit pas la largeur des pieds ni les mains à l'intérieur des genoux ; tableau d'affichage avec logos en arrière-plan)
+- illustration : public/illustrations/souleve-de-terre-sumo-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Soulevé de terre sumo, vue de face : pieds très écartés, mains étroites à l'intérieur des genoux)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

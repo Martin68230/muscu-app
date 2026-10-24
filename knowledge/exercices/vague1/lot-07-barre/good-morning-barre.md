@@ -108,8 +108,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Good_Morning/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier dos plat, barre sur le haut du dos)
-- `Good_Morning/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Good_Morning/0.jpg` : affichable : non (barre vue par le bout très haut, près de la nuque (la consigne : sur les muscles du haut du dos) ; pas de barres de sécurité visibles)
+- `Good_Morning/1.jpg` : affichable : non (barre vue par le bout très haut, près de la nuque (la consigne : sur les muscles du haut du dos) ; pas de barres de sécurité visibles)
+- illustration : public/illustrations/good-morning-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Good morning, vue de profil : barre sur le haut du dos, rack avec barres de sécurité jaunes, buste presque parallèle)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -110,10 +110,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Seated_Barbell_Military_Press/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante assise ; vérifier)
-- `Seated_Barbell_Military_Press/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Standing_Military_Press/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante debout ; vérifier)
-- `Standing_Military_Press/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Seated_Barbell_Military_Press/0.jpg` : affichable : non (vue de dos : on ne voit pas si la barre passe devant ou derrière la tête ; pas de barres de sécurité visibles)
+- `Seated_Barbell_Military_Press/1.jpg` : affichable : non (vue de dos : on ne voit pas si la barre passe devant ou derrière la tête ; pas de barres de sécurité visibles)
+- `Standing_Military_Press/0.jpg` : affichable : oui (variante debout (échelon 2), barre devant la tête ; vue le 24/10/2026)
+- `Standing_Military_Press/1.jpg` : affichable : oui (variante debout (échelon 2), barre devant la tête ; vue le 24/10/2026)
+- légende : Photo : version debout (échelon 2). La version assise se fait dossier droit, barres de sécurité aux clavicules.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

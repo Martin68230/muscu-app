@@ -102,7 +102,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- aucune photo (la base free-exercise-db n'a pas de Pendlay ; illustration originale à demander à dev)
+- aucune photo (la base free-exercise-db n'a pas de Pendlay)
+- illustration : public/illustrations/rowing-pendlay-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Rowing Pendlay, vue de profil : barre au sol, buste parallèle, barre tirée vers le bas de la poitrine)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

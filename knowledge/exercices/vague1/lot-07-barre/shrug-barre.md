@@ -109,8 +109,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Barbell_Shrug/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier)
-- `Barbell_Shrug/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Barbell_Shrug/0.jpg` : affichable : oui (barre au rack (échelon 1), épaules qui montent ; zones floutées sur des logos de rack ; vue le 24/10/2026)
+- `Barbell_Shrug/1.jpg` : affichable : oui (barre au rack (échelon 1), épaules qui montent ; zones floutées sur des logos de rack ; vue le 24/10/2026)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

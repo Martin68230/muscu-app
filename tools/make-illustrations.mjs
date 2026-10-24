@@ -154,6 +154,15 @@ const PROPS = {
   towel: (c, pts) => line(pts, 'tw', 7, c),
   arrow: (c, a, b) => arrow(c, a, b),
   dot: (c, at, r = 4) => { const [a, b] = px(at, c); return `<circle class="ac" cx="${a}" cy="${b}" r="${r}"/>`; },
+  // Barre (lot D) : disque vu de profil = bague autour de la barre vue par le bout ; poteau de rack avec crochet gris et barre de sécurité jaune
+  plate: (c, at, r = 22) => { const [a, b] = px(at, c); return `<circle class="pl" cx="${a}" cy="${b}" r="${r}"/><circle class="plh" cx="${a}" cy="${b}" r="4"/>`; },
+  lin: (c, pts, w = 8) => line(pts, 'prl', w, c),
+  rack: (c, x, side, hookY, safeY, len = 38) => [
+    rect(c, x - 5, 0, 10, 236, 'pr', 2),
+    line([[x, hookY], [x + side * 16, hookY]], 'prl', 6, c),
+    line([[x, safeY], [x + side * len, safeY]], 'sf', 7, c),
+  ].join(''),
+  barfront: (c, y, half = 84) => line([[-half, y], [half, y]], 'db', 5, c, ' stroke-linecap="butt"') + rect(c, -half - 4, y - 22, 9, 44, 'pl2', 2) + rect(c, half - 5, y - 22, 9, 44, 'pl2', 2),
   ring: (c, at, r = 18) => { const [a, b] = px(at, c); return `<circle class="arc" cx="${a}" cy="${b}" r="${r}"/>`; },
 };
 
@@ -200,7 +209,7 @@ function figure(pose, view, c) {
   return out.join('');
 }
 
-const STYLE = `.bg{fill:#eef1f6}.gr{stroke:#a9b3c4;stroke-width:3;stroke-linecap:round}.bn{stroke:#1f2d4d;fill:none;stroke-linecap:round;stroke-linejoin:round}.bf{stroke:#7f8cab;fill:none;stroke-linecap:round;stroke-linejoin:round}.bh{fill:#1f2d4d}.pr{fill:#c9d1de;stroke:#9aa5b8;stroke-width:1.5}.wb{fill:#dbe1ec}.prl{stroke:#9aa5b8;fill:none;stroke-linecap:round}.ac{stroke:#e8590c;fill:#e8590c;stroke-linecap:round}polyline.ac{fill:none}.arw{stroke:#e8590c;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round}.arc{stroke:#e8590c;stroke-width:3;fill:none;stroke-dasharray:6 5}.tw{stroke:#e0a93c;fill:none;stroke-linecap:round;stroke-linejoin:round}.db{stroke:#4a5568}.dbi{stroke:#8793a8}.bag{fill:#3b7a57;stroke:#285a3f;stroke-width:1.5}.bagp{fill:#2f6849}.lbl{font:600 13px system-ui,sans-serif;fill:#5b6780}@media (prefers-color-scheme:dark){.bg{fill:#1b2233}.gr{stroke:#4a5670}.bn{stroke:#e8edf7}.bf{stroke:#8a97b5}.bh{fill:#e8edf7}.pr{fill:#2d3750;stroke:#4a5670}.wb{fill:#252e44}.prl{stroke:#56637f}.ac{stroke:#ff8a3d;fill:#ff8a3d}.arw,.arc{stroke:#ff8a3d}.tw{stroke:#d9b56a}.db{stroke:#b5bfd3}.dbi{stroke:#7b87a0}.lbl{fill:#9fb0cf}}`;
+const STYLE = `.bg{fill:#eef1f6}.gr{stroke:#a9b3c4;stroke-width:3;stroke-linecap:round}.bn{stroke:#1f2d4d;fill:none;stroke-linecap:round;stroke-linejoin:round}.bf{stroke:#7f8cab;fill:none;stroke-linecap:round;stroke-linejoin:round}.bh{fill:#1f2d4d}.pr{fill:#c9d1de;stroke:#9aa5b8;stroke-width:1.5}.wb{fill:#dbe1ec}.prl{stroke:#9aa5b8;fill:none;stroke-linecap:round}.ac{stroke:#e8590c;fill:#e8590c;stroke-linecap:round}polyline.ac{fill:none}.arw{stroke:#e8590c;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round}.arc{stroke:#e8590c;stroke-width:3;fill:none;stroke-dasharray:6 5}.tw{stroke:#e0a93c;fill:none;stroke-linecap:round;stroke-linejoin:round}.db{stroke:#4a5568}.dbi{stroke:#8793a8}.bag{fill:#3b7a57;stroke:#285a3f;stroke-width:1.5}.bagp{fill:#2f6849}.pl{fill:#4a5568;fill-opacity:.3;stroke:#4a5568;stroke-width:5}.plh{fill:#4a5568}.pl2{fill:#4a5568;stroke:#2d3748;stroke-width:1}.sf{stroke:#e0a93c;fill:none;stroke-linecap:round}.lbl{font:600 13px system-ui,sans-serif;fill:#5b6780}@media (prefers-color-scheme:dark){.pl{fill:#b5bfd3;stroke:#b5bfd3}.plh{fill:#b5bfd3}.pl2{fill:#b5bfd3;stroke:#e8edf7}.sf{stroke:#d9b56a}.bg{fill:#1b2233}.gr{stroke:#4a5670}.bn{stroke:#e8edf7}.bf{stroke:#8a97b5}.bh{fill:#e8edf7}.pr{fill:#2d3750;stroke:#4a5670}.wb{fill:#252e44}.prl{stroke:#56637f}.ac{stroke:#ff8a3d;fill:#ff8a3d}.arw,.arc{stroke:#ff8a3d}.tw{stroke:#d9b56a}.db{stroke:#b5bfd3}.dbi{stroke:#7b87a0}.lbl{fill:#9fb0cf}}`;
 
 /** Construit le SVG complet : départ à gauche, arrivée à droite (et une troisième image si ex.c existe). */
 export function buildSvg(ex) {

@@ -117,8 +117,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Banc ou box de repère : stable, large, antidérapant, calé ; vérifie-le en t'asseyant dessus avant la première série.
 
 ## Photo
-- `Box_Squat/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier : la photo montre-t-elle un contact léger ou un relâchement assis ? sinon écarter)
-- `Box_Squat/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Box_Squat/0.jpg` : affichable : non (le pratiquant est assis sur la box, relâché (la consigne : effleurer sans se relâcher), barre vue par le bout, cadrage différent entre les deux images)
+- `Box_Squat/1.jpg` : affichable : non (le pratiquant est assis sur la box, relâché (la consigne : effleurer sans se relâcher), barre vue par le bout, cadrage différent entre les deux images)
+- illustration : public/illustrations/squat-barre-repere-banc.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Squat avec repère, vue de profil : on effleure le banc derrière soi, barres de sécurité jaunes sous le banc)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

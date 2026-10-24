@@ -113,10 +113,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Close-Grip_EZ-Bar_Press/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier)
-- `Close-Grip_EZ-Bar_Press/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Close-Grip_Barbell_Bench_Press/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante barre droite ; vérifier)
-- `Close-Grip_Barbell_Bench_Press/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Close-Grip_EZ-Bar_Press/0.jpg` : affichable : non (logo d'un fabricant de banc lisible sur le banc, deux images de cadrage différent, pas de barres de sécurité visibles)
+- `Close-Grip_EZ-Bar_Press/1.jpg` : affichable : non (logo d'un fabricant de banc lisible sur le banc, deux images de cadrage différent, pas de barres de sécurité visibles)
+- `Close-Grip_Barbell_Bench_Press/0.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- `Close-Grip_Barbell_Bench_Press/1.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
+- illustration : public/illustrations/developpe-couche-prise-serree-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Développé couché prise serrée, vue de profil : banc dans le rack, barres de sécurité jaunes juste au-dessus de la poitrine ; barre représentée par un disque vu par le bout)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

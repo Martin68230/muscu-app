@@ -111,8 +111,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `EZ-Bar_Skullcrusher/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier : barre vers le front, coudes fixes ; sinon `non`)
-- `EZ-Bar_Skullcrusher/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `EZ-Bar_Skullcrusher/0.jpg` : affichable : non (logo d'un fabricant de banc lisible, la barre passe derrière la tête (la consigne au sol : vers le front), cadrages différents)
+- `EZ-Bar_Skullcrusher/1.jpg` : affichable : non (logo d'un fabricant de banc lisible, la barre passe derrière la tête (la consigne au sol : vers le front), cadrages différents)
+- illustration : public/illustrations/extension-triceps-barre-ez-allonge.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Extension des triceps, allongé au sol, vue de profil : coudes fixes, barre qui descend vers le front)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

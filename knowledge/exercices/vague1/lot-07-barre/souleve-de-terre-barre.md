@@ -115,10 +115,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Disques « bumper » ou de grand diamètre pour la variante au sol : sinon rehausse la barre sur des cales stables, jamais sur des objets instables.
 
 ## Photo
-- `Barbell_Deadlift/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier dos plat, barre proche des jambes, logo à recadrer)
-- `Barbell_Deadlift/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Rack_Pulls/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante depuis le rack ; vérifier hauteur de barre)
-- `Rack_Pulls/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Barbell_Deadlift/0.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre contre les jambes ; zone floutée sur un logo de rack ; vue le 24/10/2026)
+- `Barbell_Deadlift/1.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre contre les jambes ; zone floutée sur un logo de rack ; vue le 24/10/2026)
+- `Rack_Pulls/0.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
+- `Rack_Pulls/1.jpg` : affichable : non (logo « Hammer Strength » lisible sur le rack, barre vue par le bout, hauteur de départ pas vérifiable)
+- légende : Photo : départ du sol (échelon 2). Au rack, la barre part à hauteur du genou.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

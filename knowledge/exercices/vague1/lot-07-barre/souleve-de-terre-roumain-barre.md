@@ -109,10 +109,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Romanian_Deadlift/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier dos plat, barre près des jambes, logo à recadrer)
-- `Romanian_Deadlift/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Stiff-Legged_Barbell_Deadlift/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; pour la variante jambes tendues)
-- `Stiff-Legged_Barbell_Deadlift/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Romanian_Deadlift/0.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre près des jambes ; vue le 24/10/2026)
+- `Romanian_Deadlift/1.jpg` : affichable : oui (départ du sol (échelon 2), dos plat, barre près des jambes ; vue le 24/10/2026)
+- `Stiff-Legged_Barbell_Deadlift/0.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
+- `Stiff-Legged_Barbell_Deadlift/1.jpg` : affichable : oui (jambes presque tendues (échelon 2) ; zones floutées sur des logos de rack ; vue le 24/10/2026)
+- légende : Photos : départ du sol. Au rack (échelon 1), la barre part à hauteur du genou.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

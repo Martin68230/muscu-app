@@ -116,10 +116,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
 
 ## Photo
-- `Barbell_Bench_Press_-_Medium_Grip/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; vérifier : barre de sécurité visible ? sinon mention)
-- `Barbell_Bench_Press_-_Medium_Grip/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
-- `Floor_Press/0.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; variante au sol ; vérifier)
-- `Floor_Press/1.jpg` : affichable : à vérifier (candidat free-exercise-db non vu ; WebP à créer par dev ; idem)
+- `Barbell_Bench_Press_-_Medium_Grip/0.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; développé couché sans barres de sécurité visibles, barre au-dessus du visage)
+- `Barbell_Bench_Press_-_Medium_Grip/1.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; développé couché sans barres de sécurité visibles, barre au-dessus du visage)
+- `Floor_Press/0.jpg` : affichable : oui (développé au sol, échelon 1 (sol dans le rack) ; barre vue par le bout, vue le 24/10/2026)
+- `Floor_Press/1.jpg` : affichable : oui (développé au sol, échelon 1 (sol dans le rack) ; barre vue par le bout, vue le 24/10/2026)
+- légende : Photo : version au sol (échelon 1). La version sur banc se fait avec barres de sécurité.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
