@@ -1,5 +1,5 @@
 // Dose de base (V-DOSE §3.2, V-TEMPS §3.3) puis plafonds de sécurité (appliquerPlafonds, V-PRIO §6.0 : P-CAP, P-GROS).
-import { DOSE, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
+import { DOSE, FIXED_DOSE, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
 import { isChargeable, isUnilateral, type Ctx } from './context';
 import { cappingZones, type Candidate } from './safety';
 import { PILLAR_SLOTS } from './slots';
@@ -32,6 +32,21 @@ function baseDose(c: Candidate, slot: SlotKey, ctx: Ctx) {
   const v = c.variant;
   const role = roleOf(slot);
   const unilateral = isUnilateral(v);
+  const fixed = FIXED_DOSE[c.fiche.id];
+  if (fixed) {
+    // N4 / Q23 : lancers et gainage dynamique. Plafond fixe, pas de réserve demandée (jamais d'échec).
+    return {
+      sets: fixed.sets,
+      repsMin: fixed.reps[0],
+      repsMax: fixed.reps[1],
+      holdSec: null,
+      unit: fixed.unit,
+      restSec: fixed.restSec,
+      rirTarget: TEMPS_RIR_PLACEHOLDER,
+      rirAsked: false,
+      role,
+    } as const;
+  }
   const temps = TEMPS[c.fiche.schema];
   if (temps) {
     const row = ctx.level === 'debutant' ? temps.debutant : temps.autres;
@@ -124,6 +139,12 @@ export function buildExercise(c: Candidate, slot: SlotKey, tier: Tier, ctx: Ctx)
     cappedLabel: capZones.length ? `Charge maintenue : gêne ${capZones.join(', ')}` : ctx.pregnant ? 'Charge maintenue : grossesse ou post-partum' : null,
   };
   const capped = appliquerPlafonds(ex, ctx);
+  if (FIXED_DOSE[c.fiche.id]) {
+    // N4 : jamais de charge à progresser pour ces fiches, même si une variante portait un jour un tag chargeable.
+    capped.chargeable = false;
+    capped.startLoadKg = null;
+    return capped;
+  }
   capped.startLoadKg = startLoad({ ...c, capped: capped.capped }, ctx);
   return capped;
 }

@@ -160,6 +160,41 @@ export const TEMPS: Record<string, TempsRow> = {
 export const TEMPS_RIR_PLACEHOLDER = 3;
 
 // ---------------------------------------------------------------------------------------------
+// Doses fixes par fiche (N4 du recontrôle lot-08-ballons-roue, docs/QUESTIONS.md Q23) — NON SOURCÉ en entier
+// ---------------------------------------------------------------------------------------------
+// Repères de coach validés par kine, écrits dans chaque fiche (section dosage) ; choix prudent tant que l'utilisateur
+// n'a pas répondu à Q23. Ils passent AVANT V-TEMPS et V-DOSE : ni les 10-15 répétitions de V-DOSE, ni le maintien
+// de 20-30 s de la ligne `gainage` ne s'appliquent à ces fiches. Ce sont des PLAFONDS (la série s'arrête dès que la
+// vitesse du lancer baisse ou que le dos se creuse) : pas de réserve demandée, jamais d'échec, jamais de charge à progresser.
+// Identification par id de fiche (liste explicite) : le tag `medecine_ball` seul ne suffit pas (porté, squat, bûcheron
+// et rotation assise au ballon lesté gardent leur règle habituelle).
+export interface FixedDoseRow {
+  unit: 'reps' | 'reps_par_cote';
+  reps: [number, number];
+  sets: number;
+  restSec: number;
+}
+/** Lancers au ballon lesté contre un mur : 2 séries de 6 à 8 lancers, repos 60 à 90 s -> 90 s (haut de la fourchette, prudent). NON SOURCÉ (Q23). */
+export const LANCER_DOSE: FixedDoseRow = { unit: 'reps', reps: [6, 8], sets: 2, restSec: 90 };
+/** Lancer en rotation : même dose, par côté. NON SOURCÉ (Q23). */
+export const LANCER_ROTATION_DOSE: FixedDoseRow = { ...LANCER_DOSE, unit: 'reps_par_cote' };
+/** Gainage dynamique (roue, roulé, genoux-poitrine) : 2 séries, repos 60 s, au plus 6 à 8 répétitions lentes. NON SOURCÉ (fiches, C6 / N4). */
+export const GAINAGE_DYNAMIQUE_DOSE: FixedDoseRow = { unit: 'reps', reps: [6, 8], sets: 2, restSec: 60 };
+/** Planche avec cercles : 2 séries, repos 60 s, 5 à 8 cercles par sens au plus. NON SOURCÉ (fiche, C5 / N4). */
+export const PLANCHE_CERCLES_DOSE: FixedDoseRow = { unit: 'reps_par_cote', reps: [5, 8], sets: 2, restSec: 60 };
+/** Id de fiche -> dose fixe. */
+export const FIXED_DOSE: Record<string, FixedDoseRow> = {
+  'lancer-poitrine-mur': LANCER_DOSE,
+  'lancer-bas-haut-mur': LANCER_DOSE,
+  'squat-lancer-mur': LANCER_DOSE,
+  'lancer-rotation-mur': LANCER_ROTATION_DOSE,
+  'roue-abdos': GAINAGE_DYNAMIQUE_DOSE,
+  'rollout-ballon': GAINAGE_DYNAMIQUE_DOSE,
+  'genoux-poitrine-ballon': GAINAGE_DYNAMIQUE_DOSE,
+  'planche-cercles-ballon': PLANCHE_CERCLES_DOSE,
+};
+
+// ---------------------------------------------------------------------------------------------
 // Plafonds de sécurité (V-PRIO §6.0 : P-CAP, P-GROS, P-ZONE3)
 // ---------------------------------------------------------------------------------------------
 /** P-GROS (G5 : repères HAS OK, codage PROVISOIRE ; « famille ramenée à sante » NON SOURCÉ). */

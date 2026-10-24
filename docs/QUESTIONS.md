@@ -135,6 +135,7 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 - **Contexte** : aucune ligne du générateur ne couvre les lancers (V-DOSE ne connaît pas `medecine_ball`).
 - **Choix prudent appliqué** : repère de coach conservé comme **plafond** : 2 séries de 6 à 8 lancers, repos 60 à 90 s, arrêt dès que la vitesse baisse, ballon léger, mur à 2 m au moins, pas de rattrapage risqué. NON SOURCÉ. `dev` ne doit pas appliquer les 10 à 15 répétitions de V-DOSE à ces fiches.
 - **Option alternative** : une règle « lancer » dédiée dans le générateur.
+- **Code** : codé avec le choix prudent le 24/10/2026 (`FIXED_DOSE` dans src/generator/config.ts, N4 du recontrôle lot-08) : lancers 2 x 6-8 (par côté pour la rotation), repos 90 s ; gainage dynamique (roue, roulé, genoux-poitrine) 2 x 6-8, repos 60 s ; planche-cercles 2 x 5-8 par sens, repos 60 s ; sans réserve demandée ni charge. Réponse de l'utilisateur toujours en attente.
 
 ## Q24. Doublons ballon lesté / ballon de gym avec les fiches existantes (24/10/2026, coach puis kine)
 - **Choix prudent appliqué** : une fiche par matériel, aucune fusion (on ne touche pas aux fiches déjà vérifiées). Fusion possible plus tard (décision de `dev` et de l'utilisateur).
