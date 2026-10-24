@@ -9,7 +9,12 @@ muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis, abdominaux, mollets]
 source_brouillon: []
 statut: complete_kine
+ecartee: 2026-10-24
 ---
+## ÉCARTÉE du lot 07 (choix prudent de kine, 24/10/2026, écart S4 du contrôle relecteur)
+**Cette fiche n'est utilisée ni par le générateur ni par la bibliothèque.** Elle est conservée ici pour mémoire. Motif : barre chargée sur le dos, une jambe devant et une derrière, seul. Au plus bas, la barre est déjà au niveau des barres de sécurité et la personne ne peut pas descendre davantage pour la déposer ; aucune manœuvre de secours crédible n'a pu être décrite (se dégager en avançant est impossible en fente). Le squat arrière, le squat avant et le squat avec repère couvrent le schéma à la barre ; la fente arrière sans barre (fiche fente-arriere) et le squat fendu aux haltères restent disponibles.
+Avant toute réintroduction : décision de l'utilisateur, nouvelle rédaction par kine, contrôle de relecteur.
+
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
 

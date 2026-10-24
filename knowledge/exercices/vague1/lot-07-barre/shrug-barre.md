@@ -56,9 +56,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | garder | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:shrug-barre-rack |
-| Hanche | garder | garder | retirer: sans-zone:shrug-barre-rack |
-| Cheville | garder | garder | retirer: sans-zone:shrug-barre-rack |
+| Genou | garder | garder | retirer |
+| Hanche | garder | garder | retirer |
+| Cheville | garder | garder | retirer |
 | Cou | adapter: amplitude:reduite | retirer | retirer |
 
 **Notes**
@@ -68,9 +68,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - cou-n2 : les trapèzes s'attachent au cou et la charge tire dessus : retiré (choix prudent NON SOURCÉ).
 - dos-n1 : barre prise au rack, sans reprise du sol.
 - dos-n2 : barre prise au rack, charge qui ne monte pas (R2).
-- genou-n3 : debout, sans flexion, jambes sans effort : la variante au rack reste permise.
-- hanche-n3 : debout, sans flexion, jambes sans effort : la variante au rack reste permise.
-- cheville-n3 : debout, sans flexion, jambes sans effort : la variante au rack reste permise.
+- genou-n3 : debout avec une barre chargée, la charge passe par les jambes : la variante sollicite la zone, retirée (pas de variante sans-zone ; règle R3 de regles-securite-communes.md).
+- hanche-n3 : debout avec une barre chargée, la charge passe par les jambes : la variante sollicite la zone, retirée (pas de variante sans-zone ; règle R3 de regles-securite-communes.md).
+- cheville-n3 : debout avec une barre chargée, la charge passe par les jambes : la variante sollicite la zone, retirée (pas de variante sans-zone ; règle R3 de regles-securite-communes.md).
 - grossesse : kine retire la proposition de coach (charge légère) : la barre droite pèse souvent 20 kg, plus que ce qu'un étalonnage léger donne (NON SOURCÉ) ; aucun remplaçant fixe (le générateur choisit un autre exercice du schéma). Post-partum : G7.
 
 **Grossesse** : retirer

@@ -55,23 +55,23 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Dos | garder | adapter: charge:legere | retirer |
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | adapter: charge:legere | retirer | retirer |
-| Poignet | adapter: variante:developpe-couche-prise-serree-barre-ez | retirer | retirer |
-| Genou | garder | garder | retirer: sans-zone:developpe-couche-prise-serree-barre-ez |
-| Hanche | garder | garder | retirer: sans-zone:developpe-couche-prise-serree-barre-ez |
-| Cheville | garder | garder | retirer: sans-zone:developpe-couche-prise-serree-barre-ez |
+| Poignet | adapter: charge:legere | retirer | retirer |
+| Genou | garder | garder | retirer |
+| Hanche | garder | garder | retirer |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
 - general : La barre seule pèse souvent 20 kg (parfois moins) : c'est déjà une charge. Si elle est trop lourde pour garder le geste propre, passe à la version aux haltères (NON SOURCÉ ; question Q12 de docs/QUESTIONS.md).
 - coude-n1 : les triceps travaillent fort : charge légère, descente lente.
 - coude-n2 : coudes sensibles : retiré.
-- poignet-n1 : barre EZ (angle plus doux) à la place de la barre droite.
+- poignet-n1 : charge légère (la case ne dépend pas du matériel : tout le monde n'a pas de barre EZ) ; si tu as une barre EZ, la variante EZ, à l'angle plus doux, est le choix à préférer (NON SOURCÉ), poignets droits sous la barre.
 - poignet-n2 : prise serrée : retiré.
 - epaule-n1 : descends moins bas.
 - epaule-n2 : retiré (le remplaçant serait adapté par la même zone).
-- genou-n3 : développé sur banc, jambes posées : la variante barre EZ reste permise (la variante barre droite est retirée par simplicité).
-- hanche-n3 : développé sur banc, jambes posées : la variante barre EZ reste permise (la variante barre droite est retirée par simplicité).
-- cheville-n3 : développé sur banc, jambes posées : la variante barre EZ reste permise (la variante barre droite est retirée par simplicité).
+- genou-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- hanche-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- cheville-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
 - grossesse : couché sur le dos avec une barre au-dessus de la poitrine : retiré (G4) ; remplaçant : extension triceps assis aux haltères, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:extension-triceps-assis-halteres

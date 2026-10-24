@@ -80,10 +80,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Sécurité pour l'utilisateur seul**
 - Départ au rack pour ne pas avoir à soulever la barre dans une mauvaise position ; supports bloqués. Le rack ne te protège pas d'un dos qui s'arrondit.
 - Dès que le dos commence à s'arrondir : pose la barre en contrôle (rack ou sol) ; la série est finie.
-- Prise : deux paumes vers toi ; prise mixte et crochet non proposés. Chaussures plates, sol non glissant.
+- Prise : deux paumes vers les cuisses ; prise mixte et crochet non proposés. Chaussures plates, sol non glissant.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger. Aucune « dernière répétition de force ».
-- Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut aider, mais il ne remplace jamais les barres de sécurité.
+- Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut surveiller, mais il ne remplace pas ta propre vigilance ; il n'y a pas de barres de sécurité pour ce mouvement : en cas de doute, tu reposes la barre au sol, simplement.
 
 **Points d'attention (kine)**
 - C'est la charnière de la hanche qui travaille, pas le dos : le dos reste « naturellement droit » (courbures normales), les fesses reculent, la barre glisse contre les cuisses. Une barre qui ne se contrôle plus avec le dos droit est trop lourde.

@@ -56,9 +56,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | adapter: charge:legere | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:rowing-barre-penche-appuye |
-| Hanche | garder | garder | retirer: sans-zone:rowing-barre-penche-appuye |
-| Cheville | garder | garder | retirer: sans-zone:rowing-barre-penche-appuye |
+| Genou | garder | garder | retirer |
+| Hanche | garder | garder | retirer |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -67,16 +67,16 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - dos-n2 : variante appuyée, charge qui ne monte pas (R2).
 - epaule-n2 : tirage lourd : retiré ; remplaçant non proposé (rowing aux haltères adapté par la même zone).
 - poignet-n1 : prise avec les doigts ; poignets droits.
-- genou-n3 : jambes en appui, sans effort propre : la variante nommée reste permise.
-- hanche-n3 : jambes en appui, sans effort propre : la variante nommée reste permise.
-- cheville-n3 : jambes en appui, sans effort propre : la variante nommée reste permise.
+- genou-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- hanche-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- cheville-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
 - grossesse : barre lourde, couché sur le ventre ou penché en avant (pression abdominale) : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : rowing un bras aux haltères, avec appui. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:rowing-unilateral-haltere
 **Version plus douce** : rowing-unilateral-haltere
 
 **Sécurité pour l'utilisateur seul**
-- Variante appuyée (échelon 1) : banc incliné stable (calé), réglé assez haut pour que les bras tendus ne touchent pas le sol ; la barre est prise au sol, bras pendants, sans te pencher pour la saisir.
+- Variante appuyée (échelon 1) : banc incliné stable (calé), réglé assez haut pour que les bras tendus ne touchent pas le sol ; la barre est prise au sol, bras pendants, sans te pencher pour la saisir. Départ au sol, puis la barre reste en l'air pendant toute la série (à quelques centimètres du sol, sans le toucher entre les répétitions) ; tu ne la reposes qu'en fin de série ou si tu arrêtes.
 - Variante libre (échelon 2) : charge que tu contrôles dos droit ; pose la barre au sol dès que le dos s'arrondit ou que le buste se relève pour finir la répétition.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger. Chaussures plates, sol non glissant.

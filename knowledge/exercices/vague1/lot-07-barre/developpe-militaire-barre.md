@@ -21,8 +21,8 @@ statut: complete_kine
 ## Consignes
 1. Règle les supports et les barres de sécurité à hauteur de tes épaules (sécurités juste sous la barre quand elle est sur la poitrine).
 2. Prends la barre un peu plus large que les épaules, avant-bras verticaux ; barre sur le haut de la poitrine et les épaules, coudes un peu devant la barre.
-3. Pousse la barre droit vers le haut en passant la tête légèrement en arrière puis « sous » la barre quand elle passe le front ; verrouille doucement en haut, bras au-dessus des oreilles.
-4. Redescends en contrôle jusqu'à la clavicule en reculant légèrement la tête pour laisser passer la barre.
+3. Pousse la barre droit vers le haut en reculant légèrement le menton (tête droite, sans cambrer la nuque) pour laisser passer la barre, puis en avançant la tête « sous » la barre quand elle a passé le front ; verrouille doucement en haut, bras au-dessus des oreilles.
+4. Redescends en contrôle jusqu'à la clavicule en reculant légèrement le menton pour laisser passer la barre, sans cambrer la nuque.
 5. Fin de série : replace la barre sur les supports du rack.
 
 ## Points d'attention
@@ -52,13 +52,13 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: variante:developpe-militaire-barre-assis | adapter: variante:developpe-militaire-barre-assis | retirer |
+| Dos | adapter: variante:developpe-militaire-barre-assis | retirer: remplacant:developpe-epaules-halteres | retirer |
 | Épaule | adapter: charge:legere | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:developpe-militaire-barre-assis |
+| Genou | garder | garder | retirer |
 | Hanche | garder | garder | retirer |
-| Cheville | garder | garder | retirer: sans-zone:developpe-militaire-barre-assis |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -66,10 +66,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - epaule-n1 : charge légère ; amplitude sans gêne.
 - epaule-n2 : le remplaçant (développé épaules aux haltères) serait lui-même adapté par la même zone : retrait sans remplaçant.
 - dos-n1 : variante assise, dos appuyé.
-- dos-n2 : variante assise, charge qui ne monte pas (R2).
+- dos-n2 : charge au-dessus de la tête qui comprime la colonne, assis ou debout : retiré par prudence, comme le squat et le roumain à ce niveau (choix de kine, NON SOURCÉ) ; remplaçant : développé épaules aux haltères, charge légère.
 - cou-n1 : ne force pas la tête en arrière.
-- genou-n3 : développé assis, pieds posés : la variante assise reste permise ; la hanche, fléchie sur le banc, est retirée au niveau 3.
-- cheville-n3 : développé assis, pieds posés : la variante assise reste permise ; la hanche, fléchie sur le banc, est retirée au niveau 3.
+- genou-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- cheville-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
 - grossesse : barre au-dessus de la tête, équilibre et blocage de la respiration : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : développé épaules assis aux haltères, charge légère (G4 : adapter). Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres

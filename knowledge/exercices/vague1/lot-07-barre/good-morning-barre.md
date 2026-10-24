@@ -27,7 +27,7 @@ statut: complete_kine
 ## Points d'attention
 - Mouvement avancé : levier long sur le bas du dos, à réserver aux personnes qui maîtrisent déjà le roumain et le squat à la barre.
 - La charge reste bien plus légère que pour les autres mouvements à la barre.
-- Barres de sécurité obligatoires : si le dos lâche, la barre doit pouvoir être déposée sur elles en te redressant.
+- Barres de sécurité obligatoires, mais elles ne protègent pas le bas du dos : elles ne servent que si la barre tombe ou si tu dois la lâcher. Sortie de secours si le dos lâche ou tire en bas du mouvement : ne te redresse pas en force avec la barre ; fléchis les genoux et descends les hanches (comme pour t'asseoir) jusqu'à ce que la barre se pose sur les barres de sécurité, puis dégage-toi par l'avant. Essaie cette manœuvre à vide avant la première série.
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
 ## Erreurs fréquentes
@@ -78,8 +78,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Sécurité pour l'utilisateur seul**
 - Le matériel « rack » de l'app veut dire : rack ou cage à squat avec barres de sécurité (ou goujons). Sans barres de sécurité, ne coche pas « rack » et ne fais pas cette variante.
 - Barres de sécurité réglées **avant la première série** à la hauteur de la barre quand ton buste est presque parallèle au sol, moins quelques centimètres ; testées à vide avec la barre seule (descends à ta position la plus basse, vérifie que la barre peut s'y poser). Si tu ne peux pas régler les barres à cette hauteur : ne fais pas ce mouvement.
-- Charge nettement plus légère que celle du squat. Dès que le dos s'arrondit ou que la barre glisse sur le dos : remonte le buste, avance vers le rack et repose la barre.
-- Si la barre glisse vers la nuque pendant que tu es penché : arrête, redresse-toi, ne la rattrape pas avec les mains.
+- Charge nettement plus légère que celle du squat. Dès que le dos s'arrondit, que le bas du dos tire ou que la barre glisse : arrête la série ; si tu gardes le contrôle et sans douleur vive, remonte lentement le buste et repose la barre sur le rack ; sinon, sortie de secours (genoux fléchis, hanches basses, barre sur les barres de sécurité).
+- Si la barre glisse vers la nuque pendant que tu es penché : ne la rattrape pas avec les mains et ne te redresse pas d'un coup : sortie de secours (genoux fléchis, hanches basses, barre sur les barres de sécurité).
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger. Arrête la série avant que le dos se fatigue.
 - Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut aider, mais il ne remplace jamais les barres de sécurité.

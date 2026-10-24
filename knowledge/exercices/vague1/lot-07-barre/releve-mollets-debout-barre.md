@@ -18,7 +18,7 @@ statut: complete_kine
 | releve-mollets-debout-barre-sol | Pieds à plat sur le sol | 1 | intermediaire | barre, disques, rack | Barre sur le haut du dos comme au squat, sortie du rack, pieds à largeur du bassin, plats au sol ; barres de sécurité du rack réglées. |
 
 ## Consignes
-1. Règle le rack comme pour un squat (barres de sécurité testées) ; sors la barre du rack en la posant sur le haut du dos et recule d'un pas, pieds à la largeur du bassin.
+1. Règle le rack comme pour un squat (barres de sécurité juste sous la barre quand tu fléchis légèrement les genoux, pieds à plat, en quart de squat ; testées à vide) ; sors la barre du rack en la posant sur le haut du dos et recule d'un pas, pieds à la largeur du bassin.
 2. Monte sur la pointe des pieds le plus haut possible, genoux tendus mais pas verrouillés.
 3. Marque un court arrêt en haut, sans balancer le buste.
 4. Redescends lentement jusqu'à sentir l'étirement des mollets (talons au sol).
@@ -74,7 +74,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 **Sécurité pour l'utilisateur seul**
 - Le matériel « rack » de l'app veut dire : rack ou cage à squat avec barres de sécurité (ou goujons). Sans barres de sécurité, ne coche pas « rack » et ne fais pas cette variante.
-- Rack stable, barres de sécurité réglées **avant la première série** à une hauteur où la barre peut se poser sans te gêner, testées à vide ; reste au centre du rack.
+- Rack stable, barres de sécurité réglées **avant la première série** juste sous la barre quand tu fléchis légèrement les genoux (quart de squat, pieds à plat), testées à vide avec la barre seule ; reste au centre du rack. Sortie de secours si les mollets lâchent, si tu perds l'équilibre ou si la cheville tire : pieds à plat, fléchis les genoux comme pour un quart de squat jusqu'à ce que la barre se pose sur les barres de sécurité, puis dégage-toi. Ne saute pas, ne bascule pas vers l'avant. Essaie cette manœuvre à vide avant la première série.
 - Pieds à plat sur le sol, jamais sur une plateforme. Si tu perds l'équilibre : repose les talons au sol, avance vers le rack et pose la barre sur les supports.
 - Charge qui te permet de sortir la barre du rack sans effort ; mouvement lent, sans rebond.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
@@ -110,7 +110,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 ## Photo
 - `Standing_Barbell_Calf_Raise/0.jpg` : affichable : non (pieds sur une plateforme (la consigne : pieds à plat au sol, plateforme supprimée) ; la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
 - `Standing_Barbell_Calf_Raise/1.jpg` : affichable : non (pieds sur une plateforme (la consigne : pieds à plat au sol, plateforme supprimée) ; la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime)
-- illustration : public/illustrations/releve-mollets-debout-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Relevé de mollets debout, vue de profil : barre sur le haut du dos, pieds à plat puis pointe des pieds, rack avec barres de sécurité jaunes)
+- illustration : public/illustrations/releve-mollets-debout-barre.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Relevé de mollets debout, vue de profil : barre sur le haut du dos, pieds à plat puis pointe des pieds, rack avec barres de sécurité jaunes ; réserve kine : l'illustration place les barres environ 60 cm sous la barre, plus bas que le réglage « quart de squat » de la fiche ; à refaire par dev)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

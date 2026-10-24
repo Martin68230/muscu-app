@@ -15,12 +15,12 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| squat-barre-repere-banc-vide | Barre seule, banc comme repère | 1 | intermediaire | barre, disques, rack, banc | Barre seule sur le haut du dos dans le rack ; un banc plat derrière toi, assez bas pour que les cuisses soient au moins parallèles quand tu le touches des fesses ; barres de sécurité sous le banc. |
+| squat-barre-repere-banc-vide | Barre seule, banc comme repère | 1 | intermediaire | barre, disques, rack, banc | Barre seule sur le haut du dos dans le rack ; un banc plat derrière toi, assez bas pour que les cuisses soient au moins parallèles quand tu le touches des fesses ; barres de sécurité réglées juste sous la barre quand tu touches le banc (pas à hauteur du banc). |
 | squat-barre-repere-box | Barre seule, box comme repère | 1 | intermediaire | barre, disques, rack, box_ou_step | Même principe avec une box stable à la place du banc. |
-| squat-barre-repere-banc-charge | Avec disques, banc comme repère | 2 | intermediaire | barre, disques, rack, banc | Même installation avec des disques ajoutés par petits paliers, barres de sécurité testées à vide. |
+| squat-barre-repere-banc-charge | Avec disques, banc comme repère | 2 | intermediaire | barre, disques, rack, banc | Même installation avec des disques ajoutés par petits paliers, barres de sécurité testées à vide (même réglage : juste sous la barre au contact du banc). |
 
 ## Consignes
-1. Installe un banc plat (ou une box stable) derrière toi, dans le rack, à une hauteur qui te laisse les cuisses au moins parallèles au sol quand tu le touches ; place les barres de sécurité juste sous cette hauteur.
+1. Installe un banc plat (ou une box stable) derrière toi, dans le rack, à une hauteur qui te laisse les cuisses au moins parallèles au sol quand tu le touches ; place les barres de sécurité juste sous la barre quand tu touches le banc (quelques centimètres, pas à la hauteur du banc), et teste-les à vide.
 2. Pose la barre sur le haut du dos (sur les muscles, pas sur la nuque), mains larges, coudes sous la barre ; sors-la du rack et recule jusqu'à ce que le banc soit derrière tes mollets.
 3. Pieds à largeur d'épaules, descends en envoyant les fesses en arrière et en poussant les genoux dans l'axe des pieds, jusqu'à toucher légèrement le banc.
 4. Touche et repars tout de suite : ne te laisse pas tomber, ne te détends pas sur le banc ; remonte en poussant dans tout le pied.
@@ -29,7 +29,8 @@ statut: complete_kine
 ## Points d'attention
 - Le banc est un repère de profondeur, pas un siège : un simple contact des fesses, jamais un relâchement du dos assis avec la barre sur toi.
 - Garde la barre seule jusqu'à ce que le geste soit stable ; les disques viennent ensuite.
-- Si tu bloques en haut de la descente, les barres de sécurité sont sous le banc : laisse la barre s'y poser en t'accroupissant et sors vers l'avant.
+- Si tu bloques en bas, assis sur le banc, les barres de sécurité sont juste sous la barre, pas à hauteur du banc : penche le buste vers l'avant pour que la barre descende sur elles, puis sors par l'avant. Des barres à hauteur du banc ne rattrapent rien : la barre reste sur ton dos. Essaie cette sortie à vide avant la première série.
+- Si tu bloques en haut de la montée, ne tente pas de te rasseoir : même manœuvre, penche le buste en avant jusqu'aux barres.
 - Version guidée recommandée avant le squat arrière à la barre (voir squat-arriere-barre).
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
@@ -85,7 +86,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Le matériel « rack » de l'app veut dire : rack ou cage à squat avec barres de sécurité (ou goujons). Sans barres de sécurité, ne coche pas « rack » et ne fais pas cette variante.
 - Barres de sécurité réglées **avant la première série** juste sous la barre quand tu touches le banc (ou la box), testées à vide avec la barre seule : la barre doit pouvoir s'y poser sans te coincer.
 - Le banc ou la box ne bouge pas : calé contre un mur ou une butée, sol non glissant ; sinon tu pars en arrière avec la barre. Une box ou un step léger qui glisse n'est pas un repère.
-- Si tu bloques en bas : ne te penche pas en avant ; laisse la barre se poser sur les barres de sécurité en t'accroupissant un peu plus, puis dégage-toi en avançant.
+- Si tu bloques en bas, assis sur le banc : ne te laisse pas retomber en arrière ; penche le buste vers l'avant pour que la barre descende avec tes épaules sur les barres de sécurité (réglées juste sous la barre), puis dégage-toi par l'avant. Cette sortie est à répéter à vide, avec la barre seule, avant la première série ; si elle ne marche pas à vide, ne fais pas cette variante.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger.
 - Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut aider, mais il ne remplace jamais les barres de sécurité.
@@ -112,14 +113,13 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Barre et disques : colliers de serrage (clips) posés et serrés des deux côtés avant chaque série ; mêmes disques de chaque côté ; barre droite (ni tordue, ni jeu dans les manchons) ; disques jamais posés « sans collier » même pour une série légère.
 - Rack ou cage à squat : stable (fixé, lesté ou contre un mur), supports de barre réglés à la bonne hauteur et bloqués ; **barres de sécurité (ou goujons) réglées AVANT la première série et testées à vide** : la barre doit pouvoir se poser dessus sans que tu sois écrasé. Pas de rack = pas de cette variante (le tag `rack` est obligatoire).
 - Banc : 4 appuis au sol, qui ne bascule pas et ne glisse pas (sol non glissant, banc calé si besoin), vis, pieds et réglage en bon état ; avant la première série, appuie-toi dessus comme pendant l'exercice : s'il bouge, grince ou se plie, ne l'utilise pas. Un canapé, un lit ou une caisse ne remplacent pas un banc.
-- Box ou step : stable, large, antidérapante, de la bonne hauteur ; jamais une pile d'objets.
+- Box ou step : conçue pour porter ton poids plus celui de la barre (box pliométrique pleine ou banc ; un step en plastique ou creux ne convient pas), stable, large, antidérapante, de la bonne hauteur (cuisses au moins parallèles quand tu la touches : un step est souvent trop bas, alors prends le banc) ; jamais une pile d'objets.
 - Sol plat, sec, non glissant (planches ou tapis de salle fermes) ; chaussures fermées à semelle plate ou rigide ; espace libre autour de la barre, rien derrière toi ; jamais de pieds nus avec une barre chargée.
-- Banc ou box de repère : stable, large, antidérapant, calé ; vérifie-le en t'asseyant dessus avant la première série.
 
 ## Photo
 - `Box_Squat/0.jpg` : affichable : non (le pratiquant est assis sur la box, relâché (la consigne : effleurer sans se relâcher), barre vue par le bout, cadrage différent entre les deux images)
 - `Box_Squat/1.jpg` : affichable : non (le pratiquant est assis sur la box, relâché (la consigne : effleurer sans se relâcher), barre vue par le bout, cadrage différent entre les deux images)
-- illustration : public/illustrations/squat-barre-repere-banc.svg : affichable : oui (illustration originale de l'app, 24/10/2026 ; Squat avec repère, vue de profil : on effleure le banc derrière soi, barres de sécurité jaunes sous le banc)
+- illustration : public/illustrations/squat-barre-repere-banc.svg : affichable : non (illustration originale de l'app, 24/10/2026 ; Squat avec repère, vue de profil : on effleure le banc derrière soi, barres de sécurité jaunes ; ATTENTION : l'illustration actuelle place les barres de sécurité sous le banc, ce qui est faux, elle est à refaire par dev avec les barres juste sous la barre au contact du banc ; ne pas afficher en attendant)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -54,9 +54,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:developpe-incline-barre-pente-douce |
+| Genou | garder | garder | retirer |
 | Hanche | garder | garder | retirer |
-| Cheville | garder | garder | retirer: sans-zone:developpe-incline-barre-pente-douce |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -64,8 +64,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - epaule-n1 : descends moins bas, pente plus douce.
 - epaule-n2 : retiré (le remplaçant serait adapté par la même zone).
 - cou-n1 : tête contre le dossier.
-- genou-n3 : jambes posées, non sollicitées : la variante reste permise ; la hanche, fléchie sur le banc incliné, est retirée au niveau 3.
-- cheville-n3 : jambes posées, non sollicitées : la variante reste permise ; la hanche, fléchie sur le banc incliné, est retirée au niveau 3.
+- genou-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- cheville-n3 : barre chargée avec appui des jambes (pieds au sol, banc ou rack) : la zone est sollicitée, la variante est retirée (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
 - grossesse : semi-allongé avec une barre au-dessus de la poitrine : retiré par prudence, confirmé par kine (NON SOURCÉ ; couché sur le dos : G4) ; remplaçant : développé épaules assis aux haltères, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres

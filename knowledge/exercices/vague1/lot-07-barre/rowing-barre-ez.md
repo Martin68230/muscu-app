@@ -55,9 +55,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | adapter: charge:legere | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:rowing-barre-ez-appuye |
-| Hanche | garder | garder | retirer: sans-zone:rowing-barre-ez-appuye |
-| Cheville | garder | garder | retirer: sans-zone:rowing-barre-ez-appuye |
+| Genou | garder | garder | retirer |
+| Hanche | garder | garder | retirer |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -72,7 +72,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Version plus douce** : rowing-unilateral-haltere
 
 **Sécurité pour l'utilisateur seul**
-- Variante appuyée : banc incliné stable (calé), réglé assez haut pour que les bras tendus ne touchent pas le sol ; barre EZ prise au sol sans te pencher.
+- Variante appuyée : banc incliné stable (calé), réglé assez haut pour que les bras tendus ne touchent pas le sol ; barre EZ prise au sol sans te pencher. Départ au sol, puis la barre reste en l'air pendant toute la série (à quelques centimètres du sol, sans le toucher entre les répétitions) ; tu ne la reposes qu'en fin de série ou si tu arrêtes.
 - Variante libre : charge que tu contrôles dos droit ; pose la barre au sol dès que le dos s'arrondit ou que le buste se relève.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre). Barre EZ : manchons plus courts, serrage soigné.
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger.

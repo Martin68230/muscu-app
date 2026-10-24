@@ -50,7 +50,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: charge:legere | retirer: remplacant:souleve-de-terre-roumain-halteres | retirer |
+| Dos | adapter: variante:souleve-de-terre-barre-rack | retirer: remplacant:souleve-de-terre-roumain-halteres | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
@@ -63,11 +63,12 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 **Notes**
 - general : La barre seule pèse souvent 20 kg (parfois moins) : c'est déjà une charge. Si elle est trop lourde pour garder le geste propre, passe à la version aux haltères (NON SOURCÉ ; question Q12 de docs/QUESTIONS.md).
+- dos-n1 : soulevé de terre conventionnel depuis le rack (course courte, pas de reprise au sol), comme sur la fiche du conventionnel (choix prudent de kine, NON SOURCÉ) ; la charge ne monte pas tant que la gêne persiste.
 - aine-n1 : adducteurs principaux : pieds moins écartés, charge légère.
 - aine-n2 : amplitude réduite : pieds moins écartés ; départ plus haut non proposé par l'app (aucune valeur sourcée).
 - hanche-n2 : moins de profondeur au départ ; pieds moins écartés.
 - dos-n2 : charge de la barre sur la colonne : retiré ; remplaçant soulevé de terre roumain aux haltères.
-- poignet-n1 : prise avec les doigts, deux paumes vers toi ; sangles, crochet et prise mixte non proposés.
+- poignet-n1 : prise avec les doigts, deux paumes vers les cuisses ; sangles, crochet et prise mixte non proposés.
 - grossesse : barre lourde au sol (pression abdominale, blocage de la respiration) et grand écart des hanches : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:souleve-de-terre-roumain-halteres
@@ -76,10 +77,10 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Sécurité pour l'utilisateur seul**
 - Même sécurité que le soulevé de terre conventionnel : pas de barres de sécurité au sol, donc une charge que tu peux toujours reposer en contrôle ; arrêt bien avant de ne plus pouvoir.
 - Sol non glissant, chaussures plates à semelle ferme : les pieds très écartés glissent facilement (chaussettes lisses, sol mouillé ou ciré : interdit).
-- Prise : deux paumes vers toi, mains à l'intérieur des genoux ; prise mixte et crochet non proposés.
+- Prise : deux paumes vers les cuisses, mains à l'intérieur des genoux ; prise mixte et crochet non proposés.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger. Aucune « dernière répétition de force ».
-- Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut aider, mais il ne remplace jamais les barres de sécurité.
+- Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut surveiller, mais il ne remplace pas ta propre vigilance ; il n'y a pas de barres de sécurité pour ce mouvement : en cas de doute, tu reposes la barre au sol, simplement.
 
 **Points d'attention (kine)**
 - Aine et hanche : l'écart des pieds est limité par la hanche, pas par une valeur. Si l'aine ou la hanche tire au départ, rapproche les pieds ; si ça tire encore, passe au soulevé de terre conventionnel depuis le rack (version plus douce).

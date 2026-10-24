@@ -56,9 +56,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | adapter: charge:legere | retirer | retirer |
 | Poignet | adapter: variante:curl-barre-ez | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:curl-barre-ez |
-| Hanche | garder | garder | retirer: sans-zone:curl-barre-ez |
-| Cheville | garder | garder | retirer: sans-zone:curl-barre-ez |
+| Genou | garder | garder | retirer |
+| Hanche | garder | garder | retirer |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -66,9 +66,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - poignet-n1 : barre EZ à la place de la barre droite.
 - coude-n1 : charge légère ; descente lente.
 - coude-n2 : retiré.
-- genou-n3 : jambes en appui, sans effort propre : la variante nommée reste permise.
-- hanche-n3 : jambes en appui, sans effort propre : la variante nommée reste permise.
-- cheville-n3 : jambes en appui, sans effort propre : la variante nommée reste permise.
+- genou-n3 : debout avec une barre chargée, la charge passe par les jambes : la variante sollicite la zone, retirée (pas de variante sans-zone ; règle R3 de regles-securite-communes.md).
+- hanche-n3 : debout avec une barre chargée, la charge passe par les jambes : la variante sollicite la zone, retirée (pas de variante sans-zone ; règle R3 de regles-securite-communes.md).
+- cheville-n3 : debout avec une barre chargée, la charge passe par les jambes : la variante sollicite la zone, retirée (pas de variante sans-zone ; règle R3 de regles-securite-communes.md).
 - grossesse : kine ajuste la proposition de coach : seule la barre EZ est gardée (variante curl-barre-ez), debout, sans élan ni blocage de la respiration ; la barre droite (20 kg le plus souvent) est écartée par prudence (NON SOURCÉ). La version inclinée aux haltères reste retirée (position semi-allongée). Post-partum : G7.
 
 **Grossesse** : adapter: variante:curl-barre-ez

@@ -21,20 +21,20 @@ statut: complete_kine
 ## Consignes
 1. Règle le rack : supports de barre à hauteur de bras tendus, barres de sécurité juste au-dessus de ta poitrine ; teste-les à vide en t'allongeant.
 2. Allonge-toi les yeux sous la barre, pieds à plat, omoplates serrées contre le banc (ou le sol), fesses en contact ; prends la barre un peu plus large que les épaules, le pouce autour de la barre.
-3. Sors la barre des supports bras tendus, avance-la au-dessus de la poitrine, puis descends-la lentement jusqu'à la poitrine (ou jusqu'aux coudes au sol), coudes à environ 45 degrés du buste.
+3. Sors la barre des supports bras tendus, avance-la au-dessus de la poitrine, puis descends-la lentement jusqu'à quelques centimètres au-dessus de la poitrine, à la hauteur des barres de sécurité, sans toucher la poitrine (au sol : jusqu'à ce que les coudes touchent le sol), coudes à environ 45 degrés du buste.
 4. Pousse la barre vers le haut jusqu'aux bras tendus, sans verrouiller les coudes.
 5. Fin de série : replace la barre sur les supports en la guidant vers l'arrière (ne la lâche pas) ; dégage-toi seulement quand elle est posée.
 
 ## Points d'attention
 - Tête, épaules et fesses restent en contact avec le banc ; pieds fermes au sol.
-- La barre descend sur le bas de la poitrine, pas sur la gorge.
+- La barre s'arrête à quelques centimètres au-dessus du bas de la poitrine, à la hauteur des barres de sécurité, sans la toucher ; elle ne passe jamais au-dessus de la gorge. Seul, tu ne descends pas plus bas que les barres de sécurité (règle la plus prudente, NON SOURCÉ).
 - Au sol, la course est plus courte : c'est la version à privilégier au début de ce mouvement ou quand l'épaule tire.
 - Sans partenaire, la sécurité repose sur les barres de sécurité (voir plus bas).
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
 ## Erreurs fréquentes
 - Coudes écartés à 90 degrés (épaule en position difficile).
-- Rebond de la barre sur la poitrine.
+- Faire descendre la barre jusqu'à la poitrine, ou la faire rebondir dessus (hors de portée des barres de sécurité).
 - Fesses qui décollent ou dos très cambré.
 - Pouce du même côté que les doigts.
 - Barre inclinée ou mal centrée.
@@ -57,9 +57,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 | Épaule | adapter: variante:developpe-couche-barre-sol | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Genou | garder | garder | retirer: sans-zone:developpe-couche-barre-sol |
-| Hanche | garder | garder | retirer: sans-zone:developpe-couche-barre-sol |
-| Cheville | garder | garder | retirer: sans-zone:developpe-couche-barre-sol |
+| Genou | garder | garder | retirer |
+| Hanche | garder | garder | retirer |
+| Cheville | garder | garder | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 
 **Notes**
@@ -70,9 +70,9 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - poignet-n1 : poignets droits sous la barre (l'app ne conseille ni bandage ni sangles).
 - dos-n2 : arc du dos réduit, barre légère, pas d'augmentation (R2).
 - cou-n1 : tête appuyée sur le banc, ne la relève pas.
-- genou-n3 : le développé au sol, jambes posées, ne charge pas ces zones (la variante sol reste permise) ; la variante sur banc, où les pieds poussent, est retirée.
-- hanche-n3 : le développé au sol, jambes posées, ne charge pas ces zones (la variante sol reste permise) ; la variante sur banc, où les pieds poussent, est retirée.
-- cheville-n3 : le développé au sol, jambes posées, ne charge pas ces zones (la variante sol reste permise) ; la variante sur banc, où les pieds poussent, est retirée.
+- genou-n3 : barre chargée, pieds à plat au sol (banc ou sol) : la zone est sollicitée, les deux variantes sont retirées (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- hanche-n3 : barre chargée, pieds à plat au sol (banc ou sol) : la zone est sollicitée, les deux variantes sont retirées (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
+- cheville-n3 : barre chargée, pieds à plat au sol (banc ou sol) : la zone est sollicitée, les deux variantes sont retirées (aucune variante sans-zone ; règle commune à toutes les fiches du lot, R3).
 - grossesse : couché sur le dos avec une barre au-dessus de la poitrine : retiré (G4 pour le couché sur le dos) ; remplaçant : développé épaules assis aux haltères, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres
@@ -84,7 +84,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Si la barre ralentit et ne remonte plus : ne la bascule pas d'un seul côté et ne la laisse pas peser sur la poitrine ; laisse-la descendre doucement sur les barres de sécurité, puis glisse-toi dehors.
 - Pouce autour de la barre (jamais pouce du même côté que les doigts, « prise de singe »).
 - Pas de rack avec barres de sécurité : pas de développé à la barre chargée seul ; utilise le développé aux haltères (qui se posent sur les cuisses).
-- Au sol : la descente s'arrête quand les coudes touchent le sol. Les barres de sécurité restent réglées comme ci-dessus.
+- Au sol : la descente s'arrête quand les coudes touchent le sol. Les barres de sécurité restent obligatoires et se règlent juste sous la barre quand tes coudes touchent le sol (barre seule, test à vide) : sans elles, pas de développé au sol chargé seul non plus.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve ; si la barre ralentit nettement ou si la technique se dégrade, la série est finie. En cas de doute sur la charge, prends plus léger.
 - Idéalement, quelqu'un dans la maison ou la salle, à portée de voix. Un partenaire peut aider, mais il ne remplace jamais les barres de sécurité.
@@ -94,7 +94,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Épaule : coudes un peu écartés du buste, jamais à angle droit avec lui ; omoplates serrées contre le banc. Si l'épaule tire en bas du mouvement, passe au développé au sol (course plus courte) ; si ça tire encore, retiré (case épaule).
 - Poignet : la barre repose dans la base de la paume, poignet dans l'axe de l'avant-bras.
 - Cou : la tête reste posée sur le banc pendant tout l'effort. Cambrure du dos naturelle seulement, fesses sur le banc, pas de pont.
-- Charge au-dessus du visage et de la gorge (R9 appliqué à la barre) : la barre descend vers le bas de la poitrine, jamais sur la gorge ni le cou.
+- Charge au-dessus du visage et de la gorge (R9 appliqué à la barre) : la barre s'arrête à quelques centimètres au-dessus du bas de la poitrine, jamais au-dessus de la gorge ni du cou.
 - Niveau : intermédiaire. Chemin conseillé : développé couché aux haltères, puis cette fiche au sol, puis sur banc.
 
 **Signes qui doivent faire arrêter**
@@ -118,9 +118,8 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 ## Photo
 - `Barbell_Bench_Press_-_Medium_Grip/0.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; développé couché sans barres de sécurité visibles, barre au-dessus du visage)
 - `Barbell_Bench_Press_-_Medium_Grip/1.jpg` : affichable : non (la photo ne montre pas de barres de sécurité réglées, que la fiche exige : la consigne prime ; développé couché sans barres de sécurité visibles, barre au-dessus du visage)
-- `Floor_Press/0.jpg` : affichable : oui (développé au sol, échelon 1 (sol dans le rack) ; barre vue par le bout, vue le 24/10/2026)
-- `Floor_Press/1.jpg` : affichable : oui (développé au sol, échelon 1 (sol dans le rack) ; barre vue par le bout, vue le 24/10/2026)
-- légende : Photo : version au sol (échelon 1). La version sur banc se fait avec barres de sécurité.
+- `Floor_Press/0.jpg` : affichable : non (même règle que Barbell_Bench_Press : pas de barres de sécurité visibles, la consigne prime ; décision kine du 24/10/2026, règle la plus prudente appliquée aux deux variantes)
+- `Floor_Press/1.jpg` : affichable : non (même règle que Barbell_Bench_Press : pas de barres de sécurité visibles, la consigne prime ; décision kine du 24/10/2026, règle la plus prudente appliquée aux deux variantes)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

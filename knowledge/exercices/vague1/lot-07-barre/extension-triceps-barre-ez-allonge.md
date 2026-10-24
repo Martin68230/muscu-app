@@ -30,7 +30,7 @@ statut: complete_kine
 - Charge légère à modérée : la barre passe près du visage et de la tête.
 - Les coudes restent fixes, ils ne s'écartent pas.
 - Au sol, la course est plus courte ; au banc, l'étirement est plus grand.
-- Pas de partenaire : si tu manques de force, la barre est posée sur le torse, jamais lâchée au-dessus du visage.
+- Pas de partenaire : si tu manques de force en cours de série, la barre ne passe jamais devant le visage : tu l'envoies derrière la tête (voir la sortie de secours plus bas). Prévois un espace libre d'au moins 1 m derrière ta tête.
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
 ## Erreurs fréquentes
@@ -78,7 +78,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 **Version plus douce** : extension-triceps-assis-halteres
 
 **Sécurité pour l'utilisateur seul**
-- La barre passe près du visage et de la tête (R9 appliqué à la barre) : charge légère, toujours une charge que tu peux ramener sur la poitrine puis poser sur les cuisses, assis. Choisis plus léger, pas plus lourd.
+- La barre passe près du visage et de la tête (R9 appliqué à la barre) : charge légère, toujours une charge que tu peux contrôler jusqu'au bout et, en cas de défaillance, laisser aller derrière la tête. Choisis plus léger, pas plus lourd.
 - Jamais d'échec, jamais de répétition « de force » : le moment critique est la barre près du visage. Arrête au moins 3 répétitions avant de ne plus pouvoir (NON SOURCÉ).
 - Sur banc (échelon 2) : la barre descend derrière la tête, au-dessus du banc, jamais vers le visage ni la gorge ; banc calé et stable.
 - Colliers de serrage posés et serrés des deux côtés avant chaque série, mêmes disques de chaque côté (un disque qui glisse fait basculer la barre). Barre EZ : serrage soigné.
@@ -87,7 +87,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 **Points d'attention (kine)**
 - Coude (triceps principal) : les coudes portent la charge, c'est la zone à surveiller en premier. Coudes fixes, qui ne s'écartent pas ; descente lente. Gêne légère : charge légère ; gêne nette : retiré.
-- Barre près du visage : la barre descend vers le haut du front ou derrière la tête, jamais vers le nez, la gorge ou le cou. En cas de manque de force : ramène la barre sur la poitrine en pliant le coude, ne la lâche jamais au-dessus du visage.
+- Barre près du visage : la barre descend vers le haut du front ou derrière la tête, jamais vers le nez, la gorge ou le cou. Sortie de secours (la plus sûre, NON SOURCÉ, choix prudent de kine) : si la force manque, ne ramène pas la barre vers la poitrine (elle passerait devant le visage) ; laisse les bras partir vers l'arrière, la barre passe au-dessus de la tête et se pose sur le sol (ou le banc) derrière toi, dans l'espace libre prévu ; lâche-la seulement une fois qu'elle est derrière ta tête, jamais au-dessus du visage. Essaie ce geste à vide avant la première série.
 - Épaule et poignet : au sol, la course est plus courte (version à privilégier si l'épaule tire) ; barre EZ pour ménager le poignet.
 - Cou : tête appuyée sur le sol ou le banc.
 - Niveau : intermédiaire (charge près du visage, sans barres de sécurité). Chemin conseillé : extension triceps aux haltères, puis cette fiche.
@@ -103,7 +103,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 - Voile devant les yeux, vertige ou tête qui tourne en fin de série (souvent un blocage de la respiration) : repose la barre, assieds-toi, ne reprends pas la séance (R5).
 - Colliers qui bougent ou disques de travers : repose la barre avant tout.
 - Douleur au coude qui augmente en fin de série ou dès la première répétition : arrête.
-- Barre qui descend trop près du visage ou que tu ne contrôles plus : ramène-la sur la poitrine, assieds-toi.
+- Barre qui descend trop près du visage ou que tu ne contrôles plus : laisse-la partir derrière la tête (sortie de secours), puis assieds-toi sans la reprendre.
 
 **Objets du quotidien**
 - Barre et disques : colliers de serrage (clips) posés et serrés des deux côtés avant chaque série ; mêmes disques de chaque côté ; barre EZ (ni tordue, ni jeu dans les manchons) ; disques jamais posés « sans collier » même pour une série légère.
