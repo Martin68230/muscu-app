@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [erecteurs_rachis, trapezes, deltoides_anterieurs, avant_bras, fessiers]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.

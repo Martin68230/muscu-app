@@ -32,3 +32,7 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - Déploiement #61 VERT, commit b77f8ef en ligne à 19 h 02 (heure de Paris) : https://martin68230.github.io/muscu-app/ (index, JS, fiches.json 158 fiches vérifiés). Cause des échecs #54-#60 et corrections : docs/deploiement-notes.md. Règle ajoutée à CLAUDE.md (section C).
 - lot-08-ballons-roue : kine (2c7adfa) et coach (447e55a) ont corrigé ; il reste dev (illustrations lancer-bas-haut-mur S2, extension-dorsale-ballon sans mur, lancer-rotation-mur M10, photo 1 de genoux-poitrine-ballon S3), puis recontrôle relecteur des points corrigés, puis statuts. rowing-barre-ez (lot-07) : libellé corrigé, à confirmer par relecteur.
 - Pas poussé depuis b77f8ef : tout commit suivant doit être poussé en UNE fois, puis vérifié vert (CLAUDE.md).
+
+## Mise à jour 19 h 45
+- lot-08 : 15 fiches `utilisable` ; 4 lancers restent `complete_kine` (lancer-poitrine-mur, lancer-rotation-mur, lancer-bas-haut-mur, squat-lancer-mur) : coach doit trancher « lancer en exercice principal (poussee_1, jambes_genou) ou exclus des piliers » ; RESTAURER « plus-dur : lancer-rotation-mur » dans bucheron-ballon-lest.md (l. 45) quand lancer-rotation-mur sera utilisable. Dosage codé : FIXED_DOSE (config.ts), tests generator-dose-fixe.
+- Prochaine action exacte : lot-09 (corde à sauter, lest, sac de sable, bosu, vélo/rameur/machine_cardio) avec coach ; puis F7.

@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [obliques]
 muscles_secondaires: [abdominaux, fessiers, deltoides_anterieurs, grand_dorsal]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -42,7 +42,7 @@ statut: complete_kine
 
 ## Progression / régression
 - plus-facile : rotation-bucheron-sans-charge, rotation-bucheron
-- plus-dur : lancer-rotation-mur
+- plus-dur : aucun
 
 ## Repères de dosage
 Repères du générateur (generateur-v1.md §3.3, règle V-TEMPS, NON SOURCÉ en entier) : 8 à 10 répétitions par côté (débutant) puis 10 à 12, 2 séries, repos 60 s, pas de réserve demandée : la série s'arrête dès que la position ou le contrôle se dégrade. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
