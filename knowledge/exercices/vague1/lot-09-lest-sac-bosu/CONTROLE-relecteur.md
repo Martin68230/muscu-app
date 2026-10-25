@@ -112,3 +112,80 @@ Images : les 17 SVG rendus en PNG (sharp) et regardés un par un ; 17 légendes 
 ## Verdict global
 
 **1 bloquant (B1, règle 23 : pose du sac sur l'épaule, 2 fiches). Lot non validé.** Pas de dérive de sécurité cachée : tableaux, remplaçants, grossesse, sorties de secours, règle unique des charges fixes et cheville du bosu sont cohérents ; les lacunes sont une règle du projet à trancher (B1), une box chargée (S1), une image qui contredit la consigne (S2), une décision de code à enregistrer (S3, S4) et des corrections de texte. Ni l'absence de `sac_de_sable` dans CHARGEABLE_TAGS ni le schéma `mobilite` de l'équilibre bosu ne rend une fiche dangereuse à publier ; c'est `lest` dans CHARGEABLE_TAGS qui diverge du texte des fiches. Marche à suivre : l'utilisateur tranche B1 ; `kine` S1, C7 à C9, C12 ; `dev` S2 (image), S3, S4 ; `coach` C1 à C6, C8, C10, C11, C13 ; puis `relecteur` recontrôle les seuls points corrigés.
+
+---
+
+# Recontrôle `relecteur` du 25/10/2026 (points corrigés seulement, lancé à neuf)
+
+Rien n'a été corrigé, aucun statut changé. Lus : README du lot (« Corrections coach », « Corrections coach 2 », « Corrections kine 2 »), commits f81fb03, fcf0223, 84b65e2, 6424a34 ; les 15 fiches (lignes modifiées, sections Repères de dosage, Sources, zones x niveaux, installation) ; `regles-securite-communes.md` §7 ; `src/generator/config.ts`, `context.ts`, `dose.ts`, `safety.ts`, `warmup.ts`, `src/session/progression-store.ts`, `src/ui/session/text.ts` ; tests/unit/generator-lest-bosu.test.ts (11 tests, passent) ; les SVG planche-bosu, pompe-bosu, montee-gilet-lest, rowing-sac-de-sable rendus en PNG (sharp, script temporaire hors du dépôt) et regardés. `npm run check:fiches` : 194 fiches, 0 erreur, 0 avertissement (les 2 fiches écartées ne sont plus comptées). Sources : Snow 2000 et Wahl et Behm 2008 relues dans les fiches contre les résumés vérifiés au premier contrôle (chiffres inchangés) ; rien rouvert en ligne.
+
+## Résultat point par point
+
+| n° | État | Constat |
+|---|---|---|
+| B1 | **corrigé** | `porte-sac-epaule` et `squat-sac-epaule` sont dans `ecartees/` (règle 23, Q29 posée, assouplissement refusé par défaut). Aucune référence restante hors `ecartees/`, README, CONTROLE et docs/QUESTIONS.md (recherche sur tout le dépôt hors node_modules) ; plus de SVG ni de ligne dans `credits.json` ; le compteur passe à 194. Leur `statut: complete_kine` reste dans les fichiers écartés, sans effet (hors du générateur et de la bibliothèque). |
+| S1 | **corrigé** (nouvel écart de texte N1) | Variante box retirée ; une seule variante, première marche, rampe obligatoire ; `plus-dur : aucun` ; dos n1 `amplitude:lente` ; textes de progression et de dosage alignés (même marche, même gilet) ; plus de `box_ou_step` dans la fiche. La nouvelle règle §7 « Gilet lesté » est **cohérente et plus stricte que celle des haltères** (haltères : 1re ou 2e marche, box stable ailleurs ; gilet : 1re marche seulement, rampe, jamais 2e marche, box, step, banc ni chaise), ce qui est juste pour une charge qu'on ne lâche pas ; elle n'est pas trop permissive. Elle est marquée NON SOURCÉ. La phrase « Le gilet lesté n'est pas un sac » règle M12. Réserves : N1 et N3. |
+| S2 | **corrigé pour la planche ; écart restant sur le mur (N2)** | `planche-bosu` : avant-bras à plat sur le dôme, coude sous l'épaule, dans les deux poses : conforme à la consigne et au titre (le poignet n'est plus chargé). `pompe-bosu` : mains sur la moitié du dôme côté soi, bras presque tendus puis coudes à 45° : conforme. Le mur est bien du côté de la tête, derrière le bosu, comme le dit le texte (installation, consignes, points d'attention, sécurité, sortie de secours, objets). **Mais** voir N2 : la tête est dessinée à environ 10 à 14 cm du mur (mesuré sur le rendu, en prenant le diamètre du bosu pour 60 cm), surtout en bas de la pompe, alors que le texte dit « front loin du mur » et « ne s'approche jamais ». |
+| S3 | **corrigé** | `GENERATOR_EXCLUDED_FICHES = ['equilibre-unipodal-bosu']`, testé en tête de `ficheAdmissible` (avant l'option échauffement), donc ni exercice, ni échauffement, ni remplaçant (elle n'est le remplaçant de personne). La fiche et le README disent « exclue du générateur » et ne disent plus « traitée comme échauffement ». |
+| S4 | **corrigé, comportement conforme aux fiches** | `lest` est sorti de `CHARGEABLE_TAGS`, dans `FIXED_LOAD_TAGS`. Réel : (a) dose « poids du corps » 10 à 15 répétitions (`repsBodyweight`, toutes familles et niveaux) ; séries 2 ou 3 (selon famille, niveau et rôle) ; réserve 2 ou 3 ; repos 60 à 180 s : conforme au texte des 7 fiches ; (b) la réserve 1 de l'avancé « muscle » n'est jamais appliquée au gilet (`freeWeight` inclut `FIXED_LOAD_TAGS`) : conforme à « jamais la réserve 1 » ; (c) aucune charge de départ (`startLoad` rend null pour un non chargeable) ; (d) échauffement E3 : 6 répétitions au poids du corps à l'échelon inférieur ou le même, jamais « 8 à 50 % » : conforme à « aucun échauffement à 50 % » ; (e) `progression-store.ts` et `launch.ts` utilisent `isChargeable` : le gilet suit la voie « échelon » et peut monter d'échelon : conforme à l'étape (2) ; (f) `carriesLoad` : une restriction « sans charge » retire bien les variantes au gilet : sûr ; (g) plafond `capped` inchangé. Marche : V-TEMPS, la fiche le dit. Sûr : aucune dérive vers le haut (pas de hausse de charge, pas de réserve 1). Remarque N4. |
+| C1 | **corrigé** (7 fiches) | Ligne Snow 2000 : gilet + sauts, 9 femmes ménopausées contre 9 témoins, 5 ans, hanche maintenue ; « aucune étude lue sur ces exercices ni sur ce public » ; l'usage du gilet est un choix de coach NON SOURCÉ ; PROVISOIRE, « ne valide pas la fiche ». Plus d'affirmation au-delà de la source. |
+| C2 | **corrigé** (4 fiches) | Wahl et Behm : « n'a pas augmenté l'activité musculaire mesurée », seule exception les érecteurs du rachis debout sur Dyna Disc (pas sur BOSU), ballon et plateau : surtout debout, accroupi : abdominaux bas et soléaire ; « l'étude ne mesure ni l'équilibre ni le contrôle » ; rôle équilibre/contrôle = NON SOURCÉ, statut séparé. Fidèle. La phrase restante « sert à l'équilibre et au contrôle » (squat-bosu, points d'attention) est marquée « choix de coach, NON SOURCÉ » : correct. |
+| C3 | **corrigé** (reste N5) | porte-sac-berceau : « la durée fait foi », 2 séries au total. |
+| C4 | sans objet | fiche écartée. |
+| C5 | **corrigé** | test d'une minute debout dans la consigne 1 de marche-gilet-lest. |
+| C6 | **corrigé** | notes `cheville-n2` de squat-bosu et equilibre-unipodal-bosu justes. |
+| C7 | **corrigé** | genou n1 : `adapter: variante:planche-bosu-genoux` / `variante:pompe-bosu-genoux`, note « la case ne vaut pas pour la variante pointes de pieds ». |
+| C8 | **corrigé** | « choix prudent de coach, NON SOURCÉ ; McGill compare des seaux le long du corps, pas une charge devant le tronc ». |
+| C9 | **corrigé** | dos n1 de la montée : `amplitude:lente`, comme les autres fiches au gilet. |
+| C10 | **corrigé** | `plus-facile : pont-fessier` seulement. |
+| C11 | **corrigé pour le texte** | motif réel de `avance` écrit (dos non soutenu, choix prudent) ; la règle 23 n'est plus invoquée. Image : voir M8. |
+| C12 | **corrigé pour le texte, image à ajuster** | décision « mur côté tête » écrite partout ; voir N2. |
+| C13 | **corrigé en grande partie** | README à jour sur la plupart des points ; reste N6 (mineur). |
+| M1, M2, M3, M4, M7, M11, M12 | **corrigés** | fente (face au mur, à un pas), Goblet_Squat = « kettlebells », Hupperets (sous-groupe non soigné médicalement), cou-n2 du squat au sac, consigne 2 de l'équilibre alignée et prérequis noté, « chaussures fermées, pas de pieds nus » dans les 4 fiches bosu, §7 cite le gilet. |
+| M5 | sans objet | fiches écartées. |
+| M6 | **non corrigé** (mineur) | SVG montee-gilet-lest inchangé depuis 33f850e : toujours ni rampe ni mur ; la légende de la fiche parle de la rampe. |
+| M8 | **non corrigé** (mineur) | SVG rowing-sac-de-sable inchangé : l'image dit « Sac tiré vers la poitrine », le sac est dessiné au niveau du ventre et du bassin. |
+| M9, M10, M13 | sans correction demandée | inchangés. |
+
+## Nouveaux écarts introduits ou restants
+
+| n° | Fiche | Gravité | Problème |
+|---|---|---|---|
+| N1 | montee-gilet-lest (note `general`) | **à corriger** | La note dit « si tu n'as pas d'escalier avec rampe, l'exercice n'existe pas pour toi et le générateur choisit un autre exercice du même schéma ». C'est faux : `marche_escalier` est un tag implicite (IMPLICIT_TAGS, equipment-options.ts) et le profil n'a aucune case « rampe » : le générateur peut proposer l'exercice à quelqu'un qui n'a pas de rampe. La protection réelle est le texte (installation « rampe obligatoire », sécurité « pas de rampe : pas d'exercice »). Corriger la phrase (« l'app ne sait pas si tu as une rampe : sans rampe, ne fais pas cet exercice ») au lieu de décrire un comportement qui n'existe pas. Pas de blocage de sécurité : la consigne est écrite à trois endroits. |
+| N2 | planche-bosu, pompe-bosu (images) | **à corriger** | Tête à 10 à 14 cm du mur dans les poses dessinées (la plus proche : bas de la pompe), alors que le texte dit « loin du mur », « ne s'approche jamais ». Règle 12 : la consigne prime sur l'image. Reculer le mur dans le dessin (environ une demi-largeur de bosu), ou chiffrer la distance voulue dans la consigne (choix de `kine`) et dessiner en conséquence. |
+| N3 | regles-securite-communes.md §7 | remarque | « pas de marche en descendant ni en montant plusieurs marches avec le gilet » : ambigu, car la fiche fait descendre la marche qu'on vient de monter. Écrire « pas d'escalier descendu ni monté en entier ». |
+| N4 | UI (src/ui/session/text.ts) | remarque | `LOADABLE` contient encore `lest` et `sac_de_sable` : l'écran de séance propose la saisie d'une charge, sans effet sur la dose ni la progression (le code ne la lit que pour les exercices chargeables). Les fiches disent que l'app ne propose jamais de hausse : exact. Incohérence d'affichage seulement, à noter pour `dev`. |
+| N5 | porte-sac-berceau | à corriger (mineur) | Le texte dit « 30 s de marche (débutant) puis 40 s » et « d'abord la durée (30 s, puis 40 s) » ; la fiche est `intermediaire` minimum, donc le générateur donne directement 40 s (`TEMPS.porte`, colonne `autres`), jamais 30 s, et ne monte pas la durée. Écrire « 40 s, 2 séries ». Pour marche-gilet-lest (débutant : 30 s) le texte est correct. |
+| N6 | README du lot | mineur | Lignes encore périmées : « 17 fiches `brouillon_coach` » (en tête), « Images faites : 17 illustrations » (il y en a 15 ; 2 supprimées), la ligne « Pour dev » sur la légende de montee-gilet-lest.svg. Sans conséquence de sécurité. |
+| N7 | montee-gilet-lest (zones) | remarque | Genou, hanche, cheville n1 : `adapter: variante:montee-gilet-lest-marche` = la seule variante de la fiche : la case ne change rien (la note le dit). Acceptable. |
+
+## Vérifications demandées sans écart
+
+- Dosage des 7 fiches gilet contre `dose.ts` et `config.ts` : conforme (voir S4) ; aucune valeur NON SOURCÉ ou PROVISOIRE présentée OK (seules lignes OK : ACSM 2026 « l'échec n'est pas nécessaire », HAS grossesse, comme au premier contrôle).
+- Traction au gilet : le texte demande de retirer le gilet si on ne fait pas 10 répétitions avec 2 en réserve ; avec le prérequis de 8 tractions propres, beaucoup d'avancés retireront le gilet (prudent, pas dangereux).
+- `GENERATOR_EXCLUDED_FICHES` ne s'applique qu'à `equilibre-unipodal-bosu` ; la fiche reste dans la bibliothèque.
+- Aucune référence aux deux fiches écartées dans les 15 fiches, le code, les tests, les SVG et `credits.json`.
+
+## Statut proposé par fiche (recontrôle)
+
+| Fiche | Statut proposé | Motif |
+|---|---|---|
+| squat-gilet-lest | `utilisable` | S4 et C1 corrigés |
+| fente-gilet-lest | `utilisable` | C1, M1 corrigés |
+| pompe-gilet-lest | `utilisable` | C1, S4 corrigés |
+| traction-gilet-lest | `utilisable` | C1, S4 corrigés |
+| marche-gilet-lest | `utilisable` | C1, C5 corrigés |
+| pont-fessier-gilet-lest | `utilisable` | C1, C10 corrigés |
+| montee-gilet-lest | `utilisable` après correction de N1 (une phrase) | S1, C9, C1 corrigés ; M6 (image sans rampe) mineur |
+| porte-sac-berceau | `utilisable` après correction de N5 (une phrase) | C3, C8 corrigés |
+| squat-sac-berceau | `utilisable` | M2, M4 corrigés |
+| souleve-de-terre-sac | `utilisable` | inchangée |
+| rowing-sac-de-sable | `utilisable` | C11 corrigé ; M8 (légende de l'image) mineur |
+| squat-bosu | `utilisable` | C2, C6, M3, M11 corrigés |
+| equilibre-unipodal-bosu | `utilisable` (exclue du générateur, consultable) | S3, C2, C6, M7 corrigés |
+| planche-bosu | **reste `complete_kine`** | N2 (image : tête trop près du mur, contredit la consigne) |
+| pompe-bosu | **reste `complete_kine`** | N2 |
+
+## Verdict global du recontrôle
+
+**Plus aucun point bloquant** : B1 est levé (deux fiches écartées proprement), S1 à S4 sont corrigés et le comportement du générateur correspond aux fiches du gilet sans dérive vers le haut. Restent des écarts à corriger sans danger immédiat : N1 (phrase fausse sur la rampe), N2 (image contre la consigne du mur, 2 fiches bosu), N5 (durée du porté), et des mineurs (N3, N4, N6, M6, M8). **13 fiches proposées `utilisable` (dont 2 après une phrase), 2 restent `complete_kine`.** Le lot n'est pas entièrement validé tant que N1, N2 et N5 ne sont pas corrigés ; pas de nouveau contrôle complet nécessaire, seulement ces trois points (`kine` ou `coach` pour le texte, `dev` pour l'image).
