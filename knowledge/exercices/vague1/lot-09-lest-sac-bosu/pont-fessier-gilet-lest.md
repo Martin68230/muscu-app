@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [fessiers]
 muscles_secondaires: [ischios, erecteurs_rachis, abdominaux]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
