@@ -4,6 +4,7 @@
 import { existsSync, readdirSync, readFileSync, statSync } from 'node:fs';
 import { basename, join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { INTERNAL_MENTION, textFields } from './public-text.mjs';
 
 export const SCHEMAS = ['squat', 'charniere', 'fente', 'poussee_h', 'poussee_v', 'tirage_h', 'tirage_v', 'gainage', 'anti_rotation', 'rotation', 'porte', 'saut', 'mobilite', 'cardio', 'cheville_mollet', 'hanche_laterale'];
 export const TYPES = ['force', 'fonctionnel', 'gainage', 'mobilite_recup', 'cardio'];
@@ -490,6 +491,18 @@ function main() {
   for (const i of issues) console.log(`${i.file}:${i.line} : [${i.categorie}]${i.severite === 'erreur' ? '' : ' (avertissement)'} ${i.message}`);
   const byCat = {}; const byFile = {};
   for (const e of errors) { byCat[e.categorie] = (byCat[e.categorie] ?? 0) + 1; byFile[e.file] = (byFile[e.file] ?? 0) + 1; }
+  // Fichier PUBLIC généré (public/data/fiches.json) : aucune mention interne (rédacteurs, codes de règle, numéros de question, statuts de source).
+  const pub = join(root, 'public', 'data', 'fiches.json');
+  if (existsSync(pub)) {
+    for (const f of JSON.parse(readFileSync(pub, 'utf8')).fiches ?? [])
+      for (const [get] of textFields(f)) {
+        const t = get();
+        if (typeof t === 'string' && INTERNAL_MENTION.test(t)) {
+          errors.push({ file: `public/data/fiches.json (${f.id})`, categorie: 'mention-interne-publique' });
+          console.log(`public/data/fiches.json : [mention-interne-publique] ${f.id} : ${t.slice(0, 120)}`);
+        }
+      }
+  }
   console.log(`\n${files.length} fiche(s) contrôlée(s) : ${errors.length} erreur(s), ${warnings.length} avertissement(s).`);
   if (errors.length) {
     console.log('Erreurs par catégorie : ' + Object.entries(byCat).sort((a, b) => b[1] - a[1]).map(([k, v]) => `${k} ${v}`).join(', '));
