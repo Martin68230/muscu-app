@@ -12,7 +12,7 @@ import type { MainGoalKey } from '../../data/model';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
-import { checkForUpdate, UPDATE_TEXT } from '../update';
+import { checkForUpdate, clearCachesAndReload, UPDATE_TEXT } from '../update';
 
 const THEMES: [ThemePref, string][] = [
   ['dark', 'Sombre'],
@@ -195,6 +195,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
       <p class="dim small version">Version {__APP_VERSION__}</p>
       <button class="btn" disabled={updating} onClick={doUpdate}>{updating ? 'Recherche…' : 'Mettre à jour l’app'}</button>
       {updateMsg && <div class="toast" role="status">{updateMsg}</div>}
+      <button class="btn" disabled={updating} onClick={async () => { setUpdating(true); setUpdateMsg(UPDATE_TEXT[await clearCachesAndReload()]); setUpdating(false); }}>Recharger l’app en vidant son cache</button>
+      <p class="dim small">Utile si l’app ne montre pas la dernière version. Ton profil et ton historique sont gardés.</p>
 
       <dialog ref={confirmDialog} aria-labelledby="wipe-title">
         <h2 id="wipe-title">Tout supprimer ?</h2>

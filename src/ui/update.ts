@@ -38,6 +38,25 @@ export async function checkForUpdate(env: Env = realEnv()): Promise<UpdateResult
   }
 }
 
+/**
+ * Rechargement complet : efface les copies de l'app gardées pour le hors-ligne (caches du navigateur) et désinscrit le service worker,
+ * puis recharge ; la nouvelle version est retéléchargée. Seulement en ligne (sinon l'app n'aurait plus rien à afficher hors connexion).
+ * Le profil, l'historique et les réglages (IndexedDB) ne sont jamais touchés.
+ */
+export async function clearCachesAndReload(env: Env & { clearCaches?: () => Promise<void> } = realEnv()): Promise<UpdateResult> {
+  if (!env.online()) return 'hors_ligne';
+  try {
+    const reg = await env.getRegistration();
+    if (env.clearCaches) await env.clearCaches();
+    else if (typeof caches !== 'undefined') await Promise.all((await caches.keys()).map((k) => caches.delete(k)));
+    await reg?.unregister();
+    env.reload();
+    return 'mise_a_jour';
+  } catch {
+    return 'impossible';
+  }
+}
+
 export const UPDATE_TEXT: Record<UpdateResult, string> = {
   a_jour: 'Tu as déjà la dernière version.',
   mise_a_jour: 'Mise à jour installée : l’app se recharge.',

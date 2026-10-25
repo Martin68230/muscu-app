@@ -37,3 +37,22 @@ describe('Mettre à jour l’app', () => {
     expect(await checkForUpdate({ online: () => true, getRegistration: async () => reg({ update: async () => { throw new Error('x'); } }), reload: vi.fn() })).toBe('impossible');
   });
 });
+
+import { clearCachesAndReload } from '../../src/ui/update';
+describe('Recharger l’app en vidant son cache', () => {
+  it('en ligne : vide les caches, désinscrit le service worker, recharge', async () => {
+    const unregister = vi.fn(async () => true);
+    const clearCaches = vi.fn(async () => undefined);
+    const reload = vi.fn();
+    const r = await clearCachesAndReload({ online: () => true, getRegistration: async () => ({ unregister }) as unknown as ServiceWorkerRegistration, reload, clearCaches });
+    expect(r).toBe('mise_a_jour');
+    expect(clearCaches).toHaveBeenCalled();
+    expect(unregister).toHaveBeenCalled();
+    expect(reload).toHaveBeenCalledTimes(1);
+  });
+  it('hors ligne : rien n’est effacé (l’app resterait vide)', async () => {
+    const clearCaches = vi.fn();
+    expect(await clearCachesAndReload({ online: () => false, getRegistration: async () => undefined, reload: vi.fn(), clearCaches })).toBe('hors_ligne');
+    expect(clearCaches).not.toHaveBeenCalled();
+  });
+});
