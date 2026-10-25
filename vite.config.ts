@@ -1,3 +1,4 @@
+import { execSync } from 'node:child_process';
 import { defineConfig, type Plugin } from 'vite';
 import preact from '@preact/preset-vite';
 import { VitePWA } from 'vite-plugin-pwa';
@@ -28,11 +29,26 @@ const cspPlugin: Plugin = {
   },
 };
 
+/** Identifiant de la version affichée dans Profil : numéro, commit court et date du build (sans git : numéro seul). */
+function buildLabel(): string {
+  const v = process.env.npm_package_version ?? '0.0.0';
+  let sha = (process.env.GITHUB_SHA ?? '').slice(0, 7);
+  if (!sha) {
+    try {
+      sha = execSync('git rev-parse --short HEAD', { stdio: ['ignore', 'pipe', 'ignore'] }).toString().trim();
+    } catch {
+      sha = '';
+    }
+  }
+  const day = new Date().toISOString().slice(0, 10).split('-').reverse().join('/');
+  return `${v}${sha ? ` · ${sha}` : ''} · ${day}`;
+}
+
 // base './' : le site fonctionne quel que soit le nom du dépôt GitHub Pages.
 export default defineConfig({
   base: './',
   define: {
-    __APP_VERSION__: JSON.stringify(process.env.npm_package_version ?? '0.0.0'),
+    __APP_VERSION__: JSON.stringify(buildLabel()),
   },
   plugins: [
     preact(),

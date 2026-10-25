@@ -12,6 +12,7 @@ import type { MainGoalKey } from '../../data/model';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
+import { checkForUpdate, UPDATE_TEXT } from '../update';
 
 const THEMES: [ThemePref, string][] = [
   ['dark', 'Sombre'],
@@ -54,6 +55,14 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
     });
   }, []);
   const [theme, setTheme] = useState<ThemePref>(getThemePref());
+  const [updating, setUpdating] = useState(false);
+  const [updateMsg, setUpdateMsg] = useState<string | null>(null);
+  const doUpdate = async () => {
+    setUpdating(true);
+    setUpdateMsg(null);
+    setUpdateMsg(UPDATE_TEXT[await checkForUpdate()]);
+    setUpdating(false);
+  };
   const [name, setName] = useState(profile.displayName);
   const [message, setMessage] = useState<string | null>(null);
   const [showCredits, setShowCredits] = useState(false);
@@ -184,6 +193,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
       <button class="btn" onClick={() => setShowCredits(true)}>Crédits et licences</button>
 
       <p class="dim small version">Version {__APP_VERSION__}</p>
+      <button class="btn" disabled={updating} onClick={doUpdate}>{updating ? 'Recherche…' : 'Mettre à jour l’app'}</button>
+      {updateMsg && <div class="toast" role="status">{updateMsg}</div>}
 
       <dialog ref={confirmDialog} aria-labelledby="wipe-title">
         <h2 id="wipe-title">Tout supprimer ?</h2>
