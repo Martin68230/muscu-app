@@ -488,3 +488,6 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .weight-add { display: flex; gap: 8px; align-items: center; }
 .weight-add .field { flex: 1; min-width: 0; }
 .weight-add .btn { width: auto; margin: 0; flex: none; }
+
+.why summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+.why p { margin: 6px 0; }

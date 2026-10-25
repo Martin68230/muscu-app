@@ -22,6 +22,20 @@ export function orderedMessages(program: Program): string[] {
   return [...first, ...msgs.filter((m) => m.id !== 'V-MSG-GROS-AVIS')].map((m) => m.text);
 }
 
+/** Messages de sécurité (douleur, grossesse, blessures, cardio) : toujours visibles. Les autres vont derrière « Pourquoi ? ». */
+export const SAFETY_MESSAGE_IDS = ['V-MSG-GROS-AVIS', 'V-MSG-GROS-DUREE', 'V-MSG-ZONE', 'V-MSG-PRO', 'R3', 'T0', 'T1', 'T1u', 'T3', 'T4', 'T5'];
+
+/** Sépare les messages du programme : sécurité (visibles) et informations (repliées). L'avis grossesse passe en premier. */
+export function splitMessages(program: Program): { safety: string[]; info: string[] } {
+  const msgs = program.messages ?? [];
+  const safe = msgs.filter((m) => SAFETY_MESSAGE_IDS.includes(m.id));
+  const first = safe.filter((m) => m.id === 'V-MSG-GROS-AVIS');
+  return {
+    safety: [...first, ...safe.filter((m) => m.id !== 'V-MSG-GROS-AVIS')].map((m) => m.text),
+    info: msgs.filter((m) => !SAFETY_MESSAGE_IDS.includes(m.id)).map((m) => m.text),
+  };
+}
+
 export interface PreviewViewProps {
   program: Program;
   next: NextSession;
@@ -68,7 +82,8 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
 /** Contenu de l'aperçu (sans accès à la base : testable). */
 export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel }: PreviewViewProps) {
   const day = next.day;
-  const messages = orderedMessages(program);
+  const { safety, info } = splitMessages(program);
+  const lines = program.explanation ?? [];
   return (
     <>
       <button type="button" class="btn back-btn" onClick={goHome}>← Accueil</button>
@@ -83,18 +98,27 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
       )}
       {cancelled && <div class="notice small" role="status"><p>{ECHELON_TEXT.cancelled}</p></div>}
       {proposals && <ProposalCards proposals={proposals} onAnswer={onAnswer} onAnswerLevel={onAnswerLevel} />}
-      {(program.explanation ?? []).length > 0 && (
-        <section class="card" aria-label="Pourquoi ce programme">
-          {(program.explanation ?? []).map((l, i) => (
-            <p key={i}>{l}</p>
+      {safety.length > 0 && (
+        <section class="notice" aria-label="À savoir">
+          {safety.map((t, i) => (
+            <p key={i}>{t}</p>
           ))}
         </section>
       )}
-      {messages.length > 0 && (
-        <section class="notice" aria-label="À savoir">
-          {messages.map((t, i) => (
-            <p key={i}>{t}</p>
-          ))}
+      {(lines.length > 0 || info.length > 0) && (
+        <section class="card" aria-label="Pourquoi ce programme">
+          {lines[0] && <p>{lines[0]}</p>}
+          {(lines.length > 1 || info.length > 0) && (
+            <details class="why">
+              <summary>Pourquoi ?</summary>
+              {lines.slice(1).map((l, i) => (
+                <p key={`l${i}`}>{l}</p>
+              ))}
+              {info.map((t, i) => (
+                <p class="dim" key={`i${i}`}>{t}</p>
+              ))}
+            </details>
+          )}
         </section>
       )}
       <section class="card" aria-label="Les exercices">
