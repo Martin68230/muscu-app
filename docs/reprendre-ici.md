@@ -44,3 +44,5 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 
 ## F7 (25/10/2026) : TERMINÉE, commitée, non poussée
 - Historique, calendrier, régularité à l'accueil : voir docs/F7-bilan.md. Prochaine action : le chef de projet pousse après vérification (CLAUDE.md : déploiement vert avant « en ligne »), puis test iPhone.
+
+- DÉPLOIEMENT : #64 (F7, commit 167127f) vérifié VERT et en ligne le 25/10/2026.
