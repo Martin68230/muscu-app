@@ -1,0 +1,7 @@
+# F7 : historique et accueil
+
+1. Fait : calendrier du mois navigable (marques texte + forme, détail du jour, « Voir le bilan »), synthèse « X séances faites sur Y prévues », historique paginé sous le calendrier, bilan d'une séance passée en lecture seule (mêmes règles que F6), suppression avec confirmation (séance + ses séries, softDelete), carte Régularité réelle à l'accueil (semaine du lundi, semaines de suite, dernière séance). Fonctions pures dans `src/session/calendar.ts`.
+2. Vérifié : tests `calendar-history` (heure locale Paris, changement d'heure du 25/10/2026, doublons du même jour) et `calendar-screen` ; suite complète 471 verts, tsc, check:fiches, check:securite, build ; Playwright WebKit `f7-historique` (SE sombre, grand iPhone clair), zones >= 44 px, pas de défilement horizontal.
+3. Pas vérifié : vrai iPhone (grille du calendrier au pouce, lisibilité des marques, suppression, changement d'heure réel) ; aucun test sur Android.
+4. Décisions à valider : Y « prévues » = jours/semaine x jours écoulés / 7 depuis la création du profil (NON SOURCÉ, conception) ; un jour avec plusieurs séances compte une fois ; la série de semaines ne « casse » pas pendant la semaine en cours ; « reportée » n'existe pas encore dans le code (marque prête, jamais produite) ; la suppression retire aussi les séries (donc l'historique de charges).
+5. Aucun texte de sécurité nouveau ; expert non sollicité.

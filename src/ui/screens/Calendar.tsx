@@ -105,7 +105,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
 
       {selected && dayEntries.length > 0 && (
         <section class="card" aria-label={`Séances du ${frDate(selected)}`}>
-          <h2 class="capitalize">{frDate(selected)}</h2>
+          <h2 class="cap-first">{frDate(selected)}</h2>
           {dayEntries.map((e) => (
             <div class="hist-detail" key={e.id}>
               <p><strong>{MARK_GLYPH[e.mark]} {MARK_TEXT[e.mark]}</strong></p>
@@ -125,7 +125,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
             {entries.slice(0, shown).map((e) => (
               <li key={e.id}>
                 <button type="button" class="hist-row" onClick={() => onOpen(e.id)}>
-                  <span class="hist-date capitalize">{frDate(e.dateKey)}</span>
+                  <span class="hist-date cap-first">{frDate(e.dateKey)}</span>
                   <span class="hist-mark"><span aria-hidden="true">{MARK_GLYPH[e.mark]}</span> {MARK_TEXT[e.mark]}</span>
                   <span class="dim small hist-info">{entryDetail(e)}</span>
                 </button>

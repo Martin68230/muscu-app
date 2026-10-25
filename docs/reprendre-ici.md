@@ -41,3 +41,6 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - lot-09 TERMINÉ (15 utilisables). Total fiches publiées : 188. Poussé et vérifié vert : voir ci-dessous si une ligne « DÉPLOIEMENT » suit.
 - Restent du lot D : 4 lancers lot-08 (décision coach : pas en exercice principal), corde/cardio machine (Q5, Q10 : attendre les décisions de l'utilisateur), vidéos à filmer (Q19), N4 (saisie de charge pour lest/sac).
 - Prochaine action : F7 (historique et accueil), Sonnet, sans experts sauf texte de sécurité.
+
+## F7 (25/10/2026) : TERMINÉE, commitée, non poussée
+- Historique, calendrier, régularité à l'accueil : voir docs/F7-bilan.md. Prochaine action : le chef de projet pousse après vérification (CLAUDE.md : déploiement vert avant « en ligne »), puis test iPhone.

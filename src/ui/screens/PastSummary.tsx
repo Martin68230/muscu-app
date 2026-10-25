@@ -64,7 +64,7 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
       {state === 'absent' && <p role="alert">Cette séance est introuvable.</p>}
       {t && state !== 'absent' && state !== null && (
         <>
-          <p class="dim small capitalize">{frDate(dateKey(sessionDate(state.row)))} · {state.row.plan?.label ?? 'Séance'}</p>
+          <p class="dim small cap-first">{frDate(dateKey(sessionDate(state.row)))} · {state.row.plan?.label ?? 'Séance'}</p>
           <h1>{t.title}</h1>
           {t.paragraphs.map((p, i) => <p key={i} class={i === 0 ? '' : 'dim'}>{p}</p>)}
           {t.stats.length > 0 && (
