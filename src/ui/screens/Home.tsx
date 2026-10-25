@@ -7,6 +7,8 @@ import { ensureActiveProgram, getNextSession, type NextSession } from '../../ses
 import { closeStaleSession, findResumable, type Resumable } from '../../session/store';
 import { NEUTRAL_CONTEXT } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
+import { list } from '../../data/repo';
+import { buildEntries, regularity, relativeDay, type Regularity } from '../../session/calendar';
 
 type Status =
   | { kind: 'loading' }
@@ -48,6 +50,10 @@ export interface HomeViewProps {
   onResume: (sessionId: string) => void;
   onOpenSession: () => void;
   onCloseStale: (sessionId: string, how: 'terminer' | 'abandonner') => void;
+  /** Régularité calculée sur l'historique local ; absente tant qu'elle n'est pas lue. */
+  regularity?: Regularity | null;
+  today?: Date;
+  onOpenHistory?: () => void;
 }
 
 function ResumeCard({ r, onResume, onCloseStale }: { r: Resumable; onResume: (id: string) => void; onCloseStale: (id: string, how: 'terminer' | 'abandonner') => void }) {
@@ -77,8 +83,40 @@ function ResumeCard({ r, onResume, onCloseStale }: { r: Resumable; onResume: (id
   );
 }
 
+const seances = (n: number): string => `${n} ${n > 1 ? 'séances faites' : 'séance faite'}`;
+
+/** Régularité : ton positif, aucune comparaison, aucun chiffre tant qu'il n'y a pas de séance. */
+export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity | null; today: Date; onOpenHistory?: () => void }) {
+  return (
+    <div class="card regularity">
+      <h2>Régularité</h2>
+      {!reg || !reg.hasAny ? (
+        <p class="dim">Ta première séance lancera le suivi. Chaque séance compte, à ton rythme.</p>
+      ) : (
+        <>
+          <p>
+            <strong>Cette semaine :</strong>{' '}
+            {reg.doneThisWeek === 0
+              ? 'pas encore de séance, la semaine est devant toi.'
+              : reg.plannedPerWeek
+                ? `${seances(reg.doneThisWeek)} sur ${reg.plannedPerWeek} prévues${reg.doneThisWeek >= reg.plannedPerWeek ? ', bravo !' : '.'}`
+                : `${seances(reg.doneThisWeek)}.`}
+          </p>
+          <p>
+            {reg.streakWeeks > 0
+              ? `${reg.streakWeeks} ${reg.streakWeeks > 1 ? 'semaines' : 'semaine'} de suite avec au moins une séance.`
+              : 'Une nouvelle série de semaines commence quand tu veux.'}
+          </p>
+          {reg.lastKey && <p class="dim">Dernière séance : {relativeDay(reg.lastKey, today)}.</p>}
+          {onOpenHistory && <button type="button" class="btn" onClick={onOpenHistory}>Voir mon historique</button>}
+        </>
+      )}
+    </div>
+  );
+}
+
 /** Contenu de l'accueil (sans accès à la base : testable). */
-export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale }: HomeViewProps) {
+export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory }: HomeViewProps) {
   const hello = profile.displayName ? `Salut ${profile.displayName}` : 'Salut';
   const complete = isProfileComplete(profile);
   const [hidden, setHidden] = useState(false);
@@ -120,10 +158,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
         </div>
       )}
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
-      <div class="card">
-        <h2>Régularité</h2>
-        <p class="dim">Aucune séance pour l'instant.</p>
-      </div>
+      <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} />
       {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
       <div class="thumb-zone">
         {!complete && <button type="button" class="btn btn-primary" onClick={onStart}>Créer mon programme</button>}
@@ -133,13 +168,15 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
   );
 }
 
-export function Home({ profile, onStart, onEditStep, onResume, onOpenSession }: {
+export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory }: {
   profile: Profile;
   onStart: () => void;
   onEditStep: (step: ProfileStep) => void;
   onResume: (sessionId: string) => void;
   onOpenSession: () => void;
+  onOpenHistory?: () => void;
 }) {
+  const [reg, setReg] = useState<Regularity | null>(null);
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
   const complete = isProfileComplete(profile);
 
@@ -163,6 +200,19 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession }: 
     }
   };
 
+  const loadRegularity = async () => {
+    try {
+      const [sessions, sets] = await Promise.all([list('sessions'), list('sets')]);
+      setReg(regularity(buildEntries(sessions, sets), new Date(), profile.daysPerWeek));
+    } catch {
+      setReg(null);
+    }
+  };
+
+  useEffect(() => {
+    void loadRegularity();
+  }, [profile.id, profile.daysPerWeek]);
+
   useEffect(() => {
     void load();
   }, [profile.id, complete, profile.updatedAt]);
@@ -184,7 +234,12 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession }: 
       onEditStep={onEditStep}
       onResume={onResume}
       onOpenSession={onOpenSession}
-      onCloseStale={closeStale}
+      onCloseStale={async (id, how) => {
+        await closeStale(id, how);
+        await loadRegularity();
+      }}
+      regularity={reg}
+      onOpenHistory={onOpenHistory}
     />
   );
 }

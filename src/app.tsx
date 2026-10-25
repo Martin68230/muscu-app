@@ -136,10 +136,11 @@ export function App() {
             onEditStep={(s) => setWizard(s)}
             onResume={(id) => void resume(id)}
             onOpenSession={() => (location.hash = '#/seance')}
+            onOpenHistory={() => go('calendrier')}
           />
         )}
         {tab === 'accueil' && preview && <SessionPreview profile={profile} onBegin={begin} />}
-        {tab === 'calendrier' && <Calendar />}
+        {tab === 'calendrier' && <Calendar profile={profile} />}
         {tab === 'bibliotheque' && !ficheId && <Library />}
         {tab === 'bibliotheque' && ficheId && <Fiche id={ficheId} pregnancy={profile.pregnancy} />}
         {tab === 'profil' && <Profile profile={profile} onChange={setProfile} onWiped={load} onEditStep={(s) => setWizard(s ?? 'all')} />}
