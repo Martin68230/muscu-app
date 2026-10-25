@@ -102,7 +102,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/porte-sac-epaule.svg : affichable : non (à faire par dev : vue de profil, sac de sable sur une épaule, marche tronc droit, bras libre)
+- illustration : public/illustrations/porte-sac-epaule.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante sac pris sur une chaise. Sac sur l'épaule, jamais sur la nuque.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -99,9 +99,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Tapis antidérapant épais sous les mains ; chaise sans roulettes, pieds arrière contre un mur plein (variante pieds sur chaise).
 
 ## Photo
-- `Pushups/0.jpg` : affichable : à vérifier (pompe sans gilet ; image la plus proche dans free-exercise-db, non regardée pour ce lot)
-- `Pushups/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/pompe-gilet-lest.svg : affichable : non (à faire par dev : vue de profil, gilet lesté à plat sur la poitrine, pompe haut puis bas, corps en ligne)
+- `Pushups/0.jpg` : affichable : non (pompe sans gilet : la fiche porte sur le gilet, que la photo ne montre pas ; l'illustration le dessine)
+- `Pushups/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/pompe-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante mains au sol. Pieds sur une chaise : même geste, pieds plus hauts.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

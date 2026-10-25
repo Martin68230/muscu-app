@@ -100,9 +100,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Sol plat, sec, non glissant ; chaussures fermées à semelle plate ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
-- `Butt_Lift_Bridge/0.jpg` : affichable : à vérifier (pont fessier sans gilet ; image du dépôt déjà utilisée par d'autres fiches, non regardée pour ce lot)
-- `Butt_Lift_Bridge/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/pont-fessier-gilet-lest.svg : affichable : non (à faire par dev : vue de profil, allongé, gilet lesté à plat, bassin bas puis haut aligné)
+- `Butt_Lift_Bridge/0.jpg` : affichable : non (pont fessier sans gilet : la fiche porte sur le gilet à plat sur le buste, que la photo ne montre pas)
+- `Butt_Lift_Bridge/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/pont-fessier-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante deux pieds au sol. Avec arrêt en haut ou sur une jambe : même pont.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

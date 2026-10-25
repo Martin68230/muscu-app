@@ -103,7 +103,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/fente-gilet-lest.svg : affichable : non (à faire par dev : vue de profil, un pied devant, un derrière, gilet lesté, bas puis haut de la descente, main au mur)
+- illustration : public/illustrations/fente-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante main au mur (le mur est devant toi). Sans appui : mains sur les hanches, mur à un pas.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

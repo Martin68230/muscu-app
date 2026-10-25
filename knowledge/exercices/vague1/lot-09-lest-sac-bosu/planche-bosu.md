@@ -92,7 +92,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/planche-bosu.svg : affichable : non (à faire par dev : vue de profil, avant-bras sur le dôme du bosu calé contre un mur, corps en ligne, deux poses (genoux, pieds))
+- illustration : public/illustrations/planche-bosu.svg : affichable : oui (illustration originale de l'app)
+- légende : Avant-bras sur le dôme, bosu calé contre un mur : d'abord genoux au tapis, puis pointes de pieds.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

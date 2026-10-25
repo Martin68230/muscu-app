@@ -104,7 +104,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/porte-sac-berceau.svg : affichable : non (à faire par dev : vue de profil, sac de sable serré dans les bras contre la poitrine, marche buste droit)
+- illustration : public/illustrations/porte-sac-berceau.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante sac pris sur une chaise. Au sol : mêmes gestes, genoux fléchis, dos plat.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -108,9 +108,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Ici le sac n'est ni lancé, ni rattrapé, ni jeté en l'air : il se porte, il se pose.
 
 ## Photo
-- `Goblet_Squat/0.jpg` : affichable : à vérifier (squat gobelet à l'haltère contre la poitrine, geste proche ; photo déjà utilisée par squat-gobelet, non regardée pour ce lot)
-- `Goblet_Squat/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/squat-sac-berceau.svg : affichable : non (à faire par dev : vue de profil, sac de sable serré dans les bras contre la poitrine, debout puis squat dos droit)
+- `Goblet_Squat/0.jpg` : affichable : non (haltère tenu verticalement sous le menton, pas un sac couché dans les bras ; l'illustration montre le sac)
+- `Goblet_Squat/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/squat-sac-berceau.svg : affichable : oui (illustration originale de l'app)
+- légende : Sac couché contre la poitrine, coudes dessous. Variante sac pris sur une chaise ou au sol : même squat.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

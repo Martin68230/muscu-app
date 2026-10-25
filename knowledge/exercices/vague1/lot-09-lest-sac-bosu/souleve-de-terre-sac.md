@@ -103,7 +103,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/souleve-de-terre-sac.svg : affichable : non (à faire par dev : vue de profil, sac de sable contre les jambes, dos plat, départ bas puis debout)
+- illustration : public/illustrations/souleve-de-terre-sac.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante sac posé sur une chaise (départ plus haut). Au sol : même geste, départ plus bas.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

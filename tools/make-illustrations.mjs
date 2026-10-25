@@ -170,6 +170,12 @@ const PROPS = {
   ball: (c, at, r = 34) => { const [a, b] = px(at, c); return `<circle class="sb" cx="${a}" cy="${b}" r="${r}"/>`; },
   mball: (c, at, r = 13) => { const [a, b] = px(at, c); return `<circle class="mb" cx="${a}" cy="${b}" r="${r}"/><path class="mbs" d="M${num(a - r)},${b} Q${a},${num(b - r * 0.6)} ${num(a + r)},${b}"/>`; },
   wheel: (c, at, r = 9) => { const [a, b] = px(at, c); return `<circle class="wh" cx="${a}" cy="${b}" r="${r}"/><circle class="whh" cx="${a}" cy="${b}" r="2.5"/>`; },
+  // Lot 09 : bosu posé côté dôme vers le haut (base plate au sol, dôme bombé au-dessus) ; x = centre, w = diamètre, h = hauteur totale
+  bosu: (c, x, w = 84, h = 28) => {
+    const [l] = px([x - w / 2 + 2, 0], c), [r] = px([x + w / 2 - 2, 0], c);
+    const y = GROUND - 4, rx = Math.abs(r - l) / 2, a = Math.min(l, r), b = Math.max(l, r);
+    return rect(c, x - w / 2, 0, w, 4, 'bsb', 1) + `<path class="bsd" d="M${num(a)},${y} A${num(rx)} ${h - 4} 0 0 1 ${num(b)},${y} Z"/>`;
+  },
   ring: (c, at, r = 18) => { const [a, b] = px(at, c); return `<circle class="arc" cx="${a}" cy="${b}" r="${r}"/>`; },
 };
 
@@ -185,6 +191,19 @@ function drawProps(list, J, c) {
     }
   }
   return out.join('');
+}
+
+/** Gilet lesté (lot 09) : bande plus large que le tronc, avec trois poches de lest ; dessiné sur le tronc, sous les bras. */
+function vestSvg(J, front, c) {
+  const a = add(J.hip, mul(sub(J.neck, J.hip), 0.1)), b = add(J.hip, mul(sub(J.neck, J.hip), 0.92));
+  const u = sub(J.neck, J.hip), L = Math.hypot(u[0], u[1]), d = [u[0] / L, u[1] / L], n = [-d[1], d[0]];
+  const half = front ? 15 : 14;
+  let out = line([a, b], 'vest', half * 2, c, ' stroke-linecap="butt"');
+  for (const k of [0.25, 0.5, 0.75]) {
+    const m = add(a, mul(sub(b, a), k));
+    out += line([add(m, mul(n, half - 1)), sub(m, mul(n, half - 1))], 'vestp', 2.5, c, ' stroke-linecap="butt"');
+  }
+  return out;
 }
 
 function figure(pose, view, c) {
@@ -203,6 +222,7 @@ function figure(pose, view, c) {
   if (showArm('armF')) out.push(line(front ? [J.shF, J.elF, J.haF] : [J.sh, J.elF, J.haF], far, 10, c));
   if (!hide.has('legF')) out.push(line(front ? [J.hpF, J.knF, J.anF, J.toF] : [J.hip, J.knF, J.anF, J.toF], far, 11, c));
   if (!hide.has('torso')) out.push(line([J.hip, J.neck], 'bn', front ? 24 : 22, c));
+  if (pose.vest && !hide.has('torso')) out.push(vestSvg(J, front, c));
   if (!hide.has('legN')) out.push(line(front ? [J.hpN, J.knN, J.anN, J.toN] : [J.hip, J.knN, J.anN, J.toN], 'bn', 12, c));
   if (showArm('armN')) out.push(line(front ? [J.shN, J.elN, J.haN] : [J.sh, J.elN, J.haN], 'bn', wN, c));
   if (!hide.has('head')) {
@@ -216,7 +236,7 @@ function figure(pose, view, c) {
   return out.join('');
 }
 
-const STYLE = `.bg{fill:#eef1f6}.gr{stroke:#a9b3c4;stroke-width:3;stroke-linecap:round}.bn{stroke:#1f2d4d;fill:none;stroke-linecap:round;stroke-linejoin:round}.bf{stroke:#7f8cab;fill:none;stroke-linecap:round;stroke-linejoin:round}.bh{fill:#1f2d4d}.pr{fill:#c9d1de;stroke:#9aa5b8;stroke-width:1.5}.wb{fill:#dbe1ec}.prl{stroke:#9aa5b8;fill:none;stroke-linecap:round}.ac{stroke:#e8590c;fill:#e8590c;stroke-linecap:round}polyline.ac{fill:none}.arw{stroke:#e8590c;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round}.arc{stroke:#e8590c;stroke-width:3;fill:none;stroke-dasharray:6 5}.tw{stroke:#e0a93c;fill:none;stroke-linecap:round;stroke-linejoin:round}.db{stroke:#4a5568}.dbi{stroke:#8793a8}.bag{fill:#3b7a57;stroke:#285a3f;stroke-width:1.5}.bagp{fill:#2f6849}.pl{fill:#4a5568;fill-opacity:.3;stroke:#4a5568;stroke-width:5}.plh{fill:#4a5568}.pl2{fill:#4a5568;stroke:#2d3748;stroke-width:1}.sf{stroke:#e0a93c;fill:none;stroke-linecap:round}.sb{fill:#8fb8de;fill-opacity:.6;stroke:#4f83b3;stroke-width:3}.mb{fill:#c9884a;stroke:#8a5a2b;stroke-width:2}.mbs{stroke:#8a5a2b;stroke-width:2;fill:none}.wh{fill:#4a5568;stroke:#2d3748;stroke-width:2}.whh{fill:#c9d1de}.lbl{font:600 13px system-ui,sans-serif;fill:#5b6780}@media (prefers-color-scheme:dark){.sb{fill:#5d8fc0;fill-opacity:.55;stroke:#8fb8de}.mb{fill:#c9884a;stroke:#e8b07a}.mbs{stroke:#e8b07a}.wh{fill:#b5bfd3;stroke:#e8edf7}.whh{fill:#2d3750}.pl{fill:#b5bfd3;stroke:#b5bfd3}.plh{fill:#b5bfd3}.pl2{fill:#b5bfd3;stroke:#e8edf7}.sf{stroke:#d9b56a}.bg{fill:#1b2233}.gr{stroke:#4a5670}.bn{stroke:#e8edf7}.bf{stroke:#8a97b5}.bh{fill:#e8edf7}.pr{fill:#2d3750;stroke:#4a5670}.wb{fill:#252e44}.prl{stroke:#56637f}.ac{stroke:#ff8a3d;fill:#ff8a3d}.arw,.arc{stroke:#ff8a3d}.tw{stroke:#d9b56a}.db{stroke:#b5bfd3}.dbi{stroke:#7b87a0}.lbl{fill:#9fb0cf}}`;
+const STYLE = `.bg{fill:#eef1f6}.gr{stroke:#a9b3c4;stroke-width:3;stroke-linecap:round}.bn{stroke:#1f2d4d;fill:none;stroke-linecap:round;stroke-linejoin:round}.bf{stroke:#7f8cab;fill:none;stroke-linecap:round;stroke-linejoin:round}.bh{fill:#1f2d4d}.pr{fill:#c9d1de;stroke:#9aa5b8;stroke-width:1.5}.wb{fill:#dbe1ec}.prl{stroke:#9aa5b8;fill:none;stroke-linecap:round}.ac{stroke:#e8590c;fill:#e8590c;stroke-linecap:round}polyline.ac{fill:none}.arw{stroke:#e8590c;stroke-width:3.5;fill:none;stroke-linecap:round;stroke-linejoin:round}.arc{stroke:#e8590c;stroke-width:3;fill:none;stroke-dasharray:6 5}.tw{stroke:#e0a93c;fill:none;stroke-linecap:round;stroke-linejoin:round}.db{stroke:#4a5568}.dbi{stroke:#8793a8}.bag{fill:#3b7a57;stroke:#285a3f;stroke-width:1.5}.bagp{fill:#2f6849}.pl{fill:#4a5568;fill-opacity:.3;stroke:#4a5568;stroke-width:5}.plh{fill:#4a5568}.pl2{fill:#4a5568;stroke:#2d3748;stroke-width:1}.sf{stroke:#e0a93c;fill:none;stroke-linecap:round}.sb{fill:#8fb8de;fill-opacity:.6;stroke:#4f83b3;stroke-width:3}.mb{fill:#c9884a;stroke:#8a5a2b;stroke-width:2}.mbs{stroke:#8a5a2b;stroke-width:2;fill:none}.wh{fill:#4a5568;stroke:#2d3748;stroke-width:2}.whh{fill:#c9d1de}.vest{stroke:#2f9e8f;fill:none}.vestp{stroke:#1d6b60;fill:none}.bsd{fill:#4a7fb5;stroke:#2f5a86;stroke-width:2}.bsb{fill:#33415c;stroke:#1f2d4d;stroke-width:1.5}.lbl{font:600 13px system-ui,sans-serif;fill:#5b6780}@media (prefers-color-scheme:dark){.vest{stroke:#3fbfae}.vestp{stroke:#1d6b60}.bsd{fill:#5b93cb;stroke:#a9c8e8}.bsb{fill:#b5bfd3;stroke:#e8edf7}.sb{fill:#5d8fc0;fill-opacity:.55;stroke:#8fb8de}.mb{fill:#c9884a;stroke:#e8b07a}.mbs{stroke:#e8b07a}.wh{fill:#b5bfd3;stroke:#e8edf7}.whh{fill:#2d3750}.pl{fill:#b5bfd3;stroke:#b5bfd3}.plh{fill:#b5bfd3}.pl2{fill:#b5bfd3;stroke:#e8edf7}.sf{stroke:#d9b56a}.bg{fill:#1b2233}.gr{stroke:#4a5670}.bn{stroke:#e8edf7}.bf{stroke:#8a97b5}.bh{fill:#e8edf7}.pr{fill:#2d3750;stroke:#4a5670}.wb{fill:#252e44}.prl{stroke:#56637f}.ac{stroke:#ff8a3d;fill:#ff8a3d}.arw,.arc{stroke:#ff8a3d}.tw{stroke:#d9b56a}.db{stroke:#b5bfd3}.dbi{stroke:#7b87a0}.lbl{fill:#9fb0cf}}`;
 
 /** Construit le SVG complet : départ à gauche, arrivée à droite (et une troisième image si ex.c existe). */
 export function buildSvg(ex) {

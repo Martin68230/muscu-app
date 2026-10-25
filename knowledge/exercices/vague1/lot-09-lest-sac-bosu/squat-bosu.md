@@ -99,7 +99,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/squat-bosu.svg : affichable : non (à faire par dev : vue de profil, deux pieds sur le dôme d'un bosu contre un mur, main au mur, quart de squat)
+- illustration : public/illustrations/squat-bosu.svg : affichable : oui (illustration originale de l'app)
+- légende : Bosu côté dôme vers le haut, une main au mur. Quart de squat seulement, jamais de charge.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

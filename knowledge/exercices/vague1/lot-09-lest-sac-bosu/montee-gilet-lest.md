@@ -103,9 +103,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Marche d'escalier ou box/step : stable, antidérapante, large, calée contre un mur ; jamais un objet creux ou qui bouge (R8, NON SOURCÉ).
 
 ## Photo
-- `Step-up_with_Knee_Raise/0.jpg` : affichable : à vérifier (montée sur box sans gilet et avec montée de genou, geste proche ; non regardée pour ce lot)
-- `Step-up_with_Knee_Raise/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/montee-gilet-lest.svg : affichable : non (à faire par dev : vue de profil, gilet lesté, un pied sur la première marche, montée puis redescente contrôlée)
+- `Step-up_with_Knee_Raise/0.jpg` : affichable : non (montée avec genou levé et sans gilet : la consigne dit sans élan, la photo montre un autre geste)
+- `Step-up_with_Knee_Raise/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/montee-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante première marche d'un escalier. Avec un box : même geste, box sous la hauteur du genou.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

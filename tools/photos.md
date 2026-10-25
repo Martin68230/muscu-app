@@ -103,6 +103,8 @@ Pour les logos de fabricant de rack ou de banc impossibles à recadrer sans coup
 
 Lot 08 (ballons, roue) : 4 WebP ajoutés (environ 74 Ko), aucun logo lisible à 600 px (petites marques sur les chaussures et le col, illisibles). Candidats regardés et refusés : Ab_Roller (marque lisible sur la chaussure, pas de mur), Ball_Leg_Curl (logo sur le ballon et les chaussures, geste différent), Physioball_Hip_Bridge (logo Cybex lisible), Weighted_Ball_Hyperextension (disque tenu), Medicine_Ball_Chest_Pass (deux personnes, affiches lisibles), Medicine_Ball_Scoop_Throw (saut), Russian_Twist (disque, pieds sous un banc), Standing_Cable_Wood_Chop (poulie, logos lisibles). Les 17 autres fiches du lot ont une illustration (accessoires ajoutés au moteur : `ball` ballon de gym, `mball` ballon lesté, `wheel` roue abdominale).
 
+Lot 09 (gilet lesté, sac de sable, bosu) : aucune photo ajoutée (0 WebP). free-exercise-db n'a ni gilet, ni sac de sable, ni bosu ; les photos de gestes voisins (Bodyweight_Squat, Pushups, Weighted_Pull_Ups à la ceinture, Step-up_with_Knee_Raise avec genou levé, Butt_Lift_Bridge, Goblet_Squat à l'haltère, One-Arm_Dumbbell_Row sur banc, Balance_Board) sont marquées `non` : l'objet est le sujet de la fiche. Les 17 fiches ont une illustration originale (gilet teal à poches, sac vert, bosu dôme vers le haut, base plate au sol).
+
 ## Illustrations originales de l'app (public/illustrations/)
 
 Quand aucune photo libre ne convient (mauvais mouvement, matériel de salle, logo non recadrable, mouvement absent de la base), la fiche reçoit une illustration dessinée par nous : aucune image d'une autre app, aucune licence à citer.

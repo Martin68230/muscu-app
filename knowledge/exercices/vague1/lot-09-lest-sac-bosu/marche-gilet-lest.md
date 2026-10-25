@@ -96,7 +96,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/marche-gilet-lest.svg : affichable : non (à faire par dev : vue de profil, marche avec gilet lesté, buste droit, pas courts)
+- illustration : public/illustrations/marche-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Marche à plat, buste droit, pas courts, gilet serré.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

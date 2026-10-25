@@ -99,9 +99,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Ici le sac n'est ni lancé, ni rattrapé, ni jeté en l'air : il se porte, il se pose.
 
 ## Photo
-- `One-Arm_Dumbbell_Row/0.jpg` : affichable : à vérifier (rowing à un bras avec haltère, geste proche sans sac ; photo du dépôt déjà utilisée par rowing-unilateral-haltere, non regardée pour ce lot)
-- `One-Arm_Dumbbell_Row/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/rowing-sac-de-sable.svg : affichable : non (à faire par dev : vue de profil, buste penché, dos plat, sac de sable tenu bras tendu puis tiré vers la poitrine, main libre sur une chaise)
+- `One-Arm_Dumbbell_Row/0.jpg` : affichable : non (appui sur un banc et haltère, pas sur une chaise avec un sac ; l'illustration montre le sac et la chaise)
+- `One-Arm_Dumbbell_Row/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/rowing-sac-de-sable.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante un bras, main libre sur une chaise. À deux mains : buste penché sans appui, réservé aux avancés.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

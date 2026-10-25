@@ -61,6 +61,27 @@ const barEnd7 = (J) => [['plate', J.haN, 7]];
 const benchFlat = [['rect', -92, 36, 172, 10, 3], ['rect', -78, 0, 8, 36, 2], ['rect', 56, 0, 8, 36, 2]];
 const benchSq = [['rect', -105, 40, 75, 10, 3], ['rect', -98, 0, 8, 40, 2], ['rect', -44, 0, 8, 40, 2]];
 
+// ---- Lot 09 (gilet lesté, sac de sable, bosu) ----
+const dirP = (a) => [Math.cos((a * Math.PI) / 180), Math.sin((a * Math.PI) / 180)];
+// Sac de sable en berceau : couché devant la poitrine, les mains dessous. p = bassin, t = angle du tronc
+const cradle = (p, t) => {
+  const u = dirP(t), f = [u[1], -u[0]];
+  const c = [p[0] + u[0] * 50 + f[0] * 24, p[1] + u[1] * 50 + f[1] * 24];
+  return { c, hn: [c[0] + 6, c[1] - 14], hf: [c[0] + 3, c[1] - 14] };
+};
+const cradleArms = (p, t) => { const k = cradle(p, t); return { armN: { to: k.hn, bend: 'd' }, armF: { to: k.hf, bend: 'd' }, props: [['bag', k.c, 46, 24, 0]] }; };
+// Sac pris sur une chaise (dossier contre un mur, assise à 46) : prise à deux bras, dos plat, genoux fléchis
+const chairWall = [['chair', 110, 46, -1], ['wall', 110, 14]];
+const chairLift = (o = {}) => ({
+  p: [0, 86], t: 48, h: 52,
+  armN: { to: [72, 78], bend: 'u' }, armF: { to: [70, 76], bend: 'u' },
+  legN: { to: [22, A], bend: 'f' }, legF: { to: [16, A], bend: 'f' },
+  back: [...chairWall, ['bag', [90, 59], 40, 26, 0]],
+  ...o,
+});
+// Bosu : dôme vers le haut centré en x, sommet à 28
+const dome = (x) => ['bosu', x];
+
 export const EXERCICES = [
   // ================= pilote =================
   {
@@ -765,5 +786,110 @@ export const EXERCICES = [
     labels: ['Ballon contre la poitrine', 'Pas courts, buste droit'],
     a: stride({ armN: { to: [22, 156], bend: 'd' }, armF: { to: [18, 156], bend: 'd' }, props: [['mball', [30, 162]], ...walkFwd] }),
     b: stride({ legN: { to: [-22, 15], bend: 'f', foot: -35 }, legF: { to: [20, A], bend: 'f' }, armN: { to: [22, 156], bend: 'd' }, armF: { to: [18, 156], bend: 'd' }, props: [['mball', [30, 162]], ...walkFwd] }),
+  },
+  // ================= Lot 09 (gilet lesté, sac de sable, bosu) =================
+  {
+    id: 'squat-gilet-lest', titre: 'Squat avec un gilet lesté, variante libre, vue de profil : gilet serré sur le tronc, descente dos droit, cuisses au plus à l\'horizontale',
+    labels: ['Debout, gilet serré', 'Descente, dos droit'],
+    a: { vest: true, p: [0, 112], t: 90, armN: { a: [0, 0] }, armF: { a: [-3, -3] } },
+    b: { vest: true, p: [-32, 60], t: 62, h: 70, armN: { a: [0, 0] }, armF: { a: [-3, -3] }, legN: { to: [8, A], bend: 'f' }, legF: { to: [2, A], bend: 'f' } },
+  },
+  {
+    id: 'fente-gilet-lest', titre: 'Fente avec un gilet lesté, une main au mur, vue de profil : pieds qui ne bougent pas, on descend à la verticale',
+    labels: ['Un pied devant, main au mur', 'Descente à la verticale'],
+    a: { vest: true, p: [0, 104], t: 90, armN: { to: [66, 151], bend: 'd' }, armF: { to: [12, 108], bend: 'b' }, legN: { to: [45, A], bend: 'f' }, legF: { to: [-45, 19], bend: 'f', foot: -40 }, back: [['wall', 68, 14]] },
+    b: { vest: true, p: [0, 64], t: 90, armN: { to: [66, 111], bend: 'd' }, armF: { to: [12, 68], bend: 'b' }, legN: { to: [45, A], bend: 'f' }, legF: { to: [-45, 19], bend: 'd', foot: -40 }, back: [['wall', 68, 14]], props: [['arrow', [-78, 150], [-78, 100]]] },
+  },
+  {
+    id: 'pompe-gilet-lest', titre: 'Pompe avec un gilet lesté, mains au sol, vue de profil : gilet à plat sur la poitrine, corps en ligne',
+    labels: ['Corps en ligne, gilet serré', 'Coudes pliés, poitrine près du sol'],
+    a: plank({ vest: true }),
+    b: plankDown({ vest: true, props: [['arrow', [-30, 100], [-30, 70]]] }),
+  },
+  {
+    id: 'traction-gilet-lest', titre: 'Traction avec un gilet lesté, vue de face, mains vers soi : suspendu bras tendus, puis menton au-dessus de la barre ; barre basse, pieds à moins de 30 cm du sol',
+    view: 'front',
+    labels: ['Suspendu, bras tendus', 'Menton au-dessus de la barre'],
+    a: { vest: true, p: [0, 122], t: 90, h: 90, armN: { to: [31, 252], bend: 'f' }, armF: { to: [-31, 252], bend: 'b' }, legN: { to: [7, 16], bend: 'f' }, legF: { to: [-7, 16], bend: 'b' }, back: [['rect', -86, 0, 8, 258, 2], ['rect', 78, 0, 8, 258, 2], ['lin', [[-82, 254], [82, 254]], 7]] },
+    b: { vest: true, p: [0, 180], t: 90, h: 90, armN: { to: [31, 252], bend: 'f' }, armF: { to: [-31, 252], bend: 'b' }, legN: { to: [7, 74], bend: 'f' }, legF: { to: [-7, 74], bend: 'b' }, back: [['rect', -86, 0, 8, 258, 2], ['rect', 78, 0, 8, 258, 2], ['lin', [[-82, 254], [82, 254]], 7]], props: [['arrow', [112, 130], [112, 190]]] },
+  },
+  {
+    id: 'marche-gilet-lest', titre: 'Marche avec un gilet lesté, vue de profil : pas courts, buste droit, épaules loin des oreilles',
+    labels: ['Gilet serré, buste droit', 'Pas courts, à vitesse tranquille'],
+    a: stride({ vest: true, props: walkFwd }),
+    b: stride({ vest: true, legN: { to: [-22, 15], bend: 'f', foot: -35 }, legF: { to: [20, A], bend: 'f' }, props: walkFwd }),
+  },
+  {
+    id: 'montee-gilet-lest', titre: 'Montée sur la première marche avec un gilet lesté, vue de profil : un pied entièrement posé, on se redresse sans élan',
+    labels: ['Un pied entier sur la marche', 'Debout sur la marche, sans élan'],
+    a: { vest: true, p: [-20, 108], t: 90, h: 90, armN: { a: [-90, -90] }, armF: { a: [-90, -90] }, legN: { to: [30, 26], bend: 'f' }, legF: { to: [-22, A], bend: 'f' }, back: [['step', 10, 130, 18]] },
+    b: { vest: true, p: [30, 130], t: 90, h: 90, armN: { a: [-90, -90] }, armF: { a: [-90, -90] }, legN: { to: [30, 26], bend: 'f' }, legF: { to: [12, 46], bend: 'f' }, back: [['step', 10, 130, 18]], props: [['arrow', [-40, 80], [-40, 130]]] },
+  },
+  {
+    id: 'pont-fessier-gilet-lest', titre: 'Pont fessier avec un gilet lesté, vue de profil : couché sur le dos, gilet à plat, le bassin monte jusqu\'à l\'alignement épaules, hanches, genoux',
+    labels: ['Bassin bas, gilet à plat', 'Épaules, hanches, genoux alignés'],
+    a: { vest: true, p: [5, 12], t: 180, h: 175, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, back: [['mat', -140, 130]] },
+    b: { vest: true, p: [8, 38], t: 203, h: 170, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, back: [['mat', -140, 130]], props: [['arrow', [4, 90], [4, 120]]] },
+  },
+  {
+    id: 'porte-sac-epaule', titre: 'Portage d\'un sac de sable sur une épaule, sac pris sur une chaise : à deux bras contre le ventre, genoux fléchis, puis marche tronc droit',
+    labels: ['Sac pris sur la chaise, dos plat', 'Marche, sac sur l\'épaule'],
+    a: chairLift(),
+    b: stride({ armN: { to: [16, 172], bend: 'd' }, armF: { a: [-70, -50] }, props: [['bag', [-4, 178], 46, 22, 0], ...walkFwd] }),
+  },
+  {
+    id: 'porte-sac-berceau', titre: 'Portage d\'un sac de sable en berceau, sac pris sur une chaise : serré dans les deux bras contre la poitrine, marche buste droit',
+    labels: ['Sac pris sur la chaise, dos plat', 'Marche, sac contre la poitrine'],
+    a: chairLift(),
+    b: stride({ ...cradleArms([0, 110], 90), props: [...cradleArms([0, 110], 90).props, ...walkFwd] }),
+  },
+  {
+    id: 'squat-sac-berceau', titre: 'Squat avec un sac de sable en berceau (sac pris sur une chaise) : sac collé à la poitrine, hanches en arrière, dos droit',
+    labels: ['Debout, sac contre la poitrine', 'Descente, dos droit'],
+    a: { p: [0, 112], t: 90, ...cradleArms([0, 112], 90) },
+    b: { p: [-32, 60], t: 62, h: 70, legN: { to: [8, A], bend: 'f' }, legF: { to: [2, A], bend: 'f' }, ...cradleArms([-32, 60], 62) },
+  },
+  {
+    id: 'squat-sac-epaule', titre: 'Squat avec un sac de sable sur une épaule, chaise derrière soi (dossier contre un mur) : on effleure l\'assise sans s\'asseoir, tronc droit',
+    labels: ['Debout, sac sur l\'épaule', 'On effleure la chaise, tronc droit'],
+    a: { p: [0, 112], t: 90, armN: { to: [16, 172], bend: 'd' }, armF: { a: [-50, -20] }, back: [['chair', -75, 46, 1], ['wall', -75, -14]], props: [['bag', [-4, 178], 46, 22, 0]] },
+    b: { p: [-48, 58], t: 80, h: 82, armN: { to: [-23, 119], bend: 'd' }, armF: { a: [-30, -5] }, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, back: [['chair', -75, 46, 1], ['wall', -75, -14]], props: [['bag', [-41, 125], 46, 22, 0]] },
+  },
+  {
+    id: 'souleve-de-terre-sac', titre: 'Soulevé de terre avec un sac de sable pris sur une chaise : dos plat, sac serré contre les jambes, on se redresse jusqu\'à debout',
+    labels: ['Départ : sac sur la chaise, dos plat', 'Debout, sac contre les cuisses'],
+    a: chairLift(),
+    b: { p: [0, 112], t: 90, armN: { to: [14, 106], bend: 'f' }, armF: { to: [12, 106], bend: 'f' }, props: [['bag', [22, 100], 28, 34, 0], ['arrow', [70, 70], [70, 130]]] },
+  },
+  {
+    id: 'rowing-sac-de-sable', titre: 'Rowing avec un sac de sable, un bras, main libre sur une chaise : buste penché dos plat, le sac pend puis monte vers la poitrine',
+    labels: ['Sac pendu, main sur la chaise', 'Sac tiré vers la poitrine'],
+    a: { p: [-45, 84], t: 15, h: 20, armN: { a: [-90, -90] }, armF: { to: [54, 52], bend: 'u' }, legN: { to: [-6, A], bend: 'f' }, legF: { to: [-12, A], bend: 'f' }, back: [['chair', 92, 46, -1], ['wall', 92, 14]], props: (J) => [['bag', [J.haN[0], J.haN[1] - 14], 30, 30, 0]] },
+    b: { p: [-45, 84], t: 15, h: 20, armN: { to: [-8, 84], bend: 'b' }, armF: { to: [54, 52], bend: 'u' }, legN: { to: [-6, A], bend: 'f' }, legF: { to: [-12, A], bend: 'f' }, back: [['chair', 92, 46, -1], ['wall', 92, 14]], props: [['bag', [-8, 70], 30, 30, 0], ['arrow', [-8, 20], [-8, 50]]] },
+  },
+  {
+    id: 'squat-bosu', titre: 'Squat sur un bosu, dôme vers le haut, une main au mur, vue de profil : pieds au centre du dôme, quart de squat seulement',
+    labels: ['Pieds sur le dôme, main au mur', 'Quart de squat, dos droit'],
+    a: { p: [0, 139], t: 90, armN: { to: [60, 190], bend: 'd' }, armF: { a: [-60, -30] }, legN: { to: [8, 34], bend: 'f' }, legF: { to: [2, 34], bend: 'f' }, back: [dome(0), ['wall', 62, 14]] },
+    b: { p: [-14, 112], t: 80, h: 80, armN: { to: [60, 160], bend: 'd' }, armF: { a: [-60, -30] }, legN: { to: [8, 34], bend: 'f' }, legF: { to: [2, 34], bend: 'f' }, back: [dome(0), ['wall', 62, 14]] },
+  },
+  {
+    id: 'planche-bosu', titre: 'Planche, avant-bras sur le dôme d\'un bosu calé contre un mur, vue de profil : sur les genoux, puis sur les pointes de pieds, corps en ligne',
+    labels: ['Genoux au tapis, corps en ligne', 'Pointes de pieds, corps en ligne'],
+    a: { p: [-8.5, 35.7], t: 30.3, h: 25, armN: { a: [-90, -5] }, armF: { a: [-91, -6] }, legN: { to: [-108, 12], bend: 'd', foot: 180 }, legF: { to: [-104, 12], bend: 'd', foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+    b: { p: [-14.8, 50.5], t: 15.4, h: 12, armN: { a: [-90, -5] }, armF: { a: [-91, -6] }, legN: { to: [-118, 22], bend: 'd', foot: -60 }, legF: { to: [-114, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+  },
+  {
+    id: 'pompe-bosu', titre: 'Pompe, mains sur le dôme d\'un bosu calé contre un mur, genoux au tapis, vue de profil : on descend peu, la poitrine reste au-dessus du dôme',
+    labels: ['Bras presque tendus, corps en ligne', 'Descente courte, coudes à 45°'],
+    a: { p: [21, 50.8], t: 51, h: 45, armN: { to: [60, 30], bend: 'b' }, armF: { to: [56, 30], bend: 'b' }, legN: { to: [-66, 12], bend: 'd', foot: 180 }, legF: { to: [-62, 12], bend: 'd', foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+    b: { p: [32, 41], t: 35.5, h: 30, armN: { to: [60, 30], bend: 'b' }, armF: { to: [56, 30], bend: 'b' }, legN: { to: [-66, 12], bend: 'd', foot: 180 }, legF: { to: [-62, 12], bend: 'd', foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]], props: [['arrow', [-30, 110], [-30, 80]]] },
+  },
+  {
+    id: 'equilibre-unipodal-bosu', titre: 'Équilibre sur une jambe sur un bosu, dôme vers le haut, vue de face : un pied au centre du dôme, doigts au mur, puis sans appui',
+    view: 'front',
+    labels: ['Doigts au mur', 'Sans appui, doigts près du mur'],
+    a: { p: [0, 138], t: 90, h: 90, armN: { to: [57, 154], bend: 'd' }, armF: { a: [-100, -95] }, legN: { to: [13, 36], bend: 'f' }, legF: { to: [-10, 60], bend: 'b' }, back: [dome(13), ['wall', 57, 14]] },
+    b: { p: [0, 138], t: 90, h: 90, armN: { a: [-85, -87] }, armF: { a: [-95, -93] }, legN: { to: [13, 36], bend: 'f' }, legF: { to: [-10, 60], bend: 'b' }, back: [dome(13), ['wall', 57, 14]] },
   },
 ];

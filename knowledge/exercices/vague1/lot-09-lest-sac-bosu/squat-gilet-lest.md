@@ -103,9 +103,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Sol plat, sec, non glissant ; chaussures fermées à semelle plate ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
-- `Bodyweight_Squat/0.jpg` : affichable : à vérifier (squat sans gilet ; image la plus proche dans free-exercise-db, non regardée pour ce lot)
-- `Bodyweight_Squat/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/squat-gilet-lest.svg : affichable : non (à faire par dev : vue de profil, gilet lesté, debout puis squat dos droit ; variante avec chaise derrière)
+- `Bodyweight_Squat/0.jpg` : affichable : non (squat sans gilet : la fiche porte sur le gilet, que la photo ne montre pas ; l'illustration le dessine)
+- `Bodyweight_Squat/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/squat-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante libre, vue de profil. Avec la chaise : même geste, tu effleures l'assise.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

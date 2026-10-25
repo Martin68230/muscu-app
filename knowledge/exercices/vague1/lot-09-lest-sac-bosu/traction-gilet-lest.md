@@ -96,9 +96,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Barre de traction : fixation solide au mur ou au cadre de porte selon la notice, pieds sans jeu, test de suspension avant chaque séance (R8, NON SOURCÉ).
 
 ## Photo
-- `Weighted_Pull_Ups/0.jpg` : affichable : à vérifier (traction lestée avec une ceinture et non un gilet ; image la plus proche dans free-exercise-db, non regardée pour ce lot)
-- `Weighted_Pull_Ups/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/traction-gilet-lest.svg : affichable : non (à faire par dev : vue de face, gilet lesté, suspendu bras tendus puis menton au-dessus de la barre, pieds libres)
+- `Weighted_Pull_Ups/0.jpg` : affichable : non (traction lestée avec une ceinture et non un gilet : autre charge que celle de la fiche)
+- `Weighted_Pull_Ups/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/traction-gilet-lest.svg : affichable : oui (illustration originale de l'app)
+- légende : Vue de face, mains vers soi. Barre assez basse pour que les pieds restent à moins de 30 cm du sol.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -97,7 +97,8 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 ## Photo
 - aucune photo
-- illustration : public/illustrations/pompe-bosu.svg : affichable : non (à faire par dev : vue de profil, mains sur le dôme du bosu calé contre un mur, corps en ligne, haut puis bas)
+- illustration : public/illustrations/pompe-bosu.svg : affichable : oui (illustration originale de l'app)
+- légende : Variante genoux au tapis, mains sur le dôme. Pointes de pieds : même geste, jamais de pieds sur le bosu.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -50,7 +50,7 @@ Le générateur ne choisit pas de charge pour ces matériels (le profil ne conna
 5. Cases `adapter: charge:legere` sur gilet et sac (charge fixe) : elles servent à bloquer toute hausse ; confirmer le sens avec `dev`.
 
 ## Pour `dev`
-- Aucune illustration n'est dessinée (17 lignes `illustration : ... affichable : non`, à faire) ; photos proches à regarder avant de passer à `oui` (consigne prime, règle 12).
+- Images faites le 25/10/2026 : 17 illustrations originales (`oui`), 0 photo ajoutée (les photos voisines sont marquées `non` : elles ne montrent ni gilet, ni sac, ni bosu). Chaque illustration montre la première variante de la fiche (légende : « Variante ... »). Moteur : accessoires `vest` (gilet) et `bosu` ajoutés à `tools/make-illustrations.mjs`. Reste à contrôler par `relecteur`.
 - `sac_de_sable` n'est pas dans `CHARGEABLE_TAGS` (src/generator/config.ts) : ces fiches seraient dosées comme du poids du corps (10 à 15 répétitions). Voir Q26.
 - Portés (marche au gilet, deux portés au sac) : V-TEMPS porté (30 s puis 40 s, 2 séries) ; l'app ne gère pas la distance ni un porté d'un seul côté « chaque série = un côté » (écrit en texte seulement).
 - `equilibre-unipodal-bosu` est de schéma `mobilite` (comme equilibre-unipodal) : le générateur le traite comme échauffement (1 série) ; son rôle réel est un exercice d'équilibre. À arbitrer.

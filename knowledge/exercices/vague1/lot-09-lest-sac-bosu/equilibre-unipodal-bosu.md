@@ -94,9 +94,10 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche, ou pieds nus propres sur un sol non glissant ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
-- `Balance_Board/0.jpg` : affichable : à vérifier (planche d'équilibre, appareil voisin du bosu mais pas le même ; non regardée pour ce lot)
-- `Balance_Board/1.jpg` : affichable : à vérifier (idem)
-- illustration : public/illustrations/equilibre-unipodal-bosu.svg : affichable : non (à faire par dev : vue de face, un pied sur le dôme d'un bosu calé contre un mur, doigts au mur, jambe libre levée)
+- `Balance_Board/0.jpg` : affichable : non (planche d'équilibre, autre appareil que le bosu)
+- `Balance_Board/1.jpg` : affichable : non (idem)
+- illustration : public/illustrations/equilibre-unipodal-bosu.svg : affichable : oui (illustration originale de l'app)
+- légende : Vue de face, bosu côté dôme vers le haut contre un mur. Si tu perds l'équilibre, pose le pied libre.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
