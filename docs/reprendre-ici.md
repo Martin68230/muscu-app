@@ -46,3 +46,7 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 - Historique, calendrier, régularité à l'accueil : voir docs/F7-bilan.md. Prochaine action : le chef de projet pousse après vérification (CLAUDE.md : déploiement vert avant « en ligne »), puis test iPhone.
 
 - DÉPLOIEMENT : #64 (F7, commit 167127f) vérifié VERT et en ligne le 25/10/2026.
+
+## Mise à jour 25/10/2026 (petites tâches de la semaine, quota hebdomadaire à 92 %)
+- Faits, poussés, déploiement #65 VERT (commit 578bd02) : fiches.json public nettoyé à la génération (tools/public-text.mjs, test tests/unit/public-fiches.test.ts) ; message de suppression d'une séance explicite ; « prévues » = estimation ; 4 lancers du lot-08 utilisables et exclus des exercices principaux (MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES) ; docs/QUESTIONS-par-sujet.md ; docs/ou-on-en-est.md.
+- Consigne de l'utilisateur : AUCUN gros lot avant la remise à zéro hebdomadaire de jeudi soir ; ne pas lancer la phase 6 ni l'audit avant. Prochaine action : attendre ses réponses aux questions (docs/QUESTIONS-par-sujet.md) et le choix de l'ordre (docs/ou-on-en-est.md).
