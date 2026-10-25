@@ -41,7 +41,7 @@ statut: complete_kine
 - Nuque qui force.
 
 ## Progression / régression
-- plus-facile : pont-fessier, pont-fessier-une-jambe
+- plus-facile : pont-fessier
 - plus-dur : pont-gilet-lest-pause, pont-gilet-lest-une-jambe
 
 ## Repères de dosage
@@ -109,7 +109,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
 |---|---|---|---|---|
 | Geste de base (installation, consignes de départ) | free-exercise-db Butt_Lift_Bridge (beginner, body only) pour le geste sans gilet ; aucune entrée avec gilet (dist/exercises.json, vérifié le 2026-10-24) ; voir pont-fessier du dépôt | pratique (pas une étude) | 2026-10-24 | NON SOURCÉ |
-| Gilet lesté : charge portée sur le tronc, utilisable avec des exercices simples ; seule étude lue : gilet + sauts chez des femmes ménopausées (public et geste différents de cette fiche : aucune étude lue sur cet exercice précis) | Snow, Shaw, Winters, Witzke, « Long-term exercise using weighted vests prevents hip bone loss in postmenopausal women », J Gerontol A Biol Sci Med Sci 2000;55(9):M489-M491, PMID 10995045 : 18 femmes ménopausées (9 avec gilet lesté et sauts, 9 témoins), 5 ans, densité osseuse de la hanche maintenue dans le groupe gilet + sauts ; résumé Europe PMC lu | étude contrôlée de petite taille (18 femmes), public différent | 2026-10-24 | PROVISOIRE (résumé seulement ; contexte, ne valide pas la fiche) |
+| Gilet lesté + sauts : densité osseuse de la hanche maintenue chez 9 femmes ménopausées contre 9 témoins, sur 5 ans ; aucune étude lue sur ces exercices simples ni sur ce public : l'usage du gilet avec cet exercice relève du choix de coach (NON SOURCÉ), pas de cette étude | Snow, Shaw, Winters, Witzke, « Long-term exercise using weighted vests prevents hip bone loss in postmenopausal women », J Gerontol A Biol Sci Med Sci 2000;55(9):M489-M491, PMID 10995045 : 18 femmes ménopausées (9 avec gilet lesté et sauts, 9 témoins), 5 ans, densité osseuse de la hanche maintenue dans le groupe gilet + sauts ; résumé Europe PMC lu | étude contrôlée de petite taille (18 femmes), public différent | 2026-10-24 | PROVISOIRE (résumé seulement ; contexte, ne valide pas la fiche) |
 | Échelons, niveaux, muscles principaux et secondaires, variantes guidées | choix de coach | - | 2026-10-24 | NON SOURCÉ |
 | Gilet lesté (poids, ajustement), tapis, sol | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |

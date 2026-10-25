@@ -1,32 +1,30 @@
-# Lot 09 (vague 1) : gilet lesté, sac de sable, bosu, 17 fiches (lot D, suite)
+# Lot 09 (vague 1) : gilet lesté, sac de sable, bosu, 15 fiches + 2 écartées (lot D, suite)
 Rédigé par `coach` le 24/10/2026. Statut : 17 fiches `brouillon_coach`. Étapes suivantes (CAMPAGNE.md) : `kine` (reprise de la sécurité, surtout les points ci-dessous), `dev` (illustrations, aucune n'est dessinée), `relecteur` lancé à neuf, corrections, statuts. `npm run check:fiches` : 196 fiches, 0 erreur, 0 avertissement. Les fiches ont été produites par un gabarit commun (sections, sources communes) avec un contenu propre à chaque exercice ; chaque fichier est complet.
 
 ## Fiches
 | id | schéma | niveau_min | variantes (échelon) | matériel | image |
 |---|---|---|---|---|---|
-| squat-gilet-lest | squat | intermédiaire | libre (1), chaise derrière (1), arrêt en bas (2) | lest (chaise, mur) | photo proche à vérifier (Bodyweight_Squat) ; illustration à faire |
-| fente-gilet-lest | fente | intermédiaire | main au mur (1), sans appui (2), descente lente (3) | lest (mur) | illustration à faire |
-| pompe-gilet-lest | poussée H | avancé | mains au sol (1), pieds sur chaise (2) | lest (chaise, mur) | photo proche à vérifier (Pushups) ; illustration à faire |
-| traction-gilet-lest | tirage V | avancé | mains vers soi (1), mains vers l'avant (2) | barre_traction, lest | photo proche à vérifier (Weighted_Pull_Ups, ceinture) ; illustration à faire |
-| marche-gilet-lest | porté | débutant | marche à plat (1) | lest | illustration à faire |
-| montee-gilet-lest | fente | intermédiaire | première marche (1), box ou step sous le genou (2) | lest, marche_escalier ou box_ou_step | photo proche à vérifier (Step-up_with_Knee_Raise) ; illustration à faire |
-| pont-fessier-gilet-lest | charnière | intermédiaire | deux pieds (1), arrêt en haut (2), une jambe (3, avancé) | lest | photo proche à vérifier (Butt_Lift_Bridge) ; illustration à faire |
-| porte-sac-epaule | porté | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | illustration à faire |
-| porte-sac-berceau | porté | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | illustration à faire |
-| squat-sac-berceau | squat | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | photo proche à vérifier (Goblet_Squat) ; illustration à faire |
-| squat-sac-epaule | squat | intermédiaire | chaise derrière (1), libre (2) | sac_de_sable (chaise, mur) | illustration à faire |
-| souleve-de-terre-sac | charnière | intermédiaire | sac sur une chaise (1), au sol (2) | sac_de_sable (chaise, mur) | illustration à faire |
-| rowing-sac-de-sable | tirage H | intermédiaire | un bras, main sur chaise (1), buste penché (2) | sac_de_sable (chaise, mur) | photo proche à vérifier (One-Arm_Dumbbell_Row) ; illustration à faire |
-| squat-bosu | squat | intermédiaire | dôme, main au mur (1), dôme sans appui (2) | bosu, mur | illustration à faire |
-| planche-bosu | gainage | intermédiaire | genoux (1), pointes de pieds (2) | bosu, tapis, mur | illustration à faire |
-| pompe-bosu | poussée H | intermédiaire | genoux (1), pointes de pieds (2) | bosu, tapis, mur | illustration à faire |
-| equilibre-unipodal-bosu | mobilité (équilibre) | intermédiaire | doigts au mur (1), sans appui (2) | bosu, mur | photo proche à vérifier (Balance_Board) ; illustration à faire |
+| squat-gilet-lest | squat | intermédiaire | libre (1), chaise derrière (1), arrêt en bas (2) | lest (chaise, mur) | illustration faite (oui), photo non |
+| fente-gilet-lest | fente | intermédiaire | main au mur (1), sans appui (2), descente lente (3) | lest (mur) | illustration faite (oui), photo non |
+| pompe-gilet-lest | poussée H | avancé | mains au sol (1), pieds sur chaise (2) | lest (chaise, mur) | illustration faite (oui), photo non |
+| traction-gilet-lest | tirage V | avancé | mains vers soi (1), mains vers l'avant (2) | barre_traction, lest | illustration faite (oui), photo non |
+| marche-gilet-lest | porté | débutant | marche à plat (1) | lest | illustration faite (oui), photo non |
+| montee-gilet-lest | fente | intermédiaire | première marche (1), box ou step sous le genou (2) | lest, marche_escalier ou box_ou_step | illustration faite (oui), photo non |
+| pont-fessier-gilet-lest | charnière | intermédiaire | deux pieds (1), arrêt en haut (2), une jambe (3, avancé) | lest | illustration faite (oui), photo non |
+| porte-sac-berceau | porté | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | illustration faite (oui), photo non |
+| squat-sac-berceau | squat | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | illustration faite (oui), photo non |
+| souleve-de-terre-sac | charnière | intermédiaire | sac sur une chaise (1), au sol (2) | sac_de_sable (chaise, mur) | illustration faite (oui), photo non |
+| rowing-sac-de-sable | tirage H | intermédiaire | un bras, main sur chaise (1), buste penché (2) | sac_de_sable (chaise, mur) | illustration faite (oui), photo non |
+| squat-bosu | squat | intermédiaire | dôme, main au mur (1), dôme sans appui (2) | bosu, mur | illustration faite (oui), photo non |
+| planche-bosu | gainage | intermédiaire | genoux (1), pointes de pieds (2) | bosu, tapis, mur | illustration faite (oui), photo non |
+| pompe-bosu | poussée H | intermédiaire | genoux (1), pointes de pieds (2) | bosu, tapis, mur | illustration faite (oui), photo non |
+| equilibre-unipodal-bosu | mobilité (équilibre) | intermédiaire | doigts au mur (1), sans appui (2) | bosu, mur | illustration faite (oui), photo non |
 
 Photos : toutes `à vérifier` ou `non` (aucune n'est affichée tant qu'elle n'est pas regardée et passée à `oui`). Identifiants vérifiés dans free-exercise-db `dist/exercises.json` le 24/10/2026. Aucune photo ne montre un gilet, un sac de sable ni un bosu : free-exercise-db n'en a pas ; ce sont des photos de gestes voisins sans l'objet. Sinon : illustration originale par `dev`.
 
 ## Couverture
 - Gilet lesté (`lest`) : squat, fente, pompe, traction, marche, montée sur marche, pont fessier = 7 fiches (6 schémas).
-- Sac de sable (`sac_de_sable`) : 2 portés, 2 squats, soulevé de terre, rowing = 6 fiches (porté 2, squat 2, charnière 1, tirage H 1). Comble un peu les portés à la maison.
+- Sac de sable (`sac_de_sable`) : 1 porté, 1 squat, soulevé de terre, rowing = 4 fiches (porté 1, squat 1, charnière 1, tirage H 1) ; deux fiches « sur l'épaule » écartées (voir ci-dessous).
 - Bosu (`bosu`) : squat, planche, pompe, équilibre = 4 fiches. Il sert à l'équilibre et au gainage, sans charge ni mouvement balistique (Q22/CSEP, Q27).
 - Le débutant n'a que la marche au gilet lesté. Tout le reste est à partir d'intermédiaire (poids fixe non calibrable, instabilité, charge asymétrique : choix prudents NON SOURCÉS, Q26, Q27). Règles 22 et 23 : aucun saut, aucun lancer, aucun épaulé ni geste technique.
 
@@ -34,6 +32,7 @@ Photos : toutes `à vérifier` ou `non` (aucune n'est affichée tant qu'elle n'e
 Le générateur ne choisit pas de charge pour ces matériels (le profil ne connaît pas leur poids). Chaque fiche écrit : étalonnage par une série d'essai ; si le bas de la fourchette n'est pas tenu avec 2 à 3 répétitions en réserve, la charge est trop lourde et la variante sans charge remplace ; sinon double progression : répétitions dans la fourchette, puis échelon suivant (arrêt en bas, unilatéral, plus lent) ; un changement de lest ou de sac est décidé par la personne, un petit palier à la fois (NON SOURCÉ). Voir Q26.
 
 ## Écartés volontairement (motif)
+- **porte-sac-epaule et squat-sac-epaule** (déplacées le 25/10/2026 dans `ecartees/` par le chef de projet, après le bloquant B1 du contrôle `relecteur`) : la pose du sac sur l'épaule (contre le ventre, puis sur l'épaule) est un geste proche de l'épaulé, que la règle 23 interdit « pour les débutants et à la maison » ; la fiche de base Sandbag_Load dit elle-même que la mise sur l'épaule n'est généralement pas autorisée. Choix prudent : on n'assouplit pas la règle 23. Les fiches restent dans `ecartees/` (hors du générateur et de la bibliothèque), aucune autre fiche ne les cite. Question ouverte : Q29 (assouplir la règle 23 pour la pose lente du sac sur l'épaule ? non par défaut).
 - **Corde à sauter** (tag `corde_a_sauter`) : sauts, décision Q5 en attente. Demande ajoutée : Q28.
 - **Vélo, rameur, tapis de course** (tag `machine_cardio`) : le tag ne distingue pas les appareils (Q10) ; le rameur et le tapis sont à retirer en grossesse, post-partum et pour le dos. Demande ajoutée : Q28.
 - **Sac de sable lancé, jeté, balancé, sauté** (slam, clean, épaulé à l'élan, sac sur la nuque) : règle 23, Q5, C6 du cou. Le sac se porte et se pose.
@@ -44,7 +43,7 @@ Le générateur ne choisit pas de charge pour ces matériels (le profil ne conna
 
 ## Pour `kine` (priorités)
 1. **Gilet lesté** : poids sur la colonne et les genoux, retiré dès le niveau 2 du dos ou du cou sur squat ; traction et pompe lestées avancées avec épaule, coude, poignet retirés dès le niveau 1 : confirmer ces seuils (très prudents). Seuils « 15 pompes propres » et « 8 tractions propres » (coach, NON SOURCÉ).
-2. **Sacs de sable** : prise du sac au sol et pose sur l'épaule (geste proche de l'épaulé : à confirmer pour l'intermédiaire, règle 23) ; sortie de secours de chaque fiche ; porté d'un seul côté (McGill 2013, 6 participants, seaux : transposition prudente).
+2. **Sacs de sable** : la pose sur l'épaule est écartée (règle 23, voir plus haut) ; il reste la prise au sol et le berceau devant le tronc ; sortie de secours de chaque fiche ; McGill 2013 (6 participants, seaux le long du corps) ne teste pas le berceau : choix prudent NON SOURCÉ.
 3. **Bosu** : cheville gênée dès le niveau 1 = retiré ; genou et hanche n1 en quart de squat ; sorties de secours (« laisse-toi aller sur les fesses vers le mur »).
 4. **Grossesse / post-partum** : gilet, sac et bosu tous retirés (remplaçants déjà adaptés dans leurs fiches : squat-poids-du-corps, squat-fendu-mur, pompe, tirage-vertical-elastique-haut, marche-du-fermier, montee-sur-marche-poids-du-corps, souleve-de-terre-roumain-halteres, porte-valise, rowing-unilateral-haltere, bird-dog, equilibre-unipodal-mur) ; NON SOURCÉ.
 5. Cases `adapter: charge:legere` sur gilet et sac (charge fixe) : elles servent à bloquer toute hausse ; confirmer le sens avec `dev`.
@@ -52,9 +51,10 @@ Le générateur ne choisit pas de charge pour ces matériels (le profil ne conna
 ## Pour `dev`
 - Images faites le 25/10/2026 : 17 illustrations originales (`oui`), 0 photo ajoutée (les photos voisines sont marquées `non` : elles ne montrent ni gilet, ni sac, ni bosu). Chaque illustration montre la première variante de la fiche (légende : « Variante ... »). Moteur : accessoires `vest` (gilet) et `bosu` ajoutés à `tools/make-illustrations.mjs`. Reste à contrôler par `relecteur`.
 - `sac_de_sable` n'est pas dans `CHARGEABLE_TAGS` (src/generator/config.ts) : ces fiches seraient dosées comme du poids du corps (10 à 15 répétitions). Voir Q26.
-- Portés (marche au gilet, deux portés au sac) : V-TEMPS porté (30 s puis 40 s, 2 séries) ; l'app ne gère pas la distance ni un porté d'un seul côté « chaque série = un côté » (écrit en texte seulement).
-- `equilibre-unipodal-bosu` est de schéma `mobilite` (comme equilibre-unipodal) : le générateur le traite comme échauffement (1 série) ; son rôle réel est un exercice d'équilibre. À arbitrer.
+- Portés (marche au gilet, porté au sac en berceau) : V-TEMPS porté (30 s puis 40 s, 2 séries) ; la durée fait foi, l'app ne gère pas la distance. Un porté d'un seul côté (la ligne V-TEMPS ne sait pas faire « un côté par série ») n'existe plus dans le lot depuis l'écart des fiches « épaule ».
+- `equilibre-unipodal-bosu` est de schéma `mobilite` : correction du contrôle `relecteur` (S3) : aucun emplacement du générateur n'utilise ce schéma (l'échauffement prend des identifiants fixes, config.ts), donc la fiche n'est jamais choisie, ni comme échauffement ni autrement ; `TEMPS` n'a pas de ligne `mobilite` : le jour où un emplacement la placerait, V-DOSE la doserait (10 à 15 répétitions, 2 à 3 séries) à l'inverse de la fiche. À enregistrer par `dev` : une entrée dans `FIXED_DOSE` (30 s par pied au plus, 2 passages, sans réserve, comme les lancers de la Q23) ou une exclusion tant qu'aucun emplacement n'existe.
 - Plusieurs variantes ont deux ou trois tags (ex. `sac_de_sable, chaise, mur`) : tout doit être dans le profil.
+- Gilet (`lest` est dans CHARGEABLE_TAGS, contrairement au texte des 7 fiches ; S4 du contrôle) : à enregistrer par `dev` avant la génération : (a) l'échauffement E3 des piliers demande « 8 répétitions à environ 50 % » d'un gilet dont l'app ne connaît pas le poids ; (b) la voie « charge » ne monte jamais d'échelon, alors que les fiches écrivent la montée d'échelon comme étape 2 de la progression ; (c) si la personne saisit le poids de son gilet, la double progression peut proposer +/- 2 kg. Soit retirer `lest` de la voie « charge », soit une règle « charge fixe » (même logique que N4 au lot 08).
 
 ## Questions pour l'utilisateur
 Q26 (poids du gilet et du sac), Q27 (bosu côté plat et pieds sur bosu), Q28 (corde à sauter, vélo, rameur, tapis). Voir aussi Q5, Q10, Q12, Q22.
@@ -71,3 +71,21 @@ Les 17 fiches passent de `brouillon_coach` à `complete_kine`, aucune n'est éca
 - **Grossesse / post-partum** : les 17 fiches restent retirées, remplaçants déjà adaptés dans leurs propres fiches ; G7 rappelé dans chaque fiche. Pas d'impact dans le lot.
 - Q26 à Q28 : choix prudents appliqués, voir docs/QUESTIONS.md.
 - **Pour `dev`** : `sac_de_sable` hors de `CHARGEABLE_TAGS` (Q26) ; `equilibre-unipodal-bosu` est classé `mobilite` donc traité comme échauffement par le générateur : à exclure des échauffements (note `general` de la fiche) ; le niveau minimum d'une variante `avance` n'est choisi que pour un profil avancé.
+
+## Corrections coach (25/10/2026, suite au contrôle `relecteur` du 25/10/2026)
+Faites, fiche par fiche, `npm run check:fiches` à 0 erreur après chacune (194 fiches) ; aucun statut changé, rien touché à la sécurité (S1, cases zone x niveau, sorties de secours), aux images ni au code.
+- **B1** : voir « Écartés volontairement » ; Q29 posée ; aucune référence aux deux fiches dans les 15 autres (progressions, variantes, remplaçants) ; la mention « ou sur l'épaule » du motif grossesse retirée de 4 fiches (sac contre le ventre seulement).
+- **C1** (7 fiches gilet) : ligne Snow 2000 réécrite : gilet + sauts, 9 femmes ménopausées contre 9 témoins, 5 ans, densité osseuse de la hanche maintenue ; aucune étude lue sur ces exercices ni sur ce public ; l'usage avec l'exercice est dit choix de coach NON SOURCÉ.
+- **C2** (4 fiches bosu) : Wahl et Behm 2008 réécrit : pas d'activité musculaire en plus chez 16 personnes très entraînées ; seule exception les érecteurs du rachis debout sur Dyna Disc ; ballon et plateau : plus d'activité surtout debout (accroupi : abdominaux bas et soléaire) ; le rôle équilibre/contrôle est un choix de coach NON SOURCÉ (statut séparé). Même précision dans la note de squat-bosu.
+- **M3** (squat-bosu, equilibre-unipodal-bosu) : Hupperets 2009 : bénéfice significatif seulement pour les entorses non soignées médicalement.
+- **C3** (porte-sac-berceau) : une seule règle : la durée fait foi (30 s puis 40 s, 2 séries au total). Le cas « une série par épaule » disparaît avec la fiche écartée.
+- **C4** : sans objet (squat-sac-epaule écartée).
+- **C5** (marche-gilet-lest) : le test d'une minute debout est maintenant dans la consigne 1.
+- **C6** (squat-bosu, equilibre-unipodal-bosu) : note cheville-n2 corrigée (retiré, sans remplaçant dans cette case ; le remplaçant du niveau 1 est nommé).
+- **C8** (porte-sac-berceau) : « plus facile à tenir droit » remplacé par un choix de coach NON SOURCÉ ; McGill 2013 ne teste pas une charge devant le tronc.
+- **C10** (pont-fessier-gilet-lest) : `pont-fessier-une-jambe` retiré de plus-facile.
+- **C11** (rowing-sac-de-sable) : le vrai motif de `avance` est écrit (dos non soutenu sous charge, choix prudent), la règle 23 n'est plus invoquée à tort. L'image d'arrivée (sac sous le bassin) reste à voir par `dev` (M8).
+- **C13** : ce README mis à jour (tableau des images, « Pour dev », compteurs).
+- **S3** (texte seulement) : la fiche equilibre-unipodal-bosu et ce README ne disent plus « traité comme échauffement » ; décision de `dev` toujours à enregistrer. **S4** : décrit dans « Pour dev ».
+- **M1** (fente-gilet-lest) : installation alignée sur l'illustration (face au mur, à un pas). **M2** (squat-sac-berceau) : Goblet_Squat = équipement « kettlebells ». **M4** (squat-sac-berceau) : note cou-n2 réécrite (menton rentré, sac loin du menton). **M7** (equilibre-unipodal-bosu) : consigne 2 alignée sur l'installation (un seul pied sur le dôme), prérequis « 30 secondes sur sol plat » noté comme non vérifiable par l'app.
+- **Laissés à d'autres** : S1, C7, C9, C12, M11 et M12 (`kine`) ; S2, M5, M6, M8 (images, `dev`) ; S3 et S4 (code, `dev`) ; statuts (chef de projet). M9, M10, M13 : sans correction demandée.
