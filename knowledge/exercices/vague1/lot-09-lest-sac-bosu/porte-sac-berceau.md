@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [erecteurs_rachis, abdominaux]
 muscles_secondaires: [trapezes, deltoides_anterieurs, biceps, fessiers, avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,13 +47,13 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.3, règle V-TEMPS, NON SOURCÉ en entier) : 30 s de marche (débutant) puis 40 s, 2 séries, repos 60 s, pas de réserve demandée : la série s'arrête dès que la posture ou le contrôle se dégrade. Une série = un aller-retour dans la pièce, sans pause pendant la durée. Le sac est une charge fixe de poids inconnu de l'app ; si 30 s te mettent déjà hors posture, il est trop lourd pour toi. La progression ne vient pas du poids : d'abord la durée (30 s, puis 40 s), puis l'échelon suivant. **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'épuisement ; fin de série quand la posture se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: charge:legere | retirer: remplacant:marche-du-fermier | retirer |
+| Dos | adapter: variante:porte-sac-berceau-chaise | retirer: remplacant:marche-du-fermier | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
@@ -63,8 +63,15 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Cheville | garder | adapter: charge:legere | retirer |
 
 **Notes**
-- dos-n1 : le sac le plus léger que tu as, aucune hausse (le sac ne s'allège pas en cours de route) ; choix prudent, NON SOURCÉ.
+- general : règle unique du sac (choix de kine, NON SOURCÉ) : le sac ne peut pas être allégé par l'app ; dès une gêne nette (niveau 2) au dos, la fiche est retirée ; aux autres zones, le sac le plus léger que tu as, sans hausse. La prise du sac au sol est un soulevé avec la charge devant le tronc : réservée à l'intermédiaire, et remplacée par la prise sur la chaise dès la gêne légère au dos.
+- dos-n1 : prise sur la chaise seulement (pas de soulevé depuis le sol), le sac le plus léger que tu as, aucune hausse ; choix prudent, NON SOURCÉ.
 - dos-n2 : retiré : remplacé par la marche du fermier.
+- epaule-n2 : sac le plus léger, aucune hausse.
+- coude-n2 : sac le plus léger, aucune hausse.
+- poignet-n2 : sac le plus léger, aucune hausse.
+- hanche-n2 : sac le plus léger, aucune hausse, pas courts.
+- genou-n2 : sac le plus léger, aucune hausse, pas courts.
+- cheville-n2 : sac le plus léger, aucune hausse, pas courts.
 - cou-n2 : menton rentré, sac loin du menton.
 - grossesse : retiré : sac contre le ventre qui grossit (comme porte-sac-a-dos-devant, G4) ; remplacé par le porté du bagage à charge légère. Post-partum : G7.
 
@@ -73,12 +80,12 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 
 **Sécurité pour l'utilisateur seul**
 - Pièce dégagée, sol sec et non glissant, aucune marche, aucun tapis qui glisse, ni animal ni enfant sur le trajet ; chaussures fermées (NON SOURCÉ).
-- Sortie de secours : si le sac glisse ou si le dos tire, lâche le sac vers l'avant, un peu sur le côté, pas sur tes pieds, écarte les pieds ; ne te penche pas pour le rattraper. Pose-le ensuite en pliant les genoux.
+- Sortie de secours : si le sac glisse, si le dos tire ou si tu perds l'équilibre, ouvre les bras et laisse le sac tomber devant toi, un peu sur le côté (pas sur tes pieds), pieds écartés, menton rentré ; ne te penche pas pour le rattraper. Un sac de sable souple et fermé se laisse tomber (NON SOURCÉ). Si tu peux le tenir : pose-le en pliant les genoux, dos droit.
 - Distance courte : quelques pas, demi-tour lent ; jamais dans un escalier (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (coach, à reprendre par kine)**
-- Dos et épaule : charge devant le tronc ; dès la gêne légère, sac le plus léger ; dès la gêne nette, dos retiré (NON SOURCÉ).
+**Points d'attention (kine)**
+- Dos : charge devant le tronc ; dès la gêne légère, prise sur la chaise seulement et sac le plus léger ; dès la gêne nette, retiré. Épaule : dès la gêne nette, sac le plus léger, aucune hausse (NON SOURCÉ).
 - Hanche, genou, cheville : marche lente, pas courts ; une douleur en marchant avec la charge = arrêt.
 - Niveau intermédiaire : sac lourd et prise au sol (un soulevé avec la charge devant) ; pas de débutant (règle 23, NON SOURCÉ) ; le débutant porte un ballon lesté ou un sac à dos.
 - Grossesse et post-partum : retiré (sac contre le ventre) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
@@ -108,5 +115,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Sac de sable (solidité, poids connu, fuites), sol, trajet dégagé | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : sac de sable retiré (charge fixe et lourde, qu'on ne peut pas alléger ; sac contre le ventre ou sur l'épaule) ; remplacé par le porté du bagage (porte-valise) à charge légère | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

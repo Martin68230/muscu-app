@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis, abdominaux, biceps]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,26 +47,34 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : le tag `sac_de_sable` n'est pas dans la liste « chargeable » de src/generator/config.ts : le générateur traite donc ces fiches comme du poids du corps (10 à 15 répétitions, 2 séries, 3 pour un intermédiaire en « muscle », réserve cible 2 à 3, jamais 0, repos 90 s) ; point à confirmer par `dev` (voir README du lot). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. **Le sac est une charge fixe** : l'app ne connaît pas son poids et ne peut pas choisir une charge d'étalonnage comme avec des haltères. Étalonnage (load-calibration.md) : première séance, une série d'essai ; si tu ne tiens pas 10 répétitions propres avec 2 à 3 en réserve, le sac est trop lourd : prends un sac plus léger ou la variante sans sac (voir Progression). Progression : double progression sans changer le sac (d'abord les répétitions dans la fourchette, puis l'échelon suivant) ; changer de sac est ton choix, un petit palier à la fois (NON SOURCÉ). Zone au niveau 2 : aucune hausse (R2). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: charge:legere | retirer: remplacant:squat-poids-du-corps | retirer |
+| Dos | adapter: variante:squat-sac-berceau-chaise | retirer: remplacant:squat-poids-du-corps | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
-| Hanche | garder | adapter: amplitude:reduite | retirer |
-| Genou | garder | adapter: amplitude:reduite | retirer |
+| Hanche | garder | retirer: remplacant:squat-poids-du-corps | retirer |
+| Genou | garder | retirer: remplacant:squat-poids-du-corps | retirer |
 | Cheville | garder | adapter: amplitude:reduite | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
-- dos-n1 : sac le plus léger, aucune hausse ; choix prudent, NON SOURCÉ.
+- general : règle unique de la charge fixe (gilet et sac) pour les squats (choix de kine, NON SOURCÉ) : la charge ne s'allège pas par l'app ; dès une gêne nette (niveau 2) au dos, à la hanche ou au genou, le sac est retiré (squat au poids du corps) ; la cheville et l'aine/cuisse réduisent seulement la descente. Le remplaçant squat-poids-du-corps a ses propres lignes : s'il est lui-même adapté par le profil, le générateur ne le propose que dans sa version adaptée, sinon il choisit un autre squat sans charge.
+- dos-n1 : prise du sac sur la chaise seulement (pas de soulevé depuis le sol), sac le plus léger, aucune hausse ; choix prudent, NON SOURCÉ.
 - dos-n2 : retiré : squat au poids du corps (le sac n'est pas allégeable).
+- hanche-n2 : sac retiré (règle unique).
+- genou-n2 : sac retiré (règle unique).
+- cheville-n2 : descente réduite, sac le plus léger, aucune hausse.
+- epaule-n2 : sac le plus léger, aucune hausse (le sac repose sur les avant-bras et la poitrine).
+- coude-n2 : sac le plus léger, aucune hausse (le sac repose sur les avant-bras et la poitrine).
+- poignet-n2 : sac le plus léger, aucune hausse (le sac repose sur les avant-bras et la poitrine).
+- cou-n2 : sac le plus léger, aucune hausse (le sac repose sur les avant-bras et la poitrine).
 - cuisse-n2 : choix prudent, extrapolation de regles-securite-communes.md §0 (NON SOURCÉ).
 - aine-n2 : idem (NON SOURCÉ).
 - grossesse : retiré : sac contre le ventre qui grossit, charge fixe ; remplacé par le squat au poids du corps. Post-partum : G7.
@@ -76,13 +84,14 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 
 **Sécurité pour l'utilisateur seul**
 - Sol non glissant, chaussures fermées à semelle qui accroche ; espace libre devant et autour de toi (NON SOURCÉ).
-- Sortie de secours : si le sac glisse ou si tu perds l'équilibre, lâche-le vers l'avant, un peu sur le côté, pieds écartés (pas sur tes pieds) ; ne te penche pas pour le rattraper. Si les jambes lâchent en bas, pose le sac devant toi avant de te relever, sinon relève-toi en le gardant serré.
+- Sortie de secours, à chaque série : si le sac glisse, si tu perds l'équilibre ou si les jambes lâchent, ouvre les bras et laisse le sac tomber devant toi, un peu sur le côté (pas sur tes pieds), pieds écartés, menton rentré ; ne te penche pas pour le rattraper. Puis remonte en poussant les mains sur les cuisses. Un sac de sable souple et fermé se laisse tomber (NON SOURCÉ).
+- Première fois : le sac le plus léger que tu as ; essaie la sortie de secours une fois sans descendre, sac à hauteur de poitrine (NON SOURCÉ).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (coach, à reprendre par kine)**
-- Genou et hanche : amplitude réduite en cas de gêne ; mêmes règles que squat-gobelet.
-- Dos : sac collé à la poitrine ; dès la gêne légère, le plus léger ; dès la gêne nette, retiré (NON SOURCÉ).
+**Points d'attention (kine)**
+- Genou, hanche : gêne légère, garder en descendant moins bas ; gêne nette, sac retiré (règle unique, NON SOURCÉ). Cheville : descente réduite dès la gêne nette. Mêmes principes que squat-gobelet, avec une charge qui ne s'allège pas.
+- Dos : sac collé à la poitrine ; dès la gêne légère, prise sur la chaise seulement et sac le plus léger ; dès la gêne nette, retiré (NON SOURCÉ).
 - Niveau intermédiaire : sac lourd, prise au sol (un soulevé avec la charge devant) ; le débutant fait le squat gobelet ou au ballon lesté (règle 23, NON SOURCÉ).
 - Grossesse et post-partum : retiré (sac contre le ventre) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
 
@@ -112,5 +121,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Sac de sable (solidité, poids connu, fuites), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : sac de sable retiré (charge fixe et lourde, qu'on ne peut pas alléger ; sac contre le ventre ou sur l'épaule) ; remplacé par le squat au poids du corps | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

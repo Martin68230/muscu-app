@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis, abdominaux]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -16,8 +16,8 @@ statut: brouillon_coach
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | fente-gilet-lest-mur | Gilet lesté, une main au mur | 1 | intermediaire | lest, mur | Debout à côté d'un mur plein, une main posée dessus pour l'équilibre, un pied devant, un pied derrière, gilet bien serré. |
-| fente-gilet-lest-libre | Gilet lesté, sans appui | 2 | intermediaire | lest, tapis | Même position, mains sur les hanches, loin de tout meuble, mur ou chaise lourde à un pas pour te rattraper. |
-| fente-gilet-lest-lente | Gilet lesté, descente en 3 secondes | 3 | intermediaire | lest, tapis | Même position sans appui, descente lente en 3 secondes, sans arrêt en bas. |
+| fente-gilet-lest-libre | Gilet lesté, sans appui | 2 | intermediaire | lest, mur, tapis | Même position, mains sur les hanches, loin de tout meuble, mur plein à un pas de toi pour te rattraper, tapis plat sous les pieds. |
+| fente-gilet-lest-lente | Gilet lesté, descente en 3 secondes | 3 | intermediaire | lest, mur, tapis | Même position sans appui, mur plein à un pas de toi, descente lente en 3 secondes, sans arrêt en bas. |
 
 ## Consignes
 1. Enfile le gilet, serre-le jusqu'à ce qu'il ne bouge plus ; place-toi à un pas du mur.
@@ -48,7 +48,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : le tag `lest` est dans la liste « chargeable » : 8 à 12 répétitions en « muscle » (intermédiaire et avancé), 10 à 15 en « santé », 4 à 6 sur un pilier en « force » ; 2 à 3 séries ; réserve cible 2 à 3, jamais 0 ; repos 90 s (120 à 180 s pour un pilier). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. **Le gilet est une charge fixe** : l'app ne connaît pas son poids (le profil n'a pas de champ pour lui, Q26) et ne peut pas choisir une charge d'étalonnage comme avec des haltères. Étalonnage (load-calibration.md) : première séance, une série d'essai ; si tu ne tiens pas le bas de la fourchette avec 2 à 3 répétitions en réserve, le gilet est trop lourd pour toi sur cet exercice : prends la variante plus facile sans gilet (voir Progression). **Progression d'une charge fixe** : double progression sans changer le gilet : (1) tu ajoutes des répétitions dans la fourchette ; (2) quand toutes les séries atteignent le haut de la fourchette à la réserve visée, tu passes à l'échelon suivant de la fiche ; (3) si ton gilet a des lests amovibles, un seul palier à la fois, décidé par toi, hors du contrôle de l'app (NON SOURCÉ). Zone au niveau 2 : aucune hausse (R2). Exercice unilatéral : les répétitions et les séries sont comptées par jambe. **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -63,8 +63,16 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
+- general : règle unique du gilet (choix de kine, NON SOURCÉ) : le poids du gilet ne peut pas être allégé par l'app ; dès une gêne nette (niveau 2) au dos, à la hanche, au genou ou à la cheville, le gilet est retiré (squat fendu au mur sans gilet). Le remplaçant squat-fendu-mur a ses propres lignes par zone : s'il est lui-même adapté par le profil, le générateur choisit un autre squat sans charge.
+- dos-n1 : main au mur, descente courte, gilet gardé (choix prudent, NON SOURCÉ).
+- hanche-n1 : main au mur, descente courte, gilet gardé.
 - genou-n1 : main au mur, gilet gardé ; choix prudent, NON SOURCÉ.
 - genou-n2 : gilet retiré, squat fendu au mur : le gilet n'est pas allégeable.
+- dos-n2 : gilet retiré (règle unique).
+- hanche-n2 : gilet retiré (règle unique).
+- cheville-n1 : main au mur, descente courte.
+- cheville-n2 : gilet retiré (règle unique).
+- cou-n2 : les bretelles du gilet pèsent sur la base du cou : gilet retiré.
 - cuisse-n2 : choix prudent, extrapolation de regles-securite-communes.md §0 (NON SOURCÉ).
 - aine-n2 : idem (NON SOURCÉ).
 - grossesse : retiré : gilet fixe, équilibre sur une jambe ; remplacé par le squat fendu au mur sans gilet. Post-partum : G7.
@@ -73,12 +81,13 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 **Version plus douce** : squat-fendu-mur
 
 **Sécurité pour l'utilisateur seul**
-- Sol plat et non glissant, chaussures fermées, mur plein à portée de main (NON SOURCÉ).
-- Sortie de secours : si tu perds l'équilibre, ne fais pas un pas de rattrapage en arrière sous charge : pose la main au mur, ou ramène les deux pieds côte à côte en remontant doucement. Si tu es mal, ouvre le gilet.
+- Sol plat et non glissant, chaussures fermées, mur plein à portée de main dans les trois variantes (NON SOURCÉ).
+- Sortie de secours, à chaque série : si tu perds l'équilibre, ne fais pas de pas de rattrapage en arrière sous charge ; pose la main au mur et remonte en poussant sur le pied avant. Si tu ne peux pas remonter, pose le genou arrière au sol (tapis), main au mur, puis redresse-toi en ramenant le pied avant à côté de l'autre. Si tu es mal (étourdissement, serrement de poitrine), arrête, ouvre le gilet, assieds-toi (NON SOURCÉ).
+- Première fois : le lest le plus léger du gilet ; jamais plus lourd que ce que tu tiens avec 2 à 3 répétitions en réserve (NON SOURCÉ).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
 
-**Points d'attention (coach, à reprendre par kine)**
-- Genou et hanche : dès la gêne légère, main au mur et descente courte ; dès la gêne nette, sans gilet (NON SOURCÉ).
+**Points d'attention (kine)**
+- Dos, genou, hanche, cheville : dès la gêne légère, main au mur et descente courte ; dès la gêne nette, sans gilet (règle unique, NON SOURCÉ).
 - Niveau intermédiaire : équilibre sur une jambe et charge fixe ; le débutant fait le squat fendu au poids du corps (NON SOURCÉ).
 - Grossesse et post-partum : gilet retiré ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
 
@@ -105,5 +114,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Gilet lesté (poids, ajustement, fermeture), mur, sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : gilet lesté retiré (charge fixe qu'on ne peut pas alléger, poids sur le ventre et la poitrine) ; remplacé par le squat fendu au mur (sans gilet) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

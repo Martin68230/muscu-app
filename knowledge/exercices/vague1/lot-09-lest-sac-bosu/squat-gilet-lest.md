@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [adducteurs, ischios, erecteurs_rachis, abdominaux]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -20,7 +20,7 @@ statut: brouillon_coach
 | squat-gilet-lest-pause | Gilet lesté, arrêt en bas | 2 | intermediaire | lest, tapis | Même squat, descente en 3 secondes, arrêt de 2 secondes en bas (sans te relâcher), puis remontée. |
 
 ## Consignes
-1. Enfile le gilet et serre-le jusqu'à ce qu'il ne bouge plus quand tu te penches ; ouvre-le une fois pour savoir le retirer vite.
+1. Enfile le gilet et serre-le jusqu'à ce qu'il ne bouge plus quand tu te penches, sans gêner ta respiration ; ouvre-le une fois pour savoir le retirer vite.
 2. Debout, pieds un peu plus larges que les épaules, pointes légèrement ouvertes, ventre serré, regard devant.
 3. Descends en poussant les hanches en arrière et en pliant les genoux, genoux dans l'axe des pieds, dos droit, talons au sol.
 4. Descends seulement tant que le dos reste droit et que rien ne tire au genou ou à la hanche (cuisses au plus à l'horizontale pour commencer).
@@ -49,7 +49,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : le tag `lest` est dans la liste « chargeable » : 8 à 12 répétitions en « muscle » (intermédiaire et avancé), 10 à 15 en « santé », 4 à 6 sur un pilier en « force » ; 2 à 3 séries ; réserve cible 2 à 3, jamais 0 ; repos 90 s (120 à 180 s pour un pilier). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. **Le gilet est une charge fixe** : l'app ne connaît pas son poids (le profil n'a pas de champ pour lui, Q26) et ne peut pas choisir une charge d'étalonnage comme avec des haltères. Étalonnage (load-calibration.md) : première séance, une série d'essai ; si tu ne tiens pas le bas de la fourchette avec 2 à 3 répétitions en réserve, le gilet est trop lourd pour toi sur cet exercice : prends la variante plus facile sans gilet (voir Progression). **Progression d'une charge fixe** : double progression sans changer le gilet : (1) tu ajoutes des répétitions dans la fourchette ; (2) quand toutes les séries atteignent le haut de la fourchette à la réserve visée, tu passes à l'échelon suivant de la fiche ; (3) si ton gilet a des lests amovibles, un seul palier à la fois, décidé par toi, hors du contrôle de l'app (NON SOURCÉ). Zone au niveau 2 : aucune hausse (R2). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -57,15 +57,18 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 |---|---|---|---|
 | Dos | adapter: amplitude:reduite | retirer: remplacant:squat-poids-du-corps | retirer |
 | Cou | garder | retirer: remplacant:squat-poids-du-corps | retirer |
-| Hanche | garder | adapter: amplitude:reduite | retirer |
-| Genou | garder | adapter: amplitude:reduite | retirer |
+| Hanche | garder | retirer: remplacant:squat-poids-du-corps | retirer |
+| Genou | garder | retirer: remplacant:squat-poids-du-corps | retirer |
 | Cheville | garder | adapter: amplitude:reduite | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - dos-n1 : descente moins profonde (le gilet charge la colonne à chaque répétition) ; choix prudent, NON SOURCÉ.
-- dos-n2 : gilet retiré : squat au poids du corps ; le gilet n'est pas allégeable.
+- general : règle unique du gilet (choix de kine, NON SOURCÉ) : le poids du gilet ne peut pas être allégé par l'app ; dès une gêne nette (niveau 2) au dos, à la hanche ou au genou, le gilet est retiré (squat au poids du corps). Une gêne nette à la cheville ou à l'aine/cuisse réduit seulement la descente.
+- dos-n2 : gilet retiré : squat au poids du corps ; le gilet n'est pas allégeable. Le remplaçant squat-poids-du-corps est lui-même adapté par le dos au niveau 2 : le générateur ne le propose alors que dans sa version adaptée, sinon il choisit un autre squat sans charge.
+- hanche-n2 : même règle unique (gilet retiré) ; une hanche gênée nettement ne porte plus de charge fixe.
+- genou-n2 : même règle unique (gilet retiré) ; un genou gêné nettement ne porte plus de charge fixe.
 - cou-n2 : les bretelles du gilet pèsent sur la base du cou : gilet retiré.
 - cuisse-n2 : choix prudent, extrapolation de regles-securite-communes.md §0 (NON SOURCÉ).
 - aine-n2 : idem (NON SOURCÉ).
@@ -76,12 +79,14 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 
 **Sécurité pour l'utilisateur seul**
 - Sol non glissant, chaussures fermées à semelle qui accroche ; espace libre devant et autour de toi ; gilet ajusté (NON SOURCÉ).
-- Sortie de secours : si tu perds l'équilibre ou si les jambes lâchent, tu n'as rien à lâcher : écarte les pieds, pose les mains sur les cuisses et remonte lentement ; avec la chaise derrière toi, assieds-toi dessus en contrôle. Si tu es mal, ouvre le gilet.
+- Sortie de secours : le gilet ne se lâche pas, il reste sur toi ; le risque est de ne plus pouvoir remonter ou de basculer. Avec la chaise derrière toi (dossier au mur) : assieds-toi dessus en contrôle, mains sur les cuisses, sans te laisser tomber. Sans chaise (variante libre, tapis plat et sans pli derrière toi) : à la première hésitation, pose les mains sur les cuisses et remonte en poussant dessus ; si tu ne peux pas remonter, assieds-toi sur le tapis derrière toi en freinant avec les mains, puis ouvre le gilet pour te relever (NON SOURCÉ).
+- Si tu te sens mal (étourdissement, serrement de poitrine) : arrête, ouvre le gilet, assieds-toi.
+- Première fois : le lest le plus léger du gilet ; jamais plus lourd que ce que tu tiens avec 2 à 3 répétitions en réserve (NON SOURCÉ).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
 - Gilet jamais chargé en poids au-delà de ce que tu contrôles : si tu hésites, retire le gilet.
 
-**Points d'attention (coach, à reprendre par kine)**
-- Genou, hanche, cheville : amplitude réduite en cas de gêne ; mêmes règles que squat-gobelet.
+**Points d'attention (kine)**
+- Genou, hanche : gêne légère, garder en descendant moins bas ; gêne nette, gilet retiré (règle unique, voir les Notes). Cheville : amplitude réduite dès la gêne nette. Mêmes principes que squat-gobelet, avec une charge qui ne s'allège pas.
 - Dos : le gilet charge la colonne verticalement ; dès la gêne nette, sans gilet (NON SOURCÉ).
 - Niveau intermédiaire : par prudence (charge fixe qu'on ne peut pas calibrer comme des haltères, Q26) ; le débutant fait le squat au poids du corps puis le squat gobelet.
 - Grossesse et post-partum : gilet retiré ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
@@ -111,5 +116,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Gilet lesté (poids, ajustement, fermeture), sol, espace libre | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : gilet lesté retiré (charge fixe qu'on ne peut pas alléger, poids sur le ventre et la poitrine) ; remplacé par le squat au poids du corps (sans gilet) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

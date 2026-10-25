@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [mollets, abdominaux, adducteurs, peroniers, tibial_anterieur]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,22 +47,26 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : exercice sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire en « muscle » ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s. Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Sur le bosu, la qualité du geste passe avant le nombre : la série s'arrête dès que l'équilibre se perd ou que le contrôle se dégrade. Aucune charge sur le bosu : la progression se fait par l'échelon (moins d'appui), jamais par un poids ajouté ni par un mouvement rapide. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile (appui au mur). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Cheville | retirer: remplacant:squat-poids-du-corps | retirer | retirer |
-| Genou | adapter: amplitude:reduite | retirer: remplacant:squat-poids-du-corps | retirer |
-| Hanche | garder | adapter: amplitude:reduite | retirer |
-| Dos | garder | adapter: amplitude:reduite | retirer |
+| Genou | adapter: variante:squat-bosu-mur | retirer: remplacant:squat-poids-du-corps | retirer |
+| Hanche | garder | adapter: variante:squat-bosu-mur | retirer |
+| Dos | garder | adapter: variante:squat-bosu-mur | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - cheville-n1 : dès une gêne légère à la cheville, pas de surface instable ; squat au poids du corps sur sol plat (choix prudent, NON SOURCÉ).
-- genou-n1 : quart de squat seulement.
+- general : règle unique du bosu (choix de kine, NON SOURCÉ) : jamais de charge sur le bosu ; quart de squat pour tout le monde (c'est déjà la consigne) ; cheville gênée, même légèrement : retiré (surface instable). Dès la gêne légère au genou, ou nette à la hanche ou au dos, la variante avec la main au mur (appui, moins de balancement). Dès la gêne nette au genou, retiré (squat au poids du corps sur sol plat, qui a ses propres lignes).
+- genou-n1 : variante avec la main au mur (le quart de squat est déjà la consigne pour tous).
+- hanche-n2 : variante avec la main au mur.
+- dos-n2 : variante avec la main au mur.
+- cheville-n2 : retiré (déjà retiré dès le niveau 1, avec remplaçant).
 - cuisse-n2 : choix prudent, extrapolation de regles-securite-communes.md §0 (NON SOURCÉ).
 - aine-n2 : idem (NON SOURCÉ).
 - grossesse : retiré : instabilité et risque de chute ; remplacé par le squat au poids du corps. Post-partum : G7.
@@ -73,12 +77,13 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 **Sécurité pour l'utilisateur seul**
 - Bosu bien gonflé, calé contre un mur plein, sol sec et non glissant ; rien de dur ni de fragile autour (NON SOURCÉ).
 - Mur ou meuble lourd à portée de main pendant toute la série ; chaussures fermées à semelle qui accroche, ou pieds nus propres.
-- Sortie de secours : si tu perds l'équilibre, saisis le mur et pose un pied au sol ; ne tente pas de te rattraper en sautant. Si tu tombes, laisse-toi tomber vers le tapis ou le mur sur les fesses, pas sur la cheville.
+- Sortie de secours, à chaque série : si tu perds l'équilibre, saisis le mur et pose un pied au sol (le bosu est bas) ; ne tente pas de te rattraper en sautant ni en tordant la cheville. Si tu tombes, laisse-toi aller sur les fesses vers le mur, pieds qui quittent le dôme, plutôt que de poser le pied sur le côté de la cheville (NON SOURCÉ). Avant la première série, fais la manœuvre une fois à vide : monte, déséquilibre-toi doucement, descends.
+- Un bosu qui bouge sur le sol, qui est mou ou qui siffle : pas d'exercice.
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
 
-**Points d'attention (coach, à reprendre par kine)**
+**Points d'attention (kine)**
 - Cheville : la surface instable travaille la stabilité mais expose à l'entorse ; dès la gêne légère à la cheville, retiré (choix prudent, NON SOURCÉ).
-- Genou et hanche : quart de squat, mouvement lent ; arrêt si douleur.
+- Genou, hanche, dos : quart de squat pour tous, mouvement lent ; dès la gêne légère au genou (nette à la hanche ou au dos), une main au mur ; arrêt si douleur.
 - Niveau intermédiaire : surface instable, risque de chute (choix de coach, NON SOURCÉ) ; le débutant fait le squat au poids du corps sur sol plat.
 - Grossesse et post-partum : retiré (instabilité) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
 
@@ -107,5 +112,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Bosu (gonflage, état), mur, sol | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : bosu retiré (instabilité, risque de chute) ; remplacé par le squat au poids du corps | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [pectoraux]
 muscles_secondaires: [triceps, deltoides_anterieurs, abdominaux, dentele_anterieur]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,23 +47,29 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : exercice sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire en « muscle » ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s. Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Sur le bosu, la qualité du geste passe avant le nombre : la série s'arrête dès que l'équilibre se perd ou que le contrôle se dégrade. Aucune charge sur le bosu : la progression se fait par l'échelon (moins d'appui), jamais par un poids ajouté ni par un mouvement rapide. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile (appui au mur). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: amplitude:mi-course | retirer | retirer |
-| Coude | adapter: amplitude:lente | retirer | retirer |
-| Poignet | adapter: amplitude:reduite | retirer | retirer |
+| Épaule | adapter: variante:pompe-bosu-genoux | retirer: remplacant:pompe | retirer |
+| Coude | adapter: variante:pompe-bosu-genoux | retirer: remplacant:pompe | retirer |
+| Poignet | retirer: remplacant:pompe | retirer | retirer |
 | Dos | garder | retirer | retirer |
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
-| Hanche | garder | adapter: amplitude:reduite | retirer |
+| Hanche | garder | adapter: variante:pompe-bosu-genoux | retirer |
+| Genou | adapter: appui:coussin | retirer | retirer |
 
 **Notes**
-- epaule-n1 : demi-course, tempo lent ; choix prudent, NON SOURCÉ.
-- poignet-n1 : course courte ; poignet droit.
-- epaule-n2 : retiré : la pompe sur chaise ou au mur reste disponible (fiche pompe).
+- general : règle unique du bosu (choix de kine, NON SOURCÉ) : mains sur une surface bombée et mobile = poignet, coude et épaule plus exposés que sur le sol (Lehman 2006 sur ballon : aucun gain mesuré au pectoral, résumé lu) ; jamais de pieds sur le bosu, jamais de charge. Dès la gêne légère au poignet, la fiche est retirée (pompe sur sol plat, avec ses propres lignes : s'il est lui-même adapté par le profil, le générateur choisit une autre pompe) ; dès la gêne nette à l'épaule ou au coude, de même ; dès la gêne légère à l'épaule ou au coude, genoux au sol (levier plus court).
+- epaule-n1 : variante genoux (levier plus court) ; choix prudent, NON SOURCÉ.
+- coude-n1 : variante genoux.
+- poignet-n1 : retiré : le poignet ne se pose pas sur une surface bombée dès la gêne légère.
+- epaule-n2 : retiré, pompe sur sol plat (fiche pompe, ses propres lignes).
+- coude-n2 : retiré, pompe sur sol plat.
+- hanche-n2 : genoux au sol.
+- genou-n1 : tapis épais ou coussin sous les genoux.
 - grossesse : retiré : instabilité, ventre proche du bosu ; remplacé par la pompe sur chaise. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:pompe
@@ -71,11 +77,11 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 
 **Sécurité pour l'utilisateur seul**
 - Bosu bien gonflé, calé contre un mur plein, tapis ferme sous les genoux et les pieds ; sol non glissant (NON SOURCÉ).
-- Sortie de secours si une main glisse ou si le bosu part : ne te retiens pas avec un bras tendu ; plie les coudes et laisse-toi descendre vers le bosu en posant les genoux sur le tapis. Essaie cette sortie une fois, bras presque tendus, avant la première vraie série.
+- Sortie de secours, à chaque série : si une main glisse, si un poignet tire ou si le bosu part, ne te retiens pas avec un bras tendu ; plie les coudes, tourne la tête sur le côté et laisse-toi descendre vers le bosu (ou, variante pieds, pose d'abord les genoux sur le tapis) ; la poitrine ne tombe pas de haut puisque la descente reste courte. Essaie cette sortie une fois, bras presque tendus, avant la première vraie série (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (coach, à reprendre par kine)**
-- Épaule, coude, poignet : surface instable sous les mains ; dès la gêne légère, demi-course ; dès la gêne nette, retiré (NON SOURCÉ).
+**Points d'attention (kine)**
+- Épaule, coude : surface instable sous les mains ; dès la gêne légère, genoux au sol ; dès la gêne nette, retiré. Poignet : retiré dès la gêne légère. Genou : tapis épais dès la gêne légère, retiré dès la gêne nette (règle unique, NON SOURCÉ).
 - Niveau intermédiaire : même niveau que la pompe sur ballon de gym (Q25) ; le débutant fait la pompe sur chaise ou au mur.
 - Grossesse et post-partum : retiré ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
 
@@ -103,5 +109,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Bosu (gonflage, état), mur, tapis, sol | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : bosu retiré (instabilité, risque de chute) ; remplacé par la pompe sur chaise | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

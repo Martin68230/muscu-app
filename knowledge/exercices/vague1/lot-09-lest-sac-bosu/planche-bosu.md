@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, deltoides_anterieurs, dentele_anterieur, fessiers]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,7 +47,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.3, règle V-TEMPS ligne `gainage`, NON SOURCÉ en entier) : maintien de 20 s (débutant) puis 30 s (intermédiaire et avancé), 2 séries, repos 60 s, pas de réserve demandée : la série s'arrête dès que le bas du dos se creuse ou que les épaules s'affaissent. Aucune charge sur le bosu ; la progression se fait par l'échelon, jamais par une charge posée sur le dos. Étalonnage : première séance avec les genoux au sol. **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; maintien arrêté quand la technique se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -57,11 +57,14 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Dos | adapter: variante:planche-bosu-genoux | retirer | retirer |
 | Coude | garder | retirer | retirer |
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
+| Genou | adapter: appui:coussin | retirer | retirer |
 
 **Notes**
+- general : règle unique du bosu (choix de kine, NON SOURCÉ) : jamais de charge ni de pieds sur le bosu ; pour toute gêne nette (niveau 2) à l'épaule, au coude, au dos, au cou ou au genou, la fiche est retirée (une planche sur sol plat reste disponible, avec ses propres lignes : le générateur choisit un autre gainage compatible). Gêne légère : voir les Notes de chaque zone.
 - epaule-n1 : genoux au sol (levier plus court) ; choix prudent, NON SOURCÉ.
 - epaule-n2 : retiré : une planche sur sol plat (fiche planche) reste disponible.
 - dos-n1 : genoux au sol, maintien court.
+- genou-n1 : tapis épais ou coussin sous les genoux dans la variante genoux (ou, si la gêne persiste, pas cet exercice).
 - grossesse : retiré : maintien isométrique prolongé, pression sur le ventre, surface instable (G4, comme planche) ; remplacé par le bird-dog à maintien court. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:bird-dog
@@ -69,11 +72,11 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 
 **Sécurité pour l'utilisateur seul**
 - Bosu bien gonflé, calé contre un mur plein, tapis ferme derrière ; sol non glissant ; rien de dur sous le visage (NON SOURCÉ).
-- Sortie de secours : si une épaule lâche ou si le bosu glisse, pose les genoux sur le tapis, puis le ventre ; ne te retiens pas avec un bras tendu. Essaie cette sortie une fois avant la première vraie série.
+- Sortie de secours, à chaque série : si une épaule lâche, si le bas du dos cède ou si le bosu glisse, ne te retiens pas avec un bras tendu : pose les genoux sur le tapis (variante pieds) puis le ventre, ou directement le ventre et les avant-bras (variante genoux), en ramenant les bras vers le corps. Le bosu est contre le mur et ne part pas. Essaie cette sortie une fois avant la première vraie série (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (coach, à reprendre par kine)**
-- Épaule et dos : surface instable sous les avant-bras ; dès la gêne légère, genoux au sol ; dès la gêne nette, retiré (NON SOURCÉ).
+**Points d'attention (kine)**
+- Épaule et dos : surface instable sous les avant-bras ; dès la gêne légère, genoux au sol ; dès la gêne nette, retiré. Genou : tapis épais dès la gêne légère, retiré dès la gêne nette (NON SOURCÉ).
 - Niveau intermédiaire : même niveau que la planche sur ballon de gym ; le débutant fait la planche sur les genoux au sol.
 - Grossesse et post-partum : retiré (isométrique prolongé, ventre sur surface instable) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
 
@@ -101,5 +104,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Bosu (gonflage, état), mur, tapis, sol | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : bosu retiré (instabilité, risque de chute) ; remplacé par le bird-dog à maintien court | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

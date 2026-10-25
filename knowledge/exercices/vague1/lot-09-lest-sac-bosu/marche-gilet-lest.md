@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [erecteurs_rachis, fessiers]
 muscles_secondaires: [abdominaux, quadriceps, mollets, trapezes]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -26,7 +26,7 @@ statut: brouillon_coach
 
 ## Points d'attention
 - Marche lente à l'intérieur, sur sol plat : ce n'est pas de la randonnée ni de la course.
-- Aucun escalier, aucune pente avec le gilet (NON SOURCÉ).
+- Marche à plat seulement : ni escalier ni pente (la montée sur une seule marche a sa fiche propre, montee-gilet-lest) (NON SOURCÉ).
 - Le gilet lesté ne s'utilise ici que pour marcher : pas de course, pas de saut.
 - Gilet léger pour commencer : une charge fixe ne se réduit pas en cours de route.
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
@@ -46,7 +46,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.3, règle V-TEMPS, NON SOURCÉ en entier) : 30 s de marche (débutant) puis 40 s, 2 séries, repos 60 s, pas de réserve demandée : la série s'arrête dès que la posture se dégrade. Le gilet est une charge fixe : l'app ne connaît pas son poids (Q26) ; si 30 s te mettent déjà hors posture, le gilet est trop lourd pour toi. La progression ne vient pas du gilet : d'abord la durée (30 s, puis 40 s), jamais plus ici. Une marche lestée plus longue ou en extérieur n'est pas couverte par cette fiche (pas d'option extérieur, Q8). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'épuisement ; fin de série quand la posture se dégrade.
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -59,9 +59,13 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Cheville | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
+- general : débutant gardé par kine malgré la charge fixe, parce que la marche lente sur sol plat est le geste le plus simple et que le gilet se retire d'un geste (choix prudent, NON SOURCÉ). Règle unique du gilet : le poids ne s'allège pas par l'app ; dès une gêne nette au dos, la fiche est retirée ; dès une gêne nette à la hanche, au genou ou à la cheville, pas plus courts, et le gilet est retiré si la gêne persiste à la séance suivante.
 - dos-n1 : gilet le plus léger que tu as, aucune augmentation ; la marche reste facile (NON SOURCÉ).
 - dos-n2 : retiré : la marche sans gilet reste possible hors de cette fiche.
 - hanche-n2 : pas plus courts (amplitude réduite).
+- genou-n2 : pas plus courts, marche plus lente, gilet retiré si la gêne persiste.
+- cheville-n2 : pas plus courts, marche plus lente, gilet retiré si la gêne persiste.
+- cou-n2 : les bretelles du gilet pèsent sur la base du cou : retiré.
 - grossesse : retiré : gilet fixe sur le tronc ; remplacé par la marche du fermier à charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:marche-du-fermier
@@ -69,10 +73,11 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 
 **Sécurité pour l'utilisateur seul**
 - Pièce dégagée, sol sec et non glissant, aucune marche, aucun tapis qui glisse, ni animal ni enfant sur le trajet ; chaussures fermées (NON SOURCÉ).
-- Sortie de secours : si tu perds l'équilibre ou si le dos tire, écarte les pieds, arrête-toi, ouvre le gilet et pose-le sur un meuble ; ne te penche pas pour le retirer brusquement.
+- Sortie de secours : si tu perds l'équilibre, si le dos tire ou si les jambes tremblent, écarte les pieds, arrête-toi, appuie une main sur un mur ou un meuble, ouvre le gilet (fermeture devant) et pose-le sur une chaise ou un meuble ; ne te penche pas pour le retirer brusquement, assieds-toi d'abord si tu es étourdi (NON SOURCÉ).
+- Test avant la première marche (choix prudent de kine, NON SOURCÉ) : gilet le plus léger possible (retire des lests s'il en a) ; si tu ne peux pas rester debout 1 minute droit, respiration normale, sans que le dos tire, il est trop lourd : marche sans gilet. L'app ne connaît pas le poids de ton gilet : c'est ce test qui fait foi.
 - Distance courte : quelques pas dans une pièce dégagée, demi-tour lent ; jamais dans un escalier (NON SOURCÉ).
 
-**Points d'attention (coach, à reprendre par kine)**
+**Points d'attention (kine)**
 - Dos : le gilet charge la colonne ; dès la gêne légère, le plus léger et aucune hausse ; dès la gêne nette, retiré (NON SOURCÉ).
 - Hanche, genou, cheville : marche lente, pas courts ; une douleur en marchant avec la charge = arrêt.
 - Niveau débutant : marche lente avec un gilet léger, sans escalier (choix de coach, NON SOURCÉ) ; le seul exercice au gilet réservé au débutant.
@@ -102,5 +107,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Gilet lesté (poids, ajustement), sol, trajet dégagé | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : gilet lesté retiré (charge fixe qu'on ne peut pas alléger, poids sur le ventre et la poitrine) ; remplacé par la marche du fermier à charge légère (sans gilet) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

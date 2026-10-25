@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [peroniers, moyen_fessier]
 muscles_secondaires: [mollets, tibial_anterieur, quadriceps, abdominaux]
 source_brouillon: []
-statut: brouillon_coach
+statut: complete_kine
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -47,7 +47,7 @@ statut: brouillon_coach
 Repères du générateur (generateur-v1.md §3.3, ligne `mobilite`, NON SOURCÉ) : 30 s ou 6 à 8 répétitions par côté, 1 série ; ces repères, pensés pour un échauffement, sont ici un plafond. Repère de coach (NON SOURCÉ, aucune source lue sur la durée) : au plus 30 secondes par pied et par passage, 2 passages par pied, repos 30 à 60 s entre les passages. Aucune charge, aucune réserve demandée : la série s'arrête quand l'équilibre se perd ou qu'une cheville fatigue. La progression se fait par l'échelon (moins d'appui), jamais par une charge ni par un mouvement. Régularité : une durée de programme de plusieurs semaines est mentionnée dans la fiche equilibre-unipodal du dépôt (McKeon et Hertel 2008).
 
 ## Sécurité et contre-indications
-Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25, à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 
@@ -59,8 +59,12 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Dos | garder | adapter: variante:equilibre-bosu-mur | retirer |
 
 **Notes**
+- general : règle unique du bosu (choix de kine, NON SOURCÉ) : jamais de charge, de saut, de yeux fermés ni de côté plat vers le haut (Q27). Cet exercice d'équilibre n'est pas un échauffement générique et ne se fait pas fatigué (après des séries lourdes, ou jambes qui tremblent) : une surface instable avec une cheville ou un genou fatigués augmente le risque de chute.
 - cheville-n1 : dès une gêne légère à la cheville, pas de surface instable ; équilibre sur sol plat (choix prudent, NON SOURCÉ).
 - genou-n1 : doigts au mur.
+- hanche-n1 : doigts au mur, jambe d'appui légèrement fléchie.
+- dos-n2 : doigts au mur, sans mouvement du tronc.
+- cheville-n2 : retiré (déjà retiré dès le niveau 1, avec remplaçant).
 - grossesse : retiré : surface instable, risque de chute ; remplacé par l'équilibre sur une jambe au mur sur sol plat. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:equilibre-unipodal-mur
@@ -69,13 +73,14 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 **Sécurité pour l'utilisateur seul**
 - Bosu bien gonflé, calé contre un mur plein, sol sec et non glissant ; rien de dur ni de fragile autour (NON SOURCÉ).
 - Mur à portée de main pendant tout l'exercice ; pieds nus propres ou chaussures fermées à semelle qui accroche.
-- Sortie de secours : si tu perds l'équilibre, pose le pied libre au sol et saisis le mur ; ne tente pas de te rattraper en sautant. Si tu tombes, laisse-toi aller sur les fesses vers le mur.
+- Pas d'exercice si tu es fatigué ou étourdi (NON SOURCÉ).
+- Sortie de secours : si tu perds l'équilibre, pose le pied libre au sol et saisis le mur ; ne tente pas de te rattraper en sautant. Si tu tombes, laisse-toi aller sur les fesses vers le mur plutôt que de poser le pied sur le côté de la cheville. Fais la manœuvre une fois avant la première vraie série : monte, déséquilibre-toi doucement, descends (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
-**Points d'attention (coach, à reprendre par kine)**
+**Points d'attention (kine)**
 - Cheville : l'exercice vise la stabilité, mais une cheville gênée ne doit pas être mise sur une surface instable ; dès la gêne légère, retiré (choix prudent, NON SOURCÉ). Les sources lues portent sur la prévention de récidives d'entorse chez des sportifs avec une planche d'équilibre (Hupperets 2009), pas sur un bosu ni sur un public non sportif.
 - Genou et hanche : doigts au mur, jambe d'appui légèrement fléchie.
-- Niveau intermédiaire : surface instable ; la version sur sol plat (equilibre-unipodal) reste réservée au débutant.
+- Niveau intermédiaire : surface instable ; il faut d'abord tenir l'équilibre sur une jambe sur sol plat (fiche equilibre-unipodal). Le débutant fait seulement la version sur sol plat.
 - Grossesse et post-partum : retiré (instabilité) ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
 
 **Signes qui doivent faire arrêter**
@@ -104,5 +109,5 @@ Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à c
 | Bosu (gonflage, état), mur, sol | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
 | Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
-| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (repris par kine le 2026-10-25, à contrôler par relecteur) |
 | Grossesse et post-partum : bosu retiré (instabilité, risque de chute) ; remplacé par l'équilibre sur une jambe au mur sur sol plat | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |
