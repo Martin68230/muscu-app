@@ -61,7 +61,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
-- general : règle unique du gilet (choix de kine, NON SOURCÉ) : dès une gêne nette (niveau 2) au genou, à la hanche, à la cheville ou au dos, le gilet est retiré (montée sur marche sans charge). Niveau 1 de genou, hanche, cheville : première marche seulement (c'est la seule variante de la fiche, donc la case dit surtout de ne rien ajouter) ; si tu n'as pas d'escalier avec rampe, l'exercice n'existe pas pour toi et le générateur choisit un autre exercice du même schéma. Le remplaçant montee-sur-marche-poids-du-corps a ses propres lignes : s'il est lui-même adapté par le profil, le générateur choisit un autre exercice sans charge.
+- general : règle unique du gilet (choix de kine, NON SOURCÉ) : dès une gêne nette (niveau 2) au genou, à la hanche, à la cheville ou au dos, le gilet est retiré (montée sur marche sans charge). Niveau 1 de genou, hanche, cheville : première marche seulement (c'est la seule variante de la fiche, donc la case dit surtout de ne rien ajouter) ; l'app ne sait pas si ton escalier a une rampe (`marche_escalier` est un matériel implicite, supposé disponible) : elle peut donc proposer l'exercice même sans rampe, et la rampe est une condition écrite dans la fiche, à vérifier toi-même avant la série ; sans rampe à portée de main, tu ne fais pas l'exercice et tu le remplaces à la main par le remplaçant. Le remplaçant montee-sur-marche-poids-du-corps a ses propres lignes : s'il est lui-même adapté par le profil, le générateur choisit un autre exercice sans charge.
 - dos-n1 : montée et descente lentes, buste droit, main sur la rampe, gilet gardé ; alignée sur les autres exercices au gilet (squat, pont, fente, pompe, traction) ; choix prudent, NON SOURCÉ.
 - hanche-n1 : première marche seulement, gilet gardé.
 - cheville-n1 : première marche seulement, gilet gardé.
@@ -81,7 +81,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 **Sécurité pour l'utilisateur seul**
 - Escalier éclairé, dégagé, non glissant, avec rampe ; chaussures aux pieds, jamais en chaussettes (R8, NON SOURCÉ). Pas de box ni de step avec le gilet.
 - Sortie de secours, à chaque série : si tu perds l'équilibre, saisis la rampe et redescends le pied libre devant toi, jamais en arrière ni en sautant. Si la jambe ne pousse plus en montant, repose le pied libre au sol et arrête la série ; ne te donne pas d'élan avec l'autre jambe. Si tu es mal (étourdissement, serrement de poitrine), arrête, redescends en tenant la rampe, ouvre le gilet, assieds-toi (NON SOURCÉ).
-- Pas de rampe à portée de main : pas d'exercice (choix prudent de kine, NON SOURCÉ). Pas de marche avec le gilet en descendant d'un escalier entier : une seule marche, jamais l'escalier.
+- Pas de rampe à portée de main : pas d'exercice (choix prudent de kine, NON SOURCÉ). Condition à vérifier par la personne : l'app ne peut pas la contrôler (escalier supposé disponible). Pas de marche avec le gilet en descendant d'un escalier entier : une seule marche, jamais l'escalier.
 - Première fois : le lest le plus léger du gilet ; jamais plus lourd que ce que tu tiens avec 2 à 3 répétitions en réserve (NON SOURCÉ).
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
 
