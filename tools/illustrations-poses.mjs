@@ -864,16 +864,17 @@ export const EXERCICES = [
   {
     id: 'planche-bosu', titre: 'Planche, avant-bras sur le dôme d\'un bosu calé contre un mur, vue de profil : sur les genoux, puis sur les pointes de pieds, corps en ligne',
     labels: ['Genoux au tapis, corps en ligne', 'Pointes de pieds, corps en ligne'],
-    // S2 (contrôle lot 09) : coude posé sur le dôme sous l'épaule, avant-bras à plat sur le dôme (jamais bras tendu) ; tête loin du mur (C12)
-    a: { p: [-10.9, 37.7], t: 27.9, h: 20, armN: { a: [-90, 0] }, armF: { a: [-90, -1] }, legN: { a: [207.9, 180], foot: 180 }, legF: { a: [207, 180], foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
-    b: { p: [-15.9, 50.3], t: 15.3, h: 10, armN: { a: [-90, 0] }, armF: { a: [-90, -1] }, legN: { to: [-119, 22], bend: 'd', foot: -60 }, legF: { to: [-115, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+    // S2 (contrôle lot 09) : coude posé sur le dôme sous l'épaule, avant-bras à plat sur la moitié du dôme côté soi (jamais bras tendu)
+    // N2 : coudes près du bord du dôme (24 unités du centre), tête à environ 42 unités du mur (au moins 30 cm : le bosu mesure 84 unités pour 60 cm)
+    a: { p: [-12.4, 31.9], t: 21.2, h: 13, armN: { a: [-90, 15] }, armF: { a: [-90, 14] }, legN: { a: [201.2, 180], foot: 180 }, legF: { a: [200.3, 180], foot: 180 }, back: [['mat', -140, 62], dome(87), ['wall', 129, 14]] },
+    b: { p: [-15.7, 43.1], t: 11.4, h: 8, armN: { a: [-90, 15] }, armF: { a: [-90, 14] }, legN: { to: [-120.5, 22], bend: 'd', foot: -60 }, legF: { to: [-121, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 62], dome(87), ['wall', 129, 14]] },
   },
   {
     id: 'pompe-bosu', titre: 'Pompe, mains sur le dôme d\'un bosu calé contre un mur, genoux au tapis, vue de profil : on descend peu, la poitrine reste au-dessus du dôme',
     labels: ['Bras presque tendus, corps en ligne', 'Descente courte, coudes à 45°'],
-    // C12 (contrôle lot 09) : mains sous les épaules sur la moitié proche du dôme, tête loin du mur dans les deux poses
-    a: { p: [7.4, 52], t: 46.6, h: 40, armN: { to: [48, 30], bend: 'b' }, armF: { to: [45, 30], bend: 'b' }, legN: { a: [226.6, 180], foot: 180 }, legF: { a: [225.6, 180], foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
-    b: { p: [0.1, 42.1], t: 33.2, h: 28, armN: { to: [48, 30], bend: 'b' }, armF: { to: [45, 30], bend: 'b' }, legN: { a: [213.2, 180], foot: 180 }, legF: { a: [212.2, 180], foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]], props: [['arrow', [-40, 110], [-40, 80]]] },
+    // C12 + N2 : mains sous les épaules sur la moitié proche du dôme (x = 29 à 32), tête à environ 50 unités du mur dans les deux poses
+    a: { p: [-30, 47.4], t: 40, h: 32, armN: { to: [32, 22], bend: 'b' }, armF: { to: [29, 21], bend: 'b' }, legN: { a: [220, 180], foot: 180 }, legF: { a: [219, 180], foot: 180 }, back: [['mat', -150, 40], dome(60), ['wall', 102, 14]] },
+    b: { p: [-37.1, 39.2], t: 29.7, h: 22, armN: { to: [32, 22], bend: 'b' }, armF: { to: [29, 21], bend: 'b' }, legN: { a: [209.7, 180], foot: 180 }, legF: { a: [208.7, 180], foot: 180 }, back: [['mat', -150, 40], dome(60), ['wall', 102, 14]], props: [['arrow', [-40, 110], [-40, 80]]] },
   },
   {
     id: 'equilibre-unipodal-bosu', titre: 'Équilibre sur une jambe sur un bosu, dôme vers le haut, vue de face : un pied au centre du dôme, doigts au mur, puis sans appui',
