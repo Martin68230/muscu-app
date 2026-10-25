@@ -491,3 +491,8 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 
 .why summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
 .why p { margin: 6px 0; }
+
+.how { margin: 4px 0 8px; }
+.how h2 { font-size: 0.9375rem; margin: 0 0 2px; }
+.how ol { margin: 0; padding-left: 20px; font-size: 0.9375rem; }
+.how li { margin: 2px 0; }

@@ -14,6 +14,7 @@ import { loadGeneratorInput } from '../../session/program';
 import type { SessionController } from '../../session/store';
 import { formatClock, startDisplayTick } from '../../session/timer';
 import { ReportButton } from '../ReportButton';
+import { cleanText, type Fiche } from '../../data/fiches';
 import { FicheImages, FicheView } from './Fiche';
 import { SummaryScreen } from './Summary';
 import { asGenFiches, type PlayerData } from '../session/launch';
@@ -66,6 +67,22 @@ function Sheet({ title, children, onClose, label }: { title: string; children: C
         {children}
       </div>
     </div>
+  );
+}
+
+/** « Comment faire » : les 3 premières consignes de la fiche, en mots simples ; le reste est dans la fiche (« Voir la fiche »). */
+export function HowTo({ steps, all }: { steps: string[]; all: Fiche[] }) {
+  const lines = steps.slice(0, 3).map((s) => cleanText(s, all)).filter((s) => s.length > 0);
+  if (!lines.length) return null;
+  return (
+    <section class="how" aria-label="Comment faire">
+      <h2>Comment faire</h2>
+      <ol>
+        {lines.map((l, i) => (
+          <li key={i}>{l}</li>
+        ))}
+      </ol>
+    </section>
   );
 }
 
@@ -531,6 +548,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
         )}
         {ex.unit === 'sec' && ex.role !== 'cardio' && <p class="dim small">Tiens la position, puis touche « Série faite ».</p>}
         {ex.role === 'cardio' && <p class="dim small">Effort modéré (5-6 sur 10). {CARDIO_TEXT.T7} Touche « Série faite » à la fin.</p>}
+        {fiche && <HowTo steps={fiche.consignes} all={all} />}
       </div>
       <div class="player-foot">
         <button type="button" class="btn btn-primary btn-big" onClick={doneSet}>Série faite</button>
