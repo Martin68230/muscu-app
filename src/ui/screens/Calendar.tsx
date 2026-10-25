@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { Profile } from '../../data/model';
 import { list } from '../../data/repo';
+import { getActiveProgram } from '../../session/program';
 import {
   buildEntries, dateKey, dayMark, entriesOfMonth, frDate, frMonth, isDone, MARK_GLYPH, MARK_TEXT, monthSummary,
-  type HistoryEntry,
+  PLANNED_GLYPH, PLANNED_TEXT, plannedDates, plannedMark, type HistoryEntry,
 } from '../../session/calendar';
 import { PastSummary } from './PastSummary';
 
@@ -34,11 +35,14 @@ export interface CalendarViewProps {
   daysPerWeek: number | null;
   /** Début de l'usage (jour civil local), pour le nombre de séances prévues. */
   startKey: string | null;
+  /** Jours de la semaine (0 = lundi) des séances du programme actif et début du programme : séances prévues au calendrier. */
+  plannedWeekdays?: number[];
+  programStartKey?: string | null;
   onOpen: (sessionId: string) => void;
 }
 
 /** Calendrier du mois + historique (sans accès à la base : testable). */
-export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: CalendarViewProps) {
+export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, onOpen }: CalendarViewProps) {
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
@@ -57,6 +61,10 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
   const sum = monthSummary(entries, year, month, { daysPerWeek, startKey, today });
   const inMonth = entriesOfMonth(entries, year, month);
   const dayEntries = selected ? entries.filter((e) => e.dateKey === selected) : [];
+  const weekAfterEnd = dateKey(new Date(year, month + 1, 7));
+  const planned = new Set(programStartKey ? plannedDates(plannedWeekdays, programStartKey, weekAfterEnd) : []);
+  const plannedInMonth = new Set([...planned].filter((k) => k.startsWith(`${year}-${String(month + 1).padStart(2, '0')}`)));
+  const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, entries, todayKey) : null);
 
   return (
     <>
@@ -77,16 +85,17 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
           {Array.from({ length: daysInMonth }, (_, i) => {
             const key = dateKey(new Date(year, month, i + 1));
             const mark = dayMark(entries, key);
+            const pmark = mark ? null : pm(key);
             const isToday = key === todayKey;
-            const name = `${frDate(key)}${isToday ? ', aujourd’hui' : ''}${mark ? ` : séance ${MARK_TEXT[mark].toLowerCase()}` : ''}`;
-            const cls = `day${isToday ? ' today' : ''}${mark ? ` has-${mark}` : ''}${selected === key ? ' selected' : ''}`;
+            const name = `${frDate(key)}${isToday ? ', aujourd’hui' : ''}${mark ? ` : séance ${MARK_TEXT[mark].toLowerCase()}` : pmark ? ` : séance ${PLANNED_TEXT[pmark].toLowerCase()}` : ''}`;
+            const cls = `day${isToday ? ' today' : ''}${mark ? ` has-${mark}` : pmark ? ` has-${pmark}` : ''}${selected === key ? ' selected' : ''}`;
             const body = (
               <>
                 <span class="day-num">{i + 1}</span>
-                <span class="day-mark" aria-hidden="true">{mark ? MARK_GLYPH[mark] : isToday ? '•' : ''}</span>
+                <span class="day-mark" aria-hidden="true">{mark ? MARK_GLYPH[mark] : pmark ? PLANNED_GLYPH[pmark] : isToday ? '•' : ''}</span>
               </>
             );
-            return mark ? (
+            return mark || pmark ? (
               <button type="button" class={cls} key={key} aria-label={name} aria-pressed={selected === key} onClick={() => setSelected(selected === key ? null : key)}>{body}</button>
             ) : (
               <div class={cls} key={key} aria-label={name} role="img">{body}</div>
@@ -95,6 +104,8 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
         </div>
         <ul class="cal-legend small dim" aria-label="Légende">
           <li><span aria-hidden="true">✓</span> Faite</li>
+          <li><span aria-hidden="true">○</span> Prévue</li>
+          <li><span aria-hidden="true">◌</span> Non faite</li>
           <li><span aria-hidden="true">↷</span> Reportée</li>
           <li><span aria-hidden="true">–</span> Arrêtée</li>
           <li><span aria-hidden="true">◆</span> Douleur ou symptôme</li>
@@ -102,6 +113,18 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
         </ul>
       </div>
       <p class="month-line" role="status">{monthLine(sum.done, sum.planned)}</p>
+
+      {selected && dayEntries.length === 0 && pm(selected) && (
+        <section class="card" aria-label={`Séance du ${frDate(selected)}`}>
+          <h2 class="cap-first">{frDate(selected)}</h2>
+          <p><strong>{PLANNED_GLYPH[pm(selected)!]} {PLANNED_TEXT[pm(selected)!]}</strong></p>
+          <p class="dim">
+            {pm(selected) === 'prevue'
+              ? 'Séance prévue ce jour-là selon les jours que tu as choisis. Tu peux la faire un autre jour : c’est toi qui décides.'
+              : 'Pas de séance enregistrée ce jour-là. Pas de souci : ta prochaine séance du programme reste proposée sur l’accueil.'}
+          </p>
+        </section>
+      )}
 
       {selected && dayEntries.length > 0 && (
         <section class="card" aria-label={`Séances du ${frDate(selected)}`}>
@@ -143,10 +166,14 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, onOpen }: 
 export function Calendar({ profile }: { profile: Profile }) {
   const [entries, setEntries] = useState<HistoryEntry[] | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
+  const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null }>({ weekdays: [], startKey: null });
   const load = async () => {
     try {
       const [sessions, sets] = await Promise.all([list('sessions'), list('sets')]);
       setEntries(buildEntries(sessions, sets));
+      const prog = await getActiveProgram();
+      const weekdays = (prog?.days ?? []).map((d) => d.weekday).filter((w): w is number => typeof w === 'number');
+      setPlan({ weekdays, startKey: prog && weekdays.length ? (/^\d{4}-\d{2}-\d{2}/.test(prog.startDate ?? '') ? prog.startDate.slice(0, 10) : dateKey(new Date(prog.createdAt))) : null });
     } catch {
       setEntries([]);
     }
@@ -174,6 +201,8 @@ export function Calendar({ profile }: { profile: Profile }) {
       today={new Date()}
       daysPerWeek={profile.daysPerWeek}
       startKey={dateKey(new Date(profile.createdAt))}
+      plannedWeekdays={plan.weekdays}
+      programStartKey={plan.startKey}
       onOpen={setOpenId}
     />
   );

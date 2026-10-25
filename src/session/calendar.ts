@@ -15,6 +15,11 @@ export const MARK_TEXT: Record<DayMark, string> = {
   symptome: 'Arrêtée, symptôme',
 };
 export const MARK_GLYPH: Record<DayMark, string> = { faite: '✓', douleur: '◆', reportee: '↷', arretee: '–', symptome: '◆' };
+
+/** Jour planifié sans séance enregistrée : « prévue » (aujourd'hui ou à venir) ou « non faite » (passée). Ton neutre, aucun reproche. */
+export type PlannedMark = 'prevue' | 'non_faite';
+export const PLANNED_TEXT: Record<PlannedMark, string> = { prevue: 'Prévue', non_faite: 'Non faite' };
+export const PLANNED_GLYPH: Record<PlannedMark, string> = { prevue: '○', non_faite: '◌' };
 /** Priorité quand plusieurs séances tombent le même jour : la sécurité d'abord. */
 const MARK_PRIORITY: DayMark[] = ['symptome', 'douleur', 'faite', 'arretee', 'reportee'];
 
@@ -112,6 +117,43 @@ export function groupByMonth(entries: readonly HistoryEntry[]): { month: string;
   const map = new Map<string, HistoryEntry[]>();
   for (const e of entries) map.set(e.dateKey.slice(0, 7), [...(map.get(e.dateKey.slice(0, 7)) ?? []), e]);
   return [...map.entries()].sort((a, b) => (a[0] < b[0] ? 1 : -1)).map(([month, list]) => ({ month, entries: list }));
+}
+
+/**
+ * Jours planifiés d'un programme : les jours de la semaine (0 = lundi) des séances du programme, de `fromKey` à `toKey` inclus.
+ * Aucun jour avant le début du programme, ni sans jours de la semaine connus.
+ */
+export function plannedDates(weekdays: readonly number[], fromKey: string, toKey: string): string[] {
+  const set = new Set(weekdays.filter((d) => Number.isInteger(d) && d >= 0 && d <= 6));
+  if (!set.size || dayDiff(fromKey, toKey) < 0) return [];
+  const out: string[] = [];
+  const start = parseKey(fromKey);
+  for (let i = 0, n = dayDiff(fromKey, toKey); i <= n; i++) {
+    const d = new Date(start.getFullYear(), start.getMonth(), start.getDate() + i);
+    if (set.has((d.getDay() + 6) % 7)) out.push(dateKey(d));
+  }
+  return out;
+}
+
+/**
+ * Marque « prévue / non faite » d'un jour planifié sans aucune séance enregistrée ce jour-là.
+ * Une séance faite un autre jour de la même semaine « couvre » un jour planifié passé (décalage) : pas de « non faite » dans ce cas.
+ */
+export function plannedMark(
+  key: string,
+  planned: ReadonlySet<string>,
+  entries: readonly HistoryEntry[],
+  todayKey: string,
+): PlannedMark | null {
+  if (!planned.has(key) || entries.some((e) => e.dateKey === key)) return null;
+  if (dayDiff(todayKey, key) >= 0) return 'prevue';
+  const monday = mondayKey(parseKey(key));
+  const sunday = dateKey(new Date(parseKey(monday).getFullYear(), parseKey(monday).getMonth(), parseKey(monday).getDate() + 6));
+  const plannedInWeek = [...planned].filter((k) => k >= monday && k <= sunday).sort();
+  // séances faites un jour NON planifié de cette semaine : chacune « couvre » un jour planifié manqué (décalage)
+  const doneInWeek = entries.filter((e) => isDone(e) && e.dateKey >= monday && e.dateKey <= sunday && !planned.has(e.dateKey)).length;
+  const rank = plannedInWeek.filter((k) => k <= key && !entries.some((e) => e.dateKey === k)).indexOf(key) + 1;
+  return rank <= doneInWeek ? null : 'non_faite';
 }
 
 /** Marque d'un jour (une seule, selon la priorité) ; null si aucune séance. */
