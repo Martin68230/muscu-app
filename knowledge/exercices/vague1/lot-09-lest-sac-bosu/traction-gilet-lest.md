@@ -1,0 +1,108 @@
+---
+id: traction-gilet-lest
+nom: Traction avec un gilet lesté
+alias: [weighted vest pull-up, traction lestée]
+schema: tirage_v
+type: force
+niveau_min: avance
+muscles_principaux: [grand_dorsal]
+muscles_secondaires: [biceps, trapezes, rhomboides, avant_bras, deltoides_posterieurs]
+source_brouillon: []
+statut: brouillon_coach
+---
+## Variantes (installation + matériel, avec échelon de difficulté)
+`echelon` : 1 = plus facile ; les variantes qui ne changent que le matériel ou la prise gardent le même échelon. Échelons et niveaux : choix de coach, NON SOURCÉ.
+
+| id variante | nom | echelon | niveau | materiel_tags | installation |
+|---|---|---|---|---|---|
+| traction-gilet-lest-supination | Gilet lesté, mains vers soi | 1 | avance | barre_traction, lest | Barre fixée solidement, prise mains vers soi à la largeur des épaules, gilet lesté serré, pieds libres au-dessus d'une chaise ou d'un sol dégagé. |
+| traction-gilet-lest-pronation | Gilet lesté, mains vers l'avant | 2 | avance | barre_traction, lest | Même installation, prise mains vers l'avant un peu plus large que les épaules. |
+
+## Consignes
+1. Réservé à qui fait déjà au moins 8 tractions propres sans gilet. Teste la barre en te suspendant de tout ton poids avant la première série.
+2. Enfile le gilet serré. Suspends-toi bras tendus, épaules loin des oreilles, jambes légèrement pliées, ventre serré.
+3. Tire les coudes vers le bas et vers l'arrière jusqu'à ce que le menton passe la barre, sans balancer les jambes.
+4. Redescends lentement, en 2 à 3 secondes, jusqu'à bras presque tendus.
+5. Fin de série : redescends en contrôle jusqu'à bras tendus avant de lâcher la barre. Respire sans bloquer.
+
+## Points d'attention
+- Charge fixe sur le tronc : plus la série avance, plus la descente est difficile à contrôler ; la série s'arrête avant, pas après.
+- La barre porte ton poids plus celui du gilet : fixation contrôlée avant chaque séance (voir Sécurité).
+- Descente lente : c'est elle qui protège le coude et l'épaule.
+- Aucun balancement des jambes pour monter.
+- Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
+
+## Erreurs fréquentes
+- Balancer les jambes.
+- Descendre en chute.
+- Épaules aux oreilles en bas.
+- Menton en avant pour passer la barre.
+- Série menée jusqu'à lâcher la barre.
+
+## Progression / régression
+- plus-facile : traction-barre-supination, traction-barre-pronation
+- plus-dur : traction-gilet-lest-pronation
+
+## Repères de dosage
+Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : le tag `lest` est dans la liste « chargeable » : 8 à 12 répétitions en « muscle » (intermédiaire et avancé), 10 à 15 en « santé », 4 à 6 sur un pilier en « force » ; 2 à 3 séries ; réserve cible 2 à 3, jamais 0 ; repos 90 s (120 à 180 s pour un pilier). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. **Le gilet est une charge fixe** : l'app ne connaît pas son poids (le profil n'a pas de champ pour lui, Q26) et ne peut pas choisir une charge d'étalonnage comme avec des haltères. Étalonnage (load-calibration.md) : première séance, une série d'essai ; si tu ne tiens pas le bas de la fourchette avec 2 à 3 répétitions en réserve, le gilet est trop lourd pour toi sur cet exercice : prends la variante plus facile sans gilet (voir Progression). **Progression d'une charge fixe** : double progression sans changer le gilet : (1) tu ajoutes des répétitions dans la fourchette ; (2) quand toutes les séries atteignent le haut de la fourchette à la réserve visée, tu passes à l'échelon suivant de la fiche ; (3) si ton gilet a des lests amovibles, un seul palier à la fois, décidé par toi, hors du contrôle de l'app (NON SOURCÉ). Zone au niveau 2 : aucune hausse (R2). Pour un pilier de tirage vertical en « force » le générateur donne 4 à 6 répétitions : avec un gilet que tu ne peux pas alléger, vise le bas de la fourchette seulement si tu gardes 2 répétitions en réserve ; sinon retire le gilet. **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.
+
+## Sécurité et contre-indications
+Rédigé par `coach` le 2026-10-24 (brouillon, à reprendre par `kine` puis à contrôler par `relecteur` lancé à neuf). Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+
+**Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
+
+| Zone | Niveau 1 | Niveau 2 | Niveau 3 |
+|---|---|---|---|
+| Épaule | retirer: remplacant:traction-barre | retirer | retirer |
+| Coude | retirer: remplacant:traction-barre | retirer | retirer |
+| Poignet | retirer: remplacant:traction-barre | retirer | retirer |
+| Dos | retirer: remplacant:traction-barre | retirer | retirer |
+| Cou | garder | retirer: remplacant:traction-barre | retirer |
+
+**Notes**
+- epaule-n1 : suspendu avec une charge fixe : retiré dès la gêne légère, remplacé par la traction sans gilet (choix prudent, NON SOURCÉ).
+- dos-n1 : le gilet charge la colonne en suspension : retiré dès la gêne légère.
+- grossesse : retiré : gilet fixe et suspension ; remplacé par le tirage vertical à l'élastique (comme traction-barre). Post-partum : G7.
+
+**Grossesse** : retirer: remplacant:tirage-vertical-elastique-haut
+**Version plus douce** : traction-barre-assistee-elastique
+
+**Sécurité pour l'utilisateur seul**
+- Barre vérifiée avant chaque séance : tirer de tout ton poids plus celui du gilet, fixations et montants sans jeu ; si elle bouge ou grince, pas d'exercice (ancrage de porte seulement si sa notice autorise ta charge totale, NON SOURCÉ).
+- Sol dégagé sous la barre, chaussures aux pieds ; une chaise stable ou une marche pour poser les pieds si tu n'arrives plus à tenir.
+- Sortie de secours : si tu n'arrives plus à monter, redescends lentement jusqu'à bras tendus, puis relâche et réceptionne-toi sur les deux pieds, genoux fléchis ; ne lâche jamais la barre depuis le haut. Si tu es mal, ouvre le gilet avant de lâcher.
+- Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
+
+**Points d'attention (coach, à reprendre par kine)**
+- Épaule, coude, poignet : traction avec charge ajoutée ; retirée dès la gêne légère (choix prudent, NON SOURCÉ).
+- Niveau avancé : réservé à qui fait 8 tractions propres sans gilet (seuil de coach, NON SOURCÉ) ; la traction lestée est un ajout, pas un début.
+- Grossesse et post-partum : retiré ; en post-partum, fuite d'urine ou pesanteur dans le bas-ventre : arrêt et avis de la sage-femme (G7).
+
+**Signes qui doivent faire arrêter**
+- Douleur (pas la simple brûlure du muscle qui travaille) à l'épaule, au coude, au poignet ou au bas du dos.
+- Prise qui glisse ou barre qui bouge : redescends et arrête.
+- Jambes qui balancent pour monter : arrête la série.
+- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.
+- Picotements, engourdissement ou faiblesse dans un bras ou une jambe : arrête.
+
+**Objets du quotidien**
+- Gilet lesté : bien ajusté et fermé, lests calés dans leurs poches (rien qui ballotte), sans déchirure ni fermeture usée ; il se retire d'un geste (apprends à l'ouvrir avant la première série) ; le poids exact est celui que tu connais (l'app ne le connaît pas, NON SOURCÉ).
+- Sol plat, sec, non glissant ; chaussures fermées à semelle plate ; espace libre autour de toi (NON SOURCÉ).
+- Barre de traction : fixation solide au mur ou au cadre de porte selon la notice, pieds sans jeu, test de suspension avant chaque séance (R8, NON SOURCÉ).
+
+## Photo
+- `Weighted_Pull_Ups/0.jpg` : affichable : à vérifier (traction lestée avec une ceinture et non un gilet ; image la plus proche dans free-exercise-db, non regardée pour ce lot)
+- `Weighted_Pull_Ups/1.jpg` : affichable : à vérifier (idem)
+- illustration : public/illustrations/traction-gilet-lest.svg : affichable : non (à faire par dev : vue de face, gilet lesté, suspendu bras tendus puis menton au-dessus de la barre, pieds libres)
+
+## Sources
+| Affirmation | Source | Niveau de preuve | Lu le | Statut |
+|---|---|---|---|---|
+| Geste de base (installation, consignes de départ) | free-exercise-db Weighted_Pull_Ups (intermediate, other : ceinture lestée, prise mains vers l'avant) ; vérifié dans dist/exercises.json le 2026-10-24 ; geste adapté au gilet par coach | pratique (pas une étude) | 2026-10-24 | NON SOURCÉ |
+| Gilet lesté : charge portée sur le tronc, utilisable avec des exercices simples ; seule étude lue : gilet + sauts chez des femmes ménopausées (public et geste différents de cette fiche : aucune étude lue sur cet exercice précis) | Snow, Shaw, Winters, Witzke, « Long-term exercise using weighted vests prevents hip bone loss in postmenopausal women », J Gerontol A Biol Sci Med Sci 2000;55(9):M489-M491, PMID 10995045 : 18 femmes ménopausées (9 avec gilet lesté et sauts, 9 témoins), 5 ans, densité osseuse de la hanche maintenue dans le groupe gilet + sauts ; résumé Europe PMC lu | étude contrôlée de petite taille (18 femmes), public différent | 2026-10-24 | PROVISOIRE (résumé seulement ; contexte, ne valide pas la fiche) |
+| Échelons, niveaux, muscles principaux et secondaires, variantes guidées | choix de coach | - | 2026-10-24 | NON SOURCÉ |
+| Barre de traction (fixation) et gilet lesté | pratique de salle et raisonnement de coach ; aucune notice de fabricant lue | - | 2026-10-24 | NON SOURCÉ |
+| Pas de série menée jusqu'à l'échec en pratique libre seul | ACSM Position Stand 2026 (Currier et coll., Med Sci Sports Exerc 2026;58(4):851-872, https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823) : l'échec n'est pas nécessaire en moyenne ; référence du dépôt, non rouverte pour ce lot. L'interdiction de l'échec seul est une règle de sécurité de coach | revue de revues ACSM (OK) ; la règle de sécurité n'est pas une conclusion de l'étude | 2026-10-24 | OK pour « l'échec n'est pas nécessaire » (ACSM) ; NON SOURCÉ pour la règle de sécurité |
+| Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-24 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
+| Tableau par zone, grossesse et version plus douce : propositions de coach (prudence) | extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-24 | NON SOURCÉ (brouillon de coach, à reprendre par kine puis à contrôler par relecteur) |
+| Grossesse et post-partum : gilet lesté retiré (charge fixe qu'on ne peut pas alléger, poids sur le ventre et la poitrine) ; remplacé par le tirage vertical à l'élastique (sans gilet) | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 ; ces textes ne citent pas cet exercice | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-24 | principe (éviter isométrique prolongé, Valsalva, chute, couché sur le dos) : OK ; classement de cette fiche : NON SOURCÉ (extrapolation de coach) |

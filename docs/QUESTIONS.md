@@ -144,3 +144,17 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 - **Contexte** : mains sur une surface qui roule : chute vers le visage, le poignet ou l'épaule, sans gain mesuré pour le pectoral (Lehman 2006, résumé lu).
 - **Choix prudent appliqué** : variante « ballon libre » de `pompe-mains-ballon` retirée (reste : ballon calé contre un mur). `pont-fessier-ballon` et `extension-dorsale-ballon` passent de débutant à **intermédiaire** (chute, aucun gain net). `bucheron-ballon-lest` bas-haut passe à intermédiaire ; bûcheron au ballon retiré dès le niveau 2 du dos (comme `rotation-bucheron`). NON SOURCÉ.
 - **Option alternative** : garder ces deux fiches au niveau débutant avec mur et tapis (moins prudent).
+
+## Q26. Poids du gilet lesté et du sac de sable (24/10/2026, coach, lot-09-lest-sac-bosu)
+- **Contexte** : le profil n'a aucun champ pour le poids du gilet ni du sac ; ce sont des charges fixes que l'app ne peut pas calibrer comme des haltères (même question que Q12 pour la barre). Le tag `lest` est « chargeable » dans le générateur (src/generator/config.ts), le tag `sac_de_sable` ne l'est pas (il serait dosé comme du poids du corps, 10 à 15 répétitions).
+- **Choix prudent appliqué** : toutes les fiches au gilet (sauf la marche) et au sac sont à **intermédiaire minimum** ; la progression passe par les répétitions puis l'échelon, jamais par un poids que l'app choisirait ; chaque fiche dit « si tu ne tiens pas le bas de la fourchette avec 2 à 3 répétitions en réserve, le gilet ou le sac est trop lourd ». Grossesse et post-partum : gilet et sac retirés. NON SOURCÉ.
+- **Option alternative** : champ facultatif « poids de mon gilet / de mon sac » dans le profil (et `sac_de_sable` dans la liste chargeable), pour ne pas proposer l'exercice si la charge dépasse l'étalonnage (demande à `dev`).
+
+## Q27. Bosu : côté plat vers le haut et pieds sur le bosu (24/10/2026, coach, lot-09-lest-sac-bosu)
+- **Contexte** : le bosu retourné (plat vers le haut) et les planches ou pompes avec les pieds sur le bosu sont les formes les plus instables ; chute chargée ou vers le visage possible, sans gain mesuré (Wahl et Behm 2008 : le bosu n'a pas augmenté l'activité musculaire chez des personnes très entraînées, résumé lu ; CSEP 2010 : instabilité pas recommandée pour la force).
+- **Choix prudent appliqué** : seul le dôme vers le haut, bosu calé contre un mur, aucune charge, aucun saut ; côté plat vers le haut et pieds sur le bosu **non écrits**. Niveau intermédiaire minimum. Cheville gênée, même légèrement : retiré. NON SOURCÉ.
+- **Option alternative** : ajouter une variante « plat vers le haut » à l'échelon avancé, sans charge, retirée dès la cheville ou le genou à 1 (moins prudent).
+
+## Q28. Corde à sauter, vélo, rameur, tapis : toujours sans fiche (24/10/2026, coach, lot-09-lest-sac-bosu)
+- **Contexte** : la corde à sauter dépend de Q5 (sauts) ; vélo, rameur, tapis de course dépendent de Q10 (le tag `machine_cardio` ne les distingue pas). Le lot 09 ne les traite donc pas.
+- **À faire** : réponses à Q5 et Q10, puis lot dédié (corde à sauter, vélo assis, rameur, tapis, elliptique) rédigé par `coach` et relu par `kine` ; voir aussi Q11 (fiches cardio manquantes).
