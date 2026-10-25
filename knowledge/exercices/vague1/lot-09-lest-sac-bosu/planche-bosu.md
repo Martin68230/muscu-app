@@ -15,12 +15,12 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| planche-bosu-genoux | Avant-bras sur le dôme, genoux au sol | 1 | intermediaire | bosu, tapis, mur | Bosu côté dôme vers le haut, calé contre un mur plein ; avant-bras posés sur le dôme, genoux sur un tapis, corps en ligne des genoux aux épaules. |
+| planche-bosu-genoux | Avant-bras sur le dôme, genoux au sol | 1 | intermediaire | bosu, tapis, mur | Bosu côté dôme vers le haut, calé contre un mur plein placé du côté de ta tête (face au mur, le dôme entre le mur et toi) ; avant-bras à plat sur la moitié du dôme côté toi, coudes sous les épaules, genoux sur un tapis (épais ou avec un coussin si le genou est sensible), corps en ligne des genoux aux épaules, front loin du mur. |
 | planche-bosu-pieds | Avant-bras sur le dôme, pointes de pieds | 2 | intermediaire | bosu, tapis, mur | Même installation, genoux levés, pointes de pieds sur le tapis, corps en ligne de la tête aux talons. |
 
 ## Consignes
-1. Pose le bosu côté dôme vers le haut contre un mur plein, sur un sol plat et non glissant ; un tapis derrière pour les genoux ou les pieds.
-2. Pose les avant-bras sur le dôme, coudes sous les épaules, mains jointes ou à plat, regard vers le bas entre les mains.
+1. Pose le bosu côté dôme vers le haut contre un mur plein, sur un sol plat et non glissant ; le mur est du côté de ta tête, derrière le bosu : tu lui fais face, le dôme entre le mur et toi (jamais le mur sur le côté ni contre tes pieds) ; un tapis de ton côté pour les genoux ou les pieds.
+2. Pose les avant-bras à plat sur la moitié du dôme côté toi (jamais la main au bout d'un bras tendu), coudes sous les épaules, mains jointes ou à plat, regard vers le bas entre les mains ; ta tête reste loin du mur : si le front s'en approche, ramène les avant-bras vers toi sur le dôme ou arrête.
 3. Corps en ligne : serre le ventre et les fessiers, ne creuse pas le bas du dos, ne monte pas les fesses.
 4. Tiens la position sans retenir ta respiration. Arrête dès que le bas du dos se creuse ou que les épaules s'affaissent.
 5. Pour finir, pose les genoux sur le tapis, puis les avant-bras au sol.
@@ -57,22 +57,22 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 | Dos | adapter: variante:planche-bosu-genoux | retirer | retirer |
 | Coude | garder | retirer | retirer |
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
-| Genou | adapter: appui:coussin | retirer | retirer |
+| Genou | adapter: variante:planche-bosu-genoux | retirer | retirer |
 
 **Notes**
 - general : règle unique du bosu (choix de kine, NON SOURCÉ) : jamais de charge ni de pieds sur le bosu ; pour toute gêne nette (niveau 2) à l'épaule, au coude, au dos, au cou ou au genou, la fiche est retirée (une planche sur sol plat reste disponible, avec ses propres lignes : le générateur choisit un autre gainage compatible). Gêne légère : voir les Notes de chaque zone.
 - epaule-n1 : genoux au sol (levier plus court) ; choix prudent, NON SOURCÉ.
 - epaule-n2 : retiré : une planche sur sol plat (fiche planche) reste disponible.
 - dos-n1 : genoux au sol, maintien court.
-- genou-n1 : tapis épais ou coussin sous les genoux dans la variante genoux (ou, si la gêne persiste, pas cet exercice).
+- genou-n1 : variante genoux, avec tapis épais ou coussin sous les genoux (la case ne vaut pas pour la variante pointes de pieds, qui n'est plus proposée) ; si la gêne persiste, pas cet exercice.
 - grossesse : retiré : maintien isométrique prolongé, pression sur le ventre, surface instable (G4, comme planche) ; remplacé par le bird-dog à maintien court. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:bird-dog
 **Version plus douce** : planche-bosu-genoux
 
 **Sécurité pour l'utilisateur seul**
-- Bosu bien gonflé, calé contre un mur plein, tapis ferme derrière ; sol non glissant ; rien de dur sous le visage (NON SOURCÉ).
-- Sortie de secours, à chaque série : si une épaule lâche, si le bas du dos cède ou si le bosu glisse, ne te retiens pas avec un bras tendu : pose les genoux sur le tapis (variante pieds) puis le ventre, ou directement le ventre et les avant-bras (variante genoux), en ramenant les bras vers le corps. Le bosu est contre le mur et ne part pas. Essaie cette sortie une fois avant la première vraie série (NON SOURCÉ).
+- Bosu bien gonflé, calé contre un mur plein du côté de la tête, tapis ferme de ton côté ; sol non glissant ; rien de dur sous le visage ; front à distance du mur (NON SOURCÉ).
+- Sortie de secours, à chaque série : si une épaule lâche, si le bas du dos cède ou si le bosu glisse, ne te retiens pas avec un bras tendu : pose les genoux sur le tapis (variante pieds) puis le ventre, ou directement le ventre et les avant-bras (variante genoux), en ramenant les bras vers le corps. Le bosu est contre le mur et ne part pas ; ne tends pas la tête vers le mur. Essaie cette sortie une fois avant la première vraie série (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
 **Points d'attention (kine)**
@@ -88,7 +88,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 **Objets du quotidien**
 - Bosu : bien gonflé (ni mou ni trop dur), surface sèche et propre (pieds et sol), sans fissure ni fuite d'air ; placé sur un sol plat, sec et non glissant, calé contre un mur plein ou un meuble lourd (NON SOURCÉ).
-- Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche, ou pieds nus propres sur un sol non glissant ; espace libre autour de toi (NON SOURCÉ).
+- Mur plein derrière le bosu (pas à portée de main : tu ne te retiens pas à lui) ; chaussures fermées à semelle qui accroche (pas de pieds nus : la cheville est la zone la plus exposée) ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
 - aucune photo

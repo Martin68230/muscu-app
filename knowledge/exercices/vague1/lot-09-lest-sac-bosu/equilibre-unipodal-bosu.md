@@ -72,7 +72,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 **Sécurité pour l'utilisateur seul**
 - Bosu bien gonflé, calé contre un mur plein, sol sec et non glissant ; rien de dur ni de fragile autour (NON SOURCÉ).
-- Mur à portée de main pendant tout l'exercice ; pieds nus propres ou chaussures fermées à semelle qui accroche.
+- Mur à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche (pas de pieds nus : la cheville est la zone la plus exposée).
 - Pas d'exercice si tu es fatigué ou étourdi (NON SOURCÉ).
 - Sortie de secours : si tu perds l'équilibre, pose le pied libre au sol et saisis le mur ; ne tente pas de te rattraper en sautant. Si tu tombes, laisse-toi aller sur les fesses vers le mur plutôt que de poser le pied sur le côté de la cheville. Fais la manœuvre une fois avant la première vraie série : monte, déséquilibre-toi doucement, descends (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
@@ -91,7 +91,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 **Objets du quotidien**
 - Bosu : bien gonflé (ni mou ni trop dur), surface sèche et propre (pieds et sol), sans fissure ni fuite d'air ; placé sur un sol plat, sec et non glissant, calé contre un mur plein ou un meuble lourd (NON SOURCÉ).
-- Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche, ou pieds nus propres sur un sol non glissant ; espace libre autour de toi (NON SOURCÉ).
+- Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche (pas de pieds nus : la cheville est la zone la plus exposée) ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
 - `Balance_Board/0.jpg` : affichable : non (planche d'équilibre, autre appareil que le bosu)

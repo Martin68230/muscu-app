@@ -15,12 +15,12 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-bosu-genoux | Mains sur le dôme, genoux au sol | 1 | intermediaire | bosu, tapis, mur | Bosu côté dôme vers le haut, calé contre un mur plein ; mains sur le dôme sous les épaules, genoux sur un tapis, corps en ligne des genoux aux épaules. |
+| pompe-bosu-genoux | Mains sur le dôme, genoux au sol | 1 | intermediaire | bosu, tapis, mur | Bosu côté dôme vers le haut, calé contre un mur plein placé du côté de ta tête (face au mur, le dôme entre le mur et toi) ; mains sur la moitié du dôme côté toi, sous les épaules, genoux sur un tapis (épais ou avec un coussin si le genou est sensible), corps en ligne des genoux aux épaules, front loin du mur. |
 | pompe-bosu-pieds | Mains sur le dôme, pointes de pieds | 2 | intermediaire | bosu, tapis, mur | Même installation, genoux levés, pointes de pieds sur le tapis, corps en ligne. |
 
 ## Consignes
-1. Pose le bosu côté dôme vers le haut, calé contre un mur plein, sur un sol plat et non glissant ; un tapis ferme pour les genoux ou les pieds.
-2. Pose les mains sur le dôme, sous les épaules, doigts vers l'avant, corps en ligne, regard entre les mains.
+1. Pose le bosu côté dôme vers le haut, calé contre un mur plein, sur un sol plat et non glissant ; le mur est du côté de ta tête, derrière le bosu : tu lui fais face, le dôme entre le mur et toi (jamais le mur sur le côté ni contre tes pieds) ; un tapis ferme pour les genoux ou les pieds.
+2. Pose les mains sur la moitié du dôme côté toi (pas sur la moitié contre le mur), sous les épaules, doigts vers l'avant, corps en ligne, regard entre les mains ; ta tête reste loin du mur : si le front s'en approche, ramène les mains vers toi sur le dôme ou arrête.
 3. Descends en pliant les coudes (environ 45 degrés du corps) sans aller jusqu'au bout, la poitrine reste au-dessus du dôme.
 4. Pousse pour remonter, bras presque tendus sans verrouiller, en gardant le corps en ligne.
 5. Fais des répétitions lentes. Respire sans bloquer ; arrête la série dès que le bosu bouge trop.
@@ -28,7 +28,7 @@ statut: complete_kine
 ## Points d'attention
 - Le bosu sert au contrôle, pas à la force : moins d'amplitude que la pompe au sol.
 - Mains sur le dôme : les poignets sont un peu en arrière ; si ça tire, sol plat.
-- Le bosu ne glisse pas : mur plein derrière lui, sol non glissant.
+- Le bosu ne glisse pas : mur plein derrière lui, du côté de la tête, sol non glissant. Le front ne s'approche jamais du mur (mains sur la moitié du dôme côté toi ; choix prudent de `kine`, NON SOURCÉ).
 - Le côté plat vers le haut n'est pas proposé (chute vers le visage, voir Q27).
 - Aucune valeur chiffrée propre à ce mouvement (aucune source) : voir program-logic.md, load-calibration.md et generateur-v1.md.
 
@@ -59,7 +59,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 | Dos | garder | retirer | retirer |
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 | Hanche | garder | adapter: variante:pompe-bosu-genoux | retirer |
-| Genou | adapter: appui:coussin | retirer | retirer |
+| Genou | adapter: variante:pompe-bosu-genoux | retirer | retirer |
 
 **Notes**
 - general : règle unique du bosu (choix de kine, NON SOURCÉ) : mains sur une surface bombée et mobile = poignet, coude et épaule plus exposés que sur le sol (Lehman 2006 sur ballon : aucun gain mesuré au pectoral, résumé lu) ; jamais de pieds sur le bosu, jamais de charge. Dès la gêne légère au poignet, la fiche est retirée (pompe sur sol plat, avec ses propres lignes : s'il est lui-même adapté par le profil, le générateur choisit une autre pompe) ; dès la gêne nette à l'épaule ou au coude, de même ; dès la gêne légère à l'épaule ou au coude, genoux au sol (levier plus court).
@@ -69,15 +69,15 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 - epaule-n2 : retiré, pompe sur sol plat (fiche pompe, ses propres lignes).
 - coude-n2 : retiré, pompe sur sol plat.
 - hanche-n2 : genoux au sol.
-- genou-n1 : tapis épais ou coussin sous les genoux.
+- genou-n1 : variante genoux, avec tapis épais ou coussin sous les genoux (la case ne vaut pas pour la variante pointes de pieds, qui n'est plus proposée) ; si la gêne persiste, pas cet exercice.
 - grossesse : retiré : instabilité, ventre proche du bosu ; remplacé par la pompe sur chaise. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:pompe
 **Version plus douce** : pompe-bosu-genoux
 
 **Sécurité pour l'utilisateur seul**
-- Bosu bien gonflé, calé contre un mur plein, tapis ferme sous les genoux et les pieds ; sol non glissant (NON SOURCÉ).
-- Sortie de secours, à chaque série : si une main glisse, si un poignet tire ou si le bosu part, ne te retiens pas avec un bras tendu ; plie les coudes, tourne la tête sur le côté et laisse-toi descendre vers le bosu (ou, variante pieds, pose d'abord les genoux sur le tapis) ; la poitrine ne tombe pas de haut puisque la descente reste courte. Essaie cette sortie une fois, bras presque tendus, avant la première vraie série (NON SOURCÉ).
+- Bosu bien gonflé, calé contre un mur plein du côté de la tête, tapis ferme sous les genoux et les pieds ; sol non glissant ; front à distance du mur (NON SOURCÉ).
+- Sortie de secours, à chaque série : si une main glisse, si un poignet tire ou si le bosu part, ne te retiens pas avec un bras tendu ; plie les coudes, tourne la tête sur le côté (le mur est devant ta tête : ne la tends pas vers lui) et laisse-toi descendre vers le bosu (ou, variante pieds, pose d'abord les genoux sur le tapis) ; la poitrine ne tombe pas de haut puisque la descente reste courte. Essaie cette sortie une fois, bras presque tendus, avant la première vraie série (NON SOURCÉ).
 - Quelqu'un dans la maison, à portée de voix, de préférence.
 
 **Points d'attention (kine)**
@@ -93,7 +93,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 **Objets du quotidien**
 - Bosu : bien gonflé (ni mou ni trop dur), surface sèche et propre (pieds et sol), sans fissure ni fuite d'air ; placé sur un sol plat, sec et non glissant, calé contre un mur plein ou un meuble lourd (NON SOURCÉ).
-- Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche, ou pieds nus propres sur un sol non glissant ; espace libre autour de toi (NON SOURCÉ).
+- Mur plein derrière le bosu, du côté de la tête (pas à portée de main : tu ne te retiens pas à lui) ; chaussures fermées à semelle qui accroche (pas de pieds nus : la cheville est la zone la plus exposée) ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
 - aucune photo

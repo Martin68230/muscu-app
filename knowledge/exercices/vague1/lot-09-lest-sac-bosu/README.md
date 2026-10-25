@@ -9,7 +9,7 @@ Rédigé par `coach` le 24/10/2026. Statut : 17 fiches `brouillon_coach`. Étape
 | pompe-gilet-lest | poussée H | avancé | mains au sol (1), pieds sur chaise (2) | lest (chaise, mur) | illustration faite (oui), photo non |
 | traction-gilet-lest | tirage V | avancé | mains vers soi (1), mains vers l'avant (2) | barre_traction, lest | illustration faite (oui), photo non |
 | marche-gilet-lest | porté | débutant | marche à plat (1) | lest | illustration faite (oui), photo non |
-| montee-gilet-lest | fente | intermédiaire | première marche (1), box ou step sous le genou (2) | lest, marche_escalier ou box_ou_step | illustration faite (oui), photo non |
+| montee-gilet-lest | fente | intermédiaire | première marche seulement (1, box retirée) | lest, marche_escalier | illustration faite (oui), photo non |
 | pont-fessier-gilet-lest | charnière | intermédiaire | deux pieds (1), arrêt en haut (2), une jambe (3, avancé) | lest | illustration faite (oui), photo non |
 | porte-sac-berceau | porté | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | illustration faite (oui), photo non |
 | squat-sac-berceau | squat | intermédiaire | sac pris sur une chaise (1), pris au sol (2) | sac_de_sable (chaise, mur) | illustration faite (oui), photo non |
@@ -89,3 +89,12 @@ Faites, fiche par fiche, `npm run check:fiches` à 0 erreur après chacune (194 
 - **S3** (texte seulement) : la fiche equilibre-unipodal-bosu et ce README ne disent plus « traité comme échauffement » ; décision de `dev` toujours à enregistrer. **S4** : décrit dans « Pour dev ».
 - **M1** (fente-gilet-lest) : installation alignée sur l'illustration (face au mur, à un pas). **M2** (squat-sac-berceau) : Goblet_Squat = équipement « kettlebells ». **M4** (squat-sac-berceau) : note cou-n2 réécrite (menton rentré, sac loin du menton). **M7** (equilibre-unipodal-bosu) : consigne 2 alignée sur l'installation (un seul pied sur le dôme), prérequis « 30 secondes sur sol plat » noté comme non vérifiable par l'app.
 - **Laissés à d'autres** : S1, C7, C9, C12, M11 et M12 (`kine`) ; S2, M5, M6, M8 (images, `dev`) ; S3 et S4 (code, `dev`) ; statuts (chef de projet). M9, M10, M13 : sans correction demandée.
+
+## Corrections kine 2 (25/10/2026, suite au contrôle `relecteur`)
+Fiche par fiche, `npm run check:fiches` à 0 erreur (194 fiches) ; aucun statut, source, dosage, image ni code touchés. Choix prudents, NON SOURCÉS.
+- **S1** (montee-gilet-lest) : la variante `montee-gilet-lest-box` est retirée. Il ne reste que la première marche d'un escalier avec rampe obligatoire (jamais la deuxième marche, jamais une box, un step, un banc ni une chaise avec le gilet) : plus strict que la décision du 21/10 sur les haltères, car le gilet ne se lâche pas d'un geste. Une seule variante, donc plus d'échelon plus haut : `plus-dur : aucun` ; les textes de progression (dosage) ont été alignés au minimum (même marche, même gilet) : à revoir par `coach`. regles-securite-communes.md §7 : règle du gilet ajoutée (M12).
+- **C9** : dos niveau 1 de la montée au gilet : `adapter: amplitude:lente` (montée et descente lentes, buste droit, main sur la rampe), comme les autres exercices au gilet.
+- **C7** (planche-bosu, pompe-bosu) : genou niveau 1 : `adapter: variante:...-genoux` (avec tapis épais ou coussin), au lieu de `appui:coussin` qui ne valait pas pour la variante pointes de pieds.
+- **C12** : décision : le mur est du côté de la tête, derrière le bosu (comme l'illustration actuelle de dev : mains ou avant-bras sur la moitié du dôme côté soi, front loin du mur) ; jamais sur le côté ni contre les pieds. Écrit dans l'installation, les consignes, les points d'attention, la sécurité et la sortie de secours (ne pas tendre la tête vers le mur). La consigne planche dit « avant-bras à plat sur le dôme » (S2, aligné sur l'image refaite). Rien à changer pour dev.
+- **M11** : « pieds nus propres » remplacé par « chaussures fermées, pas de pieds nus » dans les 4 fiches bosu.
+- **Pour `dev`** : la variante box n'existe plus (tests et libellés qui la citeraient à vérifier) ; légende de montee-gilet-lest.svg à relire (« Pas de box avec le gilet » ajouté à la fiche).

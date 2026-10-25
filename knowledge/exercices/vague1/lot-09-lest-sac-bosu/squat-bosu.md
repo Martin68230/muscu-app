@@ -76,7 +76,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 **Sécurité pour l'utilisateur seul**
 - Bosu bien gonflé, calé contre un mur plein, sol sec et non glissant ; rien de dur ni de fragile autour (NON SOURCÉ).
-- Mur ou meuble lourd à portée de main pendant toute la série ; chaussures fermées à semelle qui accroche, ou pieds nus propres.
+- Mur ou meuble lourd à portée de main pendant toute la série ; chaussures fermées à semelle qui accroche (pas de pieds nus : la cheville est la zone la plus exposée).
 - Sortie de secours, à chaque série : si tu perds l'équilibre, saisis le mur et pose un pied au sol (le bosu est bas) ; ne tente pas de te rattraper en sautant ni en tordant la cheville. Si tu tombes, laisse-toi aller sur les fesses vers le mur, pieds qui quittent le dôme, plutôt que de poser le pied sur le côté de la cheville (NON SOURCÉ). Avant la première série, fais la manœuvre une fois à vide : monte, déséquilibre-toi doucement, descends.
 - Un bosu qui bouge sur le sol, qui est mou ou qui siffle : pas d'exercice.
 - Pas d'échec : arrête la série avec au moins 2 répétitions en réserve.
@@ -95,7 +95,7 @@ Rédigé par `coach` le 2026-10-24 (sécurité reprise par `kine` le 2026-10-25,
 
 **Objets du quotidien**
 - Bosu : bien gonflé (ni mou ni trop dur), surface sèche et propre (pieds et sol), sans fissure ni fuite d'air ; placé sur un sol plat, sec et non glissant, calé contre un mur plein ou un meuble lourd (NON SOURCÉ).
-- Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche, ou pieds nus propres sur un sol non glissant ; espace libre autour de toi (NON SOURCÉ).
+- Mur ou chaise lourde à portée de main pendant tout l'exercice ; chaussures fermées à semelle qui accroche (pas de pieds nus : la cheville est la zone la plus exposée) ; espace libre autour de toi (NON SOURCÉ).
 
 ## Photo
 - aucune photo
