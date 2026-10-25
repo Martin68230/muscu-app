@@ -6,6 +6,7 @@
 import { existsSync, mkdirSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, join, resolve } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
+import { sanitizePublic } from './public-text.mjs';
 import { cells, isSeparator, listFiches, norm, parseCase, parseFiche, splitSections, parseFrontmatter } from './validate-fiches.mjs';
 
 export const USABLE_STATUTS = ['utilisable', 'verifie'];
@@ -149,10 +150,12 @@ export function buildAll(dir, publicDir) {
   return { fiches, warnings };
 }
 
-function main() {
+async function main() {
   const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
   const publicDir = join(root, 'public');
   const { fiches, warnings } = buildAll(join(root, 'knowledge', 'exercices'), publicDir);
+  const left = await sanitizePublic(fiches, root);
+  for (const l of left) console.warn(`(mention interne restante) ${l}`);
   const outDir = join(publicDir, 'data');
   mkdirSync(outDir, { recursive: true });
   const file = join(outDir, 'fiches.json');
@@ -162,4 +165,4 @@ function main() {
   console.log(`fiches.json : ${fiches.length} fiche(s), ${kb} Ko -> public/data/fiches.json`);
 }
 
-if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) main();
+if (process.argv[1] && pathToFileURL(resolve(process.argv[1])).href === import.meta.url) await main();
