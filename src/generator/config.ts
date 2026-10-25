@@ -212,6 +212,14 @@ export const FIXED_DOSE: Record<string, FixedDoseRow> = {
  */
 export const GENERATOR_EXCLUDED_FICHES: readonly string[] = ['equilibre-unipodal-bosu'];
 
+/** Emplacements « piliers » (exercices principaux de la séance). */
+export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_1', 'tirage_1', 'charniere'];
+/**
+ * Lancers au ballon lesté contre un mur (lot 08) : jamais un exercice principal (décision de l'utilisateur du 25/10/2026, choix prudent) ;
+ * ils restent possibles aux emplacements secondaires. Dosage fixe : FIXED_DOSE (Q23).
+ */
+export const PILLAR_EXCLUDED_FICHES: readonly string[] = ['lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur'];
+
 // ---------------------------------------------------------------------------------------------
 // Plafonds de sécurité (V-PRIO §6.0 : P-CAP, P-GROS, P-ZONE3)
 // ---------------------------------------------------------------------------------------------

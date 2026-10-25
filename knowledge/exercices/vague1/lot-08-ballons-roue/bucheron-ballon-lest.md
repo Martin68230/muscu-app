@@ -42,7 +42,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : rotation-bucheron-sans-charge, rotation-bucheron
-- plus-dur : aucun
+- plus-dur : lancer-rotation-mur
 
 ## Repères de dosage
 Repères du générateur (generateur-v1.md §3.3, règle V-TEMPS, NON SOURCÉ en entier) : 8 à 10 répétitions par côté (débutant) puis 10 à 12, 2 séries, repos 60 s, pas de réserve demandée : la série s'arrête dès que la position ou le contrôle se dégrade. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.

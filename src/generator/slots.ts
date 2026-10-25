@@ -1,4 +1,5 @@
 // Emplacements d'une séance (V-EMP §2.2), classement (V-CLASSE §6.7), replis (V-IMPOS §7.1), rotation A/C (V-ROT §2.3).
+import { MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import type { Fiche, SlotKey, Tier } from './types';
@@ -165,6 +166,7 @@ export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx
     for (const c of resolveFiche(X, ctx).candidates) {
       const s = schemas.get(c.fiche.schema);
       if (!s || used.has(c.fiche.id)) continue;
+      if (MAIN_EXERCISE_SLOTS.includes(slot) && PILLAR_EXCLUDED_FICHES.includes(c.fiche.id)) continue; // lancers : jamais exercice principal
       // jambes_2 / fonctionnel : un schéma sans muscle exigé ne peut pas être « substitut »
       const full = isPleine(c.fiche, s.r);
       if (!full && !def.allowSubst) continue;
