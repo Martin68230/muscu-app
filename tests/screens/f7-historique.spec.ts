@@ -109,7 +109,7 @@ test('F7 : accueil, calendrier, historique, bilan passé', async ({ page }, info
 
   await page.getByRole('button', { name: 'Calendrier' }).click();
   await expect(page.getByRole('heading', { name: 'Calendrier' })).toBeVisible();
-  await expect(page.getByText(/séances? faites? sur \d+ prévues?/)).toBeVisible();
+  await expect(page.getByText(/séances? faites? sur environ \d+ prévues? \(estimation\)/)).toBeVisible();
   await checkPhoneRules(page);
   await page.screenshot({ path: `screenshots/${info.project.name}/f7-calendrier.png`, fullPage: true });
 

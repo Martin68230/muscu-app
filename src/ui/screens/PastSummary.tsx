@@ -88,7 +88,7 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
           {!ask && <button type="button" class="btn btn-danger" onClick={() => setAsk(true)}>Supprimer cette séance</button>}
           {ask && (
             <div class="notice" role="alertdialog" aria-label="Confirmer la suppression">
-              <p>Supprimer cette séance de ton historique ? Ses séries seront aussi supprimées. Cette action est définitive.</p>
+              <p>Supprimer cette séance de ton historique ? Les séries de cette séance et l’historique de tes charges pour cette séance seront aussi effacés. Cette action est définitive.</p>
               <button type="button" class="btn btn-danger" disabled={busy} onClick={() => void remove()}>Oui, supprimer</button>
               <button type="button" class="btn" onClick={() => setAsk(false)}>Annuler</button>
             </div>

@@ -25,7 +25,7 @@ export function entryDetail(e: HistoryEntry): string {
 export function monthLine(done: number, planned: number | null): string {
   if (done === 0) return 'Pas encore de séance ce mois-ci.';
   if (planned === null) return `${plural(done, 'séance faite', 'séances faites')} ce mois-ci.`;
-  return `${plural(done, 'séance faite', 'séances faites')} sur ${plural(planned, 'prévue', 'prévues')}.`;
+  return `${plural(done, 'séance faite', 'séances faites')} sur environ ${plural(planned, 'prévue', 'prévues')} (estimation).`;
 }
 
 export interface CalendarViewProps {

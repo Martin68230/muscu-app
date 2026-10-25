@@ -39,7 +39,7 @@ describe('calendrier', () => {
     expect(screen.getByRole('button', { name: /mardi 13 octobre : séance arrêtée/ })).toBeTruthy();
     expect(screen.getByRole('button', { name: /mardi 6 octobre : séance reportée/ })).toBeTruthy();
     expect(screen.getByRole('img', { name: /mercredi 28 octobre, aujourd’hui/ })).toBeTruthy();
-    expect(screen.getByText('2 séances faites sur 12 prévues.')).toBeTruthy();
+    expect(screen.getByText('2 séances faites sur environ 12 prévues (estimation).')).toBeTruthy();
   });
   it('appui sur un jour : détail et lien « Voir le bilan »', () => {
     const onOpen = vi.fn();
@@ -75,7 +75,7 @@ describe('calendrier', () => {
     expect(document.querySelectorAll('.hist-row').length).toBe(12);
   });
   it('formules', () => {
-    expect(monthLine(1, 1)).toBe('1 séance faite sur 1 prévue.');
+    expect(monthLine(1, 1)).toBe('1 séance faite sur environ 1 prévue (estimation).');
     expect(monthLine(3, null)).toBe('3 séances faites ce mois-ci.');
     expect(entryDetail(e('x', '2026-10-01', { setsDone: 1 }))).toBe('Haut du corps · 45 min · 1 série faite');
   });
