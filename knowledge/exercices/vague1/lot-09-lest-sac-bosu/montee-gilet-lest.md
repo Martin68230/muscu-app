@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [ischios, adducteurs, mollets, abdominaux]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Une seule variante : la box a été retirée (S1 du contrôle `relecteur`, décision prudente de `kine` du 25/10/2026, alignée sur montee-sur-marche et regles-securite-communes.md §7 : aucune charge sur une surface plus haute que la première marche). Échelons et niveaux : choix de coach, NON SOURCÉ.

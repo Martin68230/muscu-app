@@ -51,12 +51,14 @@ describe('S4 lot 09 : le gilet lesté est une charge fixe, jamais chargeable', (
     expect([...CHARGEABLE_TAGS].sort()).toEqual(['barre', 'barre_ez', 'bidons_ou_sacs', 'disques', 'halteres', 'kettlebell', 'machine', 'poulie', 'sac_a_dos']);
   });
 
-  it('bibliothèque publiée : aucune variante ne porte `lest`, donc le dosage des autres fiches ne change pas', () => {
+  it('bibliothèque publiée : seules les fiches gilet portent `lest` (non chargeable) ; le dosage des autres fiches ne change pas', () => {
     const OLD = [...CHARGEABLE_TAGS, 'lest'];
     for (const f of FICHES)
       for (const v of f.variantes) {
-        expect(v.tags, v.id).not.toContain('lest');
-        expect(isChargeable(v), v.id).toBe(v.tags.some((t) => OLD.includes(t)));
+        if (v.tags.includes('lest')) {
+          expect(GILET, v.id).toContain(f.id);
+          expect(isChargeable(v), v.id).toBe(false);
+        } else expect(isChargeable(v), v.id).toBe(v.tags.some((t) => OLD.includes(t)));
       }
   });
 

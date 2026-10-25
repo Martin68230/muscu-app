@@ -36,3 +36,8 @@ Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Q
 ## Mise à jour 19 h 45
 - lot-08 : 15 fiches `utilisable` ; 4 lancers restent `complete_kine` (lancer-poitrine-mur, lancer-rotation-mur, lancer-bas-haut-mur, squat-lancer-mur) : coach doit trancher « lancer en exercice principal (poussee_1, jambes_genou) ou exclus des piliers » ; RESTAURER « plus-dur : lancer-rotation-mur » dans bucheron-ballon-lest.md (l. 45) quand lancer-rotation-mur sera utilisable. Dosage codé : FIXED_DOSE (config.ts), tests generator-dose-fixe.
 - Prochaine action exacte : lot-09 (corde à sauter, lest, sac de sable, bosu, vélo/rameur/machine_cardio) avec coach ; puis F7.
+
+## Mise à jour 25/10/2026 (après lot-09)
+- lot-09 TERMINÉ (15 utilisables). Total fiches publiées : 188. Poussé et vérifié vert : voir ci-dessous si une ligne « DÉPLOIEMENT » suit.
+- Restent du lot D : 4 lancers lot-08 (décision coach : pas en exercice principal), corde/cardio machine (Q5, Q10 : attendre les décisions de l'utilisateur), vidéos à filmer (Q19), N4 (saisie de charge pour lest/sac).
+- Prochaine action : F7 (historique et accueil), Sonnet, sans experts sauf texte de sécurité.
