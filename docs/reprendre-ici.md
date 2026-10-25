@@ -82,3 +82,11 @@ Décisions « OK pour toutes les recommandations » de l'utilisateur (docs/QUEST
 
 - D26 étape 1 FAITE (lecture du code) : voir docs/D26-etat-actuel.md (supersets : option « gagner du temps » seulement, 3 paires fermées ; core : 1 emplacement « tronc » par séance, retiré en premier quand le temps manque : écart à corriger).
 - 25/10 ~20 h 30 : quota de la semaine à 98 % (remise à zéro jeudi 29/10 vers 19 h, heure de Paris) : arrêt propre ; prochaine action exacte = D23 (validateur de chaînes de progression par muscle principal + schéma, sans téléchargement ; l'import hasaneyldrm attend l'accord explicite de l'utilisateur).
+
+## MESSAGE v6 (25/10/2026) : remplace v5 ; seule nouveauté = D28 (le reste est identique : voir « MESSAGE v5 » ci-dessus, déjà noté)
+- Ordre recommandé mis à jour : D23 → D24 (statistiques seulement) → D25 → D26 → **D28** → R2 → R3 → D21 → D18 → D17 / D22 → D19.
+- D28 « Créer une séance » à la demande, sans IA (générateur par règles) : écran avec zone du corps (jambes, haut du corps, tronc, corps entier), sport éventuel (foot, danse, volley, raquette), matériel disponible (chaise, élastique, tapis compris), durée, intensité ; le générateur compose : exercices compatibles avec matériel et zone, exigences du sport (appuis latéraux, réception de saut, stabilité genou/cheville : règles du coach, sources, PROVISOIRE si non sourcées), core (D26), échauffement et retour au calme, séries/répétitions/repos selon nos règles ; séance ajoutable au calendrier ou faite tout de suite.
+  - Cas de test imposé : « jambes, volley, élastique + chaise, 30 minutes, intensité modérée » → séance cohérente, aucun exercice hors matériel, supersets conformes à D26.
+  - Dépendances : D23 (catalogue et chaînes par muscle), D25 (taxonomie des schémas, structure de séance), D26 (core et supersets), sports.md (règles de sport à valider coach/kine/relecteur). À ne pas commencer avant D26.
+  - Coût estimé : règles de sport sourcées (coach, kine, relecteur) 15 à 20 % ; composeur de séance dans le générateur (Opus, règles de sécurité) 30 à 40 % ; écran, calendrier, lecteur 15 à 20 % ; tests et démonstration texte 5 à 10 % ; total 65 à 90 %.
+- Rappel : quota de la semaine à 98 % ; remise à zéro jeudi 29/10 vers 19 h (Paris). Rien lancé. Prochaine action exacte : D23 (validateur de chaînes par muscle principal + schéma, sans téléchargement).
