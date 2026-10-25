@@ -128,10 +128,19 @@ export const DOSE: Record<Family, Record<Level, DoseRow>> = {
     avance: { setsPilier: 3, setsAutre: 2, repsCharge: [8, 12], repsBodyweight: [10, 15], rir: 2, restPilierSec: 90, restAutreSec: 60 },
   },
 };
-/** Tags qui rendent une variante « chargeable » (V-DOSE §3.2). */
+/** Tags qui rendent une variante « chargeable » (V-DOSE §3.2) : une charge que l'app étalonne et fait progresser. */
 export const CHARGEABLE_TAGS: readonly string[] = [
-  'halteres', 'kettlebell', 'barre', 'barre_ez', 'disques', 'machine', 'poulie', 'sac_a_dos', 'bidons_ou_sacs', 'lest',
+  'halteres', 'kettlebell', 'barre', 'barre_ez', 'disques', 'machine', 'poulie', 'sac_a_dos', 'bidons_ou_sacs',
 ];
+/**
+ * Charges fixes portées (écart sérieux n° 4 du contrôle relecteur du lot 09, knowledge/exercices/vague1/lot-09-lest-sac-bosu/CONTROLE-relecteur.md) :
+ * le gilet lesté (`lest`) n'est PAS chargeable. L'app ne connaît pas son poids et ne peut pas l'alléger : pas de charge
+ * de départ, pas d'échauffement à ~50 % (E3 au poids du corps), pas de hausse de charge proposée ; dose et progression
+ * « sans charge » (répétitions puis échelon), comme l'écrivent les 7 fiches `*-gilet-lest`. Choix prudent NON SOURCÉ.
+ * Il reste une charge pour la sécurité : une restriction « sans charge » retire ces variantes (safety.ts), et la réserve
+ * reste celle des charges libres (jamais la réserve 1 des variantes « sûres », dose.ts).
+ */
+export const FIXED_LOAD_TAGS: readonly string[] = ['lest'];
 /** Variantes « sûres » pour la réserve 1 (avancé, muscle) : chargées seulement par ces tags. NON SOURCÉ. */
 export const SAFE_LOAD_TAGS: readonly string[] = ['machine', 'poulie'];
 
@@ -193,6 +202,15 @@ export const FIXED_DOSE: Record<string, FixedDoseRow> = {
   'genoux-poitrine-ballon': GAINAGE_DYNAMIQUE_DOSE,
   'planche-cercles-ballon': PLANCHE_CERCLES_DOSE,
 };
+
+/**
+ * Fiches jamais placées par le générateur, ni comme exercice ni en échauffement, même `utilisable` (consultables dans
+ * la bibliothèque). Écart sérieux n° 3 du contrôle relecteur du lot 09 (knowledge/exercices/vague1/lot-09-lest-sac-bosu/CONTROLE-relecteur.md) :
+ * equilibre-unipodal-bosu est de schéma `mobilite`, sans emplacement ni ligne TEMPS ; si un emplacement l'appelait un jour,
+ * V-DOSE la doserait en 10 à 15 répétitions à réserve 2, l'inverse de la fiche (courts maintiens, jamais fatigué).
+ * Exclue tant qu'aucun emplacement d'équilibre dosé selon la fiche n'existe. Choix prudent de `dev`.
+ */
+export const GENERATOR_EXCLUDED_FICHES: readonly string[] = ['equilibre-unipodal-bosu'];
 
 // ---------------------------------------------------------------------------------------------
 // Plafonds de sécurité (V-PRIO §6.0 : P-CAP, P-GROS, P-ZONE3)

@@ -832,12 +832,6 @@ export const EXERCICES = [
     b: { vest: true, p: [8, 38], t: 203, h: 170, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, back: [['mat', -140, 130]], props: [['arrow', [4, 90], [4, 120]]] },
   },
   {
-    id: 'porte-sac-epaule', titre: 'Portage d\'un sac de sable sur une épaule, sac pris sur une chaise : à deux bras contre le ventre, genoux fléchis, puis marche tronc droit',
-    labels: ['Sac pris sur la chaise, dos plat', 'Marche, sac sur l\'épaule'],
-    a: chairLift(),
-    b: stride({ armN: { to: [16, 172], bend: 'd' }, armF: { a: [-70, -50] }, props: [['bag', [-4, 178], 46, 22, 0], ...walkFwd] }),
-  },
-  {
     id: 'porte-sac-berceau', titre: 'Portage d\'un sac de sable en berceau, sac pris sur une chaise : serré dans les deux bras contre la poitrine, marche buste droit',
     labels: ['Sac pris sur la chaise, dos plat', 'Marche, sac contre la poitrine'],
     a: chairLift(),
@@ -848,12 +842,6 @@ export const EXERCICES = [
     labels: ['Debout, sac contre la poitrine', 'Descente, dos droit'],
     a: { p: [0, 112], t: 90, ...cradleArms([0, 112], 90) },
     b: { p: [-32, 60], t: 62, h: 70, legN: { to: [8, A], bend: 'f' }, legF: { to: [2, A], bend: 'f' }, ...cradleArms([-32, 60], 62) },
-  },
-  {
-    id: 'squat-sac-epaule', titre: 'Squat avec un sac de sable sur une épaule, chaise derrière soi (dossier contre un mur) : on effleure l\'assise sans s\'asseoir, tronc droit',
-    labels: ['Debout, sac sur l\'épaule', 'On effleure la chaise, tronc droit'],
-    a: { p: [0, 112], t: 90, armN: { to: [16, 172], bend: 'd' }, armF: { a: [-50, -20] }, back: [['chair', -75, 46, 1], ['wall', -75, -14]], props: [['bag', [-4, 178], 46, 22, 0]] },
-    b: { p: [-48, 58], t: 80, h: 82, armN: { to: [-23, 119], bend: 'd' }, armF: { a: [-30, -5] }, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, back: [['chair', -75, 46, 1], ['wall', -75, -14]], props: [['bag', [-41, 125], 46, 22, 0]] },
   },
   {
     id: 'souleve-de-terre-sac', titre: 'Soulevé de terre avec un sac de sable pris sur une chaise : dos plat, sac serré contre les jambes, on se redresse jusqu\'à debout',
@@ -876,14 +864,16 @@ export const EXERCICES = [
   {
     id: 'planche-bosu', titre: 'Planche, avant-bras sur le dôme d\'un bosu calé contre un mur, vue de profil : sur les genoux, puis sur les pointes de pieds, corps en ligne',
     labels: ['Genoux au tapis, corps en ligne', 'Pointes de pieds, corps en ligne'],
-    a: { p: [-8.5, 35.7], t: 30.3, h: 25, armN: { a: [-90, -5] }, armF: { a: [-91, -6] }, legN: { to: [-108, 12], bend: 'd', foot: 180 }, legF: { to: [-104, 12], bend: 'd', foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
-    b: { p: [-14.8, 50.5], t: 15.4, h: 12, armN: { a: [-90, -5] }, armF: { a: [-91, -6] }, legN: { to: [-118, 22], bend: 'd', foot: -60 }, legF: { to: [-114, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+    // S2 (contrôle lot 09) : coude posé sur le dôme sous l'épaule, avant-bras à plat sur le dôme (jamais bras tendu) ; tête loin du mur (C12)
+    a: { p: [-10.9, 37.7], t: 27.9, h: 20, armN: { a: [-90, 0] }, armF: { a: [-90, -1] }, legN: { a: [207.9, 180], foot: 180 }, legF: { a: [207, 180], foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+    b: { p: [-15.9, 50.3], t: 15.3, h: 10, armN: { a: [-90, 0] }, armF: { a: [-90, -1] }, legN: { to: [-119, 22], bend: 'd', foot: -60 }, legF: { to: [-115, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
   },
   {
     id: 'pompe-bosu', titre: 'Pompe, mains sur le dôme d\'un bosu calé contre un mur, genoux au tapis, vue de profil : on descend peu, la poitrine reste au-dessus du dôme',
     labels: ['Bras presque tendus, corps en ligne', 'Descente courte, coudes à 45°'],
-    a: { p: [21, 50.8], t: 51, h: 45, armN: { to: [60, 30], bend: 'b' }, armF: { to: [56, 30], bend: 'b' }, legN: { to: [-66, 12], bend: 'd', foot: 180 }, legF: { to: [-62, 12], bend: 'd', foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
-    b: { p: [32, 41], t: 35.5, h: 30, armN: { to: [60, 30], bend: 'b' }, armF: { to: [56, 30], bend: 'b' }, legN: { to: [-66, 12], bend: 'd', foot: 180 }, legF: { to: [-62, 12], bend: 'd', foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]], props: [['arrow', [-30, 110], [-30, 80]]] },
+    // C12 (contrôle lot 09) : mains sous les épaules sur la moitié proche du dôme, tête loin du mur dans les deux poses
+    a: { p: [7.4, 52], t: 46.6, h: 40, armN: { to: [48, 30], bend: 'b' }, armF: { to: [45, 30], bend: 'b' }, legN: { a: [226.6, 180], foot: 180 }, legF: { a: [225.6, 180], foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]] },
+    b: { p: [0.1, 42.1], t: 33.2, h: 28, armN: { to: [48, 30], bend: 'b' }, armF: { to: [45, 30], bend: 'b' }, legN: { a: [213.2, 180], foot: 180 }, legF: { a: [212.2, 180], foot: 180 }, back: [['mat', -140, 40], dome(60), ['wall', 102, 14]], props: [['arrow', [-40, 110], [-40, 80]]] },
   },
   {
     id: 'equilibre-unipodal-bosu', titre: 'Équilibre sur une jambe sur un bosu, dôme vers le haut, vue de face : un pied au centre du dôme, doigts au mur, puis sans appui',

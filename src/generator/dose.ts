@@ -1,5 +1,5 @@
 // Dose de base (V-DOSE §3.2, V-TEMPS §3.3) puis plafonds de sécurité (appliquerPlafonds, V-PRIO §6.0 : P-CAP, P-GROS).
-import { DOSE, FIXED_DOSE, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
+import { DOSE, FIXED_DOSE, FIXED_LOAD_TAGS, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
 import { isChargeable, isUnilateral, type Ctx } from './context';
 import { cappingZones, type Candidate } from './safety';
 import { PILLAR_SLOTS } from './slots';
@@ -69,7 +69,8 @@ function baseDose(c: Candidate, slot: SlotKey, ctx: Ctx) {
   const reps = charge ? (pilier && d.repsChargePilier ? d.repsChargePilier : d.repsCharge) : d.repsBodyweight;
   let rir = d.rir;
   if (d.rirSafeVariants !== undefined) {
-    const freeWeight = v.tags.some((t) => CHARGEABLE_TAGS.includes(t) && !SAFE_LOAD_TAGS.includes(t));
+    // Le gilet lesté (charge fixe, contrôle du lot 09, sérieux n° 4) garde la réserve des charges libres, jamais la réserve 1.
+    const freeWeight = v.tags.some((t) => (CHARGEABLE_TAGS.includes(t) || FIXED_LOAD_TAGS.includes(t)) && !SAFE_LOAD_TAGS.includes(t));
     if (!freeWeight) rir = d.rirSafeVariants;
   }
   return {

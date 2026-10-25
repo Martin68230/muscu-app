@@ -3,7 +3,7 @@ import type { InjuryZone, Level } from '../data/model';
 import { zoneLevel } from '../data/injury-rules';
 import tagsJson from '../../knowledge/materiel-tags.json';
 import {
-  CHARGEABLE_TAGS, DEFAULT_FAMILY, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
+  CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
   PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, type Family,
 } from './config';
 import type { Fiche, FicheVariant, GeneratorInput, HistorySet } from './types';
@@ -67,6 +67,8 @@ export function availableTags(eq: GeneratorInput['equipment']): Set<string> {
 }
 
 export const isChargeable = (v: FicheVariant): boolean => v.tags.some((t) => CHARGEABLE_TAGS.includes(t));
+/** Porte une charge, chargeable ou fixe (gilet lesté, FIXED_LOAD_TAGS) : pour les restrictions « sans charge » et la réserve. */
+export const carriesLoad = (v: FicheVariant): boolean => isChargeable(v) || v.tags.some((t) => FIXED_LOAD_TAGS.includes(t));
 export function isUnilateral(v: FicheVariant): boolean {
   const s = `${v.id} ${v.nom}`.toLowerCase();
   return UNILATERAL_MARKERS.some((m) => s.includes(m));

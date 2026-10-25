@@ -2,8 +2,8 @@
 // cou (V-COU), grossesse (V-GROS), plafond `capped` (P-CAP, R2, §6.8 point 1).
 // Règle V-PRIO : ces filtres passent avant toute règle de dose ou de structure.
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../data/injury-rules';
-import { CAPPED_LOWEST_START, INTERMEDIATE_ECHELON_OFFSET, TAG_ORDER } from './config';
-import { isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
+import { CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, INTERMEDIATE_ECHELON_OFFSET, TAG_ORDER } from './config';
+import { carriesLoad, isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
 import type { Fiche, FicheVariant, SafetyCase } from './types';
 
 export const USABLE_STATUTS = ['utilisable', 'verifie'];
@@ -11,6 +11,7 @@ export const USABLE_STATUTS = ['utilisable', 'verifie'];
 /** V-ADM 1, 4, 5, 6 + filterByNeck (C1-C3) + post-partum sans saut (G7) + fiches masquées. */
 export function ficheAdmissible(f: Fiche, ctx: Ctx, opts: { warmup?: boolean } = {}): boolean {
   if (!USABLE_STATUTS.includes(f.statut)) return false; // V-ADM 1 (règle 22)
+  if (GENERATOR_EXCLUDED_FICHES.includes(f.id)) return false; // lot 09, sérieux n° 3 : jamais placée, même en échauffement
   if (levelIdx(f.niveauMin) > ctx.levelI) return false; // V-ADM 4
   if (f.technique === true || f.technique === 'oui') return false; // V-ADM 5 : proposée à personne en v1
   if (!neckFicheAllowed({ id: f.id, douxPour: f.douxPour }, ctx.neckLevel)) return false; // V-COU
@@ -46,7 +47,7 @@ function filterVariants(f: Fiche, ctx: Ctx, r: Restrict): FicheVariant[] {
     if (levelIdx(v.niveau) > ctx.levelI) return false;
     if (ctx.specialiseForbidden && v.tags.includes('materiel_specialise')) return false;
     if (r.only && !r.only.has(v.id)) return false;
-    if (r.sansCharge && isChargeable(v)) return false;
+    if (r.sansCharge && carriesLoad(v)) return false; // gilet lesté compris (lot 09, sérieux n° 4)
     return true;
   });
 }
