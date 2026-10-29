@@ -73,6 +73,36 @@ export interface Profile extends SyncFields {
   profileCompletedAt?: string | null;
   /** Ajouté par F6 : décisions de progression (montée, descente, refus, niveau). Local, jamais partagé. Peut manquer. */
   progressionLog?: ProgressionEvent[];
+  /**
+   * Ajouté par la fonction « séance manquée » (knowledge/seance-manquee-v1.md SM-D4) : état de reprise douce. Donnée de santé :
+   * locale, exportée, supprimée avec le compte, JAMAIS partagée. Absent = valeur par défaut (`repriseOf`, src/session/missed.ts).
+   */
+  reprise?: RepriseState;
+}
+
+/** SM-D4 : état de reprise après une absence (un seul objet, sur le profil). */
+export interface RepriseState {
+  /** Palier en cours (0 à 4), figé au démarrage de la première séance de reprise. */
+  palier: 0 | 1 | 2 | 3 | 4;
+  actif: boolean;
+  /** Jour de démarrage de la première séance de reprise (AAAA-MM-JJ). */
+  depuis: string | null;
+  /** Séances valables (SM-13) depuis `depuis`. */
+  valables: number;
+  /** Plancher imposé (symptôme, « pas bien ») : 0 ou 2, consommé au prochain démarrage. */
+  palierMin: 0 | 2;
+  /** Message de sécurité R5 + bouton T-22 pas encore pressé. */
+  securiteALire: boolean;
+  /** Charge de référence C0 par variante. */
+  refKg: Record<string, number>;
+  /** Charge à laquelle l'étalonnage a fait descendre l'exercice à la dernière séance de reprise. */
+  descenteKg: Record<string, number>;
+  /** « Je ne me sens pas bien » pas encore consommé par un démarrage (affiche T-19 à la reprise). */
+  apresMalaise: boolean;
+  /** Message de reprise (T-13/T-14/T-20/T-15) déjà affiché. */
+  msgVu: boolean;
+  /** Dernier jour où T-19 / T3 a été affiché (seul champ partagé avec le cardio). */
+  conseilVuLe: string | null;
 }
 
 /** F6 (progression-et-bilan-v1.md §1) : ce que la personne a accepté ou refusé. Une ligne par décision. */
@@ -198,6 +228,16 @@ export interface Program extends SyncFields {
   /** Empreinte du matériel seul, et vrai si ce programme remplace un programme généré avec un autre matériel (message à l'accueil). */
   equipmentHash?: string;
   equipmentChanged?: boolean;
+  /**
+   * SM-D3 : réponse à la carte « séance manquée », par jour manqué (AAAA-MM-JJ). Une régénération du programme l'efface (nouvelle ligne).
+   * Peut manquer dans une ancienne sauvegarde.
+   */
+  missedAnswers?: Record<string, MissedAnswer>;
+}
+
+export interface MissedAnswer {
+  reponse: 'decaler' | 'quand_je_peux' | 'sauter';
+  at: string;
 }
 
 /** Position dans la séance (F5) : exercice du jour, série de travail, face du superset (0 = A, 1 = B), pas global. */
@@ -207,7 +247,8 @@ export interface SessionCursor {
   face: number;
   step: number;
 }
-export type SessionEndReason = 'terminee' | 'abandon' | 'symptome';
+/** `renonce` = « Sauter cette séance » ; `pas_bien` = « Je ne me sens pas bien » (seance-manquee-v1.md SM-D1) : status `sautee`, sans début ni fin. */
+export type SessionEndReason = 'terminee' | 'abandon' | 'symptome' | 'renonce' | 'pas_bien';
 
 export interface WorkoutSession extends SyncFields {
   programId: string | null;
@@ -238,6 +279,15 @@ export interface WorkoutSession extends SyncFields {
   calibDecided?: number[];
   /** Bilan calculé à la fin (recalculable à partir des séries) ; absent si séance abandonnée ou arrêtée par un symptôme. */
   summary?: Record<string, unknown> | null;
+  // Ajoutés par « séance manquée » (SM-D1, SM-D2) : peuvent manquer dans une ancienne sauvegarde.
+  /** Instant de la décision (reportée, sautée, pas bien) : clé de tri de la rotation (SM-18). */
+  decidedAt?: string | null;
+  /** Jour planifié d'origine D d'une séance décalée (lignes O et N, et la ligne `faite` qui en découle). */
+  originDate?: string | null;
+  /** Nouveau jour D' (ligne O seulement). */
+  postponedTo?: string | null;
+  /** Vrai sur la ligne N (et la séance faite qui en découle) : déjà décalée une fois (SM-6). */
+  dejaDecalee?: boolean;
 }
 
 export interface SetLog extends SyncFields {
