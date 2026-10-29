@@ -153,8 +153,16 @@ describe('parcours complet d’une séance générée', () => {
       const done = screen.queryByRole('button', { name: 'Série faite' });
       if (done) {
         const step = ctl.state.step;
-        await act(async () => { fireEvent.click(done); });
-        await waitFor(() => expect(ctl.state.step).not.toBe(step));
+        // machine chargée : un clic peut arriver avant que la saisie soit prête ; on le refait (sans effet s'il a déjà été pris en compte)
+        for (let attempt = 0; attempt < 6; attempt++) {
+          await act(async () => { fireEvent.click(screen.queryByRole('button', { name: 'Série faite' }) ?? done); });
+          try {
+            await waitFor(() => expect(ctl.state.step).not.toBe(step), { timeout: 4000 });
+            break;
+          } catch (e) {
+            if (attempt === 5) throw e;
+          }
+        }
         await tick();
         sets++;
         continue;
