@@ -133,7 +133,7 @@ export function parseFiche(text, file) {
   const fm = parseFrontmatter(lines);
   for (const p of fm.problems) add(p.line, 'frontmatter', p.message);
   const d = fm.data;
-  const fiche = { file, id: d.id, statut: d.statut, niveauMin: d.niveau_min, douxPour: Array.isArray(d.doux_pour) ? d.doux_pour : [], variants: [], refs: [] };
+  const fiche = { file, id: d.id, statut: d.statut, schema: d.schema, musclesPrincipaux: Array.isArray(d.muscles_principaux) ? d.muscles_principaux : [], niveauMin: d.niveau_min, douxPour: Array.isArray(d.doux_pour) ? d.doux_pour : [], variants: [], refs: [] };
   const addRef = (line, type, id) => fiche.refs.push({ line, type, id });
 
   // ---- Frontmatter
@@ -420,6 +420,32 @@ export function validateLot(files, options = {}) {
     }
   }
   const known = (id) => fichesById.has(id) || variantOwner.has(id);
+  // D23 (règle centrale) : « plus facile » / « plus dur » ne relient que deux fiches de même schéma ET de même muscle principal
+  // (premier muscle de muscles_principaux). Les écarts déjà connus sont listés dans options.chainExemptions (« idA>idB ») : avertissement
+  // tant qu'ils ne sont pas corrigés (revue R2) ; un nouvel écart est une erreur ; une exception devenue inutile est aussi une erreur.
+  const byId = new Map(parsed.map(({ fiche }) => [fiche.id, fiche]));
+  const exempt = options.chainExemptions ?? new Set();
+  const usedExempt = new Set();
+  for (const { fiche } of parsed) {
+    for (const r of fiche.refs) {
+      if (r.type !== 'progression') continue;
+      const other = byId.get(r.id);
+      if (!other) continue;
+      const main = (f) => f.musclesPrincipaux[0] ?? null;
+      const sameSchema = fiche.schema === other.schema;
+      const sameMuscle = main(fiche) === main(other);
+      if (sameSchema && sameMuscle) continue;
+      const key = `${fiche.id}>${other.id}`;
+      const why = `${!sameMuscle ? `muscle principal différent (${main(fiche)} / ${main(other)})` : ''}${!sameMuscle && !sameSchema ? ' et ' : ''}${!sameSchema ? `schéma différent (${fiche.schema} / ${other.schema})` : ''}`;
+      if (exempt.has(key)) {
+        usedExempt.add(key);
+        issues.push({ file: fiche.file, line: r.line, categorie: 'chaine-muscle', severite: 'avertissement', message: `progression « ${other.id} » : ${why} (écart connu, à corriger en revue R2)` });
+      } else {
+        issues.push({ file: fiche.file, line: r.line, categorie: 'chaine-muscle', severite: 'erreur', message: `progression « ${other.id} » : ${why}. Un exercice n'est jamais proposé comme plus facile / plus dur / alternative d'un exercice d'un autre muscle principal ou d'un autre schéma (D23).` });
+      }
+    }
+  }
+  for (const key of exempt) if (!usedExempt.has(key) && byId.has(key.split('>')[0])) issues.push({ file: byId.get(key.split('>')[0]).file, line: 1, categorie: 'chaine-muscle', severite: 'erreur', message: `l'écart « ${key} » n'existe plus : le retirer de knowledge/exercices/CHAINES-A-CORRIGER.json` });
   for (const { fiche } of parsed) {
     for (const r of fiche.refs) {
       if (!known(r.id)) issues.push({ file: fiche.file, line: r.line, categorie: 'ids', severite: 'erreur', message: `${r.type} : id « ${r.id} » introuvable dans le lot (ni fiche ni variante)` });
@@ -487,7 +513,9 @@ function main() {
   const names = listFiches(dir);
   const files = names.map((n) => ({ name: n, text: readFileSync(join(dir, n), 'utf8') }));
   const tags = loadTags(join(root, 'knowledge', 'materiel-tags.json'));
-  const { issues, errors, warnings } = validateLot(files, { tags, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations'), videosDir: join(root, 'public', 'videos') });
+  const exemptFile = join(root, 'knowledge', 'exercices', 'CHAINES-A-CORRIGER.json');
+  const chainExemptions = new Set(existsSync(exemptFile) ? JSON.parse(readFileSync(exemptFile, 'utf8')).ecarts : []);
+  const { issues, errors, warnings } = validateLot(files, { tags, chainExemptions, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations'), videosDir: join(root, 'public', 'videos') });
   for (const i of issues) console.log(`${i.file}:${i.line} : [${i.categorie}]${i.severite === 'erreur' ? '' : ' (avertissement)'} ${i.message}`);
   const byCat = {}; const byFile = {};
   for (const e of errors) { byCat[e.categorie] = (byCat[e.categorie] ?? 0) + 1; byFile[e.file] = (byFile[e.file] ?? 0) + 1; }
