@@ -5,7 +5,8 @@ import type { SetLog, WorkoutSession } from '../data/model';
 import { isWorkSet } from './progression';
 
 /** Marque d'un jour : toujours affichée avec un texte et une forme, jamais par la couleur seule. */
-export type DayMark = 'faite' | 'douleur' | 'reportee' | 'arretee' | 'symptome';
+/** `sautee_choix` (seance-manquee-v1.md SM-1) : séance sautée par choix (« Sauter » ou « Je ne me sens pas bien »), affichée « Sautée » dans les deux cas (vie privée). */
+export type DayMark = 'faite' | 'douleur' | 'reportee' | 'arretee' | 'symptome' | 'sautee_choix';
 
 export const MARK_TEXT: Record<DayMark, string> = {
   faite: 'Faite',
@@ -13,15 +14,16 @@ export const MARK_TEXT: Record<DayMark, string> = {
   reportee: 'Reportée',
   arretee: 'Arrêtée',
   symptome: 'Arrêtée, symptôme',
+  sautee_choix: 'Sautée',
 };
-export const MARK_GLYPH: Record<DayMark, string> = { faite: '✓', douleur: '◆', reportee: '↷', arretee: '–', symptome: '◆' };
+export const MARK_GLYPH: Record<DayMark, string> = { faite: '✓', douleur: '◆', reportee: '↷', arretee: '–', symptome: '◆', sautee_choix: '»' };
 
 /** Jour planifié sans séance enregistrée : « prévue » (aujourd'hui ou à venir) ou « non faite » (passée). Ton neutre, aucun reproche. */
 export type PlannedMark = 'prevue' | 'non_faite';
 export const PLANNED_TEXT: Record<PlannedMark, string> = { prevue: 'Prévue', non_faite: 'Non faite' };
 export const PLANNED_GLYPH: Record<PlannedMark, string> = { prevue: '○', non_faite: '◌' };
 /** Priorité quand plusieurs séances tombent le même jour : la sécurité d'abord. */
-const MARK_PRIORITY: DayMark[] = ['symptome', 'douleur', 'faite', 'arretee', 'reportee'];
+const MARK_PRIORITY: DayMark[] = ['symptome', 'douleur', 'faite', 'arretee', 'reportee', 'sautee_choix'];
 
 export interface HistoryEntry {
   id: string;
@@ -35,6 +37,8 @@ export interface HistoryEntry {
   /** Séries de travail faites (séance faite seulement ; 0 sinon). */
   setsDone: number;
   mark: DayMark;
+  /** Séance faite à partir d'un jour décalé (SM-D2) : ne « couvre » pas un autre jour planifié manqué. */
+  shifted?: boolean;
 }
 
 const pad = (n: number): string => String(n).padStart(2, '0');
@@ -88,6 +92,7 @@ export function buildEntries(sessions: readonly WorkoutSession[], sets: readonly
     let mark: DayMark;
     if (s.status === 'reportee') mark = 'reportee';
     else if (s.endReason === 'symptome') mark = 'symptome';
+    else if (s.status === 'sautee' && (s.endReason === 'renonce' || s.endReason === 'pas_bien')) mark = 'sautee_choix';
     else if (s.status === 'sautee' || s.endReason === 'abandon' || mine.length === 0) mark = 'arretee';
     else mark = mine.some((x) => x.pain) ? 'douleur' : 'faite';
     const d = sessionDate(s);
@@ -100,6 +105,7 @@ export function buildEntries(sessions: readonly WorkoutSession[], sets: readonly
       durationMin: counted ? minutesOf(s) : null,
       setsDone: counted ? mine.length : 0,
       mark,
+      ...(s.dejaDecalee ? { shifted: true } : {}),
     });
   }
   return out.sort((a, b) => b.atMs - a.atMs);
@@ -144,14 +150,17 @@ export function plannedMark(
   planned: ReadonlySet<string>,
   entries: readonly HistoryEntry[],
   todayKey: string,
+  /** Jours décalés (lignes N `prevue`, SM-D2) : « Prévue », puis « Non faite » s'ils passent sans séance, sans règle de couverture. */
+  shiftedDays: ReadonlySet<string> = new Set(),
 ): PlannedMark | null {
-  if (!planned.has(key) || entries.some((e) => e.dateKey === key)) return null;
+  if ((!planned.has(key) && !shiftedDays.has(key)) || entries.some((e) => e.dateKey === key)) return null;
   if (dayDiff(todayKey, key) >= 0) return 'prevue';
+  if (!planned.has(key)) return 'non_faite';
   const monday = mondayKey(parseKey(key));
   const sunday = dateKey(new Date(parseKey(monday).getFullYear(), parseKey(monday).getMonth(), parseKey(monday).getDate() + 6));
   const plannedInWeek = [...planned].filter((k) => k >= monday && k <= sunday).sort();
   // séances faites un jour NON planifié de cette semaine : chacune « couvre » un jour planifié manqué (décalage)
-  const doneInWeek = entries.filter((e) => isDone(e) && e.dateKey >= monday && e.dateKey <= sunday && !planned.has(e.dateKey)).length;
+  const doneInWeek = entries.filter((e) => isDone(e) && !e.shifted && e.dateKey >= monday && e.dateKey <= sunday && !planned.has(e.dateKey) && !shiftedDays.has(e.dateKey)).length;
   const rank = plannedInWeek.filter((k) => k <= key && !entries.some((e) => e.dateKey === k)).indexOf(key) + 1;
   return rank <= doneInWeek ? null : 'non_faite';
 }

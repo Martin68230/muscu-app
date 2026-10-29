@@ -179,6 +179,11 @@ export interface PlannedExercise {
   /** Case de sécurité appliquée (charge:legere, amplitude:<v>, appui:<v>), pour l'affichage. */
   adaptation: string | null;
   substitut: boolean;
+  /**
+   * Reprise douce (seance-manquee-v1.md SM-12), seulement sur la copie du plan d'une séance : étalonnage de nouveau, « garder /
+   * descendre » seulement (sauf palier 4 séance 1), plafond C0. Absent hors reprise.
+   */
+  reprise?: { calibration: boolean; noRaise: boolean; maxKg: number | null } | null;
 }
 
 /** Échauffement d'une séance (F5) : exercices de la fiche, pas de série à saisir. */

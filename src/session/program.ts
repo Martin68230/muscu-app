@@ -1,6 +1,6 @@
 // Programme actif et séance du jour (F5). Appelle le générateur v1 (pur), enregistre le résultat dans la table `programs`
 // (un seul programme actif) et le régénère seulement quand les entrées changent (empreinte `inputsHash`).
-import { list, create, update, get } from '../data/repo';
+import { list, create, update, get, softDelete } from '../data/repo';
 import type { Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import { BLOCK_WEEKS, MIN_GAP_DAYS } from '../generator/config';
 import { generateProgram, isCardioDay, toProgramDays } from '../generator';
@@ -155,6 +155,10 @@ export async function ensureActiveProgram(fiches: Fiche[], opts: { force?: boole
   // Le matériel a changé depuis le programme précédent (seulement si celui-ci connaissait son matériel) : message à l'accueil.
   const equipmentChanged = !!active?.equipmentHash && active.equipmentHash !== equipmentHash;
   const program = await create('programs', { ...toStoredProgram(result.program, hash, today), equipmentHash, equipmentChanged });
+  // SM-21 : les jours décalés en attente de l'ancien programme disparaissent ; reportée, sautée et faite restent à l'historique.
+  for (const s of await list('sessions')) {
+    if (s.status === 'prevue' && s.dejaDecalee && s.programId !== program.id) await softDelete('sessions', s.id);
+  }
   return { ok: true, program, regenerated: true };
 }
 
@@ -171,34 +175,44 @@ export interface NextSession {
 }
 
 /**
- * Prochaine séance : la suivante dans l'ordre A, B, C après la dernière séance FAITE de ce programme (rotation V-ROT : même
- * semaine type tout le bloc, pas de séance double). Une séance abandonnée ou interrompue n'avance pas la rotation.
+ * Prochaine séance : la suivante dans l'ordre A, B, C après la dernière séance FAITE ou SAUTÉE par choix (« Sauter », « Je ne me
+ * sens pas bien » : seance-manquee-v1.md SM-18) de ce programme (rotation V-ROT : même semaine type tout le bloc, pas de séance
+ * double). Clé de tri : `decidedAt ?? endedAt ?? startedAt ?? plannedDate`. Une séance abandonnée, interrompue ou reportée
+ * n'avance pas la rotation. Les 48 h ne comptent que les séances faites.
  */
 export function nextSession(program: Program, sessions: readonly WorkoutSession[], nowMs: number): NextSession | null {
   const n = program.days.length;
   if (!n) return null;
-  const done = sessions
-    .filter((s) => !s.deletedAt && s.programId === program.id && s.status === 'faite')
-    .sort((a, b) => ((a.endedAt ?? a.startedAt ?? a.plannedDate) < (b.endedAt ?? b.startedAt ?? b.plannedDate) ? -1 : 1));
-  const last = done[done.length - 1];
+  const mine = sessions.filter((s) => !s.deletedAt && s.programId === program.id);
+  const sortKey = (s: WorkoutSession) => s.decidedAt ?? s.endedAt ?? s.startedAt ?? s.plannedDate;
+  const byKey = (a: WorkoutSession, b: WorkoutSession) => (sortKey(a) < sortKey(b) ? -1 : sortKey(a) > sortKey(b) ? 1 : 0);
+  const rotation = mine
+    .filter((s) => s.status === 'faite' || (s.status === 'sautee' && (s.endReason === 'renonce' || s.endReason === 'pas_bien')))
+    .sort(byKey);
+  const done = mine.filter((s) => s.status === 'faite').sort(byKey);
+  const last = rotation[rotation.length - 1];
   const dayIndex = last && last.programDayIndex !== null ? (last.programDayIndex + 1) % n : 0;
   const day = program.days[dayIndex];
   // 48 h entre deux séances de musculation (V-JOURS) ; une séance de cardio dédiée (B4, effort modéré) n'attend pas et ne
   // compte pas comme séance de musculation (cardio-regles.md §3.6 : le cardio modéré reste permis).
   const isMuscu = (s: WorkoutSession) => {
-    const d = s.programDayIndex !== null ? program.days[s.programDayIndex] : undefined;
+    const d = s.plan ?? (s.programDayIndex !== null ? program.days[s.programDayIndex] : undefined);
     return !d || !isCardioDay(d);
   };
   const lastMuscu = [...done].reverse().find(isMuscu);
   const endedMs = lastMuscu ? Date.parse(lastMuscu.endedAt ?? lastMuscu.startedAt ?? lastMuscu.plannedDate) : NaN;
   const availableAtMs = !isCardioDay(day) && Number.isFinite(endedMs) ? endedMs + MIN_GAP_DAYS * DAY_MS : null;
-  const weekdayToday = (new Date(nowMs).getDay() + 6) % 7;
+  const now = new Date(nowMs);
+  const weekdayToday = (now.getDay() + 6) % 7;
+  const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
+  // SM-D2 : un jour décalé (ligne N `prevue`) pour cette séance aujourd'hui compte comme « prévue aujourd'hui ».
+  const shiftedToday = mine.some((s) => s.status === 'prevue' && s.dejaDecalee && s.programDayIndex === dayIndex && s.plannedDate === todayKey);
   return {
     dayIndex,
     day,
     tooSoon: availableAtMs !== null && nowMs < availableAtMs,
     availableAtMs,
-    scheduledToday: day.weekday === weekdayToday,
+    scheduledToday: day.weekday === weekdayToday || shiftedToday,
   };
 }
 

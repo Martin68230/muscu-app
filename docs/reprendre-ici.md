@@ -117,3 +117,4 @@ Points d'attention pour la mise en œuvre (à arbitrer avec l'utilisateur) : les
 
 ## 29/10/2026 soir : F « séance manquée » (knowledge/seance-manquee-v1.md révision 3) — en cours, non poussé
 - Étape 1 FAITE : modèle (endReason renonce/pas_bien, decidedAt, originDate, postponedTo, dejaDecalee, Program.missedAnswers, profile.reprise), validation d'import, valeurs par défaut (src/session/missed-config.ts : fichier unique des réglages, statuts en commentaire), tests tests/unit/missed-data.test.ts.
+- Étape 2 FAITE : fonctions pures src/session/missed.ts (R, N, carte, jours pour « Décaler », K1, paliers, R-DEM, R-FIN, séance valable, charges de reprise, plan de reprise), textes T-xx mot pour mot src/session/missed-texts.ts, rotation (nextSession : « Sauter » avance, clé decidedAt), calendrier (« Sautée » », jours décalés), SM-21 ; tests tests/unit/missed.test.ts (E1-E27 hors écrans, changement d'heure, déjà décalée).
