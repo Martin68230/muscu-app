@@ -171,3 +171,16 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 - **Contexte** : la règle 21 de CLAUDE.md dit « compensation limitée en volume, jamais en intensité ». Aucune étude lue sur la compensation d'une séance manquée ; manquer une séance coûte peu (force stable environ 28 jours, source PROVISOIRE).
 - **Choix prudent appliqué** : la limite est fixée à **0 série ajoutée** (SM-9). 0 est une limite, pas un oubli. L'option « +1 série sur 2 exercices annexes, jamais un pilier, jamais un débutant » existe dans le fichier mais reste désactivée. NON SOURCÉ.
 - **À décider** : garder 0 (recommandé), ou activer l'option +1 série (nouvelle validation `coach` puis `relecteur`). CLAUDE.md n'a pas été modifié ; si 0 est confirmé, reformuler la règle 21 en « compensation en volume : aucune en v1 (limite 0) ».
+
+## Q31. Séance manquée : choix prudents du codage (29/10/2026, dev, seance-manquee-v1.md révision 3)
+Tous codés avec l'option la plus prudente ; réglages dans src/session/missed-config.ts. À confirmer ou corriger :
+- **Règle 21 « décaler par défaut »** : codé comme « Décaler » proposé en premier, bouton principal, jamais appliqué sans geste (SM-4, kine 2 : préférable). Décalage automatique non codé.
+- **Une seule fois (SM-6)** : « Décaler » est aussi refusé tant qu'un jour décalé de la même séance est encore en attente (en plus de la règle « même jour d'origine »).
+- **48 h réelles pour un jour futur (K4)** : vérifiées depuis 00:00 du jour proposé (lecture stricte de K4), pas seulement en jours civils.
+- **Accueil après un symptôme (K1 b)** : message R5 + U1 + bouton T-22, sans carte ni bandeau ; un bouton secondaire « Voir la séance » reste (aucun verrou, il n'y a pas d'onglet Programme).
+- **Calendrier, jour « Non faite »** : la phrase « Pas de souci : … » est retirée (K8) ; il reste « Pas de séance enregistrée ce jour-là. » (aucun texte du fichier ne couvre ce détail).
+- **Après la reprise** : les séries de reprise sont enregistrées comme séries d'étalonnage ; la séance qui suit la fin de la reprise propose donc « garder » avant toute montée (une séance de plus que la lecture minimale de SM-12).
+- **Échelon -1 au poids du corps** : pris seulement si l'échelon inférieur existe dans les variantes permises par le profil (progression-store `down`) ; sinon l'échelon courant est gardé, « garder / descendre » seulement.
+- **Plafond du plan (R2, charge:legere, G5)** : la charge de reprise ne dépasse jamais la charge plafonnée du plan (E16).
+- **Cardio et `conseilVuLe`** : le message T3 du cardio reste affiché comme avant dans l'aperçu (message de sécurité) ; il n'écrit pas encore `conseilVuLe`. Quand T-19 est dans le bloc de reprise, T3 n'est pas répété sur le même écran.
+- **Carte « séance manquée » cachée pendant la réponse** : après une réponse, la confirmation (T-7, T-8, T-10/T-12 ou T-18) remplace la carte ; le bandeau de la séance revient en dessous.

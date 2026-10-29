@@ -20,6 +20,7 @@ export function ex(o: Partial<PlannedExercise> & { variantId: string }): Planned
     capped: o.capped ?? false,
     adaptation: null,
     substitut: false,
+    ...(o.reprise !== undefined ? { reprise: o.reprise } : {}),
   };
 }
 

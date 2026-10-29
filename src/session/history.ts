@@ -61,7 +61,7 @@ export function availableLoadsFor(tags: readonly string[], eq: Pick<EquipmentPro
 }
 
 // ----- Proposition de progression -----
-export type ProgressionReason = 'etalonnage' | 'douleur' | 'plafond' | 'grossesse' | 'maintien' | 'incomplet' | 'double_progression' | 'sommet' | 'baisse' | 'garder' | 'symptome' | 'echelon';
+export type ProgressionReason = 'etalonnage' | 'douleur' | 'plafond' | 'grossesse' | 'maintien' | 'incomplet' | 'double_progression' | 'sommet' | 'baisse' | 'garder' | 'symptome' | 'echelon' | 'reprise';
 export interface Progression {
   action: 'etalonnage' | 'hausse' | 'baisse' | 'garder';
   loadKg: number | null;
@@ -109,6 +109,8 @@ export interface ProgressionInput {
   /** F6 : schéma de la fiche (maintiens). */
   holdSchema?: string;
   cfg?: ProgressionConfig;
+  /** V-PROG-E8 « reprise douce active » (seance-manquee-v1.md SM-13) : aucune proposition de montée ; les baisses restent permises. */
+  repriseActive?: boolean;
 }
 
 /** Séries de la fiche pour un échelon donné (poids du corps) : même difficulté, quelle que soit la variante. */
@@ -146,9 +148,10 @@ export function proposeProgression(i: ProgressionInput): Progression {
       frozen: i.frozenBySymptom, fallbackPlanned, gentler: bw.gentler, cfg: i.cfg,
     });
     const p = res.proposal;
-    if (p?.kind === 'montee') return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
+    if (p?.kind === 'montee' && !i.repriseActive) return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'descente') return { action: 'baisse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'plancher') return { ...keep('baisse', p.text), echelonProposal: p };
+    if (i.repriseActive) return keep('reprise', '');
     if (painLast) return keep('douleur', PROGRESSION_TEXT.douleur);
     if (i.pregnant || ex.capped) return keep(i.pregnant ? 'grossesse' : 'plafond', PROGRESSION_TEXT.plafond);
     if (i.frozenBySymptom) return keep('symptome', PROGRESSION_TEXT.symptome);
@@ -172,6 +175,7 @@ export function proposeProgression(i: ProgressionInput): Progression {
     if (step.action === 'baisse' && step.loadKg !== null) return { action: 'baisse', loadKg: step.loadKg, echelon: step.echelon, reason: 'baisse', text: loadLessText(cur - step.loadKg) };
   }
 
+  if (i.repriseActive) return keep('reprise', ''); // aucun texte inventé : la ligne de progression n'est pas affichée
   // V-PRIO : la sécurité l'emporte. Jamais de hausse après une douleur, après un symptôme, sous plafond (R2, charge:legere), ni en grossesse.
   if (painLast) return keep('douleur', PROGRESSION_TEXT.douleur);
   if (i.frozenBySymptom) return keep('symptome', PROGRESSION_TEXT.symptome);

@@ -216,6 +216,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
             sessions: data.sessions,
             frozenBySymptom: data.frozen,
             bodyweight,
+            repriseActive: data.repriseActive,
           })
         : null,
     [ex?.variantId],

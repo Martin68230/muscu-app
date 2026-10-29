@@ -275,7 +275,9 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
 
   const info = ctx.echelonInfo?.(ex) ?? null;
   const sw = state.echelonSwitches[st.exercise];
-  const calibrating = st.kind === 'work' && (info ? info.calibration : ctx.isCalibration(ex));
+  // Reprise douce (seance-manquee-v1.md SM-12) : étalonnage de nouveau, « garder / descendre » seulement, plafond C0.
+  const rep = ex.reprise ?? null;
+  const calibrating = st.kind === 'work' && (!!rep?.calibration || (info ? info.calibration : ctx.isCalibration(ex)));
   const capped = ex.capped || ctx.pregnant;
   const curEchelon = sw ? sw.echelon : info ? info.echelon : null;
   const entry: SetEntry = {
@@ -321,7 +323,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
         if (!state.calibDecided.includes(st.exercise)) {
           next.calibDecided.push(st.exercise);
           if (entry.rir !== null && entry.reps !== null && curEchelon !== null) {
-            const canRaise = !capped && !info.noRaise && (info.ceiling === null || curEchelon < info.ceiling);
+            const canRaise = !capped && !info.noRaise && !rep?.noRaise && (info.ceiling === null || curEchelon < info.ceiling);
             const step = echelonCalibrationStep({
               reps: entry.reps, rir: entry.rir, repsMin: ex.repsMin, repsMax: ex.repsMax, rirTarget: ex.rirTarget,
               echelon: curEchelon, up: info.up, down: info.down, canRaise,
@@ -335,19 +337,22 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
         }
         next.loads[st.exercise] = entry.loadKg;
       } else if (calibrating && entry.rir !== null && entry.reps !== null && ex.unit !== 'sec') {
+        const maxKg = rep?.maxKg ?? null;
+        const loads = ctx.availableLoadsKg(ex, entry.loadKg);
         suggestion = nextCalibrationStep({
           rir: entry.rir,
           reps: entry.reps,
           repsMin: ex.repsMin,
           repsMax: ex.repsMax,
           rirTarget: ex.rirTarget,
-          capped,
+          capped: capped || !!rep?.noRaise,
           pain: false,
           loadKg: entry.loadKg,
-          availableLoadsKg: ctx.availableLoadsKg(ex, entry.loadKg),
+          availableLoadsKg: maxKg === null ? loads : loads.filter((l) => l <= maxKg),
           echelon: entry.echelon ?? undefined,
           availableEchelons: ctx.availableEchelons?.(ex),
         });
+        if (maxKg !== null && suggestion.loadKg !== null && suggestion.loadKg > maxKg) suggestion = { ...suggestion, action: 'baisse', loadKg: maxKg };
         next.loads[st.exercise] = suggestion.loadKg;
       } else next.loads[st.exercise] = entry.loadKg;
     }

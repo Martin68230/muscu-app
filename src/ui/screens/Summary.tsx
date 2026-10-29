@@ -4,6 +4,7 @@ import { list, update } from '../../data/repo';
 import { gentlerAlternative, painCheck, proposeProgression } from '../../session/history';
 import { ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
 import { symptomFrozen } from '../../session/progression';
+import { repriseOf } from '../../session/missed-config';
 import type { SessionController } from '../../session/store';
 import { computeSummary, type Summary as SummaryData } from '../../session/summary';
 import { summaryText, type SummaryText } from '../../session/summary-texts';
@@ -57,13 +58,15 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
         const next: string[] = [];
         if (outcome === 'terminee' && !pregnant) {
           const frozen = symptomFrozen(sessions);
+          // R-FIN vient d'être appliquée : la reprise peut s'être terminée à cette séance (progression normale ensuite).
+          const repriseActive = repriseOf((await list('profile'))[0]).actif;
           day.exercises.forEach((exo, i) => {
             if (ctl.state.skipped.includes(i) && !ctl.state.painExercises.includes(i)) return;
             const variant = variantOf(data.fiches, exo);
             const bodyweight = data.bodyweightOf(exo);
             const p = proposeProgression({
               exercise: exo, sets, sessions, pregnant: data.pregnant, variantTags: variant?.tags, equipment: data.equipment ?? undefined,
-              echelon: variant?.echelon, bodyweight, frozenBySymptom: frozen,
+              echelon: variant?.echelon, bodyweight, frozenBySymptom: frozen, repriseActive,
             });
             if (p.echelonProposal) {
               if (p.echelonProposal.kind === 'montee') next.push(ECHELON_TEXT.nextTime(exName(data.fiches, exo)));

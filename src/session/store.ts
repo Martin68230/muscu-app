@@ -12,6 +12,9 @@ import { patchProgramVariant } from './progression-store';
 import { R5_STOP_TEXT, U1_TEXT, U1_TEL } from './messages';
 import { onForeground as timerOnForeground, realNow, REST_ADJUST_STEP_SEC, remainingMs, type ForegroundResult, type NowFn } from './timer';
 import { painCheck, type PainCheck } from './history';
+import { repriseAtEnd } from './missed';
+import { repriseOf } from './missed-config';
+import { dateKey } from './calendar';
 
 /** Au-delà de 12 h, une séance « en cours » n'est plus reprise automatiquement : on propose de la terminer ou de l'abandonner. */
 export const RESUME_MAX_MS = 12 * 3600 * 1000;
@@ -91,24 +94,29 @@ export class SessionController {
     private now: NowFn,
   ) {}
 
-  /** Commence une séance. Refuse s'il en reste une « en cours » : la personne doit d'abord la reprendre, la terminer ou l'abandonner. */
-  static async start(program: Program, dayIndex: number, ctx: EngineContext, now: NowFn = realNow): Promise<SessionController> {
-    const day = program.days[dayIndex];
+  /**
+   * Commence une séance. Refuse s'il en reste une « en cours » : la personne doit d'abord la reprendre, la terminer ou l'abandonner.
+   * `opts.day` : copie du jour adaptée à la reprise douce (seance-manquee-v1.md SM-12), à la place du jour du programme.
+   * Une ligne N (jour décalé `prevue`, SM-D2) de cette séance est réutilisée : elle passe `en_cours` puis `faite`, sa date prévue ne change pas.
+   */
+  static async start(program: Program, dayIndex: number, ctx: EngineContext, now: NowFn = realNow, opts: { day?: ProgramDay } = {}): Promise<SessionController> {
+    const day = opts.day ?? program.days[dayIndex];
     if (!day) throw new SessionError('Séance introuvable.');
-    if ((await list('sessions')).some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
+    const sessions = await list('sessions');
+    if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
     const t = now();
     const state = startSession(day, t);
-    const row = await create('sessions', {
-      programId: program.id,
-      programDayIndex: dayIndex,
-      plannedDate: iso(t).slice(0, 10),
-      status: 'en_cours',
+    const fields = {
+      status: 'en_cours' as const,
       startedAt: iso(t),
       endedAt: null,
-      note: '',
       plan: day,
       ...toPatch(state, day, t),
-    } as NewRow<'sessions'>);
+    };
+    const shifted = sessions.find((s) => s.programId === program.id && s.programDayIndex === dayIndex && s.status === 'prevue' && s.dejaDecalee);
+    const row = shifted
+      ? await update('sessions', shifted.id, fields)
+      : await create('sessions', { programId: program.id, programDayIndex: dayIndex, plannedDate: dateKey(new Date(t)), note: '', ...fields } as NewRow<'sessions'>);
     return new SessionController(row.id, day, program.id, state, ctx, now);
   }
 
@@ -161,17 +169,17 @@ export class SessionController {
   }
 
   async finishSession(): Promise<WorkoutSession> {
-    return this.commit(finishSession(this.state, this.now()));
+    return this.afterEnd(await this.commit(finishSession(this.state, this.now())));
   }
 
   async abandonSession(): Promise<WorkoutSession> {
-    return this.commit(abandonSession(this.state, this.now()));
+    return this.afterEnd(await this.commit(abandonSession(this.state, this.now())));
   }
 
   /** « J'ai un symptôme » : interrompt la séance, garde les séries déjà faites, expose U1 (15 ou 112) si urgent. */
   async reportSymptom(urgent = false): Promise<SymptomOutcome> {
     const r = reportSymptom(this.state, this.now(), urgent);
-    await this.commit(r.state);
+    await this.afterEnd(await this.commit(r.state));
     return {
       urgent,
       tel: urgent ? U1_TEL : null,
@@ -192,6 +200,19 @@ export class SessionController {
   }
 
   // ----- Interne -----
+  /** R-FIN (seance-manquee-v1.md) : compteurs de reprise et plancher après un symptôme. Un échec ici ne bloque jamais la fin de séance. */
+  private async afterEnd(row: WorkoutSession): Promise<WorkoutSession> {
+    try {
+      const [profile] = await list('profile');
+      if (!profile) return row;
+      const [sets, programs] = await Promise.all([setsOfSession(row.id), list('programs')]);
+      await update('profile', profile.id, { reprise: repriseAtEnd(repriseOf(profile), row, sets, programs) });
+    } catch {
+      /* l'état de reprise reste celui d'avant : prudent (aucune montée de palier ni fin de reprise) */
+    }
+    return row;
+  }
+
   /**
    * Quand la personne quitte l'écran de repos : durée réellement prise, écrite sur la série qui précède (`restTakenSec`, bilan §3.1 point 2).
    * Rien n'est écrit si le repos a été sauté avant la fin, si c'est une transition de superset ou un repos d'échauffement.

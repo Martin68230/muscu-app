@@ -9,6 +9,7 @@ import { buildEngineContext, gentlerAlternative, type BodyweightProgression } fr
 import { loadGeneratorInput } from '../../session/program';
 import { pendingArrival, startRepsFor, symptomFrozen } from '../../session/progression';
 import { echelonInfoFor, progVariants } from '../../session/progression-store';
+import { repriseOf } from '../../session/missed-config';
 
 export interface PlayerData {
   fiches: Fiche[];
@@ -27,6 +28,8 @@ export interface PlayerData {
   startReps(ex: PlannedExercise): number | null;
   /** F6 : informations de progression d'un exercice sans charge, ou undefined pour un exercice à charge. */
   bodyweightOf(ex: PlannedExercise): BodyweightProgression | undefined;
+  /** V-PROG-E8 : reprise douce active (seance-manquee-v1.md SM-13) : aucune proposition de montée. */
+  repriseActive: boolean;
 }
 
 export const isPregnant = (p: Pick<Profile, 'pregnancy'> | null | undefined): boolean => p?.pregnancy === 'enceinte' || p?.pregnancy === 'post_partum';
@@ -70,6 +73,7 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
     events,
     frozen,
     input: loaded?.input ?? null,
+    repriseActive: repriseOf(profiles.find((p) => p.id === profile.id) ?? profile).actif,
     startReps: (ex) => {
       const b = bodyweightFiche(ex);
       return b ? startRepsFor(ex.movementId, b.variant.echelon, sets, excludeSessionId) : null;

@@ -16,6 +16,10 @@ import { SessionController } from './session/store';
 import { SessionPreview } from './ui/screens/Preview';
 import { SessionPlayer } from './ui/screens/Player';
 import { loadPlayerData, type PlayerData } from './ui/session/launch';
+import { list } from './data/repo';
+import { planReprise } from './session/reprise-plan';
+import { repriseOf } from './session/missed-config';
+import { saveReprise } from './session/missed-store';
 
 /** #/seance : aperçu de la séance du jour. */
 const previewFromHash = (): boolean => location.hash === '#/seance';
@@ -72,7 +76,12 @@ export function App() {
   const begin = async (program: Program, dayIndex: number, fiches: FicheData[]) => {
     if (!profile) return;
     const data = await loadPlayerData(fiches, profile);
-    const controller = await SessionController.start(program, dayIndex, data.ctx);
+    // R-DEM (seance-manquee-v1.md) : palier de reprise calculé et enregistré au démarrage d'une séance de musculation.
+    const [profiles, programs, sessions, sets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
+    const plan = planReprise(program.days[dayIndex], { reprise: repriseOf(profiles[0]), sessions, programs, sets, now: new Date(), ctx: data.ctx });
+    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, plan?.state.actif ? { day: plan.day } : {});
+    if (plan) await saveReprise(() => plan.state);
+    data.repriseActive = !!plan?.state.actif;
     // Un rechargement pendant la séance revient sur l'Accueil, qui propose de la reprendre.
     location.hash = '#/accueil';
     setPlaying({ controller, data });
