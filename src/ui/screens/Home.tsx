@@ -9,13 +9,32 @@ import { NEUTRAL_CONTEXT } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
 import { list } from '../../data/repo';
 import { buildEntries, regularity, relativeDay, type Regularity } from '../../session/calendar';
+import type { MissedCard } from '../../session/missed';
+import { acknowledgeSecurity, answerLater, loadMissedContext, postponeTo, skipSession } from '../../session/missed-store';
+import { missedCard as computeMissedCard, showT12 } from '../../session/missed';
+import { MISSED_TEXT } from '../../session/missed-texts';
+import { PAIN_S1_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
+import { MissedCardView, type MissedActions } from '../MissedCard';
 
 type Status =
   | { kind: 'loading' }
   | { kind: 'profil' }
   | { kind: 'erreur'; text: string }
   | { kind: 'refus'; code: string; messages: GenMessage[] }
-  | { kind: 'seance'; next: NextSession; resume: Resumable | null; equipmentChangedId?: string }
+  | {
+      kind: 'seance';
+      next: NextSession;
+      resume: Resumable | null;
+      equipmentChangedId?: string;
+      /** Séance manquée (SM-2) : carte à la place du bandeau. */
+      missed?: MissedCard | null;
+      /** Programme de 2 jours (T-12). */
+      twoDays?: boolean;
+      /** K1(b) : message de sécurité R5/U1 + bouton T-22 tant qu'il n'est pas pressé. */
+      security?: boolean;
+      /** Message « consulte » S1 actif. */
+      consulte?: boolean;
+    }
   | { kind: 'reprise'; resume: Resumable };
 
 const NOTICE_KEY = 'muscu.equipmentNoticeDismissed';
@@ -54,6 +73,11 @@ export interface HomeViewProps {
   regularity?: Regularity | null;
   today?: Date;
   onOpenHistory?: () => void;
+  /** Réponses à la carte « séance manquée ». */
+  missedActions?: MissedActions;
+  onAckSecurity?: () => Promise<void>;
+  /** Après une réponse : recharger l'Accueil. */
+  onChanged?: () => void;
 }
 
 function ResumeCard({ r, onResume, onCloseStale }: { r: Resumable; onResume: (id: string) => void; onCloseStale: (id: string, how: 'terminer' | 'abandonner') => void }) {
@@ -116,21 +140,53 @@ export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity 
 }
 
 /** Contenu de l'accueil (sans accès à la base : testable). */
-export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory }: HomeViewProps) {
+export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
   const hello = profile.displayName ? `Salut ${profile.displayName}` : 'Salut';
   const complete = isProfileComplete(profile);
   const [hidden, setHidden] = useState(false);
+  const [confirm, setConfirm] = useState<string[] | null>(null);
+  // Un seul message par écran, dans l'ordre de SM-3 : sécurité, « consulte », carte de séance manquée, équipement, bandeau.
+  const seance = status.kind === 'seance' ? status : null;
+  const security = !!seance?.security;
+  const consulte = !security && !!seance?.consulte;
+  const missed = !security && !consulte && !confirm && seance?.missed && missedActions ? seance.missed : null;
+  const anyMessage = security || consulte || !!missed || !!confirm;
   return (
     <>
       <h1>{hello}</h1>
-      {status.kind === 'seance' && status.equipmentChangedId && !hidden && (
+      {security && (
+        <section class="notice notice-urgent" aria-label="Sécurité">
+          <p><strong>{U1_TEXT}</strong></p>
+          <a class="btn btn-danger" href={U1_TEL}>Appeler le 15</a>
+          <p>{R5_STOP_TEXT}</p>
+          <button type="button" class="btn" onClick={() => void onAckSecurity?.().then(() => onChanged?.())}>{MISSED_TEXT.T22}</button>
+        </section>
+      )}
+      {consulte && <div class="notice" role="status"><p>{PAIN_S1_TEXT}</p></div>}
+      {confirm && (
+        <div class="notice" role="status">
+          {confirm.map((t, i) => <p key={i}>{t}</p>)}
+        </div>
+      )}
+      {missed && missedActions && (
+        <MissedCardView
+          card={missed}
+          actions={missedActions}
+          twoDays={!!seance?.twoDays}
+          onDone={(texts) => {
+            setConfirm(texts);
+            onChanged?.();
+          }}
+        />
+      )}
+      {status.kind === 'seance' && !anyMessage && status.equipmentChangedId && !hidden && (
         <div class="notice" role="status">
           <p>Ton matériel a changé : ton programme a été mis à jour.</p>
           <button type="button" class="btn" onClick={() => { dismissNotice(status.equipmentChangedId!); setHidden(true); }}>OK</button>
         </div>
       )}
       {status.kind === 'reprise' && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
-      {status.kind !== 'reprise' && (
+      {status.kind !== 'reprise' && !security && !missed && (
         <div class="card">
           <h2>Séance du jour</h2>
           {status.kind === 'loading' && <p class="dim" role="status">Préparation de ta séance…</p>}
@@ -148,7 +204,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
               <p class="dim">
                 {status.next.day.estimatedMin ? `Environ ${status.next.day.estimatedMin} min · ` : ''}{status.next.day.exercises.length} exercices
               </p>
-              {status.next.tooSoon && !(status.equipmentChangedId && !hidden) && (
+              {status.next.tooSoon && !anyMessage && !(status.equipmentChangedId && !hidden) && (
                 <div class="notice small" role="status">
                   <p>Ta dernière séance date de moins de 48 h. Tu peux attendre un peu pour laisser reposer tes muscles, mais c’est toi qui décides.</p>
                 </div>
@@ -162,7 +218,9 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
       <div class="thumb-zone">
         {!complete && <button type="button" class="btn btn-primary" onClick={onStart}>Créer mon programme</button>}
-        {complete && status.kind === 'seance' && <button type="button" class="btn btn-primary" onClick={onOpenSession}>Voir la séance</button>}
+        {complete && status.kind === 'seance' && !missed && (
+          <button type="button" class={security ? 'btn' : 'btn btn-primary'} onClick={onOpenSession}>Voir la séance</button>
+        )}
       </div>
     </>
   );
@@ -178,6 +236,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
 }) {
   const [reg, setReg] = useState<Regularity | null>(null);
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
+  const [programId, setProgramId] = useState<string | null>(null);
   const complete = isProfileComplete(profile);
 
   const load = async () => {
@@ -194,7 +253,17 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       if (resume) return setStatus({ kind: 'reprise', resume });
       const next = await getNextSession(Date.now());
       const equipmentChangedId = res.program.equipmentChanged && !noticeDismissed(res.program.id) ? res.program.id : undefined;
-      setStatus(next ? { kind: 'seance', next, resume: null, equipmentChangedId } : { kind: 'erreur', text: 'Aucune séance disponible pour l’instant.' });
+      if (!next) return setStatus({ kind: 'erreur', text: 'Aucune séance disponible pour l’instant.' });
+      // Séance manquée, sécurité, « consulte » : une lecture locale ; en cas d'erreur, l'Accueil reste utilisable sans carte.
+      const mc = await loadMissedContext(res.program).catch(() => null);
+      setProgramId(res.program.id);
+      setStatus({
+        kind: 'seance', next, resume: null, equipmentChangedId,
+        missed: mc ? computeMissedCard(mc) : null,
+        twoDays: showT12(res.program),
+        security: !!mc?.profile.reprise?.securiteALire,
+        consulte: !!mc?.consulteActive,
+      });
     } catch (e) {
       setStatus({ kind: 'erreur', text: e instanceof Error && e.message ? e.message : FICHES_ERROR });
     }
@@ -226,6 +295,17 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
     await load();
   };
 
+  const card = status.kind === 'seance' ? status.missed : null;
+  const missedActions: MissedActions | undefined =
+    card && programId
+      ? {
+          postpone: (j) => postponeTo(programId, card.dayIndex, card.day, j),
+          later: () => answerLater(programId, card.day),
+          skip: () => skipSession(programId, card.dayIndex, 'renonce', card.day),
+          unwell: () => skipSession(programId, card.dayIndex, 'pas_bien', card.day),
+        }
+      : undefined;
+
   return (
     <HomeView
       profile={profile}
@@ -240,6 +320,12 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       }}
       regularity={reg}
       onOpenHistory={onOpenHistory}
+      missedActions={missedActions}
+      onAckSecurity={acknowledgeSecurity}
+      onChanged={() => {
+        void load();
+        void loadRegularity();
+      }}
     />
   );
 }

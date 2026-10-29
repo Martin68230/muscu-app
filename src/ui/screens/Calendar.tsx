@@ -7,6 +7,7 @@ import {
   PLANNED_GLYPH, PLANNED_TEXT, plannedDates, plannedMark, type HistoryEntry,
 } from '../../session/calendar';
 import { PastSummary } from './PastSummary';
+import { shiftedDays } from '../../session/missed';
 
 const DOW = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const PAGE = 10;
@@ -38,11 +39,13 @@ export interface CalendarViewProps {
   /** Jours de la semaine (0 = lundi) des séances du programme actif et début du programme : séances prévues au calendrier. */
   plannedWeekdays?: number[];
   programStartKey?: string | null;
+  /** Jours décalés en attente (lignes N, seance-manquee-v1.md SM-D2) : « Prévue », puis « Non faite » s'ils passent. */
+  shiftedKeys?: string[];
   onOpen: (sessionId: string) => void;
 }
 
 /** Calendrier du mois + historique (sans accès à la base : testable). */
-export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, onOpen }: CalendarViewProps) {
+export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], onOpen }: CalendarViewProps) {
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
@@ -63,8 +66,10 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   const dayEntries = selected ? entries.filter((e) => e.dateKey === selected) : [];
   const weekAfterEnd = dateKey(new Date(year, month + 1, 7));
   const planned = new Set(programStartKey ? plannedDates(plannedWeekdays, programStartKey, weekAfterEnd) : []);
-  const plannedInMonth = new Set([...planned].filter((k) => k.startsWith(`${year}-${String(month + 1).padStart(2, '0')}`)));
-  const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, entries, todayKey) : null);
+  const shifted = new Set(shiftedKeys);
+  const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+  const plannedInMonth = new Set([...planned, ...shifted].filter((k) => k.startsWith(monthPrefix)));
+  const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, entries, todayKey, shifted) : null);
 
   return (
     <>
@@ -107,6 +112,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
           <li><span aria-hidden="true">○</span> Prévue</li>
           <li><span aria-hidden="true">◌</span> Non faite</li>
           <li><span aria-hidden="true">↷</span> Reportée</li>
+          <li><span aria-hidden="true">»</span> Sautée</li>
           <li><span aria-hidden="true">–</span> Arrêtée</li>
           <li><span aria-hidden="true">◆</span> Douleur ou symptôme</li>
           <li><span aria-hidden="true">•</span> Aujourd’hui</li>
@@ -121,7 +127,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
           <p class="dim">
             {pm(selected) === 'prevue'
               ? 'Séance prévue ce jour-là selon les jours que tu as choisis. Tu peux la faire un autre jour : c’est toi qui décides.'
-              : 'Pas de séance enregistrée ce jour-là. Pas de souci : ta prochaine séance du programme reste proposée sur l’accueil.'}
+              : 'Pas de séance enregistrée ce jour-là.'}
           </p>
         </section>
       )}
@@ -133,7 +139,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
             <div class="hist-detail" key={e.id}>
               <p><strong>{MARK_GLYPH[e.mark]} {MARK_TEXT[e.mark]}</strong></p>
               <p class="dim">{entryDetail(e)}</p>
-              {e.mark !== 'reportee' && <button type="button" class="btn" onClick={() => onOpen(e.id)}>Voir le bilan</button>}
+              {e.mark !== 'reportee' && e.mark !== 'sautee_choix' && <button type="button" class="btn" onClick={() => onOpen(e.id)}>Voir le bilan</button>}
             </div>
           ))}
         </section>
@@ -166,14 +172,18 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
 export function Calendar({ profile }: { profile: Profile }) {
   const [entries, setEntries] = useState<HistoryEntry[] | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
-  const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null }>({ weekdays: [], startKey: null });
+  const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null; shifted: string[] }>({ weekdays: [], startKey: null, shifted: [] });
   const load = async () => {
     try {
       const [sessions, sets] = await Promise.all([list('sessions'), list('sets')]);
       setEntries(buildEntries(sessions, sets));
       const prog = await getActiveProgram();
       const weekdays = (prog?.days ?? []).map((d) => d.weekday).filter((w): w is number => typeof w === 'number');
-      setPlan({ weekdays, startKey: prog && weekdays.length ? (/^\d{4}-\d{2}-\d{2}/.test(prog.startDate ?? '') ? prog.startDate.slice(0, 10) : dateKey(new Date(prog.createdAt))) : null });
+      setPlan({
+        weekdays,
+        startKey: prog && weekdays.length ? (/^\d{4}-\d{2}-\d{2}/.test(prog.startDate ?? '') ? prog.startDate.slice(0, 10) : dateKey(new Date(prog.createdAt))) : null,
+        shifted: prog ? [...shiftedDays(prog, sessions)] : [],
+      });
     } catch {
       setEntries([]);
     }
@@ -203,6 +213,7 @@ export function Calendar({ profile }: { profile: Profile }) {
       startKey={dateKey(new Date(profile.createdAt))}
       plannedWeekdays={plan.weekdays}
       programStartKey={plan.startKey}
+      shiftedKeys={plan.shifted}
       onOpen={setOpenId}
     />
   );

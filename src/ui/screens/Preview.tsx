@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'preact/hooks';
-import type { Program, Profile } from '../../data/model';
+import type { Program, ProgramDay, Profile } from '../../data/model';
 import { FICHES_ERROR, loadFiches, type Fiche } from '../../data/fiches';
 import { list } from '../../data/repo';
 import { ECHELON_TEXT } from '../../session/messages';
@@ -10,6 +10,12 @@ import { asGenFiches } from '../session/launch';
 import { exName, lineText, ficheOf, variantOf } from '../session/text';
 import { unlockSound } from '../session/sound';
 import { acquireWakeLock } from '../session/wakelock';
+import { loadPlayerData } from '../session/launch';
+import { planReprise } from '../../session/reprise-plan';
+import { repriseOf } from '../../session/missed-config';
+import { showT12 } from '../../session/missed';
+import { skipSession } from '../../session/missed-store';
+import { PreviewSkipLinks } from '../MissedCard';
 
 export function goHome(): void {
   location.hash = '#/accueil';
@@ -48,6 +54,12 @@ export interface PreviewViewProps {
   cancelled?: boolean;
   onAnswer?: (item: ProposalItem, accepted: boolean) => void;
   onAnswerLevel?: (accepted: boolean) => void;
+  /** Reprise douce (SM-14) : bloc de messages T-13/T-14/T-20/T-15 et T-19, un seul bloc, et séance adaptée au palier. */
+  repriseTexts?: string[];
+  repriseDay?: ProgramDay | null;
+  /** SM-6 : « Sauter cette séance » et « Je ne me sens pas bien » depuis l'aperçu. */
+  onSkip?: () => Promise<void>;
+  onUnwell?: () => Promise<void>;
 }
 
 /** Cartes de progression de l'aperçu : « Prêt pour l'échelon suivant : <nom> ? » Accepter / Plus tard. */
@@ -80,10 +92,25 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
 }
 
 /** Contenu de l'aperçu (sans accès à la base : testable). */
-export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel }: PreviewViewProps) {
-  const day = next.day;
-  const { safety, info } = splitMessages(program);
+export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell }: PreviewViewProps) {
+  const day = repriseDay ?? next.day;
+  const split = splitMessages(program);
+  // T-19 = T3 du cardio : jamais deux fois le même texte sur l'écran.
+  const safety = split.safety.filter((t) => !repriseTexts.includes(t));
+  const info = split.info;
   const lines = program.explanation ?? [];
+  const [skipped, setSkipped] = useState<string[] | null>(null);
+  if (skipped) {
+    return (
+      <>
+        <button type="button" class="btn back-btn" onClick={goHome}>← Accueil</button>
+        <div class="notice" role="status">{skipped.map((t, i) => <p key={i}>{t}</p>)}</div>
+        <div class="thumb-zone thumb-zone-alone">
+          <button type="button" class="btn btn-primary" onClick={goHome}>Retour à l’accueil</button>
+        </div>
+      </>
+    );
+  }
   return (
     <>
       <button type="button" class="btn back-btn" onClick={goHome}>← Accueil</button>
@@ -91,7 +118,12 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
       <p class="dim">
         {day.estimatedMin ? `Environ ${day.estimatedMin} min` : 'Durée estimée : 45 min environ'} · {day.exercises.length} exercices
       </p>
-      {next.tooSoon && (
+      {repriseTexts.length > 0 && (
+        <section class="notice" aria-label="Reprise">
+          {repriseTexts.map((t, i) => <p key={i}>{t}</p>)}
+        </section>
+      )}
+      {next.tooSoon && repriseTexts.length === 0 && (
         <div class="notice" role="status">
           <p>Ta dernière séance date de moins de 48 h. Tes muscles ont besoin de repos : tu peux attendre, mais c’est toi qui décides.</p>
         </div>
@@ -139,6 +171,9 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
           })}
         </ol>
       </section>
+      {onSkip && onUnwell && (
+        <PreviewSkipLinks nom={day.label} twoDays={showT12(program)} onSkip={onSkip} onUnwell={onUnwell} onDone={setSkipped} />
+      )}
       {error && <div class="toast" role="alert">{error}</div>}
       <div class="thumb-zone thumb-zone-alone">
         <button type="button" class="btn btn-primary" onClick={onBegin}>Commencer la séance</button>
@@ -147,7 +182,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
   );
 }
 
-type Loaded = { program: Program; next: NextSession; fiches: Fiche[] };
+type Loaded = { program: Program; next: NextSession; fiches: Fiche[]; repriseTexts: string[]; repriseDay: ProgramDay | null; repriseActive: boolean };
 
 /** #/seance : aperçu de la séance du jour. L'appui sur « Commencer » débloque le son et demande l'écran allumé. */
 export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin: (program: Program, dayIndex: number, fiches: Fiche[]) => Promise<void> }) {
@@ -163,7 +198,18 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     if (!res.ok) return setEmpty(true);
     const next = await getNextSession(Date.now());
     if (!next) return setEmpty(true);
-    setData({ program: res.program, next, fiches });
+    // Reprise douce : calcul de R-DEM pour l'affichage seulement (rien n'est enregistré avant « Commencer »).
+    let reprise: { texts: string[]; day: ProgramDay | null; active: boolean } = { texts: [], day: null, active: false };
+    try {
+      const [profiles, programs, allSessions, allSets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
+      const pdata = await loadPlayerData(fiches, profiles[0] ?? profile).catch(() => null);
+      const plan = planReprise(next.day, { reprise: repriseOf(profiles[0]), sessions: allSessions, programs, sets: allSets, now: new Date(), ctx: pdata?.ctx ?? null });
+      if (plan) reprise = { texts: plan.start.texts, day: plan.state.actif ? plan.day : null, active: plan.state.actif };
+    } catch {
+      /* sans reprise : la séance reste utilisable */
+    }
+    setData({ program: res.program, next, fiches, repriseTexts: reprise.texts, repriseDay: reprise.day, repriseActive: reprise.active });
+    if (reprise.active) return setProposals(null); // V-PROG-E8 : reprise douce active, aucune proposition de montée
     try {
       const loaded = await loadGeneratorInput(asGenFiches(fiches));
       if (!loaded) return;
@@ -218,5 +264,12 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     );
   }
   if (!data) return <p class="dim" role="status">Chargement…</p>;
-  return <PreviewView program={data.program} next={data.next} fiches={data.fiches} error={error} onBegin={begin} proposals={proposals} cancelled={cancelled} onAnswer={answer} onAnswerLevel={answerLevelFn} />;
+  return (
+    <PreviewView
+      program={data.program} next={data.next} fiches={data.fiches} error={error} onBegin={begin} proposals={proposals} cancelled={cancelled}
+      onAnswer={answer} onAnswerLevel={answerLevelFn} repriseTexts={data.repriseTexts} repriseDay={data.repriseDay}
+      onSkip={() => skipSession(data.program.id, data.next.dayIndex, 'renonce', null)}
+      onUnwell={() => skipSession(data.program.id, data.next.dayIndex, 'pas_bien', null)}
+    />
+  );
 }

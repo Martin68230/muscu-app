@@ -498,3 +498,12 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .how li { margin: 2px 0; }
 .calendar .day.has-prevue, .calendar .day.has-non_faite { border-style: dashed; }
 .calendar .day.has-non_faite { color: var(--dim, inherit); }
+
+/* Séance manquée (seance-manquee-v1.md SM-3) : boutons de 44 px et plus, texte sur 2 lignes au plus à 375 px. */
+.missed-card .btn { white-space: normal; line-height: 1.25; }
+.missed-card .btn + p, .missed-card p + .btn, .missed-days + .btn { margin-top: 10px; }
+.missed-card .btn-link { width: 100%; margin-top: 6px; }
+.missed-days { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+.missed-days .btn + .btn { margin-top: 0; }
+.preview-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; margin: 8px 0; }
+.preview-links .btn + .btn { margin-top: 0; }

@@ -51,7 +51,8 @@ describe('écran Calendrier avec séances prévues', () => {
     expect(screen.getByRole('button', { name: /vendredi 9 octobre.*non faite/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /lundi 26 octobre.*prévue/i })).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: /vendredi 9 octobre.*non faite/i }));
-    expect(screen.getByText(/Pas de souci/)).toBeTruthy();
+    expect(screen.getByText('Pas de séance enregistrée ce jour-là.')).toBeTruthy();
+    expect(screen.queryByText(/Pas de souci/)).toBeNull();
     expect(screen.queryByText(/raté|échec|retard|manqué/i)).toBeNull();
   });
 });
