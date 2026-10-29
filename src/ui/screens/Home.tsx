@@ -148,7 +148,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
               <p class="dim">
                 {status.next.day.estimatedMin ? `Environ ${status.next.day.estimatedMin} min · ` : ''}{status.next.day.exercises.length} exercices
               </p>
-              {status.next.tooSoon && (
+              {status.next.tooSoon && !(status.equipmentChangedId && !hidden) && (
                 <div class="notice small" role="status">
                   <p>Ta dernière séance date de moins de 48 h. Tu peux attendre un peu pour laisser reposer tes muscles, mais c’est toi qui décides.</p>
                 </div>

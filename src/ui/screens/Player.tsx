@@ -307,12 +307,14 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
       <ReportButton ficheId={reportFiche} variantId={ex?.variantId ?? null} />
     </header>
   );
-  const banners = (
+  // Un seul message d'information par écran : le bandeau « écran qui peut s'éteindre » cède la place à l'annonce d'un superset.
+  const bannersFor = (showWake: boolean) => (
     <>
-      {!wakeOk && <div class="notice small" role="status">{WAKE_LOCK_BANNER}</div>}
+      {showWake && !wakeOk && <div class="notice small" role="status">{WAKE_LOCK_BANNER}</div>}
       {error && <div class="toast" role="alert">{error}</div>}
     </>
   );
+  const banners = bannersFor(true);
   const symptomBtn = (
     <button type="button" class="btn btn-sec" onClick={() => { setConfirmResume(false); setSheet('symptom'); }}>J’ai un symptôme</button>
   );
@@ -486,7 +488,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     <div class="player">
       {header}
       <div class="player-scroll">
-        {banners}
+        {bannersFor(!supersetText)}
         {supersetText && (
           <div class="notice small superset" role="status">
             <strong>{supersetText}</strong>
