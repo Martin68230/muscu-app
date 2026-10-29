@@ -39,7 +39,7 @@ statut: utilisable
 - Ballon trop lourd.
 
 ## Progression / régression
-- plus-facile : souleve-de-terre-roumain-halteres, pont-fessier
+- plus-facile : pont-fessier
 - plus-dur : aucun
 
 ## Repères de dosage

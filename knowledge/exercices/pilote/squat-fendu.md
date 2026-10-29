@@ -38,7 +38,7 @@ statut: utilisable
 - Genou avant qui rentre vers l'intérieur.
 
 ## Progression / régression
-- plus-facile : squat-assis-debout
+- plus-facile : aucun
 - plus-dur : fente-arriere, squat-bulgare
 squat-assis-debout <- **squat-fendu** (mur -> poids du corps -> haltères) -> fente-arriere -> squat-bulgare
 

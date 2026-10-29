@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : planche-touche-epaule
+- plus-dur : aucun
 **planche-genoux** -> planche-avant-bras -> planche en levant un bras ou une jambe (à rédiger en vague 1) -> planche-touche-epaule
 
 ## Repères de dosage

@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : porte-valise
+- plus-dur : aucun
 **marche-du-fermier** -> plus lourd ou plus long -> porte-valise (une seule main, plus de gainage)
 
 ## Repères de dosage

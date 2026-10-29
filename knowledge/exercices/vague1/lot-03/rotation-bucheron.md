@@ -36,7 +36,7 @@ statut: utilisable
 - Charge trop lourde qui tire le dos.
 
 ## Progression / régression
-- plus-facile : pallof-elastique
+- plus-facile : aucun
 - plus-dur : rotation-russe-pieds-au-sol
 
 ## Repères de dosage

@@ -36,7 +36,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : marche-du-fermier, porte-valise
+- plus-dur : aucun
 **porte-sac-a-dos-devant** -> sac plus lourd ou trajet plus long -> marche-du-fermier ou porte-valise (si haltères ou bidons)
 
 ## Repères de dosage

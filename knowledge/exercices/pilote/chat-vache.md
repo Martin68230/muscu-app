@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : fente-basse-rotation
+- plus-dur : aucun
 **chat-vache** -> fente-basse-rotation (mobilité plus globale)
 
 ## Repères de dosage

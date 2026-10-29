@@ -39,7 +39,7 @@ statut: utilisable
 - Pouce du même côté que les doigts.
 
 ## Progression / régression
-- plus-facile : developpe-couche-barre, dips-banc-triceps
+- plus-facile : dips-banc-triceps
 - plus-dur : aucun
 
 ## Repères de dosage

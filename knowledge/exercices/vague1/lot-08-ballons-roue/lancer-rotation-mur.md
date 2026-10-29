@@ -41,7 +41,7 @@ statut: utilisable
 - Trop près du mur (moins de deux mètres).
 
 ## Progression / régression
-- plus-facile : rotation-bucheron, pallof-elastique
+- plus-facile : rotation-bucheron
 - plus-dur : aucun
 
 ## Repères de dosage

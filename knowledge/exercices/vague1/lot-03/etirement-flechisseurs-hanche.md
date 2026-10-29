@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : mobilite-hanches-90-90
+- plus-dur : aucun
 
 ## Repères de dosage
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.

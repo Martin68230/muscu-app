@@ -37,7 +37,7 @@ statut: utilisable
 - Bloquer la respiration.
 
 ## Progression / régression
-- plus-facile : chat-vache
+- plus-facile : aucun
 - plus-dur : aucun
 chat-vache <- **fente-basse-rotation** (mains sur marche -> mains au sol)
 

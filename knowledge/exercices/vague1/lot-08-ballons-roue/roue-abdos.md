@@ -45,7 +45,7 @@ statut: utilisable
 - Genoux sans tapis.
 
 ## Progression / régression
-- plus-facile : rollout-ballon, planche-ballon-avant-bras, dead-bug
+- plus-facile : rollout-ballon, planche-ballon-avant-bras
 - plus-dur : aucun
 Échelle : mur à genoux (1) -> à genoux (2) -> debout (3, avancé). On passe à l'échelon suivant seulement quand l'échelon courant se fait sans creuser le dos, séries complètes, plusieurs séances de suite (critère de coach, NON SOURCÉ). Le niveau débutant n'a pas de roue : il passe par la planche, le dead-bug et le Pallof.
 

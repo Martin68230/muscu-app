@@ -41,7 +41,7 @@ Sans aucun matériel, on ne peut pas faire de vrai tirage vertical. Ce mouvement
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : pullover-haltere-au-sol
+- plus-dur : aucun
 **tirage-w-sol** -> tirage-w-halteres-legers -> pullover-haltere-au-sol (si haltères) -> vrai tirage vertical si barre ou élastique
 
 ## Repères de dosage

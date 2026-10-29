@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : bird-dog
+- plus-dur : aucun
 **bird-dog-jambe-seule** ou bird-dog-bras-seul -> bird-dog (bras et jambe opposés) -> bird-dog-pause
 
 ## Repères de dosage

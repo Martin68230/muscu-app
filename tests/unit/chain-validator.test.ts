@@ -40,6 +40,6 @@ describe('chaînes de progression pilotées par le muscle principal et le schém
     const files = (listFiches(dir) as string[]).map((n) => ({ name: n, text: readFileSync(`${dir}/${n}`, 'utf8') }));
     const exempt: string[] = JSON.parse(readFileSync(`${dir}/CHAINES-A-CORRIGER.json`, 'utf8')).ecarts;
     expect(chain(files, exempt).filter((i) => i.severite === 'erreur')).toEqual([]);
-    expect(exempt).toContain('pompe>pompe-diamant');
+    expect(exempt).toEqual([]);
   });
 });

@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : squat-poids-du-corps
-- plus-dur : squat-bulgare
+- plus-dur : aucun
 squat-poids-du-corps <- **squat-gobelet** -> même fiche avec pause en bas -> squat-bulgare (si les haltères deviennent trop légers)
 
 ## Repères de dosage

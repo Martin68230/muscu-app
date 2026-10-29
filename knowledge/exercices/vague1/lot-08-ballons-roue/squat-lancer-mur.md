@@ -39,7 +39,7 @@ statut: utilisable
 - Trop près du mur.
 
 ## Progression / régression
-- plus-facile : squat-ballon-lest, lancer-poitrine-mur
+- plus-facile : squat-ballon-lest
 - plus-dur : aucun
 
 ## Repères de dosage

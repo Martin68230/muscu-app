@@ -36,8 +36,8 @@ statut: utilisable
 - Aller trop vite.
 
 ## Progression / régression
-- plus-facile : bird-dog-jambe-seule
-- plus-dur : bird-dog-pause
+- plus-facile : aucun
+- plus-dur : aucun
 jambe seule ou bras seul (à créer) <- **bird-dog** -> bird-dog avec pause de quelques secondes bras et jambe tendus
 
 ## Repères de dosage

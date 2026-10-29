@@ -47,7 +47,7 @@ Pieds surélevés : même geste, tête et dos restent alignés, ne laisse pas le
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : pompe-diamant, pompe-ecartee, pompe-archer, pompe-piquee
+- plus-dur : pompe-ecartee, pompe-archer
 **pompe-mur** (1) -> pompe-chaise (2) -> pompe-genoux (3) -> pompe-sol (4) -> pompe-pieds-sureleves (5) -> pompe-diamant, pompe-ecartee, pompe-archer (autres muscles ou plus dur) ; pompe-chaise ou pompe-sol -> pompe-piquee (épaules, niveau intermédiaire) ; pompe-sol -> pompe avec descente lente (non rédigée). Passer à l'échelon suivant : load-calibration.md règle 5 (NON SOURCÉ).
 
 ## Repères de dosage

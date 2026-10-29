@@ -41,7 +41,7 @@ Sans barre de traction ni élastique, il n'existe pas de vrai tirage vertical (o
 - Haltère mal tenu au-dessus du visage.
 
 ## Progression / régression
-- plus-facile : tirage-w-allonge
+- plus-facile : aucun
 - plus-dur : aucun
 substitut sans matériel : tirage-w-allonge <- **pullover-haltere-au-sol** -> vrai tirage vertical si barre ou élastique (tractions, tirage élastique : vague 1, profils B et D)
 

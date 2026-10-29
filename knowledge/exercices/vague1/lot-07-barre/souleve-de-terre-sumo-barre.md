@@ -37,7 +37,7 @@ statut: utilisable
 - Barre loin des jambes.
 
 ## Progression / régression
-- plus-facile : souleve-de-terre-barre, squat-sumo
+- plus-facile : souleve-de-terre-barre
 - plus-dur : aucun
 
 ## Repères de dosage

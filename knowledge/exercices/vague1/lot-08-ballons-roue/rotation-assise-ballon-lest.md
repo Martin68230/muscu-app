@@ -41,7 +41,7 @@ statut: utilisable
 - Souffle retenu.
 
 ## Progression / régression
-- plus-facile : rotation-bucheron, pallof-elastique
+- plus-facile : rotation-bucheron
 - plus-dur : aucun
 
 ## Repères de dosage

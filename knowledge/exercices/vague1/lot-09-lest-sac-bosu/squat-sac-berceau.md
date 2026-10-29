@@ -41,7 +41,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : squat-ballon-lest, squat-gobelet, squat-poids-du-corps
-- plus-dur : squat-sac-berceau-sol, squat-bulgare
+- plus-dur : squat-sac-berceau-sol
 
 ## Repères de dosage
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026 : 2 à 3 séries par exercice) : le tag `sac_de_sable` n'est pas dans la liste « chargeable » de src/generator/config.ts : le générateur traite donc ces fiches comme du poids du corps (10 à 15 répétitions, 2 séries, 3 pour un intermédiaire en « muscle », réserve cible 2 à 3, jamais 0, repos 90 s) ; point à confirmer par `dev` (voir README du lot). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. **Le sac est une charge fixe** : l'app ne connaît pas son poids et ne peut pas choisir une charge d'étalonnage comme avec des haltères. Étalonnage (load-calibration.md) : première séance, une série d'essai ; si tu ne tiens pas 10 répétitions propres avec 2 à 3 en réserve, le sac est trop lourd : prends un sac plus léger ou la variante sans sac (voir Progression). Progression : double progression sans changer le sac (d'abord les répétitions dans la fourchette, puis l'échelon suivant) ; changer de sac est ton choix, un petit palier à la fois (NON SOURCÉ). Zone au niveau 2 : aucune hausse (R2). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.

@@ -40,7 +40,7 @@ statut: utilisable
 - Tête qui tombe.
 
 ## Progression / régression
-- plus-facile : planche-ballon-avant-bras, planche-avant-bras, dead-bug
+- plus-facile : planche-ballon-avant-bras, planche-avant-bras
 - plus-dur : roue-abdos-mur-genoux
 
 ## Repères de dosage

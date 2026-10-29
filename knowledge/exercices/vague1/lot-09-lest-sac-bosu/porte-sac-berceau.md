@@ -40,7 +40,7 @@ statut: utilisable
 - Marche trop rapide.
 
 ## Progression / régression
-- plus-facile : porte-ballon-lest, porte-sac-a-dos-devant
+- plus-facile : aucun
 - plus-dur : porte-sac-berceau-sol
 
 ## Repères de dosage

@@ -34,7 +34,7 @@ statut: verifie
 - Rebondir au fond.
 
 ## Progression / régression
-- plus-facile : squat-assis-debout
+- plus-facile : aucun
 - plus-dur : aucun
 
 ## Repères de dosage

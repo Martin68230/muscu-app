@@ -36,7 +36,7 @@ statut: utilisable
 - Coude-genou en arrondissant fortement le dos.
 
 ## Progression / régression
-- plus-facile : bird-dog
+- plus-facile : aucun
 - plus-dur : aucun
 bird-dog -> **bird-dog-pause-sol** -> bird-dog-coude-genou
 

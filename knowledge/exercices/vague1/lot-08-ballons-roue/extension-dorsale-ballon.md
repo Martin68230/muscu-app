@@ -40,7 +40,7 @@ statut: utilisable
 - Ballon qui roule.
 
 ## Progression / régression
-- plus-facile : bird-dog, pont-fessier
+- plus-facile : aucun
 - plus-dur : aucun
 
 ## Repères de dosage

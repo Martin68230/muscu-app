@@ -40,7 +40,7 @@ statut: utilisable
 - Marche trop rapide.
 
 ## Progression / régression
-- plus-facile : marche-du-fermier, porte-valise
+- plus-facile : aucun
 - plus-dur : porte-ballon-lest-bras-tendus
 
 ## Repères de dosage

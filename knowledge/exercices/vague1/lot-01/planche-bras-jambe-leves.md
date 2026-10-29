@@ -35,7 +35,7 @@ statut: utilisable
 - Épaule qui s'enfonce.
 
 ## Progression / régression
-- plus-facile : planche
+- plus-facile : aucun
 - plus-dur : aucun
 planche -> **planche-bras-leve-avant-bras** -> planche-jambe-levee-avant-bras -> planche-bras-jambe-opposes
 

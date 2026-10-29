@@ -41,7 +41,7 @@ statut: utilisable
 - Ballon qui part de côté.
 
 ## Progression / régression
-- plus-facile : curl-ischios-serviette, pont-fessier-ballon, pont-fessier
+- plus-facile : curl-ischios-serviette
 - plus-dur : nordique-ischios
 
 ## Repères de dosage
