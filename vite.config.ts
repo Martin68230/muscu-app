@@ -84,6 +84,6 @@ export default defineConfig({
     environment: 'node',
     include: ['tests/unit/**/*.test.{ts,tsx}'],
     setupFiles: ['tests/unit/setup.ts'],
-    testTimeout: 20000, // machines chargées : les tests du générateur dépassaient 5 s sans être faux
+    testTimeout: 40000, // machines chargées : les tests du générateur dépassaient 5 s sans être faux
   },
 });

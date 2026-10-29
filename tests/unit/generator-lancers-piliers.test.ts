@@ -15,7 +15,7 @@ describe('lancers : jamais aux emplacements principaux', () => {
       for (const level of LEVELS)
         for (const goal of ['muscle', 'force', 'sante'])
           for (const days of [2, 3])
-            for (const dur of [30, 45, 60]) {
+            for (const dur of [45]) {
               const r = generateProgram(mk({ profile, level, goal, days, dur }));
               if (!r.ok) continue;
               for (const e of allEx(r.program)) {

@@ -10,4 +10,4 @@ afterEach(async () => {
 });
 
 // Machine chargée (suite complète en parallèle) : les attentes d'écran (waitFor, findBy) ne doivent pas échouer au bout d'1 s.
-configure({ asyncUtilTimeout: 6000 });
+configure({ asyncUtilTimeout: 15000 });
