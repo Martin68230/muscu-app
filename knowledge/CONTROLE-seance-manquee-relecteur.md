@@ -78,3 +78,54 @@ Contrôle du 29/10/2026 par `relecteur` (lancé à neuf, sans le contexte de la 
 - **Remarques** : 1.2 à 1.5, 2.16 à 2.19, 3.10, 3.11, 4.11.
 - **Sources** : les statuts OK (2 séries par exercice, fréquence, 10 séries) sont confirmés par l'ACSM 2026 ; Bosquet est relayé correctement (28 jours, g < 0,2) hors le point 1.1 ; aucun NON SOURCÉ ou PROVISOIRE n'est présenté comme OK.
 - **Prochaine étape** : l'auteur corrige les bloquants (et au minimum 2.3, 2.4, 2.7, 2.8, 3.1), puis `relecteur` ne recontrôle que les points corrigés. Aucun seuil ni pourcentage de SM-12 / K2 n'est validé tant que 1.1 et 4.1 sont ouverts, et aucune valeur NON SOURCÉ ne se code sans validation de l'utilisateur (règle 10).
+
+## 6. Recontrôle (29/10/2026, `relecteur` lancé à neuf, points corrigés seulement)
+Portée : révision 2 (coach, journal §11, commit 6211a9e) et « Corrections kine 2 » (§12, commit b630372) de knowledge/seance-manquee-v1.md ; schedule-adaptation.md. Rien n'est corrigé ici.
+
+**Verdict : NON VALIDÉ.** 1 point bloquant nouveau (RC-1). Les 9 bloquants du premier contrôle sont tous corrigés. Si RC-1 est corrigé et les « à corriger » traités, un second recontrôle limité à ces points suffira (viser « validé sous réserve » : les valeurs NON SOURCÉ restent à valider par l'utilisateur, règle 10).
+
+### 6.0 Source rouverte (29/10/2026)
+Nuckols, « Detraining » : moins d'un mois = « extended deload », charges environ -20 % la première semaine ; exemple d'arrêt long = **12 semaines**, « about 1/3rd as much weight » la première semaine (225 lb -> 75 lb) ; semaine 2 : au moins 5 répétitions en réserve sur la première série de chaque exercice, 3-4 sur la dernière ; au-delà d'**un an** : traiter comme non entraîné. Le fichier (SM-S1, §0) le dit désormais correctement (-67 %, 12 semaines, 5 RIR). Statut PROVISOIRE (blog, études non relues) inchangé et correct.
+
+### 6.1 Statut des points du premier contrôle
+| Point | Statut | Commentaire |
+|---|---|---|
+| 1.1 (bloquant) | corrigé | Lecture -67 % exacte ; -20 / -30 / -10 % déclarés choix NON SOURCÉ ; écart avec la source dit en clair (§0, SM-12, §9) ; palier 4 dès 56 j. |
+| 1.2 à 1.5 | corrigé | Palier 1 passe à -20 % puis -10 % (conforme à la source) ; 65 ans et plus, Bickel 60-75 ans ; « extrapolation » dit ; argument (c) restreint à 3 jours. |
+| 2.1 (bloquant) | corrigé | Textes T-13 (10-14), T-14 (15-27), T-20 (28-55), T-15 (56+) : aucun trou. |
+| 2.2 (bloquant) | corrigé | E10 : 2 séances valables (voir RC-5 pour le N). |
+| 2.3, 2.4, 2.5 | corrigé | SM-15 réécrit ; plancher 2 écrit ; K1(b) défini (rester sur le message jusqu'à T-22, bouton mémorisé, aucun verrou). |
+| 2.6, 4.5 (bloquants) | corrigé | « Jour manqué », R et N définis ; (e) et la fin réconciliés ; couverture de `plannedMark` vérifiée dans calendar.ts (ne couvre que les séances faites un jour non planifié : E4 et E21 inchangés). |
+| 2.7, 2.8, 2.9, 2.10 | corrigé | Séance valable (l'étalonnage compte, exception à progression-et-bilan §1.3 dite) ; C0, rampe, règle du plus bas, « autre » = rôle différent de `pilier`. Voir RC-6 (l'autre fichier n'est pas amendé). |
+| 2.11, 2.12, 2.13 | corrigé | E4, E13, E15 précisés ; E20 en mots entiers. |
+| 2.14, 2.15, 2.16, 2.17 | corrigé | T-19 identique mot pour mot à T3 (cardio-regles.md l.211, vérifié) ; textes sans marque de genre ; « je reprends » ; « message, sans verrou ». |
+| 3.1 | corrigé en partie | Mention REMPLACÉ présente ; une valeur périmée reste (RC-4). |
+| 3.2 | corrigé sous réserve | SM-4 lit la règle 21 comme « proposé en premier, jamais appliqué sans geste » ; décision de l'utilisateur toujours ouverte (RC-7). |
+| 3.3, 3.4, 3.5 | corrigé | Début proposé défini ; SM-20 réécrit ; priorité des messages d'Accueil (SM-3). |
+| 4.1 (bloquant) | corrigé | SM-D4, R-DEM, R-FIN, SM-D5 : calculables ; lacunes mineures RC-3. |
+| 4.2 (bloquant) | corrigé | SM-D2 : deux lignes O et N ; E5, E6 recalculés à la main : cohérents. |
+| 4.3 (bloquant) | corrigé | `Program.missedAnswers` ; E7 cohérent. |
+| 4.4 (bloquant) | corrigé | SM-D6 (rotation) ; E21 recalculé : {nom} = B, jours = [samedi], cohérent. |
+| 4.6 (bloquant) | corrigé | `renonce` / `pas_bien`, `DayMark` « sautee_choix », glyphe » ; le calendrier n'affiche jamais « pas bien » (bon). |
+| 4.7 à 4.10 | corrigé | Clé de tri `decidedAt` ; « Sauter » depuis l'aperçu avec T-9 ; T-12 ; SM-21 (reprise conservée). |
+
+### 6.2 Vérifications demandées
+1. **Paliers SM-12** : 0-9, 10-14, 15-27, 28-55, 56+ : sans trou ni chevauchement ; cohérents avec T-13/T-14/T-20/T-15, E10 (12 j : palier 1, 2 séances), E17 (16 j : palier 2), E18 (30 j : palier 3), E11 (40 j), K2, K7 (T-19 dès 28 j) et §9. Cardio : « pause de plus de 2 semaines » = 15 j, aligné avec le palier 2. Chiffres vérifiés à la main : 20 kg -> 14/16/18 kg (E11), 16/18 kg (E17), 18 kg (E22) justes. Réserves : RC-2.
+2. **Modèle de données / cas calculés à la main** : E4 OK, E11 OK, E13 OK, E14 OK (jours du programme non précisés, sans effet), E15 OK, E16 OK, E17 OK, E18 OK, **E19 NON (RC-1)**, E21 OK, E22 OK, E23 OK, E24 OK. E10 : résultat juste, N faux (RC-5).
+3. **SM-15 / K1 / grossesse** : aucune carte après symptôme ou douleur R4 (SM-2 (f), E12, E13) ; aucune carte en grossesse / post-partum (SM-2 (g), K3(b), E15, SM-20 par renvoi). **Mais pas après « Je ne me sens pas bien » (RC-1).**
+4. **Règle 21** : SM-4 la lit comme « proposé en premier, bouton principal, jamais appliqué sans geste » ; cohérent avec `kine` ; reste une décision de l'utilisateur (RC-7).
+5. **schedule-adaptation.md** : une contradiction restante (RC-4), une remarque.
+6. **Statuts** : aucune valeur NON SOURCÉ ou PROVISOIRE présentée comme OK (§9, K10, SM-S1/S3 conformes) ; les seuls OK sont ACSM (2 séries, 2 fois par semaine, 10 séries) et OMS.
+
+### 6.3 Écarts restants
+| N° | Gravité | Où | Écart |
+|---|---|---|---|
+| RC-1 | **bloquant** | E19 contre SM-2 et K1(a) ; SM-15 « Maladie » | Après « Je ne me sens pas bien » (`pas_bien`, lundi, jeudi suivant), le mercredi planifié sans ligne est un jour manqué (R = lundi < mercredi <= hier ; N = 1 ; aucune exclusion K1 ne vise `pas_bien`) : **la carte s'afficherait le jeudi**. E19 attend « mercredi et jeudi : aucune carte » : le cas n'est pas satisfait par les règles écrites, et la règle protectrice (pas de pression après un malaise, K1(e), T-18 « aucune proposition ») n'existe nulle part. À écrire : un `pas_bien` récent (par exemple tant que `palierMin` n'est pas consommé, ou pour la semaine suivante) supprime la carte, ajouté à SM-2 (f) et K1(a), puis recalculer E19. |
+| RC-2 | à corriger | SM-12 palier 4 contre garde-fous | Palier 4 séance 1 : étalonnage « à partir de la charge légère » (donc vers le haut) alors que les garde-fous disent « garder / descendre seulement tant que `actif` » et « aucune montée tant que `valables < seuil` ». Préciser que l'étalonnage du palier 4 peut monter, plafonné à C0. Même ligne : `descenteKg` n'a pas de sens au palier 4 (départ = charge finale). |
+| RC-3 | à corriger | R-DEM étapes 3 et 6, K7(a) | Reprise déjà active à un palier >= `effectif` puis « Je ne me sens pas bien » (par exemple palier 2 actif, valables = 1) : état inchangé, `apresMalaise` consommé, **T-19 jamais affiché**, contre K7(a) (« à toute reprise qui suit un malaise »). Préciser le comportement. Aussi : « puis `conseilVuLe` = aujourd'hui » doit dire que c'est seulement si T-19 a été affiché. |
+| RC-4 | à corriger | schedule-adaptation.md règle 5 (l.19) | Cite encore les paliers « 0-9 / 10-14 / 15-27 / 28-89 / 90 et plus » : périmé (28-55 / 56 et plus). Contredit SM-12 malgré la mention REMPLACÉ. Corriger ou retirer la liste. Remarque : règle 1 (« décaler au prochain jour libre ») se lit comme automatique, et règle 9 (cardio « répartir sur les jours restants ») n'existe plus en SM-20. |
+| RC-5 | à corriger | E10 | « N = 2 » est faux : avec L/M/V et 12 jours d'absence il y a au moins 4 jours manqués. La sortie (aucune carte) reste juste, mais le test écrit d'après E10 échouerait sur N. |
+| RC-6 | à corriger | progression-et-bilan-v1.md §1.3 / §1.5 | SM-13 demande d'ajouter « reprise douce active » à V-PROG-E8 et définit une exception pour l'étalonnage ; le fichier de progression n'est pas amendé (`dev` lirait deux définitions de « séance valable »). Amender ou renvoyer explicitement. |
+| RC-7 | à corriger (décision utilisateur) | CLAUDE.md règle 21 ; SM-4, SM-9 | La règle 21 dit « compensation limitée en volume », SM-9 fixe 0 série ; et la lecture de « décaler par défaut » n'est pas encore confirmée par l'utilisateur (§9 décision 1). Tant que ce n'est pas tranché, SM-4/SM-9 ne se codent pas (règle 10). |
+| RC-8 | remarque | SM-12 palier 3 | « plus doux que la source pour 6 à 8 semaines » : la source ne donne aucun chiffre entre un mois et 12 semaines ; formuler « entre les deux avis de la source ». Palier 4 « se rapproche » de la source sans pourcentage : non démontrable. La source traite aussi l'arrêt de plus d'un an comme non entraîné : C0 peut alors être très périmée et le plafond « jamais au-dessus de C0 » ne protège plus ; envisager un message ou un étalonnage sans C0 au-delà de 365 jours. |
+| RC-9 | remarque | calculs et textes | Arrondi `C0 x (1 - p)` : imposer un calcul en entiers (dixièmes de kg) pour éviter un 13,999 arrondi à 12 ; T-13 et T-14 ont le même texte (voulu) ; T-17 « mêmes textes » est sans objet depuis la suppression de la carte en grossesse ; SM-15 (puce grossesse) ne dit pas « aucune carte » (renvoie à K3). |
