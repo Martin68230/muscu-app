@@ -216,7 +216,7 @@ Ajouts kine 23/10 :
 | Q7 | Comparaison : seuil « similaire » à 5 % ou 1 série ; référence au plus 3 séances en arrière | 5 % / 1 série / 3 séances | NON SOURCÉ |
 | Q8 | Durée « non fiable » au-delà de 3 h (séance reprise) ; faut-il pouvoir corriger l'heure de fin à la main ? | 3 h, pas de correction manuelle | NON SOURCÉ |
 | Q9 | Calories : pas en v1 (PROVISOIRE, source non ouverte). À rouvrir en phase 3 après lecture du Compendium 2024. | absentes | PROVISOIRE |
-| Q10 | Après une longue pause (14 jours sans cet exercice) : proposer de redescendre d'un échelon ? Relève de schedule-adaptation.md, non traité ici. | rien | NON SOURCÉ |
+| Q10 | Après une longue pause (14 jours sans cet exercice) : proposer de redescendre d'un échelon ? Relève de seance-manquee-v1.md (reprise douce, échelon -1, SM-12), non traité ici. | rien | NON SOURCÉ |
 
 ## 6. Corrections nécessaires ailleurs (non faites ici)
 1. `generateur-v1.md` §5.1 (V-ETAL) : « aucune série faite pour cette `variantId` » -> pour un exercice au poids du corps, utiliser (fiche, échelon) ; le changement de variante au même échelon ne redéclenche pas l'étalonnage (V-PROG-E1, V-ETAL-E point 5).

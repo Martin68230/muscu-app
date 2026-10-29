@@ -176,3 +176,5 @@ Aucune valeur NON SOURCÉ ou PROVISOIRE ne passe pour OK : les seuls OK sont l'A
 | NR-5 | remarque | progression-et-bilan-v1.md Q10 (l.219) | « Relève de schedule-adaptation.md, non traité ici » : pointeur périmé (fichier remplacé ; l'échelon -1 de reprise est dans SM-12). |
 | RC-7 | à corriger (décision utilisateur) | CLAUDE.md règle 21, Q30, §9 décision (1) | Réponse de l'utilisateur attendue (limite 0 série ; « décaler par défaut » = proposé en premier). Bloque le codage de SM-4 / SM-9, pas la validation du fichier. |
 | Statuts | rappel | SM-12, K2, K7, section D, §7 | Tous les seuils / pourcentages NON SOURCÉ : validation de l'utilisateur puis contrôle `relecteur` avant tout codage en dur. |
+
+**Corrections du 29/10/2026 (auteur) :** NR-1 corrigé (SM-D4 et R-DEM 6 : `apresMalaise` vrai => T-19 toujours affiché, `conseilVuLe` ignoré ; E25 mis à jour avec T-19 déjà lu à la séance 1) ; NR-2 (`msgVu true` ajouté à E25) ; NR-3 (ligne T-17 retirée, T-8 et T-16 rattachés à SM-4 / SM-15) ; NR-4 (renvoi dans cardio-regles.md T3) ; NR-5 (Q10 pointe vers seance-manquee-v1.md). À recontrôler par `relecteur`.
