@@ -84,6 +84,7 @@ export default defineConfig({
     environment: 'node',
     include: ['tests/unit/**/*.test.{ts,tsx}'],
     setupFiles: ['tests/unit/setup.ts'],
+    maxWorkers: 6, // trop de fichiers en parallèle affamaient les tests à horloge réelle sur une machine chargée
     testTimeout: 40000, // machines chargées : les tests du générateur dépassaient 5 s sans être faux
   },
 });
