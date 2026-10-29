@@ -1,0 +1,6 @@
+# Bilan : séance manquée, reportée, sautée et reprise douce (29/10/2026)
+1. Fait (4 commits, non poussés) : modèle (endReason renonce / pas_bien, décalage O+N, missedAnswers, profile.reprise, import validé), fonctions pures src/session/missed.ts (R, N, carte, jours pour « Décaler », K1, rotation, paliers, R-DEM, R-FIN, charges en dixièmes de kg), réglages uniques src/session/missed-config.ts, textes T-xx mot pour mot src/session/missed-texts.ts.
+2. Écrans : carte sur l'Accueil (priorité SM-3), choix du jour, confirmations, liens « Sauter » et « Je ne me sens pas bien » dans l'aperçu, calendrier « Sautée » (») et jours décalés ; reprise douce dans l'aperçu (un bloc) et le lecteur (étalonnage garder / descendre, plafond C0, séries retirées, V-PROG-E8).
+3. Tests : E1 à E27 (E8 en écran), changement d'heure du 25/10/2026, séance déjà décalée ; suite complète verte, tsc, check:fiches (0 erreur), check:securite, build OK ; captures WebKit tests/screens/f-seance-manquee.spec.ts.
+4. Choix prudents à confirmer : docs/QUESTIONS.md Q30 (compensation 0) et Q31 (décalage jamais automatique, 48 h depuis 00:00, Accueil après symptôme, etc.).
+5. À tester sur l'iPhone : voir la liste du compte rendu (carte le lendemain d'un jour manqué, boutons au pouce, clavier non concerné, calendrier, reprise après 10 jours).
