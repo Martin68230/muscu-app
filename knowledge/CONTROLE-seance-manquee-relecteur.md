@@ -129,3 +129,50 @@ Nuckols, « Detraining » : moins d'un mois = « extended deload », charges env
 | RC-7 | à corriger (décision utilisateur) | CLAUDE.md règle 21 ; SM-4, SM-9 | La règle 21 dit « compensation limitée en volume », SM-9 fixe 0 série ; et la lecture de « décaler par défaut » n'est pas encore confirmée par l'utilisateur (§9 décision 1). Tant que ce n'est pas tranché, SM-4/SM-9 ne se codent pas (règle 10). |
 | RC-8 | remarque | SM-12 palier 3 | « plus doux que la source pour 6 à 8 semaines » : la source ne donne aucun chiffre entre un mois et 12 semaines ; formuler « entre les deux avis de la source ». Palier 4 « se rapproche » de la source sans pourcentage : non démontrable. La source traite aussi l'arrêt de plus d'un an comme non entraîné : C0 peut alors être très périmée et le plafond « jamais au-dessus de C0 » ne protège plus ; envisager un message ou un étalonnage sans C0 au-delà de 365 jours. |
 | RC-9 | remarque | calculs et textes | Arrondi `C0 x (1 - p)` : imposer un calcul en entiers (dixièmes de kg) pour éviter un 13,999 arrondi à 12 ; T-13 et T-14 ont le même texte (voulu) ; T-17 « mêmes textes » est sans objet depuis la suppression de la carte en grossesse ; SM-15 (puce grossesse) ne dit pas « aucune carte » (renvoie à K3). |
+
+
+## 7. Recontrôle 3 (29/10/2026, `relecteur` lancé à neuf, points RC-1 à RC-9 seulement)
+Portée : révision 3 de knowledge/seance-manquee-v1.md (journal §13, commit 27c857c), schedule-adaptation.md, progression-et-bilan-v1.md (§1.1, §1.5), docs/QUESTIONS.md Q30, cardio-regles.md (cohérence des seuils). Rien n'est corrigé ici. La source Nuckols n'a pas été rouverte : les textes de SM-S1 et des paliers 3/4 sont conformes au résumé vérifié en §6.0 (-20 % avant un mois, environ -67 % à 12 semaines, aucun chiffre entre les deux, plus d'un an = non entraîné).
+
+**Verdict : VALIDÉ SOUS RÉSERVE.** Aucun point bloquant restant. Réserves : (1) NR-1 (conseil T-19 après un malaise pendant une reprise) à corriger avant codage ; (2) RC-7 reste une décision de l'utilisateur ; (3) tous les seuils et pourcentages de SM-12 / K2 restent NON SOURCÉ ou PROVISOIRE : validation de l'utilisateur obligatoire avant codage en dur (règle 10). Le fichier garde le statut PROVISOIRE, ce qui est correct.
+
+### 7.1 Statut de RC-1 à RC-9
+| Point | Statut | Constat |
+|---|---|---|
+| RC-1 (bloquant) | **corrigé** | SM-2 (f) et K1(a) excluent la carte tant que `apresMalaise = true` ou que la ligne la plus récente est `sautee / pas_bien` ; SM-15 « Maladie » et la puce grossesse alignées. E19 recalculé : voir 7.2. |
+| RC-2 | **corrigé** | SM-12 palier 4 : séance 1 = étalonnage qui peut monter, plafonné à C0 ; séances 2-3 = garder / descendre ; `descenteKg` sans objet (R-FIN b limité aux paliers 1 à 3) ; garde-fous avec l'exception écrite ; E27 cohérent. |
+| RC-3 | **corrigé** | R-DEM 6 cas (ii) : T-19 affiché seul si la reprise est déjà active et `apresMalaise` lu vaut true ; `conseilVuLe` écrit seulement si T-19 affiché ; E25 cohérent (réserves NR-1, NR-2). |
+| RC-4 | **corrigé** | schedule-adaptation.md règle 5 : 0-9 / 10-14 / 15-27 / 28-55 / 56 et plus ; règles 1, 8, 9 alignées (décalage proposé, jamais appliqué sans geste ; cardio selon SM-20). Plus aucune occurrence de 28-89 ni de 90 j dans knowledge/ hors rapport. |
+| RC-5 | **corrigé** | E10 : N >= 4 (5 jours planifiés sans ligne : lun, mer, ven, lun, mer) ; sortie « aucune carte » inchangée. |
+| RC-6 | **corrigé** | progression-et-bilan-v1.md §1.1 (exception reprise douce, étalonnage compté) et §1.5 (entrée « reprise douce active » de V-PROG-E8, renvoi à SM-12 / SM-13) : une définition par usage, renvois explicites. |
+| RC-7 | **corrigé dans le texte, décision utilisateur toujours ouverte** | Q30 présente dans docs/QUESTIONS.md ; SM-9 dit que 0 est la limite choisie ; CLAUDE.md non modifié (juste). SM-4 / SM-9 ne se codent pas avant la réponse (règle 10). |
+| RC-8 | **corrigé** | palier 3 « entre les deux avis de la source » ; palier 4 sans pourcentage prétendu ; arrêt > 365 j : C0 ignorée, étalonnage complet (SM-12, E26). |
+| RC-9 | **corrigé** | calcul en entiers (dixièmes de kg, floor) ; T-17 supprimé ; puce grossesse « aucune carte ». |
+
+### 7.2 Cas calculés à la main
+- **E19** : lundi manqué (R = vendredi, N = 1) ; mardi 09:00 « pas bien » -> ligne `sautee / pas_bien`, `plannedDate` lundi, `palierMin = 2`, `apresMalaise = true`. Mercredi : R = lundi, hier = mardi non planifié, N = 0, aucune carte. Jeudi : N = 1 (mercredi) mais `apresMalaise = true` (et ligne la plus récente = `pas_bien`) : aucune carte, **conforme**. Démarrage jeudi : `joursAbsence` = 6 (vendredi -> jeudi) -> `palierJours` 0 ; `effectif` = max(0, 2) = 2 ; nouvel état palier 2, `valables` 0 ; étape 6 cas (i) (`apresMalaise` lu true) -> T-14 + T-19, `conseilVuLe` = jeudi. **OK.**
+- **E10** : jeudi - 12 j = samedi ; jours planifiés sans ligne : lun, mer, ven, lun, mer = 5 >= 4, aucune carte ; 12 j -> palier 1 ; -20 % puis -10 %, 2 séances ; T-13 ; pas de T-19. **OK.**
+- **E25** : `effectif` = max(0, 2) = 2 = palier -> étape 4, état inchangé ; `apresMalaise` lu true puis remis à false ; cas (ii) : T-19 seul si `msgVu = true`, `conseilVuLe` = aujourd'hui ; avec `conseilVuLe` >= dernière séance : rien. **OK sous NR-2** (`msgVu` non précisé).
+- **E26** : 400 j -> palier 4, > 365, C0 ignorée, `refKg` non écrit, T-15 + T-19 (`effectif` >= 3). **OK.**
+- **E27** : C0 = 20 kg, étalonnage à 24 kg -> 20 kg ; séance 2 depuis la charge finale, garder / descendre ; `descenteKg` jamais écrit (R-FIN b). **OK.**
+- Non-régression : **E13** OK (N = 1, douleur -> aucune carte, `joursAbsence` 3 -> palier 0) ; **E14** OK (`joursAbsence` 3 depuis dimanche, `palierMin` 2 -> palier 2, -20 %, T-14, pas de T-19) ; E11 (14 / 16 / 18 kg), E16, E17 (16 / 18 kg), E22 (18 kg) : justes.
+
+### 7.3 Paliers dans tous les fichiers
+0-9 / 10-14 / 15-27 / 28-55 / 56 et plus : sans trou ni chevauchement dans seance-manquee-v1.md (SM-12, K2, §9, §12, T-13 / T-14 / T-20 / T-15, E10, E11, E17, E18, E26) et schedule-adaptation.md. progression-et-bilan-v1.md ne contient aucune liste de paliers (renvoi à SM-12). cardio-regles.md n'a pas de paliers : « pause de plus de 2 semaines » = 15 j, aligné sur le début du palier 2 ; le seuil 28 j de T-19 est propre à la musculation. Aucun autre fichier de knowledge/ ou docs/ ne cite 28-89 ni 90 j (seule occurrence : Supabase, sans rapport).
+
+### 7.4 Textes §7 et T-xx
+T-17 est supprimé et n'est cité nulle part (ni dans le code, ni dans les autres fichiers). Aucun texte référencé n'a disparu. T-2, T-3, T-6, T-8 et T-16 ne sont cités par id nulle part hors du tableau §7 (leur emploi est décrit par SM-3 / SM-4 / SM-15 sans l'id) : pas orphelins, mais voir NR-3.
+
+### 7.5 Statuts
+Aucune valeur NON SOURCÉ ou PROVISOIRE ne passe pour OK : les seuls OK sont l'ACSM 2026 (2 séries, 2 fois par semaine, 10 séries), l'OMS 150-300 min et G1/G2/G3/G6 (HAS). -20 % « avant un mois » est présenté comme avis de blog PROVISOIRE ; -30 / -20 / -10 %, 10 j, 15 j, 28 j, 56 j, 365 j sont NON SOURCÉ dits en clair. Aucune contradiction avec CLAUDE.md (règles 10, 11, 21, 23 ; la règle 21 est signalée dans Q30). Aucune dose dangereuse ni contre-indication oubliée dans la portée recontrôlée.
+
+### 7.6 Écarts restants
+| N° | Gravité | Où | Écart |
+|---|---|---|---|
+| NR-1 | à corriger | SM-D4 `conseilVuLe`, R-DEM 6 (i)/(ii), K7(a) | La règle « T-19 non ré-affiché si `conseilVuLe` >= date de la dernière séance de musculation faite » supprime T-19 après un malaise survenu pendant une reprise où T-19 a déjà été lu à la séance 1 (palier >= 3) : séance 1 le jour X (`conseilVuLe` = X), « pas bien » à X+2, reprise à X+4 -> `conseilVuLe` = X >= X, T-19 non affiché, contre K7(a) (« à toute reprise qui suit un malaise »). Idem si le cardio a écrit `conseilVuLe` (T3 « à la première ouverture du cardio ») après la dernière séance de musculation. Préciser : après un `pas_bien`, T-19 est affiché quelle que soit `conseilVuLe` (ou `conseilVuLe` remis à null à l'écriture d'un `pas_bien`) ; ajouter un cas d'essai. |
+| NR-2 | à corriger | E25 (et E22) | L'état d'entrée ne précise pas `msgVu`. Avec la valeur par défaut (false), R-DEM 6 afficherait aussi T-14 : le résultat « T-19 seul » ne vaut que pour `msgVu = true`. Ajouter `msgVu true` à l'entrée. |
+| NR-3 | remarque | §7 T-17 ; T-2, T-3, T-6, T-8, T-16 | La ligne T-17 « supprimé » reste dans le tableau : un test de chaînes sur « tous les textes de §7 » (E20) ou « aucun texte ne mentionne la grossesse » la lira ; l'exclure ou la retirer. T-8 (confirmation de « quand je peux ») et T-16 n'ont pas de règle qui les cite par id (SM-4 / SM-15) : ajouter le renvoi. |
+| NR-4 | remarque | cardio-regles.md, T3 | Le champ partagé `conseilVuLe` (SM-D4) n'est pas mentionné dans cardio-regles.md : `dev` ne le saura pas en lisant le cardio. Ajouter un renvoi. |
+| NR-5 | remarque | progression-et-bilan-v1.md Q10 (l.219) | « Relève de schedule-adaptation.md, non traité ici » : pointeur périmé (fichier remplacé ; l'échelon -1 de reprise est dans SM-12). |
+| RC-7 | à corriger (décision utilisateur) | CLAUDE.md règle 21, Q30, §9 décision (1) | Réponse de l'utilisateur attendue (limite 0 série ; « décaler par défaut » = proposé en premier). Bloque le codage de SM-4 / SM-9, pas la validation du fichier. |
+| Statuts | rappel | SM-12, K2, K7, section D, §7 | Tous les seuils / pourcentages NON SOURCÉ : validation de l'utilisateur puis contrôle `relecteur` avant tout codage en dur. |
