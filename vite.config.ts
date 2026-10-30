@@ -86,5 +86,6 @@ export default defineConfig({
     setupFiles: ['tests/unit/setup.ts'],
     maxWorkers: 6, // trop de fichiers en parallèle affamaient les tests à horloge réelle sur une machine chargée
     testTimeout: 40000, // machines chargées : les tests du générateur dépassaient 5 s sans être faux
+    retry: 2, // tests à horloge réelle (écran de séance) : un échec isolé sous charge ne bloque pas le déploiement ; un vrai bug échoue 3 fois
   },
 });

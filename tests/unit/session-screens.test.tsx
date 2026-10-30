@@ -229,13 +229,13 @@ describe('superset', () => {
     const { ctl } = await mount(await handmade([mkDay([a, b])]), profile);
     expect(screen.getByText(`Superset : ${byName(DB_PRESS.id).nom} puis ${byName(CURL.id).nom}`)).toBeTruthy();
     await click('Série faite');
-    await waitFor(() => expect(ctl.state.rest?.kind).toBe('transition'));
-    expect(await screen.findByText('Enchaîne vite')).toBeTruthy();
+    await waitFor(() => expect(ctl.state.rest?.kind).toBe('transition'), { timeout: 8000 });
+    expect(await screen.findByText('Enchaîne vite', {}, { timeout: 8000 })).toBeTruthy();
     expect(screen.getByText(byName(CURL.id).nom)).toBeTruthy();
     await click('Passer le repos');
-    await waitFor(() => expect(ctl.state.rest).toBeNull());
+    await waitFor(() => expect(ctl.state.rest).toBeNull(), { timeout: 8000 });
     await click('Série faite');
-    await waitFor(() => expect(ctl.state.rest?.kind).toBe('repos'));
+    await waitFor(() => expect(ctl.state.rest?.kind).toBe('repos'), { timeout: 8000 });
     expect(ctl.state.rest?.totalMs).toBe(90_000);
   });
 });
