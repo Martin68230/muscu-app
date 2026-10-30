@@ -230,7 +230,7 @@ describe('superset', () => {
     expect(screen.getByText(`Superset : ${byName(DB_PRESS.id).nom} puis ${byName(CURL.id).nom}`)).toBeTruthy();
     await click('Série faite');
     await waitFor(() => expect(ctl.state.rest?.kind).toBe('transition'));
-    expect(screen.getByText('Enchaîne vite')).toBeTruthy();
+    expect(await screen.findByText('Enchaîne vite')).toBeTruthy();
     expect(screen.getByText(byName(CURL.id).nom)).toBeTruthy();
     await click('Passer le repos');
     await waitFor(() => expect(ctl.state.rest).toBeNull());
