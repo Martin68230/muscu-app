@@ -4,6 +4,9 @@ name: Déploiement
 on:
   push:
     branches: [main]
+    # Notes de projet seules : pas de redéploiement. knowledge/ n'est PAS ignoré (fiches.json en est généré).
+    paths-ignore:
+      - 'docs/**'
   workflow_dispatch:
 
 permissions:
