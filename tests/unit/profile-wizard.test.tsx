@@ -30,9 +30,10 @@ const click = async (name: string | RegExp) => {
 const stored = async () => (await list('profile'))[0];
 
 describe('règles du parcours', () => {
-  it('2 et 3 jours gérés ; 1 et 4 à 6 : message « prochaine version »', () => {
-    expect([1, 2, 3, 4, 5, 6].map(isSupportedDays)).toEqual([false, true, true, false, false, false]);
-    for (const d of [1, 4, 5, 6]) expect(unsupportedDaysMessage(d)).toMatch(/prochaine version/);
+  // D25 (structure-programmes.md §2.3) : 1 à 6 jours sont générés ; hors de 1-6, message clair.
+  it('1 à 6 jours gérés (D25) ; 0 ou 7 : message « entre 1 et 6 jours »', () => {
+    expect([0, 1, 2, 3, 4, 5, 6, 7].map(isSupportedDays)).toEqual([false, true, true, true, true, true, true, false]);
+    expect(unsupportedDaysMessage(7)).toMatch(/entre 1 et 6 jours/);
   });
   it('jours libres suffisants', () => {
     expect(freeDaysEnough(3, [0, 1, 2, 3])).toBe(true);
@@ -51,12 +52,14 @@ describe('parcours en cartes', () => {
     expect((screen.getByRole('button', { name: 'Suivant' }) as HTMLButtonElement).disabled).toBe(false);
   });
 
-  it("1 jour : le message s'affiche et rien de faux n'est proposé", async () => {
+  // D25 : 1 jour est généré, avec l'avertissement STR-REP-1 ; 4 jours ne montre plus « prochaine version ».
+  it("1 jour : l'avertissement STR-REP-1 s'affiche ; 4 jours : aucun message « prochaine version »", async () => {
     render(<Harness initial={await freshProfile()} />);
+    await click('1');
+    expect(await screen.findByText(/Une séance par semaine, c'est mieux que rien/)).toBeTruthy();
     await click('4');
-    expect(await screen.findByText(/prochaine version/)).toBeTruthy();
-    await click('2');
-    await waitFor(() => expect(screen.queryByText(/prochaine version/)).toBeNull());
+    await waitFor(() => expect(screen.queryByText(/Une séance par semaine/)).toBeNull());
+    expect(screen.queryByText(/prochaine version/)).toBeNull();
   });
 
   it('parcours complet, retour en arrière, enregistrement à chaque carte, fin du parcours', async () => {
@@ -134,13 +137,14 @@ describe('Accueil', () => {
     fireEvent.click(screen.getByRole('button', { name: 'Créer mon programme' }));
     expect(started).toBe(true);
   });
-  it('profil terminé avec 4 jours : message du moteur, bouton « Modifier mes jours », pas de programme', async () => {
+  // D25 : 4 jours = haut / bas (structure-programmes.md §2.3) ; plus de message « prochaine version ».
+  it('profil terminé avec 4 jours : programme haut / bas proposé (D25)', async () => {
     setFichesForTests(FICHES as unknown as Fiche[]);
     const p0 = await freshProfile();
     const p = await update('profile', p0.id, { daysPerWeek: 4, level: 'debutant', sessionDurationMin: 45, profileCompletedAt: '2026-10-23T10:00:00.000Z' });
     render(<Home profile={p} onStart={() => {}} onEditStep={() => {}} onResume={() => {}} onOpenSession={() => {}} />);
-    await waitFor(() => expect(screen.getByText(/Ce rythme arrive dans une prochaine version/)).toBeTruthy());
-    expect(screen.getByRole('button', { name: 'Modifier mes jours' })).toBeTruthy();
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Voir la séance' })).toBeTruthy(), { timeout: 20_000 });
+    expect(screen.queryByText(/prochaine version/)).toBeNull();
     expect(screen.queryByRole('button', { name: 'Créer mon programme' })).toBeNull();
-  });
+  }, 30_000);
 });

@@ -507,3 +507,18 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .missed-days .btn + .btn { margin-top: 0; }
 .preview-links { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 12px; margin: 8px 0; }
 .preview-links .btn + .btn { margin-top: 0; }
+
+/* Option « Gagner du temps » : interrupteur (zone tactile >= 44 px, texte 16 px). */
+.gain { margin: 4px 0 12px; }
+.gain p { margin: 4px 0; }
+.switch-row {
+  display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 52px;
+  padding: 8px 0; background: none; border: 0; color: inherit; font: inherit; font-size: 16px; text-align: left; touch-action: manipulation;
+}
+.switch-row:disabled { opacity: 0.55; }
+.switch-label { flex: 1; font-weight: 600; }
+.switch { flex: none; position: relative; width: 52px; height: 32px; border-radius: 16px; background: var(--surface-2); border: 1px solid var(--line); }
+.switch-knob { position: absolute; top: 3px; left: 3px; width: 24px; height: 24px; border-radius: 50%; background: var(--text-dim); transition: left 0.15s; }
+.switch-row[aria-checked='true'] .switch { background: var(--accent); border-color: var(--accent); }
+.switch-row[aria-checked='true'] .switch-knob { left: 23px; background: var(--accent-text); }
+.light-days { margin-top: 8px; }

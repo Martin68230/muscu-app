@@ -55,6 +55,23 @@ export function mobilityWarmup(ctx: Ctx, hasHinge: boolean): WarmupItem[] {
   return out;
 }
 
+/**
+ * D25 (STR-REP-12) : mobilité d'un jour léger : jusqu'à `max` fiches des listes de mobilité (jambes, haut du corps, charnière),
+ * chacune passée par les lignes de zone et de grossesse de la fiche (warmupVariant : retirée si la case l'exige). `secEach` vient de
+ * LIGHT_DAY (config). Jamais de fiche `cou` hors zone gênée (C2) : la fiche douce du cou n'arrive qu'avec une gêne du cou 1-2.
+ */
+export function lightMobility(ctx: Ctx, max: number, secEach: number): WarmupItem[] {
+  const out: WarmupItem[] = [];
+  const ids = [...new Set([...WARMUP.mobilityLegs, ...WARMUP.mobilityUpper, ...WARMUP.mobilityHinge])];
+  const withNeck = (ctx.neckLevel === 1 || ctx.neckLevel === 2) && !ctx.neckShock ? [...ids, ...WARMUP.neckSoft] : ids;
+  for (const id of withNeck) {
+    if (out.length >= max) break;
+    const it = item(id, ctx, secEach);
+    if (it) out.push(it);
+  }
+  return out;
+}
+
 export function cooldown(ctx: Ctx): WarmupItem | null {
   for (const id of WARMUP.cooldown) {
     const it = item(id, ctx, 0);

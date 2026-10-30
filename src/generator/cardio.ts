@@ -3,7 +3,7 @@
 // Choix prudents tant que l'utilisateur n'a pas décidé (docs/QUESTIONS.md Q5-Q10) : aucun saut, corde, course, cardio dehors,
 // fiche machine ni intervalle soutenu ; effort modéré seulement.
 import type { Level } from '../data/model';
-import { CARDIO } from './config';
+import { CARDIO, CARDIO_V2 } from './config';
 import { levelIdx, type Ctx } from './context';
 import { CARDIO_TEXT } from './messages';
 import { warmupVariant } from './safety';
@@ -17,6 +17,35 @@ export function cardioRoleOf(goals: GeneratorInput['goals']): CardioRole {
   if (!sorted.length) return null;
   if (sorted[0].goalKey === CARDIO.goalKey) return 'principal';
   return sorted.slice(1).some((g) => g.goalKey === CARDIO.goalKey) ? 'secondaire' : null;
+}
+
+/** §3.7 (d) : rang du cardio dans les objectifs classés (1, 2, 3…), ou null s'il est absent. */
+export function cardioRankOf(goals: GeneratorInput['goals']): number | null {
+  const sorted = [...(goals ?? [])].sort((a, b) => a.rank - b.rank);
+  const i = sorted.findIndex((g) => g.goalKey === CARDIO.goalKey);
+  return i < 0 ? null : i + 1;
+}
+
+/** §3.7 (d) : blocs par semaine en cardio secondaire (rang 2 : 2 ; rang 3 ou plus : 1). */
+export const blocksForRank = (rank: number): number => CARDIO_V2.blocksByRank[Math.min(rank, 3)] ?? 1;
+
+/**
+ * §3.4 (k) : séance « à jambes lourdes » : un exercice en `jambes_genou` ou `charniere`, ou un exercice de jambes dont la variante porte
+ * un tag de charge externe (l'élastique et le poids du corps ne comptent pas). Exercice illisible (tags ou schéma absents) : lourd.
+ */
+export function isHeavyLegsSession(exercises: readonly { slot: string; schema?: string; tags?: readonly string[] }[]): boolean {
+  return exercises.some((e) => {
+    if (CARDIO_V2.heavyLegSlots.includes(e.slot)) return true;
+    const leg = e.slot.startsWith('jambes') || (!!e.schema && CARDIO_V2.legSchemas.includes(e.schema));
+    if (!leg) return false;
+    if (!e.tags || !e.schema) return true;
+    return e.tags.some((t) => CARDIO_V2.heavyLegTags.includes(t));
+  });
+}
+/** §3.4 (g) : poids « jambes » d'une séance : exercices de jambes à charge externe, puis séries de jambes (plus petit = plus léger). */
+export function legLoad(exercises: readonly { slot: string; schema?: string; tags?: readonly string[]; sets: number }[]): [number, number] {
+  const legs = exercises.filter((e) => e.slot.startsWith('jambes') || e.slot === 'charniere' || (!!e.schema && CARDIO_V2.legSchemas.includes(e.schema)));
+  return [legs.filter((e) => !e.tags || e.tags.some((t) => CARDIO_V2.heavyLegTags.includes(t))).length, legs.reduce((a, e) => a + e.sets, 0)];
 }
 
 /** Niveau qui fixe les durées : grossesse / post-partum = durées du débutant (9bis Q4d ; réserve n° 10 du recontrôle relecteur). */
@@ -33,8 +62,10 @@ export interface CardioChoice {
  * blanche), zones retirées par la règle cardio, puis la fiche elle-même (statut, matériel du profil, cases garder / adapter /
  * retirer des zones et de la ligne Grossesse, via warmupVariant). Jamais une variante hors profil ; null si rien ne convient.
  */
-export function chooseCardio(ctx: Ctx): CardioChoice | null {
+export function chooseCardio(ctx: Ctx, easy = false): CardioChoice | null {
   for (const t of CARDIO.types) {
+    // §3.7 (a), STR-REP-7 (avis `kine`) : bloc « facile » = marche (plate) seulement (aucune fiche de vélo assis à ce jour).
+    if (easy && !CARDIO_V2.easyVariants.includes(t.variantId)) continue;
     if (levelIdx(t.minLevel) > ctx.levelI) continue;
     if (ctx.pregnant && ctx.postPartum && !t.postPartum) continue;
     if (ctx.pregnant && !ctx.postPartum && !t.grossesse) continue;
@@ -69,16 +100,25 @@ export function weekPlan(startMin: number, capMin: number, floorMin: number, wee
   return out;
 }
 
-export function cardioItem(kind: CardioItem['kind'], choice: CardioChoice, startMin: number, capMin: number, weeks: number, ctx: Ctx): CardioItem {
-  const weekMin = weekPlan(startMin, capMin, CARDIO.blockMinMin, weeks, !ctx.pregnant);
+export function cardioItem(
+  kind: CardioItem['kind'], choice: CardioChoice, startMin: number, capMin: number, weeks: number, ctx: Ctx,
+  o: { easy?: boolean; flat?: boolean; fromWeek?: number } = {},
+): CardioItem {
+  // §3.4 (f) rampe du débutant : aucune hausse de durée pendant le premier bloc de 4 semaines (lecture la plus prudente) ; un bloc qui
+  // n'existe qu'à partir de la semaine 3 vaut 0 avant.
+  let weekMin = weekPlan(startMin, capMin, CARDIO.blockMinMin, weeks, !ctx.pregnant && !o.flat);
+  if (o.fromWeek) weekMin = weekMin.map((m, i) => (i + 1 < o.fromWeek! ? 0 : m));
+  const first = weekMin.find((m) => m > 0) ?? weekMin[0];
   return {
     kind,
     ...choice,
-    minutes: weekMin[0],
+    minutes: first,
     weekMin,
     capMin,
-    intensity: 'moderee',
+    intensity: o.easy ? 'facile' : 'moderee',
     note: CARDIO_TEXT.T7,
+    slowEndMin: CARDIO_V2.slowEndMin,
+    ...(o.fromWeek ? { fromWeek: o.fromWeek } : {}),
   };
 }
 
@@ -90,9 +130,9 @@ export function dedicatedMinutes(ctx: Ctx, dMin: number): { start: number; cap: 
 }
 
 /** Plafond d'un bloc (§3.4) : niveau (grossesse : débutant, sans progression), temps restant, 25 % en secondaire. */
-export function blockCap(ctx: Ctx, role: 'principal' | 'secondaire', muscuSec: number, dSec: number): number {
+export function blockCap(ctx: Ctx, role: 'principal' | 'secondaire', muscuSec: number, dSec: number, easyCap = false): number {
   const lvl = cardioLevel(ctx);
-  const byLevel = ctx.pregnant ? CARDIO.blockStartMin : CARDIO.blockMaxMin[lvl];
+  const byLevel = Math.min(ctx.pregnant ? CARDIO.blockStartMin : CARDIO.blockMaxMin[lvl], easyCap ? CARDIO_V2.easyMaxMin : Infinity);
   const left = Math.floor((dSec - muscuSec) / 60);
   const share = role === 'secondaire' ? Math.floor((muscuSec / 60) * CARDIO.secondaryMaxShare) : Infinity;
   return Math.min(byLevel, left, share);

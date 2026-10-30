@@ -71,10 +71,11 @@ describe('Cardio principal : séances dédiées selon N (cardio-regles.md §3.2)
     expect(chooseCardioDays([1, 2, 4, 5], [0, 3], 2)).toEqual([6]);
   });
 
-  it('cardio principal : 1 jour ou 7 jours -> V-MSG-HORS ; cardio secondaire à 4 jours -> V-MSG-HORS comme avant', () => {
+  // D25 : le cardio secondaire suit la répartition par N (STR-REP-7) : 4 jours = haut / bas, plus « HORS ».
+  it('cardio principal : 1 jour ou 7 jours -> V-MSG-HORS ; cardio secondaire à 4 jours : haut / bas (D25, STR-REP-7)', () => {
     expect(run({ days: 1 }, ['cardio'])).toMatchObject({ ok: false, code: 'HORS' });
     expect(run({ days: 7 }, ['cardio'])).toMatchObject({ ok: false, code: 'HORS' });
-    expect(run({ days: 4 }, ['muscle', 'cardio'])).toMatchObject({ ok: false, code: 'HORS' });
+    expect(ok(run({ days: 4 }, ['muscle', 'cardio'])).split).toBe('haut_bas');
   });
 
   it('cardio principal : musculation corps entier en famille sante (goal-resolver.md : 2 séances de renfo, volume modéré)', () => {
@@ -101,7 +102,8 @@ describe('Durées (cardio-regles.md §3.3, §3.4, §3.5)', () => {
       for (const b of blocksOf(p)) {
         expect(b.minutes).toBe(CARDIO.blockStartMin);
         expect(b.capMin).toBeLessThanOrEqual(CARDIO.blockMaxMin[level]);
-        expect(Math.min(...b.weekMin)).toBeGreaterThanOrEqual(CARDIO.blockMinMin);
+        // D25 (§3.4 f) : le 2e bloc d'un débutant n'existe qu'à partir de la semaine 3 (0 avant).
+        expect(Math.min(...b.weekMin.filter((_, i) => !b.fromWeek || i + 1 >= b.fromWeek))).toBeGreaterThanOrEqual(CARDIO.blockMinMin);
       }
     }
   });
@@ -207,7 +209,8 @@ describe('Type de cardio selon le lieu, le matériel et la santé (§4, §5)', (
               const v = FICHES.flatMap((f) => f.variantes).find((x) => x.id === c.variantId)!;
               expect(v.tags).not.toContain('corde_a_sauter');
               expect(v.echelon).toBe(1);
-              expect(c.intensity).toBe('moderee');
+              // §3.4 (g), §3.7 (a) : après jambes lourdes, bloc « facile » (marche) ; sinon modéré ; jamais soutenu.
+              expect(['moderee', 'facile']).toContain(c.intensity);
             }
           }
   });

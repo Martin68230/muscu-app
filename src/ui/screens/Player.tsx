@@ -8,7 +8,7 @@ import type { SetInput } from '../../session/engine';
 import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression } from '../../session/history';
 import {
   C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
-  PAIN_HELP_TEXT, PAIN_STOP_TEXT, PAIR_FIRST_SESSION_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
+  PAIN_HELP_TEXT, PAIN_STOP_TEXT, PAIR_FIRST_SESSION_TEXT, CARDIO_PLAY_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
 } from '../../session/messages';
 import type { PairPain } from '../../session/engine';
 import { loadGeneratorInput } from '../../session/program';
@@ -579,7 +579,13 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           </div>
         )}
         {ex.unit === 'sec' && ex.role !== 'cardio' && <p class="dim small">Tiens la position, puis touche « Série faite ».</p>}
-        {ex.role === 'cardio' && <p class="dim small">Effort modéré (5-6 sur 10). {CARDIO_TEXT.T7} Touche « Série faite » à la fin.</p>}
+        {ex.role === 'cardio' && (
+          <p class="dim small">
+            {ex.intensity === 'facile' ? CARDIO_PLAY_TEXT.easy : CARDIO_PLAY_TEXT.moderate} {CARDIO_TEXT.T7}
+            {ex.slowEndMin ? ` ${CARDIO_PLAY_TEXT.slowEnd(ex.slowEndMin)}` : ''}
+            {ex.slowEndMin && data.pregnant ? ` ${CARDIO_PLAY_TEXT.pregnancy}` : ''} Touche « Série faite » à la fin.
+          </p>
+        )}
         {fiche && <HowTo steps={fiche.consignes} all={all} />}
       </div>
       <div class="player-foot">

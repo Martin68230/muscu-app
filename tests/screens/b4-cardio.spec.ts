@@ -34,15 +34,16 @@ test('B4 : aperçu d\'une séance avec bloc de cardio', async ({ page }, info) =
   await page.getByRole('button', { name: "Aller à l'accueil" }).click();
   await expect(page.getByRole('button', { name: 'Voir la séance' })).toBeVisible({ timeout: 20_000 });
   await page.getByRole('button', { name: 'Voir la séance' }).click();
-  await expect(page.getByText('Les exercices')).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Les exercices' })).toBeVisible();
   await expect(page.getByText(/chacune suivie de 10 min de cardio/)).toBeVisible();
   await expect(page.getByText(/Le cardio fait travailler ton cœur/)).toBeVisible();
   await expect(page.getByText(/Arrête la séance si tu ressens/)).toBeVisible();
-  await expect(page.getByText('10 min · effort modéré (5-6 sur 10)')).toBeVisible();
+  // D25 (cardio-regles.md §3.4 g-k) : séance corps entier = jambes lourdes -> bloc « facile » ; STR-SEA-4 : 2 dernières minutes lentes.
+  await expect(page.getByText('10 min · effort facile, 2 dernières min lentes').first()).toBeVisible();
   const problems = await page.evaluate(() => (document.documentElement.scrollWidth > window.innerWidth + 1 ? ['défilement horizontal'] : []));
   expect(problems).toEqual([]);
   await page.screenshot({ path: `screenshots/${project}/b4-apercu-cardio.png`, fullPage: true });
-  await page.getByText('10 min · effort modéré (5-6 sur 10)').scrollIntoViewIfNeeded();
+  await page.getByText('10 min · effort facile, 2 dernières min lentes').first().scrollIntoViewIfNeeded();
   await page.screenshot({ path: `screenshots/${project}/b4-apercu-cardio-bloc.png` });
   expect(errors).toEqual([]);
 });

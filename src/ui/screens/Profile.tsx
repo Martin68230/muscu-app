@@ -11,6 +11,7 @@ import {
 import type { MainGoalKey } from '../../data/model';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
+import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
 import { checkForUpdate, clearCachesAndReload, UPDATE_TEXT } from '../update';
 
@@ -150,6 +151,14 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
         ))}
       </div>
       <button class="btn" onClick={() => onEditStep()}>Refaire le parcours</button>
+      <h2>Mes séances</h2>
+      <div class="card">
+        <GainToggle
+          on={!!profile.gagnerDuTemps}
+          disabledReason={gainDisabledReason(profile)}
+          onToggle={async (on) => onChange(await update('profile', profile.id, { gagnerDuTemps: on }))}
+        />
+      </div>
 
       <h2>Affichage</h2>
       <div class="segmented" role="group" aria-label="Thème">

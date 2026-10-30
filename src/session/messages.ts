@@ -109,3 +109,30 @@ export const ECHELON_TEXT = {
   switchedDown: (nom: string): string => `Pour les séries qui restent : passe à « ${nom} » (un peu plus facile).`,
   nextTime: (nom: string): string => `${nom} : on te proposera la version suivante à la prochaine séance.`,
 } as const;
+
+/**
+ * Option « Gagner du temps » (knowledge/core-et-supersets.md §12) : libellé, explication en 2 lignes et mention honnête repris mot pour
+ * mot ; aucun pourcentage de temps gagné. Les phrases « grisé » sont une rédaction de `dev` (à relire par `coach`).
+ */
+export const GAIN_TEXT = {
+  label: 'Gagner du temps (exercices enchaînés par deux)',
+  explain:
+    "Tu fais deux exercices d'affilée, un pour pousser puis un pour tirer, puis tu te reposes. Le travail reste le même, la séance est plus courte, mais c'est plus fatigant : prévois un peu plus de repos entre deux séances.",
+  honest: 'Même volume de travail, séance plus courte, mais plus fatigant.',
+  offBeginner: 'Pas pour débuter : les exercices se font un par un.',
+  offPregnancy: 'Pendant la grossesse ou après un accouchement, les exercices se font un par un.',
+  noPairToday: "Aucun exercice n'est enchaîné dans cette séance.",
+} as const;
+
+/**
+ * Cardio par objectif : bloc « facile » (cardio-regles.md §3.4 g, §3.7 a : « on parle en phrases entières ») et fin lente de tout bloc
+ * (STR-SEA-4, `kine` : 2 dernières minutes en allure lente ; ne pas s'asseoir ou s'allonger d'un coup ; arrêter si la tête tourne ;
+ * grossesse : ne pas rester debout immobile longtemps, G4). Rédaction de `dev` à partir des règles (à relire par `kine`).
+ */
+export const CARDIO_PLAY_TEXT = {
+  easy: 'Effort facile : tu parles en phrases entières.',
+  moderate: 'Effort modéré (5-6 sur 10).',
+  slowEnd: (min: number) =>
+    `Les ${min} dernières minutes : ralentis (marche lente ou pédalage très doux). Ensuite, ne t'assieds pas et ne t'allonge pas d'un coup ; si la tête tourne, arrête la séance.`,
+  pregnancy: 'Après le cardio, ne reste pas debout immobile longtemps.',
+} as const;

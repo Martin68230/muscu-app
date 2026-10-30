@@ -8,6 +8,9 @@ import { generateProgram } from '../../src/generator';
 import { hashString } from '../../src/session/program';
 import { mk, type MkOpts } from './generator-helpers';
 
+// Référence régénérée le 30/10/2026 pour D25 (docs/D25-bilan.md) : seuls 6 cas changent, tous voulus : grossesse débutante (2 séances +
+// jours légers, STR-REP-11), dos 2 et épaule 2 (aucune série ajoutée, STR-REP-14 a), épaule 3 (plafond hebdomadaire STR-REP-3), 4 jours
+// (haut / bas au lieu de « HORS »). Les programmes corps entier à 2-3 jours sans ces réglages sont identiques (T-D25-21).
 // Référence régénérée le 30/10/2026 pour D26 (core : plancher, familles, CORE-ORD-4 ; supersets SUP-0 à SUP-9) : changements voulus, docs/D26-bilan.md.
 const FILE = 'tests/fixtures/generator-baseline.json';
 

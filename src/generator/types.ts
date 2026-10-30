@@ -3,7 +3,7 @@
 import type {
   EquipmentProfile, ExerciseRole, ExerciseUnit, Injury, Level, PlannedExercise, PregnancyStatus, TrainingPlace, WarmupSet,
 } from '../data/model';
-import type { CoreFamily, Family, GG } from './config';
+import type { CoreFamily, Family, GG, SessionType } from './config';
 
 // ----- Fiches (format de public/data/fiches.json, produit par tools/build-fiches.mjs) -----
 export interface SafetyCase {
@@ -94,7 +94,9 @@ export type MessageId =
   | 'V-MSG-GROS-DUREE' | 'V-MSG-GROS-AVIS' | 'V-MSG-TRONC' | 'V-MSG-EPAULES' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ'
   // Cardio (B4, knowledge/cardio-regles.md) : textes de `kine` T0-T5 et messages du générateur.
   | 'T0' | 'T1' | 'T1u' | 'T3' | 'T4' | 'T5' | 'V-MSG-CARDIO-OMS' | 'V-MSG-CARDIO-TEMPS' | 'V-MSG-CARDIO-IMPOS' | 'V-MSG-CARDIO-MACHINE'
-  | 'V-MSG-CARDIO-JOURS';
+  | 'V-MSG-CARDIO-JOURS'
+  // D25 (structure-programmes.md) : 1 jour (STR-REP-1), jours légers (STR-REP-6), grossesse (STR-REP-11), séance unique courte.
+  | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE';
 export interface GenMessage {
   id: MessageId;
   text: string;
@@ -107,7 +109,11 @@ export interface GenMessage {
 }
 
 export type SlotKey =
-  | 'jambes_genou' | 'poussee_1' | 'tirage_1' | 'charniere' | 'tronc' | 'poussee_2' | 'tirage_2' | 'jambes_2' | 'fonctionnel';
+  | 'jambes_genou' | 'poussee_1' | 'tirage_1' | 'charniere' | 'tronc' | 'poussee_2' | 'tirage_2' | 'jambes_2' | 'fonctionnel'
+  // D25 (STR-REP-3, E-2) : emplacements de volume des séances haut / bas / push / pull / legs.
+  | 'poussee_3' | 'poussee_4' | 'tirage_3' | 'tirage_4' | 'jambes_3' | 'jambes_4';
+/** D25 : séance de la semaine : 'A' | 'B' | 'C' (corps entier) ou '<TYPE>-<gabarit>' (HAUT-A, BAS-B, PUSH-A…). */
+export type SessionLabel = string;
 export type Tier = 'a' | 'b' | 'c' | 'd' | 'e';
 
 export interface GenExercise extends PlannedExercise {
@@ -163,9 +169,13 @@ export interface CardioItem {
   weekMin: number[];
   /** Plafond retenu (niveau, temps disponible, 25 % en secondaire). */
   capMin: number;
-  intensity: 'moderee';
+  intensity: 'moderee' | 'facile';
   /** Repère affiché pendant l'effort (T7 de `kine`). */
   note: string;
+  /** STR-SEA-4 : dernières minutes en allure lente, comprises dans la durée. */
+  slowEndMin: number;
+  /** §3.4 (f) rampe du débutant : bloc présent seulement à partir de cette semaine du programme (absent = dès la semaine 1). */
+  fromWeek?: number;
 }
 export interface GenCardioSession {
   /** Libellé affiché : « Cardio », « Cardio 2 »… */
@@ -175,7 +185,9 @@ export interface GenCardioSession {
   estimatedMin: number;
 }
 export interface GenSession {
-  label: 'A' | 'B' | 'C';
+  label: SessionLabel;
+  /** D25 : type de séance (corps entier, haut, bas, push, pull, legs). */
+  type: SessionType;
   /** 0 = lundi … 6 = dimanche. */
   weekday: number;
   warmup: { general: WarmupItem | null; generalSec: number; mobility: WarmupItem[]; cooldown: WarmupItem | null };
@@ -192,8 +204,18 @@ export interface GenSession {
   /** Durée totale estimée (s) : musculation + bloc de cardio. */
   totalSec?: number;
 }
+/** D25 (STR-REP-6, STR-REP-11, STR-REP-12) : jour léger proposé, jamais exigé (échauffement court + mobilité, sans charge). */
+export interface GenLightDay {
+  weekday: number;
+  generalSec: number;
+  general: WarmupItem | null;
+  mobility: WarmupItem[];
+  estimatedMin: number;
+}
 export interface GenProgram {
-  split: 'corps_entier';
+  split: 'corps_entier' | 'haut_bas' | 'haut_bas_ppl' | 'push_pull_legs';
+  /** D25 : jours légers (débutant ou santé à 5-6 jours, grossesse, séance HAUT/PUSH/PULL trop pauvre). */
+  lightDays: GenLightDay[];
   weeks: number;
   level: Level;
   family: Family;

@@ -2,8 +2,12 @@ import { useEffect, useState } from 'preact/hooks';
 import type { Program, ProgramDay, Profile } from '../../data/model';
 import { FICHES_ERROR, loadFiches, type Fiche } from '../../data/fiches';
 import { list } from '../../data/repo';
-import { ECHELON_TEXT } from '../../session/messages';
-import { ensureActiveProgram, getNextSession, loadGeneratorInput, type NextSession } from '../../session/program';
+import { ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT } from '../../session/messages';
+import { ensureActiveProgram, getNextSession, loadGeneratorInput, programWeek, withProgramWeek, type NextSession } from '../../session/program';
+import { pairsForSession } from '../../session/engine';
+import { update } from '../../data/repo';
+import { WEEKDAY_NAMES } from '../../generator/messages';
+import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
 import { SessionError } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
@@ -29,7 +33,11 @@ export function orderedMessages(program: Program): string[] {
 }
 
 /** Messages de sécurité (douleur, grossesse, blessures, cardio) : toujours visibles. Les autres vont derrière « Pourquoi ? ». */
-export const SAFETY_MESSAGE_IDS = ['V-MSG-GROS-AVIS', 'V-MSG-GROS-DUREE', 'V-MSG-ZONE', 'V-MSG-PRO', 'R3', 'T0', 'T1', 'T1u', 'T3', 'T4', 'T5'];
+export const SAFETY_MESSAGE_IDS = [
+  'V-MSG-GROS-AVIS', 'V-MSG-GROS-DUREE', 'V-MSG-ZONE', 'V-MSG-PRO', 'R3', 'T0', 'T1', 'T1u', 'T3', 'T4', 'T5',
+  // D25 : avertissement « une séance par semaine » affiché avant (STR-REP-1), limites de séances de force (STR-REP-6, 11).
+  'V-MSG-UN-JOUR', 'V-MSG-UN-JOUR-DUREE', 'V-MSG-LEGERS', 'V-MSG-GROS-SEANCES',
+];
 
 /** Sépare les messages du programme : sécurité (visibles) et informations (repliées). L'avis grossesse passe en premier. */
 export function splitMessages(program: Program): { safety: string[]; info: string[] } {
@@ -60,6 +68,10 @@ export interface PreviewViewProps {
   /** SM-6 : « Sauter cette séance » et « Je ne me sens pas bien » depuis l'aperçu. */
   onSkip?: () => Promise<void>;
   onUnwell?: () => Promise<void>;
+  /** Option « Gagner du temps » (core-et-supersets.md §12) ; `firstSession` : paires différées par l'étalonnage (SUP-2 point 7). */
+  gain?: { on: boolean; disabledReason: string | null; onToggle: (on: boolean) => void; busy?: boolean; firstSession: boolean };
+  /** Semaine du programme (rampe du cardio du débutant) ; absente = 1. */
+  week?: number;
 }
 
 /** Cartes de progression de l'aperçu : « Prêt pour l'échelon suivant : <nom> ? » Accepter / Plus tard. */
@@ -92,8 +104,10 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
 }
 
 /** Contenu de l'aperçu (sans accès à la base : testable). */
-export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell }: PreviewViewProps) {
-  const day = repriseDay ?? next.day;
+export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1 }: PreviewViewProps) {
+  const day = withProgramWeek(repriseDay ?? next.day, week);
+  const hasPair = day.exercises.some((e) => !!e.supersetGroup);
+  const light = program.lightDays ?? [];
   const split = splitMessages(program);
   // T-19 = T3 du cardio : jamais deux fois le même texte sur l'écran.
   const safety = split.safety.filter((t) => !repriseTexts.includes(t));
@@ -118,6 +132,13 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
       <p class="dim">
         {day.estimatedMin ? `Environ ${day.estimatedMin} min` : 'Durée estimée : 45 min environ'} · {day.exercises.length} exercices
       </p>
+      {gain && (
+        <>
+          <GainToggle on={gain.on} disabledReason={gain.disabledReason} onToggle={gain.onToggle} busy={gain.busy} />
+          {gain.on && !gain.disabledReason && hasPair && gain.firstSession && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
+          {gain.on && !gain.disabledReason && !hasPair && <p class="dim small">{GAIN_TEXT.noPairToday}</p>}
+        </>
+      )}
       {repriseTexts.length > 0 && (
         <section class="notice" aria-label="Reprise">
           {repriseTexts.map((t, i) => <p key={i}>{t}</p>)}
@@ -149,6 +170,11 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
               {info.map((t, i) => (
                 <p class="dim" key={`i${i}`}>{t}</p>
               ))}
+              {light.length > 0 && (
+                <p class="dim light-days">
+                  Jours légers, facultatifs ({light.map((d) => WEEKDAY_NAMES[d.weekday]).join(', ')}) : échauffement court et mobilité, {light[0].estimatedMin} min environ, sans charge.
+                </p>
+              )}
             </details>
           )}
         </section>
@@ -182,7 +208,10 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
   );
 }
 
-type Loaded = { program: Program; next: NextSession; fiches: Fiche[]; repriseTexts: string[]; repriseDay: ProgramDay | null; repriseActive: boolean };
+type Loaded = {
+  program: Program; next: NextSession; fiches: Fiche[]; repriseTexts: string[]; repriseDay: ProgramDay | null; repriseActive: boolean;
+  gainOn: boolean; gainReason: string | null; firstSession: boolean;
+};
 
 /** #/seance : aperçu de la séance du jour. L'appui sur « Commencer » débloque le son et demande l'écran allumé. */
 export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin: (program: Program, dayIndex: number, fiches: Fiche[]) => Promise<void> }) {
@@ -200,15 +229,23 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     if (!next) return setEmpty(true);
     // Reprise douce : calcul de R-DEM pour l'affichage seulement (rien n'est enregistré avant « Commencer »).
     let reprise: { texts: string[]; day: ProgramDay | null; active: boolean } = { texts: [], day: null, active: false };
+    let me: Profile = profile;
+    let firstSession = false;
     try {
       const [profiles, programs, allSessions, allSets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
-      const pdata = await loadPlayerData(fiches, profiles[0] ?? profile).catch(() => null);
+      me = profiles[0] ?? profile;
+      const pdata = await loadPlayerData(fiches, me).catch(() => null);
       const plan = planReprise(next.day, { reprise: repriseOf(profiles[0]), sessions: allSessions, programs, sets: allSets, now: new Date(), ctx: pdata?.ctx ?? null });
       if (plan) reprise = { texts: plan.start.texts, day: plan.state.actif ? plan.day : null, active: plan.state.actif };
+      // SUP-2 point 7 : première séance d'un exercice de la paire -> exercices faits un par un (texte de la séance 1).
+      if (pdata) firstSession = pairsForSession(reprise.day ?? next.day, pdata.ctx).exercises.some((e) => e.pairDeferred === 'etalonnage');
     } catch {
       /* sans reprise : la séance reste utilisable */
     }
-    setData({ program: res.program, next, fiches, repriseTexts: reprise.texts, repriseDay: reprise.day, repriseActive: reprise.active });
+    setData({
+      program: res.program, next, fiches, repriseTexts: reprise.texts, repriseDay: reprise.day, repriseActive: reprise.active,
+      gainOn: !!me.gagnerDuTemps, gainReason: gainDisabledReason(me), firstSession,
+    });
     if (reprise.active) return setProposals(null); // V-PROG-E8 : reprise douce active, aucune proposition de montée
     try {
       const loaded = await loadGeneratorInput(asGenFiches(fiches));
@@ -244,6 +281,16 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     answerLevel(accepted).then(() => load()).catch(() => setError('Enregistrement impossible. Réessaie.'));
   };
 
+  const [gainBusy, setGainBusy] = useState(false);
+  const toggleGain = (on: boolean) => {
+    // Réglage conservé dans le profil : le programme est régénéré avec l'option (empreinte des entrées).
+    setGainBusy(true);
+    update('profile', profile.id, { gagnerDuTemps: on })
+      .then(() => load())
+      .catch(() => setError('Enregistrement impossible. Réessaie.'))
+      .finally(() => setGainBusy(false));
+  };
+
   const begin = () => {
     if (!data) return;
     // L'appui est un geste de la personne : c'est là que le son et l'écran allumé peuvent être demandés.
@@ -268,6 +315,8 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     <PreviewView
       program={data.program} next={data.next} fiches={data.fiches} error={error} onBegin={begin} proposals={proposals} cancelled={cancelled}
       onAnswer={answer} onAnswerLevel={answerLevelFn} repriseTexts={data.repriseTexts} repriseDay={data.repriseDay}
+      gain={{ on: data.gainOn, disabledReason: data.gainReason, onToggle: toggleGain, busy: gainBusy, firstSession: data.firstSession }}
+      week={programWeek(data.program, Date.now())}
       onSkip={() => skipSession(data.program.id, data.next.dayIndex, 'renonce', null)}
       onUnwell={() => skipSession(data.program.id, data.next.dayIndex, 'pas_bien', null)}
     />

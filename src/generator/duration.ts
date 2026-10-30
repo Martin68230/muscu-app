@@ -2,9 +2,10 @@
 // Fonctions pures sur une forme minimale de séance, utilisables avec des séances construites à la main (T3c, T25).
 import type { ExerciseRole, ExerciseUnit, Level, WarmupSet } from '../data/model';
 import {
-  ACCESSORY_REMOVAL_ORDER, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_ORDER, CORE_SAFE_FAMILIES, CORE_WHEEL_IDS, HEAVY_TAGS_B1, P3_LEG_ALLOWED_TAGS,
+  ACCESSORY_REMOVAL_ORDER_V2, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_ORDER, CORE_SAFE_FAMILIES, CORE_WHEEL_IDS, HEAVY_TAGS_B1, P3_LEG_ALLOWED_TAGS,
   SUPERSET_FORBIDDEN_SCHEMAS, SUPERSET_MIN_REST_SEC, SUPERSET_SLOTS, TIME, WARMUP, type CoreFamily,
 } from './config';
+import { TYPE_NOYAU, typeOf } from './split';
 import type { SlotKey } from './types';
 
 export interface DurExercise {
@@ -33,8 +34,15 @@ export interface DurExercise {
   backLoaded?: boolean;
 }
 export interface DurSession<E extends DurExercise = DurExercise> {
-  label: 'A' | 'B' | 'C';
-  days: 2 | 3;
+  /** 'A' | 'B' | 'C' (corps entier) ou '<TYPE>-<gabarit>' (D25 : HAUT-A, BAS-B…). */
+  label: string;
+  /** Séances de force de la semaine (1 à 6). */
+  days: number;
+  /**
+   * SUP-10 : muscles principaux de la séance de musculation planifiée la veille (jour calendaire précédent) ; absent ou [] = aucune
+   * séance de musculation la veille ; null = inconnu (doute) : aucune paire.
+   */
+  veille?: string[] | null;
   level: Level;
   pregnant: boolean;
   exercises: E[];
@@ -121,6 +129,7 @@ export function pairEligible(e: DurExercise): boolean {
 export function canPair(s: DurSession, id: PairId): boolean {
   if (s.pregnant) return false; // SUP-9
   if (s.level === 'debutant') return false; // SUP-4 : aucun superset pour un débutant
+  if (s.veille === null) return false; // SUP-10 : veille inconnue -> pas de paire (lecture prudente)
   const p = PAIRS.find((x) => x.id === id)!;
   const a = s.exercises.find((e) => e.slot === p.a);
   const b = s.exercises.find((e) => e.slot === p.b);
@@ -128,6 +137,8 @@ export function canPair(s: DurSession, id: PairId): boolean {
   if (!pairEligible(a) || !pairEligible(b)) return false;
   if (LEG_SLOTS.includes(a.slot) && LEG_SLOTS.includes(b.slot)) return false; // SUP-2 point 2
   if (a.musclesPrincipaux.some((m) => b.musclesPrincipaux.includes(m))) return false; // SUP-1 (OK, S-SUP)
+  // SUP-10 : aucun muscle principal de la paire n'est muscle principal d'un exercice de la séance de la veille.
+  if (s.veille && [...a.musclesPrincipaux, ...b.musclesPrincipaux].some((m) => s.veille!.includes(m))) return false;
   if (a.schema === b.schema) return false; // SUP-5
   if (a.coreFamily && b.coreFamily) return false; // SUP-2 points 3 et 4 : core + core, même famille
   const core = a.coreFamily ? a : b.coreFamily ? b : null;
@@ -196,9 +207,14 @@ export function ajusterDuree<E extends DurExercise>(s0: DurSession<E>, dSec: num
   const removedCore: SlotKey[] = [];
   const removedAccessory: SlotKey[] = [];
   const trace = [estimerDuree(s)];
+  const type = typeOf(s.label);
+  // D25 (§1.1) : accessoires par indice décroissant ; le noyau du type n'est jamais retiré (STR-REP-4). Corps entier : ordre existant
+  // (fonctionnel, jambes_2, tirage_2, poussee_2) puis action 6 sur le noyau (CORE_REMOVAL_ORDER ; 1 jour : ligne de 2 jours).
+  const accessories = ACCESSORY_REMOVAL_ORDER_V2.filter((x) => !TYPE_NOYAU[type].includes(x as SlotKey));
+  const coreOrder = type === 'CE' ? (CORE_REMOVAL_ORDER[s.days <= 2 ? 2 : 3][s.label] ?? []) : [];
   const steps: [string, () => boolean][] = [
     ...(['P1', 'P3'] as const).map((id) => [`paire:${id}`, () => formPair(s, id)] as [string, () => boolean]),
-    ...ACCESSORY_REMOVAL_ORDER.map(
+    ...accessories.map(
       (slot) => [`retrait:${slot}`, () => removeSlot(s, slot as SlotKey) && (removedAccessory.push(slot as SlotKey), true)] as [string, () => boolean],
     ),
     [
@@ -253,7 +269,7 @@ export function ajusterDuree<E extends DurExercise>(s0: DurSession<E>, dSec: num
           ],
           ['retrait:tronc', () => removeSlot(s, 'tronc') && (removedCore.push('tronc'), true)],
         ] as [string, () => boolean][])),
-    ...(CORE_REMOVAL_ORDER[s.days][s.label] ?? []).map(
+    ...coreOrder.map(
       (slot) => [`retrait:${slot}`, () => removeSlot(s, slot as SlotKey) && (removedCore.push(slot as SlotKey), true)] as [string, () => boolean],
     ),
   ];

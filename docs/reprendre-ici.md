@@ -154,3 +154,8 @@ Points d'attention pour la mise en œuvre (à arbitrer avec l'utilisateur) : les
 - Rampe du débutant en cardio (1 bloc de 10 min semaines 1-2, puis 2 blocs) : confirmée par l'utilisateur.
 - Décisions par défaut prises (réversibles) : 1 jour/semaine généré avec avertissement ; débutant 5-6 jours = 4 séances de force max + jours légers ; 4 jours = haut / bas seul ; isolation dédiée seulement dès intermédiaire ; fiches de salle P2 après Q10. Trous de fiches : 25 à 30 (P1 8-13, P2 9 machines, P3 5 isolation, P4 core CF4/CF5).
 - À coder ensuite (Opus) : D25 CE/HAUT/BAS ; cardio par objectif (rampe, jambes lourdes par tags) ; option « gagner du temps » ; SUP-10. Puis D28.
+
+## 31/10/2026 : D25 CODÉ (générateur v1.4), cardio par objectif, option « Gagner du temps », SUP-10 — poussé
+- Code : src/generator/split.ts (répartitions 1 à 6 jours), index.ts, config.ts (PENDING_RULES désactivées), src/ui/GainToggle.tsx ; tests tests/unit/d25-structure.test.ts ; bilan docs/D25-bilan.md (liste à vérifier sur iPhone) ; captures tests/screens/d25.spec.ts.
+- Règles D30 rédigées (coach, kiné, relecteur) mais NON CODÉES : sauts (Q5), course (Q6), plafonds (Q7), extérieur (Q8), machines (Q10), isolation du débutant : cardio-regles.md §3.2bis, §5.1 à 5.5, structure-programmes.md STR-ISO, machines-etiquettes.md. 2 décisions de l'utilisateur en attente : (4) sauts et course seulement en séance dédiée (A) ou aussi en musculation / blocs (B) ; (5) force / muscle / perte de gras / sport peuvent-ils recevoir une séance dédiée de cardio ?
+- À faire ensuite : coder D30 après ces 2 décisions (course dehors seulement avec Wake Lock + son débloqué + repli) ; réglages de profil « j'ai accès à une salle » et « je peux sortir dehors » ; D28 ; D23 vague 2 (25 à 30 fiches).

@@ -2,6 +2,7 @@
 import { CORE_NOT_CORE_IDS, MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
+import { templateOf } from './split';
 import type { Fiche, SlotKey, Tier } from './types';
 
 export const SLOT_ORDER: readonly SlotKey[] = [
@@ -10,6 +11,8 @@ export const SLOT_ORDER: readonly SlotKey[] = [
 export const CORE_SLOTS: readonly SlotKey[] = ['jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'tronc'];
 export const PILLAR_SLOTS: readonly SlotKey[] = ['jambes_genou', 'poussee_1'];
 export const isCore = (s: SlotKey) => CORE_SLOTS.includes(s);
+/** Tous les emplacements (corps entier puis emplacements de volume D25), pour les parcours d'exercices. */
+export const ALL_SLOTS: readonly SlotKey[] = [...SLOT_ORDER, 'poussee_3', 'tirage_3', 'jambes_3', 'poussee_4', 'tirage_4', 'jambes_4'];
 
 interface SchemaReq {
   schema: string;
@@ -40,14 +43,18 @@ const other = (s: string): string =>
   ({ squat: 'fente', fente: 'squat', poussee_h: 'poussee_v', poussee_v: 'poussee_h', tirage_h: 'tirage_v', tirage_v: 'tirage_h' })[s] ?? s;
 
 export interface SessionState {
-  label: 'A' | 'B' | 'C';
+  /** Séance : 'A' | 'B' | 'C' (corps entier) ou '<TYPE>-<gabarit>' (D25) ; le gabarit A / B / C décide des plans. */
+  label: string;
   /** Schéma réellement placé par emplacement (pour poussee_2, tirage_2, jambes_2). */
   placedSchema: Partial<Record<SlotKey, string>>;
+  /** D25 (§2.2, chaîne de repli de `jambes_3`) : sans charnière quand elle dépasserait V-PLAF. */
+  noHinge?: boolean;
 }
 
 /** Gabarit A/B/C (V-ROT, NON SOURCÉ, decrit dans config par l'ordre ; ici la structure de §2.2). */
 export function slotDef(slot: SlotKey, st: SessionState): SlotDef {
-  const B = st.label === 'B';
+  const tpl = templateOf(st.label);
+  const B = tpl === 'B';
   switch (slot) {
     case 'jambes_genou': {
       const s = B ? 'fente' : 'squat';
@@ -65,7 +72,7 @@ export function slotDef(slot: SlotKey, st: SessionState): SlotDef {
       return { a: [req('charniere')], b: [], allowB: false, allowSubst: true };
     case 'tronc': {
       // A : gainage ; B : anti_rotation ; C : rotation puis anti_rotation ; si vide : les autres (comptent en entier).
-      const order = st.label === 'A' ? ['gainage', 'anti_rotation', 'rotation'] : B ? ['anti_rotation', 'gainage', 'rotation'] : ['rotation', 'anti_rotation', 'gainage'];
+      const order = tpl === 'A' ? ['gainage', 'anti_rotation', 'rotation'] : B ? ['anti_rotation', 'gainage', 'rotation'] : ['rotation', 'anti_rotation', 'gainage'];
       return { a: order.map(req), b: [], allowB: false, allowSubst: true };
     }
     case 'poussee_2': {
@@ -82,6 +89,22 @@ export function slotDef(slot: SlotKey, st: SessionState): SlotDef {
     }
     case 'fonctionnel':
       return { a: [req('porte'), req('anti_rotation')], b: [], allowB: false, allowSubst: false };
+    // D25 (§2.2, STR-REP-3) : poussee_3 / tirage_3 = même plan que l'emplacement 1, poussee_4 / tirage_4 = même plan que
+    // l'emplacement 2 ; toujours une fiche différente (la même fiche n'occupe jamais deux emplacements d'une séance).
+    case 'poussee_3':
+      return { a: [req(st.placedSchema.poussee_1 ?? (B ? 'poussee_v' : 'poussee_h'))], b: [], allowB: false, allowSubst: true };
+    case 'poussee_4':
+      return { a: [req(st.placedSchema.poussee_2 ?? other(st.placedSchema.poussee_1 ?? (B ? 'poussee_v' : 'poussee_h')))], b: [], allowB: false, allowSubst: true };
+    case 'tirage_3':
+      return { a: [req(st.placedSchema.tirage_1 ?? (B ? 'tirage_v' : 'tirage_h'))], b: [], allowB: false, allowSubst: true };
+    case 'tirage_4':
+      return { a: [req(st.placedSchema.tirage_2 ?? other(st.placedSchema.tirage_1 ?? (B ? 'tirage_v' : 'tirage_h')))], b: [], allowB: false, allowSubst: true };
+    // jambes_3 : un seul exercice, chaîne de repli charnière (si V-PLAF le permet, vérifié à la construction) -> cheville_mollet ->
+    // hanche_laterale ; jambes_4 : cheville_mollet -> hanche_laterale. Aucun substitut (schémas sans muscle exigé).
+    case 'jambes_3':
+      return { a: [...(st.noHinge ? [] : [req('charniere')]), req('cheville_mollet'), req('hanche_laterale')], b: [], allowB: false, allowSubst: false };
+    case 'jambes_4':
+      return { a: [req('cheville_mollet'), req('hanche_laterale')], b: [], allowB: false, allowSubst: false };
   }
 }
 
@@ -212,7 +235,7 @@ export interface FillOpts {
 
 /** Remplit tous les emplacements d'une séance, dans l'ordre de priorité (la même fiche n'occupe jamais deux emplacements). */
 export function fillSession(
-  label: 'A' | 'B' | 'C',
+  label: string,
   slots: readonly SlotKey[],
   ctx: Ctx,
   pool: Fiche[],

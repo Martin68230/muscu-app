@@ -50,9 +50,31 @@ const list = (xs: string[]) => (xs.length <= 1 ? xs.join('') : `${xs.slice(0, -1
 const m = (id: MessageId, text: string, extra: Partial<GenMessage> = {}): GenMessage => ({ id, text, ...extra });
 
 export const msg = {
-  hors: () => m('V-MSG-HORS', 'Ce rythme arrive dans une prochaine version. Choisis 2 ou 3 jours pour l\'instant.'),
+  hors: () => m('V-MSG-HORS', 'Choisis entre 1 et 6 jours par semaine.'),
   jours: (days: number[]) =>
-    m('V-MSG-JOURS', `Tes jours libres ne laissent pas 48 h entre deux séances : on part sur 2 séances (${list(days.map((d) => WEEKDAY_NAMES[d]))}).`),
+    m(
+      'V-MSG-JOURS',
+      `Tes jours libres ne laissent pas assez de repos entre deux séances qui travaillent les mêmes muscles : on part sur ${days.length} séance${days.length > 1 ? 's' : ''} (${list(days.map((d) => WEEKDAY_NAMES[d]))}).`,
+    ),
+  /** D25, STR-REP-1 : texte du fichier de règles, mot pour mot. */
+  unJour: () =>
+    m(
+      'V-MSG-UN-JOUR',
+      "Une séance par semaine, c'est mieux que rien, mais les repères demandent au moins 2 séances par semaine pour chaque grand muscle. Passer à 2 jours est possible dans ton profil.",
+    ),
+  /** D25, STR-REP-1 (ajout `kine`) : séance unique d'un débutant ramenée à 45 min. Rédaction de `dev` (à relire par `coach`). */
+  unJourDuree: (min: number) => m('V-MSG-UN-JOUR-DUREE', `Avec une seule séance par semaine, elle dure ${min} min au plus pour l'instant.`),
+  /** D25, STR-REP-6 : texte du fichier de règles (débutant, santé) ; STR-REP-14 c : rédaction de `dev` (à relire par `kine`). */
+  legers: (reason: 'debutant' | 'zone') =>
+    m(
+      'V-MSG-LEGERS',
+      reason === 'debutant'
+        ? 'Pour débuter, 4 séances de force suffisent ; les autres jours sont légers.'
+        : 'Avec la gêne déclarée, 4 séances de force suffisent ; les autres jours sont légers.',
+    ),
+  /** D25, STR-REP-11 : texte du fichier de règles, mot pour mot. */
+  grosSeances: (n: number) =>
+    m('V-MSG-GROS-SEANCES', `Pendant la grossesse (ou après un accouchement), l'app limite à ${n} séances de force par semaine ; les autres jours sont légers.`),
   jours2: (suggestion: number | null) =>
     m(
       'V-MSG-JOURS2',
@@ -115,10 +137,10 @@ export const msg = {
     m('V-MSG-VOL', `${cap(muscle)} : ${frNum(n)} séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.`, {
       data: { muscle, n },
     }),
-  duree: (durMin: number, removed: string[], session: string, realMin: number | null) =>
+  duree: (durMin: number, removed: string[], session: string, realMin: number | null, split = false) =>
     m(
       'V-MSG-DUREE',
-      `${durMin} min, c'est court pour un corps entier complet` +
+      `${durMin} min, c'est court pour ${split ? 'une séance complète' : 'un corps entier complet'}` +
         (removed.length ? ` : ${list(removed)} ${removed.length > 1 ? 'ont été retirés' : 'a été retiré'}.` : '.') +
         (realMin !== null ? ` La séance minimale dure ${realMin} min.` : ''),
       { session },

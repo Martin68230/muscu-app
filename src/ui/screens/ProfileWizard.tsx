@@ -3,7 +3,7 @@ import type { MainGoalKey, Profile } from '../../data/model';
 import { update } from '../../data/repo';
 import {
   DAYS_CHOICES, DURATIONS, NIVEAUX, OBJECTIFS, PLACES, PREGNANCY_CHOICES, PREGNANCY_EFFECT_TEXT, PREGNANCY_STOP_TEXT, PREGNANCY_TEXT, PREGNANCY_URGENCE_TEXT, PROFILE_STEPS, WEEKDAYS,
-  completeProfile, freeDaysEnough, getGoals, isSupportedDays, setGoals, unsupportedDaysMessage, type ProfileStep,
+  completeProfile, freeDaysEnough, getGoals, isSupportedDays, ONE_DAY_NOTE, setGoals, unsupportedDaysMessage, type ProfileStep,
 } from '../../data/profile-setup';
 import { Equipment } from './Equipment';
 import { Injuries } from './Injuries';
@@ -97,7 +97,7 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
             {days !== null && !isSupportedDays(days) && (
               <div class="notice" role="status"><p>{unsupportedDaysMessage(days)}</p></div>
             )}
-            {days === null && <p class="dim small">Disponible dès maintenant : 2 ou 3 jours.</p>}
+            {days === 1 && <div class="notice" role="status"><p>{ONE_DAY_NOTE}</p></div>}
           </>
         );
       case 'bloques':

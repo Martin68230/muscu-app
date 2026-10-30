@@ -5,20 +5,22 @@ import { create, list, softDelete, update } from './repo';
 // Aucune valeur sport/nutrition ici : les phrases de niveau sont des définitions d'affichage
 // (à valider par `coach`, voir NIVEAUX), les seuils de jours viennent de knowledge/generateur-v1.md §1.2.
 
-/** Jours par semaine gérés par le générateur v1 (generateur-v1.md §1.2, règle V-PER). */
-export const SUPPORTED_DAYS = [2, 3] as const;
+/** Jours par semaine gérés par le générateur (D25, knowledge/structure-programmes.md §2.3 : 1 à 6 jours). */
+export const SUPPORTED_DAYS = [1, 2, 3, 4, 5, 6] as const;
 export const DAYS_CHOICES = [1, 2, 3, 4, 5, 6] as const;
 
 export function isSupportedDays(days: number | null | undefined): boolean {
-  return days === 2 || days === 3;
+  return typeof days === 'number' && days >= 1 && days <= 6;
 }
 
-/** Message affiché quand le nombre de jours demandé n'est pas encore géré (pas de programme faux). */
+/** Message affiché quand le nombre de jours demandé n'est pas géré (pas de programme faux). */
 export function unsupportedDaysMessage(days: number): string {
-  return days === 1
-    ? 'Un seul jour par semaine : ce programme arrive dans une prochaine version. Choisis 2 ou 3 jours pour l\'instant.'
-    : `Un programme sur ${days} jours par semaine arrive dans une prochaine version. Choisis 2 ou 3 jours pour l'instant.`;
+  return `Un programme sur ${days} jours par semaine n'est pas proposé. Choisis entre 1 et 6 jours.`;
 }
+
+/** STR-REP-1 : avertissement « une séance par semaine » (texte du fichier de règles, repris du générateur). */
+export const ONE_DAY_NOTE =
+  "Une séance par semaine, c'est mieux que rien, mais les repères demandent au moins 2 séances par semaine pour chaque grand muscle. Passer à 2 jours est possible dans ton profil.";
 
 export const WEEKDAYS: { index: number; short: string; long: string }[] = [
   { index: 0, short: 'L', long: 'lundi' },

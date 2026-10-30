@@ -110,3 +110,14 @@ Textes à revoir par `coach` : curl-ischios-serviette (les fesses doivent-elles 
 4. Règles d'économie de quota : voir CLAUDE.md section C.
 5. Vérifier une skill ou un plugin avant de l'installer : skill verif-securite-skills (si elle n'est pas disponible dans la session, relire le contenu complet à la main et épingler une version, comme pour la skill d'audit D14). Pas de skills de design externes (Taste, Impeccable, Emil).
 6. La checklist rapide de sécurité demandée a déjà été faite le 23/10 (docs/securite.md, rapport hors dépôt, commit 8886030) ; à refaire à chaque fonctionnalité qui touche aux données.
+
+### D30. Cardio (sauts, course, extérieur, plafond), machines, règle 15 et structure des programmes (30/10/2026) : décidé
+1. Q5 sauts : ouverts à tous les niveaux, sans minimum d'intermédiaire. Débutant : avertissement court et version douce proposée en premier. Exclusions indépendantes du niveau gardées : jamais en grossesse ni post-partum, jamais avec une douleur déclarée au genou, à la cheville ou au dos.
+2. Q6 course : oui, progression douce (marche rapide, puis alternance marche-course) ; sans sortie possible : version sur place (en intérieur), plus courte ; arrêt si douleur ; paliers fixés par le coach avec source.
+3. Q7 plafond de séances de cardio : selon l'objectif et le niveau ; chiffres du coach avec source (OMS).
+4. Q8 cardio dehors : en option, avec l'alternative en intérieur, rappels simples, pas de GPS.
+5. Q10 machines : étiquettes simples (machine guidée, poulie, banc) ; fiches de machines affichées seulement si l'utilisateur indique avoir accès à une salle.
+6. Règle 15 modifiée : à 5 jours, haut/bas + push/pull/legs pour intermédiaire et avancé (chaque grand muscle >= 2 fois par semaine, jambes deux fois) ; limite du kiné conservée : 4 séances de force au plus pour un débutant (+ jours légers). Raison : le push/pull/legs strict sur 5 jours ne fait travailler les jambes qu'une fois par semaine, ce qui contredit la fréquence minimale de 2.
+7. Décisions par défaut confirmées : 1 jour par semaine avec avertissement ; 4 jours haut/bas ; isolation à partir d'intermédiaire, avec exception pour un débutant en prise de muscle après quelques semaines de base (le coach précise la durée).
+8. Rampe du débutant en cardio (1 bloc de 10 min semaines 1-2, puis 2 blocs) : acceptée.
+9. Codage autorisé (agent Opus) : D25 corps entier et haut/bas, cardio par objectif, option « Gagner du temps », SUP-10. Captures réelles avant de dire « fini », puis test sur iPhone par l'utilisateur.

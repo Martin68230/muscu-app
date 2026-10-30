@@ -19,7 +19,7 @@ Texte intégral et inchangé des sections A, B, D et C de l'ancien CLAUDE.md (sa
 
 ## B. Règles des programmes (détails dans knowledge/)
 14. Base : position ACSM 2026 ; rester simple (régularité, surcharge progressive, volume suffisant, pas d'échec systématique) : program-logic.md.
-15. Répartition selon les jours/semaine (program-logic.md §2) : 2-3 jours = corps entier ; 4 = haut/bas ; 5-6 = push/pull/legs ; chaque grand muscle >= 2 fois/semaine ; avertir si le choix de la personne ne le permet pas.
+15. Répartition selon les jours/semaine (program-logic.md §2) : 2-3 jours = corps entier ; 4 = haut/bas ; 5 jours = haut/bas + push/pull/legs pour intermédiaire et avancé (débutant : 4 séances de force au plus + jours légers) ; 6 = push/pull/legs ; [règle 15 modifiée le 30/10/2026 : le push/pull/legs strict à 5 jours ne fait travailler les jambes qu'une fois par semaine, ce qui contredit la fréquence minimale de 2 ; décision de l'utilisateur, détail dans knowledge/structure-programmes.md]  chaque grand muscle >= 2 fois/semaine ; avertir si le choix de la personne ne le permet pas.
 16. **Mouvement puis variante selon le matériel** (equipment-taxonomy.md) : une variante n'est proposée que si tout son matériel est dans le profil ; signaler les schémas impossibles et le meilleur substitut.
 17. **Étalonnage et progression** (load-calibration.md) : première séance d'un exercice = étalonnage par « répétitions en réserve » ; double progression ; paliers réels des haltères.
 18. **Objectifs combinés** (goal-resolver.md) : classés par la personne, fusionnés par des règles explicites, explication de 2 lignes affichée.

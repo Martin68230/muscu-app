@@ -106,10 +106,11 @@ describe('programme actif', () => {
     expect(programs.filter((p) => p.active)).toHaveLength(1);
   });
 
-  it('jours non gérés (4 par semaine) : aucun programme actif, message clair', async () => {
+  // D25 : 1 à 6 jours sont générés ; 7 jours reste hors périmètre.
+  it('jours non gérés (7 par semaine) : aucun programme actif, message clair', async () => {
     const { profile } = await seedProfile();
     await ensureActiveProgram(FICHES);
-    await update('profile', profile.id, { daysPerWeek: 4 });
+    await update('profile', profile.id, { daysPerWeek: 7 });
     const r = await ensureActiveProgram(FICHES);
     expect(r).toMatchObject({ ok: false, code: 'HORS' });
     expect(r.ok ? [] : r.messages.map((m) => m.id)).toContain('V-MSG-HORS');

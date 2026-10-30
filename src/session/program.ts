@@ -3,11 +3,11 @@
 import { list, create, update, get, softDelete } from '../data/repo';
 import type { Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import { BLOCK_WEEKS, MIN_GAP_DAYS } from '../generator/config';
-import { generateProgram, isCardioDay, toProgramDays } from '../generator';
+import { conflicts, generateProgram, isCardioDay, toLightDays, toProgramDays } from '../generator';
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.3'; // v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
+export const GENERATOR_VERSION = 'v1.4'; // v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 
@@ -101,6 +101,8 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
     goals: goals.map((g) => ({ goalKey: g.goalKey, rank: g.rank })),
     fiches,
     history: historyFromSets(sets),
+    // Option « Gagner du temps » (core-et-supersets.md §12) : réglage du profil, éteint par défaut.
+    options: { gagnerDuTemps: !!profile.gagnerDuTemps },
   };
   return { input, profileComplete: !!profile.profileCompletedAt };
 }
@@ -112,11 +114,18 @@ export async function getActiveProgram(): Promise<Program | undefined> {
   return programs.sort((a, b) => (a.createdAt < b.createdAt ? 1 : -1))[0];
 }
 
+const PROGRAM_NAME: Record<string, string> = {
+  corps_entier: 'Programme corps entier',
+  haut_bas: 'Programme haut / bas',
+  haut_bas_ppl: 'Programme haut / bas et poussée, tirage, jambes',
+  push_pull_legs: 'Programme poussée, tirage, jambes',
+};
+
 function toStoredProgram(gen: GenProgram, hash: string, todayIso: string): NewRow<'programs'> {
   const days: ProgramDay[] = toProgramDays(gen);
   return {
     templateKey: PROGRAM_TEMPLATE_KEY,
-    name: 'Programme corps entier',
+    name: PROGRAM_NAME[gen.split] ?? 'Programme corps entier',
     split: gen.split,
     startDate: todayIso,
     weeks: gen.weeks ?? BLOCK_WEEKS,
@@ -128,6 +137,7 @@ function toStoredProgram(gen: GenProgram, hash: string, todayIso: string): NewRo
     messages: gen.messages.map((m: GenMessage) => ({ id: m.id, text: m.text, ...(m.session ? { session: m.session } : {}) })),
     durationMin: gen.targetMin,
     family: gen.family,
+    lightDays: toLightDays(gen),
   };
 }
 
@@ -160,6 +170,60 @@ export async function ensureActiveProgram(fiches: Fiche[], opts: { force?: boole
     if (s.status === 'prevue' && s.dejaDecalee && s.programId !== program.id) await softDelete('sessions', s.id);
   }
   return { ok: true, program, regenerated: true };
+}
+
+// ----- Rampe du cardio du débutant (cardio-regles.md §3.4 f) -----
+/** Semaine du programme (1 = la semaine du début), comptée en jours calendaires depuis `startDate`. */
+export function programWeek(program: Pick<Program, 'startDate'>, nowMs: number): number {
+  const [y, m, d] = (program.startDate ?? '').slice(0, 10).split('-').map(Number);
+  if (!y || !m || !d) return 1;
+  const now = new Date(nowMs);
+  const days = Math.round((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(y, m - 1, d)) / DAY_MS);
+  return days < 0 ? 1 : Math.floor(days / 7) + 1;
+}
+/** Copie du jour sans les exercices prévus « à partir de la semaine N » quand la semaine du programme est plus petite. */
+export function withProgramWeek(day: ProgramDay, week: number): ProgramDay {
+  if (!day.exercises.some((e) => e.fromWeek && e.fromWeek > week)) return day;
+  return { ...day, exercises: day.exercises.filter((e) => !e.fromWeek || e.fromWeek <= week) };
+}
+
+// ----- SUP-10 : séance de musculation planifiée la veille -----
+const keyOfDate = (d: Date): string => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, '0')}-${String(d.getDate()).padStart(2, '0')}`;
+/**
+ * SUP-10 (core-et-supersets.md §13, définition de « la veille ») : muscles principaux de la (ou des) séance(s) de musculation planifiée(s)
+ * le jour calendaire précédent `todayKey`, après replanification. Lecture prudente : la séance du jour de la semaine type ET toute séance
+ * de ce programme datée de la veille (faite, en cours, décalée…) comptent ensemble. Séance de cardio dédié : ne compte pas. Veille avant le
+ * début du programme : [] (première séance, aucune contrainte). Un exercice dont les muscles sont illisibles : null (doute, pas de paire).
+ */
+export function veilleMuscles(
+  program: Program, sessions: readonly WorkoutSession[], todayKey: string, mainMusclesOf: (ex: ProgramDay['exercises'][number]) => string[] | null,
+): string[] | null {
+  const [y, m, d] = todayKey.split('-').map(Number);
+  if (!y || !m || !d) return null;
+  const prev = new Date(y, m - 1, d - 1);
+  const prevKey = keyOfDate(prev);
+  if (prevKey < (program.startDate ?? '').slice(0, 10)) return [];
+  const weekday = (prev.getDay() + 6) % 7;
+  const daysYesterday: ProgramDay[] = program.days.filter((x) => x.weekday === weekday);
+  for (const s of sessions) {
+    if (s.deletedAt || s.programId !== program.id) continue;
+    const when = (s.startedAt ? keyOfDate(new Date(s.startedAt)) : null) ?? s.plannedDate?.slice(0, 10);
+    if (when !== prevKey && s.plannedDate?.slice(0, 10) !== prevKey) continue;
+    const day = s.plan ?? (s.programDayIndex !== null ? program.days[s.programDayIndex] : undefined);
+    if (!day) return null;
+    daysYesterday.push(day);
+  }
+  const out = new Set<string>();
+  for (const day of daysYesterday) {
+    if (isCardioDay(day)) continue;
+    for (const ex of day.exercises) {
+      if (ex.role === 'cardio') continue;
+      const ms = mainMusclesOf(ex);
+      if (ms === null) return null;
+      ms.forEach((x) => out.add(x));
+    }
+  }
+  return [...out];
 }
 
 // ----- Séance du jour -----
@@ -201,7 +265,12 @@ export function nextSession(program: Program, sessions: readonly WorkoutSession[
   };
   const lastMuscu = [...done].reverse().find(isMuscu);
   const endedMs = lastMuscu ? Date.parse(lastMuscu.endedAt ?? lastMuscu.startedAt ?? lastMuscu.plannedDate) : NaN;
-  const availableAtMs = !isCardioDay(day) && Number.isFinite(endedMs) ? endedMs + MIN_GAP_DAYS * DAY_MS : null;
+  // D25 (STR-REP-8) : les 48 h ne valent qu'entre deux séances qui chargent un même grand groupe (haut puis bas le lendemain : permis).
+  // Séance précédente illisible (sans type ni plan) : comme le corps entier (lecture prudente).
+  const lastDay = lastMuscu ? (lastMuscu.plan ?? (lastMuscu.programDayIndex !== null ? program.days[lastMuscu.programDayIndex] : undefined)) : undefined;
+  const typeLabel = (d: ProgramDay | undefined) => (d?.sessionType && d.sessionType !== 'CE' ? `${d.sessionType}-A` : 'A');
+  const shares = conflicts(typeLabel(lastDay), typeLabel(day));
+  const availableAtMs = !isCardioDay(day) && shares && Number.isFinite(endedMs) ? endedMs + MIN_GAP_DAYS * DAY_MS : null;
   const now = new Date(nowMs);
   const weekdayToday = (now.getDay() + 6) % 7;
   const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;

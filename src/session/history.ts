@@ -240,6 +240,8 @@ export function buildEngineContext(p: {
   excludeSessionId?: string | null;
   /** D26 (SUP-8) : la fiche porte une ligne pour cette zone. */
   zoneOnFiche?: (ex: PlannedExercise, zone: InjuryZone) => boolean;
+  /** SUP-10 : muscles principaux de la fiche (null = inconnus). */
+  mainMusclesOf?: (ex: PlannedExercise) => string[] | null;
 }): EngineContext {
   const done = new Set(p.sets.filter((s) => isWork(s) && s.sessionId !== p.excludeSessionId).map((s) => s.variantId));
   // D26 (SUP-2 point 7) : retour après gêne = la dernière séance où la fiche a été faite contient une série « ça fait mal ».
@@ -255,6 +257,7 @@ export function buildEngineContext(p: {
     echelonInfo: p.echelonInfo,
     afterPain: (ex) => painAfter.has(ex.movementId),
     zoneOnFiche: p.zoneOnFiche,
+    mainMusclesOf: p.mainMusclesOf,
   };
 }
 

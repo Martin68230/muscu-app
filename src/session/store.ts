@@ -15,6 +15,7 @@ import { painCheck, type PainCheck } from './history';
 import { repriseAtEnd } from './missed';
 import { repriseOf } from './missed-config';
 import { dateKey } from './calendar';
+import { programWeek, veilleMuscles, withProgramWeek } from './program';
 
 /** Au-delà de 12 h, une séance « en cours » n'est plus reprise automatiquement : on propose de la terminer ou de l'abandonner. */
 export const RESUME_MAX_MS = 12 * 3600 * 1000;
@@ -100,11 +101,16 @@ export class SessionController {
    * Une ligne N (jour décalé `prevue`, SM-D2) de cette séance est réutilisée : elle passe `en_cours` puis `faite`, sa date prévue ne change pas.
    */
   static async start(program: Program, dayIndex: number, ctx: EngineContext, now: NowFn = realNow, opts: { day?: ProgramDay } = {}): Promise<SessionController> {
-    const planned = opts.day ?? program.days[dayIndex];
-    if (!planned) throw new SessionError('Séance introuvable.');
-    // D26 (SUP-2 point 7) : paires non appliquées si un exercice est en étalonnage ou en retour après gêne (plan enregistré tel quel).
-    const day = pairsForSession(planned, ctx);
+    const base = opts.day ?? program.days[dayIndex];
+    if (!base) throw new SessionError('Séance introuvable.');
     const sessions = await list('sessions');
+    const t0 = now();
+    // Rampe du débutant (cardio-regles.md §3.4 f) : un bloc prévu « à partir de la semaine 3 » n'est pas joué avant.
+    const planned = withProgramWeek(base, programWeek(program, t0));
+    // D26 (SUP-2 point 7) : paires non appliquées si un exercice est en étalonnage ou en retour après gêne (plan enregistré tel quel) ;
+    // SUP-10 : ni si la séance de musculation de la veille (date réellement jouée) a travaillé un même muscle principal.
+    const veille = ctx.mainMusclesOf ? veilleMuscles(program, sessions, dateKey(new Date(t0)), (ex) => ctx.mainMusclesOf!(ex)) : undefined;
+    const day = pairsForSession(planned, ctx, { veille });
     if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
     const t = now();
     const state = startSession(day, t);

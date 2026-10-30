@@ -412,21 +412,23 @@ describe('T19-T21, T41 : jours (V-JOURS, V-PER)', () => {
     expect(p.sessions.map((s) => s.weekday)).toEqual([0, 3]);
     expect(msgIds(p)).toContain('V-MSG-JOURS');
   });
-  it('T21 : 1 ou 4 jours (et non renseigné) : aucun programme, V-MSG-HORS', () => {
-    for (const days of [1, 4, 5, 6, null]) {
+  // D25 (structure-programmes.md, E-1, E-14) : 1 à 6 jours sont générés ; seul un nombre absent ou hors 1-6 donne V-MSG-HORS.
+  it('T21 (D25) : nombre de jours absent ou hors 1-6 : aucun programme, V-MSG-HORS ; 1, 4, 5, 6 jours : un programme', () => {
+    for (const days of [0, 7, null]) {
       const r = run({ days });
       expect(r.ok).toBe(false);
       expect(msgIds(r)).toEqual(['V-MSG-HORS']);
     }
+    for (const days of [1, 4, 5, 6]) expect(run({ days }).ok).toBe(true);
   });
-  it('T41 : samedi-dimanche seuls, puis un seul jour libre : aucun programme, V-MSG-JOURS2 avec bouton', () => {
+  // D25 (STR-REP-8, E-14) : repli N -> 1, jamais « aucun programme » ; à 1 séance, avertissement STR-REP-1 (V-MSG-UN-JOUR).
+  it('T41 (D25) : samedi-dimanche seuls, puis un seul jour libre : 1 séance corps entier, V-MSG-JOURS et V-MSG-UN-JOUR', () => {
     for (const [days, blocked] of [[2, [0, 1, 2, 3, 4]], [2, [0, 1, 2, 3, 4, 5]], [3, [0, 1, 2, 3, 4, 5]]] as const) {
       const r = run({ days, blocked: [...blocked] });
-      expect(r.ok).toBe(false);
-      const m = r.messages[0];
-      expect(m.id).toBe('V-MSG-JOURS2');
-      expect(m.text).toContain("essaie d'ajouter un jour d'écart".replace('essaie', 'Essaie'));
-      expect(m.action?.label).toBe('Modifier mes jours');
+      expect(r.ok).toBe(true);
+      if (!r.ok) continue;
+      expect(r.program.sessions.map((s) => s.label)).toEqual(['A']);
+      expect(msgIds(r.program)).toEqual(expect.arrayContaining(['V-MSG-JOURS', 'V-MSG-UN-JOUR']));
     }
   });
   it('T41 (3e cas) : 3 jours, vendredi-samedi-dimanche : vendredi et dimanche sont à 48 h -> 2 séances (lecture de la règle §2.4, voir notes)', () => {

@@ -78,6 +78,8 @@ export interface Profile extends SyncFields {
    * locale, exportée, supprimée avec le compte, JAMAIS partagée. Absent = valeur par défaut (`repriseOf`, src/session/missed.ts).
    */
   reprise?: RepriseState;
+  /** Option « Gagner du temps (exercices enchaînés par deux) » (core-et-supersets.md §12). Absent = non. */
+  gagnerDuTemps?: boolean;
 }
 
 /** SM-D4 : état de reprise après une absence (un seul objet, sur le profil). */
@@ -188,7 +190,13 @@ export interface PlannedExercise {
    * D26 (core-et-supersets.md SUP-2 point 7), seulement sur la copie du plan d'une séance : superset décidé à la génération mais
    * NON appliqué cette fois-ci, parce qu'un des deux exercices est en étalonnage ou en retour après gêne. Absent sinon.
    */
-  pairDeferred?: 'etalonnage' | 'gene' | null;
+  pairDeferred?: 'etalonnage' | 'gene' | 'veille' | null;
+  /** Cardio (cardio-regles.md §3.4 (g), STR-REP-7) : effort « facile » au lieu de « modéré ». Absent = modéré. */
+  intensity?: 'moderee' | 'facile';
+  /** STR-SEA-4 : dernières minutes du cardio en allure lente (comprises dans la durée). Absent = 0. */
+  slowEndMin?: number;
+  /** Rampe du débutant (cardio-regles.md §3.4 (f)) : exercice présent seulement à partir de cette semaine du programme. */
+  fromWeek?: number;
 }
 
 /** Échauffement d'une séance (F5) : exercices de la fiche, pas de série à saisir. */
@@ -215,12 +223,21 @@ export interface ProgramDay {
   /** Durée affichée, arrondie aux 5 min supérieures. */
   estimatedMin?: number;
   warmup?: PlannedWarmup;
+  /** D25 : type de séance (CE, HAUT, BAS, PUSH, PULL, LEGS). Absent = corps entier (ancienne sauvegarde). */
+  sessionType?: string;
+}
+
+/** D25 (STR-REP-12) : jour léger proposé, jamais exigé : échauffement court et mobilité, sans charge ni séries comptées. */
+export interface LightDay {
+  weekday: number;
+  estimatedMin: number;
+  warmup: PlannedWarmup;
 }
 
 export interface Program extends SyncFields {
   templateKey: string | null;
   name: string;
-  split: 'corps_entier' | 'haut_bas' | 'push_pull_legs' | 'perso';
+  split: 'corps_entier' | 'haut_bas' | 'haut_bas_ppl' | 'push_pull_legs' | 'perso';
   startDate: string;
   weeks: number;
   active: boolean;
@@ -243,6 +260,8 @@ export interface Program extends SyncFields {
    * Peut manquer dans une ancienne sauvegarde.
    */
   missedAnswers?: Record<string, MissedAnswer>;
+  /** D25 : jours légers (facultatifs) de la semaine type. Peut manquer. */
+  lightDays?: LightDay[];
 }
 
 export interface MissedAnswer {

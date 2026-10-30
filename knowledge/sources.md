@@ -42,7 +42,7 @@
 | Caféine | EFSA 2015 via presse spécialisée | https://beveragedaily.com/Article/2015/07/17/france-sets-limits-for-caffeine-carnitine-creatine-lycopene | article | PROVISOIRE |
 | Ciqual | data.gouv (Licence Ouverte) ; version actualisée DOI 10.57745/RDMHWY | https://www.data.gouv.fr/datasets/table-de-composition-nutritionnelle-des-aliments-ciqual-2020/informations | page lue | OK |
 | Carte musculaire | react-body-highlighter (MIT) | https://github.com/giavinh79/react-body-highlighter | page lue | PROVISOIRE (licence du projet d'origine à vérifier) |
-| Cardio : repères (OMS) | OMS 2020, Bull et al. (150-300 / 75-150 min, renforcement >= 2 j, toute durée compte) | https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906 | texte (XML Europe PMC, relu 30/10/2026) | OK |
+| Cardio : repères (OMS) | OMS 2020, Bull et al. (150-300 / 75-150 min, renforcement >= 2 j, toute durée compte) | https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906 | texte, **lecture partielle : 100 000 premiers caractères** (XML Europe PMC, relu 30/10/2026), comme C1 de cardio-regles.md ; tableaux 1 et 4 lus | OK |
 | Cardio : ACSM 2026 et entraînement concurrent | Currier, Phillips et al., MSSE 58(4):851-872 | https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823 | texte intégral (XML Europe PMC, 30/10/2026) : aucune prescription cardio ; concurrent : force « données insuffisantes », hypertrophie non affectée ; circuits de force utiles | OK (pour ce qu'il dit) |
 | Cardio : ACSM 2011 | Garber et al., MSSE 43(7):1334-1359 | DOI 10.1249/mss.0b013e318213fefb | résumé (PubMed) ; texte payant non lu ; rien sur l'ordre ni la combinaison | PROVISOIRE |
 | Cardio : ordre force / endurance | Eddens, van Someren, Howatson, Sports Med 2018 | DOI 10.1007/s40279-017-0784-1 | résumé relu 30/10/2026 | OK limité (force dynamique des jambes) |
@@ -50,6 +50,11 @@
 | Cardio : HIIT + force | Sabag et al., J Sports Sci 2018 | DOI 10.1080/02640414.2018.1464636 | résumé | PROVISOIRE |
 | Cardio : séance combinée vs séparée | essai randomisé « High-Intensity Multimodal Training », Eur J Sport Sci 2026 | DOI 10.1002/ejsc.70199 | résumé (75 adultes actifs, 7 semaines) | indice seulement |
 | Cardio : base externe de programmes (Kaggle) | statistiques de 605 000 lignes, 2 600 programmes, provenance inconnue | - | calculs locaux | NON SOURCÉ : jamais une preuve, aucune règle n'en dépend |
+| Cardio : pliométrie, contacts par séance | Davies, Riemann, Manske, Int J Sports Phys Ther 2015 (C16 de cardio-regles.md) | https://pmc.ncbi.nlm.nih.gov/articles/PMC4637913/ | texte partiel (100 000 caractères sur 185 000), tableau 4 | PROVISOIRE (sportifs ; revue narrative) |
+| Cardio : progression de la course | NHS « Couch to 5K » (programme et plan) | https://www.nhs.uk/better-health/get-active/get-running-with-couch-to-5k/ | pages lues en entier, 30/10/2026 | PROVISOIRE (programme officiel, pas une étude) |
+| Cardio : coureurs novices | Buist et coll., Am J Sports Med 2008;36(1):33-39 ; Nielsen et coll., JOSPT 2014;44(10):739-747 | https://vbn.aau.dk/da/publications/excessive-progression-in-weekly-running-distance-and-risk-of-runn | résumés via moteur de recherche | PROVISOIRE |
+| Cardio : hydratation | ACSM, Sawka et coll., MSSE 2007;39(2):377-390 | https://pubmed.ncbi.nlm.nih.gov/17277604/ | résumé | PROVISOIRE |
+| Cardio : écoute sûre | OMS, page « Deafness and hearing loss » (Make Listening Safe) | https://www.who.int/news-room/fact-sheets/detail/deafness-and-hearing-loss | page lue : aucun chiffre | PROVISOIRE (aucun seuil retenu) |
 
 ## Outils de sécurité
 | Outil | Source | Version | Licence | Note |

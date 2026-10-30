@@ -13,8 +13,8 @@ export type Family = 'muscle' | 'force' | 'sante';
 // ---------------------------------------------------------------------------------------------
 // Périmètre et valeurs par défaut (V-PER §1.2, V-DEF §9)
 // ---------------------------------------------------------------------------------------------
-/** V-PER : jours par semaine gérés en v1 (phase-2-criteres F1). */
-export const SUPPORTED_DAYS: readonly number[] = [2, 3];
+/** V-PER, D25 (knowledge/structure-programmes.md §2.3, E-1) : 1 à 6 jours par semaine. */
+export const SUPPORTED_DAYS: readonly number[] = [1, 2, 3, 4, 5, 6];
 /** V-DEF : niveau absent -> débutant. NON SOURCÉ (prudence). */
 export const DEFAULT_LEVEL: Level = 'debutant';
 /** V-DEF : objectif absent -> famille sante. NON SOURCÉ. */
@@ -498,3 +498,91 @@ export const CARDIO = {
   /** §2 : repère OMS affiché (C1 : OK), jamais imposé. */
   omsMin: [150, 300] as [number, number],
 };
+
+// ---------------------------------------------------------------------------------------------
+// D25 — structure des programmes v2 (knowledge/structure-programmes.md, validé sous réserve par coach, kine, relecteur ;
+// décision de l'utilisateur du 30/10/2026 sur la règle 15). Toutes les valeurs ci-dessous sont NON SOURCÉ (choix de
+// conception) sauf mention ; la limite de 10 séries fractionnaires par muscle et par séance reste VOLUME (V-PLAF, PROVISOIRE).
+// ---------------------------------------------------------------------------------------------
+export type SessionType = 'CE' | 'HAUT' | 'BAS' | 'PUSH' | 'PULL' | 'LEGS';
+/** §2.3 : séances de la semaine par nombre de jours (familles muscle / force, intermédiaire et avancé). NON SOURCÉ. */
+export const SPLIT_BY_DAYS: Record<number, readonly string[]> = {
+  1: ['A'],
+  2: ['A', 'B'],
+  3: ['A', 'B', 'C'],
+  4: ['HAUT-A', 'BAS-A', 'HAUT-B', 'BAS-B'],
+  5: ['HAUT-A', 'BAS-A', 'PUSH-B', 'PULL-B', 'LEGS-B'],
+  6: ['PUSH-A', 'PULL-A', 'LEGS-A', 'PUSH-B', 'PULL-B', 'LEGS-B'],
+};
+/** STR-REP-6 / STR-REP-14 (c) : au plus 4 séances de force (haut / bas) pour débutant, famille sante ou zone sensible à 5-6 jours. */
+export const LIGHT_SPLIT_MAX_FORCE = 4;
+/** STR-REP-14 (c) : zones au niveau >= 2 qui ramènent 5-6 jours à haut / bas. */
+export const SPLIT_SENSITIVE_ZONES: readonly string[] = ['epaule', 'dos', 'genou', 'hanche'];
+/** STR-REP-14 (b) : une séance HAUT, PUSH ou PULL de moins de 3 exercices de force devient un jour léger. */
+export const SPLIT_MIN_FORCE_EXERCISES = 3;
+/** STR-REP-1 : 1 jour, débutant ou famille sante : séance de 45 min au plus (ajout `kine`). */
+export const ONE_DAY_BEGINNER_MAX_MIN = 45;
+/** STR-REP-11 (b) : grossesse / post-partum : séances de force par semaine au plus (débutante ou niveau absent : 2). PROVISOIRE (G5). */
+export const PREGNANCY_MAX_FORCE = { debutant: 2, autres: 3 } as const;
+/** STR-REP-8 (ajout `kine`) : un débutant n'enchaîne jamais plus de 2 jours de force de suite ; 1 jour sans force par semaine au moins. */
+export const BEGINNER_MAX_CONSECUTIVE_FORCE = 2;
+export const MIN_DAYS_WITHOUT_FORCE = 1;
+/** STR-REP-4 : N de départ par durée pour HAUT, BAS, PUSH, PULL, LEGS (V-DUREE moins 1, minimum 4) ; « sans limite » = 6. */
+export const SPLIT_START_N_BY_DURATION: readonly [number, number][] = [
+  [20, 4],
+  [30, 4],
+  [45, 5],
+  [60, 6],
+  [75, 7],
+];
+export const SPLIT_UNLIMITED_START_N = 6;
+/**
+ * §1.1 point 5 : ordre de retrait des accessoires (premier retiré d'abord) ; le noyau du type n'est jamais retiré (STR-REP-4).
+ * Les emplacements d'indice 2 gardent l'ordre existant d'ACCESSORY_REMOVAL_ORDER (fonctionnel, jambes_2, tirage_2, poussee_2).
+ */
+export const ACCESSORY_REMOVAL_ORDER_V2: readonly string[] = [
+  'fonctionnel', 'poussee_4', 'tirage_4', 'jambes_4', 'poussee_3', 'tirage_3', 'jambes_3', 'jambes_2', 'tirage_2', 'poussee_2',
+];
+/** STR-REP-12 : jour léger (30 min au plus, sans charge) ; mobilité 2 à 4 fiches. NON SOURCÉ (`kine`). */
+/** E1 seul (secondes) ; mobilité : 4 fiches au plus de 75 s (5 min avec 4 fiches, bas de « 5 à 10 min »), dans les 30 min. */
+export const LIGHT_DAY = { maxMin: 30, mobilityMax: 4, mobilitySecEach: 75 } as const;
+
+// ---------------------------------------------------------------------------------------------
+// Cardio par objectif (knowledge/cardio-regles.md §3.4 (f)-(k), §3.7 ; validé sous réserve) et STR-SEA-4. NON SOURCÉ.
+// ---------------------------------------------------------------------------------------------
+export const CARDIO_V2 = {
+  /** §3.7 (d) : nombre de blocs selon le rang du cardio (rang 2 : 2 ; rang 3 ou plus : 1). */
+  blocksByRank: { 2: 2, 3: 1 } as Record<number, number>,
+  /** §3.4 (f) : rampe du débutant : le 2e bloc n'existe qu'à partir de la semaine 3 ; aucun bloc ne s'allonge pendant le premier bloc de 4 semaines. */
+  beginnerSecondBlockFromWeek: 3,
+  /** §3.4 (g), §3.7 (a), STR-REP-7 : bloc « facile » (après jambes lourdes, ou séance HAUT) : 15 min au plus, marche seulement. */
+  easyMaxMin: 15,
+  easyVariants: ['marche-rapide-continue'] as readonly string[],
+  /** §3.4 (k) : tags de variante qui rendent un exercice de jambes « lourd » (l'élastique et le poids du corps ne comptent pas). */
+  heavyLegTags: ['barre', 'barre_ez', 'disques', 'rack', 'kettlebell', 'lest', 'sac_de_sable', 'halteres', 'sac_a_dos', 'bidons_ou_sacs', 'machine', 'poulie'] as readonly string[],
+  heavyLegSlots: ['jambes_genou', 'charniere'] as readonly string[],
+  legSchemas: ['squat', 'fente', 'charniere', 'cheville_mollet', 'hanche_laterale'] as readonly string[],
+  /** STR-REP-7 (avis `kine`) : zones d'appui qui limitent le bloc à 15 min, facile. */
+  supportZones: ['genou', 'hanche', 'cheville', 'dos'] as readonly string[],
+  /** STR-SEA-4 (`kine`) : les 2 dernières minutes de tout bloc ou séance de cardio en allure lente, comprises dans la durée. */
+  slowEndMin: 2,
+};
+
+// ---------------------------------------------------------------------------------------------
+// Points d'extension : règles en cours de rédaction par `coach` (NE PAS activer sans fiche de règles validée).
+// ---------------------------------------------------------------------------------------------
+/** Statut des décisions de l'utilisateur dont les règles ne sont pas encore écrites : aucun effet dans le code. */
+export const PENDING_RULES = {
+  /** Q5 : sauts dans le cardio. EN RÉDACTION (`coach`) : non codé, aucun saut. */
+  sauts: { status: 'EN_REDACTION', enabled: false },
+  /** Q6 : course. EN RÉDACTION : non codé, aucune course. */
+  course: { status: 'EN_REDACTION', enabled: false },
+  /** Q7 : plafond de séances de cardio selon l'objectif. EN RÉDACTION : CARDIO.maxDedicated reste en vigueur. */
+  plafondCardioObjectif: { status: 'EN_REDACTION', enabled: false },
+  /** Q8 : cardio dehors. EN RÉDACTION : non codé. */
+  exterieur: { status: 'EN_REDACTION', enabled: false },
+  /** Q10 : étiquettes de machines séparées. EN RÉDACTION : tag machine_cardio inchangé. */
+  etiquettesMachines: { status: 'EN_REDACTION', enabled: false },
+  /** Isolation du débutant en prise de muscle. EN RÉDACTION : aucun emplacement d'isolation. */
+  isolationDebutant: { status: 'EN_REDACTION', enabled: false },
+} as const;

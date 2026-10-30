@@ -554,11 +554,12 @@ describe('accueil', () => {
     expect(screen.getByText(/moins de 48 h/)).toBeTruthy();
   });
 
-  it('pas de programme (1 jour) : message du moteur et « Modifier mes jours »', async () => {
-    const profile = await seed({ days: 1 });
+  // D25 : 1 jour est généré (STR-REP-1) ; 7 jours reste sans programme.
+  it('pas de programme (7 jours) : message du moteur et « Modifier mes jours »', async () => {
+    const profile = await seed({ days: 7 });
     const edit = vi.fn();
     render(<Home profile={profile} onStart={() => undefined} onEditStep={edit} onResume={() => undefined} onOpenSession={() => undefined} />);
-    await waitFor(() => expect(screen.getByText(/Ce rythme arrive dans une prochaine version/)).toBeTruthy());
+    await waitFor(() => expect(screen.getByText(/Choisis entre 1 et 6 jours/)).toBeTruthy());
     await click('Modifier mes jours');
     expect(edit).toHaveBeenCalledWith('jours');
   });

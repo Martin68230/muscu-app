@@ -34,26 +34,36 @@ Très peu de fiches : `kettlebell` (3), `box_ou_step` (3), `sangles_suspension` 
 À faire (coach, puis relecteur) : fiches pour au moins une variante par matériel ci-dessus. Roue abdominale : niveau minimum « avancé » ; exclure dos fragile, grossesse, post-partum, blessure lombaire/épaule (kine à relire). En attendant, l'écran Matériel pourrait préciser « pas encore d'exercice avec ce matériel » (décision à prendre).
 
 ## Q5. Sauts et corde à sauter dans le cardio dès « intermédiaire » (24/10/2026, kine, cardio-regles.md §5)
+**DÉCIDÉ (30/10/2026)** : sauts ouverts à tous les niveaux, sans minimum d'intermédiaire. Débutant : avertissement court et version douce proposée en premier. Exclusions de sécurité indépendantes du niveau GARDÉES : jamais en grossesse ni post-partum, jamais avec une douleur déclarée au genou, à la cheville ou au dos. À rédiger : coach, puis kine et relecteur, avant tout code.
+
 - **Contexte** : la décision D3 (22/10/2026) limitait les sauts aux programmes sport. `coach` propose de les ouvrir au cardio dès le niveau intermédiaire.
 - **Choix prudent appliqué** : aucun saut dans le cardio tant que tu n'as pas décidé. Si tu acceptes : niveau 0 exigé sur genou, cheville, hanche et dos, pas en reprise après pause, pas en grossesse / post-partum, séries de 30 s puis 60 s au plus, 1 séance avec sauts par semaine (NON SOURCÉ).
 - **Option alternative** : ouvrir les sauts avec ces conditions (moins prudent).
 
 ## Q6. Course à pied dans le cardio (24/10/2026, kine, cardio-regles.md §5)
+**DÉCIDÉ (30/10/2026)** : course autorisée, progression douce (marche rapide, puis alternance marche-course) ; sans sortie possible : version sur place (en intérieur), plus courte ; arrêt si douleur ; paliers fixés par le coach avec source. À rédiger puis contrôler avant tout code.
+
 - **Contexte** : `coach` propose la course pour intermédiaire et avancé (dehors ou sur tapis).
 - **Choix prudent appliqué** : course non proposée. Si tu acceptes : mêmes conditions que Q5, intervalles marche / course au départ, règle +10 % de durée (PROVISOIRE, coureurs).
 - **Option alternative** : proposer la course avec ces conditions.
 
 ## Q7. Plafond de séances de cardio dédiées (24/10/2026, kine, cardio-regles.md §3.2)
+**DÉCIDÉ (30/10/2026)** : plafond de séances de cardio dédiées selon l'objectif et le niveau ; chiffres du coach avec source (OMS). À rédiger puis contrôler avant tout code.
+
 - **Contexte** : plafond proposé : 3 par semaine, 2 pour un débutant (NON SOURCÉ, aucune étude).
 - **Choix prudent appliqué** : plafond conservé tel quel (3 ; débutant 2), jamais de séance double, jours en trop laissés libres. Le plus prudent serait 2 pour tout le monde (moins de cardio principal à 5-6 jours).
 - **Option alternative** : plafond de 2 pour tous.
 
 ## Q8. Option « extérieur » dans le profil (24/10/2026, kine, cardio-regles.md §8)
+**DÉCIDÉ (30/10/2026)** : cardio dehors en OPTION, avec l'alternative en intérieur, rappels simples, pas de GPS. À rédiger puis contrôler avant tout code.
+
 - **Contexte** : le profil n'a que maison / salle ; vélo dehors, côte et course exigeraient une option « j'ai un trajet dehors ».
 - **Choix prudent appliqué** : pas d'option, aucun cardio dehors codé ; seule la marche rapide (sans option) reste proposée. Texte chaleur T6 prêt si l'option est ajoutée (aucun seuil de température sourcé).
 - **Option alternative** : ajouter l'option facultative, avec rappel chaleur et sécurité sur la route (non rédigé).
 
 ## Q10. Séparer les tags d'appareils de cardio (24/10/2026, kine, suite au contrôle relecteur)
+**DÉCIDÉ (30/10/2026)** : étiquettes simples (machine guidée, poulie, banc) ; les fiches de machines ne sont affichées que si l'utilisateur indique avoir accès à une salle. À rédiger puis coder.
+
 - **Contexte** : le profil n'offre que « vélo ou rameur » et un seul tag `machine_cardio` (vélo, rameur, tapis de course, elliptique). Quelqu'un qui n'a qu'un vélo se voit proposer rameur, tapis de course ou elliptique ; or le rameur et le tapis de course sont à retirer en grossesse, post-partum et pour le dos.
 - **Choix prudent appliqué** (cardio-regles.md §5) : aucun rameur ni tapis de course en grossesse, post-partum ou zone dos ; elliptique retiré en grossesse / post-partum ; ski-erg exclu par défaut ; vélo assis ou marche en remplacement. Conséquence : le cardio sur machine est proposé plus rarement qu'il ne pourrait l'être.
 - **Option alternative** : séparer les tags (`velo`, `rameur`, `tapis_de_course`, `elliptique`) et le choix dans « Mon matériel » ; chaque fiche suit alors sa propre ligne. Demande à `dev` / `coach` (equipment-taxonomy.md à mettre à jour par son auteur).

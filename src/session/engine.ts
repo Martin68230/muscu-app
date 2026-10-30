@@ -114,6 +114,8 @@ export interface EngineContext {
   afterPain?(ex: PlannedExercise): boolean;
   /** D26 (SUP-8 point 2) : la fiche de l'exercice porte une ligne pour cette zone (quelle que soit la case). Absent : inconnu. */
   zoneOnFiche?(ex: PlannedExercise, zone: InjuryZone): boolean;
+  /** SUP-10 : muscles principaux de la fiche de l'exercice ; null = inconnus (doute : pas de paire). */
+  mainMusclesOf?(ex: PlannedExercise): string[] | null;
 }
 
 /**
@@ -121,9 +123,18 @@ export interface EngineContext {
  * étalonnage (première séance, séance d'arrivée à un échelon, reprise douce) ou en retour après gêne : les deux sont alors faits
  * séparément, chacun avec son repos, sans message d'erreur. Renvoie la copie du jour à jouer (plan enregistré avec la séance).
  */
-export function pairsForSession(day: ProgramDay, ctx: EngineContext): ProgramDay {
+export function pairsForSession(day: ProgramDay, ctx: EngineContext, opts: { veille?: string[] | null } = {}): ProgramDay {
   const groups = [...new Set(day.exercises.map((e) => e.supersetGroup).filter((g): g is string => !!g))];
   if (!groups.length) return day;
+  // SUP-10 (au démarrage, date réellement jouée) : un muscle principal de la paire travaillé comme principal la veille, ou veille
+  // inconnue, ou muscles illisibles -> séries classiques (sans message d'erreur). `veille` absent : contrôle déjà fait à la génération.
+  const veilleBlocks = (members: PlannedExercise[]): boolean => {
+    if (opts.veille === undefined) return false;
+    if (opts.veille === null) return true;
+    const muscles = members.map((e) => ctx.mainMusclesOf?.(e) ?? null);
+    if (muscles.some((m) => m === null)) return true;
+    return muscles.some((m) => m!.some((x) => opts.veille!.includes(x)));
+  };
   const calibrating = (ex: PlannedExercise) => {
     if (ex.reprise?.calibration) return true;
     const info = ctx.echelonInfo?.(ex) ?? null;
@@ -132,7 +143,7 @@ export function pairsForSession(day: ProgramDay, ctx: EngineContext): ProgramDay
   let exercises = day.exercises;
   for (const g of groups) {
     const members = exercises.filter((e) => e.supersetGroup === g);
-    const why = members.some(calibrating) ? 'etalonnage' : members.some((e) => !!ctx.afterPain?.(e)) ? 'gene' : null;
+    const why = members.some(calibrating) ? 'etalonnage' : members.some((e) => !!ctx.afterPain?.(e)) ? 'gene' : veilleBlocks(members) ? 'veille' : null;
     if (!why) continue;
     exercises = exercises.map((e) => (e.supersetGroup === g ? { ...e, supersetGroup: null, pairDeferred: why } : e));
   }
