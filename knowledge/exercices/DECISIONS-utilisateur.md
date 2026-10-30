@@ -121,3 +121,11 @@ Textes à revoir par `coach` : curl-ischios-serviette (les fesses doivent-elles 
 7. Décisions par défaut confirmées : 1 jour par semaine avec avertissement ; 4 jours haut/bas ; isolation à partir d'intermédiaire, avec exception pour un débutant en prise de muscle après quelques semaines de base (le coach précise la durée).
 8. Rampe du débutant en cardio (1 bloc de 10 min semaines 1-2, puis 2 blocs) : acceptée.
 9. Codage autorisé (agent Opus) : D25 corps entier et haut/bas, cardio par objectif, option « Gagner du temps », SUP-10. Captures réelles avant de dire « fini », puis test sur iPhone par l'utilisateur.
+
+### D31. Sauts et course : séance dédiée en option, séance « Créer une séance », conflit pliométrie (31/10/2026) : décidé
+1. Force et prise de muscle : séance dédiée de cardio en OPTION (« Ajouter une séance de cardio ? », l'utilisateur accepte ou non), placée un jour sans jambes lourdes, règles de sécurité actuelles du kiné. Objectif cardio ou sport (volley, foot, basket, détente) : séance dédiée incluse par défaut.
+2. L'utilisateur peut demander explicitement une séance avec sauts ou course via « Créer une séance » (D28) : c'est lui qui décide.
+3. Le choix « séance de muscu ou de cardio » n'est jamais posé : le générateur décide (objectif, niveau, sports, jours, séances de jambes de la semaine).
+4. Conflit à résoudre par le coach avec source avant de coder D30 : la séance de référence « détente » (D28) place la pliométrie EN PREMIER (jambes fraîches), puis la force des jambes le même jour, alors que la règle actuelle interdit les sauts le jour même d'une séance de jambes lourdes. Le risque vient de sauter après des jambes fatiguées, pas avant. Cas test D28 : jambes, volley, élastique + chaise, 30 minutes.
+5. Ensuite : kiné + relecteur, puis codage de D30, puis D28 et vague 2 de fiches. Textes écrits par le développeur : relus par coach ou kiné.
+6. À ajouter : réglages « j'ai accès à une salle » et « je peux sortir dehors » ; lecteur du jour léger (aujourd'hui seulement facultatif).
