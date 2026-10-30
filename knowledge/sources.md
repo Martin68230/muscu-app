@@ -12,7 +12,7 @@
 | Repos et force | Grgic et al. 2018 | - | Synthèse seulement | PROVISOIRE |
 | Charges légères vs lourdes | Schoenfeld et al. 2017, J Strength Cond Res | https://pubmed.ncbi.nlm.nih.gov/28834797/ | Résumé | OK |
 | Charges légères, niveau fibre | Grgic 2020, J Hum Kinet | https://pubmed.ncbi.nlm.nih.gov/33312275/ | Résumé | OK |
-| Supersets | Zhang et al. 2025, Sports Med | https://eprints.leedsbeckett.ac.uk/id/eprint/11908 | Résumé | OK |
+| Supersets | Zhang, Weakley et al. 2025, Sports Med, DOI 10.1007/s40279-025-02176-8 (méta-analyse, 19 études, 313 adultes sains surtout entraînés) | https://pmc.ncbi.nlm.nih.gov/articles/PMC12011898/ ; https://eprints.leedsbeckett.ac.uk/id/eprint/11908 | Texte intégral lu le 30/10/2026 (via résumé d'outil, 100 000 caractères sur 138 000) ; ne teste ni débutants, ni charges lourdes vs légères, ni sécurité : détail dans core-et-supersets.md §0.1 | OK pour : volume maintenu en agoniste-antagoniste, baisse en même muscle, séance plus courte, fatigue et effort perçu plus élevés ; rien d'autre |
 | Variation d'exercices | Kassiano et al. 2022, J Strength Cond Res | - | Résumé | OK |
 | Variation d'exercices (essai) | Baz-Valle et al. 2019, PLoS One | - | Synthèses | PROVISOIRE |
 | Activité physique, perte de poids | OMS 2020, Bull et al., Br J Sports Med | DOI 10.1136/bjsports-2020-102955 | Résumé | OK |
@@ -42,6 +42,14 @@
 | Caféine | EFSA 2015 via presse spécialisée | https://beveragedaily.com/Article/2015/07/17/france-sets-limits-for-caffeine-carnitine-creatine-lycopene | article | PROVISOIRE |
 | Ciqual | data.gouv (Licence Ouverte) ; version actualisée DOI 10.57745/RDMHWY | https://www.data.gouv.fr/datasets/table-de-composition-nutritionnelle-des-aliments-ciqual-2020/informations | page lue | OK |
 | Carte musculaire | react-body-highlighter (MIT) | https://github.com/giavinh79/react-body-highlighter | page lue | PROVISOIRE (licence du projet d'origine à vérifier) |
+| Cardio : repères (OMS) | OMS 2020, Bull et al. (150-300 / 75-150 min, renforcement >= 2 j, toute durée compte) | https://pmc.ncbi.nlm.nih.gov/articles/PMC7719906 | texte (XML Europe PMC, relu 30/10/2026) | OK |
+| Cardio : ACSM 2026 et entraînement concurrent | Currier, Phillips et al., MSSE 58(4):851-872 | https://pmc.ncbi.nlm.nih.gov/articles/PMC12965823 | texte intégral (XML Europe PMC, 30/10/2026) : aucune prescription cardio ; concurrent : force « données insuffisantes », hypertrophie non affectée ; circuits de force utiles | OK (pour ce qu'il dit) |
+| Cardio : ACSM 2011 | Garber et al., MSSE 43(7):1334-1359 | DOI 10.1249/mss.0b013e318213fefb | résumé (PubMed) ; texte payant non lu ; rien sur l'ordre ni la combinaison | PROVISOIRE |
+| Cardio : ordre force / endurance | Eddens, van Someren, Howatson, Sports Med 2018 | DOI 10.1007/s40279-017-0784-1 | résumé relu 30/10/2026 | OK limité (force dynamique des jambes) |
+| Cardio : compatibilité force + aérobie | Schumann et al., Sports Med 2022 ; Lundberg et al., Sports Med 2022 | DOI 10.1007/s40279-021-01587-7 ; 10.1007/s40279-022-01688-x | résumés relus 30/10/2026 | PROVISOIRE |
+| Cardio : HIIT + force | Sabag et al., J Sports Sci 2018 | DOI 10.1080/02640414.2018.1464636 | résumé | PROVISOIRE |
+| Cardio : séance combinée vs séparée | essai randomisé « High-Intensity Multimodal Training », Eur J Sport Sci 2026 | DOI 10.1002/ejsc.70199 | résumé (75 adultes actifs, 7 semaines) | indice seulement |
+| Cardio : base externe de programmes (Kaggle) | statistiques de 605 000 lignes, 2 600 programmes, provenance inconnue | - | calculs locaux | NON SOURCÉ : jamais une preuve, aucune règle n'en dépend |
 
 ## Outils de sécurité
 | Outil | Source | Version | Licence | Note |

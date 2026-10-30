@@ -142,3 +142,9 @@ Points d'attention pour la mise en œuvre (à arbitrer avec l'utilisateur) : les
 - CLAUDE.md réduit à 28 lignes (détail : docs/regles-projet-detail.md, ancienne version : docs/archives/) ; docs/plan-fichiers.md ; le workflow ne redéploie plus pour docs/ seul.
 - Point à décider : l'option « gagner du temps » (supersets) n'existe PAS dans l'interface : aucune paire ne se forme en pratique ; les écrans « texte de séance 1 » et « douleur dans une paire » ne sont vérifiés que par tests. La capture tests/screens f5-superset.png est périmée.
 - Prochaines actions : R3 (variété du générateur), puis D21, sans parallélisme sur les mêmes fichiers.
+
+## 30/10/2026 (nuit) : D24 b, supersets (2e source), cardio par objectif : règles écrites, rien de codé
+- D24 b : docs/D24-kaggle-statistiques.md (agrégats NON SOURCÉS, limites), outils tools/kaggle-stats.mjs et kaggle-couverture.mjs ; données hors dépôt dans ../donnees-externes/kaggle-600k/ (program_summary.csv extrait ; le gros CSV est lu directement dans ../archive.zip).
+- Supersets : Weakley 2025 = la méta-analyse déjà citée en S-SUP (1er auteur Zhang) ; interdits sur charges lourdes / piliers / débutants GARDÉS (la source ne mesure pas la sécurité). Option « Gagner du temps » proposée (interrupteur dans l'aperçu de séance, éteint par défaut, grisé débutants / grossesse / post-partum) : à coder, texte dans knowledge/core-et-supersets.md §12.
+- Cardio par objectif : knowledge/cardio-regles.md §3.7 réécrit ; décisions de l'utilisateur à prendre : rang 2 / rang 3 (2 blocs / 1 bloc), séance soutenue (seulement si cardio rang 1 ?), circuits (non en v1), intervalles 3.3bis (coder ou différer), Q5 Q6 Q7 Q8 Q10. Reste à faire contrôler par kine puis relecteur avant tout code.
+- Prochaines actions : D25 (taxonomie et structure des programmes, Opus) puis D28 ; option « gagner du temps » dans l'interface ; D23 vague 2 (fiches manquantes : face pull, curl marteau, élévations latérales, shrugs…).
