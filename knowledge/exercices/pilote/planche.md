@@ -4,6 +4,7 @@ nom: Planche
 schema: gainage
 type: gainage
 niveau_min: debutant
+famille_core: gainage
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, fessiers, deltoides_anterieurs]
 source_brouillon: [M1707]

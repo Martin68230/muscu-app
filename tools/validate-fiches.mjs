@@ -33,7 +33,14 @@ export const VIDEO_MAX_BYTES = 500_000;
 const SECTIONS = ['Variantes', 'Consignes', "Points d'attention", 'Erreurs fréquentes', 'Progression / régression', 'Repères de dosage', 'Sécurité et contre-indications', 'Photo', 'Sources'];
 const VARIANT_COLUMNS = ['id variante', 'nom', 'echelon', 'niveau', 'materiel_tags', 'installation'];
 const FM_REQUIRED = ['id', 'nom', 'schema', 'type', 'niveau_min', 'muscles_principaux', 'muscles_secondaires', 'source_brouillon', 'statut'];
-const FM_OPTIONAL = ['couverture', 'doux_pour', 'alias', 'lateralite'];
+const FM_OPTIONAL = ['couverture', 'doux_pour', 'alias', 'lateralite', 'famille_core'];
+/**
+ * D26 (knowledge/core-et-supersets.md CORE-FAM-1, knowledge/famille-core-inventaire.md) : famille de core facultative,
+ * liste fermée CF1 à CF5. Champ réservé aux fiches de core : schémas `gainage`, `anti_rotation`, `rotation`, plus
+ * `charniere` pour la seule famille `extension` (CF5, ex. extension-dorsale-ballon, hors plancher).
+ */
+export const FAMILLES_CORE = ['gainage', 'anti_rotation', 'rotation', 'flexion', 'extension'];
+export const FAMILLE_CORE_SCHEMAS = { gainage: ['gainage'], anti_rotation: ['anti_rotation'], rotation: ['rotation'], flexion: ['rotation', 'gainage'], extension: ['charniere'] };
 const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const RANK = { garder: 0, adapter: 1, retirer: 2 };
 
@@ -172,6 +179,10 @@ export function parseFiche(text, file) {
     if ('lateralite' in d) {
       if (!LATERALITES.includes(d.lateralite)) add(L('lateralite'), 'frontmatter', `lateralite : valeur « ${d.lateralite} » hors de la liste : ${LATERALITES.join(', ')}`);
       else if (schemaFamille(d.schema) !== 'squat') add(L('lateralite'), 'frontmatter', 'lateralite : réservé à la famille « squat » (squat, fente)');
+    }
+    if ('famille_core' in d) {
+      if (typeof d.famille_core !== 'string' || !FAMILLES_CORE.includes(d.famille_core)) add(L('famille_core'), 'frontmatter', `famille_core = « ${Array.isArray(d.famille_core) ? '[...]' : d.famille_core} » hors de la liste : ${FAMILLES_CORE.join(', ')}`);
+      else if (!FAMILLE_CORE_SCHEMAS[d.famille_core].includes(d.schema)) add(L('famille_core'), 'frontmatter', `famille_core « ${d.famille_core} » : réservé aux fiches de core de schéma ${FAMILLE_CORE_SCHEMAS[d.famille_core].join(' ou ')} (schéma actuel : ${d.schema})`);
     }
     if ('couverture' in d && d.couverture !== 'substitut') add(L('couverture'), 'frontmatter', 'couverture : seule la valeur « substitut » est permise');
     if ('doux_pour' in d) {

@@ -1,7 +1,10 @@
 // Durée estimée et ajustement (V-DUREE §4.4) ; supersets antagonistes (V-SUP §4.2).
 // Fonctions pures sur une forme minimale de séance, utilisables avec des séances construites à la main (T3c, T25).
 import type { ExerciseRole, ExerciseUnit, Level, WarmupSet } from '../data/model';
-import { ACCESSORY_REMOVAL_ORDER, CORE_REMOVAL_ORDER, TIME, WARMUP } from './config';
+import {
+  ACCESSORY_REMOVAL_ORDER, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_ORDER, CORE_SAFE_FAMILIES, CORE_WHEEL_IDS, HEAVY_TAGS_B1, P3_LEG_ALLOWED_TAGS,
+  SUPERSET_FORBIDDEN_SCHEMAS, SUPERSET_MIN_REST_SEC, SUPERSET_SLOTS, TIME, WARMUP, type CoreFamily,
+} from './config';
 import type { SlotKey } from './types';
 
 export interface DurExercise {
@@ -21,6 +24,13 @@ export interface DurExercise {
   musclesPrincipaux: string[];
   warmupSets: WarmupSet[];
   supersetGroup: string | null;
+  /** D26 (SUP-0 à SUP-5) : inconnus = jamais apparié (lecture prudente). */
+  schema?: string;
+  ficheId?: string;
+  tags?: string[];
+  coreFamily?: CoreFamily | null;
+  niveau?: Level;
+  backLoaded?: boolean;
 }
 export interface DurSession<E extends DurExercise = DurExercise> {
   label: 'A' | 'B' | 'C';
@@ -73,7 +83,7 @@ export function estimerDuree(s: DurSession): number {
       t += e.sets * tExec(e) + (e.sets - 1) * e.restSec;
     } else {
       const sets = Math.max(...u.map((e) => e.sets));
-      const rest = Math.max(...u.map((e) => e.restSec));
+      const rest = pairRestSec(u);
       t += sets * (u.reduce((a, e) => a + tExec(e), 0) + TIME.supersetTransitionSec * (u.length - 1)) + (sets - 1) * rest;
     }
   }
@@ -81,33 +91,60 @@ export function estimerDuree(s: DurSession): number {
   return t;
 }
 
-const PAIRS: { id: 'P1' | 'P2' | 'P3'; a: SlotKey; b: SlotKey }[] = [
+/** SUP-6 : repos d'une paire = le plus long des deux, jamais moins de 60 s (SUPERSET_MIN_REST_SEC). */
+export function pairRestSec(u: readonly Pick<DurExercise, 'restSec'>[]): number {
+  const rest = Math.max(...u.map((e) => e.restSec));
+  return u.length > 1 ? Math.max(rest, SUPERSET_MIN_REST_SEC) : rest;
+}
+
+/** D26 : paires fermées P1 et P3 (P2 supprimée, P4 barrée : core-et-supersets.md §4.1). */
+export type PairId = 'P1' | 'P3';
+const PAIRS: { id: PairId; a: SlotKey; b: SlotKey }[] = [
   { id: 'P1', a: 'poussee_2', b: 'tirage_2' },
-  { id: 'P2', a: 'tirage_1', b: 'poussee_2' },
   { id: 'P3', a: 'jambes_2', b: 'tronc' },
 ];
-const NEVER_PAIRED: readonly SlotKey[] = ['jambes_genou', 'poussee_1', 'charniere'];
 const LEG_SLOTS: readonly SlotKey[] = ['jambes_genou', 'jambes_2'];
 
-/** V-SUP : paire permise ? (liste fermée, interdits pour toutes les familles et tous les niveaux). */
-export function canPair(s: DurSession, id: 'P1' | 'P2' | 'P3'): boolean {
-  if (s.pregnant) return false;
-  const p = PAIRS.find((x) => x.id === id)!;
-  if (id === 'P2' && s.exercises.some((e) => e.supersetGroup?.endsWith('P1'))) return false;
-  const a = s.exercises.find((e) => e.slot === p.a);
-  const b = s.exercises.find((e) => e.slot === p.b);
-  if (!a || !b || a.supersetGroup || b.supersetGroup) return false;
-  for (const e of [a, b]) {
-    if (NEVER_PAIRED.includes(e.slot)) return false;
-    if (e.capped || e.adaptations.length > 0 || e.replaces) return false;
-  }
-  if (LEG_SLOTS.includes(a.slot) && LEG_SLOTS.includes(b.slot)) return false;
-  if (a.musclesPrincipaux.some((m) => b.musclesPrincipaux.includes(m))) return false;
-  if (id === 'P3' && s.level === 'debutant' && a.chargeable) return false;
+/** SUP-0 : un exercice peut-il entrer dans une paire ? (définition fermée ; tout ce qui échoue est interdit, SUP-3). */
+export function pairEligible(e: DurExercise): boolean {
+  if (!SUPERSET_SLOTS.includes(e.slot)) return false; // point 1 : accessoires seulement (jamais pilier, charnière, tirage_1)
+  if (e.capped || e.adaptations.length > 0 || e.replaces) return false; // point 5, SUP-2 point 5, SUP-9
+  if (!e.tags || !e.schema) return false; // matériel ou schéma inconnu : jamais apparié (lecture prudente)
+  if (e.tags.some((t) => HEAVY_TAGS_B1.includes(t))) return false; // point 2 : liste B1
+  if (SUPERSET_FORBIDDEN_SCHEMAS.includes(e.schema)) return false; // point 3 : poussee_v, saut, porte, cardio
+  if (e.niveau === 'avance') return false; // SUP-3 : niveau avancé
+  if (e.ficheId && CORE_OUT_OF_FLOOR_IDS.includes(e.ficheId)) return false; // inventaire : extension-dorsale-ballon jamais en paire
   return true;
 }
 
-function formPair<E extends DurExercise>(s: DurSession<E>, id: 'P1' | 'P2' | 'P3'): boolean {
+/** V-SUP resserré par D26 (SUP-0 à SUP-5, SUP-9) : paire permise ? */
+export function canPair(s: DurSession, id: PairId): boolean {
+  if (s.pregnant) return false; // SUP-9
+  if (s.level === 'debutant') return false; // SUP-4 : aucun superset pour un débutant
+  const p = PAIRS.find((x) => x.id === id)!;
+  const a = s.exercises.find((e) => e.slot === p.a);
+  const b = s.exercises.find((e) => e.slot === p.b);
+  if (!a || !b || a.supersetGroup || b.supersetGroup) return false;
+  if (!pairEligible(a) || !pairEligible(b)) return false;
+  if (LEG_SLOTS.includes(a.slot) && LEG_SLOTS.includes(b.slot)) return false; // SUP-2 point 2
+  if (a.musclesPrincipaux.some((m) => b.musclesPrincipaux.includes(m))) return false; // SUP-1 (OK, S-SUP)
+  if (a.schema === b.schema) return false; // SUP-5
+  if (a.coreFamily && b.coreFamily) return false; // SUP-2 points 3 et 4 : core + core, même famille
+  const core = a.coreFamily ? a : b.coreFamily ? b : null;
+  if (core) {
+    const other = core === a ? b : a;
+    // P3 : core CF1 ou CF2, jamais roue abdominale ; SUP-2 point 4 : jamais avec une charnière, un rowing penché, une fiche
+    // dont la ligne dos n'est pas « garder » (inconnu : refusé).
+    if (!CORE_SAFE_FAMILIES.includes(core.coreFamily!) || CORE_WHEEL_IDS.includes(core.ficheId ?? '')) return false;
+    if (other.schema === 'charniere' || (other.ficheId ?? '').startsWith('rowing') || other.backLoaded !== false) return false;
+  }
+  if (id === 'P1' && a.schema !== 'poussee_h') return false; // P1 : poussée horizontale ou inclinée, jamais poussee_v
+  // P3 plus strict que SUP-0 : jambes_2 au poids du corps ou à l'élastique seulement (aucune charge, haltères compris).
+  if (id === 'P3' && (a.chargeable || !a.tags!.every((t) => P3_LEG_ALLOWED_TAGS.includes(t)))) return false;
+  return true;
+}
+
+function formPair<E extends DurExercise>(s: DurSession<E>, id: PairId): boolean {
   if (!canPair(s, id)) return false;
   const p = PAIRS.find((x) => x.id === id)!;
   const g = `${s.label}-${id}`;
@@ -121,10 +158,10 @@ function formPair<E extends DurExercise>(s: DurSession<E>, id: 'P1' | 'P2' | 'P3
   return true;
 }
 
-/** Forme P1, P2, P3 si permises (option « gagner du temps »). */
+/** Forme P1 puis P3 si permises (option « gagner du temps »). */
 export function formAllPairs<E extends DurExercise>(s: DurSession<E>): DurSession<E> {
   const c = { ...s, exercises: [...s.exercises] };
-  for (const id of ['P1', 'P2', 'P3'] as const) formPair(c, id);
+  for (const id of ['P1', 'P3'] as const) formPair(c, id);
   return c;
 }
 
@@ -148,15 +185,19 @@ export interface AdjustResult<E extends DurExercise> {
   trace: number[];
 }
 
-/** V-DUREE : tant que T > D, appliquer la prochaine action (1 à 6), recalculer ; jamais retirer un pilier ni E1, ni raccourcir un repos. */
-export function ajusterDuree<E extends DurExercise>(s0: DurSession<E>, dSec: number): AdjustResult<E> {
+/**
+ * V-DUREE : tant que T > D, appliquer la prochaine action (1 à 6), recalculer ; jamais retirer un pilier ni E1, ni raccourcir un repos.
+ * D26 (CORE-TPS-1) : après les accessoires et l'échauffement, le tronc AU-DELÀ du plancher est raccourci (2 -> 1 série) puis retiré,
+ * avant la charnière et tirage_1 ; un tronc qui fait partie du plancher (`coreProtected`) n'est jamais retiré.
+ */
+export function ajusterDuree<E extends DurExercise>(s0: DurSession<E>, dSec: number, opts: { coreProtected?: boolean } = {}): AdjustResult<E> {
   const s: DurSession<E> = { ...s0, exercises: [...s0.exercises] };
   const actions: string[] = [];
   const removedCore: SlotKey[] = [];
   const removedAccessory: SlotKey[] = [];
   const trace = [estimerDuree(s)];
   const steps: [string, () => boolean][] = [
-    ...(['P1', 'P2', 'P3'] as const).map((id) => [`paire:${id}`, () => formPair(s, id)] as [string, () => boolean]),
+    ...(['P1', 'P3'] as const).map((id) => [`paire:${id}`, () => formPair(s, id)] as [string, () => boolean]),
     ...ACCESSORY_REMOVAL_ORDER.map(
       (slot) => [`retrait:${slot}`, () => removeSlot(s, slot as SlotKey) && (removedAccessory.push(slot as SlotKey), true)] as [string, () => boolean],
     ),
@@ -198,6 +239,20 @@ export function ajusterDuree<E extends DurExercise>(s0: DurSession<E>, dSec: num
         return true;
       },
     ],
+    ...(opts.coreProtected
+      ? []
+      : ([
+          [
+            'tronc:1serie',
+            () => {
+              const e = s.exercises.find((x) => x.slot === 'tronc');
+              if (!e || e.sets <= 1) return false;
+              s.exercises = s.exercises.map((x) => (x === e ? { ...x, sets: 1 } : x));
+              return true;
+            },
+          ],
+          ['retrait:tronc', () => removeSlot(s, 'tronc') && (removedCore.push('tronc'), true)],
+        ] as [string, () => boolean][])),
     ...(CORE_REMOVAL_ORDER[s.days][s.label] ?? []).map(
       (slot) => [`retrait:${slot}`, () => removeSlot(s, slot as SlotKey) && (removedCore.push(slot as SlotKey), true)] as [string, () => boolean],
     ),

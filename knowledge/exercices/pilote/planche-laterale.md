@@ -4,6 +4,7 @@ nom: Planche latérale
 schema: gainage
 type: gainage
 niveau_min: debutant
+famille_core: gainage
 muscles_principaux: [obliques, abdominaux]
 muscles_secondaires: [moyen_fessier, carre_des_lombes, deltoides_lateraux]
 source_brouillon: [M1715, M0514, M1712]

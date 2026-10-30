@@ -4,6 +4,7 @@ nom: Planche latérale, jambe levée
 schema: gainage
 type: gainage
 niveau_min: intermediaire
+famille_core: gainage
 muscles_principaux: [obliques, carre_des_lombes]
 muscles_secondaires: [moyen_fessier, transverse, deltoides_lateraux]
 source_brouillon: []

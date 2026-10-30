@@ -61,6 +61,8 @@ export const msg = {
         ' dans tes jours disponibles.',
       { action: { label: 'Modifier mes jours', target: 'jours-bloques' } },
     ),
+  /** D26, CORE-FREQ-3 et CORE-SEC-2 point 4 : message neutre (pas d'alerte, pas de diagnostic), texte du fichier de règles. */
+  tronc: () => m('V-MSG-TRONC', "Le tronc est adapté à ta situation : pas d'exercice de tronc cette semaine."),
   pro: () => m('V-MSG-PRO', "Avec les gênes déclarées, l'app ne peut pas proposer de séance sûre. Demande l'avis d'un professionnel de santé."),
   grosDuree: () => m('V-MSG-GROS-DUREE', 'Grossesse ou après un accouchement : séances de 60 min au plus. Ta séance est ramenée à 60 min.'),
   grosAvis: () =>

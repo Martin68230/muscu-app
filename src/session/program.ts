@@ -7,7 +7,7 @@ import { generateProgram, isCardioDay, toProgramDays } from '../generator';
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.2'; // v1.2 (B4) : cardio principal / secondaire (knowledge/cardio-regles.md)
+export const GENERATOR_VERSION = 'v1.3'; // v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 

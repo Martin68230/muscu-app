@@ -5,6 +5,7 @@ alias: [ab wheel, ab roller, rollout à la roue]
 schema: gainage
 type: gainage
 niveau_min: intermediaire
+famille_core: gainage
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, grand_dorsal, deltoides_anterieurs, flechisseurs_hanche]
 source_brouillon: []

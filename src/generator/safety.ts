@@ -4,6 +4,7 @@
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../data/injury-rules';
 import { CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, INTERMEDIATE_ECHELON_OFFSET, TAG_ORDER } from './config';
 import { carriesLoad, isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
+import { coreRule } from './core';
 import type { Fiche, FicheVariant, SafetyCase } from './types';
 
 export const USABLE_STATUTS = ['utilisable', 'verifie'];
@@ -191,7 +192,10 @@ function tryReplacement(origin: Fiche, targetId: string, by: ZoneEntry, ctx: Ctx
   const R = t.fiche;
   if (!ficheAdmissible(R, ctx)) return null;
   if ((by.key === 'cuisse' || by.key === 'aine') && !R.securite.zones[by.key]) return null;
-  const restrict: Restrict = {};
+  // D26 : un remplaçant de core passe aussi les règles de famille (jamais une famille retirée par la table ou le niveau).
+  const core = coreRule(R, ctx);
+  if (core?.blocked) return null;
+  const restrict: Restrict = core?.sansCharge ? { sansCharge: true } : {};
   const adaptations: string[] = [];
   let forced = t.variantId;
   for (const e of ctx.zones) {
@@ -217,7 +221,7 @@ function tryReplacement(origin: Fiche, targetId: string, by: ZoneEntry, ctx: Ctx
     variant,
     origin,
     adapted: true,
-    capped: originCapped || isCappedFiche(R, ctx),
+    capped: originCapped || isCappedFiche(R, ctx) || !!core?.capped,
     adaptations,
     notes: noteTexts(R, ctx.zones.filter((e) => caseFor(R, e).action !== 'garder')),
     replaces: origin.id,
@@ -236,8 +240,12 @@ export function resolveFiche(X: Fiche, ctx: Ctx): Resolution {
 
 function resolveUncached(X: Fiche, ctx: Ctx): Resolution {
   if (!ficheAdmissible(X, ctx)) return { candidates: [], blockedBy: [] };
+  // D26 (CORE-SEC-1 à 3) : règles de famille de core, appliquées en plus des cases de la fiche (la plus restrictive gagne).
+  const core = coreRule(X, ctx);
+  if (core?.blocked) return { candidates: [], blockedBy: core.blockedBy };
   const cases = ctx.zones.map((e) => ({ e, c: caseFor(X, e) }));
-  const originCapped = isCappedFiche(X, ctx);
+  const originCapped = isCappedFiche(X, ctx) || !!core?.capped;
+  const coreRestrict: Restrict = core?.sansCharge ? { sansCharge: true } : {};
   const byLevel = <T extends { e: ZoneEntry }>(a: T, b: T) => b.e.level - a.e.level;
   const retires = cases.filter((x) => x.c.action === 'retirer');
   const adapters = cases.filter((x) => x.c.action === 'adapter');
@@ -251,7 +259,7 @@ function resolveUncached(X: Fiche, ctx: Ctx): Resolution {
       if (targets.length > 1) return { candidates: [], blockedBy };
       const t = targets[0];
       if (X.variantes.some((v) => v.id === t)) {
-        const r = applyAdapters(X, ctx, adapters, { only: new Set([t]) }, originCapped);
+        const r = applyAdapters(X, ctx, adapters, { ...coreRestrict, only: new Set([t]) }, originCapped);
         return { candidates: r ? [r] : [], blockedBy: r ? [] : blockedBy };
       }
       const cand = tryReplacement(X, t, retires[0].e, ctx, originCapped);
@@ -264,10 +272,10 @@ function resolveUncached(X: Fiche, ctx: Ctx): Resolution {
     }
     return { candidates: [], blockedBy };
   }
-  const r = applyAdapters(X, ctx, adapters, {}, originCapped);
+  const r = applyAdapters(X, ctx, adapters, coreRestrict, originCapped);
   if (r) return { candidates: [r], blockedBy: [] };
   // Fiche rendue impossible par une case (sans-charge sans variante, variante imposée introuvable) : cause santé.
-  const plainAllowed = allowedVariants(X, ctx).length > 0;
+  const plainAllowed = allowedVariants(X, ctx, coreRestrict).length > 0;
   return { candidates: [], blockedBy: plainAllowed ? [...new Set(adapters.map((x) => x.e.key))] : [] };
 }
 

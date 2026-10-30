@@ -77,13 +77,17 @@ export const START_N_BY_DURATION: readonly [number, number][] = [
   [60, 7],
   [75, 8],
 ];
-/** Ordre de retrait du noyau, action 6 (V-DUREE §4.4). NON SOURCÉ. */
+/**
+ * Ordre de retrait du noyau HORS tronc, action 6 (V-DUREE §4.4). NON SOURCÉ.
+ * D26 (core-et-supersets.md CORE-TPS-1, écart E1) : le tronc n'est plus dans cette liste. Au-delà du plancher, il est
+ * raccourci puis retiré AVANT charnière et tirage_1 (CORE_TRONC_STEPS) ; au plancher, il n'est jamais retiré.
+ */
 export const CORE_REMOVAL_ORDER: Record<2 | 3, Record<string, readonly string[]>> = {
-  2: { A: ['tronc', 'charniere', 'tirage_1'], B: ['tronc', 'charniere', 'tirage_1'] },
+  2: { A: ['charniere', 'tirage_1'], B: ['charniere', 'tirage_1'] },
   3: {
-    A: ['tronc', 'charniere', 'tirage_1'],
-    B: ['charniere', 'tirage_1', 'tronc'],
-    C: ['tirage_1', 'tronc', 'charniere'],
+    A: ['charniere', 'tirage_1'],
+    B: ['charniere', 'tirage_1'],
+    C: ['tirage_1', 'charniere'],
   },
 };
 /** Action 2 : ordre de retrait des emplacements accessoires. NON SOURCÉ. */
@@ -330,6 +334,101 @@ export const CALIBRATION = {
 };
 /** R4 / §6.8 point 2 : séances consécutives avec « ça fait mal » sur la même zone avant de PROPOSER un niveau plus haut. NON SOURCÉ. */
 export const PAIN_SESSIONS_FOR_PROPOSAL = 2;
+
+// ---------------------------------------------------------------------------------------------
+// D26 : core (tronc) et supersets — knowledge/core-et-supersets.md (validé sous réserve par `relecteur`, 30/10/2026),
+// knowledge/famille-core-inventaire.md. TOUT est NON SOURCÉ (choix de conception prudents), sauf SUP-1 (OK, S-SUP).
+// ---------------------------------------------------------------------------------------------
+export type CoreFamily = 'gainage' | 'anti_rotation' | 'rotation' | 'flexion' | 'extension';
+/** CORE-ALT-1 : ordre de rotation des familles CF1 à CF5. NON SOURCÉ. */
+export const CORE_FAMILY_ORDER: readonly CoreFamily[] = ['gainage', 'anti_rotation', 'rotation', 'flexion', 'extension'];
+/** CORE-FAM-1 : famille déduite du schéma quand la fiche n'a pas l'attribut `famille_core`. */
+export const CORE_FAMILY_FROM_SCHEMA: Record<string, CoreFamily> = { gainage: 'gainage', anti_rotation: 'anti_rotation', rotation: 'rotation' };
+/** Familles « sûres » (CF1, CF2) : débutant, grossesse/post-partum, dos niveau 2, séance à charge lourde, P3. */
+export const CORE_SAFE_FAMILIES: readonly CoreFamily[] = ['gainage', 'anti_rotation'];
+/** Inventaire (kiné, 2e passage) : hors famille core (travail de hanche) ; exclue de l'emplacement `tronc` par id. */
+export const CORE_NOT_CORE_IDS: readonly string[] = ['copenhague-court'];
+/** Inventaire : CF5 qui ne compte PAS dans le plancher (schéma charnière, hors GG5) ; jamais en superset. */
+export const CORE_OUT_OF_FLOOR_IDS: readonly string[] = ['extension-dorsale-ballon'];
+/** Roue abdominale et roulé au ballon (CF1 dynamique) : débutant, dos dès le niveau 1, grossesse, charge lourde, P3. */
+export const CORE_WHEEL_IDS: readonly string[] = ['roue-abdos', 'rollout-ballon'];
+/** CF1 dynamiques ou instables retirées au dos niveau 2 (CORE-SEC-3, R7 ; planche-ballon / planche-bosu : à confirmer par `kine`). */
+export const CORE_CF1_DYNAMIC_IDS: readonly string[] = ['planche-cercles-ballon', 'genoux-poitrine-ballon', 'planche-ballon', 'planche-bosu'];
+/**
+ * CORE-ORD-4 : CF1 à répétitions (dose fixe dynamique) exclues après une charge lourde. Lecture restrictive de `dev`
+ * (la règle ne permet que le maintien <= 30 s en CF1 et les répétitions V-TEMPS en CF2) : docs/D26-bilan.md.
+ */
+export const CORE_HEAVY_EXCLUDED_IDS: readonly string[] = [...CORE_WHEEL_IDS, 'genoux-poitrine-ballon', 'planche-cercles-ballon'];
+/** §11 point 2 (kiné) : rotation russe chargée et lancer rotatif rapide « non proposés par défaut » : jamais placés par le générateur. */
+export const CORE_NOT_DEFAULT_IDS: readonly string[] = ['rotation-russe', 'lancer-rotation-mur'];
+/** CORE-FREQ-1/2 : plancher hebdomadaire (séances avec core, séries de core). NON SOURCÉ (question Q3 ouverte). */
+export const CORE_FLOOR = { sessions: 2, sets: 4 } as const;
+/** CORE-DOSE-1 : séries par exercice de core (V-TEMPS). NON SOURCÉ. */
+export const CORE_SETS_PER_EXERCISE = 2;
+/** CORE-DOSE-3, CORE-ALT-3 : plafonds de core. NON SOURCÉ. */
+export const CORE_MAX = { exercisesPerSession: 2, setsPerSession: 6, setsPerWeek: 12, rotationPerSession: 1 } as const;
+export type CoreGoal = 'force' | 'muscle' | 'cardio' | 'sante';
+/** CORE-FREQ-4, table §2.2 : cible de séances avec core (séries cible = 2 x séances). Lignes 4 à 6 jours : phase 4. NON SOURCÉ. */
+export const CORE_TARGET_SESSIONS: Record<number, Record<CoreGoal, number>> = {
+  2: { force: 2, muscle: 2, cardio: 2, sante: 2 },
+  3: { force: 2, muscle: 3, cardio: 2, sante: 3 },
+  4: { force: 2, muscle: 3, cardio: 2, sante: 3 },
+  5: { force: 3, muscle: 3, cardio: 3, sante: 3 },
+  6: { force: 3, muscle: 3, cardio: 3, sante: 3 },
+};
+/** CORE-FREQ-5 (3) : en corps entier, séances qui reçoivent le core d'abord (A puis C, puis B). NON SOURCÉ. */
+export const CORE_SESSION_PRIORITY: Record<2 | 3, readonly ('A' | 'B' | 'C')[]> = { 2: ['A', 'B'], 3: ['A', 'C', 'B'] };
+/** E1 / CORE-TPS-1 : séances qui perdent en premier leur core AU-DELÀ du plancher (rotation A, C, B conservée). NON SOURCÉ. */
+export const CORE_REMOVAL_SESSION_ORDER: Record<2 | 3, readonly ('A' | 'B' | 'C')[]> = { 2: ['A', 'B'], 3: ['A', 'C', 'B'] };
+/** CORE-ORD-4 (a) et SUP-0 point 2 (liste B1) : matériel « lourd ». */
+export const HEAVY_TAGS_B1: readonly string[] = ['barre', 'barre_ez', 'disques', 'rack', 'kettlebell', 'lest', 'sac_de_sable', 'machine', 'poulie'];
+/** CORE-ORD-4 (b) : pilier jambes_genou / charnière réellement lourd (haltères et sac à dos exclus ; machine et poulie couvertes par (a)). */
+export const HEAVY_TAGS_PILLAR: readonly string[] = ['barre', 'barre_ez', 'disques', 'rack', 'kettlebell', 'lest', 'sac_de_sable'];
+/** CORE-ORD-4 (c) : rowings penchés chargés, par id (liste à tenir à jour), plus toute fiche `rowing-*` à matériel B1. */
+export const HEAVY_ROW_IDS: readonly string[] = ['rowing-barre-penche', 'rowing-pendlay-barre', 'rowing-barre-ez', 'rowing-sac-de-sable'];
+/** CORE-ORD-4 : maintien maximal (s) du core après une charge lourde. NON SOURCÉ. */
+export const CORE_HEAVY_MAX_HOLD_SEC = 30;
+/** CORE-SEC-3 : table dos par famille et par niveau (la plus restrictive de la table et de la fiche s'applique). NON SOURCÉ (kiné). */
+export interface CoreDosRule {
+  retire?: boolean;
+  sansCharge?: boolean;
+  maxRepsPerSide?: number;
+  maxHoldSec?: number;
+  capped?: boolean;
+  excludeIds?: readonly string[];
+}
+export const CORE_DOS: Record<1 | 2 | 3, Record<CoreFamily, CoreDosRule>> = {
+  1: {
+    gainage: { excludeIds: CORE_WHEEL_IDS },
+    anti_rotation: {},
+    rotation: { sansCharge: true, maxRepsPerSide: 8 },
+    // CF4 : « courte et lente, jambes pliées, sans lest » ; crunch-bicyclette retirée dès le niveau 1 (inventaire, kiné).
+    flexion: { sansCharge: true, excludeIds: ['crunch-bicyclette'] },
+    extension: { sansCharge: true },
+  },
+  2: {
+    gainage: { maxHoldSec: 20, capped: true, excludeIds: [...CORE_WHEEL_IDS, ...CORE_CF1_DYNAMIC_IDS, 'planche-laterale-jambe-levee'] },
+    anti_rotation: { maxHoldSec: 20, capped: true },
+    rotation: { retire: true },
+    flexion: { retire: true },
+    extension: { retire: true },
+  },
+  3: {
+    gainage: { retire: true },
+    anti_rotation: { retire: true },
+    rotation: { retire: true },
+    flexion: { retire: true },
+    extension: { retire: true },
+  },
+};
+/** SUP-0 point 1 : emplacements accessoires seuls appariables. */
+export const SUPERSET_SLOTS: readonly string[] = ['poussee_2', 'tirage_2', 'jambes_2', 'tronc'];
+/** SUP-0 point 3, SUP-3 : schémas jamais appariés. */
+export const SUPERSET_FORBIDDEN_SCHEMAS: readonly string[] = ['poussee_v', 'saut', 'porte', 'cardio'];
+/** SUP-6 : repos minimal d'une paire (s). NON SOURCÉ (prudence, fatigue interne plus élevée : S-SUP). */
+export const SUPERSET_MIN_REST_SEC = 60;
+/** SUP-0 point 2 / P3 : tags permis pour `jambes_2` en P3 (poids du corps ou élastique, plus les objets d'appui implicites). */
+export const P3_LEG_ALLOWED_TAGS: readonly string[] = ['poids_du_corps', 'elastique', 'tapis', 'chaise', 'mur', 'marche_escalier', 'serviette', 'porte'];
 
 // ---------------------------------------------------------------------------------------------
 // Profils de matériel A à F (tools/couverture.mjs) : utilisés par les tests, la démo, et le preset F (V-MAT §6.2)

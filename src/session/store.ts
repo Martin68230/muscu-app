@@ -4,7 +4,7 @@ import { getDB } from '../data/db';
 import { create, get, list, update } from '../data/repo';
 import type { InjuryZone, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import {
-  abandonSession, adjustRest, completeSet, currentView, endWarmup, finishSession, markPain, reportSymptom, skipExercise, skipRest, startSession,
+  abandonSession, adjustRest, completeSet, currentView, endWarmup, finishSession, markPain, pairsForSession, reportSymptom, skipExercise, skipRest, startSession,
   restTaken, SessionError, type EngineContext, type EngineState, type Outcome, type SessionView, type SetEntry, type SetInput, type SetResult,
 } from './engine';
 import { PROGRESSION } from './progression-config';
@@ -100,8 +100,10 @@ export class SessionController {
    * Une ligne N (jour décalé `prevue`, SM-D2) de cette séance est réutilisée : elle passe `en_cours` puis `faite`, sa date prévue ne change pas.
    */
   static async start(program: Program, dayIndex: number, ctx: EngineContext, now: NowFn = realNow, opts: { day?: ProgramDay } = {}): Promise<SessionController> {
-    const day = opts.day ?? program.days[dayIndex];
-    if (!day) throw new SessionError('Séance introuvable.');
+    const planned = opts.day ?? program.days[dayIndex];
+    if (!planned) throw new SessionError('Séance introuvable.');
+    // D26 (SUP-2 point 7) : paires non appliquées si un exercice est en étalonnage ou en retour après gêne (plan enregistré tel quel).
+    const day = pairsForSession(planned, ctx);
     const sessions = await list('sessions');
     if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
     const t = now();

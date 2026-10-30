@@ -16,6 +16,7 @@ import { loadPlayerData } from '../../src/ui/session/launch';
 import { resetSoundForTests, unlockSound } from '../../src/ui/session/sound';
 import { resetWakeLockForTests } from '../../src/ui/session/wakelock';
 import { exName } from '../../src/ui/session/text';
+import { ZONE_LABEL } from '../../src/data/labels';
 import { FICHES, PROFILES } from './generator-helpers';
 import { day as mkDay, ex as mkEx, fakeClock } from './session-helpers';
 
@@ -221,9 +222,23 @@ describe('saisie rapide', () => {
   });
 });
 
+/** D26 (SUP-2 point 7) : une séance passée où ces variantes ont déjà été faites (hors étalonnage), avec douleur facultative. */
+async function pastSets(items: { movementId: string; variantId: string; pain?: boolean }[]) {
+  const session = await create('sessions', {
+    programId: null, programDayIndex: null, plannedDate: '2026-10-19', status: 'faite',
+    startedAt: '2026-10-19T08:00:00.000Z', endedAt: '2026-10-19T08:40:00.000Z', note: '',
+  } as never);
+  for (const [i, it] of items.entries())
+    await create('sets', {
+      sessionId: session.id, movementId: it.movementId, variantId: it.variantId, exerciseIndex: i, setIndex: 0, targetRepsMin: 8, targetRepsMax: 12,
+      reps: 10, loadKg: 4, rir: 2, pain: !!it.pain, comment: '', completedAt: `2026-10-19T08:1${i}:00.000Z`,
+    } as never);
+}
+
 describe('superset', () => {
-  it('signalé, transition courte entre A et B, repos après la paire', async () => {
+  it('signalé, transition courte entre A et B, repos après la paire (séance 2 : exercices déjà étalonnés)', async () => {
     const profile = await seed();
+    await pastSets([{ movementId: DB_PRESS.id, variantId: DB_PRESS.variant }, { movementId: CURL.id, variantId: CURL.variant }]);
     const a = planned(DB_PRESS.id, DB_PRESS.variant, { sets: 2, supersetGroup: 'P1', restSec: 90 });
     const b = planned(CURL.id, CURL.variant, { sets: 2, supersetGroup: 'P1', restSec: 60, slot: 'tirage_1' });
     const { ctl } = await mount(await handmade([mkDay([a, b])]), profile);
@@ -237,6 +252,43 @@ describe('superset', () => {
     await click('Série faite');
     await waitFor(() => expect(ctl.state.rest?.kind).toBe('repos'), { timeout: 8000 });
     expect(ctl.state.rest?.totalMs).toBe(90_000);
+  });
+
+  it('T-D26-22 séance 1 : exercices en étalonnage, paire non appliquée sans message d’erreur, texte unique de la séance 1', async () => {
+    try { localStorage.clear(); } catch { /* jsdom */ }
+    const profile = await seed();
+    const a = planned(DB_PRESS.id, DB_PRESS.variant, { sets: 2, supersetGroup: 'P1', restSec: 90 });
+    const b = planned(CURL.id, CURL.variant, { sets: 2, supersetGroup: 'P1', restSec: 60, slot: 'tirage_2' });
+    const { ctl } = await mount(await handmade([mkDay([a, b])]), profile);
+    expect(ctl.day.exercises.every((e) => e.supersetGroup === null && e.pairDeferred === 'etalonnage')).toBe(true);
+    expect(screen.queryByText(/Superset :/)).toBeNull();
+    expect(screen.getByText(/Cette première séance peut durer un peu plus longtemps/)).toBeTruthy();
+    expect(screen.queryByRole('alert')).toBeNull();
+    await click('Série faite');
+    await waitFor(() => expect(ctl.state.rest?.kind).toBe('repos'), { timeout: 8000 });
+    expect(ctl.view().exercise?.movementId).toBe(DB_PRESS.id); // A est fait seul, avec son repos
+  });
+
+  it('T-D26-13a/b douleur pendant la paire : paire dissoute, « Continuer seul » seulement si la zone n’est pas portée par l’autre fiche', async () => {
+    const profile = await seed();
+    await pastSets([{ movementId: DB_PRESS.id, variantId: DB_PRESS.variant }, { movementId: CURL.id, variantId: CURL.variant }]);
+    const a = planned(DB_PRESS.id, DB_PRESS.variant, { sets: 3, supersetGroup: 'P1', restSec: 90 });
+    const b = planned(CURL.id, CURL.variant, { sets: 3, supersetGroup: 'P1', restSec: 60, slot: 'tirage_2' });
+    const { ctl } = await mount(await handmade([mkDay([a, b])]), profile);
+    const curlZones = Object.keys(byName(CURL.id).securite.zones);
+    const free = (['cheville', 'genou', 'hanche', 'aine', 'cuisse', 'dos'] as const).find((z) => !curlZones.includes(z));
+    expect(free).toBeTruthy();
+    await click('Ça fait mal');
+    const label = ZONE_LABEL[free!];
+    await click(label.charAt(0).toUpperCase() + label.slice(1));
+    await click('J’arrête cet exercice');
+    await waitFor(() => expect(ctl.state.painExercises).toEqual([0]));
+    expect(await screen.findByText(/Le superset s’arrête/)).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Continuer seul' })).toBeTruthy();
+    expect(screen.getByRole('button', { name: 'Passer au suivant' })).toBeTruthy();
+    expect((await list('sets')).filter((y) => y.pain)).toHaveLength(1);
+    await click('Passer au suivant');
+    expect(ctl.state.skipped).toEqual([0, 1]);
   });
 });
 

@@ -8,6 +8,7 @@ import { generateProgram } from '../../src/generator';
 import { hashString } from '../../src/session/program';
 import { mk, type MkOpts } from './generator-helpers';
 
+// Référence régénérée le 30/10/2026 pour D26 (core : plancher, familles, CORE-ORD-4 ; supersets SUP-0 à SUP-9) : changements voulus, docs/D26-bilan.md.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

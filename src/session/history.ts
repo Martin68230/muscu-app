@@ -61,7 +61,7 @@ export function availableLoadsFor(tags: readonly string[], eq: Pick<EquipmentPro
 }
 
 // ----- Proposition de progression -----
-export type ProgressionReason = 'etalonnage' | 'douleur' | 'plafond' | 'grossesse' | 'maintien' | 'incomplet' | 'double_progression' | 'sommet' | 'baisse' | 'garder' | 'symptome' | 'echelon' | 'reprise';
+export type ProgressionReason = 'etalonnage' | 'douleur' | 'plafond' | 'grossesse' | 'maintien' | 'incomplet' | 'double_progression' | 'sommet' | 'baisse' | 'garder' | 'symptome' | 'echelon' | 'reprise' | 'paire';
 export interface Progression {
   action: 'etalonnage' | 'hausse' | 'baisse' | 'garder';
   loadKg: number | null;
@@ -111,6 +111,11 @@ export interface ProgressionInput {
   cfg?: ProgressionConfig;
   /** V-PROG-E8 « reprise douce active » (seance-manquee-v1.md SM-13) : aucune proposition de montée ; les baisses restent permises. */
   repriseActive?: boolean;
+  /**
+   * D26 (SUP-8 point 3) : zones pour lesquelles la fiche de cet exercice a une ligne. Si le partenaire de paire a eu « ça fait mal »
+   * à la dernière séance sur l'une de ces zones (ou sur une zone inconnue, ou si cette liste est absente : doute), aucune hausse.
+   */
+  zonesOfFiche?: readonly string[];
 }
 
 /** Séries de la fiche pour un échelon donné (poids du corps) : même difficulté, quelle que soit la variante. */
@@ -138,6 +143,19 @@ export function proposeProgression(i: ProgressionInput): Progression {
   const movementSets = i.sets.filter((s) => isWork(s) && s.movementId === ex.movementId && s.sessionId !== i.excludeSessionId).sort(byTime);
   const lastMovementSession = movementSets.length ? movementSets[movementSets.length - 1].sessionId : null;
   const painLast = !!lastMovementSession && movementSets.some((s) => s.sessionId === lastMovementSession && s.pain);
+  // D26 (SUP-8 point 3) : douleur du partenaire pendant la paire de la dernière séance, sur une zone portée par cette fiche (ou en cas de doute).
+  const partnerPain = (() => {
+    if (!lastMovementSession) return false;
+    const plan = i.sessions?.find((s) => s.id === lastMovementSession)?.plan;
+    const g = plan?.exercises.find((e) => e.movementId === ex.movementId)?.supersetGroup;
+    if (!plan || !g) return false;
+    const partners = new Set(plan.exercises.filter((e) => e.supersetGroup === g && e.movementId !== ex.movementId).map((e) => e.movementId));
+    return i.sets.some(
+      (s) => s.sessionId === lastMovementSession && s.pain && partners.has(s.movementId) &&
+        (!i.zonesOfFiche || !s.painZone || s.painZone === 'inconnu' || i.zonesOfFiche.includes(s.painZone)),
+    );
+  })();
+
   const fallbackPlanned = ex.sets * (ex.unit === 'reps_par_cote' ? 2 : 1);
 
   // ----- Exercice sans charge à échelons : montée et descente par échelon (progression.ts) -----
@@ -148,11 +166,11 @@ export function proposeProgression(i: ProgressionInput): Progression {
       frozen: i.frozenBySymptom, fallbackPlanned, gentler: bw.gentler, cfg: i.cfg,
     });
     const p = res.proposal;
-    if (p?.kind === 'montee' && !i.repriseActive) return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
+    if (p?.kind === 'montee' && !i.repriseActive && !partnerPain) return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'descente') return { action: 'baisse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'plancher') return { ...keep('baisse', p.text), echelonProposal: p };
     if (i.repriseActive) return keep('reprise', '');
-    if (painLast) return keep('douleur', PROGRESSION_TEXT.douleur);
+    if (painLast || partnerPain) return keep('douleur', PROGRESSION_TEXT.douleur);
     if (i.pregnant || ex.capped) return keep(i.pregnant ? 'grossesse' : 'plafond', PROGRESSION_TEXT.plafond);
     if (i.frozenBySymptom) return keep('symptome', PROGRESSION_TEXT.symptome);
     return keep('garder', PROGRESSION_TEXT.plusDeReps);
@@ -177,7 +195,7 @@ export function proposeProgression(i: ProgressionInput): Progression {
 
   if (i.repriseActive) return keep('reprise', ''); // aucun texte inventé : la ligne de progression n'est pas affichée
   // V-PRIO : la sécurité l'emporte. Jamais de hausse après une douleur, après un symptôme, sous plafond (R2, charge:legere), ni en grossesse.
-  if (painLast) return keep('douleur', PROGRESSION_TEXT.douleur);
+  if (painLast || partnerPain) return keep('douleur', PROGRESSION_TEXT.douleur);
   if (i.frozenBySymptom) return keep('symptome', PROGRESSION_TEXT.symptome);
   if (i.pregnant) return keep('grossesse', PROGRESSION_TEXT.plafond);
   if (ex.capped) return keep('plafond', PROGRESSION_TEXT.plafond);
@@ -199,6 +217,8 @@ export function proposeProgression(i: ProgressionInput): Progression {
   const allTop = lastSets.every((s) => s.reps !== null && s.reps >= ex.repsMax && rirOk(s));
   if (allTop) {
     if (cur === null) return keep('sommet', PROGRESSION_TEXT.sommet);
+    // D26 (SUP-0 point 2, R3) : un exercice en superset garde la charge de départ du plan ; aucune hausse de charge proposée.
+    if (ex.supersetGroup) return keep('paire', PROGRESSION_TEXT.paire);
     const next = loads.filter((l) => l > cur).sort((a, b) => a - b)[0];
     if (next === undefined) return keep('sommet', PROGRESSION_TEXT.sommet);
     return { action: 'hausse', loadKg: next, echelon: null, reason: 'double_progression', text: loadMoreText(next - cur) };
@@ -218,8 +238,14 @@ export function buildEngineContext(p: {
   /** F6 : étalonnage des échelons pour les exercices sans charge (progression-store.echelonInfoFor). */
   echelonInfo?: (ex: PlannedExercise) => EchelonInfo | null;
   excludeSessionId?: string | null;
+  /** D26 (SUP-8) : la fiche porte une ligne pour cette zone. */
+  zoneOnFiche?: (ex: PlannedExercise, zone: InjuryZone) => boolean;
 }): EngineContext {
   const done = new Set(p.sets.filter((s) => isWork(s) && s.sessionId !== p.excludeSessionId).map((s) => s.variantId));
+  // D26 (SUP-2 point 7) : retour après gêne = la dernière séance où la fiche a été faite contient une série « ça fait mal ».
+  const lastSessionOf = new Map<string, string>();
+  for (const s of p.sets.filter((x) => isWork(x) && x.sessionId !== p.excludeSessionId).sort(byTime)) lastSessionOf.set(s.movementId, s.sessionId);
+  const painAfter = new Set(p.sets.filter((s) => isWork(s) && s.pain && lastSessionOf.get(s.movementId) === s.sessionId).map((s) => s.movementId));
   return {
     pregnant: p.pregnant,
     isCalibration: (ex) => !done.has(ex.variantId),
@@ -227,6 +253,8 @@ export function buildEngineContext(p: {
     availableEchelons: p.availableEchelons,
     echelonOf: p.echelonOf ? (ex) => p.echelonOf!(ex.variantId) : undefined,
     echelonInfo: p.echelonInfo,
+    afterPain: (ex) => painAfter.has(ex.movementId),
+    zoneOnFiche: p.zoneOnFiche,
   };
 }
 

@@ -184,6 +184,11 @@ export interface PlannedExercise {
    * descendre » seulement (sauf palier 4 séance 1), plafond C0. Absent hors reprise.
    */
   reprise?: { calibration: boolean; noRaise: boolean; maxKg: number | null } | null;
+  /**
+   * D26 (core-et-supersets.md SUP-2 point 7), seulement sur la copie du plan d'une séance : superset décidé à la génération mais
+   * NON appliqué cette fois-ci, parce qu'un des deux exercices est en étalonnage ou en retour après gêne. Absent sinon.
+   */
+  pairDeferred?: 'etalonnage' | 'gene' | null;
 }
 
 /** Échauffement d'une séance (F5) : exercices de la fiche, pas de série à saisir. */

@@ -3,7 +3,7 @@
 import type {
   EquipmentProfile, ExerciseRole, ExerciseUnit, Injury, Level, PlannedExercise, PregnancyStatus, TrainingPlace, WarmupSet,
 } from '../data/model';
-import type { Family, GG } from './config';
+import type { CoreFamily, Family, GG } from './config';
 
 // ----- Fiches (format de public/data/fiches.json, produit par tools/build-fiches.mjs) -----
 export interface SafetyCase {
@@ -37,6 +37,8 @@ export interface Fiche {
   douxPour: string[];
   /** Champ futur (V-ADM 5) : fiche « technique » (épaulé, arraché…) : proposée à personne en v1. */
   technique?: boolean | string;
+  /** D26 (CORE-FAM-1) : famille de core facultative (gainage, anti_rotation, rotation, flexion, extension). */
+  familleCore?: string;
   variantes: FicheVariant[];
   securite: {
     zones: Record<string, SafetyCase[]>;
@@ -89,7 +91,7 @@ export interface GeneratorInput {
 export type MessageId =
   | 'V-MSG-FREQ' | 'V-MSG-PLANS' | 'V-MSG-PLAN' | 'V-MSG-SUBST' | 'V-MSG-IMPOS' | 'V-MSG-ZONE' | 'V-MSG-ACHAT' | 'V-MSG-OBJET'
   | 'V-MSG-FORCE' | 'V-MSG-VOL' | 'V-MSG-DUREE' | 'V-MSG-JOURS' | 'V-MSG-HORS' | 'V-MSG-JOURS2' | 'V-MSG-PRO'
-  | 'V-MSG-GROS-DUREE' | 'V-MSG-GROS-AVIS' | 'V-MSG-EPAULES' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ'
+  | 'V-MSG-GROS-DUREE' | 'V-MSG-GROS-AVIS' | 'V-MSG-TRONC' | 'V-MSG-EPAULES' | 'R3' | 'C3' | 'V-MSG-DUREE-MIN' | 'V-MSG-OBJ'
   // Cardio (B4, knowledge/cardio-regles.md) : textes de `kine` T0-T5 et messages du générateur.
   | 'T0' | 'T1' | 'T1u' | 'T3' | 'T4' | 'T5' | 'V-MSG-CARDIO-OMS' | 'V-MSG-CARDIO-TEMPS' | 'V-MSG-CARDIO-IMPOS' | 'V-MSG-CARDIO-MACHINE'
   | 'V-MSG-CARDIO-JOURS';
@@ -131,6 +133,14 @@ export interface GenExercise extends PlannedExercise {
   tier: Tier;
   musclesPrincipaux: string[];
   musclesSecondaires: string[];
+  /** D26 : tags de matériel de la variante (SUP-0, CORE-ORD-4). */
+  tags: string[];
+  /** D26 : famille de core (CORE-FAM-1), null hors core. */
+  coreFamily: CoreFamily | null;
+  /** D26 : niveau de la variante placée (SUP-3 : jamais `avance` en superset). */
+  niveau: Level;
+  /** D26 (SUP-2 point 4) : la fiche a une ligne `dos` dont la case du niveau 1 n'est pas `garder` (lecture de `dev`). */
+  backLoaded: boolean;
   /** Ligne courte « Charge maintenue : gêne {zone} » (§6.8 point 1g), ou null. */
   cappedLabel: string | null;
 }

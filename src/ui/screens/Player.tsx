@@ -8,8 +8,9 @@ import type { SetInput } from '../../session/engine';
 import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression } from '../../session/history';
 import {
   C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
-  PAIN_HELP_TEXT, PAIN_STOP_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
+  PAIN_HELP_TEXT, PAIN_STOP_TEXT, PAIR_FIRST_SESSION_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
 } from '../../session/messages';
+import type { PairPain } from '../../session/engine';
 import { loadGeneratorInput } from '../../session/program';
 import type { SessionController } from '../../session/store';
 import { formatClock, startDisplayTick } from '../../session/timer';
@@ -37,6 +38,25 @@ interface PainInfo {
   gentler: { ficheId: string; nom: string } | null;
   proposal: string | null;
   s1: string | null;
+  /** D26 (SUP-8) : douleur pendant un superset : partenaire et choix proposés. */
+  pair: PairPain | null;
+}
+
+/** D26 (E17) : le texte de la séance 1 n'est dit qu'une fois (confort local, sans garantie : stockage du navigateur). */
+const PAIR_TEXT_KEY = 'muscu.d26.texte-seance1';
+function pairTextSeen(): boolean {
+  try {
+    return localStorage.getItem(PAIR_TEXT_KEY) === '1';
+  } catch {
+    return false;
+  }
+}
+function markPairTextSeen(): void {
+  try {
+    localStorage.setItem(PAIR_TEXT_KEY, '1');
+  } catch {
+    /* stockage indisponible : le texte pourra revenir, sans gêne */
+  }
 }
 
 export interface PlayerProps {
@@ -105,6 +125,11 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
 
   const day = ctl.day;
   const state = ctl.state;
+  // D26 (SUP-2 point 7, E17) : paires reportées pour étalonnage : la séance peut durer plus que l'annonce ; dit une seule fois.
+  const [pairText] = useState(() => day.exercises.some((e) => e.pairDeferred === 'etalonnage') && state.workSetsDone === 0 && !pairTextSeen());
+  useEffect(() => {
+    if (pairText) markPairTextSeen();
+  }, [pairText]);
   const v = ctl.view();
   const all = data.fiches;
   const ex = v.exercise;
@@ -217,6 +242,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
             frozenBySymptom: data.frozen,
             bodyweight,
             repriseActive: data.repriseActive,
+            zonesOfFiche: Object.keys(ficheOf(all, ex)?.securite.zones ?? {}),
           })
         : null,
     [ex?.variantId],
@@ -266,7 +292,8 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     act(async () => {
       if (!ex) return;
       const exIndex = v.exerciseIndex!;
-      await ctl.markPain({ zone });
+      const res = await ctl.markPain({ zone });
+      const pair = res.pairPain ?? null;
       setSuggestion(null);
       // Conseils après la douleur : version plus douce (si elle passe tous les filtres), et douleur sur 2 séances de suite.
       let gentler: PainInfo['gentler'] = null;
@@ -289,7 +316,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
       } catch {
         /* ignoré : le conseil de consulter reste affiché */
       }
-      setPainInfo({ gentler, proposal, s1 });
+      setPainInfo({ gentler, proposal, s1, pair });
     });
 
   const closePain = () => {
@@ -404,6 +431,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {banners}
           <h1>Échauffement</h1>
           <p class="dim">Prends quelques minutes pour te mettre en route, tranquillement.</p>
+          {pairText && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
           <section class="card">
             <ul class="fiche-liste">
               {w?.general && <li><strong>{w.general.nom}</strong> · {durationText(w.general.sec)}</li>}
@@ -489,7 +517,8 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     <div class="player">
       {header}
       <div class="player-scroll">
-        {bannersFor(!supersetText)}
+        {bannersFor(!supersetText && !(pairText && state.workSetsDone === 0))}
+        {pairText && state.workSetsDone === 0 && !supersetText && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
         {supersetText && (
           <div class="notice small superset" role="status">
             <strong>{supersetText}</strong>
@@ -607,7 +636,24 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {painInfo.proposal && onEditInjuries && (
             <button type="button" class="btn" onClick={onEditInjuries}>Mettre à jour mes blessures</button>
           )}
-          <button type="button" class="btn btn-primary" onClick={closePain}>Continuer la séance</button>
+          {painInfo.pair ? (
+            <>
+              <p class="small">
+                Le superset s’arrête. {exName(all, day.exercises[painInfo.pair.partner])} :{' '}
+                {painInfo.pair.canContinue ? 'tu peux le continuer seul, avec son repos, ou passer à la suite.' : 'passe à la suite.'}
+              </p>
+              {painInfo.pair.canContinue && <button type="button" class="btn btn-primary" onClick={closePain}>Continuer seul</button>}
+              <button
+                type="button"
+                class={painInfo.pair.canContinue ? 'btn' : 'btn btn-primary'}
+                onClick={() => act(async () => { if (ctl.view().exerciseIndex === painInfo.pair!.partner) await ctl.skipExercise(); closePain(); })}
+              >
+                Passer au suivant
+              </button>
+            </>
+          ) : (
+            <button type="button" class="btn btn-primary" onClick={closePain}>Continuer la séance</button>
+          )}
         </Sheet>
       )}
     </div>

@@ -5,6 +5,7 @@ alias: [back extension swiss ball, hyperextension ballon]
 schema: charniere
 type: force
 niveau_min: intermediaire
+famille_core: extension
 muscles_principaux: [erecteurs_rachis]
 muscles_secondaires: [fessiers, ischios, rhomboides, trapezes]
 source_brouillon: []

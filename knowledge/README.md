@@ -7,6 +7,8 @@ Fichiers :
 - goal-resolver.md : fusion des objectifs.
 - cardio-regles.md : règles du cardio (objectif Cardio principal ou secondaire : repères OMS, séances par niveau, type selon matériel, sauts, combinaison avec la muscu ; brouillon `coach` du 24/10/2026, à contrôler).
 - schedule-adaptation.md : séances manquées.
+- core-et-supersets.md : core (5 familles, fréquence minimale par semaine, dose, ordre) et supersets (paires autorisées/interdites, lourds, débutants, douleur) ; brouillon `coach` du 30/10/2026, à contrôler.
+- famille-core-inventaire.md : classement des 25 fiches de core en 5 familles (CF1 à CF5), 5 cas tranchés par `kine`.
 - rest-and-volume-rules.md : repos et volume (en cours).
 - sports.md : familles et prévention.
 - equipment-taxonomy.md : tags de matériel, choix de variante, trous de couverture.

@@ -138,6 +138,7 @@ describe('N4 / Q23 : dose fixe des lancers et du gainage dynamique', () => {
           expect(e.warmupSets.every((w) => w.percent === null)).toBe(true);
         }
       }
-    expect(placed.size).toBeGreaterThanOrEqual(4);
+    // D26 : lancer-rotation-mur n'est plus placé (kiné §11 point 2 : « non proposé par défaut ») : 3 fiches au moins.
+    expect(placed.size).toBeGreaterThanOrEqual(3);
   });
 });

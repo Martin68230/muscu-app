@@ -5,6 +5,7 @@ alias: [rotational throw, lancer de côté]
 schema: rotation
 type: fonctionnel
 niveau_min: intermediaire
+famille_core: rotation
 muscles_principaux: [obliques]
 muscles_secondaires: [abdominaux, fessiers, deltoides_anterieurs, pectoraux]
 source_brouillon: []

@@ -4,7 +4,8 @@ nom: Abdominaux bicyclette
 alias: [crunch bicyclette]
 schema: rotation
 type: force
-niveau_min: debutant
+niveau_min: intermediaire
+famille_core: flexion
 muscles_principaux: [obliques, abdominaux]
 muscles_secondaires: [flechisseurs_hanche]
 source_brouillon: []
@@ -15,7 +16,7 @@ statut: verifie
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-bicyclette-pieds-au-sol | Pieds au sol, coude vers le genou | 1 | debutant | tapis | Couché sur le dos, genoux pliés, pieds au sol, mains derrière la tête. |
+| crunch-bicyclette-pieds-au-sol | Pieds au sol, coude vers le genou | 1 | intermediaire | tapis | Couché sur le dos, genoux pliés, pieds au sol, mains derrière la tête. |
 | crunch-bicyclette-pedalage | Jambes en l'air, pédalage | 2 | intermediaire | tapis | Même position, jambes levées à angle droit. |
 
 ## Consignes

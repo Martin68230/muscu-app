@@ -30,8 +30,11 @@ function violations(input: GeneratorInput, r: GenerateResult, determinism = true
   const ctx = buildCtx(input);
   const fiche = (id: string) => FICHE_BY_ID.get(id) ?? input.fiches.find((f) => f.id === id)!;
   for (const s of p.sessions) {
-    // V-DUREE : T <= D sauf séance réduite aux piliers qui dépasse encore (T3bis)
-    if (s.overBudget) err(s.removedCore.length === 3, `${s.label} dépasse sans être réduite aux piliers`);
+    // V-DUREE : T <= D sauf séance réduite aux piliers (et au tronc du plancher, D26 CORE-TPS-1) qui dépasse encore (T3bis)
+    if (s.overBudget) {
+      err(s.removedCore.includes('charniere') && s.removedCore.includes('tirage_1'), `${s.label} dépasse sans être réduite aux piliers`);
+      err(!s.exercises.some((e) => ['poussee_2', 'tirage_2', 'jambes_2', 'fonctionnel'].includes(e.slot)), `${s.label} dépasse avec des accessoires`);
+    }
     else err(s.estimatedSec <= p.durationMin * 60, `${s.label} durée ${s.estimatedSec}`);
     const items = [...s.exercises.map((e) => [e.ficheId, e.variantId] as const), ...[s.warmup.general, ...s.warmup.mobility, s.warmup.cooldown].filter((w) => !!w).map((w) => [w!.ficheId, w!.variantId] as const)];
     for (const [fid, vid] of items) {
@@ -128,13 +131,17 @@ describe('T3, T25 : durée estimée et ajustement (V-DUREE, V-SUP)', () => {
   });
   it('T25b : ajusterDuree(exemple 2, 45 min) : P1 (2 809 s) puis retrait de tirage_2 (2 644 s), aucune paire', () => {
     const s = exemple1();
-    s.exercises.push(ex('tirage_2', { musclesPrincipaux: ['grand_dorsal'] }));
+    // D26 (SUP-0) : le matériel et le schéma doivent être connus pour former une paire (haltères légers : permis).
+    const known = { tags: ['halteres'], backLoaded: false, niveau: 'intermediaire' as const };
+    s.exercises = s.exercises.map((e) => (e.slot === 'poussee_2' ? { ...e, ...known, schema: 'poussee_h' } : e));
+    s.exercises.push(ex('tirage_2', { musclesPrincipaux: ['grand_dorsal'], ...known, schema: 'tirage_v' }));
     const r = ajusterDuree(s, 2700);
     expect(r.trace).toEqual([3004, 2809, 2644]);
     expect(r.actions).toEqual(['paire:P1', 'retrait:tirage_2']);
     expect(r.session.exercises.every((e) => e.supersetGroup === null)).toBe(true);
   });
-  it('T3c : exemple 3 construit à la main : 1 456 -> action 5 (1 351) -> retrait de tronc (1 191)', () => {
+  // D26 (CORE-TPS-1) : un tronc au-delà du plancher est d'abord raccourci (2 -> 1 série) puis retiré ; au plancher, jamais retiré.
+  it('T3c : exemple 3 construit à la main : 1 456 -> action 5 (1 351) -> tronc à 1 série (1 271) -> retrait de tronc (1 191)', () => {
     const s: DurSession = {
       label: 'A', days: 2, level: 'debutant', pregnant: false, e1Sec: 120, e2Count: 2,
       exercises: [
@@ -146,25 +153,33 @@ describe('T3, T25 : durée estimée et ajustement (V-DUREE, V-SUP)', () => {
       ].map((e) => (e.role === 'pilier' ? { ...e, restSec: 90 } : e)),
     };
     const r = ajusterDuree(s, 1200);
-    expect(r.trace).toEqual([1456, 1351, 1191]);
-    expect(r.actions).toEqual(['echauffement:court', 'retrait:tronc']);
+    expect(r.trace).toEqual([1456, 1351, 1271, 1191]);
+    expect(r.actions).toEqual(['echauffement:court', 'tronc:1serie', 'retrait:tronc']);
     expect(r.removedCore).toEqual(['tronc']);
+    // Tronc du plancher protégé : la charnière part à sa place.
+    const p = ajusterDuree(s, 1200, { coreProtected: true });
+    expect(p.actions).toEqual(['echauffement:court', 'retrait:charniere']);
+    expect(p.session.exercises.some((e) => e.slot === 'tronc')).toBe(true);
   });
   it('T3 : 2 jours, 20 min, débutant, santé, profil C : séance A de l\'exemple 3 (bibliothèque du 23/10/2026)', () => {
+    // D26 (CORE-TPS-1, E1) : en 2 jours, le tronc fait partie du plancher (2 séances) et n'est plus retiré : la charnière part à sa place.
     const p = ok(run({ profile: 'C', days: 2, dur: 20, level: 'debutant', goal: 'sante' }));
     const A = p.sessions[0];
-    expect(A.exercises.map((e) => e.ficheId)).toEqual(['assis-debout-mains-cuisses', 'developpe-au-sol-halteres', 'rowing-buste-penche-halteres', 'curl-ischios-serviette']);
-    expect(A.removedCore).toEqual(['tronc']);
-    expect(A.estimatedSec).toBe(1191);
+    expect(A.exercises.map((e) => e.ficheId)).toEqual(['assis-debout-mains-cuisses', 'developpe-au-sol-halteres', 'rowing-buste-penche-halteres', 'gainage-creux']);
+    expect(A.removedCore).toEqual(['charniere']);
+    expect(A.estimatedSec).toBeLessThanOrEqual(1200);
     expect(msgIds(p)).toContain('V-MSG-DUREE');
-    expect(p.messages.some((m) => m.id === 'V-MSG-FREQ' && m.data?.gg === 'GG5')).toBe(true);
+    expect(p.coverage.GG5).toBe(2);
+    expect(p.messages.some((m) => m.id === 'V-MSG-FREQ' && m.data?.gg === 'GG5')).toBe(false);
   });
   it('T3bis : 3 jours, 20 min : ordre de retrait tourné ; un groupe retiré une seule fois reste à 2 et sans V-MSG-FREQ', () => {
     const p = ok(run({ profile: 'C', days: 3, dur: 20, level: 'debutant', goal: 'sante' }));
     const [A, B, C] = p.sessions;
-    if (A.removedCore.length) expect(A.removedCore[0]).toBe('tronc');
+    // D26 : au-delà du plancher, une seule séance (dans l'ordre A, C, B) peut perdre son tronc ; les autres retraits gardent la rotation.
+    expect(p.sessions.filter((s) => s.removedCore.includes('tronc')).length).toBeLessThanOrEqual(1);
     if (B.removedCore.length) expect(B.removedCore[0]).toBe('charniere');
-    if (C.removedCore.length) expect(C.removedCore[0]).toBe('tirage_1');
+    if (C.removedCore.filter((x) => x !== 'tronc').length) expect(C.removedCore.filter((x) => x !== 'tronc')[0]).toBe('tirage_1');
+    expect(A.removedCore.filter((x) => x !== 'tronc')[0] ?? 'charniere').toBe('charniere');
     const gg = { tronc: 'GG5', charniere: 'GG2', tirage_1: 'GG4' } as const;
     for (const slot of ['tronc', 'charniere', 'tirage_1'] as const) {
       const removedIn = p.sessions.filter((s) => s.removedCore.includes(slot)).length;
@@ -455,7 +470,8 @@ describe('T22-T26 : dose, supersets, volume (V-DOSE, V-ORDRE, V-SUP, V-VOL, V-PL
                 expect([a.slot, b.slot].every((x) => ['jambes_genou', 'jambes_2'].includes(x))).toBe(false);
                 for (const e of [a, b]) expect(['jambes_genou', 'poussee_1', 'charniere'].includes(e.slot)).toBe(false);
                 expect(a.restSec).toBe(b.restSec);
-                if (level === 'debutant' && (a.slot === 'jambes_2' || b.slot === 'jambes_2')) expect([a, b].find((e) => e.slot === 'jambes_2')!.chargeable).toBe(false);
+                expect(level).not.toBe('debutant'); // D26 SUP-4 : aucun superset pour un débutant
+                for (const e of [a, b]) expect(['poussee_2', 'tirage_2', 'jambes_2', 'tronc'].includes(e.slot)).toBe(true); // SUP-0
                 expect(a.capped || b.capped).toBe(false);
               }
             }

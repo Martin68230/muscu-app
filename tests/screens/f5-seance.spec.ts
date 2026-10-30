@@ -67,7 +67,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
     window.addEventListener('securitypolicyviolation', (e) => console.error(`CSP ${e.violatedDirective} ${e.blockedURI}`));
   }, theme);
 
-  // ----- Profil créé par l'interface (avancé, 2 jours, 45 min : la séance contient un superset) -----
+  // ----- Profil créé par l'interface (intermédiaire, 2 jours, 45 min ; D26 : supersets reportés en séance 1) -----
   await page.goto('./');
   await page.getByText("J'ai 18 ans ou plus.").click();
   await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
@@ -83,7 +83,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByLabel('Banc plat').check();
   await page.getByRole('button', { name: 'Suivant' }).click();
-  await page.getByRole('button', { name: /Avancé/ }).click();
+  await page.getByRole('button', { name: /Intermédiaire/ }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
   await page.getByRole('button', { name: /Prise de muscle/ }).click();
   await page.getByRole('button', { name: 'Suivant' }).click();
@@ -113,6 +113,8 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   page.on('request', onRequest);
   await page.getByRole('button', { name: 'Commencer la séance' }).click();
   await expect(page.getByRole('heading', { name: 'Échauffement' })).toBeVisible();
+  // D26 (E17) : texte unique de la séance 1 si des supersets sont reportés (exercices nouveaux faits un par un).
+  if (await page.getByText(/Cette première séance peut durer un peu plus longtemps/).isVisible()) await shot(page, 'seance1-supersets-reportes', project);
   await expect(page.getByRole('tab')).toHaveCount(0);
   await expect(page.locator('.tabbar')).toHaveCount(0);
   await page.getByRole('button', { name: 'Échauffement fait' }).click();
@@ -143,19 +145,8 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   if (info.project.name === 'se-sombre') await expectInputFits(page);
   await shot(page, 'lecteur-saisie', project);
 
-  // ----- Superset : on avance (bouton principal du bas) jusqu'à en rencontrer un -----
-  let superset = false;
-  for (let i = 0; i < 80 && !superset; i++) {
-    if ((await page.locator('.superset').isVisible()) && (await reps.isVisible())) superset = true;
-    else {
-      await primary.click();
-      await page.waitForTimeout(350);
-    }
-  }
-  expect(superset).toBe(true);
-  await expect(page.getByText(/Superset : .+ puis /)).toBeVisible();
-  if (info.project.name === 'se-sombre') await expectInputFits(page);
-  await shot(page, 'superset', project);
+  // ----- D26 (SUP-2 point 7) : séance 1 = étalonnage, aucun superset n'est appliqué par le lecteur -----
+  await expect(page.locator('.superset')).toHaveCount(0);
 
   // ----- Douleur -----
   await expect(page.getByRole('button', { name: 'Ça fait mal' })).toBeVisible();

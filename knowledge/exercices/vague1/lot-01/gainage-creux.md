@@ -5,6 +5,7 @@ alias: [hollow hold]
 schema: gainage
 type: gainage
 niveau_min: debutant
+famille_core: gainage
 muscles_principaux: [abdominaux]
 muscles_secondaires: [flechisseurs_hanche, transverse, obliques]
 source_brouillon: [M1390]

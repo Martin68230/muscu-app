@@ -5,15 +5,17 @@ import type { Level, PlannedExercise, ProgramDay } from '../data/model';
 import {
   ACCESSORY_REMOVAL_ORDER, ACHAT_CANDIDATES, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
+  CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
 } from './config';
+import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import { blockCap, cardioItem, cardioLevel, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, type CardioRole } from './cardio';
 import { buildCtx, type Ctx } from './context';
 import { chooseDays } from './days';
 import { buildExercise } from './dose';
-import { ajusterDuree, estimerDuree, formAllPairs, units, type DurSession } from './duration';
+import { ajusterDuree, estimerDuree, formAllPairs, pairRestSec, units, type DurSession } from './duration';
 import { cardioMsg, dedupe, GG_LABEL, GOAL_LABEL, msg } from './messages';
 import { resolveFiche, USABLE_STATUTS } from './safety';
-import { CORE_SLOTS, fillSession, isCore, SLOT_ORDER, slotDef, tierRank, type SlotFill } from './slots';
+import { CORE_SLOTS, fillSession, fillSlot, isCore, SLOT_ORDER, slotDef, tierRank, type SlotFill } from './slots';
 import type {
   CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenMessage, GenProgram, GenSession, SlotKey, Tier,
 } from './types';
@@ -181,10 +183,10 @@ function orderExercises(list: GenExercise[]): GenExercise[] {
     out.push(e);
     if (e.supersetGroup) for (const p of sorted) if (p !== e && p.supersetGroup === e.supersetGroup) out.push(p);
   }
-  // Repos de la paire = le plus long des deux (V-SUP).
+  // Repos de la paire = le plus long des deux, jamais moins de 60 s (V-SUP, SUP-6).
   return out.map((e) => {
     if (!e.supersetGroup) return e;
-    const rest = Math.max(...out.filter((x) => x.supersetGroup === e.supersetGroup).map((x) => x.restSec));
+    const rest = pairRestSec(out.filter((x) => x.supersetGroup === e.supersetGroup));
     return { ...e, restSec: rest };
   });
 }
@@ -246,42 +248,87 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
 
   const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1));
   const slotList = SLOT_ORDER.filter((s) => s !== 'fonctionnel' || ctx.fonctionnelEnabled);
-  const fillWeek = (c: Ctx) => {
+  // D26 : séances qui reçoivent du core (table §2.2 et CORE-FREQ-5 : A puis C, puis B), rotation des familles (CORE-ALT-1),
+  // séance « à charge lourde » (CORE-ORD-4 : core CF1/CF2 seulement, ni roue ni CF1 dynamique, maintien <= 30 s).
+  const coreLabels = new Set<Label>(CORE_SESSION_PRIORITY[nDays].slice(0, coreTargetSessions(nDays, coreGoalOf(ctx.goalFamily, principal))));
+  const slotsFor = (l: Label) => slotList.filter((s) => s !== 'tronc' || coreLabels.has(l));
+  const troncPools = new Map<string, Fiche[]>();
+  const troncPool = (fam: CoreFamily, heavy: boolean): Fiche[] => {
+    const k = `${fam}:${heavy}`;
+    if (!troncPools.has(k)) troncPools.set(k, pool.filter((f) => troncFicheFits(f, fam, heavy)));
+    return troncPools.get(k)!;
+  };
+  const poolNoExtension = pool.filter((f) => !CORE_OUT_OF_FLOOR_IDS.includes(f.id));
+  const heavyFill = (f: Map<SlotKey, SlotFill>) =>
+    [...f.entries()].some(([slot, fl]) => !!fl.cand && isHeavyExercise({ slot, schema: fl.cand.fiche.schema, ficheId: fl.cand.fiche.id, tags: fl.cand.variant.tags }));
+  const heavyBy = new Map<Label, boolean>();
+  const fillWeek = (c: Ctx, main = false) => {
     const prev = new Map<SlotKey, Set<string>>();
     const res = new Map<Label, Map<SlotKey, SlotFill>>();
+    let rot = 0;
+    let prevFam: CoreFamily | null = null;
     for (const l of labels) {
-      const f = fillSession(l, slotList, c, pool, prev);
+      const slots = slotsFor(l);
+      // Passe 1 sans tronc : la séance est-elle « à charge lourde » ? (tous les emplacements candidats comptent : lecture prudente)
+      const heavy = heavyFill(fillSession(l, slots.filter((s) => s !== 'tronc'), c, pool, prev));
+      let picked: CoreFamily | null = null;
+      const f = fillSession(l, slots, c, pool, prev, {
+        // Inventaire : extension-dorsale-ballon (CF5) jamais après une charge lourde.
+        poolFor: (slot) => (slot === 'charniere' && heavy ? poolNoExtension : null),
+        fillTronc: (st, used, prevUsed) => {
+          const n = CORE_FAMILY_ORDER.length;
+          const order = [...CORE_FAMILY_ORDER.slice(rot % n), ...CORE_FAMILY_ORDER.slice(0, rot % n)];
+          // Jamais la même famille que la séance de core précédente, sauf s'il n'en reste qu'une admissible.
+          for (const fam of [...order.filter((x) => x !== prevFam), ...order.filter((x) => x === prevFam)]) {
+            const fill = fillSlot('tronc', st, used, prevUsed, c, troncPool(fam, heavy));
+            if (fill.cand) {
+              picked = fam;
+              return fill;
+            }
+          }
+          return { slot: 'tronc', tier: 'e', cand: null, schemaRank: 0 };
+        },
+      });
+      if (picked) {
+        rot = CORE_FAMILY_ORDER.indexOf(picked) + 1;
+        prevFam = picked;
+      }
+      if (main) heavyBy.set(l, heavy);
       res.set(l, f);
       for (const [slot, fill] of f) if (fill.cand) (prev.get(slot) ?? prev.set(slot, new Set()).get(slot)!).add(fill.cand.fiche.id);
     }
     return res;
   };
-  const fills = fillWeek(ctx);
+  const fills = fillWeek(ctx, true);
   const healthy = ctx.zones.length > 0;
   const ctxNH = buildCtx(input, { zones: [], pregnant: false });
   const fillsNH = healthy ? fillWeek(ctxNH) : fills;
   const ctxNoL3 = buildCtx(input, { zones: ctx.zones.filter((z) => !z.isG && z.level < 3) });
   const fillsNoL3 = ctx.zones.some((z) => !z.isG && z.level === 3) ? fillWeek(ctxNoL3) : fills;
+  const tierOf = (m: Map<Label, Map<SlotKey, SlotFill>>, l: Label, s: SlotKey): Tier => m.get(l)!.get(s)?.tier ?? 'e';
 
   // P-ZONE3 : 3 emplacements du noyau ou plus vides (après les replis a-d) à cause de zones au niveau 3 -> aucun programme.
   for (const l of labels) {
-    const empty = CORE_SLOTS.filter((s) => fills.get(l)!.get(s)!.tier === 'e' && fillsNoL3.get(l)!.get(s)!.tier !== 'e').length;
+    const empty = CORE_SLOTS.filter((s) => tierOf(fills, l, s) === 'e' && tierOf(fillsNoL3, l, s) !== 'e').length;
     if (empty >= P_ZONE3_MAX_EMPTY_CORE) return { ok: false, code: 'PRO', messages: dedupe([...msgs.filter((m) => m.id === 'R3' || m.id === 'C3'), msg.pro()]) };
   }
   // Tous les emplacements vides pour une cause matériel (impossible avec la bibliothèque du 23/10) -> aucun programme.
-  if (labels.every((l) => CORE_SLOTS.every((s) => fills.get(l)!.get(s)!.tier === 'e' && fillsNH.get(l)!.get(s)!.tier === 'e'))) {
+  if (labels.every((l) => CORE_SLOTS.every((s) => tierOf(fills, l, s) === 'e' && tierOf(fillsNH, l, s) === 'e'))) {
     return { ok: false, code: 'IMPOS', messages: [msg.impos('squat', 'A')] };
   }
 
   // Séances : N emplacements de départ, échauffement, supersets, durée, ajout.
   type Built = { s: DurSession<GenExercise>; actions: string[]; removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> };
-  const build = (l: Label, budgetSec: number, addBudgetSec: number): Built => {
+  const build = (l: Label, budgetSec: number, addBudgetSec: number, coreProtected: boolean): Built => {
     const f = fills.get(l)!;
-    const active = slotList.slice(0, dur.startN);
+    const sl = slotsFor(l);
+    const active = sl.slice(0, dur.startN);
     const mk = (slot: SlotKey): GenExercise | null => {
-      const fill = f.get(slot)!;
-      if (!fill.cand) return null;
+      const fill = f.get(slot);
+      if (!fill?.cand) return null;
       const ex = buildExercise(fill.cand, slot, fill.tier, ctx);
+      // CORE-ORD-4 : après une charge lourde, maintien de core au plus 30 s (ne fait que baisser).
+      if (slot === 'tronc' && heavyBy.get(l) && ex.holdSec !== null) ex.holdSec = Math.min(ex.holdSec, CORE_HEAVY_MAX_HOLD_SEC);
       ex.warmupSets = e3Sets(ex, ctx);
       return ex;
     };
@@ -289,12 +336,12 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     const mob = mobilityWarmup(ctx, exercises.some((e) => e.slot === 'charniere'));
     let s: DurSession<GenExercise> = { label: l, days: nDays, level: ctx.level, pregnant: ctx.pregnant, exercises, e1Sec: WARMUP.generalSec, e2Count: mob.length };
     if (ctx.gagnerDuTemps) s = formAllPairs(s);
-    const adj = ajusterDuree(s, budgetSec);
+    const adj = ajusterDuree(s, budgetSec, { coreProtected });
     s = adj.session;
     const attempted = [...active];
     if (!adj.actions.length) {
       // Ajout (§4.4) : si T < D - 10 min et N < 8, emplacement suivant tant que T <= D et que les plafonds tiennent.
-      for (const slot of slotList) {
+      for (const slot of sl) {
         if (attempted.includes(slot)) continue;
         if (s.exercises.length >= VOLUME.maxExercisesPerSession || estimerDuree(s) >= addBudgetSec - TIME.addIfUnderMarginSec) break;
         const ex = mk(slot);
@@ -324,24 +371,46 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   const durSessions: DurSession<GenExercise>[] = [];
   const meta = new Map<Label, { removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> }>();
   const general = generalWarmup(ctx);
-  for (const l of labels) {
-    let chosen = build(l, dSec, addSec);
-    if (blockRole && cardioChoice && budget.size < maxBlocks) {
+  const buildLabel = (l: Label, coreProtected: boolean, blocksBefore: number) => {
+    let chosen = build(l, dSec, addSec, coreProtected);
+    let placed = false;
+    let short = false;
+    if (blockRole && cardioChoice && blocksBefore < maxBlocks) {
       // §3.4 (c) : pilier lourd (4-6 répétitions) et durée déjà serrée -> pas de bloc (on coupe le bloc, jamais le pilier).
       const heavy = chosen.s.exercises.some((e) => e.role === 'pilier' && e.unit === 'reps' && e.repsMax <= 6);
-      let placed = false;
       if (!(heavy && chosen.actions.length) && dSec > reserveSec) {
-        const red = build(l, dSec - reserveSec, addSec - reserveSec);
+        const red = build(l, dSec - reserveSec, addSec - reserveSec, coreProtected);
         const extra = red.actions.filter((a) => !chosen.actions.includes(a));
         const cap = blockCap(ctx, blockRole, estimerDuree(red.s), dSec);
         if (!red.overBudget && extra.every(softActions) && red.removedCore.length <= chosen.removedCore.length && cap >= CARDIO.blockMinMin) {
           chosen = red;
-          budget.set(l, dSec - reserveSec);
           placed = true;
         }
       }
-      if (!placed) cardioTimeShort = true;
+      if (!placed) short = true;
     }
+    return { chosen, placed, short };
+  };
+  // D26 (CORE-TPS-1) : le core des séances du plancher (2 séances, 4 séries) n'est jamais retiré pour la durée ; au-delà du plancher,
+  // il est raccourci puis retiré avant la charnière et tirage_1, dans l'ordre de séances A, C, B (E1). Grossesse : aucun plancher.
+  const results = new Map<Label, ReturnType<typeof buildLabel>>();
+  const blocksBefore = (l: Label) => labels.slice(0, labels.indexOf(l)).filter((x) => results.get(x)?.placed).length;
+  for (const l of labels) results.set(l, buildLabel(l, coreLabels.has(l) && !ctx.pregnant, blocksBefore(l)));
+  let beyondFloor = ctx.pregnant ? 0 : Math.max(0, coreLabels.size - CORE_FLOOR.sessions);
+  for (const l of CORE_REMOVAL_SESSION_ORDER[nDays]) {
+    if (beyondFloor <= 0) break;
+    const r = results.get(l)!;
+    if (!coreLabels.has(l) || (!r.chosen.removedCore.length && !r.chosen.overBudget)) continue;
+    const alt = buildLabel(l, false, blocksBefore(l));
+    if (alt.chosen.actions.some((a) => a === 'tronc:1serie' || a === 'retrait:tronc')) {
+      results.set(l, alt);
+      beyondFloor--;
+    }
+  }
+  for (const l of labels) {
+    const { chosen, placed, short } = results.get(l)!;
+    if (placed) budget.set(l, dSec - reserveSec);
+    if (short) cardioTimeShort = true;
     durSessions.push(chosen.s);
     meta.set(l, { removedCore: chosen.removedCore, overBudget: chosen.overBudget, attempted: chosen.attempted, warm: chosen.warm });
   }
@@ -421,11 +490,19 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     }
     return causeCache.get(k)!;
   };
+  // D26 : plancher de core (CORE-FREQ-3, CORE-SEC-2 point 4, CORE-SEC-4) : aucune fiche de tronc admissible dans les séances prévues ->
+  // message neutre (sans alerte ni diagnostic), à la place des avertissements ; dos au niveau 3 : R3 (« demande l'avis d'un
+  // professionnel ») est déjà affiché et tient lieu de message (CORE-SEC-3).
+  const noCore = coreLabels.size > 0 && [...coreLabels].every((l) => tierOf(fills, l, 'tronc') === 'e');
+  const dosL3 = ctx.zones.some((z) => !z.isG && z.key === 'dos' && z.level === 3);
+  const troncNeutral = noCore && !dosL3;
+  if (troncNeutral) msgs.push(msg.tronc());
   for (const s of sessions) {
     const f = fills.get(s.label)!;
     for (const slot of CORE_SLOTS) {
       if (s.removedCore.includes(slot)) continue;
-      const fill = f.get(slot)!;
+      const fill = f.get(slot);
+      if (!fill || (slot === 'tronc' && troncNeutral)) continue;
       if (fill.tier === 'a') continue;
       const def = slotDef(slot, { label: s.label, placedSchema: {} });
       const schema = def.a[0].schema;
@@ -446,12 +523,13 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   const coverage = coverageOf(sessions);
   for (const gg of GG_LIST) {
     if (coverage[gg] >= FREQ_MIN_PER_WEEK) continue;
+    if (gg === 'GG5' && troncNeutral) continue;
     const slot = GG_SLOT[gg];
     let fix: string | null = null;
     if (sessions.some((s) => s.removedCore.includes(slot))) {
       const next = DURATION_STEPS_MIN.find((d) => d > dur.dMin);
       fix = next ? `allonger la séance à ${next} min` : nDays === 2 ? 'ajouter un jour' : null;
-    } else if (labels.some((l) => fills.get(l)!.get(slot)!.tier === 'e' && getCause(l, slot).cause === 'materiel')) fix = 'ajouter du matériel';
+    } else if (labels.some((l) => fills.get(l)!.has(slot) && tierOf(fills, l, slot) === 'e' && getCause(l, slot).cause === 'materiel')) fix = 'ajouter du matériel';
     msgs.push(msg.freq(gg, coverage[gg], fix));
   }
   if (nDays === 2) {

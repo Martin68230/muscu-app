@@ -49,6 +49,8 @@ export interface Fiche {
   musclesSecondaires: string[];
   douxPour: string[];
   alias: string[];
+  /** D26 (CORE-FAM-1) : famille de core facultative. */
+  familleCore?: string;
   variantes: Variante[];
   consignes: string[];
   pointsAttention: string[];

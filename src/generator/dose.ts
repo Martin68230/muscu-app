@@ -1,7 +1,8 @@
 // Dose de base (V-DOSE §3.2, V-TEMPS §3.3) puis plafonds de sécurité (appliquerPlafonds, V-PRIO §6.0 : P-CAP, P-GROS).
 import { DOSE, FIXED_DOSE, FIXED_LOAD_TAGS, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
 import { isChargeable, isUnilateral, type Ctx } from './context';
-import { cappingZones, type Candidate } from './safety';
+import { coreFamilyOf, coreRule } from './core';
+import { caseFor, cappingZones, type Candidate } from './safety';
 import { PILLAR_SLOTS } from './slots';
 import type { ExerciseRole, GenExercise, SlotKey, Tier } from './types';
 
@@ -138,7 +139,22 @@ export function buildExercise(c: Candidate, slot: SlotKey, tier: Tier, ctx: Ctx)
     musclesPrincipaux: c.fiche.musclesPrincipaux,
     musclesSecondaires: c.fiche.musclesSecondaires,
     cappedLabel: capZones.length ? `Charge maintenue : gêne ${capZones.join(', ')}` : ctx.pregnant ? 'Charge maintenue : grossesse ou post-partum' : null,
+    tags: c.variant.tags,
+    coreFamily: coreFamilyOf(c.fiche),
+    niveau: c.variant.niveau,
+    backLoaded: !!c.fiche.securite.zones.dos && caseFor(c.fiche, { key: 'dos', level: 1, isG: false }).action !== 'garder',
   };
+  // D26 (CORE-SEC-3) : plafonds de la table dos par famille (maintien, répétitions par côté, capped) : ne font que baisser.
+  const core = coreRule(c.fiche, ctx);
+  if (core) {
+    if (core.capped) ex.capped = true;
+    if (core.maxHoldSec !== null && ex.holdSec !== null) ex.holdSec = Math.min(ex.holdSec, core.maxHoldSec);
+    if (core.maxRepsPerSide !== null && ex.unit === 'reps_par_cote') {
+      ex.repsMax = Math.min(ex.repsMax, core.maxRepsPerSide);
+      ex.repsMin = Math.min(ex.repsMin, ex.repsMax);
+    }
+    if (ex.capped && !ex.cappedLabel) ex.cappedLabel = 'Charge maintenue : gêne dos';
+  }
   const capped = appliquerPlafonds(ex, ctx);
   if (FIXED_DOSE[c.fiche.id]) {
     // N4 : jamais de charge à progresser pour ces fiches, même si une variante portait un jour un tag chargeable.

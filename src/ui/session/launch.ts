@@ -56,6 +56,7 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
     echelonOf: (id) => variants.get(id)?.echelon,
     echelonInfo: info,
     excludeSessionId,
+    zoneOnFiche: (ex, zone) => !!fiches.find((f) => f.id === ex.movementId)?.securite.zones[zone],
   });
   const bodyweightFiche = (ex: PlannedExercise) => {
     const fiche = gctx?.fichesById.get(ex.movementId);

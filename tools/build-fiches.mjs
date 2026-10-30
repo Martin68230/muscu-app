@@ -120,6 +120,7 @@ export function buildFiche(text, file, { publicDir } = {}) {
     musclesPrincipaux: d.muscles_principaux,
     musclesSecondaires: d.muscles_secondaires,
     ...(d.couverture ? { couverture: d.couverture } : {}),
+    ...(d.famille_core ? { familleCore: d.famille_core } : {}),
     douxPour: d.doux_pour ?? [],
     alias: d.alias ?? [],
     variantes,

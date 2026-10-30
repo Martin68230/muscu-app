@@ -4,6 +4,7 @@ nom: Planche touche-épaule
 schema: anti_rotation
 type: gainage
 niveau_min: intermediaire
+famille_core: anti_rotation
 muscles_principaux: [abdominaux, obliques]
 muscles_secondaires: [deltoides_anterieurs, dentele_anterieur, fessiers]
 source_brouillon: [M1714, M1503]

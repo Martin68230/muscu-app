@@ -285,3 +285,33 @@ ${line}
     expect(check('- https://youtu.be/dQw4w9WgXcQ').errors.map((e) => e.message).join()).toMatch(/écriture attendue/);
   });
 });
+
+describe('famille_core (D26, CORE-FAM-1) : attribut facultatif, liste fermée, réservé aux fiches de core', () => {
+  const fm = (schema: string, extra: string) => `id: pompe-inclinee
+nom: Pompe inclinée
+schema: ${schema}
+type: force
+niveau_min: debutant
+muscles_principaux: [pectoraux]
+muscles_secondaires: []
+source_brouillon: []
+statut: complete_kine
+${extra}`;
+  const fc = (schema: string, extra: string) => msgs(run({ 'pompe-inclinee.md': fiche({ fm: fm(schema, extra) }) })).filter((m) => /famille_core/.test(m));
+
+  it('accepte les 5 valeurs sur leur schéma de core, et une fiche sans attribut', () => {
+    expect(fc('gainage', 'famille_core: gainage')).toEqual([]);
+    expect(fc('anti_rotation', 'famille_core: anti_rotation')).toEqual([]);
+    expect(fc('rotation', 'famille_core: rotation')).toEqual([]);
+    expect(fc('rotation', 'famille_core: flexion')).toEqual([]);
+    expect(fc('charniere', 'famille_core: extension')).toEqual([]);
+    expect(fc('poussee_h', '')).toEqual([]);
+  });
+
+  it('refuse une valeur hors liste et un champ posé sur une fiche qui n’est pas du core', () => {
+    expect(fc('gainage', 'famille_core: obliques').join()).toMatch(/hors de la liste/);
+    expect(fc('poussee_h', 'famille_core: gainage').join()).toMatch(/réservé aux fiches de core/);
+    expect(fc('charniere', 'famille_core: gainage').join()).toMatch(/réservé/);
+    expect(fc('gainage', 'famille_core: extension').join()).toMatch(/réservé/);
+  });
+});

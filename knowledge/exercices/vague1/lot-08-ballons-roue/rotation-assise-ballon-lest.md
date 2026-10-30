@@ -5,6 +5,7 @@ alias: [russian twist medicine ball, rotation russe ballon lesté]
 schema: rotation
 type: force
 niveau_min: intermediaire
+famille_core: rotation
 muscles_principaux: [obliques]
 muscles_secondaires: [abdominaux, flechisseurs_hanche]
 source_brouillon: []

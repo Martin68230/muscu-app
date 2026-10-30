@@ -4,7 +4,8 @@ nom: Bûcheron avec un ballon lesté
 alias: [wood chop, medicine ball wood chop]
 schema: rotation
 type: fonctionnel
-niveau_min: debutant
+niveau_min: intermediaire
+famille_core: rotation
 muscles_principaux: [obliques]
 muscles_secondaires: [abdominaux, fessiers, deltoides_anterieurs, grand_dorsal]
 source_brouillon: []
@@ -15,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| bucheron-ballon-lest-haut-bas | De haut en bas | 1 | debutant | medecine_ball, tapis | Debout de côté, pieds à la largeur des épaules, ballon tenu à deux mains près de l'épaule d'un côté ; tu le fais descendre en diagonale jusqu'à la hanche opposée. |
+| bucheron-ballon-lest-haut-bas | De haut en bas | 1 | intermediaire | medecine_ball, tapis | Debout de côté, pieds à la largeur des épaules, ballon tenu à deux mains près de l'épaule d'un côté ; tu le fais descendre en diagonale jusqu'à la hanche opposée. |
 | bucheron-ballon-lest-bas-haut | De bas en haut | 2 | intermediaire | medecine_ball, tapis | Debout de côté, ballon tenu à deux mains près de la hanche ; tu le fais monter en diagonale jusqu'au-dessus de l'épaule opposée, jamais plus haut que le front. |
 
 ## Consignes

@@ -5,6 +5,7 @@ alias: [ball pull-in, pike sur ballon, jackknife]
 schema: gainage
 type: gainage
 niveau_min: intermediaire
+famille_core: gainage
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [flechisseurs_hanche, deltoides_anterieurs, triceps, dentele_anterieur]
 source_brouillon: []

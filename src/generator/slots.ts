@@ -1,5 +1,5 @@
 // Emplacements d'une séance (V-EMP §2.2), classement (V-CLASSE §6.7), replis (V-IMPOS §7.1), rotation A/C (V-ROT §2.3).
-import { MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
+import { CORE_NOT_CORE_IDS, MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import type { Fiche, SlotKey, Tier } from './types';
@@ -167,6 +167,7 @@ export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx
       const s = schemas.get(c.fiche.schema);
       if (!s || used.has(c.fiche.id)) continue;
       if (MAIN_EXERCISE_SLOTS.includes(slot) && PILLAR_EXCLUDED_FICHES.includes(c.fiche.id)) continue; // lancers : jamais exercice principal
+      if (slot === 'tronc' && CORE_NOT_CORE_IDS.includes(c.fiche.id)) continue; // D26 : copenhague-court hors famille core (inventaire, kiné)
       // jambes_2 / fonctionnel : un schéma sans muscle exigé ne peut pas être « substitut »
       const full = isPleine(c.fiche, s.r);
       if (!full && !def.allowSubst) continue;
@@ -201,6 +202,14 @@ export function fillSlot(slot: SlotKey, st: SessionState, used: Set<string>, pre
   return { slot, tier: pick.tier, cand: pick.cand, schemaRank: pick.key[1] as number };
 }
 
+/** D26 : remplissage particulier d'un emplacement (pool réduit, choix du tronc par famille). */
+export interface FillOpts {
+  /** Pool propre à un emplacement (ex. charnière sans extension-dorsale-ballon après une charge lourde). */
+  poolFor?: (slot: SlotKey) => Fiche[] | null;
+  /** Choix de l'emplacement `tronc` (rotation des familles de core, CORE-ALT-1). */
+  fillTronc?: (st: SessionState, used: Set<string>, prevUsed: Set<string>) => SlotFill;
+}
+
 /** Remplit tous les emplacements d'une séance, dans l'ordre de priorité (la même fiche n'occupe jamais deux emplacements). */
 export function fillSession(
   label: 'A' | 'B' | 'C',
@@ -208,12 +217,15 @@ export function fillSession(
   ctx: Ctx,
   pool: Fiche[],
   prevBySlot: Map<SlotKey, Set<string>>,
+  opts: FillOpts = {},
 ): Map<SlotKey, SlotFill> {
   const st: SessionState = { label, placedSchema: {} };
   const used = new Set<string>();
   const out = new Map<SlotKey, SlotFill>();
   for (const slot of slots) {
-    const fill = fillSlot(slot, st, used, prevBySlot.get(slot) ?? new Set(), ctx, pool);
+    const prevUsed = prevBySlot.get(slot) ?? new Set<string>();
+    const fill =
+      slot === 'tronc' && opts.fillTronc ? opts.fillTronc(st, used, prevUsed) : fillSlot(slot, st, used, prevUsed, ctx, opts.poolFor?.(slot) ?? pool);
     out.set(slot, fill);
     if (fill.cand) {
       used.add(fill.cand.fiche.id);

@@ -5,6 +5,7 @@ alias: [dead bug]
 schema: anti_rotation
 type: gainage
 niveau_min: debutant
+famille_core: anti_rotation
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [obliques, flechisseurs_hanche]
 source_brouillon: [M0517]

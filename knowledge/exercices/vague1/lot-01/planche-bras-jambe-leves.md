@@ -4,6 +4,7 @@ nom: Planche avec un bras ou une jambe levé
 schema: anti_rotation
 type: gainage
 niveau_min: intermediaire
+famille_core: anti_rotation
 muscles_principaux: [abdominaux, transverse]
 muscles_secondaires: [fessiers, obliques, erecteurs_rachis, deltoides_anterieurs]
 source_brouillon: []

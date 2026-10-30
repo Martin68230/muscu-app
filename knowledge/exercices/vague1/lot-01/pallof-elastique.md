@@ -5,6 +5,7 @@ alias: [pallof press]
 schema: anti_rotation
 type: fonctionnel
 niveau_min: debutant
+famille_core: anti_rotation
 muscles_principaux: [obliques, transverse]
 muscles_secondaires: [abdominaux, deltoides_anterieurs, dentele_anterieur]
 source_brouillon: [M1677, M1398, M1679]

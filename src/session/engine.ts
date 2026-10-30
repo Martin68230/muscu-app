@@ -7,7 +7,7 @@
 // donc la reprise après fermeture ne demande de sauvegarder qu'un nombre.
 import type { InjuryZone, PlannedExercise, ProgramDay, SessionCursor } from '../data/model';
 import { nextCalibrationStep, type CalibrationStep } from '../generator/calibration';
-import { TIME, WARMUP } from '../generator/config';
+import { SUPERSET_MIN_REST_SEC, TIME, WARMUP } from '../generator/config';
 import { echelonCalibrationStep } from './progression';
 import { adjustRest as adjustRestState, REST_ADJUST_STEP_SEC, remainingMs, startRest, type RestState } from './timer';
 
@@ -56,7 +56,8 @@ export function buildSteps(exercises: readonly PlannedExercise[]): Step[] {
     const rounds = Math.max(...members.map((m) => exercises[m].sets));
     for (let r = 0; r < rounds; r++) {
       const active = members.filter((m) => r < exercises[m].sets);
-      const pairRest = Math.max(...active.map((m) => exercises[m].restSec));
+      // SUP-6 : repos de la paire = le plus long des deux, jamais moins de 60 s (exercice seul : son propre repos).
+      const pairRest = Math.max(...active.map((m) => exercises[m].restSec), members.length > 1 ? SUPERSET_MIN_REST_SEC : 0);
       active.forEach((m, a) => {
         const sides: ('gauche' | 'droite' | null)[] = exercises[m].unit === 'reps_par_cote' ? ['gauche', 'droite'] : [null];
         sides.forEach((side, s) => {
@@ -109,6 +110,43 @@ export interface EngineContext {
   echelonOf?(ex: PlannedExercise): number | undefined;
   /** F6 : étalonnage des échelons pour un exercice sans charge ; null pour un exercice à charge. */
   echelonInfo?(ex: PlannedExercise): EchelonInfo | null;
+  /** D26 (SUP-2 point 7) : retour après gêne (la dernière séance de cette fiche a eu « ça fait mal ») : nouvel étalonnage (R7). */
+  afterPain?(ex: PlannedExercise): boolean;
+  /** D26 (SUP-8 point 2) : la fiche de l'exercice porte une ligne pour cette zone (quelle que soit la case). Absent : inconnu. */
+  zoneOnFiche?(ex: PlannedExercise, zone: InjuryZone): boolean;
+}
+
+/**
+ * D26 (SUP-2 point 7) : la paire est décidée à la génération, mais le lecteur ne l'applique pas si l'un des deux exercices est en
+ * étalonnage (première séance, séance d'arrivée à un échelon, reprise douce) ou en retour après gêne : les deux sont alors faits
+ * séparément, chacun avec son repos, sans message d'erreur. Renvoie la copie du jour à jouer (plan enregistré avec la séance).
+ */
+export function pairsForSession(day: ProgramDay, ctx: EngineContext): ProgramDay {
+  const groups = [...new Set(day.exercises.map((e) => e.supersetGroup).filter((g): g is string => !!g))];
+  if (!groups.length) return day;
+  const calibrating = (ex: PlannedExercise) => {
+    if (ex.reprise?.calibration) return true;
+    const info = ctx.echelonInfo?.(ex) ?? null;
+    return info ? info.calibration : ctx.isCalibration(ex);
+  };
+  let exercises = day.exercises;
+  for (const g of groups) {
+    const members = exercises.filter((e) => e.supersetGroup === g);
+    const why = members.some(calibrating) ? 'etalonnage' : members.some((e) => !!ctx.afterPain?.(e)) ? 'gene' : null;
+    if (!why) continue;
+    exercises = exercises.map((e) => (e.supersetGroup === g ? { ...e, supersetGroup: null, pairDeferred: why } : e));
+  }
+  return exercises === day.exercises ? day : { ...day, exercises };
+}
+
+/**
+ * D26 (SUP-8) : après « ça fait mal » sur un exercice d'une paire, la paire est dissoute. Partenaire qui a encore des séries : le lecteur
+ * propose « Continuer seul » et « Passer au suivant », sauf si la zone déclarée est portée par la fiche du partenaire, ou inconnue
+ * (lecture prudente) : seulement « Passer au suivant ». Aucune décision automatique.
+ */
+export interface PairPain {
+  partner: number;
+  canContinue: boolean;
 }
 export const NEUTRAL_CONTEXT: EngineContext = {
   pregnant: false,
@@ -179,6 +217,8 @@ export interface SetResult {
   suggestion: CalibrationStep | null;
   /** F6 : l'échelon change pour les séries restantes de l'exercice (étalonnage d'un exercice sans charge). */
   echelonChange: { exercise: number; from: number; to: number; variantId: string } | null;
+  /** D26 (SUP-8) : douleur pendant une paire : partenaire et choix proposés ; null hors paire. */
+  pairPain?: PairPain | null;
 }
 
 // ----- Aides -----
@@ -310,12 +350,23 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
 
   let suggestion: CalibrationStep | null = null;
   let echelonChange: SetResult['echelonChange'] = null;
+  let pairPain: PairPain | null = null;
   if (pain) {
     // R4 : l'exercice s'arrête, séries restantes annulées, charge gelée, pas de repos.
     next.skipped.push(st.exercise);
     next.painExercises.push(st.exercise);
     next.rest = null;
     next.step = nextStepIndex(steps, cur + 1, next.skipped);
+    // SUP-8 : la paire est dissoute ; le partenaire n'est plus enchaîné (les étapes restantes du bloc prennent le repos complet).
+    if (ex.supersetGroup) {
+      const partner = day.exercises.findIndex((e, j) => j !== st.exercise && e.supersetGroup === ex.supersetGroup);
+      const hasMore = partner >= 0 && !next.skipped.includes(partner) && steps.some((s, k) => k > cur && s.kind === 'work' && s.exercise === partner);
+      if (hasMore) {
+        const z = entry.painZone;
+        const carried = z === null || z === 'inconnu' || !ctx.zoneOnFiche ? true : ctx.zoneOnFiche(day.exercises[partner], z);
+        pairPain = { partner, canContinue: !carried };
+      }
+    }
   } else {
     if (st.kind === 'work') {
       if (info && calibrating && ex.unit !== 'sec') {
@@ -360,7 +411,8 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     next.step = nextIdx;
     if (nextIdx < steps.length && st.restAfterSec > 0) {
       // Superset dont le partenaire est sauté : repos de la paire à la place de la transition de 15 s.
-      const sameBlock = steps[nextIdx].block === st.block;
+      // D26 (SUP-8) : partenaire arrêté et séries restantes de A : la série suivante est encore A, donc repos complet (pas 15 s).
+      const sameBlock = steps[nextIdx].block === st.block && steps[nextIdx].exercise !== st.exercise;
       const useTransition = st.restKind === 'transition' && sameBlock;
       next.rest = startRest(now, useTransition ? st.restAfterSec : st.restKind === 'transition' ? st.pairRestSec : st.restAfterSec, useTransition ? 'transition' : 'repos');
     } else next.rest = null;
@@ -369,7 +421,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     next.phase = 'fin';
     next.rest = null;
   }
-  return { state: next, entry, suggestion, echelonChange };
+  return { state: next, entry, suggestion, echelonChange, pairPain };
 }
 
 /** « Ça fait mal » : même effet que `completeSet({pain: true})`. La série en cours est enregistrée avec pain = true. */

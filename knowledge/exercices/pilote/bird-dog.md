@@ -5,6 +5,7 @@ alias: [bird dog]
 schema: anti_rotation
 type: gainage
 niveau_min: debutant
+famille_core: anti_rotation
 muscles_principaux: [abdominaux, erecteurs_rachis, fessiers]
 muscles_secondaires: [obliques, deltoides_anterieurs, moyen_fessier]
 source_brouillon: [M0458]

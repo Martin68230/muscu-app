@@ -30,7 +30,12 @@ export const PROGRESSION_TEXT = {
   maintien: 'Pour les maintiens, la durée n’augmente pas dans cette version.',
   garder: 'Garde la même charge.',
   symptome: 'Pas d’augmentation tant qu’une séance n’est pas terminée sans symptôme.',
+  /** D26 (SUP-0 point 2, R3) : charge fixe tant que l'exercice est en superset. */
+  paire: 'Exercice en superset : garde la même charge, ajoute des répétitions.',
 } as const;
+/** D26 (SUP-0, E17) : texte unique de la séance 1 quand les supersets ne sont pas encore appliqués (core-et-supersets.md §4.0). */
+export const PAIR_FIRST_SESSION_TEXT =
+  'Cette première séance peut durer un peu plus longtemps : les exercices nouveaux sont faits un par un. Le temps gagné apparaît dès la séance suivante.';
 
 export function loadMoreText(deltaKg: number): string {
   return `Essaie ${fmtKg(deltaKg)} kg de plus.`;
