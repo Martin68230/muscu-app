@@ -61,10 +61,12 @@ export const EQUIPMENT_GROUPS: EquipmentGroup[] = [
   {
     id: 'salle',
     title: 'Salle de sport',
+    hint: 'Utilisé seulement si ton lieu est la salle ou si tu as coché « J’ai accès à une salle » (Profil > Mes séances).',
     options: [
+      // Étiquettes de machines-etiquettes.md §1 (D30).
+      { tag: 'machine', label: 'Machine guidée' },
       { tag: 'poulie', label: 'Poulie' },
-      { tag: 'machine', label: 'Machines (guidées)' },
-      { tag: 'machine_cardio', label: 'Vélo ou rameur' },
+      { tag: 'machine_cardio', label: 'Machine de cardio (vélo, rameur, tapis, elliptique)' },
     ],
   },
   {

@@ -12,6 +12,8 @@ import { mk, type MkOpts } from './generator-helpers';
 // jours légers, STR-REP-11), dos 2 et épaule 2 (aucune série ajoutée, STR-REP-14 a), épaule 3 (plafond hebdomadaire STR-REP-3), 4 jours
 // (haut / bas au lieu de « HORS »). Les programmes corps entier à 2-3 jours sans ces réglages sont identiques (T-D25-21).
 // Référence régénérée le 30/10/2026 pour D26 (core : plancher, familles, CORE-ORD-4 ; supersets SUP-0 à SUP-9) : changements voulus, docs/D26-bilan.md.
+// Référence régénérée le 30/10/2026 pour D30 (docs/D30-bilan.md) : objectif sport (séance de cardio incluse, message), textes corrigés
+// de knowledge/textes-d25-revue.md (« pas assez de place pour… », 4 jours), isolation STR-ISO (intermédiaire / avancé, objectif muscle).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {
@@ -66,6 +68,7 @@ describe('Non-régression du générateur pour les objectifs sans cardio (B4)', 
     }
     const ref = JSON.parse(readFileSync(FILE, 'utf8')) as Record<string, string>;
     const diff = Object.keys(ref).filter((k) => ref[k] !== now[k]);
+
     expect(diff).toEqual([]);
     expect(Object.keys(now).length).toBe(Object.keys(ref).length);
   }, 60_000);

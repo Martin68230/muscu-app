@@ -2,12 +2,12 @@
 // (un seul programme actif) et le régénère seulement quand les entrées changent (empreinte `inputsHash`).
 import { list, create, update, get, softDelete } from '../data/repo';
 import type { Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
-import { BLOCK_WEEKS, MIN_GAP_DAYS } from '../generator/config';
+import { BLOCK_WEEKS, ISOLATION, LIGHT_SPLIT_MAX_FORCE, MIN_GAP_DAYS } from '../generator/config';
 import { conflicts, generateProgram, isCardioDay, toLightDays, toProgramDays } from '../generator';
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.4'; // v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
+export const GENERATOR_VERSION = 'v1.5'; // v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 
@@ -36,7 +36,10 @@ function canonical(input: GeneratorInput, fichesSig: string): unknown {
   return {
     gen: GENERATOR_VERSION,
     fiches: fichesSig,
-    profile: [p.level ?? null, p.daysPerWeek ?? null, sortedNums(p.blockedWeekdays), p.sessionDurationMin ?? null, p.place ?? null, p.pregnancy ?? null],
+    profile: [
+      p.level ?? null, p.daysPerWeek ?? null, sortedNums(p.blockedWeekdays), p.sessionDurationMin ?? null, p.place ?? null, p.pregnancy ?? null,
+      !!p.salleAccess, !!p.exterieur, sortedStrs(p.sports),
+    ],
     equipment: [eq.preset, sortedStrs(eq.tags), sortedStrs(eq.disabledImplicit), sortedNums(eq.dumbbellWeightsKg), sortedNums(eq.kettlebellWeightsKg), sortedNums(eq.platesKg)],
     injuries: (input.injuries ?? [])
       .filter((i) => i.active && !i.deletedAt)
@@ -44,7 +47,10 @@ function canonical(input: GeneratorInput, fichesSig: string): unknown {
       .sort(),
     goals: (input.goals ?? []).map((g) => `${g.rank}:${g.goalKey}`).sort(),
     options: input.options
-      ? [!!input.options.gagnerDuTemps, !!input.options.ajouterFonctionnel, Object.entries(input.options.habitualLoadsKg ?? {}).sort(), sortedStrs(input.options.favoris), sortedStrs(input.options.masques)]
+      ? [
+          !!input.options.gagnerDuTemps, !!input.options.ajouterFonctionnel, Object.entries(input.options.habitualLoadsKg ?? {}).sort(), sortedStrs(input.options.favoris),
+          sortedStrs(input.options.masques), input.options.seanceCardio ?? null, !!input.options.isoDebutantOuverte, !!input.options.repriseActive,
+        ]
       : null,
   };
 }
@@ -79,7 +85,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
   const [profile] = await list('profile');
   const [equipment] = await list('equipment');
   if (!profile || !equipment) return null;
-  const [injuries, goals, sets] = await Promise.all([list('injuries'), list('goals'), list('sets')]);
+  const [injuries, goals, sets, sessions] = await Promise.all([list('injuries'), list('goals'), list('sets'), list('sessions')]);
   const input: GeneratorInput = {
     profile: {
       level: profile.level,
@@ -88,6 +94,9 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
       sessionDurationMin: profile.sessionDurationMin,
       place: profile.place ?? null,
       pregnancy: profile.pregnancy ?? null,
+      salleAccess: !!profile.salleAccess,
+      exterieur: !!profile.exterieur,
+      sports: profile.sports ?? [],
     },
     equipment: {
       preset: equipment.preset,
@@ -102,9 +111,34 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
     fiches,
     history: historyFromSets(sets),
     // Option « Gagner du temps » (core-et-supersets.md §12) : réglage du profil, éteint par défaut.
-    options: { gagnerDuTemps: !!profile.gagnerDuTemps },
+    options: {
+      gagnerDuTemps: !!profile.gagnerDuTemps,
+      ...(profile.seanceCardio !== undefined ? { seanceCardio: profile.seanceCardio } : {}),
+      isoDebutantOuverte: profile.level === 'debutant' && isoBeginnerOpen(sessions, sets, profile.daysPerWeek ?? 0, Date.now()),
+      repriseActive: !!profile.reprise?.actif,
+    },
   };
   return { input, profileComplete: !!profile.profileCompletedAt };
+}
+
+/**
+ * STR-ISO-1 (structure-programmes.md §2.4, lecture prudente de `dev`) : exception du débutant en prise de muscle. Ouverte seulement si
+ * (1) la première séance de force terminée date d'au moins 8 semaines, (2) au moins 80 % des séances de force prévues sur les 8 dernières
+ * semaines sont faites (prévues = jours par semaine x 8, sans les séances de cardio), (3) aucune série avec douleur dans les 7 derniers
+ * jours, (4) aucune pause de plus de 4 semaines (STR-ISO-5) : au moins une séance de force dans les 28 derniers jours.
+ */
+export function isoBeginnerOpen(sessions: readonly WorkoutSession[], sets: readonly SetLog[], daysPerWeek: number, nowMs: number): boolean {
+  if (daysPerWeek < ISOLATION.minDays) return false;
+  const force = sessions.filter((s) => s.status === 'faite' && s.endedAt && !s.deletedAt && !(s.plan && isCardioDay(s.plan)));
+  if (!force.length) return false;
+  const ends = force.map((s) => Date.parse(s.endedAt!)).filter(Number.isFinite);
+  const base = ISOLATION.beginnerBaseWeeks * 7 * DAY_MS;
+  if (nowMs - Math.min(...ends) < base) return false;
+  if (!ends.some((t) => nowMs - t <= ISOLATION.pauseWeeks * 7 * DAY_MS)) return false;
+  const done = ends.filter((t) => nowMs - t <= base).length;
+  // STR-REP-6 : un débutant fait au plus 4 séances de force par semaine (jours légers au-delà).
+  if (done < ISOLATION.beginnerDoneRatio * Math.min(daysPerWeek, LIGHT_SPLIT_MAX_FORCE) * ISOLATION.beginnerBaseWeeks) return false;
+  return !sets.some((x) => x.pain && x.completedAt && nowMs - Date.parse(x.completedAt) <= 7 * DAY_MS);
 }
 
 // ----- Programme actif -----
@@ -138,6 +172,7 @@ function toStoredProgram(gen: GenProgram, hash: string, todayIso: string): NewRo
     durationMin: gen.targetMin,
     family: gen.family,
     lightDays: toLightDays(gen),
+    cardioOption: gen.cardioOption ?? null,
   };
 }
 

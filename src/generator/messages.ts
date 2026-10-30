@@ -62,15 +62,16 @@ export const msg = {
       'V-MSG-UN-JOUR',
       "Une séance par semaine, c'est mieux que rien, mais les repères demandent au moins 2 séances par semaine pour chaque grand muscle. Passer à 2 jours est possible dans ton profil.",
     ),
-  /** D25, STR-REP-1 (ajout `kine`) : séance unique d'un débutant ramenée à 45 min. Rédaction de `dev` (à relire par `coach`). */
-  unJourDuree: (min: number) => m('V-MSG-UN-JOUR-DUREE', `Avec une seule séance par semaine, elle dure ${min} min au plus pour l'instant.`),
-  /** D25, STR-REP-6 : texte du fichier de règles (débutant, santé) ; STR-REP-14 c : rédaction de `dev` (à relire par `kine`). */
+  /** D25, STR-REP-1 (ajout `kine`) : séance unique d'un débutant ramenée à 45 min. Texte corrigé (knowledge/textes-d25-revue.md §1). */
+  unJourDuree: (min: number) =>
+    m('V-MSG-UN-JOUR-DUREE', `Avec un seul jour par semaine, ta séance dure ${min} min au plus. Si tu ajoutes un deuxième jour, tu pourras avoir deux séances plus courtes.`),
+  /** D25, STR-REP-6 et 14 c : textes corrigés (knowledge/textes-d25-revue.md §2, aucune promesse). */
   legers: (reason: 'debutant' | 'zone') =>
     m(
       'V-MSG-LEGERS',
       reason === 'debutant'
-        ? 'Pour débuter, 4 séances de force suffisent ; les autres jours sont légers.'
-        : 'Avec la gêne déclarée, 4 séances de force suffisent ; les autres jours sont légers.',
+        ? "Pour débuter, l'app limite à 4 séances de force par semaine. Les autres jours sont légers : mobilité douce, rien de lourd."
+        : "À cause de la gêne que tu as indiquée, l'app limite à 4 séances de force par semaine. Les autres jours sont légers : mobilité douce, rien de lourd.",
     ),
   /** D25, STR-REP-11 : texte du fichier de règles, mot pour mot. */
   grosSeances: (n: number) =>
@@ -150,6 +151,8 @@ export const msg = {
   /** Objectif `endurance` (toujours ramené à la famille sante en v1). Le cardio a ses propres messages (cardioMsg, B4). */
   objCardio: () => m('V-MSG-OBJ', "Repère OMS : 150 à 300 min d'activité modérée par semaine."),
   objSport: () => m('V-MSG-OBJ', 'Les programmes par sport arrivent dans une prochaine version.'),
+  /** D31 (cardio-regles.md §3.2ter B (c), `kine`) : séance de sport incluse. */
+  sportMatch: () => m('V-MSG-SPORT-MATCH', 'Évite de faire ta séance de cardio la veille d’un match, et le lendemain d’un match en cas de courbatures.'),
 };
 
 export function dedupe(ms: GenMessage[]): GenMessage[] {

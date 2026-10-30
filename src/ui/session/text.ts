@@ -25,6 +25,7 @@ export function durationText(sec: number): string {
 
 /** « 10-15 répétitions · réserve 3 », « 20 s », « 8-10 répétitions par côté ». */
 export function targetText(ex: PlannedExercise): string {
+  if (ex.jump) return `${ex.sets} × ${ex.repsMax} ${ex.jump.soft ? 'répétitions, sans saut' : 'sauts'} · repos ${ex.restSec} s`;
   if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · effort ${ex.intensity === 'facile' ? 'facile' : 'modéré'}`;
   if (ex.unit === 'sec') return `${ex.holdSec ?? ex.repsMin} s`;
   const range = ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
@@ -35,6 +36,7 @@ export function targetText(ex: PlannedExercise): string {
 /** Ligne de la liste d'aperçu : « 3 × 10-15 · repos 1 min 30 ». */
 export function lineText(ex: PlannedExercise): string {
   // Cardio (B4) : durée et effort modéré (OMS : 5-6 sur 10, cardio-regles.md §2), pas de série ni de repos.
+  if (ex.jump) return `${ex.sets} séries de ${ex.repsMax} ${ex.jump.soft ? 'répétitions, version sans saut' : 'sauts, réception douce'} · repos ${ex.restSec} s en marchant`;
   if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · ${ex.intensity === 'facile' ? 'effort facile' : 'effort modéré (5-6 sur 10)'}${ex.slowEndMin ? `, ${ex.slowEndMin} dernières min lentes` : ''}`;
   const t = ex.unit === 'sec' ? `${ex.holdSec ?? ex.repsMin} s` : ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
   const unit = ex.unit === 'reps_par_cote' ? ' par côté' : '';

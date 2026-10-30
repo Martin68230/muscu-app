@@ -1,5 +1,5 @@
 // Emplacements d'une séance (V-EMP §2.2), classement (V-CLASSE §6.7), replis (V-IMPOS §7.1), rotation A/C (V-ROT §2.3).
-import { CORE_NOT_CORE_IDS, MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
+import { CORE_NOT_CORE_IDS, ISOLATION, MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import { templateOf } from './split';
@@ -12,7 +12,9 @@ export const CORE_SLOTS: readonly SlotKey[] = ['jambes_genou', 'poussee_1', 'tir
 export const PILLAR_SLOTS: readonly SlotKey[] = ['jambes_genou', 'poussee_1'];
 export const isCore = (s: SlotKey) => CORE_SLOTS.includes(s);
 /** Tous les emplacements (corps entier puis emplacements de volume D25), pour les parcours d'exercices. */
-export const ALL_SLOTS: readonly SlotKey[] = [...SLOT_ORDER, 'poussee_3', 'tirage_3', 'jambes_3', 'poussee_4', 'tirage_4', 'jambes_4'];
+export const ALL_SLOTS: readonly SlotKey[] = [
+  ...SLOT_ORDER, 'poussee_3', 'tirage_3', 'jambes_3', 'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_mollets',
+];
 
 interface SchemaReq {
   schema: string;
@@ -105,6 +107,11 @@ export function slotDef(slot: SlotKey, st: SessionState): SlotDef {
       return { a: [...(st.noHinge ? [] : [req('charniere')]), req('cheville_mollet'), req('hanche_laterale')], b: [], allowB: false, allowSubst: false };
     case 'jambes_4':
       return { a: [req('cheville_mollet'), req('hanche_laterale')], b: [], allowB: false, allowSubst: false };
+    default: {
+      // STR-ISO-0 : emplacements d'isolation (un schéma, muscle principal exigé, aucun repli ni substitut).
+      const iso = ISOLATION.slots.find((x) => x.slot === slot)!;
+      return { a: [{ schema: iso.schema, required: [iso.muscle] }], b: [], allowB: false, allowSubst: false };
+    }
   }
 }
 
@@ -191,6 +198,8 @@ export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx
       if (!s || used.has(c.fiche.id)) continue;
       if (MAIN_EXERCISE_SLOTS.includes(slot) && PILLAR_EXCLUDED_FICHES.includes(c.fiche.id)) continue; // lancers : jamais exercice principal
       if (slot === 'tronc' && CORE_NOT_CORE_IDS.includes(c.fiche.id)) continue; // D26 : copenhague-court hors famille core (inventaire, kiné)
+      // STR-ISO-0 : le repli de jambes_3 / jambes_4 vers cheville_mollet compte comme isolation « mollets » : interdit au débutant avant l'exception.
+      if (ctx.calfFallbackForbidden && (slot === 'jambes_3' || slot === 'jambes_4') && c.fiche.schema === 'cheville_mollet') continue;
       // jambes_2 / fonctionnel : un schéma sans muscle exigé ne peut pas être « substitut »
       const full = isPleine(c.fiche, s.r);
       if (!full && !def.allowSubst) continue;

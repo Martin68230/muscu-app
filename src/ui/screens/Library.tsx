@@ -1,6 +1,12 @@
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import { FICHES_ERROR, isUsable, loadFiches, searchFiches, sortByName, type Fiche } from '../../data/fiches';
 import { MUSCLE_SHORT, SCHEMA_GROUPS } from '../../data/labels';
+import { list } from '../../data/repo';
+import { MACHINE_TAGS } from '../../generator/config';
+
+/** machines-etiquettes.md §2 : fiche de machine = toutes ses variantes exigent une machine guidée, une poulie ou une machine de cardio. */
+export const isMachineFiche = (f: Pick<Fiche, 'variantes'>): boolean =>
+  f.variantes.length > 0 && f.variantes.every((v) => v.tags.some((t) => MACHINE_TAGS.includes(t)));
 
 /** Garde la recherche, le filtre et le défilement quand on revient d'une fiche. */
 const memo = { query: '', group: 'tout', scroll: 0 };
@@ -34,8 +40,13 @@ export function Library() {
   const restored = useRef(false);
 
   useEffect(() => {
-    loadFiches().then(
-      (l) => setFiches(sortByName(l.filter(isUsable))),
+    // Fiches de machines affichées seulement avec le lieu « salle » ou l'accès à une salle (réglage du profil).
+    Promise.all([loadFiches(), list('profile').catch(() => [])]).then(
+      ([l, profiles]) => {
+        const p = profiles[0];
+        const gym = p?.place === 'salle' || !!p?.salleAccess;
+        setFiches(sortByName(l.filter((f) => isUsable(f) && (gym || !isMachineFiche(f)))));
+      },
       (e: Error) => setError(e.message || FICHES_ERROR),
     );
   }, []);

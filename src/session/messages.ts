@@ -119,9 +119,62 @@ export const GAIN_TEXT = {
   explain:
     "Tu fais deux exercices d'affilée, un pour pousser puis un pour tirer, puis tu te reposes. Le travail reste le même, la séance est plus courte, mais c'est plus fatigant : prévois un peu plus de repos entre deux séances.",
   honest: 'Même volume de travail, séance plus courte, mais plus fatigant.',
-  offBeginner: 'Pas pour débuter : les exercices se font un par un.',
+  // Textes corrigés (knowledge/textes-d25-revue.md §3 et §4, `coach`, validés par `kine`).
+  offBeginner: "Cette option n'est pas proposée au début : tu fais les exercices un par un.",
   offPregnancy: 'Pendant la grossesse ou après un accouchement, les exercices se font un par un.',
-  noPairToday: "Aucun exercice n'est enchaîné dans cette séance.",
+  noPairToday: 'Dans cette séance, aucun exercice n’est fait par deux : tu les fais un par un.',
+} as const;
+
+/**
+ * D30 / D31 (knowledge/cardio-regles.md §3.2ter, §5.2, §5.2bis, §5.4). Textes repris mot pour mot des règles quand ils y sont écrits
+ * (T8, T9, phrase « grisé », arrêt des sauts, courbatures, match) ; les autres sont une rédaction de `dev` (marqués « dev », à relire
+ * par `coach` ou `kine`, docs/D30-bilan.md).
+ */
+export const D30_TEXT = {
+  /** 3.2ter A : libellé de l'option (règle) ; phrase grisée (rédaction de `coach`). */
+  optionLabel: 'Ajouter une séance de cardio ?',
+  optionNoDay: 'Il faut un jour libre de plus dans tes jours disponibles.',
+  /** dev : explication de l'option (3.2ter A : modéré, jour sans jambes lourdes, jamais à la place d'une séance de force). */
+  optionExplain: 'Une séance de cardio modéré (marche rapide ou équivalent) un jour libre, loin de tes séances de jambes. Elle ne remplace jamais une séance de force.',
+  /** dev : séance de sport incluse (3.2ter B), retirable. */
+  sportLabel: 'Séance de cardio incluse (sport)',
+  sportExplain: 'Une séance de cardio par semaine, à la place d’un jour léger. Tu peux la retirer.',
+  /** dev : grisé quand une gêne aux jambes est au niveau 2 ou 3 (lecture prudente de STR-REP-12). */
+  optionLegZone: 'Avec la gêne que tu as indiquée aux jambes, l’app n’ajoute pas de séance de cardio.',
+  /** dev : grisé à 1 ou 2 jours (3.2ter A : option offerte à partir de 3 jours). */
+  optionFewDays: 'Cette option est proposée à partir de 3 jours de force par semaine.',
+  /** 3.2ter B (c), `kine` : séance de sport. */
+  sportMatch: 'Évite de la faire la veille d’un match, et le lendemain d’un match en cas de courbatures.',
+  /** 5.2 T8 (`coach`, complété par `kine`), mot pour mot. */
+  T8: 'Les sauts demandent plus aux genoux, aux chevilles et au dos. Commence par la version sans saut. Essaie les sauts seulement si tu n’as aucune douleur, avec des chaussures de sport, sur un sol stable et dégagé. Pas de saut si tu es très fatigué ou si tes jambes sont lourdes. Retombe doucement, genoux souples. Arrête dès qu’une douleur apparaît ou si tes réceptions deviennent bruyantes.',
+  /** 5.2 (courbatures) et 5.2bis condition 7 (arrêt au premier signe ressenti), mot pour mot. */
+  courbatures: 'Des courbatures aux mollets sont normales les premiers jours. Une douleur dans l’articulation, non.',
+  jumpStop: 'Si tes sauts deviennent plus bas ou plus bruyants, arrête les sauts et passe à la suite.',
+  /** 5.1 (5) et 6ter : question posée avant les sauts. */
+  heavyQuestion: 'Tes jambes sont-elles lourdes ou courbaturées ?',
+  /** dev : réponse « oui » dans un programme généré (5.1 (5) : version douce imposée). */
+  heavyYes: 'Fais la version sans saut aujourd’hui.',
+  /** dev : ligne « version douce » d'un exercice de sauts. */
+  softLine: (nom: string): string => `Version sans saut : ${nom}.`,
+  /** dev : débutant, version douce par défaut (5.2). */
+  softFirst: 'Version sans saut d’abord : c’est la version prévue pour toi.',
+  /** 5.4 T9 (`coach`, complété par `kine`), mot pour mot. */
+  T9: 'Échauffe-toi 5 minutes en marchant. Mets des chaussures de sport qui tiennent bien le pied. Bois avant, pendant et après ; quand il fait chaud, raccourcis et va plus doucement. Garde le son bas, avec une seule oreille ou le haut-parleur, pour entendre la circulation. Choisis un trajet éclairé, sûr, de préférence piéton, avec des vêtements visibles ; prends ton téléphone et préviens quelqu’un. Ne regarde pas l’écran en courant : écoute le signal, ou arrête-toi pour regarder. Pas de verglas ni de sol glissant. Au moindre signe d’alerte, arrête.',
+  /** dev : rappel T9 en une ligne (5.4 « une fois puis en une ligne »). */
+  T9short: 'Dehors : trajet sûr, son bas, une seule oreille, arrête-toi pour regarder l’écran.',
+  /** 5.4 : alternative intérieure (titre de la règle) ; contenu : rédaction de `dev`. */
+  indoorTitle: 'Pas envie ou pas possible de sortir ?',
+  indoorWalk: 'Fais la même durée en marche rapide sur place ou dans ton logement.',
+  /** dev : réglages du profil (5.4 « je peux marcher ou courir dehors, sur un trajet sûr » ; machines-etiquettes.md §2). */
+  outdoorLabel: 'Je peux marcher ou courir dehors, sur un trajet sûr',
+  outdoorHelp: 'Facultatif. Aucune localisation : l’app compte seulement le temps. Chaque séance dehors garde une version à l’intérieur.',
+  gymLabel: 'J’ai accès à une salle',
+  gymHelp: 'Facultatif. Les exercices sur machine guidée ou à la poulie ne sont proposés qu’avec une salle.',
+  /** dev : lecteur du jour léger (STR-REP-12 : proposé, jamais exigé). */
+  lightTitle: 'Jour léger (facultatif)',
+  lightIntro: 'Rien n’est obligatoire : fais tout, une partie ou rien. Aucun retard n’est compté.',
+  lightCardio: (min: number): string => `Si tu veux : ${min} min de marche à plat, effort facile (tu parles en phrases entières).`,
+  lightNoCardio: 'Aujourd’hui : mobilité seulement, sans cardio.',
 } as const;
 
 /**
@@ -132,7 +185,8 @@ export const GAIN_TEXT = {
 export const CARDIO_PLAY_TEXT = {
   easy: 'Effort facile : tu parles en phrases entières.',
   moderate: 'Effort modéré (5-6 sur 10).',
+  // Texte retenu par `kine` (knowledge/textes-d25-revue.md §5, avis du 31/10/2026, R5 et U1 à part).
   slowEnd: (min: number) =>
-    `Les ${min} dernières minutes : ralentis (marche lente ou pédalage très doux). Ensuite, ne t'assieds pas et ne t'allonge pas d'un coup ; si la tête tourne, arrête la séance.`,
+    `Pendant les ${min} dernières minutes, ralentis : marche lente ou pédalage très doux. Ne t'arrête pas net : marche encore un peu avant de t'asseoir. Si la tête tourne, si tu as une douleur dans la poitrine ou si tu es essoufflé de façon anormale (le souffle ne revient pas, tu ne peux plus dire une phrase), arrête, assieds-toi doucement et bois de l'eau. Ne refais pas de séance avant d'avoir l'avis d'un médecin.`,
   pregnancy: 'Après le cardio, ne reste pas debout immobile longtemps.',
 } as const;

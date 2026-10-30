@@ -12,6 +12,10 @@ import type { MainGoalKey } from '../../data/model';
 import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
+import { SwitchRow } from '../SwitchRow';
+import { D30_TEXT } from '../../session/messages';
+import { getActiveProgram } from '../../session/program';
+import type { Program } from '../../data/model';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
 import { checkForUpdate, clearCachesAndReload, UPDATE_TEXT } from '../update';
 
@@ -55,6 +59,11 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
       setOthers(g.others);
     });
   }, []);
+  // D31 : état de l'option de cardio, lu dans le programme actif (recalculé à chaque changement du profil).
+  const [cardioOpt, setCardioOpt] = useState<Program['cardioOption']>(null);
+  useEffect(() => {
+    getActiveProgram().then((p) => setCardioOpt(p?.cardioOption ?? null), () => setCardioOpt(null));
+  }, [profile.updatedAt]);
   const [theme, setTheme] = useState<ThemePref>(getThemePref());
   const [updating, setUpdating] = useState(false);
   const [updateMsg, setUpdateMsg] = useState<string | null>(null);
@@ -157,6 +166,31 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
           on={!!profile.gagnerDuTemps}
           disabledReason={gainDisabledReason(profile)}
           onToggle={async (on) => onChange(await update('profile', profile.id, { gagnerDuTemps: on }))}
+        />
+        {cardioOpt?.offered && (
+          <SwitchRow
+            id="profil-cardio-opt"
+            label={cardioOpt.kind === 'sport' ? D30_TEXT.sportLabel : D30_TEXT.optionLabel}
+            on={profile.seanceCardio ?? cardioOpt.accepted}
+            help={cardioOpt.kind === 'sport' ? D30_TEXT.sportExplain : D30_TEXT.optionExplain}
+            disabledReason={cardioOpt.disabledReason}
+            onToggle={async (on) => onChange(await update('profile', profile.id, { seanceCardio: on }))}
+          />
+        )}
+        <SwitchRow
+          id="profil-salle"
+          label={D30_TEXT.gymLabel}
+          on={!!profile.salleAccess || profile.place === 'salle'}
+          help={profile.place === 'salle' ? 'Ton lieu est déjà la salle.' : D30_TEXT.gymHelp}
+          busy={profile.place === 'salle'}
+          onToggle={async (on) => onChange(await update('profile', profile.id, { salleAccess: on }))}
+        />
+        <SwitchRow
+          id="profil-dehors"
+          label={D30_TEXT.outdoorLabel}
+          on={!!profile.exterieur}
+          help={D30_TEXT.outdoorHelp}
+          onToggle={async (on) => onChange(await update('profile', profile.id, { exterieur: on }))}
         />
       </div>
 

@@ -522,3 +522,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .switch-row[aria-checked='true'] .switch { background: var(--accent); border-color: var(--accent); }
 .switch-row[aria-checked='true'] .switch-knob { left: 23px; background: var(--accent-text); }
 .light-days { margin-top: 8px; }
+/* D30 : lecteur du jour léger et notes des sauts */
+.light-timer { font-size: 2.5rem; font-variant-numeric: tabular-nums; font-weight: 700; text-align: center; margin: 8px 0; }
+.jump-notes { margin: 8px 0; }
+.jump-notes .foot-row .btn[aria-pressed='true'] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }

@@ -127,7 +127,7 @@ test('D25 : haut / bas, option « Gagner du temps », paire au lecteur, douleur 
   // ----- Option allumée (réglage du profil, programme régénéré) ; séance HAUT-A : aucune paire possible (poussée verticale) -----
   await sw.click();
   await expect(sw).toHaveAttribute('aria-checked', 'true', { timeout: 20_000 });
-  await expect(page.getByText("Aucun exercice n'est enchaîné dans cette séance.")).toBeVisible();
+  await expect(page.getByText('Dans cette séance, aucun exercice n’est fait par deux : tu les fais un par un.')).toBeVisible();
 
   // ----- Séance HAUT-B (rotation) : première fois, la paire est faite un par un (texte de la séance 1) -----
   await seed(page, { doneDayIndex: 1 });
@@ -180,7 +180,7 @@ test('D25 : débutant (option grisée), profil (jours, réglage conservé)', asy
   await expect(page.getByRole('heading', { name: 'Haut du corps A' })).toBeVisible();
   const sw = page.getByRole('switch', { name: /Gagner du temps/ });
   await expect(sw).toBeDisabled();
-  await expect(page.getByText('Pas pour débuter : les exercices se font un par un.')).toBeVisible();
+  await expect(page.getByText("Cette option n'est pas proposée au début : tu fais les exercices un par un.")).toBeVisible();
   await shot(page, 'apercu-debutant-option-grisee', project);
   // Profil : section « Mes séances » (même réglage).
   await page.getByRole('button', { name: '← Accueil' }).click();

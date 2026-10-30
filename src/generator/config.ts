@@ -569,20 +569,211 @@ export const CARDIO_V2 = {
 };
 
 // ---------------------------------------------------------------------------------------------
-// Points d'extension : règles en cours de rédaction par `coach` (NE PAS activer sans fiche de règles validée).
+// Statut des règles D30 / D31 (knowledge/cardio-regles.md §3.2bis, §3.2ter, §5 ; structure-programmes.md §2.4 ; machines-etiquettes.md),
+// validées sous réserve par `coach`, `kine` et `relecteur`, décidées par l'utilisateur (DECISIONS-utilisateur.md D30, D31).
 // ---------------------------------------------------------------------------------------------
-/** Statut des décisions de l'utilisateur dont les règles ne sont pas encore écrites : aucun effet dans le code. */
 export const PENDING_RULES = {
-  /** Q5 : sauts dans le cardio. EN RÉDACTION (`coach`) : non codé, aucun saut. */
-  sauts: { status: 'EN_REDACTION', enabled: false },
-  /** Q6 : course. EN RÉDACTION : non codé, aucune course. */
-  course: { status: 'EN_REDACTION', enabled: false },
-  /** Q7 : plafond de séances de cardio selon l'objectif. EN RÉDACTION : CARDIO.maxDedicated reste en vigueur. */
-  plafondCardioObjectif: { status: 'EN_REDACTION', enabled: false },
-  /** Q8 : cardio dehors. EN RÉDACTION : non codé. */
-  exterieur: { status: 'EN_REDACTION', enabled: false },
-  /** Q10 : étiquettes de machines séparées. EN RÉDACTION : tag machine_cardio inchangé. */
-  etiquettesMachines: { status: 'EN_REDACTION', enabled: false },
-  /** Isolation du débutant en prise de muscle. EN RÉDACTION : aucun emplacement d'isolation. */
-  isolationDebutant: { status: 'EN_REDACTION', enabled: false },
+  /** Q5 : sauts (5.2, 5.2bis). Codé : séance de sport incluse (famille « sauts »), version douce d'abord pour le débutant. */
+  sauts: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
+  /** Q6 : course (5.3). Règles codées (fonctions pures) ; aucune fiche de course : jamais proposée (FICHES_NON_DISPONIBLES). */
+  course: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
+  /** Q7 : plafond de séances de cardio dédiées selon l'objectif et le niveau (3.2bis). */
+  plafondCardioObjectif: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
+  /** Q8 : cardio dehors (5.4), réglage du profil, sans GPS. */
+  exterieur: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
+  /** Q10 : étiquettes de machines et accès à une salle (machines-etiquettes.md). */
+  etiquettesMachines: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
+  /** STR-ISO : isolation (intermédiaire / avancé ; exception du débutant en prise de muscle). */
+  isolationDebutant: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
+  /** D28 « Créer une séance » (5.1 (6ter)) : écran NON codé (étape suivante) ; verrous en fonctions pures (impact.ts). */
+  creerSeance: { status: 'ETAPE_SUIVANTE', enabled: false },
 } as const;
+
+/** Fiches que les règles citent mais qui n'existent pas encore (vague 2 de `coach`) : jamais proposées par le générateur. */
+export const FICHES_NON_DISPONIBLES: readonly string[] = [
+  'corde-a-sauter', 'saut-longueur-sur-place-d28', 'squat-petit-saut', 'hip-thrust-unilateral-chaise-elastique', 'course-paliers',
+  'course-sur-place', 'velo', 'rameur', 'tapis-de-course', 'elliptique', 'presse-a-cuisses',
+];
+
+/** 3.2bis : plafond de séances de cardio dédiées par semaine, selon l'objectif de rang 1 et le niveau. NON SOURCÉ (OMS : repère seul). */
+export const CARDIO_CAPS = {
+  /** Objectif cardio : inchangé (= CARDIO.maxDedicated). */
+  cardio: { debutant: 2, intermediaire: 3, avance: 3 } as Record<Level, number>,
+  /** Forme / santé. */
+  sante: { debutant: 1, intermediaire: 2, avance: 2 } as Record<Level, number>,
+  /** Force, prise de muscle, perte de gras : 0 par défaut ; nombre si l'option est acceptée (3.2ter A). */
+  option: { debutant: 1, intermediaire: 1, avance: 2 } as Record<Level, number>,
+  /** Sport : 1, incluse par défaut (3.2ter B). */
+  sport: { debutant: 1, intermediaire: 1, avance: 1 } as Record<Level, number>,
+  /** Grossesse / post-partum : 1 séance au plus, 20 min au plus, modérée, sans saut ni course (tout objectif). */
+  pregnancyMax: 1,
+  pregnancyMaxMin: 20,
+  /** 3.2 : jamais plus de 3 séances dédiées ; 3.2bis : jamais plus de 300 min modérées par semaine (OMS, OK). */
+  absoluteMax: 3,
+  omsWeekMaxMin: 300,
+};
+
+/** 3.2ter A : option « Ajouter une séance de cardio ? ». NON SOURCÉ (choix de `coach`, confirmés par `kine`). */
+export const CARDIO_OPTION = {
+  goals: ['force', 'muscle', 'perte_gras'] as readonly string[],
+  /** Offerte à partir de 3 jours de force choisis. */
+  minForceDays: 3,
+  /** Au plus 6 jours d'entraînement (force + cardio, jours légers exclus). */
+  maxTrainingDays: 6,
+  startMin: { debutant: 20, intermediaire: 30, avance: 30 } as Record<Level, number>,
+  maxMin: { debutant: 30, intermediaire: 40, avance: 45 } as Record<Level, number>,
+  /** Blocs de 3.4 réduits à 1 quand la séance est acceptée. */
+  blocksWhenAccepted: 1,
+};
+
+/** 3.2ter B et sports.md : familles des sports déclarés (clés du profil, sans accent). NON SOURCÉ (classement de sports.md). */
+export const SPORT_FAMILIES = {
+  sauts: ['volley', 'basket', 'hand', 'handball', 'danse', 'detente'] as readonly string[],
+  intermittent: ['foot', 'football', 'tennis', 'badminton', 'padel', 'squash', 'raquettes'] as readonly string[],
+  /** 3.2ter B : 10 à 15 min d'effort modéré après les sauts (bas de la fourchette). */
+  moderateAfterJumpsMin: 10,
+};
+
+/** 5.1 (2) : zones qui excluent sauts et course à tout niveau (1, 2 ou 3), décision de l'utilisateur et `kine`. */
+export const IMPACT_EXCLUDED_ZONES: readonly string[] = ['genou', 'cheville', 'dos', 'hanche', 'cuisse', 'aine'];
+/** STR-REP-12 et lecture prudente : zones de membre inférieur au niveau >= 2 : aucune séance de cardio dédiée ajoutée. */
+export const LOWER_LIMB_ZONES: readonly string[] = ['genou', 'hanche', 'cheville', 'cuisse', 'aine'];
+
+/**
+ * 5.2 : mouvements avec saut autorisés (faible hauteur) et leur version douce. `jumpVariant` / `softVariant` = variantes de fiches
+ * existantes, ou null (« non disponible » : fiche à créer en vague 2). `minLevel` = niveau du tableau 5.2 ; le niveau de la variante
+ * de fiche s'applique aussi (le plus restrictif des deux). Liste et versions douces : NON SOURCÉ (`coach`, `kine`).
+ */
+export interface JumpMovement {
+  key: string;
+  jumpVariant: string | null;
+  softVariant: string | null;
+  minLevel: Level;
+  /** 5.2 (`kine`) : retiré si épaule ou poignet au niveau 2 ou 3 (la version douce reste). */
+  noShoulderWrist23?: boolean;
+}
+export const JUMP_MOVEMENTS: readonly JumpMovement[] = [
+  { key: 'jumping_jacks', jumpVariant: 'jumping-jacks-saut', softVariant: 'jumping-jacks-sans-saut', minLevel: 'debutant', noShoulderWrist23: true },
+  // Corde : aucune fiche (tag corde_a_sauter) : non disponible.
+  { key: 'corde', jumpVariant: null, softVariant: null, minLevel: 'debutant', noShoulderWrist23: true },
+  // `montees-genoux-course` est une course sur place (« Course sur place, genoux hauts ») : pas un saut de 5.2 ; non disponible.
+  { key: 'montees_genoux', jumpVariant: null, softVariant: 'montees-genoux-marche', minLevel: 'debutant' },
+  // Pas chassés ou patineur à petit bond : aucune variante qui corresponde (patineur existant = réception sur une jambe, exclue).
+  { key: 'patineur', jumpVariant: null, softVariant: 'pas-chasses-lents', minLevel: 'intermediaire' },
+  { key: 'petits_rebonds', jumpVariant: 'rebonds-deux-pieds', softVariant: 'releve-mollets-mur', minLevel: 'debutant' },
+  // Saut en longueur sur place (D28) : fiche de vague 2 (réception tenue 2 s) ; la fiche actuelle n'a pas ses lignes de zone en « retirer ».
+  { key: 'saut_longueur', jumpVariant: null, softVariant: null, minLevel: 'intermediaire' },
+  // Squat avec petit saut : aucune fiche de faible hauteur (`saut-vertical` = saut en extension, hors liste).
+  { key: 'squat_petit_saut', jumpVariant: null, softVariant: null, minLevel: 'intermediaire' },
+];
+
+/** 5.2, 5.2bis : contacts, séries, repos, espacements. Plafonds PROVISOIRE (Davies 2015) ; le reste NON SOURCÉ. */
+export const JUMPS = {
+  startContacts: { debutant: 40, intermediaire: 60, avance: 80 } as Record<Level, number>,
+  capContacts: { debutant: 60, intermediaire: 100, avance: 120 } as Record<Level, number>,
+  weeklyStep: 5,
+  /** Série (5.2) : 10 à 15 sauts (débutant), 10 à 20 (autres) : départ au bas (10). */
+  seriesReps: 10,
+  /** R-PLIO (séance mixte, 5.2bis) : séries de 5 à 8 sauts. */
+  plioSeries: [5, 8] as [number, number],
+  maxExercises: 3,
+  /** 5.2bis condition 6 : 60 s minimum ferme (60 à 90 s), en marchant. */
+  restSec: 60,
+  /** 5.2bis condition 4 : échauffement 5 min (7 si la séance dépasse 45 min), 10 petits rebonds au plus, comptés. */
+  warmupMin: 5,
+  warmupMinLong: 7,
+  warmupBounces: 10,
+  maxPerWeek: 1,
+  minGapHoursBetweenJumpSessions: 72,
+  /** 5.1 (5) (`kine`) : après une séance à jambes lourdes : 48 h ET deux jours calendaires complets. */
+  heavyLegsGapHours: 48,
+  heavyLegsGapDays: 2,
+  recoveryFactor: 0.7,
+};
+
+/** 5.1 (6bis), 6ter : séances avec impact (sauts ou course). NON SOURCÉ. */
+export const IMPACT = { beginnerMaxPerWeek: 2, createMaxPerWeek: 3, createMinGapHours: 48 };
+
+/** 5.3 : course en 12 paliers. Paliers 1, 2, 12 : PROVISOIRE (NHS) ; les autres et toutes les règles de passage : NON SOURCÉ. */
+export interface RunStage { run: number; walk: number; reps: number; lastRun: number }
+export const RUN = {
+  /** Course / marche (min) x répétitions, puis une dernière course. Palier 12 : 30 min continues. */
+  stages: [
+    { run: 1, walk: 1.5, reps: 7, lastRun: 1 },
+    { run: 1.5, walk: 2, reps: 5, lastRun: 1.5 },
+    { run: 2, walk: 2, reps: 4, lastRun: 2 },
+    { run: 3, walk: 2, reps: 3, lastRun: 2 },
+    { run: 4, walk: 2, reps: 3, lastRun: 2 },
+    { run: 6, walk: 3, reps: 2, lastRun: 4 },
+    { run: 8, walk: 3, reps: 2, lastRun: 2 },
+    { run: 12, walk: 3, reps: 1, lastRun: 8 },
+    { run: 16, walk: 3, reps: 1, lastRun: 6 },
+    { run: 20, walk: 2, reps: 1, lastRun: 6 },
+    { run: 25, walk: 2, reps: 1, lastRun: 5 },
+    { run: 30, walk: 0, reps: 0, lastRun: 0 },
+  ] as readonly RunStage[],
+  /** Durée d'une sortie (min), calcul de `coach` (5.3) : 5 min de marche + corps du palier + 5 min de marche. */
+  sortieMin: [29, 29, 28, 27, 30, 32, 34, 33, 35, 38, 42, 40] as readonly number[],
+  warmupMin: 5,
+  cooldownMin: 5,
+  /** Palier 0 : 2 semaines de suite avec au moins 2 marches rapides de 20 min, les 2 dernières d'au moins 29 min. */
+  palier0: { weeks: 2, perWeek: 2, minMin: 20, lastTwoMin: 29 },
+  passAfterOutings: 2,
+  maxStagesPerWeek: 1,
+  maxLongestGrowth: 0.5,
+  maxTotalGrowth: 0.3,
+  /** Version sur place : 10 x (30 s de foulées / 60 s de marche), 5 min cumulées, sans palier, 2 par semaine au plus. */
+  onSpot: { reps: 10, runSec: 30, walkSec: 60, maxPerWeek: 2 },
+  /** Fréquence (5.3) : débutant rang 1 : 2 ; forme / santé : 1 ; autres : 3 au plus ; jamais deux jours de suite. */
+  perWeek: { debutantCardio: 2, sante: 1, autres: 3 },
+  /** Pause : plus de 2 semaines = marche, puis 2 paliers plus bas ; plus de 12 semaines = palier 0 refait. */
+  pause: { weeks: 2, stagesDown: 2, redoPalier0Weeks: 12 },
+};
+
+/** 5.4 : la course dehors exige ces trois éléments actifs ; sinon l'extérieur = marche seulement. */
+export const OUTDOOR_RUN_REQUIRES = ['wakeLock', 'sound', 'lookFallback'] as const;
+
+/** machines-etiquettes.md : tags masqués sans le lieu « salle » ni l'accès à une salle, et retirés en grossesse / post-partum (G9). */
+export const MACHINE_TAGS: readonly string[] = ['machine', 'poulie', 'machine_cardio'];
+
+/** STR-ISO-0 à 5 (structure-programmes.md §2.4). NON SOURCÉ. */
+export const ISOLATION = {
+  /** Emplacements, dans l'ordre d'ajout ; muscle principal exigé, schéma de fiche, zones qui retirent l'exercice dès le niveau 1. */
+  slots: [
+    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'] },
+    { slot: 'iso_deltoide_lateral', schema: 'poussee_v', muscle: 'deltoides_lateraux', zones: ['epaule'] },
+    { slot: 'iso_mollets', schema: 'cheville_mollet', muscle: 'mollets', zones: ['cheville'] },
+  ] as readonly { slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets'; schema: string; muscle: string; zones: readonly string[] }[],
+  setsPerExercise: 2,
+  maxPerSession: 2,
+  maxSetsPerGroupWeek: 4,
+  /** STR-ISO-1 : 8 semaines de base (2 blocs), 80 % des séances de force prévues faites, aucune douleur persistante la dernière semaine. */
+  beginnerBaseWeeks: 8,
+  beginnerDoneRatio: 0.8,
+  /** STR-ISO-5 : pause de plus de 4 semaines : isolation retirée jusqu'à un nouveau bloc de base. */
+  pauseWeeks: 4,
+  /** STR-ISO-2 : objectif « prise de muscle » rang 1, au moins 3 jours, corps entier ou haut / bas. */
+  goal: 'muscle',
+  minDays: 3,
+};
+
+/** STR-REP-12 : cardio doux du jour léger (marche à plat, facile), proposé jamais exigé : départ au bas de la fourchette. NON SOURCÉ. */
+export const LIGHT_DAY_CARDIO = { startMin: 10, maxMin: { debutant: 15, autres: 20 } };
+
+/**
+ * 5.2bis, cas test D28 : calcul de durée d'une séance « pliométrie en tête + force lente ». NON SOURCÉ (calcul de `coach`, confirmé par `kine`).
+ * Série de sauts ~8 s, repos 60 s (minimum ferme) ; 1 min pour T8 et les transitions ; force : répétition lente 4 s (descente 3 s),
+ * 5 s de changement de jambe, repos 60 s, 1 min d'installation ; retour au calme 3 min.
+ */
+export const PLIO_COMPOSE = {
+  jumpSeriesSec: 8, jumpRestSec: 60, jumpTransitionsMin: 1,
+  repSec: 4, sideSwitchSec: 5, strengthRestSec: 60, setupMin: 1, cooldownMin: 3,
+};
+
+/** §5.1 (1) (G7, HAS 2019, PROVISOIRE) : schémas de fiche à impact, jamais en grossesse ni en post-partum, même en échauffement. */
+export const IMPACT_SCHEMAS: readonly string[] = ['saut', 'course'];
+/**
+ * §5.1 (1) : variantes avec saut ou course rangées dans d'autres schémas (cardio), jamais en grossesse ni en post-partum. Liste tenue à
+ * jour avec les fiches (variantes avec saut de JUMP_MOVEMENTS, course sur place, pas chassés rapides, mountain climbers rapides).
+ */
+export const IMPACT_VARIANTS: readonly string[] = ['jumping-jacks-saut', 'montees-genoux-course', 'pas-chasses-rapides', 'mountain-climbers-rapide', 'rebonds-deux-pieds'];

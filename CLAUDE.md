@@ -20,6 +20,7 @@ Gratuite, sans pub, sans chat, sans photos des utilisateurs, simple et sûre. iP
 - Avant une fonctionnalité : relire le plan, plan court, question à l'utilisateur seulement si le choix est vraiment ambigu. Après : tests, déploiement, liste de ce qu'il faut vérifier sur l'iPhone. Un commit par étape cohérente.
 - Sonnet par défaut ; Opus pour le modèle de données, les règles du générateur, les relectures des règles de sécurité et l'audit de sécurité. Une conversation par fonctionnalité ; bilan court dans docs/ ; indiquer le % de quota consommé en fin de fonctionnalité.
 - Économie : chercher avant de lire, ne pas relire un fichier déjà lu, sorties de commandes limitées (tail / head), jamais un fichier de plus de 200 lignes en entier, tests ciblés pendant le travail et suite complète avant le push, pas de skills de design externes, vérifier toute skill ou plugin avant installation (skill verif-securite-skills).
+- Commandes et scripts lancés par un agent : délai maximum obligatoire (commande `timeout`), jamais en tâche de fond sans limite ; un script sans sortie depuis plus de 5 minutes est arrêté et signalé à l'utilisateur (incidents `python3 -` bloqués des 25/10 et 31/10) ; pour modifier des fichiers, préférer les outils d'édition ou Node à `python -` + heredoc.
 - Parallélisme : 2 ou 3 agents au maximum, sans fichier en commun, chacun dans sa copie isolée (worktree) ; seul le chef de projet fusionne, commite et pousse. D23, R2, R3, D21 restent dans cet ordre.
 
 ## Commit, push, déploiement (détail : docs/deploiement-notes.md)

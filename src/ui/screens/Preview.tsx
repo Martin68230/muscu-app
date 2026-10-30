@@ -2,11 +2,14 @@ import { useEffect, useState } from 'preact/hooks';
 import type { Program, ProgramDay, Profile } from '../../data/model';
 import { FICHES_ERROR, loadFiches, type Fiche } from '../../data/fiches';
 import { list } from '../../data/repo';
-import { ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT } from '../../session/messages';
+import { D30_TEXT, ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT } from '../../session/messages';
+import { SwitchRow } from '../SwitchRow';
+import { CardioDayNotes } from '../session/CardioNotes';
 import { ensureActiveProgram, getNextSession, loadGeneratorInput, programWeek, withProgramWeek, type NextSession } from '../../session/program';
 import { pairsForSession } from '../../session/engine';
 import { update } from '../../data/repo';
 import { WEEKDAY_NAMES } from '../../generator/messages';
+import { isCardioDay } from '../../generator';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
 import { SessionError } from '../../session/engine';
@@ -72,6 +75,8 @@ export interface PreviewViewProps {
   gain?: { on: boolean; disabledReason: string | null; onToggle: (on: boolean) => void; busy?: boolean; firstSession: boolean };
   /** Semaine du programme (rampe du cardio du débutant) ; absente = 1. */
   week?: number;
+  /** D31 : « Ajouter une séance de cardio ? » (force, muscle, perte de gras) ou séance de sport incluse. */
+  cardioOpt?: { state: NonNullable<Program['cardioOption']>; onToggle: (on: boolean) => void; busy?: boolean };
 }
 
 /** Cartes de progression de l'aperçu : « Prêt pour l'échelon suivant : <nom> ? » Accepter / Plus tard. */
@@ -104,9 +109,11 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
 }
 
 /** Contenu de l'aperçu (sans accès à la base : testable). */
-export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1 }: PreviewViewProps) {
+export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1, cardioOpt }: PreviewViewProps) {
   const day = withProgramWeek(repriseDay ?? next.day, week);
   const hasPair = day.exercises.some((e) => !!e.supersetGroup);
+  // Séance de cardio dédiée : l'option « Gagner du temps » (supersets de musculation) n'a pas d'objet.
+  const cardioDay = isCardioDay(day);
   const light = program.lightDays ?? [];
   const split = splitMessages(program);
   // T-19 = T3 du cardio : jamais deux fois le même texte sur l'écran.
@@ -130,14 +137,26 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
       <button type="button" class="btn back-btn" onClick={goHome}>← Accueil</button>
       <h1>{day.label}</h1>
       <p class="dim">
-        {day.estimatedMin ? `Environ ${day.estimatedMin} min` : 'Durée estimée : 45 min environ'} · {day.exercises.length} exercices
+        {day.estimatedMin ? `Environ ${day.estimatedMin} min` : 'Durée estimée : 45 min environ'} · {day.exercises.length} exercice{day.exercises.length > 1 ? 's' : ''}
       </p>
-      {gain && (
+      <CardioDayNotes day={day} />
+      {gain && !cardioDay && (
         <>
           <GainToggle on={gain.on} disabledReason={gain.disabledReason} onToggle={gain.onToggle} busy={gain.busy} />
           {gain.on && !gain.disabledReason && hasPair && gain.firstSession && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
           {gain.on && !gain.disabledReason && !hasPair && <p class="dim small">{GAIN_TEXT.noPairToday}</p>}
         </>
+      )}
+      {cardioOpt && cardioOpt.state.offered && (
+        <SwitchRow
+          id="cardio-opt"
+          label={cardioOpt.state.kind === 'sport' ? D30_TEXT.sportLabel : D30_TEXT.optionLabel}
+          on={cardioOpt.state.accepted}
+          help={cardioOpt.state.kind === 'sport' ? D30_TEXT.sportExplain : D30_TEXT.optionExplain}
+          disabledReason={cardioOpt.state.disabledReason}
+          busy={cardioOpt.busy}
+          onToggle={cardioOpt.onToggle}
+        />
       )}
       {repriseTexts.length > 0 && (
         <section class="notice" aria-label="Reprise">
@@ -172,7 +191,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
               ))}
               {light.length > 0 && (
                 <p class="dim light-days">
-                  Jours légers, facultatifs ({light.map((d) => WEEKDAY_NAMES[d.weekday]).join(', ')}) : échauffement court et mobilité, {light[0].estimatedMin} min environ, sans charge.
+                  Jours légers, facultatifs ({light.map((d) => WEEKDAY_NAMES[d.weekday]).join(', ')}) : échauffement court et mobilité, {light[0].estimatedMin} min environ, sans charge{light[0].cardio ? `, et si tu veux ${light[0].cardio.minutes} min de marche à plat` : ''}.
                 </p>
               )}
             </details>
@@ -191,6 +210,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
                 <a class="fiche-link" href={`#/fiche/${ex.movementId}`}>{exName(fiches, ex)}</a>
                 {v && many && <div class="dim small">{v.nom}</div>}
                 <div class="small">{lineText(ex)}</div>
+                {ex.jump?.softNom && !ex.jump.soft && <div class="dim small">{D30_TEXT.softLine(ex.jump.softNom)}</div>}
                 {partner && <div class="small prev-super">Superset avec {exName(fiches, partner)} : enchaîne sans repos long.</div>}
               </li>
             );
@@ -291,6 +311,16 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
       .finally(() => setGainBusy(false));
   };
 
+  const [optBusy, setOptBusy] = useState(false);
+  const toggleCardio = (on: boolean) => {
+    // D31 : réglage conservé dans le profil ; le programme est régénéré (empreinte des entrées).
+    setOptBusy(true);
+    update('profile', profile.id, { seanceCardio: on })
+      .then(() => load())
+      .catch(() => setError('Enregistrement impossible. Réessaie.'))
+      .finally(() => setOptBusy(false));
+  };
+
   const begin = () => {
     if (!data) return;
     // L'appui est un geste de la personne : c'est là que le son et l'écran allumé peuvent être demandés.
@@ -317,6 +347,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
       onAnswer={answer} onAnswerLevel={answerLevelFn} repriseTexts={data.repriseTexts} repriseDay={data.repriseDay}
       gain={{ on: data.gainOn, disabledReason: data.gainReason, onToggle: toggleGain, busy: gainBusy, firstSession: data.firstSession }}
       week={programWeek(data.program, Date.now())}
+      cardioOpt={data.program.cardioOption ? { state: data.program.cardioOption, onToggle: toggleCardio, busy: optBusy } : undefined}
       onSkip={() => skipSession(data.program.id, data.next.dayIndex, 'renonce', null)}
       onUnwell={() => skipSession(data.program.id, data.next.dayIndex, 'pas_bien', null)}
     />

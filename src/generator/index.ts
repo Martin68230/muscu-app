@@ -7,7 +7,11 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
+  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES,
 } from './config';
+import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
+import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin } from './impact';
+import { isoEligible, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
   blockCap, blocksForRank, cardioItem, cardioLevel, cardioRankOf, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, isHeavyLegsSession, legLoad,
@@ -22,7 +26,7 @@ import { resolveFiche, USABLE_STATUTS } from './safety';
 import { ALL_SLOTS, fillSession, fillSlot, rankSlot, slotDef, tierRank, type SlotFill } from './slots';
 import { chooseLightDays, planWeek, sessionTitle, TYPE_NOYAU, TYPE_SLOTS, typeOf, UPPER_TYPES } from './split';
 import type {
-  CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, SlotKey, Tier,
+  CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, JumpBlock, JumpItem, SlotKey, Tier,
 } from './types';
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
 
@@ -36,7 +40,7 @@ const LABELS: Label[] = ['A', 'B', 'C'];
 /** V-ORDRE §4.1 : piliers, tirage_1, charnière, accessoires (indices croissants), tronc, fonctionnel. */
 const DISPLAY_ORDER: SlotKey[] = [
   'jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'poussee_2', 'tirage_2', 'jambes_2', 'poussee_3', 'tirage_3', 'jambes_3',
-  'poussee_4', 'tirage_4', 'jambes_4', 'tronc', 'fonctionnel',
+  'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_mollets', 'tronc', 'fonctionnel',
 ];
 /** Ordre de retrait pour respecter les plafonds de volume par séance (V-PLAF) : le moins prioritaire d'abord. */
 const PLAF_ORDER: SlotKey[] = [
@@ -102,7 +106,8 @@ export function ggOf(ex: Pick<GenExercise, 'schema' | 'musclesPrincipaux' | 'sub
 export function coverageOf(sessions: { exercises: GenExercise[] }[]): Record<GG, number> {
   const c = { GG1: 0, GG2: 0, GG3: 0, GG4: 0, GG5: 0 } as Record<GG, number>;
   for (const s of sessions) {
-    const set = new Set(s.exercises.flatMap((e) => ggOf(e).map((x) => x.gg)));
+    // STR-ISO : l'isolation ne compte jamais dans la couverture des grands groupes (un curl n'est pas un tirage du dos).
+    const set = new Set(s.exercises.filter((e) => !isIsoSlot(e.slot)).flatMap((e) => ggOf(e).map((x) => x.gg)));
     for (const g of set) c[g]++;
   }
   return c;
@@ -341,6 +346,19 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   // Les messages du cardio (B4) se placent ici, après ceux de l'objectif et de la santé.
   const cardioMsgAt = msgs.length;
 
+  // D31 (cardio-regles.md §3.2ter) : séance de cardio dédiée hors objectif cardio (option, sport, forme / santé), décidée par le
+  // générateur. Jours « à jambes lourdes » lus par type de séance (corps entier, bas, jambes), lecture prudente de 3.4 (k).
+  const heavyDays = new Set(labels.filter((l) => ['CE', 'BAS', 'LEGS'].includes(typeOf(l))).map((l) => dayOf(l)));
+  const baseLight = chooseLightDays(blocked, days, lightWanted);
+  const ded: DedicatedPlan = principal
+    ? { kind: null, days: [], replacedLight: [], easyDays: [], option: null }
+    : planDedicated({
+        ctx, mainGoal: ctx.goalKey, want, forceDays: days, heavyDays, lightDays: lightReason === 'zone' ? [] : baseLight, blocked,
+        setting: input.options?.seanceCardio,
+        // 3.2ter C5 : séance de sport d'un sport « à sauts » : de préférence un jour où les sauts sont permis (5.1 (5)).
+        prefer: ctx.goalKey === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx) ? (d) => jumpDayAllowed(d, heavyDays, ctx.level) : undefined,
+      });
+
   const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1));
   // D26 : séances qui reçoivent du core. Corps entier : table §2.2 et CORE-FREQ-5 (A puis C, puis B) ; D25 (STR-REP-9) : bas ou legs
   // d'abord, puis haut, puis pull (jamais push) ; l'ordre de retrait au-delà du plancher suit le même ordre (CORE-TPS-1).
@@ -530,7 +548,10 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   const easyChoice = cardioRole ? chooseCardio(ctx, true) : null;
   const blockRole: 'principal' | 'secondaire' | null =
     cardioRole === 'secondaire' ? 'secondaire' : principal && CARDIO.principalDedicatedByDays[want] === 0 ? 'principal' : null;
-  const maxBlocks = blockRole === 'secondaire' ? blocksForRank(cardioRank ?? 2) : nDays;
+  // 3.2ter A : séance dédiée acceptée -> blocs réduits à 1 (jamais trois sources de cardio qui s'empilent).
+  const maxBlocks = blockRole === 'secondaire'
+    ? Math.min(blocksForRank(cardioRank ?? 2), ded.kind === 'option' && ded.days.length ? CARDIO_OPTION.blocksWhenAccepted : Infinity)
+    : nDays;
   const reserveSec = CARDIO.blockStartMin * 60;
   const softActions = (a: string) => a.startsWith('paire:') || ACCESSORY_REMOVAL_ORDER_V2.some((x) => a === `retrait:${x}`);
   const budget = new Map<Label, number>();
@@ -638,6 +659,34 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   }
   const kept = durSessions.filter((s) => !toLight.includes(s.label));
 
+  // STR-ISO-0 à 4 : isolation ajoutée en dernier, s'il reste du temps (T < D - 10 min, comme l'ajout §4.4), sous le plafond
+  // d'emplacements (N de départ), 2 séries, 2 exercices d'isolation par séance au plus, un par groupe, 4 séries par groupe et par semaine.
+  if (isoEligible(ctx, split, kept.length)) {
+    const weekSets = new Map<string, number>();
+    for (const def of ISOLATION.slots) weekSets.set(def.slot, kept.reduce((a, s) => a + isoSetsIn(s.exercises, def), 0));
+    for (const s of kept) {
+      let inSession = 0;
+      const cap = isSplit ? dur.startNSplit : dur.startN;
+      const budgetS = budget.get(s.label) ?? dSec;
+      for (const def of ISOLATION.slots) {
+        if (inSession >= ISOLATION.maxPerSession || s.exercises.length >= Math.min(cap, VOLUME.maxExercisesPerSession)) break;
+        if (isoSetsIn(s.exercises, def) > 0 || (weekSets.get(def.slot) ?? 0) + ISOLATION.setsPerExercise > ISOLATION.maxSetsPerGroupWeek) continue;
+        // Lecture de `dev` : biceps et deltoïdes latéraux dans une séance du haut (ou corps entier), mollets dans une séance du bas (ou corps entier).
+        const t = typeOf(s.label);
+        if (t !== 'CE' && (def.slot === 'iso_mollets' ? t !== 'BAS' : t !== 'HAUT')) continue;
+        if (estimerDuree(s) >= budgetS - TIME.addIfUnderMarginSec) break;
+        const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)));
+        if (!ex) continue;
+        const trial = { ...s, exercises: [...s.exercises, ex] };
+        if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises) : sessionCapsOk(trial))) continue;
+        if (!weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
+        s.exercises = trial.exercises;
+        inSession++;
+        weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
+      }
+    }
+  }
+
   // Finalisation des séances.
   const beginnerRamp = blockRole !== null && !ctx.pregnant && ctx.level === 'debutant';
   const sessions: GenSession[] = kept.map((s) => {
@@ -674,7 +723,10 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   });
 
   // Jours légers (STR-REP-6, 11, 12, 14 b) : échauffement court (E1) et mobilité, sans charge ; proposés, jamais exigés.
-  const lightWeekdays = [...chooseLightDays(blocked, days, lightWanted), ...toLight.map((l) => dayOf(l))].sort((a, b) => a - b);
+  const lightWeekdays = [...baseLight.filter((d) => !ded.replacedLight.includes(d)), ...toLight.map((l) => dayOf(l))].sort((a, b) => a - b);
+  // STR-REP-12 : cardio doux facultatif (marche à plat, facile, 10 min au départ) ; aucun si une zone de membre inférieur est au
+  // niveau >= 2 ; grossesse : marche seulement (permise) ; « douleur la veille » : vérifiée au lecteur du jour léger.
+  const lightWalk = ctx.zones.some((z) => !z.isG && z.level >= 2 && LOWER_LIMB_ZONES.includes(z.key)) ? null : chooseCardio(ctx, true);
   const lightMob = lightWeekdays.length ? lightMobility(ctx, LIGHT_DAY.mobilityMax, LIGHT_DAY.mobilitySecEach) : [];
   const lightDays: GenLightDay[] = lightWeekdays.map((weekday) => {
     const sec = (general ? WARMUP.generalSec : 0) + lightMob.reduce((a, x) => a + x.sec, 0);
@@ -684,18 +736,23 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       general: general ? { ...general, sec: WARMUP.generalSec } : null,
       mobility: lightMob,
       estimatedMin: Math.min(LIGHT_DAY.maxMin, Math.ceil(sec / 60 / TIME.displayRoundMin) * TIME.displayRoundMin),
+      cardio: lightWalk
+        ? { ficheId: lightWalk.ficheId, variantId: lightWalk.variantId, nom: lightWalk.nom, minutes: Math.min(LIGHT_DAY_CARDIO.startMin, LIGHT_DAY.maxMin - Math.ceil(sec / 60)) }
+        : null,
     };
   });
 
   // Séances de cardio dédiées (cardio principal, 3 à 6 jours, §3.2-§3.3) : jours libres seulement, jamais de séance double.
   const cardioSessions: GenCardioSession[] = [];
   if (principal && cardioChoice) {
-    const planned = Math.min(CARDIO.principalDedicatedByDays[want], CARDIO.maxDedicated[cardioLevel(ctx)], want - nDays);
+    // 3.2bis : grossesse / post-partum : 1 séance dédiée au plus (20 min au plus : durée du débutant, sans progression).
+    const planned = Math.min(CARDIO.principalDedicatedByDays[want], CARDIO.maxDedicated[cardioLevel(ctx)], want - nDays, ctx.pregnant ? CARDIO_CAPS.pregnancyMax : Infinity);
     const cdays = chooseCardioDays(blocked, days, planned);
     if (cdays.length < planned) msgs.push(cardioMsg.jours(planned, cdays.length));
     const mins = dedicatedMinutes(ctx, dur.targetMin);
     cdays.forEach((d, i) => {
       const item = cardioItem('seance', cardioChoice, mins.start, mins.cap, BLOCK_WEEKS, ctx);
+      if (ctx.exterieur && item.variantId === OUTDOOR_WALK) item.outdoor = true;
       cardioSessions.push({
         label: cdays.length > 1 ? `Cardio ${i + 1}` : 'Cardio',
         weekday: d,
@@ -704,6 +761,45 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       });
     });
   }
+  // D31 (3.2ter A, B ; 3.2bis) : séances dédiées hors objectif cardio, sur les jours choisis par planDedicated ; contenu modéré continu
+  // (aucune course ni saut ajoutés, A) ; séance de sport d'un sport « à sauts » : échauffement, sauts légers en tête (5.2, 5.2bis), puis
+  // 10 min modérées (B) ; si le placement des sauts est impossible ou si une exclusion de 5.1 s'applique : modérée sans saut.
+  const extraMsgs: GenMessage[] = [];
+  if (ded.kind && ded.days.length) {
+    const modChoice = chooseCardio(ctx);
+    const easyWalk = chooseCardio(ctx, true);
+    const mins = dedicatedDuration(ded.kind, ctx.level, ctx.pregnant, dur.targetMin);
+    const wantsJumps = ded.kind === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx);
+    const jumpDay = wantsJumps ? ded.days.find((d) => !ded.easyDays.includes(d) && jumpDayAllowed(d, heavyDays, ctx.level)) ?? null : null;
+    const choices = jumpDay !== null ? jumpChoices(ctx) : [];
+    ded.days.forEach((d, i) => {
+      const easy = ded.easyDays.includes(d);
+      const choice = easy ? easyWalk : modChoice;
+      if (!choice) return;
+      // 3.2ter B (b) : fréquence du sport inconnue -> lecture prudente « 2 fois par semaine ou plus » : sauts au départ du niveau, sans progression.
+      const jumps: JumpBlock | null = d === jumpDay ? composeJumpBlock(ctx, choices, jumpContacts(ctx.level, 1, false)) : null;
+      const item = jumps
+        ? cardioItem('seance', choice, SPORT_FAMILIES.moderateAfterJumpsMin, SPORT_FAMILIES.moderateAfterJumpsMin, BLOCK_WEEKS, ctx, { easy, flat: true })
+        : cardioItem('seance', choice, mins.start, mins.cap, BLOCK_WEEKS, ctx, { easy, flat: ctx.pregnant });
+      if (ctx.exterieur && item.variantId === OUTDOOR_WALK) item.outdoor = true;
+      const series = jumps ? jumps.items.reduce((a, x) => a + x.sets, 0) : 0;
+      const totalMin = item.minutes + (jumps ? jumps.warmupMin + plioBlockMin(series) : 0);
+      cardioSessions.push({
+        label: ded.days.length > 1 ? `Cardio ${i + 1}` : 'Cardio',
+        weekday: d,
+        cardio: item,
+        estimatedMin: Math.ceil(totalMin / TIME.displayRoundMin) * TIME.displayRoundMin,
+        kind: ded.kind!,
+        jumps,
+        ...(jumps && general ? { warmup: { ...general, sec: jumps.warmupMin * 60 } } : {}),
+      });
+    });
+    if (ded.kind === 'sport' && cardioSessions.length) extraMsgs.push(msg.sportMatch());
+  }
+  // 3.2bis (OMS, OK) : jamais plus de 300 min modérées par semaine (plafond de sécurité, jamais une cible) : la dernière dédiée saute.
+  const weekTotal = (w: number) =>
+    sessions.reduce((a, s) => a + (s.cardio?.weekMin[w] ?? 0), 0) + cardioSessions.reduce((a, c) => a + (c.cardio.weekMin[w] ?? 0), 0);
+  while (cardioSessions.length && [0, 1, 2, 3].some((w) => weekTotal(w) > CARDIO_CAPS.omsWeekMaxMin)) cardioSessions.pop();
   const blocks = sessions.map((s) => s.cardio).filter((c): c is CardioItem => !!c);
   const cardioMinWeek = blocks.filter((c) => !c.fromWeek).reduce((a, c) => a + c.minutes, 0) + cardioSessions.reduce((a, c) => a + c.cardio.minutes, 0);
   const cardioMsgs: GenMessage[] = [];
@@ -717,7 +813,13 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       if (ctx.available.has('machine_cardio')) cardioMsgs.push(cardioMsg.machine());
     }
     if (cardioChoice && (cardioTimeShort || (blockRole && !blocks.length))) cardioMsgs.push(cardioMsg.temps());
+  } else if (cardioSessions.length) {
+    // D31 : séance dédiée sans objectif cardio : mêmes textes de sécurité de `kine` (§9bis) et repère OMS.
+    cardioMsgs.push(cardioMsg.t0(), cardioMsg.t4(), cardioMsg.t3(), cardioMsg.t1(), cardioMsg.t1u());
+    if (ctx.pregnant) cardioMsgs.push(cardioMsg.t5(), cardioMsg.omsGrossesse(cardioMinWeek));
+    else cardioMsgs.push(cardioMsg.oms(cardioMinWeek));
   }
+  cardioMsgs.push(...extraMsgs);
 
   // Messages des replis (§7.1), durée, plans, force.
   const causeCache = new Map<string, Cause>();
@@ -794,6 +896,12 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
 
   let explanation = explain(ctx, sessions.length, split, lightDays.length, coverage, dur, sessions, forceNoLoad);
   if (cardioRole) explanation = explainCardio(explanation, cardioRole, !!cardioChoice, nDays, sessions, cardioSessions, cardioMinWeek, dur.dMin, ctx.pregnant);
+  else if (cardioSessions.length) {
+    // D31 (rédaction de `dev`, à relire) : la ligne 2 cite la séance de cardio dédiée.
+    const c = cardioSessions[0];
+    const n = cardioSessions.length;
+    explanation = [explanation[0], `${explanation[1]} En plus : ${n} séance${n > 1 ? 's' : ''} de cardio${c.jumps ? ' avec sauts légers' : ''} (${c.estimatedMin} min environ), un jour sans séance de force.`];
+  }
   const messages = dedupe([...msgs.slice(0, cardioMsgAt), ...cardioMsgs, ...msgs.slice(cardioMsgAt)]);
   const program: GenProgram = {
     split,
@@ -813,7 +921,8 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       s.exercises.filter((e) => e.substitut).map((e) => ({ session: s.label, slot: e.slot, ficheId: e.ficheId, nom: e.nom, schema: e.schema })),
     ),
     achat,
-    ...(cardioRole ? { cardioRole, cardioSessions, cardioMinWeek } : {}),
+    ...(cardioRole || cardioSessions.length ? { cardioRole, cardioSessions, cardioMinWeek } : {}),
+    cardioOption: ded.option,
   };
   return { ok: true, program, messages };
 }
@@ -861,20 +970,26 @@ function explain(
   let l1: string;
   const plus = light ? `, plus ${light} jour${light > 1 ? 's' : ''} léger${light > 1 ? 's' : ''}` : '';
   if (split !== 'corps_entier' || nDays === 1) {
-    // D25 : répartitions de 1 et 4 à 6 jours (rédaction NON SOURCÉ, comme les lignes 2-3 jours).
-    const kind =
-      split === 'haut_bas' ? 'en haut / bas' : split === 'haut_bas_ppl' ? 'en haut / bas puis poussée, tirage, jambes' : split === 'push_pull_legs' ? 'en poussée, tirage, jambes' : 'en corps entier';
-    const head = `${nDays} séance${nDays > 1 ? 's' : ''} de force par semaine ${kind}${plus}`;
-    l1 = m >= 2 ? `${head} : chaque grand muscle travaille au moins 2 fois.` : nDays === 1 ? `${head} : chaque grand muscle travaille 1 fois.` : `${head} ; ${low} ne tient pas dans ${dur.dMin} min.`;
+    // D25 : répartitions de 1 et 4 à 6 jours ; textes corrigés par `coach` (knowledge/textes-d25-revue.md §6, §7).
+    const lightEnd = light ? ` Les ${light} autre${light > 1 ? 's' : ''} jour${light > 1 ? 's sont légers' : ' est léger'} : mobilité douce, rien de lourd.` : '';
+    const head =
+      nDays === 1 ? '1 séance de force par semaine, en corps entier'
+        : split === 'haut_bas' ? `${nDays} séances de force par semaine : 2 pour le haut du corps, 2 pour le bas`
+          : split === 'haut_bas_ppl' ? `${nDays} séances de force par semaine : haut du corps, bas du corps, puis poussée (pectoraux, épaules, triceps), tirage (dos, biceps) et jambes`
+            : `${nDays} séances de force par semaine : poussée (pectoraux, épaules, triceps), tirage (dos, biceps) et jambes, deux fois chacune`;
+    const ok = split === 'push_pull_legs' ? '.' : '. Chaque grand muscle est travaillé au moins 2 fois.';
+    l1 = m >= 2 ? `${head}${ok}${lightEnd}`
+      : nDays === 1 ? `${head} : chaque grand muscle est travaillé une fois.`
+        : `${head}, mais il n'y a pas assez de place pour ${low} en ${dur.dMin} min.${lightEnd}`;
   } else if (nDays === 3) {
     l1 =
       m >= 3
         ? '3 séances par semaine en corps entier : chaque grand muscle travaille 3 fois.'
         : m === 2
           ? '3 séances par semaine en corps entier : chaque grand muscle travaille au moins 2 fois.'
-          : `3 séances par semaine en corps entier ; ${low} ne tient pas dans ${dur.dMin} min.`;
+          : `3 séances par semaine en corps entier, mais il n'y a pas assez de place pour ${low} en ${dur.dMin} min.`;
   } else {
-    l1 = m >= 2 ? '2 séances par semaine en corps entier : chaque grand muscle travaille 2 fois.' : `2 séances par semaine en corps entier ; ${low} ne tient pas dans ${dur.dMin} min.`;
+    l1 = m >= 2 ? '2 séances par semaine en corps entier : chaque grand muscle travaille 2 fois.' : `2 séances par semaine en corps entier, mais il n'y a pas assez de place pour ${low} en ${dur.dMin} min.`;
   }
   if (light && split === 'corps_entier' && nDays > 1) l1 = l1.replace(' en corps entier', ` en corps entier${plus}`);
   const ref = sessions.flatMap((s) => s.exercises).find((e) => e.role === 'pilier' && e.unit === 'reps') ?? sessions[0]?.exercises[0];
@@ -955,8 +1070,9 @@ export function toProgramDays(p: GenProgram): ProgramDay[] {
     label: c.label,
     weekday: c.weekday,
     estimatedMin: c.estimatedMin,
-    warmup: { generalSec: 0, general: null, mobility: [], cooldown: null },
-    exercises: [cardioPlanned(c.cardio)],
+    warmup: { generalSec: c.warmup ? c.warmup.sec : 0, general: item(c.warmup ?? null), mobility: [], cooldown: null },
+    // D30 (5.2bis condition 2) : sauts en tête, juste après l'échauffement, puis l'effort modéré ; jamais de saut après.
+    exercises: [...(c.jumps ? c.jumps.items.map((j) => jumpPlanned(j, c.jumps!)) : []), cardioPlanned(c.cardio)],
   }));
   // Semaine type dans l'ordre des jours : la rotation (séance suivante) suit la semaine.
   return [...muscu, ...cardio]
@@ -970,7 +1086,17 @@ export function cardioPlanned(c: CardioItem): PlannedExercise {
     movementId: c.ficheId, variantId: c.variantId, sets: 1, repsMin: 1, repsMax: 1, restSec: 0, supersetGroup: null,
     rirTarget: TEMPS_RIR_PLACEHOLDER, unit: 'sec', holdSec: c.minutes * 60, warmupSets: [], role: 'cardio', slot: 'cardio',
     startLoadKg: null, capped: true, adaptation: null, substitut: false,
-    intensity: c.intensity, slowEndMin: c.slowEndMin, ...(c.fromWeek ? { fromWeek: c.fromWeek } : {}),
+    intensity: c.intensity, slowEndMin: c.slowEndMin, ...(c.fromWeek ? { fromWeek: c.fromWeek } : {}), ...(c.outdoor ? { outdoor: true } : {}),
+  };
+}
+
+/** D30 (5.2) : série de sauts (ou sa version douce) -> exercice stocké : répétitions, repos 60 s, jamais en superset, sans réserve. */
+export function jumpPlanned(j: JumpItem, b: JumpBlock): PlannedExercise {
+  return {
+    movementId: j.ficheId, variantId: j.variantId, sets: j.sets, repsMin: j.reps, repsMax: j.reps, restSec: j.restSec, supersetGroup: null,
+    rirTarget: TEMPS_RIR_PLACEHOLDER, unit: 'reps', holdSec: null, warmupSets: [], role: 'cardio', slot: 'sauts',
+    startLoadKg: null, capped: true, adaptation: null, substitut: false,
+    jump: { soft: j.soft, softVariantId: j.softVariantId, softNom: j.softNom, contacts: b.contacts },
   };
 }
 
@@ -982,10 +1108,14 @@ export function toLightDays(p: GenProgram): LightDay[] {
     weekday: d.weekday,
     estimatedMin: d.estimatedMin,
     warmup: { generalSec: d.generalSec, general: item(d.general), mobility: d.mobility.map((m) => item(m)!), cooldown: null },
+    ...(d.cardio ? { cardio: d.cardio } : {}),
   }));
 }
 
 /** Le jour ne contient que du cardio (séance dédiée). */
+/** 5.4 : seule la marche rapide est proposée dehors (la course dehors attend ses fiches et les trois conditions de outdoorRunAllowed). */
+const OUTDOOR_WALK = 'marche-rapide-continue';
+
 export const isCardioDay = (d: Pick<ProgramDay, 'exercises'>): boolean => d.exercises.length > 0 && d.exercises.every((e) => e.role === 'cardio');
 
 /** Utilitaire : niveaux de base, pour les tests. */

@@ -297,7 +297,7 @@ describe('Explication (V-EXPL, goal-resolver.md règle 6) et textes de sécurit�
       const q = ok(run({ days: 3 }, [g]));
       expect(q.explanation[1]).toContain('en attendant la version dédiée');
       expect(msgIds(q)).toContain('V-MSG-OBJ');
-      expect(q.cardioRole).toBeUndefined();
+      expect(q.cardioRole ?? null).toBeNull(); // D31 : sport -> séance dédiée incluse (cardioRole null, cardioSessions de type « sport »)
     }
   });
 

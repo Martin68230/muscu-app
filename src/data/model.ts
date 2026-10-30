@@ -80,6 +80,15 @@ export interface Profile extends SyncFields {
   reprise?: RepriseState;
   /** Option « Gagner du temps (exercices enchaînés par deux) » (core-et-supersets.md §12). Absent = non. */
   gagnerDuTemps?: boolean;
+  /**
+   * D31 (cardio-regles.md §3.2ter) : « Ajouter une séance de cardio ? » (force, muscle, perte de gras : absent = non) ou séance de
+   * sport incluse (absent = oui). Réglage conservé, le programme est régénéré.
+   */
+  seanceCardio?: boolean;
+  /** D30 (machines-etiquettes.md §2) : « J'ai accès à une salle ». Absent = non. */
+  salleAccess?: boolean;
+  /** D30 (cardio-regles.md §5.4) : « Je peux marcher ou courir dehors, sur un trajet sûr ». Absent = non ; aucune localisation. */
+  exterieur?: boolean;
 }
 
 /** SM-D4 : état de reprise après une absence (un seul objet, sur le profil). */
@@ -197,6 +206,13 @@ export interface PlannedExercise {
   slowEndMin?: number;
   /** Rampe du débutant (cardio-regles.md §3.4 (f)) : exercice présent seulement à partir de cette semaine du programme. */
   fromWeek?: number;
+  /**
+   * D30 (cardio-regles.md §5.2) : série de sauts d'une séance dédiée : version douce nommée, version prévue douce ou non, T8 à
+   * afficher avant. Absent hors sauts.
+   */
+  jump?: { soft: boolean; softVariantId: string | null; softNom: string | null; contacts: number };
+  /** D30 (§5.4) : séance de marche faisable dehors (rappels T9 et alternative intérieure). Absent = intérieur. */
+  outdoor?: boolean;
 }
 
 /** Échauffement d'une séance (F5) : exercices de la fiche, pas de série à saisir. */
@@ -232,6 +248,8 @@ export interface LightDay {
   weekday: number;
   estimatedMin: number;
   warmup: PlannedWarmup;
+  /** D30 (STR-REP-12) : cardio doux facultatif (marche à plat, facile), absent si une zone ou la grossesse l'exclut. */
+  cardio?: { ficheId: string; variantId: string; nom: string; minutes: number } | null;
 }
 
 export interface Program extends SyncFields {
@@ -262,6 +280,8 @@ export interface Program extends SyncFields {
   missedAnswers?: Record<string, MissedAnswer>;
   /** D25 : jours légers (facultatifs) de la semaine type. Peut manquer. */
   lightDays?: LightDay[];
+  /** D31 : état de l'option « Ajouter une séance de cardio ? » ou de la séance de sport incluse (aperçu, profil). Peut manquer. */
+  cardioOption?: { kind: 'option' | 'sport'; offered: boolean; accepted: boolean; disabledReason: string | null } | null;
 }
 
 export interface MissedAnswer {

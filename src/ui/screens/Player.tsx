@@ -1,4 +1,5 @@
 import type { ComponentChildren } from 'preact';
+import { JumpPlayNotes, OutdoorPlayNotes } from '../session/CardioNotes';
 import { CARDIO_TEXT } from '../../generator/messages';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { InjuryZone, PlannedExercise, Profile } from '../../data/model';
@@ -497,9 +498,11 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     if (!last || last.reps === null) return null;
     return last.loadKg !== null ? `Dernière fois : ${fmtKg(last.loadKg)} kg × ${last.reps}` : `Dernière fois : ${last.reps} répétitions`;
   })();
-  const progLine = suggestion && suggestion.exercise === v.exerciseIndex ? suggestion.text : v.setNumber === 1 && prog && !prog.echelonProposal ? prog.text : null;
+  // D30 : cardio et séries de sauts : ni étalonnage ni progression de charge (durée et contacts fixés par le générateur ; avant D30, le texte d'étalonnage s'affichait à tort sur le cardio).
+  const progLine = ex.role === 'cardio' ? null : suggestion && suggestion.exercise === v.exerciseIndex ? suggestion.text : v.setNumber === 1 && prog && !prog.echelonProposal ? prog.text : null;
   const showLoad = !v.isWarmupSet && ex.unit !== 'sec' && (loadable || v.loadKg !== null);
-  const askRir = !v.isWarmupSet && ex.unit === 'reps';
+  // D30 : séries de sauts : pas de question de réserve (on s'arrête au premier signe, 5.2bis condition 7).
+  const askRir = !v.isWarmupSet && ex.unit === 'reps' && !ex.jump;
   const askReps = !v.isWarmupSet && ex.unit !== 'sec';
 
   function quitSheet() {
@@ -579,7 +582,9 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           </div>
         )}
         {ex.unit === 'sec' && ex.role !== 'cardio' && <p class="dim small">Tiens la position, puis touche « Série faite ».</p>}
-        {ex.role === 'cardio' && (
+        <JumpPlayNotes ex={ex} />
+        <OutdoorPlayNotes ex={ex} />
+        {ex.role === 'cardio' && !ex.jump && (
           <p class="dim small">
             {ex.intensity === 'facile' ? CARDIO_PLAY_TEXT.easy : CARDIO_PLAY_TEXT.moderate} {CARDIO_TEXT.T7}
             {ex.slowEndMin ? ` ${CARDIO_PLAY_TEXT.slowEnd(ex.slowEndMin)}` : ''}

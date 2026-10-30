@@ -66,6 +66,12 @@ export interface GeneratorInput {
     sessionDurationMin?: number | null;
     place?: TrainingPlace | null;
     pregnancy?: PregnancyStatus | null;
+    /** D30 (machines-etiquettes.md §2) : « j'ai accès à une salle » (en plus du lieu). Absent = non. */
+    salleAccess?: boolean;
+    /** D30 (cardio-regles.md §5.4) : « je peux marcher ou courir dehors, sur un trajet sûr ». Absent = non. */
+    exterieur?: boolean;
+    /** Sports déclarés (clés de SPORT_FAMILIES) ; leur fréquence n'est pas connue (lecture prudente : 2 fois par semaine ou plus). */
+    sports?: string[];
   };
   equipment: Pick<EquipmentProfile, 'preset' | 'tags' | 'disabledImplicit' | 'dumbbellWeightsKg' | 'kettlebellWeightsKg'> & {
     platesKg?: number[];
@@ -84,6 +90,15 @@ export interface GeneratorInput {
     habitualLoadsKg?: Record<string, number>;
     favoris?: string[];
     masques?: string[];
+    /**
+     * D31 (cardio-regles.md §3.2ter) : séance de cardio dédiée. Force / muscle / perte de gras : option « Ajouter une séance de
+     * cardio ? » (absent = non). Sport : séance incluse (absent = oui ; false = retirée par la personne).
+     */
+    seanceCardio?: boolean;
+    /** STR-ISO-1 : exception du débutant en prise de muscle ouverte (8 semaines de base, 80 % des séances, sans douleur persistante). */
+    isoDebutantOuverte?: boolean;
+    /** Reprise douce en cours (pause de plus de 2 semaines) : ni saut ni course (cardio-regles.md §5.1 (3)). */
+    repriseActive?: boolean;
   };
 }
 
@@ -96,7 +111,9 @@ export type MessageId =
   | 'T0' | 'T1' | 'T1u' | 'T3' | 'T4' | 'T5' | 'V-MSG-CARDIO-OMS' | 'V-MSG-CARDIO-TEMPS' | 'V-MSG-CARDIO-IMPOS' | 'V-MSG-CARDIO-MACHINE'
   | 'V-MSG-CARDIO-JOURS'
   // D25 (structure-programmes.md) : 1 jour (STR-REP-1), jours légers (STR-REP-6), grossesse (STR-REP-11), séance unique courte.
-  | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE';
+  | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE'
+  // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).
+  | 'T8' | 'V-MSG-SPORT-MATCH' | 'T9';
 export interface GenMessage {
   id: MessageId;
   text: string;
@@ -111,7 +128,9 @@ export interface GenMessage {
 export type SlotKey =
   | 'jambes_genou' | 'poussee_1' | 'tirage_1' | 'charniere' | 'tronc' | 'poussee_2' | 'tirage_2' | 'jambes_2' | 'fonctionnel'
   // D25 (STR-REP-3, E-2) : emplacements de volume des séances haut / bas / push / pull / legs.
-  | 'poussee_3' | 'poussee_4' | 'tirage_3' | 'tirage_4' | 'jambes_3' | 'jambes_4';
+  | 'poussee_3' | 'poussee_4' | 'tirage_3' | 'tirage_4' | 'jambes_3' | 'jambes_4'
+  // D30 (STR-ISO-0) : isolation, ajoutée après tous les autres emplacements, coupée en premier.
+  | 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets';
 /** D25 : séance de la semaine : 'A' | 'B' | 'C' (corps entier) ou '<TYPE>-<gabarit>' (HAUT-A, BAS-B, PUSH-A…). */
 export type SessionLabel = string;
 export type Tier = 'a' | 'b' | 'c' | 'd' | 'e';
@@ -176,6 +195,31 @@ export interface CardioItem {
   slowEndMin: number;
   /** §3.4 (f) rampe du débutant : bloc présent seulement à partir de cette semaine du programme (absent = dès la semaine 1). */
   fromWeek?: number;
+  /** D30 (§5.4) : séance dédiée de marche faisable dehors (réglage du profil) ; l'alternative intérieure est toujours affichée. */
+  outdoor?: boolean;
+}
+/** D30 (§5.2, §3.2ter B) : bloc de sauts en tête d'une séance dédiée (après l'échauffement), jamais dans un bloc après la musculation. */
+export interface JumpItem {
+  /** Variante prévue : version douce pour le débutant (5.2), version avec saut sinon. */
+  variantId: string;
+  ficheId: string;
+  nom: string;
+  /** Version douce (sans saut), toujours nommée. */
+  softVariantId: string | null;
+  softNom: string | null;
+  /** La variante prévue est la version douce (aucun contact). */
+  soft: boolean;
+  sets: number;
+  reps: number;
+  restSec: number;
+}
+export interface JumpBlock {
+  items: JumpItem[];
+  /** Contacts de la séance (échauffement compris) ; 0 en version douce. */
+  contacts: number;
+  /** Plafond du niveau (5.2). */
+  capContacts: number;
+  warmupMin: number;
 }
 export interface GenCardioSession {
   /** Libellé affiché : « Cardio », « Cardio 2 »… */
@@ -183,6 +227,22 @@ export interface GenCardioSession {
   weekday: number;
   cardio: CardioItem;
   estimatedMin: number;
+  /** D31 : origine de la séance : objectif cardio (3.2), option (3.2ter A), sport (3.2ter B) ou forme / santé (3.2bis). Absent = cardio. */
+  kind?: 'cardio' | 'option' | 'sport' | 'sante';
+  /** D30 : bloc de sauts en tête (séance de sport, famille « sauts »), ou absent. */
+  jumps?: JumpBlock | null;
+  /** D30 (5.2bis condition 4) : échauffement de la séance avec sauts (5 min), ou absent. */
+  warmup?: WarmupItem | null;
+}
+/** D31 (§3.2ter A, B) : état de l'option affichée dans l'aperçu et le profil. */
+export interface CardioOptionState {
+  kind: 'option' | 'sport';
+  /** Proposée (objectif force, muscle, perte de gras ou sport). */
+  offered: boolean;
+  /** Réglage de la personne (absent = défaut de l'objectif). */
+  accepted: boolean;
+  /** Phrase « grisé », ou null si l'option peut être cochée. */
+  disabledReason: string | null;
 }
 export interface GenSession {
   label: SessionLabel;
@@ -211,6 +271,8 @@ export interface GenLightDay {
   general: WarmupItem | null;
   mobility: WarmupItem[];
   estimatedMin: number;
+  /** D30 (STR-REP-12) : cardio doux facultatif (marche à plat, facile), ou null (zone, grossesse : voir lightCardioMin). */
+  cardio?: { ficheId: string; variantId: string; nom: string; minutes: number } | null;
 }
 export interface GenProgram {
   split: 'corps_entier' | 'haut_bas' | 'haut_bas_ppl' | 'push_pull_legs';
@@ -235,6 +297,8 @@ export interface GenProgram {
   cardioRole?: 'principal' | 'secondaire' | null;
   cardioSessions?: GenCardioSession[];
   cardioMinWeek?: number;
+  /** D31 : option « Ajouter une séance de cardio ? » ou séance de sport incluse, ou absent. */
+  cardioOption?: CardioOptionState | null;
 }
 export type GenerateResult =
   | { ok: true; program: GenProgram; messages: GenMessage[] }

@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
-import type { Profile } from '../../data/model';
+import type { LightDay, Profile } from '../../data/model';
+import { LightDayCard } from '../LightDayCard';
 import { isProfileComplete, type ProfileStep } from '../../data/profile-setup';
 import { FICHES_ERROR, loadFiches } from '../../data/fiches';
 import type { GenMessage } from '../../generator/types';
@@ -34,6 +35,9 @@ type Status =
       security?: boolean;
       /** Message « consulte » S1 actif. */
       consulte?: boolean;
+      /** D30 (STR-REP-12) : jour léger d'aujourd'hui (facultatif) et douleur déclarée la veille (mobilité seule). */
+      lightToday?: LightDay | null;
+      painYesterday?: boolean;
     }
   | { kind: 'reprise'; resume: Resumable };
 
@@ -213,6 +217,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
           )}
         </div>
       )}
+      {status.kind === 'seance' && !anyMessage && status.lightToday && <LightDayCard day={status.lightToday} painYesterday={!!status.painYesterday} />}
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
       <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} />
       {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
@@ -257,12 +262,22 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       // Séance manquée, sécurité, « consulte » : une lecture locale ; en cas d'erreur, l'Accueil reste utilisable sans carte.
       const mc = await loadMissedContext(res.program).catch(() => null);
       setProgramId(res.program.id);
+      // D30 : jour léger d'aujourd'hui (lundi = 0) ; douleur la veille = mobilité seule (STR-REP-12).
+      const now = new Date();
+      const lightToday = (res.program.lightDays ?? []).find((d) => d.weekday === (now.getDay() + 6) % 7) ?? null;
+      let painYesterday = false;
+      if (lightToday) {
+        const y0 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1).getTime();
+        const y1 = y0 + 24 * 3600 * 1000;
+        painYesterday = (await list('sets').catch(() => [])).some((s) => s.pain && s.completedAt && Date.parse(s.completedAt) >= y0 && Date.parse(s.completedAt) < y1);
+      }
       setStatus({
         kind: 'seance', next, resume: null, equipmentChangedId,
         missed: mc ? computeMissedCard(mc) : null,
         twoDays: showT12(res.program),
         security: !!mc?.profile.reprise?.securiteALire,
         consulte: !!mc?.consulteActive,
+        lightToday, painYesterday,
       });
     } catch (e) {
       setStatus({ kind: 'erreur', text: e instanceof Error && e.message ? e.message : FICHES_ERROR });

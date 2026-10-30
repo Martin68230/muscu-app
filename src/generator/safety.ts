@@ -2,7 +2,7 @@
 // cou (V-COU), grossesse (V-GROS), plafond `capped` (P-CAP, R2, §6.8 point 1).
 // Règle V-PRIO : ces filtres passent avant toute règle de dose ou de structure.
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../data/injury-rules';
-import { CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, INTERMEDIATE_ECHELON_OFFSET, TAG_ORDER } from './config';
+import { CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, IMPACT_SCHEMAS, IMPACT_VARIANTS, INTERMEDIATE_ECHELON_OFFSET, TAG_ORDER } from './config';
 import { carriesLoad, isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
 import { coreRule } from './core';
 import type { Fiche, FicheVariant, SafetyCase } from './types';
@@ -17,7 +17,9 @@ export function ficheAdmissible(f: Fiche, ctx: Ctx, opts: { warmup?: boolean } =
   if (f.technique === true || f.technique === 'oui') return false; // V-ADM 5 : proposée à personne en v1
   if (!neckFicheAllowed({ id: f.id, douxPour: f.douxPour }, ctx.neckLevel)) return false; // V-COU
   if (!opts.warmup && NECK_DEDICATED_IDS.includes(f.id)) return false; // V-ADM 6 / C2
-  if (ctx.pregnant && ctx.postPartum && f.schema === 'saut') return false; // G7
+  // G7, cardio-regles.md §5.1 (1) : aucun saut ni course en grossesse OU en post-partum (ctx.pregnant couvre déjà les deux réglages ;
+  // l'ancien « pregnant ET postPartum » laissait passer la grossesse seule, corrigé en D30), même en échauffement.
+  if ((ctx.pregnant || ctx.postPartum) && IMPACT_SCHEMAS.includes(f.schema)) return false;
   if (f.schema === 'saut' && !opts.warmup) return false; // §2.2 : sauts jamais placés en v1 (D3)
   if (ctx.masques.has(f.id)) return false;
   return true;
@@ -49,6 +51,7 @@ function filterVariants(f: Fiche, ctx: Ctx, r: Restrict): FicheVariant[] {
     if (ctx.specialiseForbidden && v.tags.includes('materiel_specialise')) return false;
     if (r.only && !r.only.has(v.id)) return false;
     if (r.sansCharge && carriesLoad(v)) return false; // gilet lesté compris (lot 09, sérieux n° 4)
+    if ((ctx.pregnant || ctx.postPartum) && IMPACT_VARIANTS.includes(v.id)) return false; // §5.1 (1) : variantes avec saut ou course
     return true;
   });
 }

@@ -4,7 +4,7 @@ import { zoneLevel } from '../data/injury-rules';
 import tagsJson from '../../knowledge/materiel-tags.json';
 import {
   CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
-  PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, type Family,
+  MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, type Family,
 } from './config';
 import type { Fiche, FicheVariant, GeneratorInput, HistorySet } from './types';
 
@@ -53,6 +53,18 @@ export interface Ctx {
   masques: Set<string>;
   fonctionnelEnabled: boolean;
   gagnerDuTemps: boolean;
+  /** D30 : accès à une salle (lieu « salle » ou réglage « j'ai accès à une salle ») : ouvre les tags de MACHINE_TAGS. */
+  gym: boolean;
+  /** D30 (§5.4) : « je peux sortir dehors ». */
+  exterieur: boolean;
+  /** Sports déclarés. */
+  sports: string[];
+  /** STR-ISO-0 / 1 : isolation possible pour ce profil (intermédiaire, avancé, ou débutant après l'exception). */
+  isoOpen: boolean;
+  /** STR-ISO-0 : débutant avant l'exception : le repli de jambes_3 / jambes_4 vers cheville_mollet est interdit. */
+  calfFallbackForbidden: boolean;
+  /** §5.1 (3) : reprise après une pause : ni saut ni course. */
+  repriseActive: boolean;
   /** Mémo de resolveFiche (dépend du contexte). */
   memo: Map<string, unknown>;
 }
@@ -104,6 +116,10 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
   const place = p.place ?? (input.equipment.preset === 'F' ? 'salle' : 'maison');
   const available = availableTags(input.equipment);
   for (const t of ov.extraTags ?? []) available.add(t);
+  // machines-etiquettes.md §2 : machine guidée, poulie et machine de cardio masquées sans le lieu « salle » ni l'accès à une salle ;
+  // retirées par défaut en grossesse / post-partum (G9, point 4 ; lecture prudente : les trois étiquettes).
+  const gym = place === 'salle' || !!p.salleAccess;
+  if (!gym || pregnant) for (const t of MACHINE_TAGS) available.delete(t);
 
   const injuries = (input.injuries ?? []).map((i) => ({ ...i, deletedAt: i.deletedAt ?? null, afterShock: i.afterShock ?? false }));
   let zones: ZoneEntry[] = [];
@@ -154,6 +170,12 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     masques: new Set(opts.masques ?? []),
     fonctionnelEnabled: !!opts.ajouterFonctionnel || (goalFamily === 'sante' && !!mainGoal && GOALS_WITH_FONCTIONNEL.includes(mainGoal)),
     gagnerDuTemps: !!opts.gagnerDuTemps,
+    gym,
+    exterieur: !!p.exterieur,
+    sports: [...(p.sports ?? [])],
+    isoOpen: level !== 'debutant' || !!opts.isoDebutantOuverte,
+    calfFallbackForbidden: level === 'debutant' && !opts.isoDebutantOuverte,
+    repriseActive: !!opts.repriseActive,
     memo: new Map(),
   };
 }

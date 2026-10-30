@@ -34,6 +34,9 @@ export const SPECS: Record<TableName, Spec> = {
     progressionLog: 'array?',
     reprise: 'object?',
     gagnerDuTemps: 'boolean?',
+    seanceCardio: 'boolean?',
+    salleAccess: 'boolean?',
+    exterieur: 'boolean?',
   },
   equipment: {
     preset: 'string',
@@ -63,6 +66,7 @@ export const SPECS: Record<TableName, Spec> = {
     family: 'string?',
     missedAnswers: 'object?',
     lightDays: 'array?',
+    cardioOption: 'object?',
   },
   sessions: {
     programId: 'string?',
@@ -132,8 +136,8 @@ export const SPECS: Record<TableName, Spec> = {
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
-  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps'],
-  programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays'],
+  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur'],
+  programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays', 'cardioOption'],
   sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee'],
   sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec'],
   injuries: ['afterShock'],

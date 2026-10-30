@@ -26,6 +26,7 @@ import type { EquipmentProfile, Injury, InjuryZone } from '../../src/data/model'
 
 const RAW: string = readFileSync('public/data/fiches.json', 'utf8');
 const ALL: Fiche[] = JSON.parse(RAW).fiches;
+const ALL_FICHES = ALL;
 const byId = (id: string) => ALL.find((f) => f.id === id)!;
 
 function eq(tags: string[], preset: EquipmentProfile['preset'] = 'perso', disabledImplicit: string[] = []) {
@@ -332,7 +333,10 @@ describe('vidéo, signalement, images', () => {
 describe('bibliothèque', () => {
   it('liste triée, compteur, filtre par type, recherche sans accent, mention de bas de page', async () => {
     vi.stubGlobal('fetch', vi.fn(async () => ({ ok: true, json: async () => JSON.parse(RAW) })));
-    const { Library } = await import('../../src/ui/screens/Library');
+    const { Library, isMachineFiche } = await import('../../src/ui/screens/Library');
+    // D30 (machines-etiquettes.md §2) : sans profil « salle » ni accès à une salle, les fiches de machines sont masquées.
+    const ALL = ALL_FICHES.filter((f) => !isMachineFiche(f));
+    expect(ALL.length).toBeLessThan(ALL_FICHES.length);
     const { container } = render(<Library />);
     await waitFor(() => expect(container.querySelectorAll('.lib-row').length).toBe(ALL.length));
     const names = [...container.querySelectorAll('.lib-name')].map((n) => n.textContent ?? '');

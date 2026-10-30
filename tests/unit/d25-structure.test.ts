@@ -201,7 +201,9 @@ describe('T-D25-12 à 16, 19, 22, 23 : débutant, jours légers, rotation, super
   it('T-D25-13 : débutant à 6 jours : 4 séances de force + 2 jours légers (sans charge), message STR-REP-6, hors fréquence', () => {
     const p = prog(PS[9]());
     expect(p.sessions).toHaveLength(4);
-    expect(p.lightDays).toHaveLength(2);
+    // D30 (cardio-regles.md §3.2bis, objectif forme / santé, débutant : 1 séance dédiée) : un des 2 jours légers devient une séance de cardio modéré.
+    expect(p.lightDays).toHaveLength(1);
+    expect(p.cardioSessions?.map((c) => c.kind)).toEqual(['sante']);
     expect(p.lightDays.every((d) => d.estimatedMin <= 30 && d.mobility.length >= 1 && d.mobility.length <= 4)).toBe(true);
     expect(p.lightDays.map((d) => d.weekday).some((d) => p.sessions.some((s) => s.weekday === d))).toBe(false);
     expect(msgIds(p)).toContain('V-MSG-LEGERS');
