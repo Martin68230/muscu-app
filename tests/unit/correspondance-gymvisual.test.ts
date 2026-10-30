@@ -5,7 +5,7 @@ import { readFileSync, readdirSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 
 const DIR = 'knowledge/exercices';
-const lignes = readFileSync(`${DIR}/CORRESPONDANCE-GYMVISUAL.tsv`, 'utf8').split('\n').filter(Boolean).map((l: string) => l.split('\t'));
+const lignes = readFileSync(`${DIR}/CORRESPONDANCE-GYMVISUAL.tsv`, 'utf8').replace(/\r/g, '').split('\n').filter(Boolean).map((l: string) => l.split('\t'));
 const [entete, ...rows] = lignes;
 
 const idsFiches = new Set<string>();
