@@ -22,6 +22,22 @@ describe('chaînes de progression pilotées par le muscle principal et le schém
     expect(r[0].severite).toBe('erreur');
     expect(r[0].message).toMatch(/muscle principal différent \(pectoraux \/ triceps\)/);
   });
+  it('muscles principaux en liste : le recouvrement suffit (soulevé de terre vers roumain accepté)', () => {
+    expect(chain([fiche('sdt', 'charniere', 'fessiers, ischios', 'roumain'), fiche('roumain', 'charniere', 'ischios, fessiers', 'aucun', 'sdt')])).toEqual([]);
+  });
+  it('aucun muscle commun : pont fessier vers curl ischios refusé', () => {
+    const r = chain([fiche('pont', 'charniere', 'fessiers', 'aucun', 'curl'), fiche('curl', 'charniere', 'ischios')]);
+    expect(r).toHaveLength(1);
+    expect(r[0].message).toMatch(/muscle principal différent \(fessiers \/ ischios\)/);
+  });
+  it('familles de schémas : squat, fente et bulgare sont reliables ; gainage et anti-rotation aussi', () => {
+    expect(chain([fiche('squat', 'squat', 'quadriceps, fessiers', 'aucun', 'bulgare'), fiche('bulgare', 'fente', 'quadriceps, fessiers', 'squat')])).toEqual([]);
+    expect(chain([fiche('planche', 'gainage', 'abdominaux, transverse', 'aucun', 'dead-bug'), fiche('dead-bug', 'anti_rotation', 'abdominaux', 'planche')])).toEqual([]);
+  });
+  it('rotation reste séparée de l\'anti-rotation ; squat et charnière restent séparés', () => {
+    expect(chain([fiche('russe', 'rotation', 'obliques', 'pallof'), fiche('pallof', 'anti_rotation', 'obliques')])[0].message).toMatch(/schéma différent \(rotation \/ anti_rotation\)/);
+    expect(chain([fiche('sumo', 'charniere', 'quadriceps', 'squat-sumo'), fiche('squat-sumo', 'squat', 'quadriceps')])[0].message).toMatch(/schéma différent/);
+  });
   it('autre schéma : refusé (pompe piquée : poussée verticale)', () => {
     const r = chain([fiche('pompe', 'poussee_h', 'pectoraux', 'aucun', 'pompe-piquee'), fiche('pompe-piquee', 'poussee_v', 'pectoraux')]);
     expect(r[0].message).toMatch(/schéma différent \(poussee_h \/ poussee_v\)/);

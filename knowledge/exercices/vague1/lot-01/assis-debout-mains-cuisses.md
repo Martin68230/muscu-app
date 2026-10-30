@@ -2,6 +2,7 @@
 id: assis-debout-mains-cuisses
 nom: Assis-debout, mains sur les cuisses
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]

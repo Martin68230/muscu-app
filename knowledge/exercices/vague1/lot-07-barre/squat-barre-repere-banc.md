@@ -3,6 +3,7 @@ id: squat-barre-repere-banc
 nom: Squat à la barre avec repère de profondeur
 alias: [box squat, squat à la boîte]
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

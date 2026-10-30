@@ -3,6 +3,7 @@ id: montee-sur-banc
 nom: Montée sur banc
 alias: [step-up]
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

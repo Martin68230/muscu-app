@@ -40,7 +40,7 @@ statut: utilisable
 - Laisser tomber le sac.
 
 ## Progression / régression
-- plus-facile : pont-fessier
+- plus-facile : pont-fessier, souleve-de-terre-roumain-halteres
 - plus-dur : sdt-sac-sol
 
 ## Repères de dosage

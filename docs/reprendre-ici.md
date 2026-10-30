@@ -130,3 +130,8 @@ Points d'attention pour la mise en œuvre (à arbitrer avec l'utilisateur) : les
 - Incidents : déploiement #72 rouge (type du validateur) corrigé au #73 ; règle à garder : TOUJOURS rejouer le workflow complet (dont `npm run build`) dans un clone propre avant de pousser, et lire les résultats.
 - Prochaine action exacte (nouvelle conversation) : R2 (revue coach des 51 écarts de chaînes, en remplaçant les liens par des fiches du même muscle et schéma) ; puis D26 règles de core et supersets ; puis D23 vague 1 (import hasaneyldrm : accord explicite requis).
 - À tester sur l'iPhone : carte « séance manquée » (lendemain d'un jour manqué), Décaler puis calendrier (↷ jour d'origine, ○ nouveau jour), Sauter (») avec confirmation, « Je ne me sens pas bien » (T-14, T-19), reprise après 10 jours ou plus.
+
+## 30/10/2026 : R2 terminée (taxonomie élargie), D25 en partie
+- Règle des liens : même famille de schéma ET muscles principaux qui se recouvrent (knowledge/taxonomie-schemas.md, tools/validate-fiches.mjs `chainCompatible`, tests chain-validator). Familles : squat+fente (attribut `lateralite`), gainage+anti-rotation ; rotation séparée.
+- Liens : 51 retirés (9afc52b), 20 rétablis par tools/r2-retablir.mjs, 31 refusés : docs/R2-retablissement.md. Avis coach (22 gardés, 3 retirés) puis relecteur (SDT barre / roumain barre retirés). Tout reste NON SOURCÉ (jugement de coach).
+- Prochaines actions : téléchargement hasaneyldrm (autorisation et précautions de l'utilisateur du 30/10 : 4 fichiers texte seulement, dossier hors dépôt, script de contrôle écrit par nous, table de correspondance D22), puis D26 (coach rédige les règles de core et supersets, agent Opus écrit le code).

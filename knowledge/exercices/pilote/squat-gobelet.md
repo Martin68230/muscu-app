@@ -2,6 +2,7 @@
 id: squat-gobelet
 nom: Squat gobelet
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]

@@ -3,6 +3,7 @@ id: squat-ballon-lest
 nom: Squat avec un ballon lesté contre la poitrine
 alias: [medicine ball squat, squat gobelet ballon]
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
@@ -41,7 +42,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : squat-assis-debout, squat-poids-du-corps
-- plus-dur : squat-gobelet
+- plus-dur : squat-gobelet, squat-fendu
 
 ## Repères de dosage
 Repères du générateur (generateur-v1.md §3.2, règle V-DOSE ; ACSM 2026, SRC1 : 2 à 3 séries par exercice) : cet exercice est sans charge extérieure (aucun tag de la liste « chargeable ») : 10 à 15 répétitions ; séries : 2 pour un débutant, 3 pour un intermédiaire ou un avancé en « muscle » (2 pour un exercice « autre » en force) ; réserve cible 3 (débutant) à 2, jamais 0 ; repos 90 s (120 s pour un exercice pilier d'intermédiaire). Ces valeurs viennent du tableau du générateur, pas d'une étude sur ce mouvement. Le tag medecine_ball n'est pas dans la liste « chargeable » de V-DOSE : le générateur donnera 10 à 15 répétitions ; c'est cohérent pour un ballon léger. Étalonnage (load-calibration.md) : première séance avec la variante la plus facile ou la charge la plus légère disponible ; double progression (d'abord les répétitions ou la durée, puis l'échelon ou le palier suivant). **Plafond de prudence pour l'utilisateur seul (NON SOURCÉ)** : pas de série jusqu'à l'échec ; fin de série quand la technique se dégrade.

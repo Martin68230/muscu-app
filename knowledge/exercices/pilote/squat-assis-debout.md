@@ -2,6 +2,7 @@
 id: squat-assis-debout
 nom: Squat assis-debout
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]

@@ -3,6 +3,7 @@ id: squat-arriere-barre
 nom: Squat arrière à la barre
 alias: [back squat, squat barre haute]
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

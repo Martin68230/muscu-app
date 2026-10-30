@@ -2,6 +2,7 @@
 id: squat-poids-du-corps
 nom: Squat au poids du corps
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps]

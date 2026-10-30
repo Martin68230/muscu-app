@@ -40,7 +40,7 @@ statut: utilisable
 - Lâcher la barre de haut ou la laisser rebondir.
 
 ## Progression / régression
-- plus-facile : aucun
+- plus-facile : souleve-de-terre-roumain-halteres
 - plus-dur : souleve-de-terre-sumo-barre
 
 ## Repères de dosage

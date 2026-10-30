@@ -2,6 +2,7 @@
 id: fente-avant
 nom: Fente avant
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]

@@ -3,6 +3,7 @@ id: montee-gilet-lest
 nom: Montée sur marche avec un gilet lesté
 alias: [weighted vest step-up, step-up lesté]
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

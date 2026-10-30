@@ -2,6 +2,7 @@
 id: squat-gobelet-banc
 nom: Squat au banc (assis-debout contrôlé)
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]

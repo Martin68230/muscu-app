@@ -3,6 +3,7 @@ id: fente-gilet-lest
 nom: Squat fendu avec un gilet lesté
 alias: [weighted vest split squat, fente sur place lestée]
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

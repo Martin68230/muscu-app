@@ -6,6 +6,20 @@ import { basename, join, resolve, dirname } from 'node:path';
 import { fileURLToPath, pathToFileURL } from 'node:url';
 import { INTERNAL_MENTION, textFields } from './public-text.mjs';
 
+/**
+ * D23/D25 : familles de schémas pour les liens plus facile / plus dur / alternative.
+ * « squat » regroupe squat, fente (bulgare, step-up) ; l'attribut `lateralite` (une-jambe / deux-jambes) les distingue.
+ * « stabilite » regroupe gainage et anti-rotation ; « rotation » reste à part. Les autres schémas forment chacun leur famille.
+ */
+export const SCHEMA_FAMILLES = { squat: 'squat', fente: 'squat', gainage: 'stabilite', anti_rotation: 'stabilite' };
+export const LATERALITES = ['une-jambe', 'deux-jambes'];
+export const schemaFamille = (schema) => SCHEMA_FAMILLES[schema] ?? schema;
+/** Deux fiches peuvent être reliées si leur famille de schéma est la même ET si leurs muscles principaux se recouvrent. */
+export function chainCompatible(a, b) {
+  const sameFamily = schemaFamille(a.schema) === schemaFamille(b.schema);
+  const overlap = a.musclesPrincipaux.some((m) => b.musclesPrincipaux.includes(m));
+  return { sameFamily, overlap, ok: sameFamily && overlap };
+}
 export const SCHEMAS = ['squat', 'charniere', 'fente', 'poussee_h', 'poussee_v', 'tirage_h', 'tirage_v', 'gainage', 'anti_rotation', 'rotation', 'porte', 'saut', 'mobilite', 'cardio', 'cheville_mollet', 'hanche_laterale'];
 export const TYPES = ['force', 'fonctionnel', 'gainage', 'mobilite_recup', 'cardio'];
 export const NIVEAUX = ['debutant', 'intermediaire', 'avance'];
@@ -19,7 +33,7 @@ export const VIDEO_MAX_BYTES = 500_000;
 const SECTIONS = ['Variantes', 'Consignes', "Points d'attention", 'Erreurs fréquentes', 'Progression / régression', 'Repères de dosage', 'Sécurité et contre-indications', 'Photo', 'Sources'];
 const VARIANT_COLUMNS = ['id variante', 'nom', 'echelon', 'niveau', 'materiel_tags', 'installation'];
 const FM_REQUIRED = ['id', 'nom', 'schema', 'type', 'niveau_min', 'muscles_principaux', 'muscles_secondaires', 'source_brouillon', 'statut'];
-const FM_OPTIONAL = ['couverture', 'doux_pour', 'alias'];
+const FM_OPTIONAL = ['couverture', 'doux_pour', 'alias', 'lateralite'];
 const ID_RE = /^[a-z0-9]+(-[a-z0-9]+)*$/;
 const RANK = { garder: 0, adapter: 1, retirer: 2 };
 
@@ -155,6 +169,10 @@ export function parseFiche(text, file) {
       }
     };
     oneOf('schema', SCHEMAS); oneOf('type', TYPES); oneOf('niveau_min', NIVEAUX); oneOf('statut', STATUTS);
+    if ('lateralite' in d) {
+      if (!LATERALITES.includes(d.lateralite)) add(L('lateralite'), 'frontmatter', `lateralite : valeur « ${d.lateralite} » hors de la liste : ${LATERALITES.join(', ')}`);
+      else if (schemaFamille(d.schema) !== 'squat') add(L('lateralite'), 'frontmatter', 'lateralite : réservé à la famille « squat » (squat, fente)');
+    }
     if ('couverture' in d && d.couverture !== 'substitut') add(L('couverture'), 'frontmatter', 'couverture : seule la valeur « substitut » est permise');
     if ('doux_pour' in d) {
       if (!Array.isArray(d.doux_pour)) add(L('doux_pour'), 'frontmatter', 'doux_pour doit être une liste entre crochets : [cou]');
@@ -431,10 +449,9 @@ export function validateLot(files, options = {}) {
       if (r.type !== 'progression') continue;
       const other = byId.get(r.id);
       if (!other) continue;
-      const main = (f) => f.musclesPrincipaux[0] ?? null;
-      const sameSchema = fiche.schema === other.schema;
-      const sameMuscle = main(fiche) === main(other);
-      if (sameSchema && sameMuscle) continue;
+      const main = (f) => f.musclesPrincipaux.join('+') || null;
+      const { sameFamily: sameSchema, overlap: sameMuscle, ok } = chainCompatible(fiche, other);
+      if (ok) continue;
       const key = `${fiche.id}>${other.id}`;
       const why = `${!sameMuscle ? `muscle principal différent (${main(fiche)} / ${main(other)})` : ''}${!sameMuscle && !sameSchema ? ' et ' : ''}${!sameSchema ? `schéma différent (${fiche.schema} / ${other.schema})` : ''}`;
       if (exempt.has(key)) {

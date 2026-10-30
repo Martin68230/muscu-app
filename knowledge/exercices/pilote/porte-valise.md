@@ -36,7 +36,7 @@ statut: utilisable
 - Hausser l'épaule qui porte.
 
 ## Progression / régression
-- plus-facile : aucun
+- plus-facile : marche-du-fermier
 - plus-dur : aucun
 marche-du-fermier <- **porte-valise** -> charge plus lourde ou trajet plus long
 

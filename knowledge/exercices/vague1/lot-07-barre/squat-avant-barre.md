@@ -3,6 +3,7 @@ id: squat-avant-barre
 nom: Squat avant à la barre
 alias: [front squat]
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps]

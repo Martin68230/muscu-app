@@ -3,6 +3,7 @@ id: montee-sur-marche
 nom: Montée sur marche
 alias: [step-up]
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]

@@ -37,7 +37,7 @@ statut: utilisable
 - Aller vite pour « finir ».
 
 ## Progression / régression
-- plus-facile : aucun
+- plus-facile : planche
 - plus-dur : aucun
 planche <- **planche-touche-epaule-genoux** -> planche-touche-epaule-pieds -> planche-touche-epaule-pieds-serres
 

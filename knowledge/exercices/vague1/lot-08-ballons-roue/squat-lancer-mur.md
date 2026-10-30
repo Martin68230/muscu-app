@@ -3,6 +3,7 @@ id: squat-lancer-mur
 nom: Squat et lancer de ballon contre un mur
 alias: [wall ball sans saut, thruster ballon]
 schema: squat
+lateralite: deux-jambes
 type: fonctionnel
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

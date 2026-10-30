@@ -2,6 +2,7 @@
 id: fente-laterale
 nom: Fente latérale
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, adducteurs]

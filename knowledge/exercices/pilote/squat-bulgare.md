@@ -2,6 +2,7 @@
 id: squat-bulgare
 nom: Squat bulgare (pied arrière surélevé)
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

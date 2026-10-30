@@ -2,6 +2,7 @@
 id: squat-sumo
 nom: Squat sumo
 schema: squat
+lateralite: deux-jambes
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, adducteurs]

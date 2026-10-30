@@ -3,6 +3,7 @@ id: squat-bosu
 nom: Squat sur un bosu
 alias: [bosu squat, squat instable]
 schema: squat
+lateralite: deux-jambes
 type: fonctionnel
 niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]

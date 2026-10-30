@@ -2,6 +2,7 @@
 id: squat-fendu
 nom: Squat fendu
 schema: fente
+lateralite: une-jambe
 type: force
 niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
@@ -38,7 +39,7 @@ statut: utilisable
 - Genou avant qui rentre vers l'intérieur.
 
 ## Progression / régression
-- plus-facile : aucun
+- plus-facile : squat-assis-debout
 - plus-dur : fente-arriere, squat-bulgare
 squat-assis-debout <- **squat-fendu** (mur -> poids du corps -> haltères) -> fente-arriere -> squat-bulgare
 

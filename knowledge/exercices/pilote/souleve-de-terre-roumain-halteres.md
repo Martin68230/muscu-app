@@ -38,7 +38,7 @@ statut: utilisable
 - Se cambrer en arrière en haut.
 
 ## Progression / régression
-- plus-facile : aucun
+- plus-facile : pont-fessier
 - plus-dur : souleve-de-terre-roumain-unijambiste
 pont-fessier <- **souleve-de-terre-roumain-halteres** -> souleve-de-terre-roumain-unijambiste
 
