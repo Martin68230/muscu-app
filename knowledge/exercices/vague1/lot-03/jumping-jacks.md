@@ -16,7 +16,7 @@ statut: verifie
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | jumping-jacks-sans-saut | Sans saut (un pied à la fois) | 1 | debutant | poids_du_corps | Espace dégagé, debout, bras le long du corps. |
-| jumping-jacks-saut | Avec saut | 2 | intermediaire | poids_du_corps | Même installation, sol antidérapant. |
+| jumping-jacks-saut | Avec saut | 2 | debutant | poids_du_corps | Même installation, sol antidérapant. |
 
 ## Consignes
 1. Debout, pieds joints, bras le long du corps.
@@ -53,6 +53,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | adapter: variante:jumping-jacks-sans-saut | adapter: variante:jumping-jacks-sans-saut | retirer |
 | Dos | adapter: variante:jumping-jacks-sans-saut | adapter: variante:jumping-jacks-sans-saut | retirer |
 | Épaule | garder | adapter: amplitude:bras-bas | retirer |
+| Cuisse | adapter: variante:jumping-jacks-sans-saut | adapter: variante:jumping-jacks-sans-saut | retirer |
+| Aine | adapter: variante:jumping-jacks-sans-saut | adapter: variante:jumping-jacks-sans-saut | retirer |
 
 **Notes**
 - cheville-n1 : un pied à la fois, sans saut.
@@ -64,8 +66,12 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - dos-n1 : un pied à la fois, sans saut.
 - dos-n2 : même variante ; aucune augmentation (R2).
 - epaule-n2 : bras moins hauts.
+- cuisse-n1 : version sans saut ; NON SOURCÉ (cardio-regles.md §5.1 (2)).
+- cuisse-n2 : même variante sans saut ; aucune augmentation (R2).
+- aine-n1 : version sans saut ; NON SOURCÉ (cardio-regles.md §5.1 (2)).
+- aine-n2 : même variante sans saut ; aucune augmentation (R2).
 - grossesse : seule la version sans saut ; l'échelon avec saut est retiré (G4, risque de chute et d'impact, extrapolation). Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
-- general : échelon avec saut : intermédiaire (impact). Conseil non codé : saut seulement après l'échelon sans saut fait sans gêne, avec une réception souple (conseil de coach, NON SOURCÉ : la règle 5 de sports.md dit autre chose ;). Pas de saut fatigué. Version plus douce : jumping-jacks-sans-saut.
+- general : échelon avec saut ouvert à tous les niveaux (cardio-regles.md §5.2, décision D30 : « aucun » niveau minimum ; le débutant garde la version sans saut en premier) ; aucune raison de sécurité de kine ne le relève à intermédiaire. Conseil non codé : saut seulement après l'échelon sans saut fait sans gêne, avec une réception souple (conseil de coach, NON SOURCÉ : la règle 5 de sports.md dit autre chose ;). Pas de saut fatigué. Version plus douce : jumping-jacks-sans-saut.
 
 **Grossesse** : adapter: variante:jumping-jacks-sans-saut
 **Version plus douce** : jumping-jacks-sans-saut

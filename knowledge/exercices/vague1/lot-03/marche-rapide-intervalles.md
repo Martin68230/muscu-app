@@ -14,7 +14,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| marche-rapide-continue | Marche rapide continue | 1 | debutant | poids_du_corps | Dehors sur un trajet sûr, ou sur place à l'intérieur. |
+| marche-rapide-continue | Marche rapide continue | 1 | debutant | poids_du_corps | Sur place ou dans le logement. Dehors, sur un trajet sûr, seulement si l'option « Je peux marcher ou courir dehors, sur un trajet sûr » est cochée dans ton profil (cardio-regles.md §5.4). |
 | marche-rapide-alternee | Alternance rapide / tranquille | 2 | debutant | poids_du_corps | Même installation. |
 
 ## Consignes
@@ -76,7 +76,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - Si le réglage « enceinte / post-partum » est coché : saignement, perte de liquide, contractions, vertige, douleur ou gonflement d'un mollet, fuite d'urine ou pesanteur dans le bas-ventre : arrête et contacte ta sage-femme ou ton médecin (G6, G7) ; en cas de saignement, de perte des eaux ou de contractions régulières : urgence, voir U1.
 
 **Objets du quotidien**
-- Dehors : trajet éclairé et sûr, attention à la circulation, au verglas et à la chaleur ; chaussures stables ; téléphone sur toi (prudence de `kine`, NON SOURCÉ).
+- Dehors (seulement si l'option du profil est cochée) : trajet éclairé et sûr, attention à la circulation, au verglas et à la chaleur ; chaussures stables ; téléphone sur toi (prudence de `kine`, NON SOURCÉ).
 - Sur place à l'intérieur : sol non glissant, rien au sol.
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 

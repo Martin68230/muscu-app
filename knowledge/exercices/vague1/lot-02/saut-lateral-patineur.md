@@ -53,9 +53,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Cheville | retirer | retirer | retirer |
 | Genou | retirer | retirer | retirer |
 | Dos | retirer | retirer | retirer |
-| Hanche | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
-| Aine | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
-| Cuisse | adapter: variante:saut-lateral-pas-glisse | retirer | retirer |
+| Hanche | retirer | retirer | retirer |
+| Aine | retirer | retirer | retirer |
+| Cuisse | retirer | retirer | retirer |
 
 **Notes**
 - cheville-n1 : exercice retiré dès la gêne légère (prudence propre aux sauts et réceptions) ; l'app propose un exercice qui ne sollicite pas la cheville.
@@ -64,11 +64,11 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n2 : retiré, comme au niveau 1.
 - dos-n1 : exercice retiré dès la gêne légère ; l'app propose un exercice qui ne sollicite pas le bas du dos.
 - dos-n2 : retiré, comme au niveau 1.
-- hanche-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1).
+- hanche-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - hanche-n2 : exercice retiré.
-- aine-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1) ; les adducteurs freinent chaque réception latérale. NON SOURCÉ (choix prudent de `kine`).
+- aine-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - aine-n2 : exercice retiré.
-- cuisse-n1 : remplacé par le pas latéral glissé, sans saut (échelon 1) ; les ischios freinent la réception. NON SOURCÉ (choix prudent de `kine`, aligné sur saut-vertical).
+- cuisse-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - cuisse-n2 : exercice retiré.
 - grossesse : aucun saut : risque de chute et d'impact (G4, extrapolation) ; remplacé par la marche latérale à l'élastique au-dessus des genoux. Post-partum : G7.
 - general : version plus douce : le pas latéral glissé sans saut. Conseil non codé : les sauts enchaînés (échelon 3) seulement après l'arrêt stabilisé sur une jambe sans gêne ; jamais fatigué ni la veille d'un match.

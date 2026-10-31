@@ -3,7 +3,7 @@ id: rebonds-chevilles
 nom: Rebonds sur les chevilles
 schema: saut
 type: fonctionnel
-niveau_min: intermediaire
+niveau_min: debutant
 muscles_principaux: [mollets]
 muscles_secondaires: [quadriceps]
 source_brouillon: []
@@ -14,18 +14,19 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| rebonds-deux-pieds | Deux pieds, petits rebonds | 1 | intermediaire | poids_du_corps | Sol plat, antidérapant, pieds largeur de hanches. |
-| rebonds-une-jambe | Une jambe | 2 | intermediaire | poids_du_corps | Même installation ; un seul pied au sol. |
+| rebonds-chevilles-pointe | Montée sur la pointe des pieds, sans rebond | 1 | debutant | poids_du_corps | Sol plat, antidérapant, pieds joints ou largeur de hanches ; une main sur un mur ou le dossier d'une chaise stable si besoin. |
+| rebonds-deux-pieds | Pieds joints, petits rebonds | 2 | debutant | poids_du_corps | Sol plat, antidérapant, pieds joints, quelques centimètres de hauteur seulement. |
 
 ## Consignes
-1. Debout, pieds largeur de hanches, genoux à peine fléchis, buste droit.
-2. Rebondis en poussant avec les chevilles et l'avant du pied, comme sur un ressort, sans plier les genoux.
+1. Debout, pieds joints, genoux à peine fléchis, buste droit.
+2. Échelon 1 (montée sur la pointe) : monte sur la pointe des pieds, redescends lentement, sans quitter le sol. Échelon 2 : rebondis de quelques centimètres en poussant avec les chevilles et l'avant du pied, comme sur un ressort, sans plier les genoux.
 3. Reste léger : le talon touche à peine le sol.
 4. Garde le rythme régulier et la réception silencieuse.
 5. Arrête la série quand le rebond devient lourd.
 
 ## Points d'attention
-- Prérequis (conseil non codé, décision D3 du 22/10/2026) : réception contrôlée (reception-saut-stabilisee) maîtrisée sans gêne avant ce saut ; sauts prioritaires pour les personnes qui pratiquent un sport de saut (volley, danse, foot).
+- Ouvert à tous les niveaux (cardio-regles.md §5.2, décision D30) : le débutant commence par la montée sur la pointe des pieds (échelon 1). Sauts prioritaires pour les personnes qui pratiquent un sport de saut (volley, danse, foot).
+- Hauteur : quelques centimètres seulement, pieds joints.
 - Le travail vient de la cheville ; genoux presque droits mais jamais verrouillés.
 - Aucune hauteur ni durée donnée (aucune valeur sourcée).
 - Sol non glissant, bonnes chaussures.
@@ -52,9 +53,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Cheville | retirer | retirer | retirer |
 | Genou | retirer | retirer | retirer |
 | Dos | retirer | retirer | retirer |
-| Hanche | adapter: variante:reception-saut-petit-saut | retirer | retirer |
-| Aine | adapter: variante:reception-saut-petit-saut | retirer | retirer |
-| Cuisse | adapter: variante:reception-saut-petit-saut | retirer | retirer |
+| Hanche | retirer | retirer | retirer |
+| Aine | retirer | retirer | retirer |
+| Cuisse | retirer | retirer | retirer |
 
 **Notes**
 - cheville-n1 : exercice retiré dès la gêne légère (prudence propre aux sauts et réceptions) ; l'app propose un exercice qui ne sollicite pas la cheville.
@@ -63,14 +64,14 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n2 : retiré, comme au niveau 1.
 - dos-n1 : exercice retiré dès la gêne légère ; l'app propose un exercice qui ne sollicite pas le bas du dos.
 - dos-n2 : retiré, comme au niveau 1.
-- hanche-n1 : remplacé par le petit saut sur place avec réception stabilisée (comme la réception, dont la case n'est pas plus permissive que celle-ci).
+- hanche-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - hanche-n2 : exercice retiré.
-- aine-n1 : remplacé par le petit saut sur place avec réception stabilisée. NON SOURCÉ (choix prudent de `kine`, aligné sur la hanche).
+- aine-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - aine-n2 : exercice retiré.
-- cuisse-n1 : remplacé par le petit saut sur place avec réception stabilisée. NON SOURCÉ (choix prudent de `kine`, aligné sur la hanche et sur saut-vertical).
+- cuisse-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - cuisse-n2 : exercice retiré.
 - grossesse : aucun rebond : impact répété et risque de chute (G4, extrapolation) ; remplacé par la montée sur la pointe des pieds, debout, une main au mur. Post-partum : G7.
-- general : plus exigeant que la montée sur la pointe des pieds et que la réception de saut : jamais plus permissif qu'elles. Un tendon d'Achille douloureux se déclare sous « cheville » : l'exercice est alors retiré. Conseil non codé : pas de rebond tant que la montée sur la pointe des pieds et la réception ne sont pas faites sans gêne.
+- general : plus exigeant que la montée sur la pointe des pieds et que la réception de saut : jamais plus permissif qu'elles. Un tendon d'Achille douloureux se déclare sous « cheville » : l'exercice est alors retiré. Les rebonds (échelon 2) ne viennent qu'après la montée sur la pointe des pieds (échelon 1) faite sans gêne.
 
 **Grossesse** : retirer: remplacant:releve-mollets-mur
 **Version plus douce** : releve-mollets-mur
@@ -98,10 +99,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Danse et volley : réceptions de saut contrôlées, équilibre sur une jambe, renforcement des mollets et chevilles | knowledge/sports.md, règle de conception 4 (à valider par kine) ; danse : revue systématique de 8 études, J Dance Med Sci 2026 (vol. 30) https://lida.sport-iat.de/ta/Record/4091443?lng=en (preuve initiale) | règle de conception de coach + revue de faible niveau de preuve | 2026-10-21 | PROVISOIRE |
 | Aucun travail de saut intensif la veille d'un match ; fatigue ou douleur : réduire | knowledge/sports.md, règle de conception 5 (à valider par kine) | règle de conception de coach | 2026-10-21 | PROVISOIRE |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
-| Niveau « intermédiaire » dès l'échelon 1 : aucun saut maximal pour un débutant sans prérequis (réception contrôlée) ; la source libre classe l'entrée en débutant, relèvement tracé | décision D3 de l'utilisateur (22/10/2026) : sauts en intermédiaire, réception contrôlée en entrée ; aucune étude lue | - | 2026-10-22 | NON SOURCÉ (choix de prudence) |
+| Niveau débutant : l'échelon 1 est la montée sur la pointe des pieds (version douce, sans saut) ; les petits rebonds pieds joints sont ouverts à tous, hauteur de quelques centimètres | knowledge/cardio-regles.md §5.2 (décision D30 Q5 de l'utilisateur, 30/10/2026) ; aucune étude lue | choix de `coach` et `kine` | 2026-10-31 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
-| Sauts et réceptions : retrait dès la gêne légère au genou, à la cheville ou au dos ; pas de saut sans prérequis (réception contrôlée d'abord) ; aucun saut en grossesse ni, tant que le réglage est coché, en post-partum | choix de `kine` par prudence ; HAS 2019 (post-partum : aucune activité à impact avant rééducation périnéale et avis médical ; grossesse : éviter les risques de chute) ; aucune étude lue sur le retrait au niveau 1 ni sur les prérequis | recommandation officielle (grossesse, post-partum) ; avis d'expert pour le reste | 2026-10-22 | grossesse et post-partum : PROVISOIRE (G4, G7) ; retrait dès le niveau 1 et prérequis : NON SOURCÉ |
+| Sauts et réceptions : retrait dès la gêne légère au genou, à la cheville ou au dos ; aucun saut en grossesse ni, tant que le réglage est coché, en post-partum | choix de `kine` par prudence ; HAS 2019 (post-partum : aucune activité à impact avant rééducation périnéale et avis médical ; grossesse : éviter les risques de chute) ; aucune étude lue sur le retrait au niveau 1 ni sur les prérequis | recommandation officielle (grossesse, post-partum) ; avis d'expert pour le reste | 2026-10-22 | grossesse et post-partum : PROVISOIRE (G4, G7) ; retrait dès le niveau 1 : NON SOURCÉ |
 | Sol antidérapant, chaussures qui tiennent le pied, plafond et espace dégagés, voisins en dessous pour le bruit | raisonnement de `kine` ; aucune source lue | - | 2026-10-22 | NON SOURCÉ |
 | Zones cuisse (ischios) et aine (adducteurs) ajoutées par la décision D3 ; tendon d'Achille rangé sous cheville faute de zone dédiée | choix de conception de `kine` (les zones de l'app sont cou, épaule, coude, poignet, dos, hanche, genou, cheville, cuisse et aine depuis la décision D3 du 22/10/2026) | - | 2026-10-22 | NON SOURCÉ (conception) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |

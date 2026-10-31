@@ -50,7 +50,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Genou | adapter: variante:pas-chasses-lents | retirer | retirer |
 | Hanche | adapter: variante:pas-chasses-lents | retirer | retirer |
 | Aine | adapter: variante:pas-chasses-lents | retirer | retirer |
-| Dos | garder | adapter: variante:pas-chasses-lents | retirer |
+| Dos | adapter: variante:pas-chasses-lents | adapter: variante:pas-chasses-lents | retirer |
+| Cuisse | adapter: variante:pas-chasses-lents | retirer | retirer |
 
 **Notes**
 - cheville-n1 : pas lents, bas.
@@ -62,6 +63,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - aine-n1 : pas lents, petits (les adducteurs freinent chaque appui latéral). NON SOURCÉ (choix prudent de `kine`, au moins aussi prudent que la hanche).
 - aine-n2 : exercice retiré. NON SOURCÉ (choix prudent de `kine`).
 - dos-n2 : pas lents.
+- cuisse-n1 : version sans saut ; NON SOURCÉ (cardio-regles.md §5.1 (2)).
+- cuisse-n2 : exercice retiré.
 - grossesse : pas lents, couloir dégagé, sans changement de direction rapide (risque de chute, G4, extrapolation). Post-partum : même classement que la grossesse tant que le réglage « enceinte / post-partum » est coché.
 - general : échelon rapide : intermédiaire (appuis rapides). Ne croise jamais les pieds. Version plus douce : pas-chasses-lents.
 

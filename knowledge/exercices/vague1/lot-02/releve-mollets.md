@@ -37,7 +37,7 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : rebonds-une-jambe
+- plus-dur : rebonds-deux-pieds
 
 ## Repères de dosage
 Voir program-logic.md. Aucune valeur sourcée.
