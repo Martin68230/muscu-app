@@ -129,3 +129,16 @@ Textes à revoir par `coach` : curl-ischios-serviette (les fesses doivent-elles 
 4. Conflit à résoudre par le coach avec source avant de coder D30 : la séance de référence « détente » (D28) place la pliométrie EN PREMIER (jambes fraîches), puis la force des jambes le même jour, alors que la règle actuelle interdit les sauts le jour même d'une séance de jambes lourdes. Le risque vient de sauter après des jambes fatiguées, pas avant. Cas test D28 : jambes, volley, élastique + chaise, 30 minutes.
 5. Ensuite : kiné + relecteur, puis codage de D30, puis D28 et vague 2 de fiches. Textes écrits par le développeur : relus par coach ou kiné.
 6. À ajouter : réglages « j'ai accès à une salle » et « je peux sortir dehors » ; lecteur du jour léger (aujourd'hui seulement facultatif).
+
+### D33. Programmes : décisions de l'utilisateur après les exemples (31/10/2026) : décidé
+1. R-PLIO appliquée aux séances des programmes générés (volley et sports) : pliométrie en tête, jambes fraîches, force des jambes légère ce jour-là.
+2. Programme spécifique par sport (réception, cheville, épaule, prévention) pour volley, foot, danse, raquettes : oui (coach, kiné, relecteur, puis code).
+3. Isolation (biceps, deltoïdes latéraux, mollets) étendue aux séances haut / push / pull / legs pour intermédiaire et avancé : oui.
+4. Plafond de séries par muscle et par séance : on peut passer à 12 (intermédiaire et avancé) ; à valider par kiné.
+5. Perte de gras : séance de cardio dédiée PAR DÉFAUT (1 ou 2 séances selon le niveau, dans les plafonds du §3.2bis).
+6. Variété d'une semaine à l'autre (R3) : priorité moyenne-haute.
+7. Temps gagné par les supersets : réinvesti (ajout d'un exercice), dans les plafonds de volume.
+8. Salle : ne plus proposer les exercices « maison » (sac à dos, bosu, élastique) quand l'accès à une salle est déclaré.
+9. Fiches de machines (Q10) : PAS prioritaires.
+10. Assouplissements de supersets sans toucher à la sécurité (paire d'isolation ; paire poussée / tirage pour intermédiaire et avancé quand la poussée n'est pas verticale) : oui, à valider par kiné puis relecteur.
+11. NOUVEAU : moins d'exercices copiés d'une séance à l'autre dans la semaine : il faut varier (A / B / C et HAUT / BAS).
