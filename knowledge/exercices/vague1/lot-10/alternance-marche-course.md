@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, mollets]
 muscles_secondaires: [fessiers, ischios, tibial_anterieur]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Les trois variantes sont de grandes étapes de la progression par paliers de knowledge/cardio-regles.md §5.3 (12 paliers, tableau et durées : voir ce fichier, rien n'est recopié ici). Le choix du palier exact, les conditions d'entrée (palier 0 réussi), le passage au palier suivant et les exclusions sont portés par le générateur, pas par la fiche. Tous les niveaux peuvent y accéder (décision de l'utilisateur D30), sans sauter de palier. Étapes : choix de coach, NON SOURCÉ.
@@ -89,7 +89,8 @@ Rédigé par `coach` le 2026-10-31, complété et corrigé par `kine` le 2026-10
 - Dehors (seulement avec l'option) : trajet plat, éclairé, de préférence piéton, vêtements visibles, téléphone sur toi, quelqu'un prévenu ; son bas, une seule oreille ou le haut-parleur pour entendre la circulation, jamais de casque à réduction de bruit ni d'écouteurs fermés dans les deux oreilles (cardio-regles.md §5.4, NON SOURCÉ). Chaleur : raccourcis, ralentis, bois avant et après (T6).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/alternance-marche-course.svg : affichable : oui (illustration originale de l’app)
+- légende : Marche rapide, puis foulée de course courte, tronc droit, pied sous le corps. Tu peux parler en phrases courtes.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -7,7 +7,7 @@ import { conflicts, generateProgram, isCardioDay, toLightDays, toProgramDays } f
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.5'; // v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
+export const GENERATOR_VERSION = 'v1.6'; // v1.6 (D32) : limites de dose des fiches (réserve, séries, haltères légers), surfaces instables en réserve >= 2, paires retentées après l'ajout d'emplacements, message de cardio corrigé ; v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 

@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, mollets]
 muscles_secondaires: [fessiers, ischios, flechisseurs_hanche]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 (une seule variante, format fixe, sans progression ni palier). Version courte pour la personne qui ne peut pas ou ne veut pas sortir et n'a pas de tapis de course (knowledge/cardio-regles.md §5.3). Elle ne valide aucun palier : pour avancer, il faut courir dehors ou sur tapis. Choix de `coach` et `kine`, NON SOURCÉ (aucune source lue sur la course sur place).
@@ -85,7 +85,8 @@ Rédigé par `coach` le 2026-10-31, complété et corrigé par `kine` le 2026-10
 - Voisins en dessous : si le bruit gêne, remplace par la marche sur place.
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/course-sur-place.svg : affichable : oui (illustration originale de l’app)
+- légende : Course sur place de profil : genoux qui montent peu, pieds qui se posent doucement, tu restes au même endroit.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

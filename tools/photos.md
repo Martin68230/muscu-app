@@ -128,3 +128,5 @@ Aucun fichier copié. Fiche : section `## Vidéo`, ligne `- video : youtube:<id>
 
 ## Crédits
 La page « crédits » de l'app doit citer : free-exercise-db (yuhonas, domaine public, photos recadrées). La page est générée par `npm run credits` (src/data/credits.json, aussi lancé par `npm run build`) : Everkinetic et wger n'y apparaissent que si des images de ces sources sont dans le dépôt. Jamais d'images du dépôt maxwu.
+
+Lot 10 (course, squat avec petit saut, hip thrust sur chaise) : aucune photo ajoutée (0 WebP). Les 5 fiches ont une illustration originale (squat-petit-saut, hip-thrust-chaise avec chaise calée contre un mur et élastique tenu à plat sur la hanche, alternance-marche-course, course-continue-lente, course-sur-place), générée par tools/make-illustrations.mjs.

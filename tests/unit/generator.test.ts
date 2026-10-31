@@ -3,7 +3,7 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../../src/data/injury-rules';
-import { DOSE, PREGNANCY, TEMPS, WARMUP } from '../../src/generator/config';
+import { DOSE, doseLimitOf, PREGNANCY, TEMPS, WARMUP } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import { chooseDays } from '../../src/generator/days';
 import { buildExercise } from '../../src/generator/dose';
@@ -444,8 +444,10 @@ describe('T22-T26 : dose, supersets, volume (V-DOSE, V-ORDRE, V-SUP, V-VOL, V-PL
     for (const s of p.sessions) {
       expect(s.exercises.slice(0, 2).map((e) => e.role)).toEqual(['pilier', 'pilier']);
       for (const e of s.exercises.filter((x) => x.role === 'pilier' && x.chargeable)) {
-        expect([e.repsMin, e.repsMax]).toEqual([4, 6]);
-        expect(e.restSec).toBe(180);
+        // D32 : variante « haltères légers » limitée par sa fiche (montée sur marche) : jamais 4-6, dose des « autres ».
+        const light = doseLimitOf(e.ficheId, e.variantId).noHeavyReps;
+        expect([e.repsMin, e.repsMax]).toEqual(light ? [8, 12] : [4, 6]);
+        expect(e.restSec).toBe(light ? 90 : 180);
         expect(byId(e.ficheId).variantes.find((v) => v.id === e.variantId)!.tags).toContain('halteres');
       }
     }

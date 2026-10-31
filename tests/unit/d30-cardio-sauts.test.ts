@@ -42,7 +42,7 @@ describe('Statuts et points d\'extension', () => {
   it('règles D30 / D31 actives, « Créer une séance » à l\'étape suivante, fiches de vague 2 « non disponibles »', () => {
     for (const k of ['sauts', 'course', 'plafondCardioObjectif', 'exterieur', 'etiquettesMachines', 'isolationDebutant'] as const) expect(PENDING_RULES[k].enabled).toBe(true);
     expect(PENDING_RULES.creerSeance.enabled).toBe(false);
-    expect(FICHES_NON_DISPONIBLES).toContain('course-sur-place');
+    expect(FICHES_NON_DISPONIBLES).toContain('corde-a-sauter');
   });
 });
 

@@ -3,7 +3,7 @@
 // Choix prudents tant que l'utilisateur n'a pas décidé (docs/QUESTIONS.md Q5-Q10) : aucun saut, corde, course, cardio dehors,
 // fiche machine ni intervalle soutenu ; effort modéré seulement.
 import type { Level } from '../data/model';
-import { CARDIO, CARDIO_V2 } from './config';
+import { CARDIO, CARDIO_V2, itemNom } from './config';
 import { levelIdx, type Ctx } from './context';
 import { CARDIO_TEXT } from './messages';
 import { warmupVariant } from './safety';
@@ -74,7 +74,7 @@ export function chooseCardio(ctx: Ctx, easy = false): CardioChoice | null {
     if (!f) continue;
     const r = warmupVariant(f, ctx, t.variantId);
     if (!r || r.variant.id !== t.variantId) continue;
-    return { ficheId: f.id, variantId: t.variantId, nom: `${f.nom} (${r.variant.nom})` };
+    return { ficheId: f.id, variantId: t.variantId, nom: itemNom(f.nom, r.variant) };
   }
   return null;
 }

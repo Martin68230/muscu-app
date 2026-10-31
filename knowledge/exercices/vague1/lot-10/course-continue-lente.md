@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, mollets]
 muscles_secondaires: [fessiers, ischios, tibial_anterieur]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 (une seule étape : le dernier palier, course continue). Cette fiche n'est proposée qu'à la fin de la progression de knowledge/cardio-regles.md §5.3 (palier 12, plafond de la course continue en v1) ; la durée y figure, pas ici. Tous les niveaux y accèdent sans sauter de palier (décision de l'utilisateur D30).
@@ -84,7 +84,8 @@ Rédigé par `coach` le 2026-10-31, complété et corrigé par `kine` le 2026-10
 - Dehors (seulement avec l'option) : trajet plat, éclairé, de préférence piéton, vêtements visibles, téléphone sur toi, quelqu'un prévenu ; son bas, une seule oreille ou le haut-parleur, jamais de casque à réduction de bruit ; ne regarde pas l'écran en courant (cardio-regles.md §5.4, NON SOURCÉ). Chaleur : raccourcis, ralentis, bois avant et après (T6).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/course-continue-lente.svg : affichable : oui (illustration originale de l’app)
+- légende : Course lente de profil : pied qui se pose sous le corps, foulée courte, bras fléchis.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

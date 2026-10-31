@@ -1,5 +1,5 @@
 // Dose de base (V-DOSE §3.2, V-TEMPS §3.3) puis plafonds de sécurité (appliquerPlafonds, V-PRIO §6.0 : P-CAP, P-GROS).
-import { DOSE, FIXED_DOSE, FIXED_LOAD_TAGS, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
+import { DOSE, doseLimitOf, FIXED_DOSE, FIXED_LOAD_TAGS, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
 import { isChargeable, isUnilateral, type Ctx } from './context';
 import { coreFamilyOf, coreRule } from './core';
 import { caseFor, cappingZones, type Candidate } from './safety';
@@ -66,8 +66,11 @@ function baseDose(c: Candidate, slot: SlotKey, ctx: Ctx) {
   }
   const d = DOSE[ctx.family][ctx.level];
   const charge = isChargeable(v);
+  // D32 : variante limitée par sa fiche (haltères légers) : jamais la dose « pilier lourd » (répétitions et repos des « autres »).
+  const light = doseLimitOf(c.fiche.id, v.id).noHeavyReps === true;
   const pilier = role === 'pilier';
-  const reps = charge ? (pilier && d.repsChargePilier ? d.repsChargePilier : d.repsCharge) : d.repsBodyweight;
+  const heavy = pilier && !!d.repsChargePilier && !light;
+  const reps = charge ? (heavy ? d.repsChargePilier! : d.repsCharge) : d.repsBodyweight;
   let rir = d.rir;
   if (d.rirSafeVariants !== undefined) {
     // Le gilet lesté (charge fixe, contrôle du lot 09, sérieux n° 4) garde la réserve des charges libres, jamais la réserve 1.
@@ -80,7 +83,7 @@ function baseDose(c: Candidate, slot: SlotKey, ctx: Ctx) {
     repsMax: reps[1],
     holdSec: null,
     unit: 'reps' as const,
-    restSec: pilier ? d.restPilierSec : d.restAutreSec,
+    restSec: pilier && !(light && d.repsChargePilier) ? d.restPilierSec : d.restAutreSec,
     rirTarget: rir,
     rirAsked: true,
     role,
@@ -155,6 +158,10 @@ export function buildExercise(c: Candidate, slot: SlotKey, tier: Tier, ctx: Ctx)
     }
     if (ex.capped && !ex.cappedLabel) ex.cappedLabel = 'Charge maintenue : gêne dos';
   }
+  // D32 : limites de dose écrites dans la fiche (réserve minimale, séries au plus) et surfaces instables : ne font que baisser.
+  const lim = doseLimitOf(c.fiche.id, c.variant.id, c.variant.tags);
+  if (lim.minRir !== undefined && ex.rirAsked) ex.rirTarget = Math.max(ex.rirTarget, lim.minRir);
+  if (lim.maxSets !== undefined) ex.sets = Math.min(ex.sets, lim.maxSets);
   const capped = appliquerPlafonds(ex, ctx);
   if (FIXED_DOSE[c.fiche.id]) {
     // N4 : jamais de charge à progresser pour ces fiches, même si une variante portait un jour un tag chargeable.

@@ -14,6 +14,10 @@ import { mk, type MkOpts } from './generator-helpers';
 // Référence régénérée le 30/10/2026 pour D26 (core : plancher, familles, CORE-ORD-4 ; supersets SUP-0 à SUP-9) : changements voulus, docs/D26-bilan.md.
 // Référence régénérée le 30/10/2026 pour D30 (docs/D30-bilan.md) : objectif sport (séance de cardio incluse, message), textes corrigés
 // de knowledge/textes-d25-revue.md (« pas assez de place pour… », 4 jours), isolation STR-ISO (intermédiaire / avancé, objectif muscle).
+// Référence régénérée le 31/10/2026 pour D32 (docs/D32-bilan.md) : toutes les empreintes changent par le seul nom affiché de
+// l'échauffement (« Marche rapide continue », VARIANT_NAME_ALONE) ; à nom inchangé, 50 cas changent, tous voulus : force intermédiaire
+// C / F (montée sur marche aux haltères légers jamais en 4-6), avancé en salle F (squat sur bosu en réserve 2, good morning et rowing
+// Pendlay plafonnés à 3 séries, DOSE_LIMITS).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

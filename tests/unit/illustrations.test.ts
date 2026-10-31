@@ -34,7 +34,7 @@ describe('illustrations des fiches', () => {
       expect(svg.startsWith('<svg')).toBe(true);
       expect(svg).toContain('<title');
       expect(svg).not.toContain('NaN');
-      expect((svg.match(/class="bg"/g) ?? []).length).toBe(['ytw-sol', 'dips-banc-triceps', 'developpe-couche-barre'].includes(ex.id) ? 3 : 2);
+      expect((svg.match(/class="bg"/g) ?? []).length).toBe(['ytw-sol', 'dips-banc-triceps', 'developpe-couche-barre', 'squat-petit-saut', 'hip-thrust-chaise'].includes(ex.id) ? 3 : 2);
     }
   });
   it('ids de pose uniques et fichiers SVG générés présents', () => {

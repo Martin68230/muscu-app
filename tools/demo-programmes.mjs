@@ -36,7 +36,8 @@ const PROFILS = [
 ];
 
 const dose = (e) => (e.unit === 'sec' ? `${e.sets} x ${e.holdSec} s` : `${e.sets} x ${e.repsMin}-${e.repsMax}${e.unit === 'reps_par_cote' ? ' par côté' : ''}`);
-const wu = (w) => (w ? `${w.nom} (${w.sec} s)` : 'aucun');
+const wu = (w) => (w ? (w.sec > 0 ? `${w.nom} (${w.sec} s)` : `${w.nom} (facultatif, non compté dans la durée)`) : 'aucun');
+const INTENSITE = { moderee: 'modérée', facile: 'facile' };
 const out = ['# Exemples de programmes générés (option « Gagner du temps » activée)', '',
   'Document produit par `node tools/demo-programmes.mjs` avec le vrai générateur (`generateProgram`). Ne pas modifier à la main : relancer le script.', ''];
 const stats = [];
@@ -55,7 +56,7 @@ function sessionBlock(s) {
   });
   const pairs = Object.entries(groups).map(([g, n]) => `${g} = ${n.join(' + ')}`);
   L.push(`- Paires de superset : ${pairs.length ? pairs.join(' ; ') : 'aucune'}`);
-  if (s.cardio) L.push(`- Bloc de cardio : ${s.cardio.nom}, ${s.cardio.minutes} min (semaines : ${s.cardio.weekMin.join(', ')}), intensité ${s.cardio.intensity}${s.cardio.fromWeek ? `, à partir de la semaine ${s.cardio.fromWeek}` : ''}`);
+  if (s.cardio) L.push(`- Bloc de cardio : ${s.cardio.nom}, ${s.cardio.minutes} min (semaines : ${s.cardio.weekMin.join(', ')}), intensité ${INTENSITE[s.cardio.intensity] ?? s.cardio.intensity}${s.cardio.fromWeek ? `, à partir de la semaine ${s.cardio.fromWeek}` : ''}`);
   else L.push('- Bloc de cardio : aucun');
   L.push(`- Retour au calme : ${wu(s.warmup.cooldown)}`);
   return L;
@@ -85,7 +86,7 @@ for (const p of PROFILS) {
       st.jumpSessions++; st.jumpDetail.push(`${c.label} (${JOURS[c.weekday]})`);
       out.push(`- Sauts en tête (contacts ${c.jumps.contacts}/${c.jumps.capContacts}) : ${c.jumps.items.map((j) => `${j.nom} ${j.sets} x ${j.reps}, repos ${j.restSec} s${j.soft ? ' [version douce]' : ''}`).join(' ; ')}`);
     } else out.push('- Sauts : aucun');
-    out.push(`- Cardio : ${c.cardio.nom}, ${c.cardio.minutes} min (semaines : ${c.cardio.weekMin.join(', ')}), intensité ${c.cardio.intensity}, ${c.cardio.slowEndMin} min lentes à la fin${c.cardio.outdoor ? ', dehors possible' : ''}`, `- Repère : ${c.cardio.note}`, '');
+    out.push(`- Cardio : ${c.cardio.nom}, ${c.cardio.minutes} min (semaines : ${c.cardio.weekMin.join(', ')}), intensité ${INTENSITE[c.cardio.intensity] ?? c.cardio.intensity}, ${c.cardio.slowEndMin} min lentes à la fin${c.cardio.outdoor ? ', dehors possible' : ''}`, `- Repère : ${c.cardio.note}`, '');
   });
   if (g.lightDays.length) {
     out.push('### Jours légers');
@@ -127,7 +128,7 @@ for (const [t, o] of variantes) {
   const heavy = g.sessions.map((s) => `${s.label}=${JOURS[s.weekday]}`).join(', ');
   const cs = (g.cardioSessions ?? []).map((c) => `${c.label}=${JOURS[c.weekday]}${c.jumps ? ' (sauts)' : ' (sans saut)'}`).join(', ') || 'aucune';
   const plyoMuscu = g.sessions.reduce((a, s) => a + s.exercises.filter((e) => /saut|jump|pliom/i.test(`${e.nom} ${e.variantNom}`)).length, 0);
-  const msgs = [...r.messages, ...g.messages].filter((m) => ['T8', 'V-MSG-SPORT-MATCH', 'V-MSG-CARDIO-JOURS', 'V-MSG-CARDIO-IMPOS'].includes(m.id)).map((m) => `[${m.id}] ${m.text}`);
+  const msgs = [...new Map([...r.messages, ...g.messages].map((m) => [m.id + m.text, m])).values()].filter((m) => ['T8', 'V-MSG-SPORT-MATCH', 'V-MSG-CARDIO-JOURS', 'V-MSG-CARDIO-IMPOS'].includes(m.id)).map((m) => `[${m.id}] ${m.text}`);
   out.push(`- ${t} : séances de force ${heavy} ; séances dédiées : ${cs} ; séances avec sauts : ${js.length} ; exercices de saut dans la musculation : ${plyoMuscu}.${msgs.length ? ' Messages : ' + msgs.join(' | ') : ''}`);
 }
 out.push('', '## Chiffres de répétitivité (semaine type, force)', '');

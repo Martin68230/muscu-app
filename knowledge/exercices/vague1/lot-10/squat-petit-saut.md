@@ -8,7 +8,7 @@ niveau_min: debutant
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [mollets, ischios, abdominaux]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. L'échelon 1 est la version sans saut ; le saut arrive à l'échelon 2, réservé à l'intermédiaire et à l'avancé (cardio-regles.md §5.2 : le débutant n'a que la version douce). Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -94,7 +94,8 @@ Rédigé par `coach` le 2026-10-31, complété et corrigé par `kine` le 2026-10
 - Voisins en dessous : si le bruit gêne, reste sur la version douce.
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/squat-petit-saut.svg : affichable : oui (illustration originale de l’app)
+- légende : Petit squat, montée rapide, puis petit décollage de quelques centimètres (version douce : les pieds restent au sol).
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

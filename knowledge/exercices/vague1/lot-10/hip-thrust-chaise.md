@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [fessiers]
 muscles_secondaires: [ischios, quadriceps, moyen_fessier]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Cette fiche est de niveau intermédiaire dès l'échelon 1 (le débutant a le pont fessier, condition 11 de R-PLIO). Les exercices sur une jambe sont réservés à l'intermédiaire et à l'avancé (cardio-regles.md §5.2bis, condition 11). Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -108,7 +108,8 @@ Rédigé par `coach` le 2026-10-31, complété et corrigé par `kine` le 2026-10
 - Tapis ou sol antidérapant ; rien sous la chaise ni derrière tes talons ; pour te relever, roule sur le côté, mains au sol, sans à-coup.
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/hip-thrust-chaise.svg : affichable : oui (illustration originale de l’app)
+- légende : Chaise calée contre un mur. Avec l'élastique : tenu à plat sur la hanche, jamais fixé derrière toi.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

@@ -883,4 +883,37 @@ export const EXERCICES = [
     a: { p: [0, 138], t: 90, h: 90, armN: { to: [57, 154], bend: 'd' }, armF: { a: [-100, -95] }, legN: { to: [13, 36], bend: 'f' }, legF: { to: [-10, 60], bend: 'b' }, back: [dome(13), ['wall', 57, 14]] },
     b: { p: [0, 138], t: 90, h: 90, armN: { a: [-85, -87] }, armF: { a: [-95, -93] }, legN: { to: [13, 36], bend: 'f' }, legF: { to: [-10, 60], bend: 'b' }, back: [dome(13), ['wall', 57, 14]] },
   },
+  // ---- Lot 10 (sauts, hip thrust sur chaise, course) ----
+  {
+    id: 'squat-petit-saut', titre: 'Squat avec petit saut, vue de profil : petit squat, montée rapide, puis décollage de quelques centimètres seulement (version douce : on ne décolle pas)',
+    labels: ['Debout, pieds au sol', 'Petit squat, dos droit', 'Montée rapide, petit décollage'],
+    a: { p: [0, 112], t: 90, armN: { a: [-92, -84] }, armF: { a: [-88, -80] } },
+    b: { p: [-24, 80], t: 70, h: 78, armN: { a: [-30, 10] }, armF: { a: [-32, 8] }, legN: { to: [8, A], bend: 'f' }, legF: { to: [0, A], bend: 'f' } },
+    c: { p: [0, 132], t: 90, armN: { a: [-60, -20] }, armF: { a: [-58, -18] }, legN: { to: [8, 27], bend: 'f', foot: -50 }, legF: { to: [-4, 24], bend: 'f', foot: -50 }, props: [['arrow', [90, 190], [90, 225]]] },
+  },
+  {
+    id: 'hip-thrust-chaise', titre: 'Poussée de hanches, haut du dos sur le bord de la chaise calée contre un mur : deux jambes, puis une jambe avec un élastique tenu à plat sur la hanche (jamais fixé derrière soi)',
+    labels: ['Deux jambes, hanches basses', 'Deux jambes, alignées', 'Une jambe, élastique en main'],
+    a: { p: [-5, 22], t: 155, h: 165, armN: { to: [10, 28], bend: 'd' }, armF: { to: [6, 28], bend: 'd' }, legN: { to: [40, A], bend: 'f' }, legF: { to: [34, A], bend: 'f' }, back: [['wall', -118, 14], ['chair', -102, 40, 1]] },
+    b: { p: [-5, 54], t: 180, h: 175, armN: { to: [10, 56], bend: 'd' }, armF: { to: [6, 56], bend: 'd' }, legN: { to: [40, A], bend: 'f' }, legF: { to: [34, A], bend: 'f' }, back: [['wall', -118, 14], ['chair', -102, 40, 1]], props: [['arrow', [-5, 82], [-5, 110]]] },
+    c: { p: [-5, 54], t: 180, h: 175, armN: { to: [-24, 4], bend: 'd' }, armF: { to: [-3, 60], bend: 'u' }, legN: { to: [40, A], bend: 'f' }, legF: { a: [58, -25] }, back: [['wall', -118, 14], ['chair', -102, 40, 1]], props: [['band', [[-14, 63], [10, 63]]], ['arrow', [-5, 120], [-5, 140]]] },
+  },
+  {
+    id: 'alternance-marche-course', titre: 'Alternance marche rapide et course lente, vue de profil : marche à grands pas, puis foulée de course courte, tronc droit',
+    labels: ['Marche rapide', 'Course lente, foulée courte'],
+    a: { p: [0, 112], t: 90, legN: { to: [28, A], bend: 'f' }, legF: { to: [-26, 12], bend: 'f', foot: -30 }, armN: { a: [-125, -95] }, armF: { a: [-60, -20] }, props: [['arrow', [70, 205], [120, 205]]] },
+    b: { p: [0, 122], t: 84, h: 86, legN: { to: [32, 46], bend: 'f', foot: -20 }, legF: { to: [-40, 34], bend: 'f', foot: -60 }, armN: { a: [-125, -50] }, armF: { a: [-55, 35] }, props: [['arrow', [70, 205], [120, 205]]] },
+  },
+  {
+    id: 'course-continue-lente', titre: 'Course continue lente, vue de profil : le pied se pose sous le corps, tronc droit, foulée courte, bras fléchis qui balancent',
+    labels: ['Appui, pied sous le corps', 'Foulée courte, pas de grand bond'],
+    a: { p: [4, 106], t: 86, h: 88, legN: { to: [8, A], bend: 'f' }, legF: { to: [-34, 40], bend: 'f', foot: -60 }, armN: { a: [-125, -45] }, armF: { a: [-55, 30] } },
+    b: { p: [0, 120], t: 84, h: 86, legN: { to: [26, 46], bend: 'f', foot: -20 }, legF: { to: [-36, 36], bend: 'f', foot: -60 }, armN: { a: [-55, 35] }, armF: { a: [-125, -50] }, props: [['arrow', [70, 205], [120, 205]]] },
+  },
+  {
+    id: 'course-sur-place', titre: 'Course sur place, vue de profil : on reste au même endroit, genoux qui montent peu, pieds qui se posent doucement, bras fléchis',
+    labels: ['Genou droit levé', 'Genou gauche levé'],
+    a: { p: [0, 114], t: 88, h: 88, legN: { to: [14, 44], bend: 'f', foot: -20 }, legF: { to: [-4, A], bend: 'f' }, armN: { a: [-125, -50] }, armF: { a: [-55, 35] } },
+    b: { p: [0, 114], t: 88, h: 88, legN: { to: [-4, A], bend: 'f' }, legF: { to: [12, 46], bend: 'f', foot: -20 }, armN: { a: [-55, 35] }, armF: { a: [-125, -50] } },
+  },
 ];

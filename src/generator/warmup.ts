@@ -1,6 +1,6 @@
 // Échauffement et retour au calme (V-ECH §4.3, V-COU §6.5). L'app ne dit pas que l'échauffement prévient les blessures (SRC11).
 import type { WarmupSet } from '../data/model';
-import { WARMUP } from './config';
+import { itemNom, WARMUP } from './config';
 import type { Ctx } from './context';
 import { allowedVariants, warmupVariant } from './safety';
 import type { GenExercise, WarmupItem } from './types';
@@ -10,7 +10,7 @@ function item(ficheId: string, ctx: Ctx, sec: number, preferVariant?: string): W
   if (!f) return null;
   const r = warmupVariant(f, ctx, preferVariant);
   if (!r) return null;
-  return { ficheId: f.id, variantId: r.variant.id, nom: `${f.nom} (${r.variant.nom})`, sec, adaptations: r.adaptations };
+  return { ficheId: f.id, variantId: r.variant.id, nom: itemNom(f.nom, r.variant), sec, adaptations: r.adaptations };
 }
 
 /** E1 : une variante cardio sans saut (échelon 1), dans l'ordre de la liste, après les filtres. */

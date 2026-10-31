@@ -2,7 +2,7 @@
 // (§5.1 (6ter), écran D28 non codé : fonctions pures prêtes). Toutes les valeurs viennent de config.ts (JUMPS, RUN, IMPACT, PLIO_COMPOSE,
 // IMPACT_EXCLUDED_ZONES, JUMP_MOVEMENTS) avec leur statut. Aucune fiche n'est inventée : un mouvement sans fiche est « non disponible ».
 import type { Level } from '../data/model';
-import { FICHES_NON_DISPONIBLES, IMPACT, IMPACT_EXCLUDED_ZONES, JUMP_MOVEMENTS, JUMPS, OUTDOOR_RUN_REQUIRES, PLIO_COMPOSE, RUN, type JumpMovement } from './config';
+import { itemNom, FICHES_NON_DISPONIBLES, IMPACT, IMPACT_EXCLUDED_ZONES, JUMP_MOVEMENTS, JUMPS, OUTDOOR_RUN_REQUIRES, PLIO_COMPOSE, RUN, type JumpMovement } from './config';
 import { levelIdx, type Ctx } from './context';
 import { allowedVariants, caseFor, ficheAdmissible, USABLE_STATUTS } from './safety';
 import type { Fiche, JumpBlock, JumpItem } from './types';
@@ -52,7 +52,7 @@ export function jumpChoices(ctx: Ctx): JumpChoice[] {
     const f = ctx.variantOwner.get(variantId);
     if (!f || !variantSafe(f, ctx, variantId)) return null;
     const v = f.variantes.find((x) => x.id === variantId)!;
-    return { ficheId: f.id, variantId, nom: `${f.nom} (${v.nom})` };
+    return { ficheId: f.id, variantId, nom: itemNom(f.nom, v) };
   };
   const out: JumpChoice[] = [];
   for (const m of JUMP_MOVEMENTS) {

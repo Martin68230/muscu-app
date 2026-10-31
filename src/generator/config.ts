@@ -207,6 +207,75 @@ export const FIXED_DOSE: Record<string, FixedDoseRow> = {
   'planche-cercles-ballon': PLANCHE_CERCLES_DOSE,
 };
 
+// ---------------------------------------------------------------------------------------------
+// D32 : limites de dose écrites dans les fiches (repères lisibles par le code). Ne font que BAISSER la dose de V-DOSE / V-VOL.
+// Chaque valeur est recopiée d'une fiche au statut `utilisable` ou `complete_kine` (contrôlée par kine et relecteur) ; la
+// fiche fait foi. Lecture la plus restrictive en cas de doute (docs/D32-bilan.md).
+// ---------------------------------------------------------------------------------------------
+export interface DoseLimit {
+  /** Réserve minimale (RIR) : jamais moins. */
+  minRir?: number;
+  /** Nombre de séries au plus (V-VOL ne dépasse jamais). */
+  maxSets?: number;
+  /** Jamais la dose « pilier lourd » (4-6 répétitions) : répétitions et repos des exercices « autres » de V-DOSE. */
+  noHeavyReps?: boolean;
+}
+/**
+ * Fiches « Pas d'échec » (« arrête la série avec au moins 2 répétitions en réserve », ou « pas d'échec » sans nombre : lu comme
+ * 2, lecture restrictive) : réserve >= 2, jamais la réserve 1 de l'avancé (rirSafeVariants). Source : texte des fiches (statut OK).
+ */
+const NO_FAILURE_FICHES: readonly string[] = [
+  'planche', 'curl-incline-halteres', 'developpe-incline-halteres', 'curl-barre', 'developpe-couche-barre', 'developpe-couche-prise-serree-barre',
+  'developpe-incline-barre', 'developpe-militaire-barre', 'extension-triceps-barre-ez-allonge', 'good-morning-barre', 'hip-thrust-barre',
+  'releve-mollets-debout-barre', 'rowing-barre-ez', 'rowing-barre-penche', 'rowing-pendlay-barre', 'shrug-barre', 'souleve-de-terre-barre',
+  'souleve-de-terre-roumain-barre', 'souleve-de-terre-sumo-barre', 'squat-arriere-barre', 'squat-avant-barre', 'squat-barre-repere-banc',
+  'pompe-pieds-ballon', 'roue-abdos', 'squat-ballon-lest', 'squat-lancer-mur', 'fente-gilet-lest', 'montee-gilet-lest', 'pompe-gilet-lest',
+  'pont-fessier-gilet-lest', 'rowing-sac-de-sable', 'souleve-de-terre-sac', 'squat-bosu', 'squat-gilet-lest', 'squat-sac-berceau', 'traction-gilet-lest',
+];
+/** Clé = id de fiche ou id de variante (la variante l'emporte si les deux existent ; les limites se cumulent, la plus stricte gagne). */
+export const DOSE_LIMITS: Record<string, DoseLimit> = {
+  ...Object.fromEntries(NO_FAILURE_FICHES.map((id) => [id, { minRir: 2 }])),
+  // Fiche good-morning-barre : « exercice avancé, charge légère : 2 à 3 séries, 2 à 3 répétitions en réserve ».
+  'good-morning-barre': { minRir: 2, maxSets: 3 },
+  // Fiche rowing-pendlay-barre : « exercice avancé, charge légère à modérée : 2 à 3 séries, 2 à 3 répétitions en réserve ».
+  'rowing-pendlay-barre': { minRir: 2, maxSets: 3 },
+  // Fiche montee-sur-marche, variante haltères : « seulement sur la première ou la deuxième marche, haltères légers » : jamais 4-6.
+  'montee-sur-marche-halteres': { noHeavyReps: true },
+  // Variantes nommées « haltères légers » dans leur fiche : jamais la dose lourde (lecture restrictive).
+  'tirage-w-halteres-legers': { noHeavyReps: true },
+  'oiseau-halteres-assis': { noHeavyReps: true },
+  'oiseau-banc-incline-halteres': { noHeavyReps: true },
+  'extension-triceps-couche-deux-halteres': { noHeavyReps: true },
+};
+/**
+ * D32 : surfaces instables (bosu, ballon de gym, sangles de suspension, ballon lesté, roue) : réserve >= 2, jamais la réserve 1 de
+ * l'avancé. Choix prudent de `dev` (lecture restrictive de squat-bosu « Pas d'échec »), NON SOURCÉ : à confirmer par `coach` / `kine`.
+ */
+export const UNSTABLE_TAGS: readonly string[] = ['bosu', 'swiss_ball', 'sangles_suspension', 'medecine_ball', 'roue_abdos'];
+export const UNSTABLE_MIN_RIR = 2;
+
+/** Limite cumulée d'une fiche et de sa variante (la plus stricte de chaque champ). */
+export function doseLimitOf(ficheId: string, variantId: string, tags: readonly string[] = []): DoseLimit {
+  const parts = [DOSE_LIMITS[ficheId], DOSE_LIMITS[variantId]].filter((x): x is DoseLimit => !!x);
+  if (tags.some((t) => UNSTABLE_TAGS.includes(t))) parts.push({ minRir: UNSTABLE_MIN_RIR });
+  const out: DoseLimit = {};
+  for (const p of parts) {
+    if (p.minRir !== undefined) out.minRir = Math.max(out.minRir ?? 0, p.minRir);
+    if (p.maxSets !== undefined) out.maxSets = Math.min(out.maxSets ?? Infinity, p.maxSets);
+    if (p.noHeavyReps) out.noHeavyReps = true;
+  }
+  return out;
+}
+
+/**
+ * D32 : nom affiché d'une variante dont le nom contredit celui de sa fiche (ex. « Marche rapide en intervalles (Marche rapide
+ * continue) ») : le nom de la variante seul est affiché ; les ids ne changent pas. Le renommage de la fiche reste à faire par `coach`.
+ */
+export const VARIANT_NAME_ALONE: readonly string[] = ['marche-rapide-continue'];
+export function itemNom(ficheNom: string, variant: { id: string; nom: string }): string {
+  return VARIANT_NAME_ALONE.includes(variant.id) ? variant.nom : `${ficheNom} (${variant.nom})`;
+}
+
 /**
  * Fiches jamais placées par le générateur, ni comme exercice ni en échauffement, même `utilisable` (consultables dans
  * la bibliothèque). Écart sérieux n° 3 du contrôle relecteur du lot 09 (knowledge/exercices/vague1/lot-09-lest-sac-bosu/CONTROLE-relecteur.md) :
@@ -591,8 +660,8 @@ export const PENDING_RULES = {
 
 /** Fiches que les règles citent mais qui n'existent pas encore (vague 2 de `coach`) : jamais proposées par le générateur. */
 export const FICHES_NON_DISPONIBLES: readonly string[] = [
-  'corde-a-sauter', 'saut-longueur-sur-place-d28', 'squat-petit-saut', 'hip-thrust-unilateral-chaise-elastique', 'course-paliers',
-  'course-sur-place', 'velo', 'rameur', 'tapis-de-course', 'elliptique', 'presse-a-cuisses',
+  'corde-a-sauter', 'saut-longueur-pieds-joints',
+  'velo', 'rameur', 'tapis-de-course', 'elliptique', 'presse-a-cuisses',
 ];
 
 /** 3.2bis : plafond de séances de cardio dédiées par semaine, selon l'objectif de rang 1 et le niveau. NON SOURCÉ (OMS : repère seul). */

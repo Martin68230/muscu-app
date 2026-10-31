@@ -7,7 +7,7 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES,
+  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin } from './impact';
@@ -227,6 +227,8 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
         for (const slot of ALL_SLOTS) {
           const e = s.exercises.find((x) => x.slot === slot);
           if (!e || !e.rirAsked || e.unit !== 'reps' || e.capped || e.sets >= VOLUME.maxSetsPerExercise) continue;
+          // D32 : jamais au-delà du nombre de séries écrit dans la fiche.
+          if (e.sets >= (doseLimitOf(e.ficheId, e.variantId).maxSets ?? Infinity)) continue;
           if (!e.musclesPrincipaux.some((x) => (m === 'deltoides' ? x.startsWith(VOLUME.deltoidPrefix) : x === m))) continue;
           const trial = { ...s, exercises: s.exercises.map((x) => (x === e ? { ...x, sets: x.sets + 1 } : x)) };
           const all = sessions.map((x) => (x === s ? trial : x));
@@ -538,6 +540,10 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
         else break;
       }
     }
+    // D32 : les emplacements ajoutés après la première formation des paires (tirage_2, jambes_2…) n'existaient pas encore : paires
+    // retentées une fois le placement final fait (mêmes règles SUP-0 à SUP-10 dans canPair ; une paire déjà formée n'est pas touchée).
+    // Le temps gagné reste dans la durée estimée (estimerDuree compte la paire) ; il n'est pas réinvesti (décision de l'utilisateur).
+    if (ctx.gagnerDuTemps) s = formAllPairs(s);
     return { s, actions: adj.actions, removedCore: adj.removedCore, overBudget: adj.overBudget, attempted, warm: mob };
   };
 
@@ -812,7 +818,8 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       else cardioMsgs.push(cardioMsg.oms(cardioMinWeek));
       if (ctx.available.has('machine_cardio')) cardioMsgs.push(cardioMsg.machine());
     }
-    if (cardioChoice && (cardioTimeShort || (blockRole && !blocks.length))) cardioMsgs.push(cardioMsg.temps());
+    // D32 : pas de « cardio retiré » quand une séance de cardio dédiée existe (le cardio n'est pas retiré du programme).
+    if (cardioChoice && !cardioSessions.length && (cardioTimeShort || (blockRole && !blocks.length))) cardioMsgs.push(cardioMsg.temps());
   } else if (cardioSessions.length) {
     // D31 : séance dédiée sans objectif cardio : mêmes textes de sécurité de `kine` (§9bis) et repère OMS.
     cardioMsgs.push(cardioMsg.t0(), cardioMsg.t4(), cardioMsg.t3(), cardioMsg.t1(), cardioMsg.t1u());
