@@ -6,6 +6,7 @@ import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
 import { resolveFiche } from './safety';
 import type { Fiche, GenExercise, GenProgram } from './types';
+import { rotationStart } from './variety';
 
 /**
  * STR-ISO-2 (conditions, appliquées à tous les niveaux par lecture prudente) : objectif « prise de muscle » de rang 1 (pas la perte de
@@ -37,11 +38,17 @@ export function isoFicheFits(f: Fiche, def: IsoDef): boolean {
  * sollicite (STR-ISO-2). Débutant : fiche de niveau « débutant » seulement (STR-ISO-3) ; élévation latérale : charge la plus légère,
  * jamais augmentée (STR-ISO-3bis, `capped`).
  */
-export function isoExercise(def: IsoDef, ctx: Ctx, pool: readonly Fiche[], used: ReadonlySet<string>): GenExercise | null {
+export function isoExercise(
+  def: IsoDef, ctx: Ctx, pool: readonly Fiche[], used: ReadonlySet<string>,
+  /** D34 (PV3-VAR-2, 4) : fiches déjà prises dans la semaine (mises en dernier) ; rotation (semaine, bloc, occurrences k du groupe). */
+  variety: { weekUsed?: ReadonlySet<string>; week?: number; block?: number; k?: number } = {},
+): GenExercise | null {
   if (ctx.zones.some((z) => !z.isG && z.level >= 1 && def.zones.includes(z.key))) return null;
-  for (const f of pool) {
-    if (!isoFicheFits(f, def) || used.has(f.id)) continue;
-    if (ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0) continue;
+  const ok = pool.filter((f) => isoFicheFits(f, def) && !used.has(f.id) && !(ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0));
+  const r0 = rotationStart(ok.length, variety.k ?? 1, variety.week ?? 1, variety.block ?? 1);
+  const turned = ok.map((_, i) => ok[(r0 + i) % ok.length]);
+  const wu = variety.weekUsed ?? new Set<string>();
+  for (const f of [...turned.filter((x) => !wu.has(x.id)), ...turned.filter((x) => wu.has(x.id))]) {
     const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces);
     if (!cand) continue;
     const ex = buildExercise(cand, def.slot, 'a', ctx);

@@ -1,13 +1,13 @@
 // Programme actif et séance du jour (F5). Appelle le générateur v1 (pur), enregistre le résultat dans la table `programs`
 // (un seul programme actif) et le régénère seulement quand les entrées changent (empreinte `inputsHash`).
 import { list, create, update, get, softDelete } from '../data/repo';
-import type { Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
+import type { Injury, PlannedExercise, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import { BLOCK_WEEKS, ISOLATION, LIGHT_SPLIT_MAX_FORCE, MIN_GAP_DAYS } from '../generator/config';
 import { conflicts, generateProgram, isCardioDay, toLightDays, toProgramDays } from '../generator';
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.7'; // v1.6 (D32) : limites de dose des fiches (réserve, séries, haltères légers), surfaces instables en réserve >= 2, paires retentées après l'ajout d'emplacements, message de cardio corrigé ; v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
+export const GENERATOR_VERSION = 'v1.8'; // v1.8 (D34) : variété (attribution des fiches à l'échelle de la semaine, PV3-VAR-1, 2, 6), rotation des accessoires sur deux jeux (semaines impaires / paires, PV3-VAR-4), supersets par jeu, indicateur penurieVariete ; v1.7 (D33) : plafond 12, cardio par défaut en perte de gras, filtre salle, isolation par liste fermée ; v1.6 (D32) : limites de dose des fiches (réserve, séries, haltères légers), surfaces instables en réserve >= 2, paires retentées après l'ajout d'emplacements, message de cardio corrigé ; v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 
@@ -216,10 +216,69 @@ export function programWeek(program: Pick<Program, 'startDate'>, nowMs: number):
   const days = Math.round((Date.UTC(now.getFullYear(), now.getMonth(), now.getDate()) - Date.UTC(y, m - 1, d)) / DAY_MS);
   return days < 0 ? 1 : Math.floor(days / 7) + 1;
 }
-/** Copie du jour sans les exercices prévus « à partir de la semaine N » quand la semaine du programme est plus petite. */
-export function withProgramWeek(day: ProgramDay, week: number): ProgramDay {
-  if (!day.exercises.some((e) => e.fromWeek && e.fromWeek > week)) return day;
-  return { ...day, exercises: day.exercises.filter((e) => !e.fromWeek || e.fromWeek <= week) };
+/** D34 (PV3-VAR-5 (d), avis du kiné du 31/10/2026) : durée du gel de la rotation après une douleur ou une zone passée au niveau >= 1 (NON SOURCÉ). */
+export const ROTATION_FREEZE_DAYS = 14;
+/** Gel de la rotation : dernière douleur (ms) par fiche dans les 14 derniers jours ; `all` : une zone est passée au niveau >= 1 depuis moins de 14 jours. */
+export interface RotationFreeze {
+  painAt: Map<string, number>;
+  all: boolean;
+}
+export function rotationFreeze(sets: readonly SetLog[], injuries: readonly Injury[], nowMs: number): RotationFreeze {
+  const within = (t: number) => Number.isFinite(t) && nowMs - t <= ROTATION_FREEZE_DAYS * DAY_MS;
+  const painAt = new Map<string, number>();
+  for (const s of sets) {
+    if (!s.pain || s.deletedAt) continue;
+    const t = Date.parse(s.completedAt ?? s.updatedAt ?? s.createdAt);
+    if (within(t)) painAt.set(s.movementId, Math.max(painAt.get(s.movementId) ?? -Infinity, t));
+  }
+  // Lecture restrictive : toute zone active au niveau >= 1 modifiée depuis moins de 14 jours gèle TOUTES les rotations (pas seulement
+  // les emplacements de cette zone) ; le programme est de toute façon régénéré quand le profil de blessures change.
+  const all = injuries.some((i) => !i.deletedAt && i.active && i.level >= 1 && within(Date.parse(i.updatedAt)));
+  return { painAt, all };
+}
+
+/**
+ * Copie jouable du jour pour la semaine `week` du programme : sans les exercices prévus « à partir de la semaine N » quand la semaine
+ * est plus petite ; D34 (PV3-VAR-4) : semaines paires = jeu 2 (`alt`), semaines impaires = jeu 1 (semaine 3 = semaine 1). Gel (PV3-VAR-5 d) :
+ * un emplacement dont une des deux fiches a été douloureuse depuis moins de 14 jours garde la fiche signalée en dernier (retour par la
+ * version plus douce de la même fiche, jamais une fiche neuve) ; `freeze.all` : jeu 1 partout. Une paire n'est gardée que si ses deux
+ * membres viennent du même jeu. La copie n'a plus de champ `alt` (rien à refaire ; une reprise douce s'applique ensuite sur elle).
+ */
+export function withProgramWeek(day: ProgramDay, week: number, freeze?: RotationFreeze | null): ProgramDay {
+  if (!day.exercises.some((e) => (e.fromWeek && e.fromWeek > week) || e.alt)) return day;
+  const even = week % 2 === 0;
+  const src: number[] = [];
+  const exercises: PlannedExercise[] = [];
+  for (const e of day.exercises) {
+    if (e.fromWeek && e.fromWeek > week) continue;
+    const { alt, ...base } = e;
+    if (!alt) {
+      exercises.push(base);
+      src.push(0);
+      continue;
+    }
+    let useAlt = even;
+    if (alt.movementId !== base.movementId) {
+      if (freeze?.all) useAlt = false;
+      else {
+        const pa = freeze?.painAt.get(alt.movementId) ?? -Infinity;
+        const pb = freeze?.painAt.get(base.movementId) ?? -Infinity;
+        if (pa > -Infinity || pb > -Infinity) useAlt = pa > pb;
+      }
+    }
+    const { alt: _drop, ...a } = alt;
+    void _drop;
+    exercises.push(useAlt ? a : base);
+    src.push(useAlt ? 2 : 1);
+  }
+  const groups = new Map<string, number[]>();
+  exercises.forEach((e, i) => e.supersetGroup && groups.set(e.supersetGroup, [...(groups.get(e.supersetGroup) ?? []), i]));
+  for (const idx of groups.values()) {
+    const kinds = new Set(idx.map((i) => src[i]).filter((k) => k !== 0));
+    if (idx.length >= 2 && kinds.size <= 1) continue;
+    for (const i of idx) exercises[i] = { ...exercises[i], supersetGroup: null };
+  }
+  return { ...day, exercises };
 }
 
 // ----- SUP-10 : séance de musculation planifiée la veille -----

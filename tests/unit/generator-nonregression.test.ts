@@ -22,6 +22,10 @@ import { mk, type MkOpts } from './generator-helpers';
 // 36 perte de gras à 3 jours (séance de cardio incluse par défaut, PV3-CAR-1 : message et blocs réduits à 1) ; 12 corps entier à 2 jours,
 // intermédiaire, profils C et F, 60 min et sans limite (muscle, perte de gras, muscle + force) : plafond 12 (PV3-PLAF-1), un squat ajouté en
 // séance B ; 4 jours : 2e charnière au poids du corps en BAS-A (G3). Le filtre « salle » ne change rien ici (réglage absent de la grille).
+// Référence régénérée le 31/10/2026 pour D34 (variété, docs/D34-bilan.md) après comparaison avant / après cas par cas : 493 cas sur 662 changent,
+// tous par l'attribution des fiches à l'échelle de la semaine (même en ignorant le jeu 2) ; recouvrement maximal entre séances du même type
+// en baisse dans 485 cas, en hausse dans aucun (5 -> 0 ou 1 dans 129 cas) ; jeu 2 (`alt`) ajouté. V-MSG-VOL apparaît dans 12 cas (A0,
+// intermédiaire / avancé, 3 jours, 60 min et sans limite : grand dorsal 9,5 séries au lieu de 10 faute de fiches de tirage) et disparaît dans 3.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

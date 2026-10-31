@@ -161,13 +161,38 @@ export function computeSummary(i: SummaryInput): Summary {
     const newest = [...others].sort((a, c) => ms(c.startedAt) - ms(a.startedAt));
     const sameDay = newest.filter((s) => s.programId === sess.programId && s.programDayIndex === sess.programDayIndex && s.programId !== null).slice(0, b.maxReferenceBack);
     const candidates = [...sameDay, ...newest.filter((s) => !sameDay.includes(s)).slice(0, b.maxReferenceBack)];
-    for (const ref of candidates) {
-      if (hadPain(ref.id)) continue;
-      const refRows = setsOf(ref.id);
-      const common = new Set([...curKeys.keys()].filter((k) => refRows.some((s) => keyOf(s) === k)));
-      if (!common.size) continue;
+    let ref: WorkoutSession | null = null;
+    let common = new Set<string>();
+    const oldRows: SetLog[] = [];
+    for (const r of candidates) {
+      if (hadPain(r.id)) continue;
+      const refRows = setsOf(r.id);
+      const c = new Set([...curKeys.keys()].filter((k) => refRows.some((s) => keyOf(s) === k)));
+      if (!c.size) continue;
+      ref = r;
+      common = c;
+      oldRows.push(...refRows.filter((s) => c.has(keyOf(s))));
+      break;
+    }
+    // D34 (E-04, PV3-VAR-5 c) : un exercice à rotation (accessoire dont la fiche change d'une semaine à l'autre) absent de la référence
+    // se compare à la dernière séance valable où CETTE fiche a été faite, quel que soit le jour de programme (jamais « première fois »
+    // en semaines 2 et 4 quand la fiche a déjà été faite).
+    const rotating = new Set((plan?.exercises ?? []).filter((e) => e.rotation).map((e) => e.movementId));
+    for (const [k, rows] of curKeys) {
+      if (common.has(k) || !rotating.has(rows[0].movementId)) continue;
+      for (const r of newest) {
+        if (hadPain(r.id)) continue;
+        const prev = setsOf(r.id).filter((s) => keyOf(s) === k);
+        if (!prev.length) continue;
+        common.add(k);
+        oldRows.push(...prev);
+        ref = ref ?? r;
+        break;
+      }
+    }
+    if (ref && common.size) {
       const cur = aggregate([...curKeys.values()].flat(), common);
-      const old = aggregate(refRows, common);
+      const old = aggregate(oldRows, common);
       const repsPct = pct(cur.reps, old.reps);
       const setsDelta = cur.sets - old.sets;
       const setsVerdict: Verdict = Math.abs(setsDelta) <= b.similarSets ? 'similaire' : setsDelta > 0 ? 'plus' : 'moins';
@@ -184,7 +209,6 @@ export function computeSummary(i: SummaryInput): Summary {
         commonExercises: common.size,
       };
       referenceId = ref.id;
-      break;
     }
   }
 

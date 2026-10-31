@@ -28,11 +28,11 @@ const mkInput = (o) => ({
 
 const PROFILS = [
   { titre: '1. Débutant, prise de muscle, 3 jours, maison (haltères + élastique)', input: mkInput({ profile: { level: 'debutant', daysPerWeek: 3 }, equipment: eq(MAISON_HE), goal: 'muscle' }) },
-  { titre: '2. Intermédiaire, force, 4 jours, salle (haut / bas)', input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle' }, equipment: salle, goal: 'force' }) },
+  { titre: '2. Intermédiaire, force, 4 jours, salle (haut / bas)', semaine2: true, input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle' }, equipment: salle, goal: 'force' }) },
   { titre: '3. Intermédiaire, perte de gras + cardio en objectif secondaire, 3 jours, séance de cardio ajoutée', input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 3, sessionDurationMin: 45 }, equipment: eq(MAISON_HE), goal: 'perte_gras', second: 'cardio', options: { seanceCardio: true } }) },
   { titre: '4. Intermédiaire, volley (objectif sport), 3 jours, maison (élastique + chaise)', input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, equipment: eq(MAISON_E), goal: 'sport' }) },
   { titre: '5. Débutant, sans matériel, 3 jours (poids du corps)', input: mkInput({ profile: { level: 'debutant', daysPerWeek: 3 }, equipment: eq(['poids_du_corps', 'tapis']), goal: 'muscle' }) },
-  { titre: '6. Avancé, 5 jours, salle', input: mkInput({ profile: { level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle' }, equipment: salle, goal: 'muscle' }) },
+  { titre: '6. Avancé, 5 jours, salle', semaine2: true, input: mkInput({ profile: { level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle' }, equipment: salle, goal: 'muscle' }) },
 ];
 
 const dose = (e) => (e.unit === 'sec' ? `${e.sets} x ${e.holdSec} s` : `${e.sets} x ${e.repsMin}-${e.repsMax}${e.unit === 'reps_par_cote' ? ' par côté' : ''}`);
@@ -42,9 +42,12 @@ const out = ['# Exemples de programmes générés (option « Gagner du temps » 
   'Document produit par `node tools/demo-programmes.mjs` avec le vrai générateur (`generateProgram`). Ne pas modifier à la main : relancer le script.', ''];
 const stats = [];
 
-function sessionBlock(s) {
+// D34 (PV3-VAR-4) : semaine 2 (jeu 2) = exercices `alt` ; semaine 3 = semaine 1, semaine 4 = semaine 2.
+const weekOf = (s, w) => ({ ...s, exercises: s.exercises.map((e) => (w === 2 && e.alt ? e.alt : e)) });
+function sessionBlock(s0, w = 1) {
+  const s = weekOf(s0, w);
   const L = [];
-  L.push(`### Séance ${s.label} (${s.type}), ${JOURS[s.weekday]}, environ ${s.estimatedMin} min`);
+  L.push(`### Séance ${s.label} (${s.type}), ${JOURS[s.weekday]}, environ ${s.estimatedMin} min${w === 2 ? ' : SEMAINES 2 ET 4 (jeu 2)' : ''}`);
   L.push(`- Échauffement : ${wu(s.warmup.general)}`);
   if (s.warmup.mobility.length) L.push(`- Mobilité : ${s.warmup.mobility.map((m) => `${m.nom} (${m.sec} s)`).join(' ; ')}`);
   const groups = {};
@@ -52,7 +55,8 @@ function sessionBlock(s) {
   L.push('- Exercices :');
   s.exercises.forEach((e, i) => {
     const tag = e.supersetGroup ? ` [SUPERSET ${e.supersetGroup}]` : '';
-    L.push(`  ${i + 1}. ${e.nom}${e.variantNom && e.variantNom !== e.nom ? ` (${e.variantNom})` : ''} : ${dose(e)}, repos ${e.restSec} s, RIR ${e.rirTarget}${e.isCalibration ? ', étalonnage' : ''}${e.capped ? ', charge maintenue' : ''}${tag}`);
+    const alt = w === 1 && s0.exercises[i].alt && s0.exercises[i].alt.ficheId !== e.ficheId ? ` ; semaines 2 et 4 : ${s0.exercises[i].alt.nom}` : '';
+    L.push(`  ${i + 1}. ${e.nom}${e.variantNom && e.variantNom !== e.nom ? ` (${e.variantNom})` : ''} : ${dose(e)}, repos ${e.restSec} s, RIR ${e.rirTarget}${e.isCalibration ? ', étalonnage' : ''}${e.capped ? ', charge maintenue' : ''}${tag}${alt}`);
   });
   const pairs = Object.entries(groups).map(([g, n]) => `${g} = ${n.join(' + ')}`);
   L.push(`- Paires de superset : ${pairs.length ? pairs.join(' ; ') : 'aucune'}`);
@@ -77,8 +81,13 @@ for (const p of PROFILS) {
     ...g.lightDays.map((l) => ({ d: l.weekday, t: 'Jour léger (facultatif)', m: l.estimatedMin })),
   ].sort((a, b) => a.d - b.d);
   week.forEach((w) => out.push(`- ${JOURS[w.d]} : ${w.t}, ${w.m} min`));
-  out.push('', '### Détail des séances', '');
+  out.push('', '### Détail des séances (semaines 1 et 3 ; les accessoires qui changent en semaines 2 et 4 sont indiqués)', '');
   g.sessions.forEach((s) => out.push(...sessionBlock(s), ''));
+  if (p.semaine2) {
+    out.push('### Semaine 2 (et 4) de la rotation, séances complètes', '');
+    g.sessions.forEach((s) => out.push(...sessionBlock(s, 2), ''));
+  }
+  out.push(`Variété : pénurie signalée pour ${g.penurieVariete?.length ? g.penurieVariete.join(', ') : 'aucun plan'} (penurieVariete).`, '');
   (g.cardioSessions ?? []).forEach((c) => {
     out.push(`### ${c.label}${c.kind ? ` [${c.kind}]` : ''}, ${JOURS[c.weekday]}, environ ${c.estimatedMin} min`);
     if (c.warmup) out.push(`- Échauffement : ${wu(c.warmup)}`);
@@ -103,10 +112,11 @@ for (const p of PROFILS) {
   const cnt = {}; all.forEach((f) => { cnt[f] = (cnt[f] ?? 0) + 1; });
   st.repeats = Object.entries(cnt).filter(([, n]) => n > 1).map(([f, n]) => `${f} x${n}`);
   st.overlap = [];
-  for (let i = 0; i < g.sessions.length; i++) for (let j = i + 1; j < g.sessions.length; j++) {
-    const a = new Set(g.sessions[i].exercises.map((e) => e.ficheId)); const b = g.sessions[j].exercises.map((e) => e.ficheId);
-    st.overlap.push(`${g.sessions[i].label}/${g.sessions[j].label} : ${b.filter((x) => a.has(x)).length} commun(s) sur ${b.length}`);
+  for (const w of [1, 2]) for (let i = 0; i < g.sessions.length; i++) for (let j = i + 1; j < g.sessions.length; j++) {
+    const a = new Set(weekOf(g.sessions[i], w).exercises.map((e) => e.ficheId)); const b = weekOf(g.sessions[j], w).exercises.map((e) => e.ficheId);
+    st.overlap.push(`S${w} ${g.sessions[i].label}/${g.sessions[j].label} : ${b.filter((x) => a.has(x)).length} commun(s) sur ${b.length}`);
   }
+  st.rotation = g.sessions.reduce((a, s) => a + s.exercises.filter((e) => e.alt && e.alt.ficheId !== e.ficheId).length, 0);
 }
 
 out.push('## Analyse (a) : séances avec sauts', '');
@@ -135,7 +145,7 @@ out.push('', '## Chiffres de répétitivité (semaine type, force)', '');
 out.push('| Profil | Exercices placés | Distincts | Doses distinctes | Paires de superset |', '|---|---|---|---|---|');
 stats.filter((s) => s.ok).forEach((s) => out.push(`| ${s.titre.slice(0, 60)} | ${s.nbEx} | ${s.distinct} | ${s.doses} | ${s.pairs} |`));
 out.push('');
-stats.filter((s) => s.ok).forEach((s) => out.push(`- ${s.titre.slice(0, 40)} : chevauchements ${s.overlap.join(' ; ')} ; exercices répétés : ${s.repeats.join(', ') || 'aucun'}`));
+stats.filter((s) => s.ok).forEach((s) => out.push(`- ${s.titre.slice(0, 40)} : chevauchements ${s.overlap.join(' ; ')} ; exercices répétés (semaine 1) : ${s.repeats.join(', ') || 'aucun'} ; accessoires qui changent en semaine 2 : ${s.rotation}`));
 out.push('');
 const prose = join(root, 'tools/demo-programmes-analyse.md');
 if (existsSync(prose)) out.push(readFileSync(prose, 'utf8'));

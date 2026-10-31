@@ -118,7 +118,8 @@ describe('N4 / Q23 : dose fixe des lancers et du gainage dynamique', () => {
             // Bibliothèque réelle + les 8 fiches : le classement place surtout les lancers.
             const r = generateProgram(mk({ profile: 'E', level, goal, days, dur, fiches }));
             if (!r.ok) continue;
-            for (const e of allEx(r.program)) {
+            // D34 : les exercices des semaines paires (jeu 2, `alt`) sont placés aussi et reçoivent la même dose fixe.
+            for (const e of allEx(r.program).flatMap((x) => (x.alt ? [x, x.alt] : [x]))) {
               if (!IDS.includes(e.ficheId)) continue;
               placed.add(e.ficheId);
               expectFixed(e);
@@ -131,7 +132,7 @@ describe('N4 / Q23 : dose fixe des lancers et du gainage dynamique', () => {
       for (const goal of GOALS) {
         const r = generateProgram(mk({ profile: 'E', level, goal, days: 3, dur: 75, fiches: only }));
         if (!r.ok) continue;
-        for (const e of allEx(r.program)) {
+        for (const e of allEx(r.program).flatMap((x) => (x.alt ? [x, x.alt] : [x]))) {
           if (!IDS.includes(e.ficheId)) continue;
           placed.add(e.ficheId);
           expectFixed(e);

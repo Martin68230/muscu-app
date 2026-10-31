@@ -213,6 +213,13 @@ export interface PlannedExercise {
   jump?: { soft: boolean; softVariantId: string | null; softNom: string | null; contacts: number };
   /** D30 (§5.4) : séance de marche faisable dehors (rappels T9 et alternative intérieure). Absent = intérieur. */
   outdoor?: boolean;
+  /**
+   * D34 (PV3-VAR-4) : version des semaines paires du bloc (jeu 2 des accessoires tournants, ou paire de superset décidée sur le jeu 2).
+   * Seulement dans Program.days ; la copie jouée (plan d'une séance) n'en a jamais. Absent = même exercice toutes les semaines.
+   */
+  alt?: PlannedExercise;
+  /** D34 : exercice d'un emplacement à rotation (la fiche change d'une semaine à l'autre) : comparaison par fiche (E-04). */
+  rotation?: boolean;
 }
 
 /** Échauffement d'une séance (F5) : exercices de la fiche, pas de série à saisir. */

@@ -15,7 +15,7 @@ import { painCheck, type PainCheck } from './history';
 import { repriseAtEnd } from './missed';
 import { repriseOf } from './missed-config';
 import { dateKey } from './calendar';
-import { programWeek, veilleMuscles, withProgramWeek } from './program';
+import { programWeek, rotationFreeze, veilleMuscles, withProgramWeek } from './program';
 
 /** Au-delà de 12 h, une séance « en cours » n'est plus reprise automatiquement : on propose de la terminer ou de l'abandonner. */
 export const RESUME_MAX_MS = 12 * 3600 * 1000;
@@ -106,7 +106,9 @@ export class SessionController {
     const sessions = await list('sessions');
     const t0 = now();
     // Rampe du débutant (cardio-regles.md §3.4 f) : un bloc prévu « à partir de la semaine 3 » n'est pas joué avant.
-    const planned = withProgramWeek(base, programWeek(program, t0));
+    // D34 (PV3-VAR-4, 5 d) : jeu 1 ou jeu 2 selon la semaine, rotation gelée 2 semaines après une douleur ou une zone passée au niveau >= 1.
+    const [allSets, injuries] = await Promise.all([list('sets'), list('injuries')]);
+    const planned = withProgramWeek(base, programWeek(program, t0), rotationFreeze(allSets, injuries, t0));
     // D26 (SUP-2 point 7) : paires non appliquées si un exercice est en étalonnage ou en retour après gêne (plan enregistré tel quel) ;
     // SUP-10 : ni si la séance de musculation de la veille (date réellement jouée) a travaillé un même muscle principal.
     const veille = ctx.mainMusclesOf ? veilleMuscles(program, sessions, dateKey(new Date(t0)), (ex) => ctx.mainMusclesOf!(ex)) : undefined;

@@ -30,6 +30,8 @@ import type {
   CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, JumpBlock, JumpItem, SlotKey, Tier,
 } from './types';
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
+import { fillWeekVariety } from './variety';
+import { mergeRotation } from './rotation';
 
 export type { CardioItem, GenCardioSession, GenerateResult, GeneratorInput, GenLightDay, GenProgram, GenSession, GenExercise, GenMessage } from './types';
 export { sessionTitle, typeOf, conflicts } from './split';
@@ -264,8 +266,11 @@ function causeOf(slot: SlotKey, label: Label, fill: SlotFill, healthFree: SlotFi
 }
 
 /** Programme complet. */
-export function generateProgram(input: GeneratorInput): GenerateResult {
+function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const ctx = buildCtx(input);
+  // D34 (PV3-VAR-6) : bloc (1, 2…) et plans où la variété a été relâchée cette semaine.
+  const block = Math.max(1, Math.floor(input.options?.bloc ?? 1));
+  const penurieVar = new Set<string>();
   // D33 (PV3-PLAF-1, G2) : emplacements prévus (placement, ajout §4.4) : 12 ; ajouts automatiques (isolation ; V-VOL dans applyVolume) : 11.
   const plafSlot = makePlaf(ctx, 'slot');
   const plafAuto = makePlaf(ctx, 'auto');
@@ -367,50 +372,49 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   const heavyFill = (f: Map<SlotKey, SlotFill>) =>
     [...f.entries()].some(([slot, fl]) => !!fl.cand && isHeavyExercise({ slot, schema: fl.cand.fiche.schema, ficheId: fl.cand.fiche.id, tags: fl.cand.variant.tags }));
   const heavyBy = new Map<Label, boolean>();
+  // D34 (PV3-VAR-6, E-01) : attribution des fiches à l'échelle de la semaine (variety.ts), pour la semaine `week` du bloc `block`.
   const fillWeek = (c: Ctx, main = false) => {
-    const prev = new Map<SlotKey, Set<string>>();
-    const prevAll = new Set<string>();
-    const res = new Map<Label, Map<SlotKey, SlotFill>>();
-    let rot = 0;
-    let prevFam: CoreFamily | null = null;
-    for (const l of labels) {
-      const slots = slotsFor(l);
-      // D25 (STR-REP-10) : en haut / bas / push / pull / legs, la rotation regarde toutes les fiches déjà placées dans la semaine
-      // (poussee_1 de HAUT-A et poussee_2 de HAUT-B : fiches différentes quand au moins 2 conviennent). Corps entier : par emplacement.
-      const prevFor = isSplit ? new Map(slots.map((s) => [s, prevAll] as [SlotKey, Set<string>])) : prev;
-      // Passe 1 sans tronc : la séance est-elle « à charge lourde » ? (tous les emplacements candidats comptent : lecture prudente)
-      const heavy = heavyFill(fillSession(l, slots.filter((s) => s !== 'tronc'), c, pool, prevFor));
-      let picked: CoreFamily | null = null;
-      const f = fillSession(l, slots, c, pool, prevFor, {
+    const assign = (w: number, heavySet: Set<Label>) => {
+      let rot = 0;
+      let prevFam: CoreFamily | null = null;
+      return fillWeekVariety({
+        labels, slotsFor, ctx: c, pool, week: w, block,
         // Inventaire : extension-dorsale-ballon (CF5) jamais après une charge lourde.
-        poolFor: (slot) => ((slot === 'charniere' || slot === 'jambes_3') && heavy ? poolNoExtension : null),
-        fillTronc: (st, used, prevUsed) => {
+        poolFor: (l, slot) => ((slot === 'charniere' || slot === 'jambes_3') && heavySet.has(l) ? poolNoExtension : null),
+        fillTronc: (l, st, used, weekUsed) => {
           const n = CORE_FAMILY_ORDER.length;
           const order = [...CORE_FAMILY_ORDER.slice(rot % n), ...CORE_FAMILY_ORDER.slice(0, rot % n)];
           // Jamais la même famille que la séance de core précédente, sauf s'il n'en reste qu'une admissible.
           for (const fam of [...order.filter((x) => x !== prevFam), ...order.filter((x) => x === prevFam)]) {
-            const fill = fillSlot('tronc', st, used, prevUsed, c, troncPool(fam, heavy));
+            const fill = fillSlot('tronc', st, used, weekUsed, c, troncPool(fam, heavySet.has(l)));
             if (fill.cand) {
-              picked = fam;
+              rot = CORE_FAMILY_ORDER.indexOf(fam) + 1;
+              prevFam = fam;
               return fill;
             }
           }
           return { slot: 'tronc', tier: 'e', cand: null, schemaRank: 0 };
         },
       });
-      if (picked) {
-        rot = CORE_FAMILY_ORDER.indexOf(picked) + 1;
-        prevFam = picked;
-      }
-      if (main) heavyBy.set(l, heavy);
-      res.set(l, f);
-      for (const [slot, fill] of f) {
-        if (!fill.cand) continue;
-        (prev.get(slot) ?? prev.set(slot, new Set()).get(slot)!).add(fill.cand.fiche.id);
-        prevAll.add(fill.cand.fiche.id);
-      }
+    };
+    // Séance « à charge lourde » (lecture prudente) : une fiche lourde placée en semaine 1 OU en semaine 2 (le tronc et la charnière ne
+    // tournent pas : ils doivent convenir aux deux jeux) ; point fixe croissant (une séance reconnue lourde le reste).
+    let heavySet = new Set<Label>();
+    let r1 = assign(1, heavySet);
+    let r2 = assign(2, heavySet);
+    for (let i = 0; i < 4; i++) {
+      const next = new Set<Label>([...heavySet, ...labels.filter((l) => heavyFill(r1.fills.get(l)!) || heavyFill(r2.fills.get(l)!))]);
+      if (next.size === heavySet.size) break;
+      heavySet = next;
+      r1 = assign(1, heavySet);
+      r2 = assign(2, heavySet);
     }
-    return res;
+    const res = week % 2 === 1 ? r1 : r2;
+    if (main) {
+      for (const l of labels) heavyBy.set(l, heavySet.has(l));
+      for (const s of res.penurie) penurieVar.add(s);
+    }
+    return res.fills;
   };
   const fills = fillWeek(ctx, true);
   const healthy = ctx.zones.length > 0;
@@ -439,6 +443,16 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     if (j < 0) return [];
     return [...new Set([...fills.get(labels[j])!.values()].flatMap((fl) => fl.cand?.fiche.musclesPrincipaux ?? []))];
   };
+
+  // D34 (PV3-VAR-2) : fiches placées dans les autres séances de la semaine ; classement qui les met en dernier (ordre stable).
+  const weekIdsExcept = (l: Label): Set<string> =>
+    new Set(labels.filter((x) => x !== l).flatMap((x) => [...fills.get(x)!.values()].flatMap((fl) => (fl.cand ? [fl.cand.fiche.id] : []))));
+  // Jamais au prix de la sécurité : même niveau de repli, même plan, même adaptation ; sous plafond (P-CAP) ou en grossesse, aucun changement d'ordre.
+  const freshFirst = <T extends { tier: Tier; key: (number | string)[]; cand: { fiche: { id: string }; adapted: boolean; capped: boolean } }>(list: T[], ids: Set<string>): T[] =>
+    ctx.pregnant || list.some((r) => r.cand.capped)
+      ? list
+      : [...list].sort((a, b) => tierRank(a.tier) - tierRank(b.tier) || Number(a.key[1]) - Number(b.key[1]) || Number(a.cand.adapted) - Number(b.cand.adapted) ||
+          Number(ids.has(a.cand.fiche.id)) - Number(ids.has(b.cand.fiche.id)) || list.indexOf(a) - list.indexOf(b));
 
   // Séances : N emplacements de départ, échauffement, supersets, durée, ajout.
   type Built = { s: DurSession<GenExercise>; actions: string[]; removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> };
@@ -470,12 +484,14 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       // l'ordre du classement V-CLASSE ; sinon cheville_mollet, puis hanche_laterale.
       const st = { label: l, placedSchema: placed };
       const hingePool = heavyBy.get(l) ? poolNoExtension : pool;
-      for (const r of rankSlot('jambes_3', st, used, ctx, hingePool)) {
+      // D34 (PV3-VAR-2) : d'abord les fiches absentes des autres séances de la semaine.
+      const weekIds = weekIdsExcept(l);
+      for (const r of freshFirst(rankSlot('jambes_3', st, used, ctx, hingePool), weekIds)) {
         if (r.cand.fiche.schema !== 'charniere') continue;
         const alt = mkFrom(slot, { slot, tier: r.tier, cand: r.cand, schemaRank: 0 });
         if (alt && splitCapsOk([...current, alt], plafSlot)) return alt;
       }
-      return mkFrom(slot, fillSlot('jambes_3', { ...st, noHinge: true }, used, new Set(), ctx, pool));
+      return mkFrom(slot, fillSlot('jambes_3', { ...st, noHinge: true }, used, weekIds, ctx, pool));
     };
     const exercises: GenExercise[] = [];
     const attempted: SlotKey[] = [];
@@ -637,7 +653,8 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     const used = new Set(s.exercises.map((x) => x.ficheId));
     const placed: Partial<Record<SlotKey, string>> = {};
     for (const x of s.exercises) placed[x.slot] = x.schema;
-    for (const r of rankSlot('jambes_3', { label: s.label, placedSchema: placed }, used, ctx, pool)) {
+    const weekIds = new Set(durSessions.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
+    for (const r of freshFirst(rankSlot('jambes_3', { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
       const alt = buildExercise(r.cand, 'jambes_3', r.tier, ctx);
       if (frac(alt, m) === 1) continue;
       alt.warmupSets = e3Sets(alt, ctx);
@@ -679,7 +696,13 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
         const t = typeOf(s.label);
         if (t !== 'CE' && (def.slot === 'iso_mollets' ? t !== 'BAS' : t !== 'HAUT')) continue;
         if (estimerDuree(s) >= budgetS - TIME.addIfUnderMarginSec) break;
-        const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)));
+        // D34 (PV3-VAR-2, 4) : fiches des autres séances en dernier ; rotation sur deux jeux (k = séances où ce groupe peut aller, borné par 4 séries / semaine).
+        const isoK = Math.min(
+          kept.filter((x) => typeOf(x.label) === 'CE' || (def.slot === 'iso_mollets' ? typeOf(x.label) === 'BAS' : typeOf(x.label) === 'HAUT')).length,
+          Math.floor(ISOLATION.maxSetsPerGroupWeek / ISOLATION.setsPerExercise),
+        );
+        const weekUsed = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((e) => e.ficheId)));
+        const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
         if (!ex) continue;
         const trial = { ...s, exercises: [...s.exercises, ex] };
         if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
@@ -931,8 +954,22 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     ...(cardioRole || cardioSessions.length ? { cardioRole, cardioSessions, cardioMinWeek } : {}),
     cardioOption: ded.option,
     penurie: [...new Set(sessions.flatMap((s) => s.exercises).filter((e) => e.variantNom.endsWith(SALLE_HOME_SUFFIX)).map((e) => e.schema))].sort(),
+    penurieVariete: [...penurieVar].sort(),
   };
   return { ok: true, program, messages };
+}
+
+/**
+ * Programme d'un bloc de 4 semaines. D34 (PV3-VAR-4, E-02) : la semaine 1 (jeu 1) est le programme ; la semaine 2 est générée par le même
+ * pipeline (mêmes règles de sécurité, de durée, de plafonds et de supersets) puis chaque accessoire tournant reçoit sa version des semaines
+ * paires (`alt`) si elle garde séries et répétitions et si V-VOL / V-PLAF tiennent dans le jeu 2 (rotation.ts). Semaine 3 = semaine 1.
+ */
+export function generateProgram(input: GeneratorInput): GenerateResult {
+  const r1 = generateWeek(input, 1);
+  if (!r1.ok) return r1;
+  const r2 = generateWeek(input, 2);
+  if (r2.ok) mergeRotation(r1.program, r2.program, buildCtx(input));
+  return r1;
 }
 
 function computeAchat(
@@ -1052,6 +1089,16 @@ function explainCardio(
   return [base[0], `${base[1]}${add}`];
 }
 
+/** Exercice généré -> exercice stocké (sans `alt`). D34 : `rotation` = emplacement dont la fiche change d'une semaine à l'autre. */
+function plannedOf(e: GenExercise): PlannedExercise {
+  return {
+    movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
+    supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
+    slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, adaptation: e.adaptation, substitut: e.substitut,
+    ...(e.rotation ? { rotation: true } : {}),
+  };
+}
+
 /** Conversion vers le modèle stocké (Program.days / PlannedExercise de src/data/model.ts). */
 export function toProgramDays(p: GenProgram): ProgramDay[] {
   const item = (w: { ficheId: string; variantId: string; nom: string; sec: number } | null) =>
@@ -1063,13 +1110,7 @@ export function toProgramDays(p: GenProgram): ProgramDay[] {
     estimatedMin: s.estimatedMin,
     warmup: { generalSec: s.warmup.generalSec, general: item(s.warmup.general), mobility: s.warmup.mobility.map((m) => item(m)!), cooldown: item(s.warmup.cooldown) },
     exercises: [
-      ...s.exercises.map(
-        (e): PlannedExercise => ({
-          movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
-          supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
-          slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, adaptation: e.adaptation, substitut: e.substitut,
-        }),
-      ),
+      ...s.exercises.map((e): PlannedExercise => ({ ...plannedOf(e), ...(e.alt ? { alt: plannedOf(e.alt) } : {}) })),
       // B4 : bloc de cardio après la musculation et le retour au calme (cardio-regles.md §3.4 b).
       ...(s.cardio ? [cardioPlanned(s.cardio)] : []),
     ],

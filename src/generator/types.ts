@@ -84,6 +84,8 @@ export interface GeneratorInput {
   options?: {
     /** Option « gagner du temps » : supersets dès la génération (V-SUP). Défaut : non. */
     gagnerDuTemps?: boolean;
+    /** D34 (PV3-VAR-4, 6) : bloc de 4 semaines (1, 2…) ; absent = 1. Le bloc 2 change le noyau stable et les jeux d'accessoires. */
+    bloc?: number;
     /** Option « ajouter du fonctionnel » (emplacement 9). Défaut : non. */
     ajouterFonctionnel?: boolean;
     /** Charge habituelle déclarée (« pour 10 répétitions »), par id de variante ou de fiche. */
@@ -138,6 +140,8 @@ export type SessionLabel = string;
 export type Tier = 'a' | 'b' | 'c' | 'd' | 'e';
 
 export interface GenExercise extends PlannedExercise {
+  /** D34 (PV3-VAR-4) : version de l'exercice des semaines paires (jeu 2) quand elle diffère (fiche ou superset). Absent = identique. */
+  alt?: GenExercise;
   slot: SlotKey;
   ficheId: string;
   nom: string;
@@ -303,6 +307,11 @@ export interface GenProgram {
   cardioOption?: CardioOptionState | null;
   /** D33 (PV3-SALLE-1) : plans (schémas) où une variante « maison » a été placée en salle par l'exception de pénurie. */
   penurie?: string[];
+  /**
+   * D34 (PV3-VAR-1, 2, 6 point 4) : plans (schémas) où une règle de variété a été relâchée faute de fiches (même fiche deux fois dans la
+   * semaine, 3e fiche d'une famille, deux fiches d'une famille dans une séance). Vide = variété tenue.
+   */
+  penurieVariete?: string[];
 }
 export type GenerateResult =
   | { ok: true; program: GenProgram; messages: GenMessage[] }

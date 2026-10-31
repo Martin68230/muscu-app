@@ -18,6 +18,7 @@ import { SessionPlayer } from './ui/screens/Player';
 import { loadPlayerData, type PlayerData } from './ui/session/launch';
 import { list } from './data/repo';
 import { planReprise } from './session/reprise-plan';
+import { programWeek, rotationFreeze, withProgramWeek } from './session/program';
 import { repriseOf } from './session/missed-config';
 import { saveReprise } from './session/missed-store';
 
@@ -77,9 +78,11 @@ export function App() {
     if (!profile) return;
     const data = await loadPlayerData(fiches, profile);
     // R-DEM (seance-manquee-v1.md) : palier de reprise calculé et enregistré au démarrage d'une séance de musculation.
-    const [profiles, programs, sessions, sets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
-    const plan = planReprise(program.days[dayIndex], { reprise: repriseOf(profiles[0]), sessions, programs, sets, now: new Date(), ctx: data.ctx });
-    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, plan?.state.actif ? { day: plan.day } : {});
+    const [profiles, programs, sessions, sets, injuries] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets'), list('injuries')]);
+    // D34 (PV3-VAR-4, 5 d) : jeu de la semaine en cours (gel après une douleur) AVANT la reprise douce, qui s'applique sur cette copie.
+    const weekDay = withProgramWeek(program.days[dayIndex], programWeek(program, Date.now()), rotationFreeze(sets, injuries, Date.now()));
+    const plan = planReprise(weekDay, { reprise: repriseOf(profiles[0]), sessions, programs, sets, now: new Date(), ctx: data.ctx });
+    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : weekDay });
     if (plan) await saveReprise(() => plan.state);
     data.repriseActive = !!plan?.state.actif;
     // Un rechargement pendant la séance revient sur l'Accueil, qui propose de la reprendre.
