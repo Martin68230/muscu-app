@@ -18,6 +18,10 @@ import { mk, type MkOpts } from './generator-helpers';
 // l'échauffement (« Marche rapide continue », VARIANT_NAME_ALONE) ; à nom inchangé, 50 cas changent, tous voulus : force intermédiaire
 // C / F (montée sur marche aux haltères légers jamais en 4-6), avancé en salle F (squat sur bosu en réserve 2, good morning et rowing
 // Pendlay plafonnés à 3 séries, DOSE_LIMITS).
+// Référence régénérée le 31/10/2026 pour D33 (docs/D33-bilan.md) après comparaison détaillée avant / après : 49 cas, tous voulus :
+// 36 perte de gras à 3 jours (séance de cardio incluse par défaut, PV3-CAR-1 : message et blocs réduits à 1) ; 12 corps entier à 2 jours,
+// intermédiaire, profils C et F, 60 min et sans limite (muscle, perte de gras, muscle + force) : plafond 12 (PV3-PLAF-1), un squat ajouté en
+// séance B ; 4 jours : 2e charnière au poids du corps en BAS-A (G3). Le filtre « salle » ne change rien ici (réglage absent de la grille).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

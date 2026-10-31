@@ -97,7 +97,7 @@ export function e3Sets(ex: GenExercise, ctx: Ctx): WarmupSet[] {
   // Échelon inférieur seulement si la fiche est placée sans adaptation ni remplacement (prudence).
   const f = ctx.fichesById.get(ex.ficheId);
   if (f && !ex.adaptations.length && !ex.replaces) {
-    const lower = allowedVariants(f, ctx).map((v) => v.echelon).filter((e) => e < ex.echelon);
+    const lower = allowedVariants(f, ctx, { warmup: true }).map((v) => v.echelon).filter((e) => e < ex.echelon);
     if (lower.length) echelon = Math.max(...lower);
   }
   return [{ reps: WARMUP.e3BodyweightReps, percent: null, echelon }];

@@ -153,6 +153,8 @@ export const msg = {
   objSport: () => m('V-MSG-OBJ', 'Les programmes par sport arrivent dans une prochaine version.'),
   /** D31 (cardio-regles.md §3.2ter B (c), `kine`) : séance de sport incluse. */
   sportMatch: () => m('V-MSG-SPORT-MATCH', 'Évite de faire ta séance de cardio la veille d’un match, et le lendemain d’un match en cas de courbatures.'),
+  /** D33 (programmes-v3.md §6, PV3-CAR-3) : texte de `coach`, confirmé par `kine`. */
+  cardioDefaut: () => m('V-MSG-CARDIO-DEFAUT', 'Tu as choisi de perdre du gras : une séance de cardio facile est ajoutée. Tu peux la retirer dans ton profil.'),
 };
 
 export function dedupe(ms: GenMessage[]): GenMessage[] {

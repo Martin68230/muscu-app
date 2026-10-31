@@ -3,6 +3,7 @@ Aucune valeur n'entre dans le code sans une entrée ici avec source et statut va
 Format d'une entrée : règle/valeur ; public concerné ; source (URL) ; niveau de preuve ; vérifié le ; limites ; statut (OK / PROVISOIRE / NON SOURCÉ) ; contrôlé par `relecteur` le.
 Fichiers :
 - structure-programmes.md : structure des programmes v2 (séance type, répartition de 1 à 6 jours, volume par muscle, intégration core / cardio / supersets, fiches manquantes, tests T-D25) ; brouillon `coach` du 30/10/2026, à contrôler par `kine` puis `relecteur`.
+- programmes-v3.md : programmes plus variés (décisions D33) : variété entre séances et semaines, R-PLIO appliquée aux programmes générés, programme par sport, isolation étendue, plafond 12, cardio par défaut en perte de gras, temps gagné réinvesti, salle, assouplissements de supersets (proposés), tests T-D33 ; brouillon `coach` du 31/10/2026, à contrôler par `kine` puis `relecteur`.
 - program-logic.md : bases ACSM 2026, ordre, répartition, volume, charges, supersets, cardio, rotation, progression, fonctionnel.
 - load-calibration.md : étalonnage, réserve, double progression.
 - goal-resolver.md : fusion des objectifs.

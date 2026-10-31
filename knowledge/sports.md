@@ -20,8 +20,8 @@ Un sport combine plusieurs familles : foot = sprints + endurance intermittente +
 
 ## Règles de conception (à valider par `kine`)
 1. Sport coché -> 1 à 2 blocs courts par semaine de sa famille, intégrés à l'échauffement ou en fin de séance (10-15 min), pas de séance en plus si le temps manque.
-2. Foot -> proposer le FIFA 11+ (ou ses éléments) à l'échauffement ; nordique progressif (volume faible au départ, courbatures fortes les premières fois).
-3. Volley, raquettes, hand -> éléments du programme d'épaule OSTRC à l'échauffement.
+2. Foot -> proposer des exercices inspirés du FIFA 11+ (ou de ses éléments) à l'échauffement ; nordique progressif (volume faible au départ, courbatures fortes les premières fois). L'app n'affiche pas le nom du programme.
+3. Volley, raquettes, hand -> exercices d'épaule de prévention, inspirés des programmes d'épaule publiés (OSTRC), à l'échauffement. L'app n'affiche pas le nom du programme.
 4. Danse, volley -> réceptions de saut contrôlées, équilibre sur une jambe (jamais les yeux fermés), renforcement des mollets et chevilles.
-   Sauts : tous de niveau intermédiaire, avec la réception contrôlée (reception-saut-stabilisee) en entrée ; proposés en priorité aux personnes qui pratiquent un sport de saut (volley, danse, foot) ; décision D3 du 22/10/2026.
+   Sauts : ouverts à tous les niveaux avec version douce d'abord pour le débutant (décision D30 n° 1, 30/10/2026), avec la réception contrôlée (reception-saut-stabilisee) en entrée ; proposés en priorité aux personnes qui pratiquent un sport de saut (volley, danse, basket, hand) ; décision D3 du 22/10/2026. Aucune pliométrie programmée pour le foot et les raquettes (voir programmes-v3.md).
 5. Aucun travail de saut intensif la veille d'un match ; fatigue/douleur -> réduire.

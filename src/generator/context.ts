@@ -55,6 +55,13 @@ export interface Ctx {
   gagnerDuTemps: boolean;
   /** D30 : accès à une salle (lieu « salle » ou réglage « j'ai accès à une salle ») : ouvre les tags de MACHINE_TAGS. */
   gym: boolean;
+  /**
+   * D33 (PV3-SALLE-1, T-D33-26a / 26d) : filtre « salle » actif seulement avec le réglage « j'ai accès à une salle » (le lieu « salle »
+   * seul ne change rien, T-D33-26d) ; jamais en grossesse / post-partum (lecture prudente : on ne retire pas d'options douces).
+   */
+  salleFilter: boolean;
+  /** D33 (PV3-PLAF-1, G4) : semaine allégée (3.5) : point d'extension, aucune semaine allégée de force n'existe dans le générateur. */
+  lightWeek: boolean;
   /** D30 (§5.4) : « je peux sortir dehors ». */
   exterieur: boolean;
   /** Sports déclarés. */
@@ -171,6 +178,8 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     fonctionnelEnabled: !!opts.ajouterFonctionnel || (goalFamily === 'sante' && !!mainGoal && GOALS_WITH_FONCTIONNEL.includes(mainGoal)),
     gagnerDuTemps: !!opts.gagnerDuTemps,
     gym,
+    salleFilter: !!p.salleAccess && !pregnant,
+    lightWeek: false,
     exterieur: !!p.exterieur,
     sports: [...(p.sports ?? [])],
     isoOpen: level !== 'debutant' || !!opts.isoDebutantOuverte,

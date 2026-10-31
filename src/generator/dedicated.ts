@@ -95,12 +95,17 @@ export function planDedicated(i: DedicatedInput): DedicatedPlan {
   if (kind === 'option' && i.want < CARDIO_OPTION.minForceDays) disabledReason = D30_TEXT.optionFewDays;
   else if (legZone) disabledReason = D30_TEXT.optionLegZone;
   else if (cap <= 0) disabledReason = D30_TEXT.optionNoDay;
-  const accepted = kind === 'option' ? i.setting === true : kind === 'sport' ? i.setting !== false : true;
+  // D33 n° 5 (PV3-CAR-1) : perte de gras en rang 1 : séance incluse par défaut (absent = oui ; false = retirée par la personne).
+  const defaultOn = kind === 'sport' || (kind === 'option' && !!i.mainGoal && CARDIO_OPTION.defaultOnGoals.includes(i.mainGoal));
+  const accepted = kind === 'sante' ? true : defaultOn ? i.setting !== false : i.setting === true;
   const option: CardioOptionState | null = kind === 'sante' ? null : { kind, offered: true, accepted, disabledReason };
   if (disabledReason || !accepted) return { ...none, option };
   const prev = (d: number) => (d + 6) % 7;
   let best: { days: number[]; key: number[] } | null = null;
-  for (const c of combos(candidates, cap)) {
+  // PV3-CAR-2 / 3.2bis : deux dédiées jamais consécutives (semaine circulaire) ; sinon une de moins (jamais forcée).
+  const spaced = (c: number[]) => c.every((d, k) => c.every((e, j) => j === k || Math.min(Math.abs(d - e), 7 - Math.abs(d - e)) > 1));
+  for (let n = cap; n > 0 && !best; n--) for (const c of combos(candidates, n)) {
+    if (!spaced(c)) continue;
     const all = [...c, ...i.forceDays].sort((a, b) => a - b);
     const gaps = all.slice(1).map((d, k) => d - all[k]);
     if (all.length > 1) gaps.push(7 + all[0] - all[all.length - 1]);

@@ -129,7 +129,9 @@ describe('Cardio secondaire : bloc court après la musculation (§3.4, goal-reso
           const p = ok(run({ days: 3, level, dur, profile: 'C' }, [main, 'cardio']));
           const blocks = blocksOf(p);
           expect(blocks.length).toBeLessThanOrEqual(CARDIO.secondaryBlocksMax);
-          expect(p.cardioSessions ?? []).toHaveLength(0);
+          // D33 n° 5 (PV3-CAR-1) : perte de gras : séance dédiée incluse par défaut (blocs réduits à 1, 3.2ter A).
+          expect(p.cardioSessions ?? []).toHaveLength(main === 'perte_gras' ? (level === 'avance' ? 2 : 1) : 0);
+          if (main === 'perte_gras') expect(blocks.length).toBeLessThanOrEqual(1);
           expect(p.sessions).toHaveLength(3);
           for (const s of p.sessions.filter((x) => x.cardio))
             expect(Math.max(...s.cardio!.weekMin)).toBeLessThanOrEqual(Math.floor((s.estimatedSec / 60) * CARDIO.secondaryMaxShare));

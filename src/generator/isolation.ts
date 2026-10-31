@@ -21,6 +21,17 @@ export function isoEligible(ctx: Ctx, split: GenProgram['split'], nDays: number)
 export type IsoDef = (typeof ISOLATION.slots)[number];
 
 /**
+ * Fiche acceptable pour un emplacement d'isolation : schéma, muscle principal exigé ; D33 (PV3-ISO-6) : liste fermée d'identifiants
+ * (élévation ou curl), jamais une fiche à deltoïdes antérieurs ou triceps principaux (développé au-dessus de la tête, PV3-ISO-3).
+ * Aucune fiche : emplacement vide, sans erreur.
+ */
+export function isoFicheFits(f: Fiche, def: IsoDef): boolean {
+  if (f.schema !== def.schema || !f.musclesPrincipaux.includes(def.muscle)) return false;
+  if (!def.ids.includes(f.id)) return false;
+  return !f.musclesPrincipaux.some((m) => ISOLATION.excludedPrincipal.includes(m));
+}
+
+/**
  * Exercice d'isolation d'un groupe : fiche du schéma dont le muscle principal est le groupe visé, sûre pour le profil (resolveFiche :
  * matériel, niveau, lignes de zone, exercice technique exclu), jamais déjà dans la séance. Retiré dès le niveau 1 d'une zone qu'il
  * sollicite (STR-ISO-2). Débutant : fiche de niveau « débutant » seulement (STR-ISO-3) ; élévation latérale : charge la plus légère,
@@ -29,7 +40,7 @@ export type IsoDef = (typeof ISOLATION.slots)[number];
 export function isoExercise(def: IsoDef, ctx: Ctx, pool: readonly Fiche[], used: ReadonlySet<string>): GenExercise | null {
   if (ctx.zones.some((z) => !z.isG && z.level >= 1 && def.zones.includes(z.key))) return null;
   for (const f of pool) {
-    if (f.schema !== def.schema || !f.musclesPrincipaux.includes(def.muscle) || used.has(f.id)) continue;
+    if (!isoFicheFits(f, def) || used.has(f.id)) continue;
     if (ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0) continue;
     const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces);
     if (!cand) continue;

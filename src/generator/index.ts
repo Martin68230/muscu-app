@@ -7,11 +7,12 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf,
+  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin } from './impact';
 import { isoEligible, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
+import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
   blockCap, blocksForRank, cardioItem, cardioLevel, cardioRankOf, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, isHeavyLegsSession, legLoad,
@@ -114,53 +115,27 @@ export function coverageOf(sessions: { exercises: GenExercise[] }[]): Record<GG,
 }
 
 // ----- Volume (V-VOL, V-PLAF) -----
-const frac = (e: GenExercise, m: string): number => {
-  const match = (x: string) => (m === 'deltoides' ? x.startsWith(VOLUME.deltoidPrefix) : x === m);
-  if (e.musclesPrincipaux.some(match)) return 1;
-  if (e.musclesSecondaires.some(match)) return VOLUME.secondaryWeight;
-  return 0;
-};
-const sessionVol = (s: { exercises: GenExercise[] }, m: string) => s.exercises.reduce((a, e) => a + e.sets * frac(e, m), 0);
-const musclesOf = (s: { exercises: GenExercise[] }[]) => [...new Set(s.flatMap((x) => x.exercises.flatMap((e) => [...e.musclesPrincipaux, ...e.musclesSecondaires])))].sort();
-const workSets = (s: { exercises: GenExercise[] }) => s.exercises.reduce((a, e) => a + e.sets, 0);
-
-/**
- * D25 (STR-REP-4, lecture la plus prudente) : en plus de V-PLAF, tous les tirages comptent pour « le dos » (grand dorsal ou rhomboïdes en
- * principal, ou schéma de tirage) : au plus 10 séries de tirage par séance, d'où au plus 3 tirages à 3 séries en PULL (T-D25-07).
- */
-function splitCapsOk(exercises: GenExercise[]): boolean {
-  if (!sessionCapsOk({ exercises })) return false;
-  const back = exercises.reduce(
-    (a, e) => a + (e.schema === 'tirage_h' || e.schema === 'tirage_v' || e.musclesPrincipaux.some((m) => m === 'grand_dorsal' || m === 'rhomboides') ? e.sets : 0),
-    0,
-  );
-  return back <= VOLUME.maxPerMuscleSession;
-}
-function sessionCapsOk(s: { exercises: GenExercise[] }): boolean {
-  if (s.exercises.length > VOLUME.maxExercisesPerSession) return false;
-  if (workSets(s) > VOLUME.maxWorkSetsPerSession) return false;
-  return musclesOf([s]).every((m) => sessionVol(s, m) <= VOLUME.maxPerMuscleSession);
-}
-function weekCapsOk(ss: { exercises: GenExercise[] }[]): boolean {
-  return musclesOf(ss).every((m) => ss.reduce((a, s) => a + sessionVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
-}
+// D33 : frac, sessionVol, musclesOf, plafonds par séance (G1 à G4) et hebdomadaire : plaf.ts.
 
 function removeEx(s: DurSession<GenExercise>, e: GenExercise) {
   s.exercises = s.exercises.filter((x) => x !== e).map((x) => (e.supersetGroup && x.supersetGroup === e.supersetGroup ? { ...x, supersetGroup: null } : x));
 }
 
 /**
- * V-PLAF : au plus 10 séries fractionnaires par muscle et par séance (baisse de séries ou retrait d'un accessoire, jamais sous 2 séries,
+ * V-PLAF : au plus 10 (D33 : 12 pour intermédiaire et avancé, G1 à G4, plaf.ts) séries fractionnaires par muscle et par séance (baisse de séries ou retrait d'un accessoire, jamais sous 2 séries,
  * jamais le noyau du type). STR-REP-3 (2) : au-delà de 20 séries par semaine, on retire l'emplacement d'indice le plus élevé qui charge
  * ce muscle comme principal, en commençant par la séance la plus tardive (C, puis B, puis A ; T-D25-24), sans baisser la dose ; un
  * emplacement ainsi retiré n'est jamais rajouté (V-DUREE « ajout » a déjà eu lieu).
  */
-function enforcePlaf(sessions: DurSession<GenExercise>[]) {
+/** D33 (PV3-PLAF-2) : repli de `jambes_3` qui ne charge pas le muscle `m` comme principal (curl d'ischios seul -> cheville_mollet -> hanche_laterale). */
+type J3Fallback = (s: DurSession<GenExercise>, e: GenExercise, m: string) => GenExercise | null;
+
+function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback) {
   const noyau = (s: DurSession<GenExercise>) => TYPE_NOYAU[typeOf(s.label)];
   for (let guard = 0; guard < 300; guard++) {
     let fixed = false;
     for (const s of sessions) {
-      const m = musclesOf([s]).find((x) => sessionVol(s, x) > VOLUME.maxPerMuscleSession);
+      const m = musclesOf([s]).find((x) => sessionVol(s, x) > plaf.cap(s.exercises, x));
       if (!m) continue;
       for (const slot of PLAF_ORDER) {
         const e = s.exercises.find((x) => x.slot === slot && frac(x, m) > 0);
@@ -185,7 +160,12 @@ function enforcePlaf(sessions: DurSession<GenExercise>[]) {
         if (noyau(s).includes(slot)) continue;
         const e = s.exercises.find((x) => x.slot === slot && frac(x, m) === 1);
         if (!e) continue;
+        // D33 (PV3-PLAF-2) : une 2e charnière en `jambes_3` qui ferait dépasser 20 est d'abord remplacée par le repli suivant de la
+        // chaîne, AVANT tout retrait par STR-REP-3 (qui reste le dernier recours).
+        const alt = slot === 'jambes_3' && e.schema === 'charniere' ? j3Fallback?.(s, e, m) ?? null : null;
+        const at = s.exercises.indexOf(e);
         removeEx(s, e);
+        if (alt) s.exercises = [...s.exercises.slice(0, at), alt, ...s.exercises.slice(at)];
         fixed = true;
         break;
       }
@@ -215,6 +195,7 @@ function enforcePlaf(sessions: DurSession<GenExercise>[]) {
 
 /** V-VOL (famille muscle, intermédiaire/avancé, hors grossesse) : +1 série (max 4) tant que durée et plafonds le permettent ; sinon V-MSG-VOL. */
 function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession<GenExercise>) => number, ctx: Ctx, out: GenMessage[]) {
+  const plaf = makePlaf(ctx, 'auto');
   if (ctx.family !== 'muscle' || ctx.level === 'debutant' || ctx.pregnant) return;
   // STR-REP-14 (a) : zone épaule ou dos au niveau >= 2 : aucune série ajoutée (pas de compensation), V-MSG-VOL s'affiche.
   const noAdd = ctx.zones.some((z) => !z.isG && z.level >= 2 && (z.key === 'epaule' || z.key === 'dos'));
@@ -232,7 +213,7 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
           if (!e.musclesPrincipaux.some((x) => (m === 'deltoides' ? x.startsWith(VOLUME.deltoidPrefix) : x === m))) continue;
           const trial = { ...s, exercises: s.exercises.map((x) => (x === e ? { ...x, sets: x.sets + 1 } : x)) };
           const all = sessions.map((x) => (x === s ? trial : x));
-          const capsOk = typeOf(s.label) === 'CE' ? sessionCapsOk(trial) : splitCapsOk(trial.exercises);
+          const capsOk = typeOf(s.label) === 'CE' ? sessionCapsOk(trial, plaf) : splitCapsOk(trial.exercises, plaf);
           if (estimerDuree(trial) <= budget(s) && capsOk && weekCapsOk(all)) {
             s.exercises = trial.exercises;
             done = true;
@@ -285,6 +266,9 @@ function causeOf(slot: SlotKey, label: Label, fill: SlotFill, healthFree: SlotFi
 /** Programme complet. */
 export function generateProgram(input: GeneratorInput): GenerateResult {
   const ctx = buildCtx(input);
+  // D33 (PV3-PLAF-1, G2) : emplacements prévus (placement, ajout §4.4) : 12 ; ajouts automatiques (isolation ; V-VOL dans applyVolume) : 11.
+  const plafSlot = makePlaf(ctx, 'slot');
+  const plafAuto = makePlaf(ctx, 'auto');
   const msgs: GenMessage[] = [];
   const p = input.profile;
   const want = p.daysPerWeek;
@@ -470,11 +454,11 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       ex.warmupSets = e3Sets(ex, ctx);
       return ex;
     };
-    // §2.2 : jambes_3 = charnière seulement si aucun muscle ne dépasse 10 séries fractionnaires une fois placée ; sinon cheville_mollet,
+    // §2.2 : jambes_3 = charnière seulement si aucun muscle ne dépasse le plafond V-PLAF (10, ou 12 avec G1 à G4, plaf.ts) une fois placée ; sinon cheville_mollet,
     // puis hanche_laterale (fiche jamais déjà placée dans la séance).
     const mk = (slot: SlotKey, current: GenExercise[]): GenExercise | null => {
       const ex = mkFrom(slot, f.get(slot));
-      if (slot !== 'jambes_3' || !ex || ex.schema !== 'charniere' || splitCapsOk([...current, ex])) return ex;
+      if (slot !== 'jambes_3' || !ex || ex.schema !== 'charniere' || splitCapsOk([...current, ex], plafSlot)) return ex;
       const placed: Partial<Record<SlotKey, string>> = {};
       const used = new Set<string>();
       for (const [k, fl] of f) {
@@ -489,7 +473,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       for (const r of rankSlot('jambes_3', st, used, ctx, hingePool)) {
         if (r.cand.fiche.schema !== 'charniere') continue;
         const alt = mkFrom(slot, { slot, tier: r.tier, cand: r.cand, schemaRank: 0 });
-        if (alt && splitCapsOk([...current, alt])) return alt;
+        if (alt && splitCapsOk([...current, alt], plafSlot)) return alt;
       }
       return mkFrom(slot, fillSlot('jambes_3', { ...st, noHinge: true }, used, new Set(), ctx, pool));
     };
@@ -503,7 +487,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       }
     } else {
       // STR-REP-4 : emplacements remplis = min(emplacements du type, N de départ, k) où k s'arrête au premier emplacement de force qui
-      // ferait dépasser 10 séries fractionnaires à un muscle (le tronc et le fonctionnel restent possibles). Un emplacement écarté pour
+      // ferait dépasser V-PLAF (10 ou 12, plaf.ts) à un muscle (le tronc et le fonctionnel restent possibles). Un emplacement écarté pour
       // le plafond n'est jamais rajouté (STR-REP-3).
       let capped = false;
       for (const slot of sl.slice(0, dur.startNSplit)) {
@@ -512,7 +496,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
         if (force && capped) continue;
         const ex = mk(slot, exercises);
         if (!ex) continue;
-        if (!splitCapsOk([...exercises, ex])) {
+        if (!splitCapsOk([...exercises, ex], plafSlot)) {
           if (force) capped = true;
           continue;
         }
@@ -536,7 +520,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
         attempted.push(slot);
         if (!ex) continue;
         const trial = { ...s, exercises: [...s.exercises, ex] };
-        if (estimerDuree(trial) <= Math.min(budgetSec, addBudgetSec) && (type === 'CE' ? sessionCapsOk(trial) : splitCapsOk(trial.exercises))) s = trial;
+        if (estimerDuree(trial) <= Math.min(budgetSec, addBudgetSec) && (type === 'CE' ? sessionCapsOk(trial, plafSlot) : splitCapsOk(trial.exercises, plafSlot))) s = trial;
         else break;
       }
     }
@@ -648,7 +632,21 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     meta.set(l, { removedCore: chosen.removedCore, overBudget: chosen.overBudget, attempted: chosen.attempted, warm: chosen.warm });
   }
 
-  enforcePlaf(durSessions);
+  // D33 (PV3-PLAF-2) : repli de jambes_3 (même chaîne et même classement que le remplissage, fiche absente de la séance, plafonds de séance).
+  const j3Fallback: J3Fallback = (s, e, m) => {
+    const used = new Set(s.exercises.map((x) => x.ficheId));
+    const placed: Partial<Record<SlotKey, string>> = {};
+    for (const x of s.exercises) placed[x.slot] = x.schema;
+    for (const r of rankSlot('jambes_3', { label: s.label, placedSchema: placed }, used, ctx, pool)) {
+      const alt = buildExercise(r.cand, 'jambes_3', r.tier, ctx);
+      if (frac(alt, m) === 1) continue;
+      alt.warmupSets = e3Sets(alt, ctx);
+      if (!splitCapsOk(s.exercises.map((x) => (x === e ? alt : x)), plafSlot)) continue;
+      return alt;
+    }
+    return null;
+  };
+  enforcePlaf(durSessions, plafSlot, j3Fallback);
   applyVolume(durSessions, (s) => budget.get(s.label) ?? dSec, ctx, msgs);
 
   // STR-REP-14 (b) : une séance HAUT, PUSH ou PULL de moins de 3 exercices de force devient un jour léger (jamais une séance presque vide).
@@ -684,7 +682,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
         const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)));
         if (!ex) continue;
         const trial = { ...s, exercises: [...s.exercises, ex] };
-        if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises) : sessionCapsOk(trial))) continue;
+        if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
         if (!weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
         s.exercises = trial.exercises;
         inSession++;
@@ -801,6 +799,8 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
       });
     });
     if (ded.kind === 'sport' && cardioSessions.length) extraMsgs.push(msg.sportMatch());
+    // D33 (PV3-CAR-3) : séance ajoutée par défaut (perte de gras), réglage non touché par la personne.
+    if (ded.kind === 'option' && cardioSessions.length && input.options?.seanceCardio === undefined && CARDIO_OPTION.defaultOnGoals.includes(ctx.goalKey ?? '')) extraMsgs.push(msg.cardioDefaut());
   }
   // 3.2bis (OMS, OK) : jamais plus de 300 min modérées par semaine (plafond de sécurité, jamais une cible) : la dernière dédiée saute.
   const weekTotal = (w: number) =>
@@ -930,6 +930,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
     achat,
     ...(cardioRole || cardioSessions.length ? { cardioRole, cardioSessions, cardioMinWeek } : {}),
     cardioOption: ded.option,
+    penurie: [...new Set(sessions.flatMap((s) => s.exercises).filter((e) => e.variantNom.endsWith(SALLE_HOME_SUFFIX)).map((e) => e.schema))].sort(),
   };
   return { ok: true, program, messages };
 }

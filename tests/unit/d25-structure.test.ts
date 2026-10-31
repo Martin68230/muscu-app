@@ -139,14 +139,16 @@ describe('T-D25-01 à 06 : répartition et calendrier (STR-REP-1, 2, 8)', () => 
 });
 
 describe('T-D25-07 à 11 : plafonds, volume, durée, ordre de coupe (V-PLAF, STR-REP-3, 4, §1.1)', () => {
-  it('T-D25-07 : par séance au plus 8 exercices, 24 séries, 10 séries fractionnaires par muscle, 4 séries par exercice ; PULL : 3 tirages', () => {
+  // D33 (PV3-PLAF-1) : 12 séries fractionnaires par muscle pour l'intermédiaire et l'avancé (emplacements prévus), PULL à 4 tirages permis
+  // si le total hebdomadaire reste <= 20 (T-D33-21, T-D33-22) ; débutant : 10 (d33-programmes-v3.test.ts).
+  it('T-D25-07 : par séance au plus 8 exercices, 24 séries, 12 séries fractionnaires par muscle (D33), 4 séries par exercice ; PULL : 4 tirages', () => {
     for (const p of [prog(PS[4]()), prog(PS[6]()), prog(PS[7]()), prog(PS[10]())]) {
       for (const s of p.sessions) {
         expect(s.exercises.length).toBeLessThanOrEqual(VOLUME.maxExercisesPerSession);
         expect(s.exercises.reduce((a, e) => a + e.sets, 0)).toBeLessThanOrEqual(VOLUME.maxWorkSetsPerSession);
         expect(s.exercises.every((e) => e.sets <= VOLUME.maxSetsPerExercise)).toBe(true);
-        for (const m of muscles(p)) expect(sessVol(s.exercises, m), `${s.label} ${m}`).toBeLessThanOrEqual(VOLUME.maxPerMuscleSession);
-        if (typeOf(s.label) === 'PULL') expect(s.exercises.filter((e) => e.slot.startsWith('tirage') && e.sets >= 3).length).toBeLessThanOrEqual(3);
+        for (const m of muscles(p)) expect(sessVol(s.exercises, m), `${s.label} ${m}`).toBeLessThanOrEqual(VOLUME.maxPerMuscleSessionSlots);
+        if (typeOf(s.label) === 'PULL') expect(s.exercises.filter((e) => e.slot.startsWith('tirage') && e.sets >= 3).length).toBeLessThanOrEqual(4);
       }
     }
   });

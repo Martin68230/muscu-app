@@ -13,7 +13,7 @@
 - `knowledge/exercices/` : fiches d'exercices (`pilote/`, `vague1/lot-XX/`, `ecartees/` ignoré), `CAMPAGNE.md`, `CHAINES-A-CORRIGER.json` (vide), `CORRESPONDANCE-GYMVISUAL.tsv` + `CORRESPONDANCE-REVUE-coach.tsv` (table D22, texte seulement). Brouillon : `exercise-library-draft.csv`.
 
 ## Code de l'app (`src/`, PWA React + TypeScript + IndexedDB)
-- `src/generator/` : générateur de programme (index.ts, slots.ts, days.ts, config.ts = valeurs et statuts, duration.ts = supersets / durée, core.ts, cardio.ts, dose.ts, safety.ts, messages.ts).
+- `src/generator/` : générateur de programme (index.ts, slots.ts, days.ts, config.ts = valeurs et statuts, duration.ts = supersets / durée, core.ts, cardio.ts, dose.ts, safety.ts, messages.ts, plaf.ts = plafonds de séries par séance et par semaine, D33).
 - `src/session/` : lecteur de séance et historique (engine.ts, timer.ts, store.ts, progression*.ts, calendar.ts, missed*.ts = séance manquée, reprise-plan.ts, summary*.ts).
 - `src/data/` : modèle, base locale, import / export, validation, profil, blessures (model.ts, db.ts, repo.ts, backup.ts, validate.ts, injury-rules.ts, fiches.ts). `src/ui/` : écrans et composants (screens/, session/, TabBar, MissedCard…). `src/app.tsx`, `main.tsx`, `styles.css`.
 

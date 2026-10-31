@@ -482,14 +482,15 @@ describe('T22-T26 : dose, supersets, volume (V-DOSE, V-ORDRE, V-SUP, V-VOL, V-PL
           }
     expect(pairs).toBeGreaterThan(0);
   }, 300000);
-  it('T26 : muscle intermédiaire 2 jours : <= 10 séries fractionnaires par muscle et par séance, <= 20 par semaine, V-MSG-VOL sinon', () => {
+  // D33 (PV3-PLAF-1) : 12 pour l'intermédiaire (10 auparavant).
+  it('T26 : muscle intermédiaire 2 jours : <= 12 séries fractionnaires par muscle et par séance, <= 20 par semaine, V-MSG-VOL sinon', () => {
     const frac = (e: { musclesPrincipaux: string[]; musclesSecondaires: string[]; sets: number }, m: string) => e.sets * (e.musclesPrincipaux.includes(m) ? 1 : e.musclesSecondaires.includes(m) ? 0.5 : 0);
     for (const profile of PROFILE_KEYS)
       for (const dur of [30, 45, 60, 75, null]) {
         const p = ok(run({ profile, days: 2, goal: 'muscle', level: 'intermediaire', dur }));
         const muscles = [...new Set(allEx(p).flatMap((e) => [...e.musclesPrincipaux, ...e.musclesSecondaires]))];
         for (const m of muscles) {
-          for (const s of p.sessions) expect(s.exercises.reduce((a, e) => a + frac(e, m), 0)).toBeLessThanOrEqual(10);
+          for (const s of p.sessions) expect(s.exercises.reduce((a, e) => a + frac(e, m), 0)).toBeLessThanOrEqual(12);
           const week = allEx(p).reduce((a, e) => a + frac(e, m), 0);
           expect(week).toBeLessThanOrEqual(20);
           if (['quadriceps', 'fessiers', 'ischios', 'pectoraux', 'grand_dorsal'].includes(m) && week < 10) expect(p.messages.some((x) => x.id === 'V-MSG-VOL')).toBe(true);

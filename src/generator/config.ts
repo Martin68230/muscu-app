@@ -325,8 +325,16 @@ export const VOLUME = {
   secondaryWeight: 0.5,
   /** Plafond hebdomadaire par muscle : seuil SRC1 OK, usage comme plafond NON SOURCÉ. */
   maxPerMuscleWeek: 20,
-  /** V-PLAF : séries fractionnaires par muscle et par séance (SRC3 : PROVISOIRE). */
+  /** V-PLAF : séries fractionnaires par muscle et par séance (SRC3 : PROVISOIRE). Débutant, santé, grossesse, zone gênée, reprise. */
   maxPerMuscleSession: 10,
+  /**
+   * D33 (programmes-v3.md §5, PV3-PLAF-1, avis du kiné K-01, NON SOURCÉ au-dessus de ~11) : intermédiaire et avancé, 12 atteint
+   * seulement par un emplacement prévu par STR-REP (G2) ; les ajouts automatiques (V-VOL « +1 série », isolation) s'arrêtent à 11.
+   */
+  maxPerMuscleSessionSlots: 12,
+  maxPerMuscleSessionAuto: 11,
+  /** G3 : au plus 2 exercices de charnière par séance (la seconde au poids du corps, lecture restrictive de « charge légère »). NON SOURCÉ. */
+  maxHingesPerSession: 2,
   /** V-PLAF : exercices et séries de travail par séance, séries par exercice. NON SOURCÉ. */
   maxExercisesPerSession: 8,
   maxWorkSetsPerSession: 24,
@@ -670,7 +678,10 @@ export const CARDIO_CAPS = {
   cardio: { debutant: 2, intermediaire: 3, avance: 3 } as Record<Level, number>,
   /** Forme / santé. */
   sante: { debutant: 1, intermediaire: 2, avance: 2 } as Record<Level, number>,
-  /** Force, prise de muscle, perte de gras : 0 par défaut ; nombre si l'option est acceptée (3.2ter A). */
+  /**
+   * Force, prise de muscle : 0 par défaut ; nombre si l'option est acceptée (3.2ter A). Perte de gras : incluse par défaut (D33 n° 5,
+   * PV3-CAR-1, NON SOURCÉ) : même nombre (intermédiaire 1, kiné 31/10/2026), limité par les 6 jours d'entraînement.
+   */
   option: { debutant: 1, intermediaire: 1, avance: 2 } as Record<Level, number>,
   /** Sport : 1, incluse par défaut (3.2ter B). */
   sport: { debutant: 1, intermediaire: 1, avance: 1 } as Record<Level, number>,
@@ -685,6 +696,8 @@ export const CARDIO_CAPS = {
 /** 3.2ter A : option « Ajouter une séance de cardio ? ». NON SOURCÉ (choix de `coach`, confirmés par `kine`). */
 export const CARDIO_OPTION = {
   goals: ['force', 'muscle', 'perte_gras'] as readonly string[],
+  /** D33 n° 5 (PV3-CAR-1) : objectifs pour lesquels la séance est incluse par défaut (retirable dans le profil). NON SOURCÉ. */
+  defaultOnGoals: ['perte_gras'] as readonly string[],
   /** Offerte à partir de 3 jours de force choisis. */
   minForceDays: 3,
   /** Au plus 6 jours d'entraînement (force + cardio, jours légers exclus). */
@@ -805,14 +818,34 @@ export const OUTDOOR_RUN_REQUIRES = ['wakeLock', 'sound', 'lookFallback'] as con
 /** machines-etiquettes.md : tags masqués sans le lieu « salle » ni l'accès à une salle, et retirés en grossesse / post-partum (G9). */
 export const MACHINE_TAGS: readonly string[] = ['machine', 'poulie', 'machine_cardio'];
 
+/**
+ * D33 n° 8 (programmes-v3.md §8, PV3-SALLE-1, NON SOURCÉ, décision de l'utilisateur ; `porte` ajouté par le kiné) : avec l'accès à une
+ * salle, une variante qui porte un de ces tags n'est pas proposée hors échauffement / activation / mobilité. Pénurie (moins de 2 fiches
+ * pleines d'un plan après le filtre) : seuls `elastique` et `mini_bande` reviennent, pour ce plan, avec « (à la maison) ».
+ */
+export const SALLE_EXCLUS: readonly string[] = ['sac_a_dos', 'bidons_ou_sacs', 'sac_de_sable', 'bosu', 'elastique', 'mini_bande', 'porte'];
+export const SALLE_PENURIE_READMIS: readonly string[] = ['elastique', 'mini_bande'];
+export const SALLE_PENURIE_MIN_FICHES = 2;
+export const SALLE_HOME_SUFFIX = ' (à la maison)';
+
 /** STR-ISO-0 à 5 (structure-programmes.md §2.4). NON SOURCÉ. */
 export const ISOLATION = {
   /** Emplacements, dans l'ordre d'ajout ; muscle principal exigé, schéma de fiche, zones qui retirent l'exercice dès le niveau 1. */
+  // D33 (programmes-v3.md PV3-ISO-6, PV3-ISO-3, STR-ISO-3bis ; NON SOURCÉ) : liste fermée d'identifiants (élévation ou curl seulement) ;
+  // exclue en plus toute fiche dont `deltoides_anterieurs` ou `triceps` est muscle principal (jamais un développé au-dessus de la tête) ;
+  // aucune fiche admissible : emplacement vide, sans erreur. Attribut de fiche `isolation: oui` (E-11) : pas encore codé.
   slots: [
-    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'] },
-    { slot: 'iso_deltoide_lateral', schema: 'poussee_v', muscle: 'deltoides_lateraux', zones: ['epaule'] },
-    { slot: 'iso_mollets', schema: 'cheville_mollet', muscle: 'mollets', zones: ['cheville'] },
-  ] as readonly { slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets'; schema: string; muscle: string; zones: readonly string[] }[],
+    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'], ids: ['curl-barre', 'curl-incline-halteres'] },
+    { slot: 'iso_deltoide_lateral', schema: 'poussee_v', muscle: 'deltoides_lateraux', zones: ['epaule'], ids: ['elevation-laterale-assis-halteres'] },
+    {
+      slot: 'iso_mollets', schema: 'cheville_mollet', muscle: 'mollets', zones: ['cheville'],
+      ids: ['releve-mollets', 'releve-mollets-assis', 'releve-mollets-halteres', 'marche-pointes-talons', 'releve-mollets-debout-barre', 'releve-mollets-machine'],
+    },
+  ] as readonly {
+    slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets'; schema: string; muscle: string; zones: readonly string[]; ids: readonly string[];
+  }[],
+  /** PV3-ISO-6 : muscles principaux qui excluent une fiche de tout emplacement d'isolation. */
+  excludedPrincipal: ['deltoides_anterieurs', 'triceps'] as readonly string[],
   setsPerExercise: 2,
   maxPerSession: 2,
   maxSetsPerGroupWeek: 4,

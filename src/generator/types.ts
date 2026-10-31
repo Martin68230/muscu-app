@@ -113,7 +113,9 @@ export type MessageId =
   // D25 (structure-programmes.md) : 1 jour (STR-REP-1), jours légers (STR-REP-6), grossesse (STR-REP-11), séance unique courte.
   | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE'
   // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).
-  | 'T8' | 'V-MSG-SPORT-MATCH' | 'T9';
+  | 'T8' | 'V-MSG-SPORT-MATCH' | 'T9'
+  // D33 (programmes-v3.md §6, PV3-CAR-3) : séance de cardio incluse par défaut en perte de gras.
+  | 'V-MSG-CARDIO-DEFAUT';
 export interface GenMessage {
   id: MessageId;
   text: string;
@@ -299,6 +301,8 @@ export interface GenProgram {
   cardioMinWeek?: number;
   /** D31 : option « Ajouter une séance de cardio ? » ou séance de sport incluse, ou absent. */
   cardioOption?: CardioOptionState | null;
+  /** D33 (PV3-SALLE-1) : plans (schémas) où une variante « maison » a été placée en salle par l'exception de pénurie. */
+  penurie?: string[];
 }
 export type GenerateResult =
   | { ok: true; program: GenProgram; messages: GenMessage[] }

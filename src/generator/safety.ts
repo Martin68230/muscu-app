@@ -2,7 +2,10 @@
 // cou (V-COU), grossesse (V-GROS), plafond `capped` (P-CAP, R2, §6.8 point 1).
 // Règle V-PRIO : ces filtres passent avant toute règle de dose ou de structure.
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../data/injury-rules';
-import { CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, IMPACT_SCHEMAS, IMPACT_VARIANTS, INTERMEDIATE_ECHELON_OFFSET, TAG_ORDER } from './config';
+import {
+  CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, IMPACT_SCHEMAS, IMPACT_VARIANTS, INTERMEDIATE_ECHELON_OFFSET, SALLE_EXCLUS, SALLE_PENURIE_MIN_FICHES,
+  SALLE_PENURIE_READMIS, TAG_ORDER,
+} from './config';
 import { carriesLoad, isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
 import { coreRule } from './core';
 import type { Fiche, FicheVariant, SafetyCase } from './types';
@@ -28,11 +31,13 @@ export function ficheAdmissible(f: Fiche, ctx: Ctx, opts: { warmup?: boolean } =
 export interface Restrict {
   only?: Set<string>;
   sansCharge?: boolean;
+  /** D33 (PV3-SALLE-1, exception 1) : échauffement, activation, mobilité : le filtre « salle » ne s'applique pas. */
+  warmup?: boolean;
 }
 
 /** Variantes compatibles : tout le matériel dans le profil (V-MAT), niveau, règle 23, restrictions de sécurité. */
 export function allowedVariants(f: Fiche, ctx: Ctx, r: Restrict = {}): FicheVariant[] {
-  if (!r.only && !r.sansCharge) {
+  if (!r.only && !r.sansCharge && !r.warmup) {
     const key = `v:${f.id}`;
     let hit = ctx.memo.get(key) as FicheVariant[] | undefined;
     if (!hit) {
@@ -52,8 +57,43 @@ function filterVariants(f: Fiche, ctx: Ctx, r: Restrict): FicheVariant[] {
     if (r.only && !r.only.has(v.id)) return false;
     if (r.sansCharge && carriesLoad(v)) return false; // gilet lesté compris (lot 09, sérieux n° 4)
     if ((ctx.pregnant || ctx.postPartum) && IMPACT_VARIANTS.includes(v.id)) return false; // §5.1 (1) : variantes avec saut ou course
+    if (ctx.salleFilter && !r.warmup && !salleVariantOk(f, v, ctx)) return false; // D33 (PV3-SALLE-1)
     return true;
   });
+}
+
+const salleExcluded = (v: FicheVariant): string[] => v.tags.filter((t) => SALLE_EXCLUS.includes(t));
+
+/**
+ * D33 (PV3-SALLE-1) : avec l'accès à une salle, une variante portant un tag de SALLE_EXCLUS n'est pas proposée ; exception de pénurie
+ * (kiné 31/10/2026) : si le plan (schéma) a moins de 2 fiches pleines après le filtre, seules les variantes dont les tags exclus sont tous
+ * dans SALLE_PENURIE_READMIS (élastique, mini-bande) reviennent, pour ce plan seulement.
+ */
+function salleVariantOk(f: Fiche, v: FicheVariant, ctx: Ctx): boolean {
+  const ex = salleExcluded(v);
+  if (!ex.length) return true;
+  return ex.every((t) => SALLE_PENURIE_READMIS.includes(t)) && sallePenurie(f.schema, ctx);
+}
+
+/** Plan en pénurie : moins de SALLE_PENURIE_MIN_FICHES fiches pleines (sans `couverture`) admissibles avec une variante non exclue. */
+export function sallePenurie(schema: string, ctx: Ctx): boolean {
+  const key = `salle-penurie:${schema}`;
+  const hit = ctx.memo.get(key) as boolean | undefined;
+  if (hit !== undefined) return hit;
+  let n = 0;
+  for (const g of ctx.fichesById.values()) {
+    if (g.schema !== schema || g.couverture || !ficheAdmissible(g, ctx)) continue;
+    const ok = g.variantes.some((v) => !salleExcluded(v).length && filterVariants(g, { ...ctx, salleFilter: false }, { only: new Set([v.id]) }).length > 0);
+    if (ok) n++;
+  }
+  const res = n < SALLE_PENURIE_MIN_FICHES;
+  ctx.memo.set(key, res);
+  return res;
+}
+
+/** D33 : variante placée en salle grâce à l'exception de pénurie (ligne « (à la maison) »). */
+export function salleHomeFallback(v: FicheVariant, ctx: Ctx): boolean {
+  return ctx.salleFilter && salleExcluded(v).length > 0;
 }
 
 const tagRank = (v: FicheVariant): number => {
@@ -357,7 +397,7 @@ export function warmupVariant(f: Fiche, ctx: Ctx, preferId?: string): { variant:
     if (c.sansCharge) sansCharge = true;
     adaptations.push(...adaptationLabels(c));
   }
-  const allowed = allowedVariants(f, ctx, { only: only ? new Set([only]) : undefined, sansCharge }).filter((v) => v.echelon === 1);
+  const allowed = allowedVariants(f, ctx, { only: only ? new Set([only]) : undefined, sansCharge, warmup: true }).filter((v) => v.echelon === 1);
   if (!allowed.length) return null;
   const v = [...allowed].sort((x, y) => x.tags.length - y.tags.length || f.variantes.indexOf(x) - f.variantes.indexOf(y))[0];
   return { variant: v, adaptations };

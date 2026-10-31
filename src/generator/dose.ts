@@ -1,8 +1,8 @@
 // Dose de base (V-DOSE §3.2, V-TEMPS §3.3) puis plafonds de sécurité (appliquerPlafonds, V-PRIO §6.0 : P-CAP, P-GROS).
-import { DOSE, doseLimitOf, FIXED_DOSE, FIXED_LOAD_TAGS, PREGNANCY, SAFE_LOAD_TAGS, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
+import { DOSE, doseLimitOf, FIXED_DOSE, FIXED_LOAD_TAGS, PREGNANCY, SAFE_LOAD_TAGS, SALLE_HOME_SUFFIX, TEMPS, TEMPS_RIR_PLACEHOLDER, CHARGEABLE_TAGS } from './config';
 import { isChargeable, isUnilateral, type Ctx } from './context';
 import { coreFamilyOf, coreRule } from './core';
-import { caseFor, cappingZones, type Candidate } from './safety';
+import { caseFor, cappingZones, salleHomeFallback, type Candidate } from './safety';
 import { PILLAR_SLOTS } from './slots';
 import type { ExerciseRole, GenExercise, SlotKey, Tier } from './types';
 
@@ -113,7 +113,8 @@ export function buildExercise(c: Candidate, slot: SlotKey, tier: Tier, ctx: Ctx)
     variantId: c.variant.id,
     ficheId: c.fiche.id,
     nom: c.fiche.nom,
-    variantNom: c.variant.nom,
+    // D33 (PV3-SALLE-1) : variante « maison » placée en salle par l'exception de pénurie : ligne « (à la maison) ».
+    variantNom: salleHomeFallback(c.variant, ctx) ? `${c.variant.nom}${SALLE_HOME_SUFFIX}` : c.variant.nom,
     echelon: c.variant.echelon,
     schema: c.fiche.schema,
     slot,

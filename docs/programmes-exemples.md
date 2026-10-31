@@ -127,7 +127,7 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
   1. Montée sur marche (Haltères légers) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   2. Soulevé de terre à la barre (Depuis le rack, barre à hauteur du genou) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Squat avant à la barre (Bras croisés devant, barre légère) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
-  4. Soulevé de terre roumain à la barre (Barre prise au rack, genoux légèrement pliés) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
+  4. Lancer de bas en haut contre un mur (Pieds à plat, sans saut) : 2 x 6-8, repos 90 s, RIR 3, étalonnage
   5. Marche sur les pointes et sur les talons (Marche sur les talons) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   6. Quadrupédie bras-jambe opposés (Au sol) : 2 x 8-10 par côté, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
@@ -364,19 +364,19 @@ Répartition : corps_entier, 3 séance(s) de force, 0 séance(s) dédiée(s) de 
 Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de cardio, 0 jour(s) léger(s). Durée visée : 75 min, programme de 4 semaines.
 
 ### Semaine type
-- lundi : Séance HAUT-A (HAUT), 50 min
-- mardi : Séance BAS-A (BAS), 40 min
+- lundi : Séance HAUT-A (HAUT), 45 min
+- mardi : Séance BAS-A (BAS), 45 min
 - jeudi : Séance PUSH-B (PUSH), 35 min
-- vendredi : Séance PULL-B (PULL), 30 min
+- vendredi : Séance PULL-B (PULL), 35 min
 - samedi : Séance LEGS-B (LEGS), 40 min
 
 ### Détail des séances
 
-### Séance HAUT-A (HAUT), lundi, environ 50 min
+### Séance HAUT-A (HAUT), lundi, environ 45 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
-  1. Développé incliné à la barre (Pente douce) : 4 x 8-12, repos 120 s, RIR 2, étalonnage
+  1. Développé incliné à la barre (Pente douce) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Rowing Pendlay (Barre posée au sol à chaque répétition) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Développé épaules assis aux haltères (Sur banc plat, sans dossier) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   4. Traction avec un gilet lesté (Gilet lesté, mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
@@ -387,14 +387,14 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance BAS-A (BAS), mardi, environ 40 min
+### Séance BAS-A (BAS), mardi, environ 45 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Squat arrière à la barre (Avec un temps d'arrêt en bas) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Good morning à la barre (Debout, barre légère sur le haut du dos) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Fente arrière (Haltères) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
-  4. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  4. Curl des ischios avec un ballon de gym (Une jambe (avancé)) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
   5. Renforcement de cheville à l'élastique (Pied vers l'extérieur) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   6. Quadrupédie bras-jambe opposés (Au sol) : 2 x 8-10 par côté, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
@@ -406,19 +406,21 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé épaules avec un sac à dos (Debout, sac tenu à deux mains) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
-  2. Développé au sol aux haltères (Un bras à la fois) : 4 x 8-12, repos 90 s, RIR 2, étalonnage
+  2. Développé au sol aux haltères (Un bras à la fois) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Développé épaules aux haltères (Debout, un bras) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
+  4. Développé couché à la barre (Sur banc, dans le rack avec barres de sécurité) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance PULL-B (PULL), vendredi, environ 30 min
+### Séance PULL-B (PULL), vendredi, environ 35 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Tirage vertical à l'élastique ancré en haut (Un bras, à genoux) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
   2. Rowing à la barre, buste penché (Buste penché, barre reprise du sol) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Traction à la barre (Traction mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
+  4. Rowing buste penché aux haltères (Paumes vers l'arrière) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -429,20 +431,18 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 - Exercices :
   1. Montée sur marche (Box stable plus haute) : 3 x 10-15, repos 120 s, RIR 1, étalonnage
   2. Poussée de hanches, épaules sur banc (Une jambe) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
-  3. Squat sur un bosu (Dôme vers le haut, sans appui) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
-  4. Renforcement de cheville à l'élastique (Pied vers l'extérieur) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
-  5. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
-  6. Planche (Sur les avant-bras) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
+  3. Curl des ischios avec un ballon de gym (Une jambe (avancé)) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
+  4. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  5. Planche (Sur les avant-bras) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
 ### Messages affichés
-- [V-MSG-VOL] Ischios : 9 séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.
 
 ### Explication du générateur
 - 5 séances de force par semaine : haut du corps, bas du corps, puis poussée (pectoraux, épaules, triceps), tirage (dos, biceps) et jambes. Chaque grand muscle est travaillé au moins 2 fois.
-- Objectif muscle : 4 séries de 8-12 répétitions, en gardant environ 2 répétitions en réserve.
+- Objectif muscle : 3 séries de 8-12 répétitions, en gardant environ 2 répétitions en réserve.
 
 ## Analyse (a) : séances avec sauts
 
@@ -460,18 +460,18 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 | Profil | Exercices placés | Distincts | Doses distinctes | Paires de superset |
 |---|---|---|---|---|
 | 1. Débutant, prise de muscle, 3 jours, maison (haltères + él | 23 | 17 | 4 | 0 |
-| 2. Intermédiaire, force, 4 jours, salle (haut / bas) | 24 | 23 | 8 | 1 |
+| 2. Intermédiaire, force, 4 jours, salle (haut / bas) | 24 | 22 | 8 | 1 |
 | 3. Intermédiaire, perte de gras + cardio en objectif seconda | 17 | 15 | 6 | 0 |
 | 4. Intermédiaire, volley (objectif sport), 3 jours, maison ( | 23 | 18 | 4 | 1 |
 | 5. Débutant, sans matériel, 3 jours (poids du corps) | 21 | 15 | 3 | 0 |
-| 6. Avancé, 5 jours, salle | 25 | 23 | 7 | 0 |
+| 6. Avancé, 5 jours, salle | 26 | 25 | 6 | 0 |
 
 - 1. Débutant, prise de muscle, 3 jours, m : chevauchements A/B : 5 commun(s) sur 8 ; A/C : 1 commun(s) sur 7 ; B/C : 1 commun(s) sur 7 ; exercices répétés : squat-gobelet x2, developpe-au-sol-halteres x2, rowing-buste-penche-halteres x2, developpe-epaules-halteres x2, tirage-vertical-elastique-haut x3
-- 2. Intermédiaire, force, 4 jours, salle  : chevauchements HAUT-A/BAS-A : 0 commun(s) sur 6 ; HAUT-A/HAUT-B : 1 commun(s) sur 6 ; HAUT-A/BAS-B : 0 commun(s) sur 6 ; BAS-A/HAUT-B : 0 commun(s) sur 6 ; BAS-A/BAS-B : 0 commun(s) sur 6 ; HAUT-B/BAS-B : 0 commun(s) sur 6 ; exercices répétés : tirage-vertical-elastique-haut x2
+- 2. Intermédiaire, force, 4 jours, salle  : chevauchements HAUT-A/BAS-A : 0 commun(s) sur 6 ; HAUT-A/HAUT-B : 1 commun(s) sur 6 ; HAUT-A/BAS-B : 0 commun(s) sur 6 ; BAS-A/HAUT-B : 0 commun(s) sur 6 ; BAS-A/BAS-B : 1 commun(s) sur 6 ; HAUT-B/BAS-B : 0 commun(s) sur 6 ; exercices répétés : tirage-vertical-elastique-haut x2, lancer-bas-haut-mur x2
 - 3. Intermédiaire, perte de gras + cardio : chevauchements A/B : 2 commun(s) sur 6 ; A/C : 0 commun(s) sur 5 ; B/C : 0 commun(s) sur 5 ; exercices répétés : developpe-au-sol-halteres x2, developpe-epaules-halteres x2
 - 4. Intermédiaire, volley (objectif sport : chevauchements A/B : 4 commun(s) sur 7 ; A/C : 1 commun(s) sur 8 ; B/C : 1 commun(s) sur 8 ; exercices répétés : pompe x2, face-pull-elastique x2, developpe-epaules-elastique x2, tirage-vertical-elastique-haut x3
 - 5. Débutant, sans matériel, 3 jours (poi : chevauchements A/B : 4 commun(s) sur 7 ; A/C : 2 commun(s) sur 7 ; B/C : 1 commun(s) sur 7 ; exercices répétés : assis-debout-mains-cuisses x2, pompe x3, ecartement-serviette x2, curl-ischios-serviette x2, tirage-vertical-allonge-ventre x2
-- 6. Avancé, 5 jours, salle : chevauchements HAUT-A/BAS-A : 0 commun(s) sur 6 ; HAUT-A/PUSH-B : 0 commun(s) sur 3 ; HAUT-A/PULL-B : 0 commun(s) sur 3 ; HAUT-A/LEGS-B : 0 commun(s) sur 6 ; BAS-A/PUSH-B : 0 commun(s) sur 3 ; BAS-A/PULL-B : 0 commun(s) sur 3 ; BAS-A/LEGS-B : 2 commun(s) sur 6 ; PUSH-B/PULL-B : 0 commun(s) sur 3 ; PUSH-B/LEGS-B : 0 commun(s) sur 6 ; PULL-B/LEGS-B : 0 commun(s) sur 6 ; exercices répétés : marche-pointes-talons x2, cheville-elastique x2
+- 6. Avancé, 5 jours, salle : chevauchements HAUT-A/BAS-A : 0 commun(s) sur 6 ; HAUT-A/PUSH-B : 0 commun(s) sur 4 ; HAUT-A/PULL-B : 0 commun(s) sur 4 ; HAUT-A/LEGS-B : 0 commun(s) sur 5 ; BAS-A/PUSH-B : 0 commun(s) sur 4 ; BAS-A/PULL-B : 0 commun(s) sur 4 ; BAS-A/LEGS-B : 1 commun(s) sur 5 ; PUSH-B/PULL-B : 0 commun(s) sur 4 ; PUSH-B/LEGS-B : 0 commun(s) sur 5 ; PULL-B/LEGS-B : 0 commun(s) sur 5 ; exercices répétés : curl-ischios-ballon x2
 
 ## Analyse rédigée (lue par tools/demo-programmes.mjs)
 
