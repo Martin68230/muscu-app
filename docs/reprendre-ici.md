@@ -1,5 +1,14 @@
-# Reprendre ici (24/10/2026, 12 h 30)
+# Reprendre ici — LIRE LA DERNIÈRE SECTION DE CE FICHIER
 
+**ÉTAT ACTUEL (01/11/2026) : voir tout en bas, sections « 31/10/2026 (nuit) : VARIÉTÉ CODÉE » et « 31/10/2026 (fin) ».** Tout ce qui précède est l'historique, du plus ancien au plus récent : ne pas repartir du lot D (24/10).
+- En ligne : générateur v1.8 (déploiement 1f26f4d vert) ; D25 à D34 codés (répartitions 1 à 6 jours, supersets restreints + option « Gagner du temps », cardio par objectif, sauts / course / séance de cardio optionnelle, plafond 12, cardio par défaut en perte de gras, filtre salle, variété). Détail : docs/D25-bilan.md, D30-bilan.md, D32-bilan.md, D33-bilan.md, D34-bilan.md.
+- DÉCIDÉ (ne plus demander) : sauts, course, plafond de séances de cardio, extérieur, machines, règle 15, pliométrie, sport, isolation, plafond 12, cardio par défaut, variété : voir knowledge/exercices/DECISIONS-utilisateur.md (D30, D31, D33) et docs/QUESTIONS.md (Q5 à Q10 « DÉCIDÉ »).
+- EN ATTENTE de l'utilisateur : docs/QUESTIONS.md Q30 (compensation de volume d'une séance manquée) et Q31 (choix prudents de la séance manquée) ; décisions du kiné : nordique-ischios en 2e charnière (avancé en salle), rowing à la barre pour un débutant en salle, lancer contre un mur compté comme 2e charnière.
+- PROCHAINE ACTION : écrire les 22 fiches du §9 de knowledge/programmes-v3.md (coach, kiné, relecteur, illustrations dev), puis régénération au changement de bloc, isolation étendue (isoEligible), historique, D28 « Créer une séance », saisie « sport ». Design en dernier (retours dans la section 31/10/2026 PRIORITÉS).
+
+---
+
+## (historique) Reprendre ici (24/10/2026, 12 h 30)
 Faits et commités : lot A (docs/F6bis-lot-A.md), lot C (docs/F6bis-lot-C.md). Quota 5 h : 4 % après le lot C.
 À arrêter à la main : 5 processus `python3 -` orphelins (PID 22436, 18580, 9272, 17560, 18408), si pas déjà fait.
 
