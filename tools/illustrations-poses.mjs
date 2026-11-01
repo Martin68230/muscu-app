@@ -1,6 +1,9 @@
 // Poses des illustrations originales : une entrée par fiche (voir tools/make-illustrations.mjs pour le format).
 // Repère : x à droite, y vers le haut, sol à y = 0, personnage de profil tourné vers +x (sauf view 'front' / 'top').
 const A = 8; // cheville à plat
+// Chaise vue de face (assise, élévation latérale) : dossier et assise derrière le tronc, pieds de chaise ; jambes assises raccourcies
+const SEATF = [['rect', -30, 44, 60, 6, 2], ['rect', -28, 50, 56, 78, 3], ['lin', [[-27, 0], [-27, 44]], 5], ['lin', [[27, 0], [27, 44]], 5]];
+const LEGSF = [['seg', [[13, 56], [17, 46]], 12], ['seg', [[-13, 56], [-17, 46]], 12], ['seg', [[17, 46], [17, 8]], 11], ['seg', [[-17, 46], [-17, 8]], 11], ['seg', [[17, 8], [28, 8]], 11], ['seg', [[-17, 8], [-28, 8]], 11]];
 const walkFwd = [['arrow', [62, 205], [112, 205]]];
 
 // À quatre pattes : hanche (-18,58), genoux au sol, mains sous les épaules
@@ -915,5 +918,55 @@ export const EXERCICES = [
     labels: ['Genou droit levé', 'Genou gauche levé'],
     a: { p: [0, 114], t: 88, h: 88, legN: { to: [14, 44], bend: 'f', foot: -20 }, legF: { to: [-4, A], bend: 'f' }, armN: { a: [-125, -50] }, armF: { a: [-55, 35] } },
     b: { p: [0, 114], t: 88, h: 88, legN: { to: [-4, A], bend: 'f' }, legF: { to: [12, 46], bend: 'f', foot: -20 }, armN: { a: [-55, 35] }, armF: { a: [-125, -50] } },
+  },
+  // ---- Lot 11 (variété : curl, développés et tirage à l'élastique) ----
+  {
+    id: 'curl-halteres', titre: 'Curl aux haltères, debout, vue de profil : bras le long du corps, puis haltères montés vers les épaules, coudes contre les côtes (prise marteau : même geste, paumes face aux cuisses)',
+    labels: ['Bras le long du corps', 'Haltères aux épaules, coudes fixes'],
+    a: { p: [0, 112], armN: { a: [-90, -90] }, armF: { a: [-92, -92] }, props: (J) => [['plate', J.haN, 10], ['plate', J.haF, 10]] },
+    b: { p: [0, 112], armN: { a: [-88, 68] }, armF: { a: [-90, 64] }, props: (J) => [['plate', J.haN, 10], ['plate', J.haF, 10], ['arrow', [62, 120], [62, 165]]] },
+  },
+  {
+    id: 'curl-elastique', titre: 'Curl à l’élastique, debout sur le milieu de l’élastique, vue de profil : élastique déjà un peu tendu, mains le long du corps, puis mains aux épaules, coudes contre les côtes',
+    labels: ['Bras le long du corps', 'Mains aux épaules, coudes fixes'],
+    a: { p: [0, 112], armN: { a: [-90, -90] }, armF: { a: [-92, -92] }, props: (J) => [['band', [[19, 5], J.haN]], ['band', [[19, 5], J.haF]]] },
+    b: { p: [0, 112], armN: { a: [-88, 68] }, armF: { a: [-90, 64] }, props: (J) => [['band', [[19, 5], J.haN]], ['band', [[19, 5], J.haF]], ['arrow', [62, 120], [62, 165]]] },
+  },
+  {
+    id: 'developpe-epaules-elastique-alterne', titre: 'Développé épaules alterné à l’élastique, assis sur une chaise calée contre un mur, élastique sous les pieds : une main pousse, l’autre reste à hauteur d’épaule',
+    labels: ['Mains aux épaules', 'Un bras pousse, l’autre attend', 'L’autre bras pousse'],
+    a: { p: [-21, 58], t: 90, legN: { to: [36, A], bend: 'f' }, legF: { to: [30, A], bend: 'f' }, armN: { a: [-50, 92] }, armF: { a: [-52, 92] }, back: [['wall', -50, 14], ['chair', -34, 46, 1]], props: (J) => [['band', [[47, 5], J.haN]], ['band', [[47, 5], J.haF]]] },
+    b: { p: [-21, 58], t: 90, legN: { to: [36, A], bend: 'f' }, legF: { to: [30, A], bend: 'f' }, armN: { a: [72, 78] }, armF: { a: [-52, 92] }, back: [['wall', -50, 14], ['chair', -34, 46, 1]], props: (J) => [['band', [[47, 5], J.haN]], ['band', [[47, 5], J.haF]], ['arrow', [40, 150], [40, 215]]] },
+    c: { p: [-21, 58], t: 90, legN: { to: [36, A], bend: 'f' }, legF: { to: [30, A], bend: 'f' }, armN: { a: [-50, 92] }, armF: { a: [70, 76] }, back: [['wall', -50, 14], ['chair', -34, 46, 1]], props: (J) => [['band', [[47, 5], J.haN]], ['band', [[47, 5], J.haF]], ['arrow', [40, 150], [40, 215]]] },
+  },
+  {
+    id: 'developpe-sol-elastique', titre: 'Développé au sol à l’élastique, vue de profil : allongé sur le dos, genoux pliés, élastique à plat sous le haut des omoplates ; coudes au sol, puis bras presque tendus vers le plafond',
+    labels: ['Coudes au sol', 'Bras presque tendus'],
+    a: supine({ legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { a: [-5, 90] }, armF: { a: [-8, 90] }, props: (J) => [['band', [[-52, 3], J.haN]], ['band', [[-52, 3], J.haF]]] }),
+    b: supine({ legN: { to: [60, A], bend: 'u' }, legF: { to: [54, A], bend: 'u' }, armN: { a: [86, 88] }, armF: { a: [84, 86] }, props: (J) => [['band', [[-52, 3], J.haN]], ['band', [[-52, 3], J.haF]], ['arrow', [-100, 40], [-100, 85]]] }),
+  },
+  {
+    id: 'tirage-vertical-un-bras-elastique', titre: 'Tirage vertical à un bras à l’élastique, debout, vue de profil : une main tient l’élastique à hauteur du front sans le monter, l’autre main tire le coude vers le bas, le long du corps, jusqu’à hauteur de l’épaule',
+    labels: ['Main du haut fixe, bras qui tire levé', 'Coude le long du corps, main à l’épaule'],
+    a: { p: [0, 112], armF: { to: [60, 200], bend: 'd' }, armN: { to: [56, 176], bend: 'd' }, props: (J) => [['band', [J.haF, J.haN]]] },
+    b: { p: [0, 112], armF: { to: [60, 200], bend: 'd' }, armN: { a: [-65, 80] }, props: (J) => [['band', [J.haF, J.haN]], ['arrow', [80, 180], [80, 140]]] },
+  },
+  {
+    id: 'elevation-laterale', titre: 'Élévation latérale aux haltères, assis sur une chaise calée contre un mur, vue de face : bras le long du corps, puis bras levés sur les côtés jusqu’à l’horizontale, mains jamais au-dessus des coudes',
+    view: 'front', labels: ['Bras le long du corps', 'Bras à l’horizontale, pas plus haut'],
+    a: { p: [0, 58], t: 90, hide: ['legN', 'legF'], armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, back: SEATF, props: (J) => [...LEGSF, ['plate', J.haN, 9], ['plate', J.haF, 9]] },
+    b: { p: [0, 58], t: 90, hide: ['legN', 'legF'], armN: { a: [8, -4] }, armF: { a: [172, -176] }, back: SEATF, props: (J) => [...LEGSF, ['plate', J.haN, 9], ['plate', J.haF, 9], ['arrow', [120, 100], [120, 128]], ['arrow', [-120, 100], [-120, 128]]] },
+  },
+  {
+    id: 'bonjour-poids-du-corps', titre: 'Bonjour au poids du corps, vue de profil : bras croisés sur la poitrine, les hanches reculent et le buste, dos plat, s’incline de moitié au plus (environ 45 degrés), genoux souples',
+    labels: ['Debout, bras croisés', 'Buste incliné de moitié, dos plat'],
+    a: { p: [0, 112], armN: { to: [12, 158], bend: 'd' }, armF: { to: [8, 162], bend: 'd' } },
+    b: { p: [-30, 106], t: 45, h: 45, armN: { to: [22, 136], bend: 'd' }, armF: { to: [18, 140], bend: 'd' }, props: [['arrow', [-24, 60], [-76, 60]]] },
+  },
+  {
+    id: 'charniere-dos-au-mur', titre: 'Charnière de hanche dos au mur, vue de profil : pieds à une longueur de pied du mur, les fesses reculent jusqu’au mur, le buste s’incline dos plat, les mains glissent sur les cuisses sans atteindre les genoux',
+    labels: ['Debout, mains sur le haut des cuisses', 'Fesses au mur, dos plat'],
+    a: { p: [0, 112], armN: { to: [10, 104], bend: 'd' }, armF: { to: [6, 104], bend: 'd' }, back: [['wall', -39, 14]] },
+    b: { p: [-14, 108], t: 60, h: 60, armN: { to: [1, 94], bend: 'd' }, armF: { to: [-3, 96], bend: 'd' }, back: [['wall', -39, 14]], props: [['arrow', [44, 130], [44, 100]]] },
   },
 ];

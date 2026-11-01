@@ -176,6 +176,8 @@ const PROPS = {
     const y = GROUND - 4, rx = Math.abs(r - l) / 2, a = Math.min(l, r), b = Math.max(l, r);
     return rect(c, x - w / 2, 0, w, 4, 'bsb', 1) + `<path class="bsd" d="M${num(a)},${y} A${num(rx)} ${h - 4} 0 0 1 ${num(b)},${y} Z"/>`;
   },
+  // Lot 11 : segment de silhouette (vues de face : jambes assises raccourcies par la perspective)
+  seg: (c, pts, w = 11) => line(pts, 'bn', w, c),
   ring: (c, at, r = 18) => { const [a, b] = px(at, c); return `<circle class="arc" cx="${a}" cy="${b}" r="${r}"/>`; },
 };
 

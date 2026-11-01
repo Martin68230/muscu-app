@@ -11,6 +11,7 @@
 - `knowledge/README.md` : index. Règles : `program-logic.md`, `generateur-v1.md`, `core-et-supersets.md` (+ `famille-core-inventaire.md`), `cardio-regles.md`, `load-calibration.md`, `goal-resolver.md`, `schedule-adaptation.md` + `seance-manquee-v1.md`, `progression-et-bilan-v1.md`, `rest-and-volume-rules.md`, `sports.md`, `nutrition-rules.md`, `regles-securite-communes.md`.
 - Matériel et schémas : `equipment-taxonomy.md`, `materiel-tags.json`, `taxonomie-schemas.md` (familles de schémas, règle des liens de progression). Format des fiches : `format-fiches.md`. Sources : `sources.md`. Contrôles indépendants : `CONTROLE-*.md`, `RECONTROLE-*.md`.
 - `knowledge/exercices/` : fiches d'exercices (`pilote/`, `vague1/lot-XX/`, `ecartees/` ignoré), `CAMPAGNE.md`, `CHAINES-A-CORRIGER.json` (vide), `CORRESPONDANCE-GYMVISUAL.tsv` + `CORRESPONDANCE-REVUE-coach.tsv` (table D22, texte seulement). Brouillon : `exercise-library-draft.csv`.
+- `knowledge/exercices/vague1/lot-11-variete-a/` et `lot-11b-variete/` : fiches du lot variété (générateur, programmes-v3.md §9), statut `complete_kine`, avec leur `CONTROLE-relecteur.md` ; 11B = curl haltères, curl élastique, élévation latérale (id `elevation-laterale`), charnière dos au mur, bonjour poids du corps.
 
 ## Code de l'app (`src/`, PWA React + TypeScript + IndexedDB)
 - `src/generator/` : générateur de programme (index.ts, slots.ts, days.ts, config.ts = valeurs et statuts, duration.ts = supersets / durée, core.ts, cardio.ts, dose.ts, safety.ts, messages.ts, plaf.ts = plafonds de séries par séance et par semaine, D33).
