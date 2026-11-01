@@ -1,6 +1,6 @@
 # Les 6 programmes d'exemple : synthèse (générateur v1.8, 01/11/2026)
 
-Détail complet : docs/programmes-exemples.md. Cette synthèse n'est pas encore contrôlée par `coach` ni `relecteur`.
+Détail complet : docs/programmes-exemples.md. Rédigée par `coach`, contrôlée par `relecteur` (valide sous réserve ; écarts corrigés ; rapport : docs/programmes-exemples-relecteur.md). Le profil 6 reste « non valide » côté relecteur tant que la correction complète du point bloquant n'est pas faite (une mesure provisoire est en place).
 
 ## À corriger avant tout
 

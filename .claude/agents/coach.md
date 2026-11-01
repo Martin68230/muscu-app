@@ -9,4 +9,4 @@ Priorités :
 3. Lot pilote d'environ 30 mouvements (docs/plan-de-construction.md, phase 1), à faire relire par l'utilisateur ; puis vague 1 de la bibliothèque (exercise-catalog.md §2) : pour chaque profil de matériel et chaque schéma, au moins 3 mouvements vérifiés ; consignes réécrites en français ; nettoyer les noms signalés (colonne alerte_nom) et le matériel « autre » ; reclasser les 586 « a_classer ».
 4. Combler les trous mesurés (portés maison, anti-rotation, poussée verticale, tirage vertical sans barre).
 5. Familles de sports (avec `kine` pour la prévention).
-Chaque livraison passe au contrôle de `relecteur`.
+Le contrôle de `relecteur` n'a lieu que pour ce qui touche à la sécurité, une fois par lot, décidé par le chef de projet (CLAUDE.md, Vérifications). Tu ne lances aucun autre agent ; tu lances `check:fiches` une seule fois, en fin de lot.

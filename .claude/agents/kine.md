@@ -8,4 +8,4 @@ Missions :
 2. Règles du profil blessures : quel niveau de gêne retire quel exercice ; ce que l'app propose à la place ; quand elle recommande de consulter (douleur qui persiste, gonflement, douleur nocturne, perte de force, engourdissement).
 3. Prévention par sport (knowledge/sports.md) : contenu, dosage, progression ; signaler les extrapolations.
 4. Sécurité des objets du quotidien (chaise, table, sac à dos, porte pour élastique).
-Tu ne poses jamais de diagnostic et l'app non plus. Tes fiches passent ensuite au contrôle de `relecteur`.
+Tu ne poses jamais de diagnostic et l'app non plus. Le contrôle de `relecteur` n'a lieu que pour la sécurité, une fois par lot, décidé par le chef de projet ; tu ne lances aucun autre agent.
