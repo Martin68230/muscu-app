@@ -50,26 +50,26 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
+| Genou | adapter: variante:fente-laterale-courte | retirer | retirer |
 | Hanche | adapter: variante:fente-laterale-courte | retirer: remplacant:squat-assis-debout | retirer |
-| Cheville | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
-| Dos | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
+| Cheville | adapter: variante:fente-laterale-courte | retirer: remplacant:squat-assis-debout | retirer |
+| Dos | adapter: variante:fente-laterale-courte | retirer | retirer |
 | Aine | adapter: variante:fente-laterale-courte | retirer: remplacant:squat-assis-debout | retirer |
-| Cuisse | adapter: variante:fente-laterale-courte | adapter: variante:squat-assis-debout | retirer |
+| Cuisse | adapter: variante:fente-laterale-courte | retirer | retirer |
 
 **Notes**
 - genou-n1 : petite amplitude, poids du corps (sans haltère).
-- genou-n2 : squat assis-debout ; aucune augmentation de difficulté (R2).
+- genou-n2 : fente latérale retirée à ce niveau ; l'app propose un exercice plus doux pour le genou. NON SOURCÉ.
 - hanche-n1 : petite amplitude, poids du corps.
 - hanche-n2 : fente latérale retirée (adducteurs, pas large) ; remplacée par le squat assis-debout.
 - cheville-n1 : petite amplitude, poids du corps.
-- cheville-n2 : squat assis-debout.
+- cheville-n2 : fente latérale retirée à ce niveau ; remplacée par le squat assis-debout, qui limite la descente. NON SOURCÉ.
 - dos-n1 : petite amplitude, poids du corps (sans haltère).
-- dos-n2 : squat assis-debout.
+- dos-n2 : fente latérale retirée à ce niveau ; l'app propose un exercice plus doux pour le dos. NON SOURCÉ.
 - aine-n1 : petite amplitude, poids du corps. NON SOURCÉ (choix prudent de `kine`).
 - aine-n2 : fente latérale retirée (pas large, adducteurs étirés) ; remplacée par le squat assis-debout.
 - cuisse-n1 : petite amplitude, poids du corps (les ischios sont sollicités en second). NON SOURCÉ.
-- cuisse-n2 : squat assis-debout ; aucune augmentation de difficulté (R2).
+- cuisse-n2 : fente latérale retirée à ce niveau (les ischios sont sollicités en second) ; l'app propose un exercice plus doux. NON SOURCÉ.
 - grossesse : retirée par prudence : pas large, équilibre sur un côté, adducteurs (G4 classe les fentes en « adapter » ; ici l'option la plus prudente est retenue pour la fente large) ; remplacée par le squat assis-debout. Post-partum : G7 (pas d'impact, sans effet ici).
 - general : cases au moins aussi restrictives que le squat sumo, plus facile. Version plus douce : le squat sumo au poids du corps.
 

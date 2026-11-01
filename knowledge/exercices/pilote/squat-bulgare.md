@@ -53,9 +53,9 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter: sans-charge | adapter: variante:squat-fendu-mur | retirer |
-| Hanche | adapter: sans-charge | adapter: variante:squat-fendu-mur | retirer |
-| Cheville | adapter: appui:premiere-marche | adapter: variante:squat-fendu-mur | retirer |
+| Genou | adapter: sans-charge | retirer | retirer |
+| Hanche | adapter: sans-charge | retirer | retirer |
+| Cheville | adapter: appui:premiere-marche | retirer: remplacant:squat-assis-debout | retirer |
 | Dos | garder | adapter: sans-charge | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
@@ -65,6 +65,9 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - cheville-n1 : dessus du pied arrière sur la première marche d'un escalier éclairé et dégagé, à plat ; rien de glissant (serviette, coussin) entre le pied et le support.
 - general : support qui ne glisse pas (chaise calée contre un mur, ou marche sèche), pied avant chaussé ou sur sol antidérapant ; si le support bouge, arrête.
 - grossesse : risque de chute, donc retiré ; remplaçant conseillé : squat fendu, version mur. Post-partum : G7.
+- genou-n2 : squat bulgare retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- hanche-n2 : squat bulgare retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- cheville-n2 : squat bulgare retiré à ce niveau ; remplacé par le squat assis-debout, qui limite la descente. NON SOURCÉ.
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 - aine-n2 : idem (NON SOURCÉ)
 

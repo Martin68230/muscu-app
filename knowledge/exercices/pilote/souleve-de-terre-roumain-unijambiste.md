@@ -52,16 +52,16 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Dos | adapter: variante:sdt-unijambiste-mur | retirer: remplacant:pont-fessier | retirer |
-| Hanche | adapter: variante:sdt-unijambiste-mur | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
-| Genou | garder | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
-| Cheville | adapter: variante:sdt-unijambiste-mur | adapter: variante:souleve-de-terre-roumain-halteres | retirer |
+| Hanche | adapter: variante:sdt-unijambiste-mur | retirer | retirer |
+| Genou | garder | retirer: remplacant:souleve-de-terre-roumain-halteres | retirer |
+| Cheville | adapter: variante:sdt-unijambiste-mur | retirer: remplacant:souleve-de-terre-roumain-halteres | retirer |
 | Cuisse | adapter: variante:sdt-unijambiste-mur | retirer | retirer |
 
 **Notes**
 - dos-n1 : version mur, sans charge.
-- hanche-n2 : deux pieds au sol, charge légère.
-- genou-n2 : deux pieds au sol.
-- cheville-n2 : deux pieds au sol.
+- hanche-n2 : soulevé de terre unijambiste retiré à ce niveau ; l'app propose un exercice plus doux pour la hanche. NON SOURCÉ.
+- genou-n2 : soulevé de terre unijambiste retiré à ce niveau ; remplacé par le soulevé de terre roumain aux haltères, deux pieds au sol. NON SOURCÉ.
+- cheville-n2 : soulevé de terre unijambiste retiré à ce niveau ; remplacé par le soulevé de terre roumain aux haltères, deux pieds au sol. NON SOURCÉ.
 - cuisse-n1 : version mur, sans charge. NON SOURCÉ (choix prudent de `kine`).
 - cuisse-n2 : exercice retiré, sans remplaçant (le pont fessier charge aussi les ischios et est lui-même adapté à la cuisse de niveau 2 ; le soulevé de terre aux haltères aussi).
 - grossesse : version mur (appui au mur), sans charge. Post-partum : G7.

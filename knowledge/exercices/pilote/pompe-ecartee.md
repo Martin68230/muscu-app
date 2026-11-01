@@ -51,15 +51,18 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Épaule | adapter: amplitude:reduite | retirer: remplacant:pompe-chaise | retirer |
-| Coude | garder | adapter: variante:pompe-chaise | retirer |
-| Poignet | adapter: appui:poings-fermes | adapter: variante:pompe-chaise | retirer |
-| Dos | garder | adapter: variante:pompe-genoux | retirer |
+| Coude | garder | retirer | retirer |
+| Poignet | adapter: appui:poings-fermes | retirer | retirer |
+| Dos | garder | retirer | retirer |
 
 **Notes**
 - epaule-n1 : mains écartées = épaule étirée en bas de mouvement : ne descends pas plus bas que sans gêne.
-- grossesse : mains hautes, respiration continue, jamais jusqu'à l'échec. Post-partum : G7.
+- coude-n2 : pompe écartée retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- poignet-n2 : pompe écartée retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- dos-n2 : pompe écartée retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- grossesse : retirée ; remplacée par la pompe mains sur une chaise, mains hautes, respiration continue, jamais jusqu'à l'échec. Post-partum : G7.
 
-**Grossesse** : adapter: variante:pompe-chaise
+**Grossesse** : retirer: remplacant:pompe-chaise
 **Version plus douce** : pompe-genoux
 
 **Signes qui doivent faire arrêter**

@@ -53,11 +53,12 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Épaule | garder | retirer: remplacant:pompe-chaise | retirer |
 | Coude | adapter: amplitude:reduite | retirer: remplacant:pompe-chaise | retirer |
 | Poignet | retirer: remplacant:pompe-chaise | retirer: remplacant:pompe-chaise | retirer |
-| Dos | garder | adapter: variante:pompe-genoux | retirer |
+| Dos | garder | retirer | retirer |
 
 **Notes**
 - coude-n1 : mains rapprochées = triceps et coudes très sollicités : amplitude réduite.
 - poignet-n1 : mains rapprochées, poignets très pliés : retiré dès la gêne légère par prudence.
+- dos-n2 : pompe diamant retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - grossesse : retirée ; remplaçant conseillé : pompe sur la chaise. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:pompe-chaise

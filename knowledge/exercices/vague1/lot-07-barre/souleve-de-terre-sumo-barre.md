@@ -50,7 +50,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: variante:souleve-de-terre-barre-rack | retirer: remplacant:souleve-de-terre-roumain-halteres | retirer |
+| Dos | retirer | retirer | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
@@ -63,11 +63,11 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 **Notes**
 - general : La barre seule pèse souvent 20 kg (parfois moins) : c'est déjà une charge. Si elle est trop lourde pour garder le geste propre, passe à la version aux haltères (NON SOURCÉ ; question Q12 de docs/QUESTIONS.md).
-- dos-n1 : soulevé de terre conventionnel depuis le rack (course courte, pas de reprise au sol), comme sur la fiche du conventionnel (choix prudent de kine, NON SOURCÉ) ; la charge ne monte pas tant que la gêne persiste.
+- dos-n1 : soulevé de terre sumo retiré dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
 - aine-n1 : adducteurs principaux : pieds moins écartés, charge légère.
 - aine-n2 : amplitude réduite : pieds moins écartés ; départ plus haut non proposé par l'app (aucune valeur sourcée).
 - hanche-n2 : moins de profondeur au départ ; pieds moins écartés.
-- dos-n2 : charge de la barre sur la colonne : retiré ; remplaçant soulevé de terre roumain aux haltères.
+- dos-n2 : soulevé de terre sumo retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - poignet-n1 : prise avec les doigts, deux paumes vers les cuisses ; sangles, crochet et prise mixte non proposés.
 - grossesse : barre lourde au sol (pression abdominale, blocage de la respiration) et grand écart des hanches : retiré par prudence, confirmé par kine (NON SOURCÉ) ; remplaçant : soulevé de terre roumain aux haltères, charge légère. Post-partum : G7.
 

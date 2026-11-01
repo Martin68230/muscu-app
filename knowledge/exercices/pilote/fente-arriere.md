@@ -52,18 +52,18 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter: variante:fente-arriere-mur | adapter: variante:squat-fendu-mur | retirer |
-| Hanche | garder | adapter: variante:squat-fendu-mur | retirer |
-| Cheville | adapter: variante:fente-arriere-mur | adapter: variante:squat-fendu-mur | retirer |
+| Genou | adapter: variante:fente-arriere-mur | retirer | retirer |
+| Hanche | garder | retirer | retirer |
+| Cheville | adapter: variante:fente-arriere-mur | retirer: remplacant:squat-assis-debout | retirer |
 | Dos | adapter: sans-charge | adapter: variante:fente-arriere-mur | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
 - genou-n1 : amplitude sans gêne.
-- genou-n2 : amplitude réduite.
-- hanche-n2 : petit pas.
-- cheville-n2 : pieds immobiles.
+- genou-n2 : fente arrière retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- hanche-n2 : fente arrière retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- cheville-n2 : fente arrière retirée à ce niveau ; remplacée par le squat assis-debout, qui limite la descente. NON SOURCÉ.
 - dos-n1 : sans haltères (fente-arriere-poids-du-corps).
 - dos-n2 : sans haltères, main au mur.
 - grossesse : main au mur, sans haltères. Post-partum : G7.

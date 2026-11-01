@@ -50,16 +50,17 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:pompe-piquee | retirer: remplacant:pompe-chaise | retirer |
-| Coude | adapter: amplitude:reduite | adapter: variante:pompe-piquee | retirer |
-| Poignet | adapter: variante:pompe-piquee | retirer | retirer |
-| Cou | adapter: variante:pompe-piquee | retirer | retirer |
+| Épaule | retirer | retirer | retirer |
+| Coude | adapter: amplitude:reduite | retirer | retirer |
+| Poignet | retirer | retirer | retirer |
+| Cou | retirer | retirer | retirer |
 
 **Notes**
+- epaule-n1 : pompe pieds surélevés retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
 - coude-n1 : amplitude réduite (descente moins profonde), sur le même échelon.
-- coude-n2 : mains sur une marche (pompe-piquee-mains-marche).
-- poignet-n1 : mains sur une marche.
-- cou-n1 : moins de tête en bas.
+- coude-n2 : pompe pieds surélevés retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- poignet-n1 : pompe pieds surélevés retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
+- cou-n1 : pompe pieds surélevés retirée dès la gêne légère au cou (tête plus basse) ; l'app propose un autre exercice. NON SOURCÉ.
 - grossesse : tête en bas et risque de chute, donc retiré ; remplaçant conseillé : pompe-chaise. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:pompe-chaise

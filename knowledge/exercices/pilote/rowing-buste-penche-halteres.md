@@ -50,23 +50,24 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: variante:rowing-unilateral-haltere | adapter: variante:rowing-unilateral-haltere | retirer |
-| Hanche | garder | adapter: variante:rowing-unilateral-haltere | retirer |
+| Dos | retirer: remplacant:rowing-unilateral-haltere | retirer | retirer |
+| Hanche | garder | retirer: remplacant:rowing-unilateral-haltere | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: variante:rowing-penche-paumes-face | retirer |
 | Cuisse | garder | adapter: charge:legere | retirer |
 
 **Notes**
-- dos-n1 : main d'appui sur la chaise.
-- dos-n2 : la case renvoie au rowing à un bras (rowing-unilateral-haltere), charge légère.
+- dos-n1 : rowing buste penché retiré dès la gêne légère au dos ; remplacé par le rowing à un bras, une main en appui sur un support stable. NON SOURCÉ.
+- hanche-n2 : rowing buste penché retiré à ce niveau ; remplacé par le rowing à un bras, une main en appui sur un support stable. NON SOURCÉ.
+- dos-n2 : rowing buste penché retiré à ce niveau ; l'app propose un exercice de tirage plus doux pour le dos. NON SOURCÉ.
 - epaule-n2 : charge légère, amplitude réduite.
 - coude-n2 : charge légère, paumes face à face.
 - poignet-n2 : paumes face à face, charge légère.
 - grossesse : version à un bras, charge légère. Post-partum : G7.
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 
-**Grossesse** : adapter: variante:rowing-unilateral-haltere
+**Grossesse** : retirer: remplacant:rowing-unilateral-haltere
 **Version plus douce** : rowing-unilateral-haltere
 
 

@@ -55,11 +55,12 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Épaule | adapter: variante:planche-touche-epaule-genoux | retirer: remplacant:dead-bug | retirer |
 | Poignet | adapter: variante:planche-touche-epaule-genoux | retirer: remplacant:planche-avant-bras | retirer: sans-zone:planche-avant-bras |
 | Coude | garder | adapter: variante:planche-touche-epaule-genoux | retirer |
-| Dos | adapter: variante:planche-touche-epaule-genoux | adapter: variante:planche-genoux | retirer |
+| Dos | adapter: variante:planche-touche-epaule-genoux | retirer | retirer |
 
 **Notes**
 - poignet-n3 : la planche sur les avant-bras ne charge pas les poignets.
 - general : les échelons sur les pieds et pieds serrés sont remplacés partout où une case du tableau demande une variante ou un retrait (épaule, poignet, dos dès le niveau 1 ; coude dès le niveau 2) ; une case `garder` laisse l'échelon inchangé. Version plus douce : sur les genoux, puis planche.
+- dos-n2 : planche touche-épaule retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - grossesse : maintien isométrique prolongé, donc retiré ; remplaçant conseillé : bird-dog sans pause. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:bird-dog

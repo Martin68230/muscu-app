@@ -55,7 +55,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 |---|---|---|---|
 | Genou | adapter: variante:squat-fendu-mur | adapter: variante:squat-fendu-mur | retirer |
 | Hanche | garder | adapter: variante:squat-fendu-mur | retirer |
-| Cheville | adapter: variante:squat-fendu-mur | adapter: variante:squat-assis-debout | retirer |
+| Cheville | adapter: variante:squat-fendu-mur | retirer: remplacant:squat-assis-debout | retirer |
 | Dos | adapter: variante:squat-fendu-poids-du-corps | adapter: variante:squat-fendu-mur | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
@@ -63,7 +63,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 **Notes**
 - genou-n2 : mi-descente.
 - hanche-n2 : mi-descente.
-- cheville-n2 : le squat assis-debout remplace ; amplitude réduite possible.
+- cheville-n2 : remplacé par le squat assis-debout, qui limite la descente. NON SOURCÉ.
 - dos-n1 : sans haltères.
 - dos-n2 : sans haltères, main au mur.
 - grossesse : main au mur, sans haltères. Post-partum : G7.

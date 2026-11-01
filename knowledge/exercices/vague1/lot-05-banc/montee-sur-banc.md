@@ -51,18 +51,18 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter: variante:montee-sur-marche-poids-du-corps | retirer | retirer |
-| Hanche | adapter: variante:montee-sur-marche-poids-du-corps | adapter: variante:montee-sur-marche-poids-du-corps | retirer |
-| Cheville | adapter: variante:montee-sur-marche-poids-du-corps | adapter: appui:main-sur-support | retirer |
+| Genou | retirer | retirer | retirer |
+| Hanche | retirer | retirer | retirer |
+| Cheville | retirer | retirer | retirer |
 | Cuisse | garder | retirer | retirer |
 
 **Notes**
-- genou-n1 : repasse sur une marche d'escalier, plus basse, main sur la rampe.
+- genou-n1 : montée sur banc retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
 - genou-n2 : retiré par prudence (choix NON SOURCÉ de `kine`) : le banc est plus haut que la marche, et une gêne nette au genou ne justifie pas de proposer une montée plus haute ; la marche basse n'est pas proposée en remplacement à ce niveau ; le générateur choisit un autre exercice de fente.
-- hanche-n1 : un banc est au moins aussi haut qu'une marche ; comme pour la box haute du pilote, repasse sur la marche d'escalier, plus basse, main sur la rampe.
-- cheville-n1 : même raison que hanche-n1 : repasse sur la marche d'escalier, plus basse, main sur la rampe.
-- hanche-n2 : marche basse, aucune augmentation (R2).
-- cheville-n2 : main sur un support stable (mur ou meuble lourd, testé).
+- hanche-n1 : montée sur banc retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
+- cheville-n1 : montée sur banc retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
+- hanche-n2 : montée sur banc retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- cheville-n2 : montée sur banc retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - cuisse-n2 : les ischios sont secondaires mais travaillent ; retiré dès la gêne nette (choix prudent NON SOURCÉ de `kine`). La marche n'a pas de ligne cuisse : elle n'est pas désignée comme remplaçant.
 - grossesse : banc plus haut qu'une marche, risque de chute : retiré ; remplaçant : montée sur marche, sans haltères, main sur la rampe. Post-partum : G7.
 

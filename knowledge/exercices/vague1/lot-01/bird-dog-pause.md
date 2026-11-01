@@ -53,8 +53,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Poignet | adapter: appui:poings-fermes | adapter: appui:avant-bras | retirer: remplacant:dead-bug-jambes-seules |
 | Genou | adapter: appui:coussin | adapter: appui:coussin | retirer: remplacant:dead-bug-jambes-seules |
 | Épaule | adapter: amplitude:bras-bas | retirer: remplacant:dead-bug-jambes-seules | retirer |
-| Dos | adapter: variante:bird-dog | adapter: variante:bird-dog-jambe-seule | retirer |
-| Hanche | adapter: amplitude:reduite | adapter: variante:bird-dog | retirer |
+| Dos | retirer | retirer | retirer |
+| Hanche | adapter: amplitude:reduite | retirer | retirer |
 
 **Notes**
 - poignet-n1 : poings fermés, poignets droits.
@@ -62,10 +62,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - genou-n1 : coussin plié sous la zone d'appui ; plus épais au niveau 2.
 - epaule-n1 : amplitude bras-bas.
 - epaule-n2 : exercice retiré, remplacé par dead-bug-jambes-seules.
-- dos-n1 : retour à la quadrupédie bras-jambe opposés sans pause.
-- dos-n2 : seule la jambe bouge, les mains restent au sol.
+- dos-n1 : quadrupédie avec pause retirée dès la gêne légère au dos ; l'app propose un exercice plus doux pour le dos. NON SOURCÉ.
+- dos-n2 : quadrupédie avec pause retirée à ce niveau ; l'app propose un exercice plus doux pour le dos. NON SOURCÉ.
 - hanche-n1 : amplitude réduite, dans la zone sans gêne.
-- hanche-n2 : quadrupédie bras-jambe opposés classique, sans pause.
+- hanche-n2 : quadrupédie avec pause retirée à ce niveau ; l'app propose un exercice plus doux pour la hanche. NON SOURCÉ.
 - grossesse : la pause est un maintien prolongé : retirée ; remplaçant : bird-dog (maintien court). Post-partum : G7.
 - general : quand une case du profil demande une autre variante ou un retrait, cette autre variante s'applique à la place de la pause et du coude-genou.
 

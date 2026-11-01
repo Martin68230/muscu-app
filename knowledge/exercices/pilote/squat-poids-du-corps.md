@@ -51,17 +51,19 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter: variante:squat-assis-debout | retirer |
-| Hanche | garder | adapter: variante:squat-assis-debout | retirer |
-| Dos | garder | adapter: variante:squat-assis-debout | retirer |
-| Cheville | adapter: appui:pieds-ecartes | adapter: variante:squat-assis-debout | retirer |
+| Genou | garder | retirer | retirer |
+| Hanche | garder | retirer | retirer |
+| Dos | garder | retirer | retirer |
+| Cheville | adapter: appui:pieds-ecartes | retirer: remplacant:squat-assis-debout | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
-- genou-n2 : la chaise limite la descente.
+- genou-n2 : squat au poids du corps retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- hanche-n2 : squat au poids du corps retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- dos-n2 : squat au poids du corps retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - cheville-n1 : pieds un peu plus ouverts, talons au sol.
-- cheville-n2 : amplitude réduite possible.
+- cheville-n2 : remplacé par le squat assis-debout, qui limite la descente. NON SOURCÉ.
 - grossesse : un appui au mur ou une chaise à portée si l'équilibre change. Post-partum : G7.
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 - aine-n2 : idem (NON SOURCÉ)

@@ -53,10 +53,11 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Épaule | retirer: remplacant:pompe-ecartee | retirer: remplacant:pompe-chaise | retirer |
 | Coude | retirer: remplacant:pompe-ecartee | retirer: remplacant:pompe-chaise | retirer |
 | Poignet | retirer: remplacant:pompe-ecartee | retirer: remplacant:pompe-chaise | retirer |
-| Dos | adapter: variante:pompe-ecartee-sol | retirer: remplacant:pompe-chaise | retirer |
+| Dos | retirer: remplacant:pompe-ecartee | retirer | retirer |
 
 **Notes**
 - general : charge très asymétrique sur une épaule et un coude : retirée dès la gêne légère au bras par prudence.
+- dos-n1 : pompe archer retirée dès la gêne légère au dos ; remplacée par la pompe écartée, plus douce. NON SOURCÉ.
 - grossesse : retirée ; remplaçant conseillé : pompe sur la chaise. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:pompe-chaise

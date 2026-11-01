@@ -50,7 +50,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | adapter: charge:legere | adapter: variante:marche-du-fermier | retirer |
+| Dos | adapter: charge:legere | retirer | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
 | Cou | garder | adapter: charge:legere | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
@@ -58,7 +58,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 | Hanche | garder | adapter: charge:legere | retirer |
 
 **Notes**
-- dos-n2 : charge légère répartie des deux côtés (marche du fermier).
+- dos-n2 : porte-valise retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - hanche-n2 : trajet court.
 - grossesse : charge légère, poids connu, respiration continue. Post-partum : G7.
 - general : version plus douce = marche du fermier plus légère.

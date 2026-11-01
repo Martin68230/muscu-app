@@ -50,23 +50,23 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter: variante:squat-sumo-poids-du-corps | adapter: variante:squat-assis-debout | retirer |
-| Hanche | adapter: variante:squat-sumo-poids-du-corps | adapter: variante:squat-assis-debout | retirer |
-| Dos | adapter: sans-charge | adapter: variante:squat-assis-debout | retirer |
-| Cheville | adapter: variante:squat-sumo-poids-du-corps | adapter: variante:squat-assis-debout | retirer |
-| Aine | adapter: variante:squat-sumo-poids-du-corps | adapter: variante:squat-assis-debout | retirer |
+| Genou | adapter: variante:squat-sumo-poids-du-corps | retirer | retirer |
+| Hanche | adapter: variante:squat-sumo-poids-du-corps | retirer | retirer |
+| Dos | adapter: sans-charge | retirer | retirer |
+| Cheville | adapter: variante:squat-sumo-poids-du-corps | retirer: remplacant:squat-assis-debout | retirer |
+| Aine | adapter: variante:squat-sumo-poids-du-corps | retirer | retirer |
 
 **Notes**
 - genou-n1 : poids du corps seulement : ni haltère ni kettlebell.
-- genou-n2 : squat assis-debout, qui limite la descente ; aucune augmentation de difficulté (R2).
+- genou-n2 : squat sumo retiré à ce niveau (pieds très écartés) ; l'app propose un exercice plus doux pour le genou. NON SOURCÉ.
 - hanche-n1 : poids du corps seulement ; une gêne au pli de la hanche se déclare sous « hanche », à l'aine sous « aine ».
-- hanche-n2 : squat assis-debout, qui limite la descente.
+- hanche-n2 : squat sumo retiré à ce niveau (pieds très écartés) ; l'app propose un exercice plus doux pour la hanche. NON SOURCÉ.
 - dos-n1 : sans haltère ni kettlebell.
-- dos-n2 : squat assis-debout, qui limite la descente.
+- dos-n2 : squat sumo retiré à ce niveau ; l'app propose un exercice plus doux pour le dos. NON SOURCÉ.
 - cheville-n1 : poids du corps seulement.
-- cheville-n2 : squat assis-debout, qui limite la descente.
+- cheville-n2 : squat sumo retiré à ce niveau ; remplacé par le squat assis-debout, qui limite la descente. NON SOURCÉ.
 - aine-n1 : poids du corps seulement, descente modérée. NON SOURCÉ (choix prudent de `kine`).
-- aine-n2 : squat assis-debout (pieds moins écartés) ; aucune augmentation de difficulté (R2).
+- aine-n2 : squat sumo retiré à ce niveau (pieds très écartés, adducteurs étirés) ; l'app propose un exercice plus doux. NON SOURCÉ.
 - grossesse : poids du corps seulement (la case ne code que cela). Post-partum : G7.
 - general : cases au moins aussi restrictives que le squat au poids du corps, plus facile. Version plus douce : le squat au poids du corps.
 

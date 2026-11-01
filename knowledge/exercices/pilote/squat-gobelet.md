@@ -51,19 +51,22 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter: variante:squat-poids-du-corps | retirer |
-| Hanche | garder | adapter: variante:squat-poids-du-corps | retirer |
-| Dos | garder | adapter: variante:squat-assis-debout | retirer |
+| Genou | garder | retirer | retirer |
+| Hanche | garder | retirer | retirer |
+| Dos | garder | retirer | retirer |
 | Cheville | garder | adapter: amplitude:reduite | retirer |
-| Coude | garder | adapter: variante:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
-| Poignet | garder | adapter: variante:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
+| Coude | garder | retirer: remplacant:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
+| Poignet | garder | retirer: remplacant:squat-poids-du-corps | retirer: sans-zone:squat-poids-du-corps |
 | Cuisse | garder | adapter: charge:legere | retirer |
 | Aine | garder | adapter: charge:legere | retirer |
 
 **Notes**
-- genou-n2 : le squat assis-debout est aussi possible.
-- dos-n2 : squat assis-debout sans haltère (la case renvoie à cette variante).
+- genou-n2 : squat gobelet retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- hanche-n2 : squat gobelet retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- dos-n2 : squat gobelet retiré à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - cheville-n2 : descente moins profonde, talons au sol.
+- coude-n2 : plus de charge tenue contre la poitrine : le squat au poids du corps remplace le squat gobelet. NON SOURCÉ.
+- poignet-n2 : idem pour le poignet. NON SOURCÉ.
 - coude-n3 : le squat au poids du corps laisse les bras libres (idem poignet).
 - grossesse : charge légère, respiration continue. Post-partum : G7.
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)

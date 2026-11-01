@@ -50,28 +50,28 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | adapter: variante:squat-fendu-mur | adapter: variante:squat-fendu-mur | retirer |
-| Hanche | adapter: amplitude:reduite | adapter: variante:squat-fendu-mur | retirer |
-| Cheville | adapter: variante:squat-fendu-mur | adapter: variante:squat-assis-debout | retirer |
-| Dos | adapter: sans-charge | adapter: variante:squat-fendu-mur | retirer |
+| Genou | retirer | retirer | retirer |
+| Hanche | adapter: amplitude:reduite | retirer | retirer |
+| Cheville | retirer | retirer: remplacant:squat-assis-debout | retirer |
+| Dos | adapter: sans-charge | retirer | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
 **Notes**
-- genou-n1 : squat fendu avec la main au mur à la place de la fente (le pas avant freine plus le corps).
-- genou-n2 : même variante ; aucune augmentation de difficulté (R2).
+- genou-n1 : fente avant retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
+- genou-n2 : fente avant retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - hanche-n1 : amplitude réduite : petit pas, descente courte.
-- hanche-n2 : squat fendu avec la main au mur.
-- cheville-n1 : squat fendu avec la main au mur.
-- cheville-n2 : squat assis-debout, qui limite la descente et l'appui sur l'avant-pied (comme pour le squat fendu) ; aucune augmentation de difficulté (R2).
+- hanche-n2 : fente avant retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
+- cheville-n1 : fente avant retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
+- cheville-n2 : fente avant retirée à ce niveau ; remplacée par le squat assis-debout, qui limite la descente et l'appui sur l'avant-pied. NON SOURCÉ.
 - dos-n1 : sans haltère.
-- dos-n2 : squat fendu avec la main au mur.
+- dos-n2 : fente avant retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - grossesse : squat fendu avec la main au mur, sans haltère ; respiration continue (G4). Post-partum : G7 (sans effet : la fente n'est pas un saut).
 - general : plus exigeante que la fente arrière : cases au moins aussi restrictives. Version plus douce : le squat fendu avec la main au mur.
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 - aine-n2 : idem (NON SOURCÉ)
 
-**Grossesse** : adapter: variante:squat-fendu-mur
+**Grossesse** : retirer: remplacant:squat-fendu-mur
 **Version plus douce** : squat-fendu-mur
 
 **Signes qui doivent faire arrêter**

@@ -1,31 +1,4 @@
 {
   "commentaire": "Écarts connus « idFiche>idVariante » : une case de sécurité `adapter: variante:<id>` vise un id qui n'est pas une variante de la même fiche (variante d'une autre fiche, ou id d'une autre fiche). À corriger par le coach (variante propre à la fiche, ou retirer: remplacant:<id-de-fiche>), puis retirer de cette liste (le validateur refuse une entrée devenue inutile et tout NOUVEL écart). La liste ne peut que diminuer.",
-  "ecarts": [
-    "bird-dog-pause>bird-dog",
-    "bird-dog-pause>bird-dog-jambe-seule",
-    "fente-arriere>squat-fendu-mur",
-    "fente-avant>squat-assis-debout",
-    "fente-avant>squat-fendu-mur",
-    "fente-laterale>squat-assis-debout",
-    "montee-sur-banc>montee-sur-marche-poids-du-corps",
-    "planche-bras-jambe-leves>planche-genoux",
-    "planche-laterale-jambe-levee>planche-laterale-genoux",
-    "planche-touche-epaule>planche-genoux",
-    "pompe-archer>pompe-ecartee-sol",
-    "pompe-diamant>pompe-genoux",
-    "pompe-ecartee>pompe-chaise",
-    "pompe-ecartee>pompe-genoux",
-    "pompe-piquee-pieds-sureleves>pompe-piquee",
-    "porte-valise>marche-du-fermier",
-    "rowing-buste-penche-halteres>rowing-unilateral-haltere",
-    "souleve-de-terre-roumain-halteres>pont-fessier-sol",
-    "souleve-de-terre-roumain-unijambiste>souleve-de-terre-roumain-halteres",
-    "souleve-de-terre-sumo-barre>souleve-de-terre-barre-rack",
-    "squat-bulgare>squat-fendu-mur",
-    "squat-fendu>squat-assis-debout",
-    "squat-gobelet>squat-assis-debout",
-    "squat-gobelet>squat-poids-du-corps",
-    "squat-poids-du-corps>squat-assis-debout",
-    "squat-sumo>squat-assis-debout"
-  ]
+  "ecarts": []
 }

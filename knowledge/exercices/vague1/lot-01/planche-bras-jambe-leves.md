@@ -52,8 +52,8 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 |---|---|---|---|
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Poignet | garder | garder | retirer: sans-zone:planche-bras-leve-avant-bras |
-| Coude | adapter: appui:serviette | adapter: variante:planche-genoux | retirer |
-| Cou | adapter: amplitude:tete-alignee | adapter: variante:planche-genoux | retirer |
+| Coude | adapter: appui:serviette | retirer | retirer |
+| Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 | Dos | adapter: variante:planche-bras-leve-avant-bras | retirer: remplacant:planche-genoux | retirer |
 | Hanche | garder | adapter: variante:planche-bras-leve-avant-bras | retirer |
 
@@ -62,9 +62,9 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - epaule-n2 : exercice retiré, sans remplaçant : le dead-bug est lui-même adapté à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
 - poignet-n3 : la planche sur les avant-bras ne charge pas les poignets.
 - coude-n1 : serviette pliée sous les avant-bras.
-- coude-n2 : remplacé par la planche sur les genoux (plus facile).
+- coude-n2 : planche avec bras ou jambe levés retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - cou-n1 : tête dans l'alignement du dos, regard vers le sol.
-- cou-n2 : remplacé par la planche sur les genoux (plus facile).
+- cou-n2 : planche avec bras ou jambe levés retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - dos-n1 : un bras levé seulement (échelon 1).
 - dos-n2 : remplacement par la planche sur les genoux.
 - hanche-n2 : remplacé par la variante planche-bras-leve-avant-bras.

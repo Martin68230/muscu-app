@@ -50,22 +50,22 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: variante:planche-laterale-genoux | retirer | retirer |
+| Épaule | retirer | retirer | retirer |
 | Poignet | adapter: variante:planche-laterale-jambe-levee-avant-bras | adapter: variante:planche-laterale-jambe-levee-avant-bras | retirer: sans-zone:planche-laterale-jambe-levee-avant-bras |
 | Dos | adapter: amplitude:reduite | retirer: remplacant:planche-laterale-genoux | retirer |
-| Hanche | garder | adapter: variante:planche-laterale-genoux | retirer |
-| Coude | adapter: appui:serviette | adapter: variante:planche-laterale-genoux | retirer |
+| Hanche | garder | retirer | retirer |
+| Coude | adapter: appui:serviette | retirer | retirer |
 
 **Notes**
-- epaule-n1 : remplacé par la planche latérale sur le genou, sans jambe levée (plus facile).
+- epaule-n1 : planche latérale jambe levée retirée dès la gêne légère ; l'app propose un autre exercice. NON SOURCÉ.
 - epaule-n2 : exercice retiré, sans remplaçant : la planche latérale est retirée et l'insecte sur le dos est adapté à l'épaule de niveau 2 ; l'app propose un autre exercice qui ne sollicite pas l'épaule.
 - poignet-n1 : appui sur l'avant-bras plutôt que sur la main.
 - poignet-n3 : l'appui sur l'avant-bras ne charge pas le poignet.
 - dos-n1 : jambe levée moins haut.
 - dos-n2 : exercice retiré ; remplaçant : planche latérale sur le genou (plus facile).
-- hanche-n2 : remplacé par la planche latérale sur le genou, coussin sous le genou (plus facile).
+- hanche-n2 : planche latérale jambe levée retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - coude-n1 : serviette pliée sous l'avant-bras.
-- coude-n2 : remplacé par la planche latérale sur le genou, serviette sous l'avant-bras.
+- coude-n2 : planche latérale jambe levée retirée à ce niveau ; l'app propose un autre exercice. NON SOURCÉ.
 - grossesse : maintien isométrique prolongé et pression abdominale : retiré ; remplaçant : bird-dog (maintien court). Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:bird-dog
