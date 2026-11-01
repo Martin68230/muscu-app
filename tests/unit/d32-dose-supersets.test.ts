@@ -106,7 +106,8 @@ describe('D32-2 : paires retentées après le placement final', () => {
   it('profil 4 (volley, intermédiaire, maison) : la séance B reçoit sa paire P1 (tirage_2 ajouté après la 1re formation)', () => {
     const p = gen(PROFIL_4);
     const b = p.sessions.find((s) => s.label === 'B')!;
-    expect(pairsOf(b)).toEqual(['B-P1']);
+    // Lot 11 (fiches élastique) : une 2e paire B-P3 (jambes_2 + tronc) devient possible en plus de B-P1.
+    expect(pairsOf(b)).toContain('B-P1');
     const pair = b.exercises.filter((e) => e.supersetGroup === 'B-P1');
     expect(pair.map((e) => e.slot).sort()).toEqual(['poussee_2', 'tirage_2']);
     for (const e of pair) expect(pairEligible(e)).toBe(true);

@@ -165,7 +165,13 @@ describe('D33 §8 : filtre « salle » (PV3-SALLE-1, T-D33-26a à d)', () => {
   it('26b : P2 en salle avec barre de traction : tirage vertical = traction-barre', () => {
     const tv = tirageV(prog(access(P2())));
     expect(tv.map((e) => e.ficheId)).toContain('traction-barre');
-    for (const e of tv) expect(excluded(e)).toHaveLength(0);
+    // Pénurie (< 2 fiches pleines sans élastique) : un élastique réadmis est permis, avec « (à la maison) » (lot 11 : tirage vertical un bras).
+    for (const e of tv) {
+      const ex = excluded(e);
+      if (!ex.length) continue;
+      expect(ex.every((t) => SALLE_PENURIE_READMIS.includes(t))).toBe(true);
+      expect(e.variantNom.endsWith(SALLE_HOME_SUFFIX)).toBe(true);
+    }
   });
   it('26c : sans barre de traction : jamais une variante à `porte` (kiné) ; un élastique réadmis porte « (à la maison) »', () => {
     const noBar = access(mk({ profile: 'E', place: 'salle', level: 'intermediaire', days: 4, dur: 60, goal: 'force' }));
@@ -215,18 +221,21 @@ describe('D33 : isolation, liste fermée (PV3-ISO-6, PV3-ISO-3, T-D33-20)', () =
       for (const d of ISOLATION.slots) expect(isoFicheFits(f, d)).toBe(false);
     expect(isoFicheFits(byId('elevation-laterale-assis-halteres'), def('iso_deltoide_lateral'))).toBe(true);
     expect(isoFicheFits(byId('curl-barre'), def('iso_biceps'))).toBe(true);
+    for (const id of ['curl-halteres', 'curl-elastique']) expect(isoFicheFits(byId(id), def('iso_biceps'))).toBe(true);
+    expect(isoFicheFits(byId('elevation-laterale'), def('iso_deltoide_lateral'))).toBe(true);
     expect(isoFicheFits(byId('cheville-elastique'), def('iso_mollets'))).toBe(false);
   });
   it('profil mesuré (salle F, 3 jours, 75 min) : iso_deltoide_lateral = élévation seulement ; aucun poussee_v d\'isolation autre', () => {
     const p = prog(salle({ goal: 'muscle', days: 3, dur: 75 }));
     for (const e of p.sessions.flatMap((s) => s.exercises).filter((x) => x.slot.startsWith('iso_') && x.schema === 'poussee_v'))
-      expect(e.ficheId).toBe('elevation-laterale-assis-halteres');
+      expect(['elevation-laterale-assis-halteres', 'elevation-laterale']).toContain(e.ficheId);
   });
   it('haltères + chaise : élévation ; barre + disques : curl-barre ; haltères + banc incliné sans barre : curl incliné ; haltères seuls : biceps vide', () => {
-    for (const e of iso(t20(['halteres']), 'iso_deltoide_lateral')) expect(e.ficheId).toBe('elevation-laterale-assis-halteres');
-    for (const e of iso(t20(['halteres', 'barre', 'disques']), 'iso_biceps')) expect(e.ficheId).toBe('curl-barre');
-    for (const e of iso(t20(['halteres', 'banc_inclinable', 'banc']), 'iso_biceps')) expect(e.ficheId).toBe('curl-incline-halteres');
-    expect(iso(t20(['halteres']), 'iso_biceps')).toHaveLength(0);
+    for (const e of iso(t20(['halteres']), 'iso_deltoide_lateral')) expect(['elevation-laterale-assis-halteres', 'elevation-laterale']).toContain(e.ficheId);
+    for (const e of iso(t20(['halteres', 'barre', 'disques']), 'iso_biceps')) expect(['curl-barre', 'curl-halteres']).toContain(e.ficheId);
+    for (const e of iso(t20(['halteres', 'banc_inclinable', 'banc']), 'iso_biceps')) expect(['curl-incline-halteres', 'curl-halteres']).toContain(e.ficheId);
+    // Lot 11 : curl aux haltères (curl-halteres) possible avec les haltères seuls.
+    for (const e of iso(t20(['halteres']), 'iso_biceps')) expect(e.ficheId).toBe('curl-halteres');
     for (const s of t20(['halteres', 'barre', 'disques']).sessions) {
       const ids = s.exercises.map((e) => e.ficheId);
       expect(new Set(ids).size).toBe(ids.length);

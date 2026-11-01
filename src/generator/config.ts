@@ -835,8 +835,8 @@ export const ISOLATION = {
   // exclue en plus toute fiche dont `deltoides_anterieurs` ou `triceps` est muscle principal (jamais un développé au-dessus de la tête) ;
   // aucune fiche admissible : emplacement vide, sans erreur. Attribut de fiche `isolation: oui` (E-11) : pas encore codé.
   slots: [
-    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'], ids: ['curl-barre', 'curl-incline-halteres'] },
-    { slot: 'iso_deltoide_lateral', schema: 'poussee_v', muscle: 'deltoides_lateraux', zones: ['epaule'], ids: ['elevation-laterale-assis-halteres'] },
+    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'], ids: ['curl-barre', 'curl-incline-halteres', 'curl-halteres', 'curl-elastique'] },
+    { slot: 'iso_deltoide_lateral', schema: 'poussee_v', muscle: 'deltoides_lateraux', zones: ['epaule'], ids: ['elevation-laterale-assis-halteres', 'elevation-laterale'] },
     {
       slot: 'iso_mollets', schema: 'cheville_mollet', muscle: 'mollets', zones: ['cheville'],
       ids: ['releve-mollets', 'releve-mollets-assis', 'releve-mollets-halteres', 'marche-pointes-talons', 'releve-mollets-debout-barre', 'releve-mollets-machine'],

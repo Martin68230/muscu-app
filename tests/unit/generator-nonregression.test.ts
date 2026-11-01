@@ -26,6 +26,17 @@ import { mk, type MkOpts } from './generator-helpers';
 // tous par l'attribution des fiches à l'échelle de la semaine (même en ignorant le jeu 2) ; recouvrement maximal entre séances du même type
 // en baisse dans 485 cas, en hausse dans aucun (5 -> 0 ou 1 dans 129 cas) ; jeu 2 (`alt`) ajouté. V-MSG-VOL apparaît dans 12 cas (A0,
 // intermédiaire / avancé, 3 jours, 60 min et sans limite : grand dorsal 9,5 séries au lieu de 10 faute de fiches de tirage) et disparaît dans 3.
+// Référence régénérée le 01/11/2026 pour le lot 11 de fiches (variété : curl-halteres, curl-elastique, elevation-laterale, charniere-dos-au-mur,
+// bonjour-poids-du-corps, tirage-vertical-un-bras-elastique, developpe-epaules-elastique-alterne, developpe-sol-elastique ; générateur v1.8
+// inchangé) après comparaison avant / après cas par cas (« avant » = mêmes fiches sans les 8 nouvelles : identique à l'ancienne référence
+// pour les 662 cas) : 451 cas sur 662 changent, tous par la présence des nouvelles fiches : charnière seule 314, charnière + tirage vertical 48,
+// charnière + poussée verticale + tirage vertical 24, tirage vertical seul 57, isolation (curl / élévation, 75 min) 1 ; 7 cas (avancé, A0,
+// 30 min, 2 à 3 jours) n'ont aucun changement d'exercice : seul le texte V-MSG-DUREE nomme désormais la nouvelle fiche retirée faute de temps.
+// Recouvrement maximal entre séances du même type : en baisse dans 89 cas, égal dans 362, en hausse dans aucun. V-MSG-VOL : aucun cas
+// n'apparaît ni ne disparaît ; autres messages : V-MSG-ACHAT apparaît dans 8 cas, V-MSG-DUREE et V-MSG-FREQ disparaissent dans 8, V-MSG-PLANS
+// dans 4 ; pénurie de variété disparaît dans 57 cas (tirage vertical), changée dans 97, pénurie salle inchangée. Contrôle de placement sur 2 916
+// profils (grossesse, post-partum, chaque zone au niveau 1 à 3, 3 niveaux) : 5 780 placements des nouvelles fiches, aucune fiche placée
+// malgré une case « retirer », une ligne grossesse « retirer », un niveau de variante supérieur à celui du profil, ni d'isolation en grossesse.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

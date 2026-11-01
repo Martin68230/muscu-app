@@ -474,6 +474,26 @@ export function validateLot(files, options = {}) {
     }
   }
   for (const key of exempt) if (!usedExempt.has(key) && byId.has(key.split('>')[0])) issues.push({ file: byId.get(key.split('>')[0]).file, line: 1, categorie: 'chaine-muscle', severite: 'erreur', message: `l'écart « ${key} » n'existe plus : le retirer de knowledge/exercices/CHAINES-A-CORRIGER.json` });
+  // Une case `adapter: variante:<id>` vise une variante DE LA MÊME FICHE (jamais une variante d'une autre fiche) ; `remplacant:<id>` et
+  // `sans-zone:<id>` visent légitimement une autre fiche et ne sont pas concernés. Écarts connus : options.varianteExemptions (« fiche>variante »).
+  const varExempt = options.varianteExemptions ?? new Set();
+  const usedVarExempt = new Set();
+  for (const { fiche } of parsed) {
+    const own = new Set(fiche.variants.map((v) => v.id));
+    for (const r of fiche.refs) {
+      if (r.type !== 'variante' || own.has(r.id)) continue;
+      const key = `${fiche.id}>${r.id}`;
+      const owner = variantOwner.get(r.id);
+      const why = owner ? `c'est une variante d'une autre fiche (${owner})` : fichesById.has(r.id) ? "c'est l'id d'une autre fiche (utiliser retirer: remplacant:<id>)" : 'id inconnu';
+      if (varExempt.has(key)) {
+        usedVarExempt.add(key);
+        issues.push({ file: fiche.file, line: r.line, categorie: 'variante-securite', severite: 'avertissement', message: `adapter: variante:${r.id} : ${why} (écart connu, à corriger par le coach)` });
+      } else {
+        issues.push({ file: fiche.file, line: r.line, categorie: 'variante-securite', severite: 'erreur', message: `adapter: variante:${r.id} : n'est pas une variante de cette fiche (${why}).` });
+      }
+    }
+  }
+  for (const key of varExempt) if (!usedVarExempt.has(key) && byId.has(key.split('>')[0])) issues.push({ file: byId.get(key.split('>')[0]).file, line: 1, categorie: 'variante-securite', severite: 'erreur', message: `l'écart « ${key} » n'existe plus : le retirer de knowledge/exercices/VARIANTES-SECURITE-A-CORRIGER.json` });
   for (const { fiche } of parsed) {
     for (const r of fiche.refs) {
       if (!known(r.id)) issues.push({ file: fiche.file, line: r.line, categorie: 'ids', severite: 'erreur', message: `${r.type} : id « ${r.id} » introuvable dans le lot (ni fiche ni variante)` });
@@ -543,7 +563,9 @@ function main() {
   const tags = loadTags(join(root, 'knowledge', 'materiel-tags.json'));
   const exemptFile = join(root, 'knowledge', 'exercices', 'CHAINES-A-CORRIGER.json');
   const chainExemptions = new Set(existsSync(exemptFile) ? JSON.parse(readFileSync(exemptFile, 'utf8')).ecarts : []);
-  const { issues, errors, warnings } = validateLot(files, { tags, chainExemptions, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations'), videosDir: join(root, 'public', 'videos') });
+  const varFile = join(root, 'knowledge', 'exercices', 'VARIANTES-SECURITE-A-CORRIGER.json');
+  const varianteExemptions = new Set(existsSync(varFile) ? JSON.parse(readFileSync(varFile, 'utf8')).ecarts : []);
+  const { issues, errors, warnings } = validateLot(files, { tags, chainExemptions, varianteExemptions, photosDir: join(root, 'public', 'photos', 'free-exercise-db'), illustrationsDir: join(root, 'public', 'illustrations'), videosDir: join(root, 'public', 'videos') });
   for (const i of issues) console.log(`${i.file}:${i.line} : [${i.categorie}]${i.severite === 'erreur' ? '' : ' (avertissement)'} ${i.message}`);
   const byCat = {}; const byFile = {};
   for (const e of errors) { byCat[e.categorie] = (byCat[e.categorie] ?? 0) + 1; byFile[e.file] = (byFile[e.file] ?? 0) + 1; }
