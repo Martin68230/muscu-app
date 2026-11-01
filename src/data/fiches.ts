@@ -273,6 +273,8 @@ export function levelText(level: string): string {
 // ---------- Nettoyage des textes affichés ----------
 
 const ID_LIKE = /\b[a-z0-9]+(?:-[a-z0-9]+)+\b/g;
+/** Mots du français courant qui servent aussi d'étiquettes techniques : traduits seulement sous forme d'étiquette. */
+const ORDINARY_FRENCH = new Set(['mi-course', 'avant-bras']);
 const SNAKE = /\b(?:tag\s+)?([a-z]+(?:_[a-z]+)+)\b/g;
 const CODE = /\b[A-Z]\d{1,2}\b/;
 const CODE_G = /\b[A-Z]\d{1,2}\b/g;
@@ -367,9 +369,19 @@ export function cleanText(text: string, list: Fiche[] = []): string {
     const lbl = TAG_LABEL[id] ?? MUSCLE_SHORT[id];
     return lbl ? lbl.replace(/^(?:un |une |des |du )/, '') : id.replace(/_/g, ' ');
   });
-  t = t.replace(ID_LIKE, (id) => {
+  // Étiquettes techniques d'action (« amplitude:mi-course », « appui:avant-bras », ou entre apostrophes inverses) :
+  // seule cette forme est traduite. Les mots ordinaires du français (« mi-course », « avant-bras ») ne le sont JAMAIS.
+  t = t.replace(/\b(amplitude|appui)\s*:\s*([a-z]+(?:-[a-z]+)*)\b/g, (m, kind: string, id: string) => {
+    const lbl = kind === 'appui' ? APPUI_LABEL[id] : AMPLITUDE_LABEL[id];
+    return lbl ?? m;
+  });
+  t = t.replace(ID_LIKE, (id, offset: number, whole: string) => {
     const n = nameOfId(list, id);
     if (n) return `« ${n} »`;
+    if (ORDINARY_FRENCH.has(id)) {
+      const quoted = whole[offset - 1] === '`' && whole[offset + id.length] === '`';
+      if (!quoted) return id; // mot ordinaire dans une phrase : laissé tel quel
+    }
     if (APPUI_LABEL[id]) return APPUI_LABEL[id];
     if (AMPLITUDE_LABEL[id]) return AMPLITUDE_LABEL[id];
     return id;
