@@ -73,21 +73,21 @@ Variété : pénurie signalée pour poussee_v, tirage_v (penurieVariete).
 Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de cardio, 0 jour(s) léger(s). Durée visée : 60 min, programme de 4 semaines.
 
 ### Semaine type
-- lundi : Séance HAUT-A (HAUT), 35 min
+- lundi : Séance HAUT-A (HAUT), 40 min
 - mardi : Séance BAS-A (BAS), 35 min
 - jeudi : Séance HAUT-B (HAUT), 40 min
 - vendredi : Séance BAS-B (BAS), 35 min
 
 ### Détail des séances (semaines 1 et 3 ; les accessoires qui changent en semaines 2 et 4 sont indiqués)
 
-### Séance HAUT-A (HAUT), lundi, environ 35 min
+### Séance HAUT-A (HAUT), lundi, environ 40 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé incliné à la barre (Pente douce) : 3 x 4-6, repos 180 s, RIR 2, étalonnage
   2. Rowing à la barre, buste penché (Poitrine appuyée sur un banc incliné) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
-  3. Développé épaules aux haltères (Debout) : 2 x 8-12, repos 90 s, RIR 2, étalonnage ; semaines 2 et 4 : Développé militaire à la barre
-  4. Traction à la barre (Traction mains vers soi) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  3. Développé épaules aux haltères (Debout) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
+  4. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut (à la maison)) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   5. Écarté aux haltères (banc plat ou incliné) (Sur banc plat, haltères très légers) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   6. Tirage au visage aux sangles de suspension (Corps peu incliné) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
@@ -102,7 +102,7 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
   2. Poussée de hanches, épaules sur banc (Un haltère sur les hanches) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Fente latérale (Petite amplitude, poids du corps) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   4. Lancer de bas en haut contre un mur (Pieds à plat, sans saut) : 2 x 6-8, repos 90 s, RIR 3, étalonnage
-  5. Renforcement de cheville à l'élastique (Pied vers l'extérieur) : 2 x 12-15, repos 60 s, RIR 3, étalonnage ; semaines 2 et 4 : Montée sur les pointes, assis
+  5. Marche sur les pointes et sur les talons (Marche sur les talons) : 2 x 12-15, repos 60 s, RIR 3, étalonnage ; semaines 2 et 4 : Montée sur pointes debout à la barre
   6. Gainage en creux (Genoux pliés) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
@@ -113,11 +113,11 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé épaules assis aux haltères (Dossier presque droit) : 3 x 4-6, repos 180 s, RIR 2, étalonnage
-  2. Tirage vertical à l'élastique ancré en haut (À genoux) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  2. Traction à la barre (Traction mains vers soi) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   3. Développé couché à la barre (Au sol, barre dans le rack) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   4. Tirage au visage (Poulie haute avec une corde) : 2 x 8-12, repos 90 s, RIR 2, étalonnage ; semaines 2 et 4 : Rowing poitrine appuyée sur banc incliné
-  5. Pompe piquée (en V) (Mains sur une marche) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
-  6. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  5. Pompe piquée (en V) (Mains sur une marche) : 2 x 10-15, repos 90 s, RIR 2, étalonnage ; semaines 2 et 4 : Pompe piquée pieds surélevés
+  6. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut (à la maison)) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -130,7 +130,7 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
   2. Soulevé de terre à la barre (Depuis le rack, barre à hauteur du genou) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Squat avant à la barre (Bras croisés devant, barre légère) : 2 x 8-12, repos 90 s, RIR 2, étalonnage ; semaines 2 et 4 : Squat à la barre avec repère de profondeur
   4. Soulevé de terre roumain sur une jambe (Poids du corps, main au mur) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
-  5. Marche sur les pointes et sur les talons (Marche sur les talons) : 2 x 12-15, repos 60 s, RIR 3, étalonnage ; semaines 2 et 4 : Montée sur pointes debout à la barre
+  5. Montée sur les pointes, assis (Un haltère sur les cuisses) : 2 x 12-15, repos 60 s, RIR 3, étalonnage ; semaines 2 et 4 : Montée sur les pointes avec haltères
   6. Quadrupédie bras-jambe opposés (Au sol) : 2 x 8-10 par côté, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
@@ -138,14 +138,14 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
 
 ### Semaine 2 (et 4) de la rotation, séances complètes
 
-### Séance HAUT-A (HAUT), lundi, environ 35 min : SEMAINES 2 ET 4 (jeu 2)
+### Séance HAUT-A (HAUT), lundi, environ 40 min : SEMAINES 2 ET 4 (jeu 2)
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé incliné à la barre (Pente douce) : 3 x 4-6, repos 180 s, RIR 2, étalonnage
   2. Rowing à la barre, buste penché (Poitrine appuyée sur un banc incliné) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
-  3. Développé militaire à la barre (Assis, dossier droit, dans le rack) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
-  4. Traction à la barre (Traction mains vers soi) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  3. Développé épaules aux haltères (Debout) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
+  4. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut (à la maison)) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   5. Écarté aux haltères (banc plat ou incliné) (Sur banc plat, haltères très légers) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   6. Tirage au visage aux sangles de suspension (Corps peu incliné) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
@@ -160,7 +160,7 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
   2. Poussée de hanches, épaules sur banc (Un haltère sur les hanches) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Fente latérale (Petite amplitude, poids du corps) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   4. Lancer de bas en haut contre un mur (Pieds à plat, sans saut) : 2 x 6-8, repos 90 s, RIR 3, étalonnage
-  5. Montée sur les pointes, assis (Un haltère sur les cuisses) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  5. Montée sur pointes debout à la barre (Pieds à plat sur le sol) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   6. Gainage en creux (Genoux pliés) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
@@ -171,11 +171,11 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé épaules assis aux haltères (Dossier presque droit) : 3 x 4-6, repos 180 s, RIR 2, étalonnage
-  2. Tirage vertical à l'élastique ancré en haut (À genoux) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  2. Traction à la barre (Traction mains vers soi) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   3. Développé couché à la barre (Au sol, barre dans le rack) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   4. Rowing poitrine appuyée sur banc incliné (Paumes face à face) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
-  5. Pompe piquée (en V) (Mains sur une marche) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
-  6. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  5. Pompe piquée pieds surélevés (Pieds sur une marche) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  6. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut (à la maison)) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -188,7 +188,7 @@ Répartition : haut_bas, 4 séance(s) de force, 0 séance(s) dédiée(s) de card
   2. Soulevé de terre à la barre (Depuis le rack, barre à hauteur du genou) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Squat à la barre avec repère de profondeur (Barre seule, banc comme repère) : 2 x 8-12, repos 90 s, RIR 2, étalonnage
   4. Soulevé de terre roumain sur une jambe (Poids du corps, main au mur) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
-  5. Montée sur pointes debout à la barre (Pieds à plat sur le sol) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  5. Montée sur les pointes avec haltères (Avant-pieds sur la première marche) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   6. Quadrupédie bras-jambe opposés (Au sol) : 2 x 8-10 par côté, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
@@ -202,7 +202,7 @@ Variété : pénurie signalée pour tirage_v (penurieVariete).
 - 4 séances de force par semaine : 2 pour le haut du corps, 2 pour le bas. Chaque grand muscle est travaillé au moins 2 fois.
 - Objectif force : les gros mouvements d'abord, charges lourdes (4-6 répétitions) et repos longs.
 
-## 3. Intermédiaire, perte de gras + cardio en objectif secondaire, 3 jours, séance de cardio ajoutée
+## 3. Intermédiaire, perte de gras + cardio en objectif secondaire, 3 jours (séance de cardio par défaut)
 
 Répartition : corps_entier, 3 séance(s) de force, 1 séance(s) dédiée(s) de cardio, 0 jour(s) léger(s). Durée visée : 45 min, programme de 4 semaines.
 
@@ -269,6 +269,7 @@ Variété : pénurie signalée pour tirage_v (penurieVariete).
 - [T1] Arrête la séance si tu ressens : une douleur ou un serrement dans la poitrine, le cou, la mâchoire, l'épaule, le dos ou le bras, qui apparaît ou augmente à l'effort ; un malaise ; un vertige ou la vue qui se brouille ; un essoufflement anormal, qui ne se calme pas quelques minutes après l'arrêt ; des battements de cœur très rapides ou irréguliers ; des sueurs froides, une nausée ou une faiblesse inhabituelles. Assieds-toi, bois un peu d'eau, et ne reprends pas aujourd'hui. Ne reprends pas le cardio avant d'avoir eu l'avis d'un médecin.
 - [T1u] Douleur ou pression dans la poitrine qui ne passe pas quand tu te reposes, perte de connaissance, difficulté à respirer au repos. Urgence : appelle le 15 (SAMU) ou le 112.
 - [V-MSG-CARDIO-OMS] Repère de l'OMS : 150 à 300 min d'effort modéré par semaine (ou 75 à 150 min d'effort soutenu). Ton programme en compte environ 30 min.
+- [V-MSG-CARDIO-DEFAUT] Tu as choisi de perdre du gras : une séance de cardio facile est ajoutée. Tu peux la retirer dans ton profil.
 
 ### Explication du générateur
 - 3 séances par semaine en corps entier : chaque grand muscle travaille 3 fois.
@@ -430,22 +431,22 @@ Variété : pénurie signalée pour poussee_h, tirage_v (penurieVariete).
 Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de cardio, 0 jour(s) léger(s). Durée visée : 75 min, programme de 4 semaines.
 
 ### Semaine type
-- lundi : Séance HAUT-A (HAUT), 55 min
-- mardi : Séance BAS-A (BAS), 45 min
-- jeudi : Séance PUSH-B (PUSH), 35 min
-- vendredi : Séance PULL-B (PULL), 35 min
+- lundi : Séance HAUT-A (HAUT), 50 min
+- mardi : Séance BAS-A (BAS), 40 min
+- jeudi : Séance PUSH-B (PUSH), 30 min
+- vendredi : Séance PULL-B (PULL), 30 min
 - samedi : Séance LEGS-B (LEGS), 40 min
 
 ### Détail des séances (semaines 1 et 3 ; les accessoires qui changent en semaines 2 et 4 sont indiqués)
 
-### Séance HAUT-A (HAUT), lundi, environ 55 min
+### Séance HAUT-A (HAUT), lundi, environ 50 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé incliné à la barre (Pente douce) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Rowing Pendlay (Barre posée au sol à chaque répétition) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
-  3. Développé épaules aux haltères (Debout, un bras) : 3 x 8-12, repos 90 s, RIR 2, étalonnage ; semaines 2 et 4 : Développé militaire à la barre
-  4. Tirage vertical à l'élastique ancré en haut (Un bras, à genoux) : 3 x 10-15, repos 90 s, RIR 1, étalonnage ; semaines 2 et 4 : Traction à la barre
+  3. Développé épaules aux haltères (Debout, un bras) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
+  4. Traction à la barre (Traction mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
   5. Écarté aux haltères (banc plat ou incliné) (Sur banc plat, haltères très légers) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   6. Tirage au visage aux sangles de suspension (Corps plus incliné) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
   7. Gainage en creux (Jambes tendues, bras au-dessus de la tête) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
@@ -453,40 +454,40 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance BAS-A (BAS), mardi, environ 45 min
+### Séance BAS-A (BAS), mardi, environ 40 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Squat arrière à la barre (Avec un temps d'arrêt en bas) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Good morning à la barre (Debout, barre légère sur le haut du dos) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Fente arrière (Haltères) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
-  4. Exercice nordique des ischios (Descente complète, remontée sans les mains) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
-  5. Renforcement de cheville à l'élastique (Pied vers l'extérieur) : 2 x 12-15, repos 60 s, RIR 3, étalonnage ; semaines 2 et 4 : Relevé des pointes de pieds (devant de la jambe)
+  4. Exercice nordique des ischios (Descente complète, remontée sans les mains) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  5. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   6. Quadrupédie bras-jambe opposés (Au sol) : 2 x 8-10 par côté, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance PUSH-B (PUSH), jeudi, environ 35 min
+### Séance PUSH-B (PUSH), jeudi, environ 30 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé épaules assis aux haltères (Sur banc plat, sans dossier) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Lancer de poitrine contre un mur (Avec rattrapage) : 2 x 6-8, repos 90 s, RIR 3, étalonnage
-  3. Pompe en équilibre contre un mur (Ventre vers le mur, presque à la verticale) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
+  3. Pompe en équilibre contre un mur (Ventre vers le mur, presque à la verticale) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   4. Développé au sol aux haltères (Un bras à la fois) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance PULL-B (PULL), vendredi, environ 35 min
+### Séance PULL-B (PULL), vendredi, environ 30 min
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Traction avec un gilet lesté (Gilet lesté, mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
-  2. Tirage au visage (Poulie haute avec une corde) : 3 x 8-12, repos 90 s, RIR 1, étalonnage ; semaines 2 et 4 : Rowing poitrine appuyée sur banc incliné
-  3. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut) : 3 x 10-15, repos 90 s, RIR 1, étalonnage ; semaines 2 et 4 : Tirage vertical à l'élastique ancré en haut
-  4. Rowing à la barre, buste penché (Buste penché, barre reprise du sol) : 3 x 8-12, repos 90 s, RIR 2, étalonnage ; semaines 2 et 4 : Tirage au visage
+  2. Tirage au visage (Poulie haute avec une corde) : 3 x 8-12, repos 90 s, RIR 1, étalonnage
+  3. Traction à la barre (Traction mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
+  4. Rowing à la barre, buste penché (Buste penché, barre reprise du sol) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -498,7 +499,7 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
   1. Montée sur marche (Box stable plus haute) : 3 x 10-15, repos 120 s, RIR 1, étalonnage
   2. Poussée de hanches, épaules sur banc (Une jambe) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
   3. Curl des ischios avec un ballon de gym (Une jambe (avancé)) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
-  4. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  4. Relevé des pointes de pieds (devant de la jambe) (Debout, dos au mur, un pied) : 2 x 12-15, repos 60 s, RIR 3, étalonnage ; semaines 2 et 4 : Montée sur pointes debout à la barre
   5. Planche (Sur les avant-bras) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
@@ -506,13 +507,13 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 
 ### Semaine 2 (et 4) de la rotation, séances complètes
 
-### Séance HAUT-A (HAUT), lundi, environ 55 min : SEMAINES 2 ET 4 (jeu 2)
+### Séance HAUT-A (HAUT), lundi, environ 50 min : SEMAINES 2 ET 4 (jeu 2)
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé incliné à la barre (Pente douce) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Rowing Pendlay (Barre posée au sol à chaque répétition) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
-  3. Développé militaire à la barre (Debout, barre prise au rack) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
+  3. Développé épaules aux haltères (Debout, un bras) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   4. Traction à la barre (Traction mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
   5. Écarté aux haltères (banc plat ou incliné) (Sur banc plat, haltères très légers) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   6. Tirage au visage aux sangles de suspension (Corps plus incliné) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
@@ -521,40 +522,40 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance BAS-A (BAS), mardi, environ 45 min : SEMAINES 2 ET 4 (jeu 2)
+### Séance BAS-A (BAS), mardi, environ 40 min : SEMAINES 2 ET 4 (jeu 2)
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Squat arrière à la barre (Avec un temps d'arrêt en bas) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Good morning à la barre (Debout, barre légère sur le haut du dos) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
   3. Fente arrière (Haltères) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
-  4. Exercice nordique des ischios (Descente complète, remontée sans les mains) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
-  5. Relevé des pointes de pieds (devant de la jambe) (Debout, dos au mur, un pied) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  4. Exercice nordique des ischios (Descente complète, remontée sans les mains) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
+  5. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   6. Quadrupédie bras-jambe opposés (Au sol) : 2 x 8-10 par côté, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance PUSH-B (PUSH), jeudi, environ 35 min : SEMAINES 2 ET 4 (jeu 2)
+### Séance PUSH-B (PUSH), jeudi, environ 30 min : SEMAINES 2 ET 4 (jeu 2)
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Développé épaules assis aux haltères (Sur banc plat, sans dossier) : 3 x 8-12, repos 120 s, RIR 2, étalonnage
   2. Lancer de poitrine contre un mur (Avec rattrapage) : 2 x 6-8, repos 90 s, RIR 3, étalonnage
-  3. Pompe en équilibre contre un mur (Ventre vers le mur, presque à la verticale) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
+  3. Pompe en équilibre contre un mur (Ventre vers le mur, presque à la verticale) : 2 x 10-15, repos 90 s, RIR 2, étalonnage
   4. Développé au sol aux haltères (Un bras à la fois) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-### Séance PULL-B (PULL), vendredi, environ 35 min : SEMAINES 2 ET 4 (jeu 2)
+### Séance PULL-B (PULL), vendredi, environ 30 min : SEMAINES 2 ET 4 (jeu 2)
 - Échauffement : Marche rapide continue (120 s)
 - Mobilité : Mobilité de cheville genou au mur (Debout, pied face au mur) (45 s) ; Glissement des bras dos appuyé (Dos et avant-bras contre le mur) (45 s)
 - Exercices :
   1. Traction avec un gilet lesté (Gilet lesté, mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
-  2. Rowing poitrine appuyée sur banc incliné (Paumes face à face) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
-  3. Tirage vertical à l'élastique ancré en haut (Un bras, à genoux) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
-  4. Tirage au visage (Poulie haute avec une corde) : 3 x 8-12, repos 90 s, RIR 1, étalonnage
+  2. Tirage au visage (Poulie haute avec une corde) : 3 x 8-12, repos 90 s, RIR 1, étalonnage
+  3. Traction à la barre (Traction mains vers l'avant) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
+  4. Rowing à la barre, buste penché (Buste penché, barre reprise du sol) : 3 x 8-12, repos 90 s, RIR 2, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -566,13 +567,13 @@ Répartition : haut_bas_ppl, 5 séance(s) de force, 0 séance(s) dédiée(s) de 
   1. Montée sur marche (Box stable plus haute) : 3 x 10-15, repos 120 s, RIR 1, étalonnage
   2. Poussée de hanches, épaules sur banc (Une jambe) : 3 x 10-15, repos 90 s, RIR 1, étalonnage
   3. Curl des ischios avec un ballon de gym (Une jambe (avancé)) : 3 x 10-15, repos 90 s, RIR 2, étalonnage
-  4. Marche sur les pointes et sur les talons (Pointes puis talons, enchaînés) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  4. Montée sur pointes debout à la barre (Pieds à plat sur le sol) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   5. Planche (Sur les avant-bras) : 2 x 30 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
-Variété : pénurie signalée pour aucun plan (penurieVariete).
+Variété : pénurie signalée pour tirage_v (penurieVariete).
 
 ### Messages affichés
 
@@ -596,62 +597,71 @@ Variété : pénurie signalée pour aucun plan (penurieVariete).
 | Profil | Exercices placés | Distincts | Doses distinctes | Paires de superset |
 |---|---|---|---|---|
 | 1. Débutant, prise de muscle, 3 jours, maison (haltères + él | 23 | 21 | 4 | 0 |
-| 2. Intermédiaire, force, 4 jours, salle (haut / bas) | 24 | 24 | 8 | 0 |
+| 2. Intermédiaire, force, 4 jours, salle (haut / bas) | 24 | 23 | 8 | 0 |
 | 3. Intermédiaire, perte de gras + cardio en objectif seconda | 16 | 16 | 7 | 0 |
 | 4. Intermédiaire, volley (objectif sport), 3 jours, maison ( | 24 | 22 | 4 | 2 |
 | 5. Débutant, sans matériel, 3 jours (poids du corps) | 21 | 19 | 3 | 0 |
-| 6. Avancé, 5 jours, salle | 26 | 26 | 6 | 0 |
+| 6. Avancé, 5 jours, salle | 26 | 25 | 7 | 0 |
 
 - 1. Débutant, prise de muscle, 3 jours, m : chevauchements S1 A/B : 0 commun(s) sur 8 ; S1 A/C : 1 commun(s) sur 7 ; S1 B/C : 1 commun(s) sur 7 ; S2 A/B : 0 commun(s) sur 8 ; S2 A/C : 1 commun(s) sur 7 ; S2 B/C : 1 commun(s) sur 7 ; exercices répétés (semaine 1) : tirage-vertical-un-bras-elastique x2, developpe-epaules-halteres x2 ; accessoires qui changent en semaine 2 : 1
-- 2. Intermédiaire, force, 4 jours, salle  : chevauchements S1 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S1 HAUT-A/HAUT-B : 0 commun(s) sur 6 ; S1 HAUT-A/BAS-B : 0 commun(s) sur 6 ; S1 BAS-A/HAUT-B : 0 commun(s) sur 6 ; S1 BAS-A/BAS-B : 0 commun(s) sur 6 ; S1 HAUT-B/BAS-B : 0 commun(s) sur 6 ; S2 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S2 HAUT-A/HAUT-B : 0 commun(s) sur 6 ; S2 HAUT-A/BAS-B : 0 commun(s) sur 6 ; S2 BAS-A/HAUT-B : 0 commun(s) sur 6 ; S2 BAS-A/BAS-B : 0 commun(s) sur 6 ; S2 HAUT-B/BAS-B : 0 commun(s) sur 6 ; exercices répétés (semaine 1) : aucun ; accessoires qui changent en semaine 2 : 5
+- 2. Intermédiaire, force, 4 jours, salle  : chevauchements S1 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S1 HAUT-A/HAUT-B : 1 commun(s) sur 6 ; S1 HAUT-A/BAS-B : 0 commun(s) sur 6 ; S1 BAS-A/HAUT-B : 0 commun(s) sur 6 ; S1 BAS-A/BAS-B : 0 commun(s) sur 6 ; S1 HAUT-B/BAS-B : 0 commun(s) sur 6 ; S2 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S2 HAUT-A/HAUT-B : 1 commun(s) sur 6 ; S2 HAUT-A/BAS-B : 0 commun(s) sur 6 ; S2 BAS-A/HAUT-B : 0 commun(s) sur 6 ; S2 BAS-A/BAS-B : 0 commun(s) sur 6 ; S2 HAUT-B/BAS-B : 0 commun(s) sur 6 ; exercices répétés (semaine 1) : tirage-vertical-un-bras-elastique x2 ; accessoires qui changent en semaine 2 : 5
 - 3. Intermédiaire, perte de gras + cardio : chevauchements S1 A/B : 0 commun(s) sur 6 ; S1 A/C : 0 commun(s) sur 5 ; S1 B/C : 0 commun(s) sur 5 ; S2 A/B : 0 commun(s) sur 6 ; S2 A/C : 0 commun(s) sur 5 ; S2 B/C : 0 commun(s) sur 5 ; exercices répétés (semaine 1) : aucun ; accessoires qui changent en semaine 2 : 1
 - 4. Intermédiaire, volley (objectif sport : chevauchements S1 A/B : 1 commun(s) sur 8 ; S1 A/C : 0 commun(s) sur 8 ; S1 B/C : 1 commun(s) sur 8 ; S2 A/B : 1 commun(s) sur 8 ; S2 A/C : 0 commun(s) sur 8 ; S2 B/C : 1 commun(s) sur 8 ; exercices répétés (semaine 1) : face-pull-elastique x2, tirage-vertical-elastique-haut x2 ; accessoires qui changent en semaine 2 : 5
 - 5. Débutant, sans matériel, 3 jours (poi : chevauchements S1 A/B : 1 commun(s) sur 7 ; S1 A/C : 1 commun(s) sur 7 ; S1 B/C : 1 commun(s) sur 7 ; S2 A/B : 1 commun(s) sur 7 ; S2 A/C : 1 commun(s) sur 7 ; S2 B/C : 1 commun(s) sur 7 ; exercices répétés (semaine 1) : pompe x3 ; accessoires qui changent en semaine 2 : 4
-- 6. Avancé, 5 jours, salle : chevauchements S1 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S1 HAUT-A/PUSH-B : 0 commun(s) sur 4 ; S1 HAUT-A/PULL-B : 0 commun(s) sur 4 ; S1 HAUT-A/LEGS-B : 0 commun(s) sur 5 ; S1 BAS-A/PUSH-B : 0 commun(s) sur 4 ; S1 BAS-A/PULL-B : 0 commun(s) sur 4 ; S1 BAS-A/LEGS-B : 0 commun(s) sur 5 ; S1 PUSH-B/PULL-B : 0 commun(s) sur 4 ; S1 PUSH-B/LEGS-B : 0 commun(s) sur 5 ; S1 PULL-B/LEGS-B : 0 commun(s) sur 5 ; S2 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S2 HAUT-A/PUSH-B : 0 commun(s) sur 4 ; S2 HAUT-A/PULL-B : 0 commun(s) sur 4 ; S2 HAUT-A/LEGS-B : 0 commun(s) sur 5 ; S2 BAS-A/PUSH-B : 0 commun(s) sur 4 ; S2 BAS-A/PULL-B : 0 commun(s) sur 4 ; S2 BAS-A/LEGS-B : 0 commun(s) sur 5 ; S2 PUSH-B/PULL-B : 0 commun(s) sur 4 ; S2 PUSH-B/LEGS-B : 0 commun(s) sur 5 ; S2 PULL-B/LEGS-B : 0 commun(s) sur 5 ; exercices répétés (semaine 1) : aucun ; accessoires qui changent en semaine 2 : 6
+- 6. Avancé, 5 jours, salle : chevauchements S1 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S1 HAUT-A/PUSH-B : 0 commun(s) sur 4 ; S1 HAUT-A/PULL-B : 1 commun(s) sur 4 ; S1 HAUT-A/LEGS-B : 0 commun(s) sur 5 ; S1 BAS-A/PUSH-B : 0 commun(s) sur 4 ; S1 BAS-A/PULL-B : 0 commun(s) sur 4 ; S1 BAS-A/LEGS-B : 0 commun(s) sur 5 ; S1 PUSH-B/PULL-B : 0 commun(s) sur 4 ; S1 PUSH-B/LEGS-B : 0 commun(s) sur 5 ; S1 PULL-B/LEGS-B : 0 commun(s) sur 5 ; S2 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S2 HAUT-A/PUSH-B : 0 commun(s) sur 4 ; S2 HAUT-A/PULL-B : 1 commun(s) sur 4 ; S2 HAUT-A/LEGS-B : 0 commun(s) sur 5 ; S2 BAS-A/PUSH-B : 0 commun(s) sur 4 ; S2 BAS-A/PULL-B : 0 commun(s) sur 4 ; S2 BAS-A/LEGS-B : 0 commun(s) sur 5 ; S2 PUSH-B/PULL-B : 0 commun(s) sur 4 ; S2 PUSH-B/LEGS-B : 0 commun(s) sur 5 ; S2 PULL-B/LEGS-B : 0 commun(s) sur 5 ; exercices répétés (semaine 1) : traction-barre x2 ; accessoires qui changent en semaine 2 : 1
 
 ## Analyse rédigée (lue par tools/demo-programmes.mjs)
 
-Les chiffres bruts sont dans les sections « Analyse (a) » et « Chiffres de répétitivité » ci-dessus (recalculés à chaque lancement). Cette partie est rédigée à la main après lecture des résultats du générateur v1.6 (D32, 31/10/2026) ; si le générateur change, relire les chiffres avant de la croire. Revue complète : docs/programmes-exemples-revue-coach.md.
+Les chiffres bruts sont dans les sections « Analyse (a) » et « Chiffres de répétitivité » ci-dessus (recalculés à chaque lancement). Cette partie est rédigée à la main après lecture des résultats du générateur v1.8 (D32, D33, D34 ; 01/11/2026) ; si le générateur change, relire les chiffres avant de la croire. Synthèse pour l'utilisateur : docs/programmes-exemples-synthese.md. Cette analyse n'a pas encore été contrôlée par `coach` ni par `relecteur`.
 
-### (a) Pourquoi aucune séance avec sauts (volley et prise de muscle, intermédiaire, 3 jours)
+### (a) Séances avec sauts / pliométrie (volley et prise de muscle, intermédiaire, 3 jours)
 
-Résultat : 0 séance avec sauts par semaine dans les deux cas, avec ou sans l'option « Ajouter une séance de cardio ». Le générateur n'a aucun saut dans la musculation ; les sauts n'existent que dans la séance dédiée d'un sport « à sauts » (volley, basket, hand, danse, détente), jamais dans l'option cardio (3.2ter A : modéré continu, sans saut ni course ajoutés).
+Résultat : 0 séance avec sauts par semaine à 3 jours, avec ou sans l'option cardio. La musculation ne contient aucun saut ; les sauts n'existent que dans la séance dédiée d'un sport « à sauts », et seulement si un jour sans jambes lourdes existe.
 
-Conformité :
 - **Prise de muscle : 0 saut est conforme et voulu** (3.2ter A).
-- **Volley à 3 jours : 0 saut est conforme à la lettre des règles (3.2ter B (d), 5.1 (5)), mais contraire à l'intention de l'utilisateur** (un sport de saut devait recevoir un bloc de sauts légers). Cause, vérifiée dans `src/generator/impact.ts` (`jumpDayAllowed`) : les 3 séances de corps entier (lundi, mercredi, vendredi) sont toutes à « jambes lourdes » ; un jour de sauts exige que ce jour, la veille et l'avant-veille ne le soient pas ; aucun jour de la semaine ne remplit la condition. La séance de sport retombe en « modérée sans saut ».
-- **R-PLIO (pliométrie en tête de séance, cardio-regles.md §5.1 (ii), §5.2bis) est écrite pour « Créer une séance »** : l'appliquer à un programme généré n'est ni écrit ni validé. C'est **une décision de l'utilisateur**, pas un correctif prévu. Lecture de R-PLIO si elle était appliquée : avec lundi / mercredi / vendredi seul le lundi passerait (une séance avec sauts par semaine), et la force des jambes de ce jour serait légère (condition 11).
-- Contre-épreuve : volley intermédiaire à 2 jours de force (lundi, jeudi) donne 1 séance avec sauts (dimanche). Volley avec jours disponibles lundi / mardi / jeudi seulement : 0. Volley débutant 3 jours : 0 (même cause, et la veille d'un jour lourd est interdite au débutant).
-- Les fiches ne sont pas en cause : `jumping-jacks-saut`, `rebonds-deux-pieds` et les versions douces existent.
+- **Volley à 3 jours : 0 saut, conforme à la lettre des règles actuelles, contraire à D33 point 1** (R-PLIO appliquée aux programmes générés : pliométrie en tête de séance, jambes fraîches, force des jambes légère ce jour-là). **R-PLIO dans le générateur n'est pas codée** (D33-bilan §6, D34-bilan §7). Cause : les trois séances de corps entier (lundi, mercredi, vendredi) sont toutes à « jambes lourdes » ; `jumpDayAllowed` exige un jour qui ne le soit pas, la veille et l'avant-veille non plus.
+- **Ce que reçoit le volleyeur du profil 4** : une « séance de cardio [sport] » le dimanche qui est une marche rapide continue de 30 min (« Sauts : aucun »), et le message « Les programmes par sport arrivent dans une prochaine version ». Un joueur de volley intermédiaire marche donc 30 minutes le dimanche : c'est le défaut le plus visible de ce profil.
+- Contre-épreuves (section « Analyse (a) » du document) : volley à 2 jours de force : 1 séance avec sauts (dimanche) ; volley avec jours disponibles lundi / mardi / jeudi : 0 ; volley débutant à 3 jours : 0.
+- Lancers contre un mur (profil 2 BAS-A, profil 6 PUSH-B) : ce sont des mouvements de puissance sans saut ; ils ne comptent pas comme pliométrie.
+- Les fiches ne sont pas en cause : `jumping-jacks-saut`, `rebonds-deux-pieds` et leurs versions douces existent.
 
 ### (b) Ce qui est peu intéressant ou répétitif (chiffres de la version régénérée)
 
-1. **Doses peu variées selon la famille d'objectif.** Débutants : 2 x 10-12 ou 2 x 10-15, RIR 3 partout (profil 1 : 4 doses distinctes ; profil 5, sans matériel : 3). Le volley (famille forme, profil 4) est à 2 x 10-15, RIR 3 : 4 doses distinctes, soit la dose d'un débutant pour un intermédiaire. En revanche les profils d'objectif muscle, force ou perte de gras ont des doses variées : profil 3 (perte de gras) en 3 x 8-12 et 4 x 10-15, 2 x 30 s, 6 doses ; profil 2 (force) 8 doses ; profil 6 (avancé) 7 doses.
-2. **Séances A / B quasi identiques en corps entier.** A et B partagent 5 exercices sur 8 (profil 1), 4 sur 7 (profils 4 et 5), 2 sur 6 (profil 3). Exercices placés / distincts : profil 1 : 23 / 17 ; profil 2 : 24 / 23 ; profil 3 : 17 / 15 ; profil 4 : 23 / 18 ; profil 5 : 21 / 15 ; profil 6 : 25 / 23. Un exercice revient jusqu'à 3 fois dans la semaine (tirage vertical élastique : profils 1 et 4 ; pompe au mur : profil 5). Profil 4 : la même fiche de pompe 2 fois, la famille 4 fois (pompe x2, mains écartées, piquée).
-3. **Supersets : 2 paires dans les 6 programmes** (profil 2 HAUT-B, profil 4 séance B) après la correction D32 (ordre de formation des paires). Les autres absences sont conformes à SUP-0 à SUP-10 : débutants (SUP-4, interdiction confirmée par `kine`, à ne pas assouplir) ; `poussee_2` verticale en gabarit A ; fiche de fente à ligne dos non « garder » (SUP-2 point 4) ; PUSH / PULL sans paire ; matériel B1 en salle ; `tirage_2` ou `jambes_2` absent à 45 min. Pour un débutant ou une séance de salle, l'option « Gagner du temps » est sans effet.
-4. **Séances HAUT / BAS / PUSH / PULL courtes** : HAUT et BAS à 35 min pour 60 demandées (profil 2) ; PUSH-B 35 min et PULL-B 30 min (3 exercices chacune), LEGS-B 40 min pour 75 demandées (profil 6). Cause : tous les emplacements du type sont remplis ; l'ajout s'arrête au premier emplacement qui dépasserait 10 séries fractionnaires par muscle et par séance (V-PLAF, STR-REP-4 ; STR-REP-3 : jamais rajouté). Ce n'est pas le gain de temps des supersets qui manque (une seule paire, 5 min).
-5. **Aucune variété d'une semaine à l'autre** : le programme dure 4 semaines avec les mêmes exercices (seuls l'étalonnage et la charge changent). R3 non codée.
-6. **Incohérences de matériel en salle** (profils 2 et 6) : tirage vertical à l'élastique, développé épaules avec un sac à dos, squat sur bosu à côté de la barre et de la poulie ; peu de fiches de machines.
-7. **Perte de gras + cardio secondaire (profil 3)** : un seul cardio de 30 min le dimanche, aucun bloc après les séances (conforme à D31) ; pectoraux 9 et dos 9 séries (messages de volume honnêtes) ; le texte d'explication dit encore « cardio retiré en premier » alors que la séance de cardio existe.
-8. **Volley** : le programme est celui de la prise de muscle (forme) + marche modérée ; message « Les programmes par sport arrivent dans une prochaine version ». Aucun travail spécifique (épaules, sauts, mollets, réception).
-9. **Échauffement, mobilité et retour au calme identiques** dans toutes les séances des 6 programmes.
+Ce qui s'est amélioré depuis la v1.6 (D34) : plus de paires A / B quasi identiques. Recouvrement maximal entre deux séances du même type en semaine 1 : 1 sur 7 (profils 1 et 5), 1 sur 8 (profil 4), 1 sur 6 (profil 2, HAUT-A / HAUT-B), 0 pour le profil 3 ; profil 6 : aucune paire de même type, mais 1 commun sur 4 entre HAUT-A et PULL-B (la traction). Accessoires qui changent en semaine 2 : profil 1 : 1 ; profil 2 : 5 ; profil 3 : 1 ; profil 4 : 5 ; profil 5 : 4 ; profil 6 : 1 (seule la séance LEGS-B change ; les séances PULL-B, PUSH-B, HAUT-A et BAS-A sont identiques en semaine 2).
 
-### (c) Défauts de sécurité corrigés en D32 (relus sur les exemples régénérés)
-- Squat sur bosu : réserve 2 (profil 6 LEGS-B).
-- Montée sur marche aux haltères légers : 3 x 8-12 (profils 2 et 3).
-- Good morning et rowing Pendlay : 3 séries (profil 6).
-- À confirmer : tirage au visage à la poulie en RIR 1 (profil 6 HAUT-A) alors que la fiche face-pull-elastique dit « jamais jusqu'à l'échec » (mention probablement propre à la variante élastique).
+1. **Isolation absente, alors que D33 point 3 la demande** : aucun curl, aucune extension de triceps, aucune élévation latérale dans les 6 programmes (`isoEligible` non étendu, D33-bilan §6). Les mollets, eux, sont travaillés au profil 2 (montée sur les pointes assis avec un haltère, BAS-B). Conséquence visible : le texte d'explication du profil 6 annonce « poussée (pectoraux, épaules, triceps), tirage (dos, biceps) » alors qu'aucun exercice ne vise directement le triceps ou le biceps.
+2. **Séances courtes malgré le temps demandé** (profils 2 et 6) : profil 2 : 35 à 40 min pour 60 demandées ; profil 6 : HAUT-A 50 min, PUSH-B 35 min (4 exercices), PULL-B 30 min (4 exercices), LEGS-B 40 min (5 exercices) pour 75 demandées. Le temps gagné par les supersets n'est pas réinvesti (D33 point 7, PV3-REINV non codé) : profil 4, séance B passée de 40 à 35 min, sans exercice ajouté.
+3. **Doses peu variées en famille forme / débutant** : profil 1 : 4 doses distinctes ; profil 5 : 3 ; profil 4 (volley, famille forme) : 4, toutes en 2 x 10-15, RIR 3, c'est-à-dire la dose d'un débutant pour un intermédiaire. Profils 2, 3 et 6 : 8, 7 et 7 doses distinctes.
+4. **Répétitions exactes dans la semaine** (semaine 1) : profil 1 : tirage vertical à un bras à l'élastique x2 et développé épaules aux haltères assis x2 (même variante) ; profil 2 : tirage vertical à un bras à l'élastique x2 (HAUT-A et HAUT-B, même fiche, en semaines 1 et 2) ; profil 4 : tirage au visage x2 et tirage vertical à l'élastique ancré en haut x2 ; profil 5 : pompe au mur x3 (A, B, C), sans progression en semaines 2 et 4 ; profil 6 : `traction-barre` x2 dans la même séance PULL-B (« gilet lesté » puis « barre », 6 séries de tractions à RIR 1-2, et des tractions aussi le lundi en HAUT-A). Pénuries signalées : profil 1 (poussée verticale, tirage vertical), profil 2, 3 et 6 (tirage vertical), profil 4 (tirage horizontal, tirage vertical), profil 5 (poussée horizontale, tirage vertical).
+5. **Profil 5 (sans matériel)** : le dos est remplacé par des mouvements très faibles (« tirage vertical à la serviette, bras en l'air » debout, « serrer les omoplates ») et le programme le dit honnêtement (V-MSG-SUBST, V-MSG-EPAULES). Pas de vrai tirage : limite du matériel, pas du générateur.
+6. **Perte de gras (profil 3)** : un seul cardio de 30 min (marche rapide) par semaine, 3 séances de force de 45 min en 3 x 8-12 : c'est le programme de prise de muscle (« en attendant la version dédiée »). Le cardio est maintenant ajouté PAR DÉFAUT (D33, PV3-CAR : message V-MSG-CARDIO-DEFAUT affiché, séance retirable dans le profil), ce qui est conforme. Reste : le message OMS annonce 150 à 300 min et le programme en compte environ 30 (honnête mais loin du repère) ; l'étiquette de la séance dit encore « [option] » alors qu'elle est par défaut ; le texte d'explication dit encore « Cardio : pas assez de temps dans 45 min, il est retiré en premier » alors qu'une séance de cardio existe : phrase contradictoire (texte du générateur, à corriger).
+7. **Salle (profils 2 et 6)** : les profils de démonstration déclarent maintenant le réglage « j'ai accès à une salle » (`salleAccess: true`), donc le filtre PV3-SALLE-1 est exercé et les élastiques de tirage, les sangles et le bosu ont presque disparu. Restent : (i) le tirage vertical à un bras « (à la maison) » du profil 2 (HAUT-A et HAUT-B), c'est la fiche du lot 11 réadmise par l'exception de pénurie de la règle salle (moins de 2 fiches pleines de tirage vertical admissibles ; le nom est suffixé « (à la maison) ») : comportement voulu, mais la même fiche revient deux fois par semaine ; (ii) « Tirage au visage aux sangles de suspension » (profils 2 et 6) et « pompe piquée, mains sur une marche » (profil 2) sont conservés, car les sangles et la marche ne sont pas dans `SALLE_EXCLUS` ; (iii) l'appli coche « accès à une salle » pour le lieu « salle » alors que le filtre exige le réglage (D33-bilan §6).
+8. **Programme de force (profil 2) : de la force en tête, peu derrière** : 3 séances sur 4 commencent par un 3 x 4-6 à 180 s de repos (HAUT-A développé incliné, BAS-A squat, HAUT-B développé épaules assis) ; le reste est en 2 x 8-15. Seule BAS-B n'a pas de série lourde ; le soulevé de terre à la barre y est en 2 x 8-12 en deuxième position ; la traction est en 2 x 10-15 ; la fente latérale en poids du corps (BAS-A) est faible pour un intermédiaire. Mollets : montée sur les pointes assis avec un haltère (BAS-B, 2 x 12-15), avec haltères en semaines 2 et 4.
+9. **Supersets : 2 paires sur 6 programmes** (profil 4, séance B : pompe + tirage au visage, squat + quadrupédie). Les autres absences sont conformes à l'esprit de SUP-0 à SUP-10 tel que décrit en D32 (débutants SUP-4 ; matériel salle ; `poussee_2` verticale ; 45 min). Pour un débutant ou en salle, l'option « Gagner du temps » reste sans effet ; les assouplissements de D33 point 10 ne sont pas codés.
+10. **Échauffement, mobilité, retour au calme identiques** dans les 21 séances de force des semaines types des 6 programmes : marche rapide 120 s, deux mobilités, étirement des fessiers en « 4 », y compris avant un squat à la barre 3 x 4-6 (PV3-VAR-7 non codé). Les messages affichés des profils 1, 2 et 6 sont vides.
+11. **Profil 6 : un exercice de technique répété en 3 x 10-15** (voir (c)), des séances PUSH-B et PULL-B à 4 exercices sans isolation, et une rotation quasi nulle en semaine 2 (1 accessoire change sur 26 placés).
+
+### (c) Défauts de sécurité (relus sur les exemples régénérés)
+
+Corrigés en D32 et toujours corrects en v1.8 : squat sur bosu retiré (remplacé par le curl au ballon), good morning et rowing Pendlay à 3 séries, montée sur marche aux haltères légers en 3 x 8-12. L'ancienne interrogation sur le tirage au visage en RIR 1 est close : la mention « jamais jusqu'à l'échec » de la fiche ne concerne que la grossesse (G4).
+
+**À corriger : BLOQUANTS pour le profil 6** (contrôle du relecteur, B1) : doses génériques appliquées à des fiches qui disent n'avoir aucune dose sourcée (les deux sont dans le profil 6, avancé). **Mesure PROVISOIRE en place** (chef de projet, `src/generator/config.ts`, `DOSE_LIMITS`) : `nordique-ischios` et `pompe-equilibre-mur` = RIR >= 2 et 2 séries maximum ; le document régénéré le montre (BAS-A et PUSH-B : 2 x 10-15, RIR 2, semaines 1 à 4). Elle NE bloque PAS l'échelon 2 de la pompe en équilibre (presque verticale) et ne limite pas les répétitions : 10-15 répétitions restent irréalistes pour ces deux mouvements. Il faut `coach` + `kine` pour trancher, puis du code (plafond de répétitions, échelon). Avant la mesure : 3 x 10-15, RIR 1.
+- **Exercice nordique des ischios, variante « remontée sans les mains »** (BAS-A) : la fiche dit « volume faible au départ puis progressif » et « aucun nombre de séries ni de répétitions sourcé ». Descente complète à 10-15 répétitions : irréaliste, risque pour les ischios (courbatures fortes, lésion). Il est aussi placé en 2e charnière chez l'avancé alors que K-07 le réserve à la séance dédiée du sport (D34-bilan §6).
+- **Pompe en équilibre contre un mur** (PUSH-B, échelon « presque vertical », tête sous le cœur) : la fiche dit « aucune durée ni distance sourcée », exercice avancé « jamais proposé sans pompe piquée pieds surélevés maîtrisée » ; le générateur ne peut pas vérifier cette condition.
+- **RIR 1 à faire arbitrer par `kine`** (profil 6) : LEGS-B montée sur marche avec box haute (3 x 10-15, RIR 1) et poussée de hanches à une jambe (3 x 10-15, RIR 1), avec l'incohérence à trancher entre les fiches hip-thrust-banc et hip-thrust-chaise ; PULL-B traction à la barre et tirage au visage à la poulie à RIR 1.
 
 ### (d) Pistes d'amélioration sans affaiblir la sécurité
 
 | Piste | Gain | Coût | Décision |
 |---|---|---|---|
-| Sauts pour un sport à sauts à 3 jours et plus : étendre R-PLIO au programme généré, ou libérer un jour sans jambes lourdes (séance HAUT) | Seul moyen de donner des sauts au volleyeur | Moyen à élevé | **Décision de l'utilisateur**, puis `coach`, `kine`, `relecteur` |
-| Variété entre semaines (R3) : alterner les accessoires, garder les piliers | Corrige (b) 2 et 5 | Moyen | Utilisateur |
-| Doses plus variées : principal lourd 3 x 6-8, accessoires 2 x 12-15, onde de charge ; intermédiaire en sport ne reçoit plus la dose de débutant | Corrige (b) 1 | Faible à moyen | `coach` |
-| Remplir les séances : isolation (biceps, triceps, deltoïdes, mollets) en PUSH / PULL / LEGS pour intermédiaire et avancé, hors limite de 10 séries du pectoral ou du dos | Corrige (b) 4 | Faible à moyen | Utilisateur |
-| Salle : fiches de machines, exclure sac à dos / élastique / bosu quand la machine ou la poulie existe | Corrige (b) 6 | Moyen | Utilisateur (matériel `machine` / `poulie`) |
-| Supersets : étendre P1 à `poussee_3` / `tirage_3` horizontaux ; jambes poids du corps + tirage léger ; paire d'isolation. **SUP-4 (débutant) n'est pas assoupli** | Plus de paires pour intermédiaire et avancé | Faible à moyen | À valider par `kine` |
-| Objectif sport : volet musculation spécifique (épaules, mollets, gainage, réception) + message honnête | Corrige (b) 8 | Élevé (contenu sourcé) | `coach` + `kine` |
-| Échauffement et retour au calme adaptés à la séance ; texte « cardio retiré » du profil 3 | Corrige (b) 7 et 9 | Faible | `coach` + `dev` |
+| Compléter la mesure provisoire : plafond de répétitions (nouveau champ de `DoseLimit`), blocage de l'échelon 2 de la pompe en équilibre, arbitrage des RIR 1 de LEGS-B | Corrige le défaut bloquant B1 | Faible à moyen (champ + code + tests) | `coach` + `kine`, puis `dev`, `relecteur` |
+| Isolation (biceps, triceps, deltoïdes latéraux, mollets) pour intermédiaire et avancé (`isoEligible`), hors limites du plafond 12 | Corrige (b) 1, 2 et 11 | Faible à moyen | Déjà décidé (D33 point 3) ; à coder |
+| Réinvestir le temps gagné (supersets, séances courtes) dans les plafonds | Corrige (b) 2 | Moyen | Déjà décidé (D33 point 7) ; à coder |
+| R-PLIO dans les programmes (sauts en tête de séance pour volley et sports) | Corrige (a) | Moyen à élevé | Déjà décidé (D33 point 1) ; `coach`, `kine`, `relecteur` avant le code |
+| Programme spécifique par sport (réception, cheville, épaule) | Corrige (a) et le profil 4 | Élevé (contenu sourcé) | Déjà décidé (D33 point 2) |
+| Doses plus variées en famille forme et en force (lourd 3 x 4-6 sur 2 exercices, soulevé de terre lourd) | Corrige (b) 3 et 8 | Faible à moyen | `coach` |
+| Salle : déduire le réglage « j'ai accès à une salle » du lieu « salle » dans l'appli ; ajouter `suspension` et la marche aux exclusions si on le souhaite ; fiches de tirage vertical sans barre pour ne plus réadmettre la fiche « (à la maison) » | Corrige (b) 7 | Faible (réglage) à moyen (fiches) | Utilisateur |
+| Textes : explication « cardio retiré » et étiquette « [option] » (profil 3), promesse « triceps, biceps » (profil 6), message de pénurie, échauffement adapté à la séance | Corrige (b) 6, 10 | Faible | `coach` + `dev` |
+| Perte de gras : programme dédié et 2e séance de cardio si le niveau le permet | Corrige (b) 6 | Moyen | Utilisateur, `coach` |
+| Fiches du §9 (tirage vertical sans barre, poussées verticale et horizontale débutant, tirages horizontaux) | Corrige (b) 4 et 5 (pénuries) | Moyen (22 fiches, relecture) | Déjà prévu ; `coach`, `kine`, `relecteur` |
 

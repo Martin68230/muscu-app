@@ -37,6 +37,9 @@ import { mk, type MkOpts } from './generator-helpers';
 // dans 4 ; pénurie de variété disparaît dans 57 cas (tirage vertical), changée dans 97, pénurie salle inchangée. Contrôle de placement sur 2 916
 // profils (grossesse, post-partum, chaque zone au niveau 1 à 3, 3 niveaux) : 5 780 placements des nouvelles fiches, aucune fiche placée
 // malgré une case « retirer », une ligne grossesse « retirer », un niveau de variante supérieur à celui du profil, ni d'isolation en grossesse.
+// Référence régénérée le 01/11/2026 pour la mesure provisoire B1 du contrôle des exemples de programmes : DOSE_LIMITS limite nordique-ischios et
+// pompe-equilibre-mur à une réserve >= 2 et 2 séries au plus (config.ts) ; 87 cas sur 662 changent, tous de niveau avancé (RIR 1 de l'avancé et 3 séries
+// sur ces deux fiches) ; aucun cas débutant ni intermédiaire ne change.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

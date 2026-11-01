@@ -239,6 +239,11 @@ export const DOSE_LIMITS: Record<string, DoseLimit> = {
   'good-morning-barre': { minRir: 2, maxSets: 3 },
   // Fiche rowing-pendlay-barre : « exercice avancé, charge légère à modérée : 2 à 3 séries, 2 à 3 répétitions en réserve ».
   'rowing-pendlay-barre': { minRir: 2, maxSets: 3 },
+  // 01/11/2026 (relecteur des exemples de programmes, B1) : RIR 1 de l'avancé en 3 x 10-15 sur deux fiches dont le texte dit « volume faible au départ »
+  // (nordique des ischios : aucun nombre de séries ni de répétitions sourcé) et « jamais sans pompe piquée maîtrisée » (pompe en équilibre contre un mur).
+  // Mesure PROVISOIRE la plus restrictive des champs existants : réserve >= 2, 2 séries au plus. Valeurs et blocage de l'échelon 2 à fixer par coach + kine.
+  'nordique-ischios': { minRir: 2, maxSets: 2 },
+  'pompe-equilibre-mur': { minRir: 2, maxSets: 2 },
   // Fiche montee-sur-marche, variante haltères : « seulement sur la première ou la deuxième marche, haltères légers » : jamais 4-6.
   'montee-sur-marche-halteres': { noHeavyReps: true },
   // Variantes nommées « haltères légers » dans leur fiche : jamais la dose lourde (lecture restrictive).

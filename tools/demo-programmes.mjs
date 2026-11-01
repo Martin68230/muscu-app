@@ -28,11 +28,11 @@ const mkInput = (o) => ({
 
 const PROFILS = [
   { titre: '1. Débutant, prise de muscle, 3 jours, maison (haltères + élastique)', input: mkInput({ profile: { level: 'debutant', daysPerWeek: 3 }, equipment: eq(MAISON_HE), goal: 'muscle' }) },
-  { titre: '2. Intermédiaire, force, 4 jours, salle (haut / bas)', semaine2: true, input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle' }, equipment: salle, goal: 'force' }) },
-  { titre: '3. Intermédiaire, perte de gras + cardio en objectif secondaire, 3 jours, séance de cardio ajoutée', input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 3, sessionDurationMin: 45 }, equipment: eq(MAISON_HE), goal: 'perte_gras', second: 'cardio', options: { seanceCardio: true } }) },
+  { titre: '2. Intermédiaire, force, 4 jours, salle (haut / bas)', semaine2: true, input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle', salleAccess: true }, equipment: salle, goal: 'force' }) },
+  { titre: '3. Intermédiaire, perte de gras + cardio en objectif secondaire, 3 jours (séance de cardio par défaut)', input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 3, sessionDurationMin: 45 }, equipment: eq(MAISON_HE), goal: 'perte_gras', second: 'cardio' }) },
   { titre: '4. Intermédiaire, volley (objectif sport), 3 jours, maison (élastique + chaise)', input: mkInput({ profile: { level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, equipment: eq(MAISON_E), goal: 'sport' }) },
   { titre: '5. Débutant, sans matériel, 3 jours (poids du corps)', input: mkInput({ profile: { level: 'debutant', daysPerWeek: 3 }, equipment: eq(['poids_du_corps', 'tapis']), goal: 'muscle' }) },
-  { titre: '6. Avancé, 5 jours, salle', semaine2: true, input: mkInput({ profile: { level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle' }, equipment: salle, goal: 'muscle' }) },
+  { titre: '6. Avancé, 5 jours, salle', semaine2: true, input: mkInput({ profile: { level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, equipment: salle, goal: 'muscle' }) },
 ];
 
 const dose = (e) => (e.unit === 'sec' ? `${e.sets} x ${e.holdSec} s` : `${e.sets} x ${e.repsMin}-${e.repsMax}${e.unit === 'reps_par_cote' ? ' par côté' : ''}`);
