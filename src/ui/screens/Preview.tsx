@@ -132,7 +132,12 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
   // Carte des muscles de la séance (niveau 3) : séries prévues, échelle d'une séance sur les séances de musculation de la semaine.
   const [objectif, setObjectif] = useState<string | null>(null);
   useEffect(() => { void mainGoalKey().then(setObjectif); }, []);
-  const muscles = cardioDay ? null : sessionMap(setsOfExercises(day.exercises), fiches, program.days.filter((d) => !isCardioDay(d)).length, objectif);
+  let muscles: ReturnType<typeof sessionMap> | null = null;
+  try {
+    muscles = cardioDay ? null : sessionMap(setsOfExercises(day.exercises), fiches, program.days.filter((d) => !isCardioDay(d)).length, objectif);
+  } catch {
+    muscles = null; // fiche sans muscles renseignés : l'aperçu reste lisible sans la carte
+  }
   const lines = program.explanation ?? [];
   const [skipped, setSkipped] = useState<string[] | null>(null);
   if (skipped) {
