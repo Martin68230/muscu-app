@@ -6,6 +6,7 @@ import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
 import { resolveFiche } from './safety';
 import type { Fiche, GenExercise, GenProgram } from './types';
+import { isTwinOfUsed } from './slots';
 import { rotationStart } from './variety';
 
 /**
@@ -44,7 +45,8 @@ export function isoExercise(
   variety: { weekUsed?: ReadonlySet<string>; week?: number; block?: number; k?: number } = {},
 ): GenExercise | null {
   if (ctx.zones.some((z) => !z.isG && z.level >= 1 && def.zones.includes(z.key))) return null;
-  const ok = pool.filter((f) => isoFicheFits(f, def) && !used.has(f.id) && !(ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0));
+  // Lot cohérence 5 a : jamais une fiche jumelle (même schéma, mêmes muscles) d'un exercice de la séance.
+  const ok = pool.filter((f) => isoFicheFits(f, def) && !used.has(f.id) && !isTwinOfUsed(f, used, ctx) && !(ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0));
   const r0 = rotationStart(ok.length, variety.k ?? 1, variety.week ?? 1, variety.block ?? 1);
   const turned = ok.map((_, i) => ok[(r0 + i) % ok.length]);
   const wu = variety.weekUsed ?? new Set<string>();

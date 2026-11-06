@@ -40,7 +40,7 @@ it('génère le HTML de l\'aperçu (séance de poussée, semaine du profil 2)', 
   const r = generateProgram(mk({ level: 'intermediaire', days: 4, dur: 60, goal: 'force', profile: 'F', place: 'salle' }));
   if (!r.ok) throw new Error('programme');
   const days = toProgramDays(r.program).filter((d) => d.exercises.some((e) => e.role !== 'cardio'));
-  const session = sessionMap(setsOfExercises(PUSH), FICHE_BY_ID, 3).statuses;
+  const session = sessionMap(setsOfExercises(PUSH), FICHE_BY_ID).statuses;
   const week = weekMap(days, FICHE_BY_ID).statuses;
   const body = html([
     { type: 'h2', props: { children: 'Séance de poussée' } },

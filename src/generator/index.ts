@@ -32,7 +32,7 @@ import type {
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
-import { addCorrectifs, checkZones, fillGreyZones } from './zones-check';
+import { addCorrectifs, checkZones, fillGreyZones, fillToTarget } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
 export { zoneName, ZONES } from '../zones/zones';
@@ -62,6 +62,9 @@ const MUSCLE_LABEL: Record<string, string> = {
 };
 const FORCE_ROLES = ['pilier', 'autre'];
 
+/** Lot cohérence 3 : raison d'un bloc de cardio absent : temps qui manque vraiment, ou part de 25 % de la musculation trop petite. */
+type CardioMiss = 'temps' | 'part';
+
 interface Duration {
   dMin: number;
   targetMin: number;
@@ -69,6 +72,8 @@ interface Duration {
   /** D25 (STR-REP-4) : N de départ des séances haut / bas / push / pull / legs. */
   startNSplit: number;
   addMin: number;
+  /** Ajout §4.4 : marge sous la cible (10 min ; « illimité » : 0, lot cohérence 3 : viser 60 min, jamais plus de 75). */
+  addMarginSec: number;
 }
 
 function resolveDuration(raw: number | null | undefined, pregnant: boolean, out: GenMessage[], oneDayCap: number | null): Duration {
@@ -77,14 +82,14 @@ function resolveDuration(raw: number | null | undefined, pregnant: boolean, out:
   // STR-REP-1 (ajout `kine`) : une séance par semaine, débutant ou famille sante : 45 min au plus.
   if (oneDayCap !== null && (raw === null || (raw ?? DEFAULT_DURATION_MIN) > oneDayCap)) {
     out.push(msg.unJourDuree(oneDayCap));
-    return { dMin: oneDayCap, targetMin: oneDayCap, startN: nFor(oneDayCap), startNSplit: nSplit(oneDayCap), addMin: oneDayCap };
+    return { dMin: oneDayCap, targetMin: oneDayCap, startN: nFor(oneDayCap), startNSplit: nSplit(oneDayCap), addMin: oneDayCap, addMarginSec: TIME.addIfUnderMarginSec };
   }
   if (raw === null) {
     if (pregnant) {
       out.push(msg.grosDuree());
-      return { dMin: PREGNANCY.maxDurationMin, targetMin: PREGNANCY.maxDurationMin, startN: UNLIMITED.startN, startNSplit: SPLIT_UNLIMITED_START_N, addMin: PREGNANCY.maxDurationMin };
+      return { dMin: PREGNANCY.maxDurationMin, targetMin: PREGNANCY.maxDurationMin, startN: UNLIMITED.startN, startNSplit: SPLIT_UNLIMITED_START_N, addMin: PREGNANCY.maxDurationMin, addMarginSec: TIME.addIfUnderMarginSec };
     }
-    return { dMin: UNLIMITED.capMin, targetMin: UNLIMITED.targetMin, startN: UNLIMITED.startN, startNSplit: SPLIT_UNLIMITED_START_N, addMin: UNLIMITED.targetMin };
+    return { dMin: UNLIMITED.capMin, targetMin: UNLIMITED.targetMin, startN: UNLIMITED.startN, startNSplit: SPLIT_UNLIMITED_START_N, addMin: UNLIMITED.targetMin, addMarginSec: 0 };
   }
   let d = raw ?? DEFAULT_DURATION_MIN;
   if (d < MIN_DURATION_MIN) {
@@ -95,7 +100,7 @@ function resolveDuration(raw: number | null | undefined, pregnant: boolean, out:
     d = PREGNANCY.maxDurationMin;
     out.push(msg.grosDuree());
   }
-  return { dMin: d, targetMin: d, startN: nFor(d), startNSplit: nSplit(d), addMin: d };
+  return { dMin: d, targetMin: d, startN: nFor(d), startNSplit: nSplit(d), addMin: d, addMarginSec: TIME.addIfUnderMarginSec };
 }
 
 // ----- Couverture des grands groupes (V-GG, V-FREQ) -----
@@ -616,7 +621,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       // Ajout (§4.4) : si T < D - 10 min et N < 8, emplacement suivant tant que T <= D et que les plafonds tiennent.
       for (const slot of sl) {
         if (attempted.includes(slot)) continue;
-        if (s.exercises.length >= VOLUME.maxExercisesPerSession || estimerDuree(s) >= addBudgetSec - TIME.addIfUnderMarginSec) break;
+        if (s.exercises.length >= VOLUME.maxExercisesPerSession || estimerDuree(s) >= addBudgetSec - dur.addMarginSec) break;
         const ex = mk(slot, s.exercises);
         attempted.push(slot);
         if (!ex) continue;
@@ -644,9 +649,12 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     ? Math.min(blocksForRank(cardioRank ?? 2), ded.kind === 'option' && ded.days.length ? CARDIO_OPTION.blocksWhenAccepted : Infinity)
     : nDays;
   const reserveSec = CARDIO.blockStartMin * 60;
-  const softActions = (a: string) => a.startsWith('paire:') || ACCESSORY_REMOVAL_ORDER_V2.some((x) => a === `retrait:${x}`);
   const budget = new Map<Label, number>();
   let cardioTimeShort = false;
+  // Lot cohérence 3 : vraie raison d'un bloc de cardio absent (« temps » seulement quand le temps manque vraiment).
+  const cardioMisses = new Set<CardioMiss>();
+  const shareTooSmall = (muscuSec: number) =>
+    blockRole === 'secondaire' && Math.floor((muscuSec / 60) * CARDIO.secondaryMaxShare) < CARDIO.blockMinMin;
   const supportZone = ctx.zones.some((z) => !z.isG && z.level >= 1 && CARDIO_V2.supportZones.includes(z.key));
   /** §3.4 (g)-(k), STR-REP-7 : bloc « facile » (jambes lourdes, ou séance d'une répartition) ; 15 min au plus si jambes lourdes, veille de jambes ou zone d'appui. */
   const blockKind = (l: Label, ex: GenExercise[]): { easy: boolean; cap15: boolean } => {
@@ -657,27 +665,32 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   };
 
   const durSessions: DurSession<GenExercise>[] = [];
-  const meta = new Map<Label, { removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> }>();
+  const meta = new Map<Label, { removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup>; tight: boolean }>();
   const general = generalWarmup(ctx);
   const buildLabel = (l: Label, coreProtected: boolean, wantBlock: boolean) => {
     let chosen = build(l, dSec, addSec, coreProtected);
     let placed = false;
+    let miss: CardioMiss | null = null;
     if (blockRole && wantBlock) {
       const kind = blockKind(l, chosen.s.exercises);
       const choice = kind.easy ? easyChoice : cardioChoice;
       // §3.4 (c) : pilier lourd (4-6 répétitions) et durée déjà serrée -> pas de bloc (on coupe le bloc, jamais le pilier).
       const heavy = chosen.s.exercises.some((e) => e.role === 'pilier' && e.unit === 'reps' && e.repsMax <= 6);
+      miss = 'temps';
       if (choice && !(heavy && chosen.actions.length) && dSec > reserveSec) {
+        // Cardio principal seulement : le cardio secondaire (« en plus ») n'est plus réservé ici (lot cohérence 3, voir la finalisation).
         const red = build(l, dSec - reserveSec, addSec - reserveSec, coreProtected);
         const extra = red.actions.filter((a) => !chosen.actions.includes(a));
+        const soft = (a: string) => a.startsWith('paire:') || ACCESSORY_REMOVAL_ORDER_V2.some((x) => a === `retrait:${x}`);
         const cap = blockCap(ctx, blockRole, estimerDuree(red.s), dSec, kind.cap15);
-        if (!red.overBudget && extra.every(softActions) && red.removedCore.length <= chosen.removedCore.length && cap >= CARDIO.blockMinMin) {
+        if (!red.overBudget && extra.every(soft) && red.removedCore.length <= chosen.removedCore.length && cap >= CARDIO.blockMinMin) {
           chosen = red;
           placed = true;
+          miss = null;
         }
       }
     }
-    return { chosen, placed };
+    return { chosen, placed, miss };
   };
   // D26 (CORE-TPS-1) : le core des séances du plancher (2 séances, 4 séries) n'est jamais retiré pour la durée ; au-delà du plancher,
   // il est raccourci puis retiré avant la charnière et tirage_1, dans l'ordre de séances A, C, B (E1). Grossesse : aucun plancher.
@@ -687,26 +700,32 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   // §3.4 (g) : séances qui reçoivent un bloc : sans jambes lourdes d'abord, puis la plus légère pour les jambes (exercices de jambes à
   // charge externe, puis séries de jambes) ; le 2e bloc sur une autre séance, non consécutive si le calendrier le permet.
   const placedOrder: Label[] = [];
-  if (blockRole) {
+  const blockRanking = (exOf: (l: Label) => GenExercise[], ls: readonly Label[]) => {
     const keyOf = (l: Label) => {
-      const ex = results.get(l)!.chosen.s.exercises;
+      const ex = exOf(l);
       return [isHeavyLegsSession(ex) ? 1 : 0, ...legLoad(ex), labels.indexOf(l)];
     };
-    const ranking = [...labels].sort((a, b) => {
+    return [...ls].sort((a, b) => {
       const ka = keyOf(a);
       const kb = keyOf(b);
       for (let i = 0; i < ka.length; i++) if (ka[i] !== kb[i]) return ka[i] - kb[i];
       return 0;
     });
-    const adjacent = (a: Label, b: Label) => {
-      const d = Math.abs(dayOf(a) - dayOf(b));
-      return Math.min(d, 7 - d) <= 1;
-    };
+  };
+  const adjacent = (a: Label, b: Label) => {
+    const d = Math.abs(dayOf(a) - dayOf(b));
+    return Math.min(d, 7 - d) <= 1;
+  };
+  // Lot cohérence 3 (décision de l'utilisateur du 06/11/2026) : le cardio « en plus » (secondaire) vient en DERNIER, après la musculation
+  // et le remplissage du temps (fillToTarget) : aucune place réservée ici, le bloc prend le temps qui reste à la finalisation.
+  if (blockRole === 'principal') {
+    const ranking = blockRanking((l) => results.get(l)!.chosen.s.exercises, labels);
     for (const spaced of [true, false]) {
       for (const l of ranking) {
         if (placedOrder.length >= maxBlocks) break;
         if (placedOrder.includes(l) || (spaced && placedOrder.some((x) => adjacent(x, l)))) continue;
         const r = buildLabel(l, protect(l), true);
+        if (r.miss) cardioMisses.add(r.miss);
         if (r.placed) {
           results.set(l, r);
           placedOrder.push(l);
@@ -730,7 +749,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     const { chosen, placed } = results.get(l)!;
     if (placed) budget.set(l, dSec - reserveSec);
     durSessions.push(chosen.s);
-    meta.set(l, { removedCore: chosen.removedCore, overBudget: chosen.overBudget, attempted: chosen.attempted, warm: chosen.warm });
+    meta.set(l, { removedCore: chosen.removedCore, overBudget: chosen.overBudget, attempted: chosen.attempted, warm: chosen.warm, tight: chosen.actions.length > 0 });
   }
 
   // D33 (PV3-PLAF-2) : repli de jambes_3 (même chaîne et même classement que le remplissage, fiche absente de la séance, plafonds de séance).
@@ -863,24 +882,73 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   fillGreyZones(kept, zoneDeps);
   // Emplacement correctif (06/11/2026) : petites zones restées grises, 1 à 2 exercices légers en fin de séance (zones-check.ts).
   addCorrectifs(kept, zoneDeps);
+  // Lot cohérence 3 (décision de l'utilisateur du 06/11/2026) : temps restant jusqu'à la cible de la séance (« illimité » : 60 min, budget
+  // 75 ; durée choisie : cette durée, jamais dépassée ; séance avec bloc de cardio : budget moins la place du bloc). Ordre : zones orange
+  // jusqu'au rouge, puis petites zones (correctif), puis le cardio (finalisation ci-dessous). Plafonds et protections inchangés.
+  function* functionalAlternatives(s: DurSession<GenExercise>, all: readonly DurSession<GenExercise>[]): Generator<GenExercise> {
+    // Emplacement fonctionnel du type de séance (corps entier, bas, jambes, pull), même classement et mêmes filtres de sécurité que le placement.
+    if (!TYPE_SLOTS[typeOf(s.label)].includes('fonctionnel')) return;
+    const used = new Set(s.exercises.map((x) => x.ficheId));
+    const placed: Partial<Record<SlotKey, string>> = {};
+    for (const x of s.exercises) placed[x.slot] = x.schema;
+    const weekIds = new Set(all.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
+    for (const r of freshFirst(rankSlot('fonctionnel', { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+      if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34) : jamais une fiche déjà placée ailleurs dans la semaine
+      const ex = buildExercise(r.cand, 'fonctionnel', r.tier, ctx);
+      ex.warmupSets = e3Sets(ex, ctx);
+      yield ex;
+    }
+  }
+  fillToTarget(kept, { ...zoneDeps, target: (s) => Math.min(dur.targetMin * 60, budget.get(s.label) ?? dSec), functional: functionalAlternatives });
   const zoneState = checkZones(kept, ctx, pool);
   // Décision du 06/11/2026 : zones orange jamais affichées (bruit : 661 cas sur 662) ; grises citées seulement si un exercice existe.
   if (zoneState.greyFixable.length) msgs.push(msg.zonesGris(zoneState.greyFixable.map(zoneName)));
 
   // Finalisation des séances.
   const beginnerRamp = blockRole !== null && !ctx.pregnant && ctx.level === 'debutant';
+  // Lot cohérence 3 : cardio secondaire placé EN DERNIER, sur le temps qui reste (mêmes règles §3.4 : ordre des séances (g), pilier lourd
+  // et durée serrée (c), plafond par niveau, 15 min (k), part de 25 % de la musculation) ; la vraie raison est gardée s'il manque.
+  if (blockRole === 'secondaire') {
+    const sessOf = (l: Label) => kept.find((x) => x.label === l)!;
+    const fits = (l: Label): boolean => {
+      const s = sessOf(l);
+      const kind = blockKind(l, s.exercises);
+      const choice = kind.easy ? easyChoice : cardioChoice;
+      const heavy = s.exercises.some((e) => e.role === 'pilier' && e.unit === 'reps' && e.repsMax <= 6);
+      const est = estimerDuree(s);
+      if (!choice || (heavy && meta.get(l)!.tight)) {
+        if (choice) cardioMisses.add('temps');
+        return false;
+      }
+      if (blockCap(ctx, blockRole, est, dSec, kind.cap15) >= CARDIO.blockMinMin) return true;
+      cardioMisses.add(Math.floor((dSec - est) / 60) >= CARDIO.blockMinMin && shareTooSmall(est) ? 'part' : 'temps');
+      return false;
+    };
+    const ranking = blockRanking((l) => sessOf(l).exercises, kept.map((x) => x.label));
+    for (const spaced of [true, false]) {
+      for (const l of ranking) {
+        if (placedOrder.length >= maxBlocks) break;
+        if (placedOrder.includes(l) || (spaced && placedOrder.some((x) => adjacent(x, l)))) continue;
+        if (fits(l)) placedOrder.push(l);
+      }
+    }
+    if (placedOrder.length < maxBlocks) cardioTimeShort = true;
+  }
   const sessions: GenSession[] = kept.map((s) => {
     const m = meta.get(s.label)!;
     const est = estimerDuree(s);
     let cardio: CardioItem | null = null;
-    if (budget.has(s.label) && blockRole) {
+    if (blockRole && (blockRole === 'principal' ? budget.has(s.label) : placedOrder.includes(s.label))) {
       const kind = blockKind(s.label, s.exercises);
       const choice = kind.easy ? easyChoice : cardioChoice;
       const cap = blockCap(ctx, blockRole, est, dSec, kind.cap15);
       // §3.4 (f) rampe du débutant : semaines 1 et 2 = un seul bloc de 10 min ; le 2e bloc arrive en semaine 3, sans hausse de durée.
       const fromWeek = beginnerRamp && placedOrder.indexOf(s.label) >= 1 ? CARDIO_V2.beginnerSecondBlockFromWeek : undefined;
       if (choice && cap >= CARDIO.blockMinMin) cardio = cardioItem('bloc', choice, CARDIO.blockStartMin, cap, BLOCK_WEEKS, ctx, { easy: kind.easy, flat: beginnerRamp, fromWeek });
-      else cardioTimeShort = true;
+      else {
+        cardioTimeShort = true;
+        cardioMisses.add(choice && Math.floor((dSec - est) / 60) >= CARDIO.blockMinMin && shareTooSmall(est) ? 'part' : 'temps');
+      }
     }
     const total = est + (cardio && !cardio.fromWeek ? cardio.minutes * 60 : 0);
     const base: GenSession = {
@@ -995,7 +1063,11 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       if (ctx.available.has('machine_cardio')) cardioMsgs.push(cardioMsg.machine());
     }
     // D32 : pas de « cardio retiré » quand une séance de cardio dédiée existe (le cardio n'est pas retiré du programme).
-    if (cardioChoice && !cardioSessions.length && (cardioTimeShort || (blockRole && !blocks.length))) cardioMsgs.push(cardioMsg.temps());
+    if (cardioChoice && !cardioSessions.length && (cardioTimeShort || (blockRole && !blocks.length))) {
+      // Lot cohérence 3 : « pas assez de temps » seulement quand le temps manque vraiment ; sinon la vraie raison (part de 25 %).
+      if (cardioMisses.has('temps') || !cardioMisses.size) cardioMsgs.push(cardioMsg.temps());
+      else cardioMsgs.push(cardioMsg.part(Math.round(CARDIO.secondaryMaxShare * 100), CARDIO.blockMinMin));
+    }
   } else if (cardioSessions.length) {
     // D31 : séance dédiée sans objectif cardio : mêmes textes de sécurité de `kine` (§9bis) et repère OMS.
     cardioMsgs.push(cardioMsg.t0(), cardioMsg.t4(), cardioMsg.t3(), cardioMsg.t1(), cardioMsg.t1u());
@@ -1078,7 +1150,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   }
 
   let explanation = explain(ctx, sessions.length, split, lightDays.length, coverage, dur, sessions, forceNoLoad);
-  if (cardioRole) explanation = explainCardio(explanation, cardioRole, !!cardioChoice, nDays, sessions, cardioSessions, cardioMinWeek, dur.dMin, ctx.pregnant);
+  if (cardioRole) explanation = explainCardio(explanation, cardioRole, !!cardioChoice, nDays, sessions, cardioSessions, cardioMinWeek, dur.dMin, ctx.pregnant, cardioMisses.has('temps') || !cardioMisses.size ? 'temps' : 'part');
   else if (cardioSessions.length) {
     // D31 (rédaction de `dev`, à relire) : la ligne 2 cite la séance de cardio dédiée.
     const c = cardioSessions[0];
@@ -1219,14 +1291,19 @@ function explain(
  */
 function explainCardio(
   base: [string, string], role: 'principal' | 'secondaire', possible: boolean, nDays: number, sessions: GenSession[],
-  dedicated: GenCardioSession[], totalMin: number, dMin: number, pregnant: boolean,
+  dedicated: GenCardioSession[], totalMin: number, dMin: number, pregnant: boolean, miss: CardioMiss = 'temps',
 ): [string, string] {
   const blocks = sessions.filter((s) => s.cardio);
   const bMin = blocks[0]?.cardio?.minutes;
   // §3.4 (f) : rampe du débutant, dite simplement.
   const later = blocks.find((s) => s.cardio?.fromWeek)?.cardio?.fromWeek;
   const ramp = later ? ` Pour commencer, un seul bloc par semaine ; le 2e arrive en semaine ${later}.` : '';
-  const why = !possible ? 'aucun cardio sûr avec tes réglages' : `pas assez de temps dans ${dMin} min, il est retiré en premier`;
+  // Lot cohérence 3 : la vraie raison ; « pas assez de temps » seulement quand le temps manque vraiment.
+  const why = !possible
+    ? 'aucun cardio sûr avec tes réglages'
+    : miss === 'part'
+      ? `limité à ${Math.round(CARDIO.secondaryMaxShare * 100)} % de ta musculation, trop court pour un bloc de ${CARDIO.blockMinMin} min`
+      : `pas assez de temps dans ${dMin} min, il est retiré en premier`;
   const oms = `Le repère de l'OMS est 150 à 300 min par semaine : ton programme en compte environ ${totalMin} min.`;
   if (role === 'principal') {
     let l1: string;
@@ -1246,7 +1323,7 @@ function explainCardio(
 }
 
 /** Exercice généré -> exercice stocké (sans `alt`). D34 : `rotation` = emplacement dont la fiche change d'une semaine à l'autre. */
-function plannedOf(e: GenExercise): PlannedExercise {
+export function plannedOf(e: GenExercise): PlannedExercise {
   return {
     movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
     supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,

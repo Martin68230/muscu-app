@@ -93,7 +93,20 @@ import { mk, type MkOpts } from './generator-helpers';
 // CORRECTIF.ids) : avant (mêmes fiches sans les 5) = ancienne référence pour les 662 cas ; 287 cas changent (débutant 74, intermédiaire 119,
 // avancé 92, autres 2), 213 par une nouvelle fiche (poussée au mur 56, descente sur une jambe 143, rowing à la serviette 28 ; recoupements
 // possibles), 6 par l'adduction en correctif, le reste par effets de bord (échanges D34, V-MSG-EPAULES -72, V-MSG-PLANS -27, DUREE +3).
+// Référence régénérée le 06/11/2026 pour le tag explicite `ancrage_porte` (11 variantes à élastique ancré en haut d'une porte : `porte` -> `ancrage_porte`) :
+// seuls les 47 cas du profil F (salle complète, tous les tags, élastique inclus) changent, et uniquement par le NOM du tag dans `tags` des exercices à ancrage ;
+// vérifié : mêmes programmes une fois `ancrage_porte` remplacé par `porte` (168 cas F comparés). Profils A0 et C (sans élastique) inchangés.
 // Aucun débutant ne reçoit la descente (intermédiaire minimum) ; en grossesse seule la poussée au mur apparaît (case « garder »).
+// Référence régénérée le 06/11/2026 pour le lot cohérence, points 3 et 5 a (docs/lot-coherence-bilans-intensite.md), comparée à celle du
+// dernier commit (0e977e0) : 430 cas sur 662 changent (débutant 76, intermédiaire 193, avancé 153, blessures / 4 jours 8 ; les 47 cas F du
+// tag `ancrage_porte` ci-dessus sont comptés dedans). Causes, mesurées sur une grille plus large (1 920 programmes, 2 à 5 jours, 4 profils de
+// matériel, 30 à 75 min et « illimité », ancien / nouveau générateur) : (1) remplissage du temps jusqu'à la cible (fillToTarget : séries
+// ajoutées aux zones orange, fonctionnel, correctifs des petites zones orange) : plus de séries dans 1 392 programmes, plus d'exercices dans
+// 996 ; (2) « illimité » : ajout d'emplacements jusqu'à 60 min sans marge de 10 min ; (3) fiches jumelles interdites dans une séance
+// (55 paires avant, 0 après ; tirage_3 / tirage_4 changé dans 426 programmes, dont des cascades de classement : 32 programmes débutants
+// salle 2 jours un peu plus courts) ; (4) cardio « en plus » en dernier : plus de cardio dans 66 programmes (illimité), moins dans 29 (60 min :
+// la musculation prend le temps) ; message V-MSG-CARDIO-PART au lieu de « pas assez de temps » dans 60. Contrôles : aucune séance vide, aucune
+// durée choisie dépassée, rien au-delà de 75 min en illimité, plafonds V-PLAF et hebdomadaires tenus (lot-coherence-duree.test.ts).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

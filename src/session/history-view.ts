@@ -43,6 +43,8 @@ export interface SideLog {
 }
 export interface SerieDetail {
   setIndex: number;
+  /** Variante utilisée pour cette série (peut changer entre séries d’un même exercice). */
+  variantId?: string;
   /** Un seul élément, ou deux (gauche puis droite) pour un exercice d'un seul côté. */
   sides: SideLog[];
 }
@@ -90,7 +92,8 @@ export function sessionDetail(session: Pick<WorkoutSession, 'id' | 'plan'>, sets
           side: r.side ?? null, reps: r.reps, loadKg: r.loadKg, holdSec: r.holdSec ?? null, rir: r.rir, felt: r.felt ?? null, pain: r.pain,
         }]);
       }
-      const series = [...bySet.entries()].sort((a, b) => a[0] - b[0]).map(([setIndex, sides]) => ({ setIndex, sides: [...sides].sort((a, b) => sideRank(a.side) - sideRank(b.side)) }));
+      const variantOfSet = (i: number) => rows.find((r) => r.setIndex === i)?.variantId;
+      const series = [...bySet.entries()].sort((a, b) => a[0] - b[0]).map(([setIndex, sides]) => ({ setIndex, variantId: variantOfSet(setIndex), sides: [...sides].sort((a, b) => sideRank(a.side) - sideRank(b.side)) }));
       const all = series.flatMap((s) => s.sides);
       return {
         index, movementId: first.movementId, variantId: first.variantId, role: px?.role ?? null, perSide, cardio, hold, series, pairWith: [],
@@ -137,6 +140,13 @@ export function sideText(s: SideLog, ex: Pick<ExerciseDetail, 'cardio' | 'hold'>
 }
 
 /** « Série 2 : gauche 10 répétitions à 8 kg ; droite 10 répétitions à 8 kg ». */
+/** Nom affiché : « Exercice (variante) » ; la variante seule si elle porte déjà le nom, l’exercice seul sans variante connue. */
+export function exerciseLabel(ficheNom: string, variantNom: string): string {
+  if (!variantNom || variantNom === 'Exercice' || variantNom === ficheNom) return ficheNom;
+  if (!ficheNom || ficheNom === 'Exercice') return variantNom;
+  return `${ficheNom} (${variantNom})`;
+}
+
 export function serieText(serie: SerieDetail, ex: Pick<ExerciseDetail, 'cardio' | 'hold'>, n: number): string {
   const body = serie.sides.map((s) => (s.side ? `${s.side} ${sideText(s, ex)}` : sideText(s, ex))).join(' ; ');
   return `Série ${n} : ${body}`;

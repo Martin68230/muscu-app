@@ -12,7 +12,8 @@ import { resolveFiche } from '../generator/safety';
 import type { Fiche, GeneratorInput } from '../generator/types';
 import type { EchelonInfo, EngineContext } from './engine';
 import { beginnerFailureLock, doneSessionsCount, jumpAllowed, painFrozen, setRaise, topRun } from './adaptation';
-import { ADAPT_TEXT, deloadText, ECHELON_TEXT, fmtKg, harderVariantText, holdMoreText, loadLessText, loadMoreText, PAIN_S1_TEXT, PROGRESSION_TEXT, restMoreText, setMoreText } from './messages';
+import { ADAPT_TEXT, deloadText, ECHELON_TEXT, exerciseMoreText, fmtKg, harderVariantText, holdMoreText, loadLessText, loadMoreText, PAIN_S1_TEXT, PROGRESSION_TEXT, repsMoreText, restMoreText, setMoreText } from './messages';
+import { decideIntensity, type IntensityDecision, type IntensityTime } from './intensity';
 import { deloadGapBlocked, deloadLoad, deloadSignal, deloadWeekActive, laterActive, pendingAdapt, restSignal } from './adapt-accept';
 import { evaluateEchelon, firstFinishedAt, levelIndex, proposeHold, type EchelonProposal, type ProgVariant } from './progression';
 import { PROGRESSION, type ProgressionConfig } from './progression-config';
@@ -72,7 +73,9 @@ export type ProgressionReason =
   // débutant après un échec (C1), réserve sous la cible (C2), +répétitions (C4 / E3).
   | 'serie' | 'variante' | 'saut' | 'attente' | 'manquee' | 'apprentissage' | 'reserve' | 'repetitions'
   // Acceptation en un appui : +30 s de repos, décharge.
-  | 'repos' | 'decharge';
+  | 'repos' | 'decharge'
+  // Lot cohérence point 4 : séance trop facile -> un ajout dans le temps libre de la séance.
+  | 'exercice';
 export interface Progression {
   action: 'etalonnage' | 'hausse' | 'baisse' | 'garder';
   loadKg: number | null;
@@ -92,6 +95,10 @@ export interface Progression {
   restProposal?: number;
   /** Décharge : charge proposée pour la prochaine séance (kg), proposition seulement. */
   deloadProposal?: { loadKg: number };
+  /** Point 4 : fourchette de répétitions proposée (proposition seulement). */
+  repsProposal?: { repsMin: number; repsMax: number };
+  /** Point 4 : un ajout dans le temps libre de la séance (proposition seulement, contenu décidé au démarrage : intensity.fillExerciseTime). */
+  exerciseProposal?: boolean;
 }
 
 /** F6 : exercice sans charge à échelons (poids du corps, élastique) : la clé de suivi est (fiche, échelon), pas la variante. */
@@ -156,6 +163,11 @@ export interface ProgressionInput {
   restMaxSec?: number;
   /** Décisions d'adaptation (acceptées, « plus tard ») : un seul changement à la fois, rien avant la séance suivante après « Plus tard ». */
   adaptEvents?: readonly ProgressionEvent[];
+  /**
+   * Lot cohérence point 4 (src/session/intensity.ts) : plafond de répétitions du rôle ou de la classe et temps de la séance. Absent :
+   * aucune montée par le temps (comportement antérieur).
+   */
+  intensity?: { repsCeiling: number; time?: IntensityTime };
 }
 
 /** Séries de la fiche pour un échelon donné (poids du corps) : même difficulté, quelle que soit la variante. */
@@ -214,6 +226,28 @@ export function proposeProgression(i: ProgressionInput): Progression {
   const rirOk = (s: SetLog) => s.rir !== null && s.rir >= ex.rirTarget;
   // Unilatéral : le côté faible décide. « Toutes les séries » couvre les deux côtés (montée seulement si les deux remplissent le critère).
   const allTop = lastSets.length > 0 && lastSets.every((s) => s.reps !== null && s.reps >= ex.repsMax && rirOk(s));
+  // Lot cohérence point 4 : séance « trop facile ». Appelé seulement APRÈS tous les gels (grossesse, reprise, douleur, symptôme, séance
+  // manquée, débutant après un échec) ; ici : case de sécurité, plafond, superset, changement en attente ou « plus tard », semaine allégée,
+  // séance non valable. Une seule proposition par exercice ; les repos ne sont jamais touchés.
+  const intensity = (): IntensityDecision | null => {
+    if (!i.intensity || ex.adaptation != null || ex.capped || ex.supersetGroup || ex.adaptApplied) return null;
+    if (pendingAdapt(i.adaptEvents, ex.movementId) || laterActive(i.adaptEvents, ex.movementId, i.sets)) return null;
+    if (deloadWeekActive(i.adaptEvents, ex.movementId, i.now ?? Date.now(), cfg)) return null;
+    const row0 = i.sessions?.find((s) => s.id === lastSets[0]?.sessionId);
+    if ((row0 && row0.status !== 'faite') || row0?.endReason === 'symptome' || lastSets.length < plannedFor(row0, ex.movementId, fallbackPlanned) || lastSets.some((s) => s.isCalibration)) return null;
+    return decideIntensity({
+      // C3 / C7 (relecteur 06/11) : série ou ajout seulement après 2 séances valables de suite au haut de la fourchette (techniques compris).
+      growthAllowed: topRun(ex.movementId, others, i.sessions, fallbackPlanned, { repsMax: ex.repsMax, rirTarget: ex.rirTarget }) >= cfg.adaptation.topSessionsForSet,
+      exercise: ex, lastSets, beginner, repsCeiling: i.intensity.repsCeiling, maxSets: Math.min(cfg.adaptation.roleMaxSets, i.ficheMaxSets ?? Infinity), time: i.intensity.time,
+    });
+  };
+  const intensityProposal = (d: IntensityDecision | null): Progression | null => {
+    if (!d) return null;
+    if (d.kind === 'exercice') return { ...keep('exercice', exerciseMoreText()), action: 'hausse', exerciseProposal: true };
+    if (d.kind === 'repetitions') return { ...keep('repetitions', repsMoreText(d.repsMin, d.repsMax)), action: 'hausse', repsProposal: { repsMin: d.repsMin, repsMax: d.repsMax } };
+    if (d.kind === 'serie') return { ...keep('serie', setMoreText(d.sets)), action: 'hausse', setsProposal: d.sets };
+    return null;
+  };
 
   // ----- Exercice sans charge à échelons : montée et descente par échelon (progression.ts) -----
   if (bw && i.echelon !== undefined && ex.unit !== 'sec') {
@@ -225,6 +259,12 @@ export function proposeProgression(i: ProgressionInput): Progression {
     const p = res.proposal;
     // Réévaluée à chaque ouverture : reprise douce, douleur (zone), séance manquée, débutant après un échec -> aucune montée.
     const noRaise = i.repriseActive || painNow || i.missedSinceLast || failureLock;
+    // Décision du chef de projet (06/11/2026, règle de l'utilisateur « variante plus difficile seulement si rien d'autre n'est possible ») :
+    // séance trop facile -> ajout, répétitions ou série d'abord (mêmes gels, mêmes 2 séances) ; E2 seulement si aucun de ces moyens ne tient.
+    if (p?.kind === 'montee' && !noRaise) {
+      const first = bw.restricted ? null : intensityProposal(intensity());
+      if (first) return first;
+    }
     if (p?.kind === 'montee' && !noRaise) return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'descente') return { action: 'baisse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'plancher') return { ...keep('baisse', p.text), echelonProposal: p };
@@ -236,7 +276,12 @@ export function proposeProgression(i: ProgressionInput): Progression {
     if (failureLock) return keep('apprentissage', PROGRESSION_TEXT.apprentissage);
     // E2 : au sommet, mais pas encore assez de séances (ou rien au-dessus) : on garde, jamais de répétition au-delà du haut de la fourchette.
     const upExists = bw.variants.some((v) => v.echelon === i.echelon! + 1 && v.materielOk && levelIndex(v.niveau) <= levelIndex(bw.level));
-    if (allTop) return upExists && !bw.restricted ? keep('attente', PROGRESSION_TEXT.attente) : keep('sommet', PROGRESSION_TEXT.garderVersion);
+    if (allTop) {
+      // Point 4 : trop facile -> ajout, répétitions ou série selon le temps ; sinon (rien ne tient) la version plus dure reste à E2.
+      const up = bw.restricted ? null : intensityProposal(intensity());
+      if (up) return up;
+      return upExists && !bw.restricted ? keep('attente', PROGRESSION_TEXT.attente) : keep('sommet', PROGRESSION_TEXT.garderVersion);
+    }
     // E3 : +répétitions seulement si la réserve est conforme ; sinon on garde (C2).
     return lastSets.every(rirOk) ? keep('garder', PROGRESSION_TEXT.plusDeRepsVersion) : keep('reserve', PROGRESSION_TEXT.garderVersion);
   }
@@ -299,22 +344,27 @@ export function proposeProgression(i: ProgressionInput): Progression {
 
   // Double progression (load-calibration.md règle 4) : toutes les séries au haut de la fourchette, à la réserve visée.
   if (allTop) {
-    if (cur === null) return keep('sommet', PROGRESSION_TEXT.sommet);
+    const easy = intensity();
+    if (cur === null) return intensityProposal(easy) ?? keep('sommet', PROGRESSION_TEXT.sommet);
     // D26 (SUP-0 point 2, R3) : un exercice en superset garde la charge de départ du plan ; aucune hausse de charge proposée.
     if (ex.supersetGroup) return keep('paire', PROGRESSION_TEXT.paire);
     // C3 [kine] : débutant et fiche « technique » : critère tenu sur 2 séances valables de suite.
     const run = topRun(ex.movementId, others, i.sessions, fallbackPlanned, { repsMax: ex.repsMax, rirTarget: ex.rirTarget });
-    if (run < (beginner || i.technical ? cfg.adaptation.topSessionsBeginnerOrTechnical : 1)) return keep('attente', PROGRESSION_TEXT.attente);
+    if (run < (beginner || i.technical ? cfg.adaptation.topSessionsBeginnerOrTechnical : 1)) return (later ? null : intensityProposal(easy)) ?? keep('attente', PROGRESSION_TEXT.attente);
     // C3 + C6 [kine] : un seul cran au-dessus, et jamais plus de +20 % de la charge actuelle.
     const next = loads.filter((l) => l > cur).sort((a, b) => a - b)[0];
     if (next !== undefined && jumpAllowed(cur, next, cfg)) return { action: 'hausse', loadKg: next, echelon: null, reason: 'double_progression', text: loadMoreText(next - cur) };
+    // Point 4 : trop facile et pas de palier possible : ajout, répétitions ou série selon le temps (jamais au-delà de la limite).
+    const easyUp = intensityProposal(easy);
+    if (easyUp && !later) return easyUp;
     // C6 : alternative dans l'ordre +1 série (C7), puis version plus dure (C8), sinon garder au sommet. Propositions seulement.
     const first = firstFinishedAt(i.sessions ?? []);
     const setsUp = setRaise({
       sets: ex.sets, ficheMaxSets: i.ficheMaxSets, beginner, technicalOrHardClass: !!i.technical, topRun: run,
       followedMs: first === null ? null : (i.now ?? Date.now()) - first, doneSessions: doneSessionsCount(i.sessions), cfg,
     });
-    if (setsUp !== null && !later) return { ...keep('serie', setMoreText(setsUp)), action: 'hausse', setsProposal: setsUp };
+    // Point 4 : séance à la limite de durée (« variante ») : la série en plus ne tient pas, seule la version plus dure reste possible.
+    if (setsUp !== null && !later && easy?.kind !== 'variante') return { ...keep('serie', setMoreText(setsUp)), action: 'hausse', setsProposal: setsUp };
     // Contrôle relecteur 05/11 : jamais de version plus dure pour un exercice adapté par une case de sécurité (blessure).
     const harder = i.echelon === undefined || ex.adaptation != null ? undefined : (i.variants ?? [])
       .filter((v) => v.echelon === i.echelon! + 1 && v.materielOk && levelIndex(v.niveau) <= levelIndex(level))

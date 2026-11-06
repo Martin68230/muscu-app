@@ -212,6 +212,9 @@ export const cardioMsg = {
     ),
   /** §7 : avertissement quand le temps manque (texte de `coach`). */
   temps: (session?: string) => m('V-MSG-CARDIO-TEMPS', 'Pas assez de temps pour le cardio ce jour-là : il est retiré avant tout le reste du programme.', session ? { session } : {}),
+  /** Lot cohérence 3 (06/11/2026) : bloc absent à cause de la part de 25 % de la musculation, pas du temps. Rédaction `dev`, NON SOURCÉ. */
+  part: (pct: number, minMin: number) =>
+    m('V-MSG-CARDIO-PART', `Le cardio en plus est limité à ${pct} % de ta musculation : tes séances sont trop courtes pour un bloc de ${minMin} min. Il n'est pas ajouté.`),
   /** Aucun type de cardio possible (gênes, réglage, matériel) : jamais d'exercice hors profil. Rédaction `dev`, NON SOURCÉ. */
   impos: () => m('V-MSG-CARDIO-IMPOS', "Avec tes réglages et tes gênes déclarées, l'app ne peut pas proposer de cardio sûr. Demande l'avis d'un professionnel de santé."),
   /** Réserve n° 8 du recontrôle : `machine_cardio` coché mais aucune fiche machine relue. Rédaction `dev`, NON SOURCÉ. */

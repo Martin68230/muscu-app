@@ -70,6 +70,8 @@ export const ADAPT_TEXT = {
     variante: 'Nouvelle version, comme tu l’as accepté : commence doucement.',
     repos: 'Repos un peu plus long, comme tu l’as accepté.',
     decharge: 'Séance allégée, comme tu l’as accepté : charge un peu plus basse, sans chercher à monter.',
+    repetitions: 'Quelques répétitions de plus visées, comme tu l’as accepté. Même charge, même repos.',
+    exercice: 'Séance un peu plus remplie, comme tu l’as accepté.',
   },
   /** Aperçu : changement qui sera appliqué à cette séance. */
   willApply: {
@@ -77,6 +79,8 @@ export const ADAPT_TEXT = {
     variante: (nom: string): string => `${nom} : version un peu plus difficile, comme tu l’as accepté.`,
     repos: (nom: string): string => `${nom} : repos un peu plus long, comme tu l’as accepté.`,
     decharge: (nom: string): string => `${nom} : charge un peu plus basse, comme tu l’as accepté.`,
+    repetitions: (nom: string): string => `${nom} : quelques répétitions de plus visées, comme tu l’as accepté.`,
+    exercice: (nom: string): string => `${nom} était facile : la séance est un peu plus remplie, comme tu l’as accepté.`,
   },
   /** Proposition annulée au moment d'appliquer : texte simple, pas de reproche. */
   cancelled: (nom: string, reason: 'gel' | 'reprise' | 'grossesse' | 'manquee' | 'programme' | 'limite'): string => {
@@ -97,6 +101,14 @@ export const DROP_LIMIT_TEXT = 'C’est encore dur après deux baisses : essaie 
 /** C7 : +1 série, proposition seulement (jamais appliquée seule). */
 export function setMoreText(sets: number): string {
   return `Si tu te sens bien, tu peux faire ${sets} séries au lieu de ${sets - 1}, même charge. C’est une proposition, pas une obligation.`;
+}
+/** Lot cohérence point 4 : séance trop facile, fourchette de répétitions plus haute (proposition seulement ; repos inchangé). */
+export function repsMoreText(repsMin: number, repsMax: number): string {
+  return `C’était facile. La prochaine fois, tu peux viser ${repsMin} à ${repsMax} répétitions, même charge, même repos. C’est une proposition, pas une obligation.`;
+}
+/** Lot cohérence point 4 : séance trop facile et du temps libre : un ajout dans la séance (proposition seulement). */
+export function exerciseMoreText(): string {
+  return 'C’était facile et ta séance a encore du temps libre. La prochaine fois, on peut ajouter un peu de travail utile, sans dépasser ta durée. C’est une proposition, pas une obligation.';
 }
 /** C8 : version plus dure, proposition seulement. */
 export function harderVariantText(nom: string): string {

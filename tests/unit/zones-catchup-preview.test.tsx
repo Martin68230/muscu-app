@@ -28,11 +28,12 @@ describe('aperçu : rattrapage des zones', () => {
 });
 
 describe('catchUpOf : première séance de la semaine seulement, jamais en reprise douce', () => {
-  const input = mk({ level: 'intermediaire', days: 3, dur: 60, goal: 'muscle', profile: 'F', place: 'salle' });
+  // Règle du 06/11/2026 : « illimité » = séance remplie à 60 min, rattrapage jusqu'à 75 (limitMin) ; durée choisie : jamais au-delà.
+  const input = mk({ level: 'intermediaire', days: 3, dur: null, goal: 'muscle', profile: 'F', place: 'salle' });
   const r = generateProgram(input);
   if (!r.ok) throw new Error('programme');
   const now = new Date(2026, 10, 10, 12).getTime();
-  const program = { id: 'p', startDate: '2026-11-02', days: toProgramDays(r.program), durationMin: r.program.durationMin } as unknown as Program;
+  const program = { id: 'p', startDate: '2026-11-02', days: toProgramDays(r.program).map((d, i) => (i ? d : { ...d, exercises: d.exercises.map((e) => (e.sets > 2 && !e.capped && !e.supersetGroup ? { ...e, sets: e.sets - 1 } : e)) })), durationMin: r.program.durationMin } as unknown as Program;
   const data = (sets: SetLog[]) => ({ input, sets, sessions: [], injuries: [], fiches: FICHES, frozen: false }) as unknown as PlayerData;
   const done = (iso: string) => ({ id: 'x', sessionId: 's', movementId: program.days[0].exercises[0].movementId, reps: 10, pain: false, completedAt: iso } as SetLog);
 

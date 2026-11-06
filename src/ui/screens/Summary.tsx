@@ -89,7 +89,9 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
             }
             // Acceptation en un appui : série en plus, version plus dure, repos, décharge (une seule décharge proposée par bilan).
             const base = { movementId: exo.movementId };
-            const card: AdaptCard | null = p.setsProposal ? { ...base, kind: 'serie', sets: p.setsProposal }
+            const card: AdaptCard | null = p.exerciseProposal ? { ...base, kind: 'exercice' }
+              : p.repsProposal ? { ...base, kind: 'repetitions', repsMin: p.repsProposal.repsMin, repsMax: p.repsProposal.repsMax }
+              : p.setsProposal ? { ...base, kind: 'serie', sets: p.setsProposal }
               : p.harderVariant ? { ...base, kind: 'variante', variantId: p.harderVariant.variantId }
               : p.restProposal ? { ...base, kind: 'repos', restSec: p.restProposal }
               : p.deloadProposal && !deloadShown ? { ...base, kind: 'decharge' } : null;
@@ -104,7 +106,7 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
         }
         const check = painCheck(sets, sessions, injuries);
         const done = summary.status !== 'abandon' && summary.status !== 'symptome' ? setsOfLogs(sets, row.id) : [];
-        const muscles = done.length ? sessionMap(done, data.fiches, data.input?.profile.daysPerWeek ?? undefined, await mainGoalKey()) : null;
+        const muscles = done.length ? sessionMap(done, data.fiches, await mainGoalKey()) : null;
         setLoaded({ summary, text, next, pain: { text: check.proposals[0]?.text ?? null, s1: check.s1Text }, muscles });
       } catch {
         // Le bilan reste lisible même si le calcul échoue : durée et séries de la séance.

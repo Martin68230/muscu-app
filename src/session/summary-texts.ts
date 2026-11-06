@@ -2,6 +2,7 @@
 // Aucun identifiant brut : les noms viennent des fiches (callback `names`). Statut des textes : NON SOURCÉ (conception).
 import type { PregnancyStatus } from '../data/model';
 import type { Summary } from './summary';
+import { exerciseLabel } from './history-view';
 
 export interface SummaryNames {
   fiche(movementId: string): string;
@@ -94,7 +95,7 @@ export function summaryText(s: Summary, o: SummaryTextOptions): SummaryText {
     if (c.tonnageVerdict && c.tonnageVerdict !== 'similaire' && c.tonnagePct !== null) out.details.push(`Charge totale : ${signed(Math.round(c.tonnagePct))}${nbsp}% par rapport à la dernière fois.`);
   }
   for (const r of s.records) {
-    const nom = r.kind === 'echelon' ? o.names.variant(r.variantId) : o.names.fiche(r.movementId);
+    const nom = r.kind === 'echelon' ? exerciseLabel(o.names.fiche(r.movementId), o.names.variant(r.variantId)) : o.names.fiche(r.movementId);
     if (r.kind === 'charge') out.records.push(`Nouveau meilleur : ${nom}, ${r.loadKg} kg${r.reps ? `, ${plural(r.reps, 'répétition', 'répétitions')}` : ''}`.replace('.', ','));
     else if (r.kind === 'duree') out.records.push(`Nouveau meilleur : ${nom}, ${fmtInt(r.holdSec ?? 0)} s`);
     else out.records.push(`Nouveau meilleur : ${nom}, ${plural(r.reps ?? 0, 'répétition', 'répétitions')}`);

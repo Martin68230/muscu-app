@@ -371,7 +371,9 @@ describe('Étalonnage chargé : plafond du saut entre deux séries (décision ut
     const e = ex({ variantId: movementId, movementId, sets: 3, repsMin: 8, repsMax: 12, rirTarget: 2, startLoadKg: kg });
     const d = dayOf([e]);
     const ctx = { ...NEUTRAL_CONTEXT, isCalibration: () => true, availableLoadsKg: () => loads, ...extra };
-    return completeSet(d, startSession(d, 0), { reps: 12, loadKg: kg, rir }, ctx, 1000).suggestion!;
+    // Décision de l'utilisateur du 06/11/2026 : la 1re hausse vient après 2 séries propres consécutives (suggestion de la 2e série).
+    const first = completeSet(d, startSession(d, 0), { reps: 12, loadKg: kg, rir }, ctx, 1000);
+    return completeSet(d, first.state, { reps: 12, loadKg: kg, rir }, ctx, 2000).suggestion!;
   };
   const DB = [2, 4, 5, 6, 8, 10, 12, 15, 20];
   it('aucun saut au-delà du plafond, sur tous les paliers (techniques lourds +20 %, autres +50 %)', () => {

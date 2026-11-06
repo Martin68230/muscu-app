@@ -95,6 +95,7 @@ export const TAG_LABEL: Record<string, string> = {
   porte: 'une porte avec un ancrage adapté',
   halteres: 'des haltères',
   kettlebell: 'un kettlebell',
+  ancrage_porte: 'un ancrage de porte pour l’élastique',
   elastique: 'un élastique',
   mini_bande: 'un élastique en boucle',
   barre_traction: 'une barre de traction',

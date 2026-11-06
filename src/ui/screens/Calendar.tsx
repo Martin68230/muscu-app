@@ -220,7 +220,6 @@ export function Calendar({ profile }: { profile: Profile }) {
       <PastSummary
         sessionId={openId}
         pregnancy={profile.pregnancy}
-        sessionsPerWeek={profile.daysPerWeek ?? undefined}
         onBack={() => setOpenId(null)}
         onDeleted={() => {
           setOpenId(null);

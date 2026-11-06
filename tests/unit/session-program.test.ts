@@ -189,7 +189,45 @@ describe('séance du jour (rotation A, B, C)', () => {
 
   it('une séance abandonnée, sautée ou d’un autre programme n’avance pas la rotation', () => {
     expect(nextSession(prog(), [done(0, '2026-10-19T09:00:00.000Z', 'sautee')], MON)?.dayIndex).toBe(0);
-    expect(nextSession(prog(), [done(0, '2026-10-19T09:00:00.000Z', 'faite', 'ancien')], MON)?.dayIndex).toBe(0);
+  });
+
+  describe('rotation après régénération du programme (autre programId)', () => {
+    const typed = (labels: string[], types: string[]): Program => ({
+      id: 'p2', days: labels.map((label, i) => ({ dayIndex: i, label, sessionType: types[i], exercises: [], weekday: [0, 2, 4, 5][i] })),
+    } as unknown as Program);
+    const old = (label: string, type: string, idx: number, endedAt: string, status: WorkoutSession['status'] = 'faite', endReason?: string): WorkoutSession =>
+      ({ ...done(idx, endedAt, status, 'p1'), plan: { dayIndex: idx, label, sessionType: type, exercises: [] }, endReason } as unknown as WorkoutSession);
+    const p2 = typed(['Haut du corps A', 'Bas du corps A', 'Haut du corps B'], ['HAUT', 'BAS', 'HAUT']);
+
+    it('même type retrouvé : la suivante dans le nouveau programme', () => {
+      expect(nextSession(p2, [old('Haut du corps A', 'HAUT', 0, '2026-10-20T09:00:00.000Z')], MON)?.dayIndex).toBe(1);
+      expect(nextSession(p2, [old('Bas du corps A', 'BAS', 1, '2026-10-20T09:00:00.000Z')], MON)?.dayIndex).toBe(2);
+    });
+
+    it('type absent : repli sur l’index suivant, sans répéter le même type', () => {
+      expect(nextSession(p2, [old('Push B', 'PUSH', 1, '2026-10-20T09:00:00.000Z')], MON)?.dayIndex).toBe(2);
+    });
+
+    it('séance sautée par choix : avance ; sautée autrement : non', () => {
+      expect(nextSession(p2, [old('Haut du corps A', 'HAUT', 0, '2026-10-20T09:00:00.000Z', 'sautee', 'renonce')], MON)?.dayIndex).toBe(1);
+      expect(nextSession(p2, [old('Haut du corps A', 'HAUT', 0, '2026-10-20T09:00:00.000Z', 'sautee', 'autre')], MON)?.dayIndex).toBe(0);
+    });
+
+    it('la dernière séance, tous programmes confondus, décide ; 48 h sur celle-ci', () => {
+      const a = old('Haut du corps A', 'HAUT', 0, '2026-10-19T09:00:00.000Z');
+      const b = old('Bas du corps A', 'BAS', 1, '2026-10-20T09:00:00.000Z');
+      const n = nextSession(p2, [a, b], MON)!;
+      expect(n.dayIndex).toBe(2);
+      expect(n.tooSoon).toBe(false); // bas puis haut : pas de groupe commun
+    });
+
+    it('cardio dédié : jour retrouvé par type, suivant normal', () => {
+      const pc = typed(['Haut du corps A', 'Cardio', 'Bas du corps A'], ['HAUT', 'CE', 'BAS']);
+      pc.days[1].exercises = [{ role: 'cardio' } as never];
+      expect(nextSession(pc, [old('Haut du corps A', 'HAUT', 0, '2026-10-20T09:00:00.000Z')], MON)?.dayIndex).toBe(1);
+      const cardioDone = old('Cardio', 'CE', 1, '2026-10-21T09:00:00.000Z');
+      expect(nextSession(pc, [old('Haut du corps A', 'HAUT', 0, '2026-10-20T09:00:00.000Z'), cardioDone], MON)?.dayIndex).toBe(2);
+    });
   });
 
   it('moins de 48 h après la dernière séance : avertissement « trop tôt » (jamais de séance double)', () => {

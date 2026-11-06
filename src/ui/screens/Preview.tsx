@@ -15,7 +15,7 @@ import { isCardioDay } from '../../generator';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, recordAdaptResult, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
 import { SessionError } from '../../session/engine';
-import { applyEnvOf, asGenFiches, catchUpOf } from '../session/launch';
+import { applyEnvOf, asGenFiches, catchUpOf, intensityFirstOf } from '../session/launch';
 import { exName, lineText, ficheOf, variantOf, withSides } from '../session/text';
 import { unlockSound } from '../session/sound';
 import { acquireWakeLock } from '../session/wakelock';
@@ -134,7 +134,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
   useEffect(() => { void mainGoalKey().then(setObjectif); }, []);
   let muscles: ReturnType<typeof sessionMap> | null = null;
   try {
-    muscles = cardioDay ? null : sessionMap(setsOfExercises(day.exercises), fiches, program.days.filter((d) => !isCardioDay(d)).length, objectif);
+    muscles = cardioDay ? null : sessionMap(setsOfExercises(day.exercises), fiches, objectif);
   } catch {
     muscles = null; // fiche sans muscles renseignés : l'aperçu reste lisible sans la carte
   }
@@ -296,7 +296,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
       const plan = planReprise(next.day, { reprise: repriseOf(profiles[0]), sessions: allSessions, programs, sets: allSets, now: new Date(), ctx: pdata?.ctx ?? null });
       // Changements acceptés après la séance précédente : montrés ici, enregistrés « annulés » une fois ; l'application réelle est au démarrage.
       if (pdata) {
-        const res = applyAccepted(next.day, applyEnvOf(pdata, !!plan?.state.actif));
+        const res = applyAccepted(next.day, applyEnvOf(pdata, !!plan?.state.actif, { program, dayIndex: next.dayIndex, nowMs: Date.now() }));
         adapt = { day: res.applied.length ? res.day : null, applied: res.applied, cancelled: res.cancelled };
         if (res.cancelled.length) await recordAdaptResult({ applied: [], cancelled: res.cancelled });
         // Rattrapage des zones : même calcul qu'au démarrage (app.tsx), rien n'est enregistré.
@@ -329,10 +329,14 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
         setCancelled(true);
       }
       const events = stale.length ? await loadEvents() : firstEvents;
+      // Intensité avant la montée d'échelon (décision du chef de projet du 06/11/2026) ; sans données du lecteur : comportement antérieur.
+      const pd = await loadPlayerData(fiches, profile).catch(() => null);
+      const intensityFirst = pd ? intensityFirstOf(pd) : null;
       setProposals(
         computeProposals({
           program: res.program, dayIndex: next.dayIndex, input: loaded.input, sets, sessions, events,
           zoneLevel2Plus: injuries.some((i) => i.active && !i.deletedAt && i.level >= 2), now: Date.now(),
+          ...(intensityFirst ? { intensityFirst } : {}),
         }),
       );
     } catch {

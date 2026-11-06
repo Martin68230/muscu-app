@@ -85,7 +85,7 @@ export function App() {
     const weekDay = withProgramWeek(program.days[dayIndex], programWeek(program, Date.now()), rotationFreeze(sets, injuries, Date.now()));
     const plan = planReprise(weekDay, { reprise: repriseOf(profiles[0]), sessions, programs, sets, now: new Date(), ctx: data.ctx });
     // Changements acceptés après la séance précédente (série en plus, version plus dure, repos, décharge) : revérifiés ici, jamais en reprise douce.
-    const accepted = applyAccepted(weekDay, applyEnvOf(data, !!plan?.state.actif));
+    const accepted = applyAccepted(weekDay, applyEnvOf(data, !!plan?.state.actif, { program, dayIndex, nowMs: Date.now() }));
     // Niveau 2, étape 3 : séries de rattrapage des zones peu travaillées la semaine écoulée (première séance de la semaine, recalculé).
     const catchUp = catchUpOf(data, program, dayIndex, accepted.day, !!plan?.state.actif, Date.now());
     const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : catchUp?.day ?? accepted.day });

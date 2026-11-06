@@ -1,10 +1,11 @@
 // Données de la carte des muscles (niveau 3) : statuts gris / orange / rouge par zone, pour 5 vues. Module PUR : tout se recalcule depuis
 // les fiches et le programme ou l'historique, rien n'est stocké ni envoyé.
 //
-// ÉCHELLE UNIQUE (décision de l'utilisateur du 06/11/2026) : la carte utilise zoneStatus, la MÊME échelle que le générateur (seuils de
-// l'objectif principal : knowledge/zones-musculaires.md) dans toutes les vues ; un rouge veut toujours dire « seuil atteint ». Aucune échelle
-// d'affichage séparée : une semaine presque toute rouge est le résultat attendu ; les points de chaque zone s'affichent au toucher.
-import { pointsByZone, zoneCoefs, zoneStatus, ZONES, type ZoneFiche, type ZoneId, type ZoneSet, type ZoneStatus } from './zones';
+// VUES SÉANCE et CYCLE (décision de l’utilisateur du 06/11/2026) : couleur selon le RÔLE des exercices, sans aucune mise à l’échelle.
+// Rouge = au moins 2 exercices l’ont en muscle principal, OU 1 en principal et au moins 2 autres en secondaire ; une zone jamais en principal
+// est plafonnée à orange ; orange = autre cas au-dessus du seuil gris de zoneStatus ; gris sinon. Les points affichés sont ceux de la séance.
+// Vue SEMAINE : zoneStatus (points contre seuils de l’objectif, la même échelle que le générateur), inchangée.
+import { pointsByZone, thresholdsOf, zoneCoefs, zoneStatus, ZONES, type ZoneFiche, type ZoneId, type ZoneSet, type ZoneStatus } from './zones';
 
 export type StatusMap = Record<ZoneId, ZoneStatus>;
 export type PointsMap = Record<ZoneId, number>;
@@ -16,9 +17,6 @@ export interface MapDay { exercises: readonly MapExercise[]; sessionType?: strin
 /** Série enregistrée (SetLog) : seuls ces champs servent ; échauffement, série non faite ou supprimée = 0 point. */
 export interface MapLog { sessionId?: string; movementId: string; completedAt: string | null; isWarmup?: boolean; side?: 'gauche' | 'droite' | null; deletedAt?: string | null }
 type Fiches = ReadonlyMap<string, ZoneFiche> | readonly ZoneFiche[];
-
-/** Réglage : sans nombre de séances connu, une séance est rapportée à une semaine de 3 séances. */
-export const DEFAULT_SESSIONS_PER_WEEK = 3;
 
 const allGris = (): StatusMap => Object.fromEntries(ZONES.map((z) => [z.id, 'gris' as ZoneStatus]));
 
@@ -33,9 +31,9 @@ export const setsOfLogs = (logs: readonly MapLog[], sessionId?: string): ZoneSet
     .map((s) => ({ ficheId: s.movementId, sets: 1, side: s.side ?? null }));
 
 /** Statuts depuis des points ; `fraction` < 1 = une seule séance (points ramenés à la semaine pour l'échelle). */
-export function statusesFromPoints(points: Readonly<PointsMap>, objectif: string | null | undefined, fraction = 1): StatusMap {
+export function statusesFromPoints(points: Readonly<PointsMap>, objectif: string | null | undefined): StatusMap {
   const out = allGris();
-  for (const z of ZONES) out[z.id] = zoneStatus((points[z.id] ?? 0) / fraction, z.id, objectif);
+  for (const z of ZONES) out[z.id] = zoneStatus(points[z.id] ?? 0, z.id, objectif);
   return out;
 }
 
@@ -49,10 +47,49 @@ export function statusesForExercise(f: ZoneFiche): StatusMap {
   return out;
 }
 
-/** Vue « séance » (prévue ou faite) : points de la séance, échelle d'une séance sur `sessionsPerWeek`. */
-export function sessionMap(sets: readonly ZoneSet[], fiches: Fiches, sessionsPerWeek = DEFAULT_SESSIONS_PER_WEEK, objectif?: string | null): ZoneMap {
+/** Exercices distincts d’une liste de séries (les séries d’une même fiche sont regroupées : une fiche = un exercice). */
+function mergeByFiche(sets: readonly ZoneSet[]): ZoneSet[] {
+  const by = new Map<string, ZoneSet>();
+  for (const s of sets) {
+    if (s.warmup) continue;
+    const n = (s.sets ?? 1) * (s.side ? 0.5 : 1);
+    const cur = by.get(s.ficheId);
+    if (cur) cur.sets = (cur.sets ?? 0) + n;
+    else by.set(s.ficheId, { ficheId: s.ficheId, sets: n });
+  }
+  return [...by.values()];
+}
+
+/**
+ * Statuts par RÔLE des exercices (vues séance et cycle) : `exercises` = un élément par exercice. Rouge : au moins 2 exercices en principal,
+ * ou 1 en principal et au moins 2 autres en secondaire ; jamais en principal : orange au plus ; au-dessus du seuil gris (points non mis à l’échelle).
+ */
+export function roleStatuses(exercises: readonly ZoneSet[], fiches: Fiches, points: Readonly<PointsMap>, objectif?: string | null): StatusMap {
+  const byId = 'get' in fiches ? (fiches as ReadonlyMap<string, ZoneFiche>) : new Map((fiches as readonly ZoneFiche[]).map((f) => [f.id, f]));
+  const principal: Record<string, number> = {};
+  const second: Record<string, number> = {};
+  for (const e of exercises) {
+    const f = byId.get(e.ficheId);
+    if (!f || !(e.sets ?? 1)) continue;
+    const prin = zoneCoefs({ ...f, musclesSecondaires: [] });
+    const sec = zoneCoefs({ ...f, musclesPrincipaux: [...f.musclesSecondaires], musclesSecondaires: [] });
+    for (const [z, c] of prin) if (c > 0) principal[z] = (principal[z] ?? 0) + 1;
+    for (const [z, c] of sec) if (c > 0 && !((prin.get(z) ?? 0) > 0)) second[z] = (second[z] ?? 0) + 1;
+  }
+  const out = allGris();
+  for (const z of ZONES) {
+    const p = principal[z.id] ?? 0;
+    const s = second[z.id] ?? 0;
+    if ((points[z.id] ?? 0) < thresholdsOf(z.id, objectif).gris) continue;
+    out[z.id] = p >= 2 || (p >= 1 && s >= 2) ? 'rouge' : 'orange';
+  }
+  return out;
+}
+
+/** Vue « séance » (prévue ou faite) : points de la séance (sans mise à l’échelle), couleur selon le rôle des exercices. */
+export function sessionMap(sets: readonly ZoneSet[], fiches: Fiches, objectif?: string | null): ZoneMap {
   const points = pointsByZone(sets, fiches);
-  return { points, statuses: statusesFromPoints(points, objectif, 1 / Math.max(1, sessionsPerWeek)) };
+  return { points, statuses: roleStatuses(mergeByFiche(sets), fiches, points, objectif) };
 }
 
 /** Vue « semaine » : toutes les séances prévues d'une semaine (le cardio ne compte pas). */
@@ -66,6 +103,12 @@ export const CYCLE_GROUPS: Record<string, string> = { HAUT: 'haut', BAS: 'bas', 
 export const CYCLE_LABELS: Record<string, string> = { haut: 'Haut du corps', bas: 'Bas du corps', poussee: 'Poussée', tirage: 'Tirage', jambes: 'Jambes', corps_entier: 'Corps entier' };
 const CYCLE_ORDER = ['haut', 'bas', 'poussee', 'tirage', 'jambes', 'corps_entier'];
 
+/** Un groupe de séances : points cumulés, couleur selon le rôle des exercices de toutes les séances du groupe. */
+function groupMap(days: readonly MapDay[], fiches: Fiches, objectif?: string | null): ZoneMap {
+  const points = pointsByZone(days.flatMap((d) => setsOfExercises(d.exercises)), fiches);
+  return { points, statuses: roleStatuses(days.flatMap((d) => mergeByFiche(setsOfExercises(d.exercises))), fiches, points, objectif) };
+}
+
 /** Vue « cycle » : une carte par groupe de séances de la semaine type (dans l'ordre haut, bas, poussée, tirage, jambes, corps entier). */
 export function cycleMaps(days: readonly MapDay[], fiches: Fiches, objectif?: string | null): { group: string; label: string; count: number; map: ZoneMap }[] {
   const byGroup = new Map<string, MapDay[]>();
@@ -74,7 +117,7 @@ export function cycleMaps(days: readonly MapDay[], fiches: Fiches, objectif?: st
     const g = CYCLE_GROUPS[d.sessionType ?? 'CE'] ?? 'corps_entier';
     byGroup.set(g, [...(byGroup.get(g) ?? []), d]);
   }
-  return CYCLE_ORDER.filter((g) => byGroup.has(g)).map((g) => ({ group: g, label: CYCLE_LABELS[g], count: byGroup.get(g)!.length, map: weekMap(byGroup.get(g)!, fiches, objectif) }));
+  return CYCLE_ORDER.filter((g) => byGroup.has(g)).map((g) => ({ group: g, label: CYCLE_LABELS[g], count: byGroup.get(g)!.length, map: groupMap(byGroup.get(g)!, fiches, objectif) }));
 }
 
 /** Nombre de séries affiché : « 7 », « 7,5 » (au demi près). */

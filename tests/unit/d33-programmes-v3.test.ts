@@ -173,12 +173,12 @@ describe('D33 §8 : filtre « salle » (PV3-SALLE-1, T-D33-26a à d)', () => {
       expect(e.variantNom.endsWith(SALLE_HOME_SUFFIX)).toBe(true);
     }
   });
-  it('26c : sans barre de traction : jamais une variante à `porte` (kiné) ; un élastique réadmis porte « (à la maison) »', () => {
+  it('26c : sans barre de traction : jamais une variante à `ancrage_porte` (kiné) ; un élastique réadmis porte « (à la maison) »', () => {
     const noBar = access(mk({ profile: 'E', place: 'salle', level: 'intermediaire', days: 4, dur: 60, goal: 'force' }));
     noBar.equipment = { ...noBar.equipment, tags: noBar.equipment.tags.filter((t) => t !== 'barre_traction') };
     const p = prog(noBar);
     for (const e of p.sessions.flatMap((s) => s.exercises)) {
-      expect(e.tags).not.toContain('porte');
+      expect(e.tags).not.toContain('ancrage_porte');
       if (excluded(e).length) expect(e.variantNom.endsWith(SALLE_HOME_SUFFIX)).toBe(true);
     }
   });
@@ -201,7 +201,7 @@ describe('D33 §8 : filtre « salle » (PV3-SALLE-1, T-D33-26a à d)', () => {
     expect(ok('zz-tv-elastique')).toBe(true);
     expect(ok('zz-tv-bosu')).toBe(false);
     expect(ok('zz-ph-elastique')).toBe(false);
-    expect(ok('tirage-vertical-elastique-haut')).toBe(false); // `porte` (kiné) : jamais réadmis
+    expect(ok('tirage-vertical-elastique-haut')).toBe(false); // `ancrage_porte` (kiné) : jamais réadmis
     // Échauffement / activation : l'élastique reste admis (exception 1).
     expect(allowedVariants(byId('tirage-vertical-elastique-haut'), c, { warmup: true }).length).toBeGreaterThan(0);
   });

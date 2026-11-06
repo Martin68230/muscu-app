@@ -2,7 +2,7 @@ import { useState } from 'preact/hooks';
 import type { SetLog, WorkoutSession } from '../../data/model';
 import { dateKey, frDate, sessionDate } from '../../session/calendar';
 import {
-  compareDetails, CURVE_LEGEND, CURVE_MIN_POINTS, curveGeometry, curveSeries, deltaText, fmtDuration, previousSameType, serieText, sessionDetail,
+  compareDetails, CURVE_LEGEND, exerciseLabel, CURVE_MIN_POINTS, curveGeometry, curveSeries, deltaText, fmtDuration, previousSameType, serieText, sessionDetail,
   type ExerciseCompare, type ExerciseDetail,
 } from '../../session/history-view';
 import { fmtKg } from '../../session/messages';
@@ -79,7 +79,9 @@ export function SessionDetail({ session, sets, sessions, names, numbers }: {
   if (!detail.length) return null;
   const prev = numbers ? previousSameType(session, sessions, sets) : null;
   const cmp = prev ? compareDetails(detail, sessionDetail(prev, sets)) : [];
-  const nameOf = (d: ExerciseDetail) => names.variant(d.variantId) !== 'Exercice' ? names.variant(d.variantId) : names.fiche(d.movementId);
+  const nameOf = (d: ExerciseDetail) => exerciseLabel(names.fiche(d.movementId), names.variant(d.variantId));
+  // Variante par série, seulement si elle change entre séries d’un même exercice.
+  const mixed = (d: ExerciseDetail) => new Set(d.series.map((s) => s.variantId ?? d.variantId)).size > 1;
   const byIndex = (i: number) => detail.find((d) => d.index === i);
   const dur = session.startedAt && session.endedAt ? Math.round((Date.parse(session.endedAt) - Date.parse(session.startedAt)) / 1000) : 0;
   return (
@@ -93,7 +95,7 @@ export function SessionDetail({ session, sets, sessions, names, numbers }: {
           {d.perSide && <p class="dim small">Un seul côté à la fois : une série compte les deux côtés.</p>}
           {numbers ? (
             <ol class="ex-series">
-              {d.series.map((s, i) => <li key={s.setIndex}>{serieText(s, d, i + 1)}</li>)}
+              {d.series.map((s, i) => <li key={s.setIndex}>{serieText(s, d, i + 1)}{mixed(d) && s.variantId && names.variant(s.variantId) !== 'Exercice' ? ` (${names.variant(s.variantId)})` : ''}</li>)}
             </ol>
           ) : (
             <p>{d.series.length} {d.series.length > 1 ? 'séries faites' : 'série faite'}.</p>

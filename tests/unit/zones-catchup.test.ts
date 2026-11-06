@@ -2,6 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import type { ProgramDay, SetLog } from '../../src/data/model';
 import { generateProgram, toProgramDays } from '../../src/generator';
+import { UNLIMITED } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import type { GeneratorInput } from '../../src/generator/types';
 import { doneZoneSets, lastWeekOf, zoneCatchUp, type CatchUpProfile } from '../../src/zones/catchup';
@@ -12,11 +13,16 @@ const ctxOf = (input: GeneratorInput) => buildCtx(input);
 const prof = (input: GeneratorInput, o: Partial<CatchUpProfile> = {}): CatchUpProfile => ({
   ctx: ctxOf(input), pool: FICHES, repriseActive: false, symptomFrozen: false, painFrozen: () => false, ...o,
 });
-function weekOf(input: GeneratorInput) {
+function weekOf(input: GeneratorInput, room = false) {
   const r = generateProgram(input);
   if (!r.ok) throw new Error('programme');
-  const days = toProgramDays(r.program).filter((d) => d.exercises.some((e) => e.role !== 'cardio'));
-  return { days, durationMin: r.program.durationMin };
+  const all = toProgramDays(r.program).filter((d) => d.exercises.some((e) => e.role !== 'cardio'));
+  // Une séance « illimité » est remplie jusqu'à 60 min et ses exercices sont au maximum de séries : rien à ajouter (choix assumé, séance pleine). Le test retire
+  // donc 1 série aux exercices de la 1re séance (non plafonnés, hors superset) pour simuler une séance à moins que la limite.
+  const days = all.map((d, i) => (i || !room ? d : { ...d, exercises: d.exercises.map((e) => (e.sets > 2 && !e.capped && !e.supersetGroup ? { ...e, sets: e.sets - 1 } : e)) }));
+  // Règle du 06/11/2026 : la séance « illimité » est remplie jusqu'à 60 min, le rattrapage peut aller jusqu'à la limite (75) ; durée choisie : jamais au-delà.
+  const unlimited = input.profile.sessionDurationMin == null;
+  return { days, durationMin: unlimited ? UNLIMITED.capMin : r.program.durationMin };
 }
 let n = 0;
 const set = (movementId: string, o: Partial<SetLog> = {}): SetLog => ({
@@ -27,11 +33,11 @@ const set = (movementId: string, o: Partial<SetLog> = {}): SetLog => ({
 const doneSets = (days: readonly ProgramDay[], skip: number[] = []): SetLog[] =>
   days.flatMap((d, i) => (skip.includes(i) ? [] : d.exercises.filter((e) => e.role !== 'cardio').flatMap((e) => Array.from({ length: e.sets }, () => set(e.movementId, { sessionId: `d${i}` })))));
 
-const INTER = mk({ level: 'intermediaire', days: 3, dur: 60, goal: 'muscle', profile: 'F', place: 'salle' });
+const INTER = mk({ level: 'intermediaire', days: 3, dur: null, goal: 'muscle', profile: 'F', place: 'salle' });
 
 describe('zoneCatchUp : fonction pure', () => {
   it('séances toutes manquées : zones grises, séries en plus sur la séance du jour, +1 au plus par exercice, plafonds tenus', () => {
-    const { days, durationMin } = weekOf(INTER);
+    const { days, durationMin } = weekOf(INTER, true);
     const p = prof(INTER);
     const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, p);
     expect(r.blocked).toBeNull();
@@ -74,7 +80,7 @@ describe('zoneCatchUp : fonction pure', () => {
   });
 
   it('gel douleur : aucun ajout sur un exercice gelé ; symptôme : aucun ajout', () => {
-    const { days, durationMin } = weekOf(INTER);
+    const { days, durationMin } = weekOf(INTER, true);
     const free = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER));
     const frozenId = free.added[0].movementId;
     const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER, { painFrozen: (e) => e.movementId === frozenId }));

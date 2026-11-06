@@ -5,7 +5,7 @@ import type { Fiche } from '../../data/fiches';
 import { buildCtx, isChargeable, isUnilateral, type Ctx } from '../../generator/context';
 import type { Fiche as GenFiche, GeneratorInput } from '../../generator/types';
 import type { EngineContext } from '../../session/engine';
-import { buildEngineContext, gentlerAlternative, type BodyweightProgression, type ProgressionInput } from '../../session/history';
+import { buildEngineContext, gentlerAlternative, proposeProgression, type BodyweightProgression, type ProgressionInput } from '../../session/history';
 import { loadGeneratorInput, programWeek, rotationFreeze, withProgramWeek } from '../../session/program';
 import { painFrozen } from '../../session/adaptation';
 import { lastWeekOf, zoneCatchUp, type CatchUpResult } from '../../zones/catchup';
@@ -18,11 +18,12 @@ import { CORE_HEAVY_MAX_HOLD_SEC, D_CLASS, doseLimitOf, TECHNICAL_CAP_FICHES, TE
 import { isHeavyExercise } from '../../generator/core';
 import { isNeverProposed, variantClass } from '../../generator/reps';
 import type { ApplyEnv } from '../../session/adapt-accept';
+import { estimateDaySec, fillExerciseTime, repsCeilingOf, sessionLimitMin } from '../../session/intensity';
 
 /** Entrées de l'adaptation automatique (knowledge/adaptation-regles.md) pour proposeProgression. */
 export type AdaptInput = Pick<
   ProgressionInput,
-  'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'technical' | 'ficheMaxSets' | 'missedSinceLast' | 'now' | 'holdSchema' | 'holdMaxSec' | 'restMaxSec' | 'adaptEvents'
+  'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'technical' | 'ficheMaxSets' | 'missedSinceLast' | 'now' | 'holdSchema' | 'holdMaxSec' | 'restMaxSec' | 'adaptEvents' | 'intensity'
 >;
 
 export interface PlayerData {
@@ -49,7 +50,12 @@ export interface PlayerData {
 }
 
 /** Entrées de applyAccepted (acceptation des adaptations) tirées des données du lecteur. */
-export function applyEnvOf(data: PlayerData, repriseActive: boolean = data.repriseActive): ApplyEnv {
+export function applyEnvOf(data: PlayerData, repriseActive: boolean = data.repriseActive, week?: { program: Program; dayIndex: number; nowMs: number }): ApplyEnv {
+  // Lot cohérence point 4 : durée limite de la séance (même règle que le rattrapage) et estimation du générateur.
+  const input = data.input;
+  const gctx = week && input ? buildCtx(input) : null;
+  const limitMin = week && input ? sessionLimitMin(input.profile.sessionDurationMin, week.program.durationMin) : undefined;
+  const time = gctx && limitMin !== undefined ? { gctx, limitSec: limitMin * 60 } : null;
   return {
     events: data.events,
     sets: data.sets,
@@ -60,6 +66,16 @@ export function applyEnvOf(data: PlayerData, repriseActive: boolean = data.repri
     adaptOf: (ex) => data.adaptOf?.(ex) ?? {},
     echelonOf: (id) => data.fiches.flatMap((f) => f.variantes).find((v) => v.id === id)?.echelon,
     loadsFor: (ex, cur) => data.ctx.availableLoadsKg(ex, cur),
+    ...(time && week ? {
+      fits: (day: ProgramDay) => estimateDaySec(day, day.exercises, time.gctx) <= time.limitSec,
+      now: week.nowMs,
+      fillExercise: (day: ProgramDay, locked: (ex: PlannedExercise) => boolean, frozenFiche: (ficheId: string) => boolean) => {
+        const pw = programWeek(week.program, week.nowMs);
+        const freeze = rotationFreeze(data.sets, data.injuries, week.nowMs);
+        const days = week.program.days.map((d, i) => (i === week.dayIndex ? day : withProgramWeek(d, pw, freeze)));
+        return fillExerciseTime({ ctx: time.gctx, days, dayIndex: week.dayIndex, limitSec: time.limitSec, locked, frozenFiche });
+      },
+    } : {}),
   };
 }
 
@@ -72,14 +88,31 @@ export function catchUpOf(data: PlayerData, program: Program, dayIndex: number, 
   const lw = lastWeekOf(program.startDate, data.sets, nowMs);
   if (!lw || !lw.firstOfWeek) return null;
   const ctx = buildCtx(data.input);
+  const limitMin = sessionLimitMin(data.input.profile.sessionDurationMin, program.durationMin);
   const week = programWeek(program, nowMs);
   const freeze = rotationFreeze(data.sets, data.injuries, nowMs);
   const days = program.days.map((d, i) => (i === dayIndex ? day : withProgramWeek(d, week, freeze)));
   const zonesOfMovement = (id: string): readonly string[] => Object.keys(data.fiches.find((f) => f.id === id)?.securite.zones ?? {});
-  return zoneCatchUp(lw.weekSets, { days, dayIndex, durationMin: program.durationMin }, {
+  return zoneCatchUp(lw.weekSets, { days, dayIndex, durationMin: program.durationMin, ...(limitMin !== program.durationMin ? { limitMin } : {}) }, {
     ctx, pool: data.input.fiches, repriseActive, symptomFrozen: data.frozen,
     painFrozen: (ex) => painFrozen({ movementId: ex.movementId, zones: zonesOfMovement(ex.movementId), sets: data.sets, sessions: data.sessions, zonesOfMovement }),
   });
+}
+
+/**
+ * Décision du chef de projet (06/11/2026) : l'intensité (ajout, répétitions, série) passe avant la montée d'échelon. Vrai si
+ * proposeProgression propose l'un de ces moyens pour cet exercice (mêmes entrées que le bilan) : computeProposals ne propose alors pas E2.
+ */
+export function intensityFirstOf(data: PlayerData): (ex: PlannedExercise) => boolean {
+  return (ex) => {
+    const variant = data.fiches.flatMap((f) => f.variantes).find((v) => v.id === ex.variantId);
+    const p = proposeProgression({
+      exercise: ex, sets: data.sets, sessions: data.sessions, pregnant: data.pregnant, variantTags: variant?.tags, equipment: data.equipment ?? undefined,
+      echelon: variant?.echelon, bodyweight: data.bodyweightOf(ex), frozenBySymptom: data.frozen, repriseActive: data.repriseActive,
+      ...(data.adaptOf?.(ex) ?? {}), adaptEvents: data.events,
+    });
+    return !!(p.exerciseProposal || p.repsProposal || p.setsProposal);
+  };
 }
 
 export const isPregnant =(p: Pick<Profile, 'pregnancy'> | null | undefined): boolean => p?.pregnancy === 'enceinte' || p?.pregnancy === 'post_partum';
@@ -179,6 +212,9 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
       const k = fiche && variant ? variantClass(fiche, variant) : null;
       const classCap = k === null ? undefined : level === 'debutant' ? D_CLASS[k].maxSetsDebutant : D_CLASS[k].maxSets;
       const limit = variant ? doseLimitOf(ex.movementId, variant.id, variant.tags).maxSets : undefined;
+      // Lot cohérence point 4 : séance du programme qui contient l'exercice, durée limite (même règle que le rattrapage), estimation du générateur.
+      const tDay = active?.days.find((d) => d.exercises.some((e) => e.movementId === ex.movementId));
+      const limitMin = active && loaded ? sessionLimitMin(loaded.input.profile.sessionDurationMin, active.durationMin) ?? null : null;
       return {
         level,
         zonesOfFiche: zonesOfMovement(ex.movementId),
@@ -197,6 +233,10 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
         // Maintiens : schéma de la fiche ; 30 s au plus si le même jour de programme contient une charge lourde (CORE-ORD-4, lecture sans emplacement).
         holdSchema: ex.unit === 'sec' ? fiche?.schema : undefined,
         holdMaxSec: ex.unit === 'sec' && heavyDayOf(ex) ? CORE_HEAVY_MAX_HOLD_SEC : undefined,
+        intensity: gctx && fiche && variant ? {
+          repsCeiling: repsCeilingOf(ex, fiche, variant, gctx),
+          time: tDay && limitMin !== null ? { day: tDay, limitSec: limitMin * 60, estimate: (exs: readonly PlannedExercise[]) => estimateDaySec(tDay, exs, gctx) } : undefined,
+        } : undefined,
       };
     },
   };

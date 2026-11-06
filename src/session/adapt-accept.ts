@@ -6,7 +6,7 @@ import type { AdaptKind, Level, PlannedExercise, ProgramDay, ProgressionEvent, S
 import { painFrozen } from './adaptation';
 import type { ProgressionInput } from './history';
 import { ficheSessions, isWorkSet, levelIndex } from './progression';
-import { PROGRESSION, type ProgressionConfig } from './progression-config';
+import { INTENSITY, PROGRESSION, type ProgressionConfig } from './progression-config';
 
 type AdaptEvent = Extract<ProgressionEvent, { type: 'adapt_accepte' | 'adapt_plus_tard' | 'adapt_applique' | 'adapt_annule' }>;
 type Accepted = Extract<ProgressionEvent, { type: 'adapt_accepte' }>;
@@ -119,11 +119,20 @@ export interface ApplyEnv {
   repriseActive: boolean;
   /** Dernière séance terminée sur un symptôme. */
   frozenBySymptom: boolean;
-  adaptOf(ex: PlannedExercise): Pick<ProgressionInput, 'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'ficheMaxSets' | 'missedSinceLast' | 'restMaxSec'>;
+  adaptOf(ex: PlannedExercise): Pick<ProgressionInput, 'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'ficheMaxSets' | 'missedSinceLast' | 'restMaxSec' | 'intensity'>;
   echelonOf(variantId: string): number | undefined;
   /** Paliers réels de charge pour cet exercice autour de la charge donnée. */
   loadsFor(ex: PlannedExercise, currentKg: number | null): number[];
   cfg?: ProgressionConfig;
+  /** Horloge (ms) pour la semaine allégée après une décharge acceptée ; absent : Date.now(). */
+  now?: number;
+  /**
+   * Lot cohérence point 4 : la séance tient dans sa durée limite (estimation du générateur). Présent : une série ou des répétitions en
+   * plus qui la feraient dépasser sont annulées (« limite »). Absent : comportement antérieur.
+   */
+  fits?(day: ProgramDay): boolean;
+  /** Point 4 : remplit le temps libre de la séance (intensity.fillExerciseTime) ; null = rien n'a pu être ajouté. Absent : « exercice » annulé. */
+  fillExercise?(day: ProgramDay, locked: (ex: PlannedExercise) => boolean, frozenFiche: (ficheId: string) => boolean): ProgramDay | null;
 }
 
 export interface ApplyResult { day: ProgramDay; applied: AdaptChange[]; cancelled: AdaptCancel[] }
@@ -143,6 +152,11 @@ export function applyAccepted(day: ProgramDay, env: ApplyEnv): ApplyResult {
   const applied: AdaptChange[] = [];
   const cancelled: AdaptCancel[] = [];
   const done = new Set<string>();
+  // Point 4 : chaque changement qui allonge la séance est vérifié contre la limite, dans l'ordre, avec les changements déjà retenus.
+  let current: PlannedExercise[] = [...day.exercises];
+  const fitsWith = (ex: PlannedExercise, patch: Partial<PlannedExercise>): boolean =>
+    !env.fits || env.fits({ ...day, exercises: current.map((e) => (e === ex ? { ...ex, ...patch } : e)) });
+  let fillFor: { ex: PlannedExercise; pend: Accepted } | null = null;
   const exercises = day.exercises.map((ex) => {
     const pend = pendingAdapt(env.events, ex.movementId);
     if (!pend || done.has(ex.movementId)) return ex;
@@ -160,13 +174,30 @@ export function applyAccepted(day: ProgramDay, env: ApplyEnv): ApplyResult {
     if (a.missedSinceLast) return cancel('manquee');
     const ok = (patch: Partial<PlannedExercise>): PlannedExercise => {
       applied.push({ kind: pend.kind, movementId: ex.movementId });
-      return { ...ex, ...patch, adaptApplied: pend.kind };
+      const out = { ...ex, ...patch, adaptApplied: pend.kind };
+      current = current.map((e) => (e === ex ? out : e));
+      return out;
     };
     switch (pend.kind) {
       case 'serie': {
         if (pend.sets !== ex.sets + 1) return cancel('programme');
         if (ex.sets + 1 > Math.min(cfg.adaptation.roleMaxSets, a.ficheMaxSets ?? Infinity)) return cancel('limite');
+        if (!fitsWith(ex, { sets: ex.sets + 1 })) return cancel('limite');
         return ok({ sets: ex.sets + 1 });
+      }
+      case 'repetitions': {
+        // Fourchette visée plus haute, même charge, même repos ; jamais plus basse que l'actuelle (programme changé : annulé).
+        if (pend.repsMin === undefined || pend.repsMax === undefined || pend.repsMax <= ex.repsMax || pend.repsMin < ex.repsMin || pend.repsMin > pend.repsMax) return cancel('programme');
+        // Relecteur 06/11 : plafond de répétitions (rôle, classe, fiche) revérifié ici, et jamais plus d'un pas ; plafond inconnu : annulé.
+        const ceil = a.intensity?.repsCeiling;
+        if (ceil === undefined || pend.repsMax > ceil || pend.repsMax - ex.repsMax > INTENSITY.repsStep) return cancel('limite');
+        if (!fitsWith(ex, { repsMin: pend.repsMin, repsMax: pend.repsMax })) return cancel('limite');
+        return ok({ repsMin: pend.repsMin, repsMax: pend.repsMax });
+      }
+      case 'exercice': {
+        // Ajout décidé après les autres changements (temps restant connu) : voir plus bas.
+        fillFor = { ex, pend };
+        return ex;
       }
       case 'variante': {
         const from = env.echelonOf(ex.variantId);
@@ -182,6 +213,8 @@ export function applyAccepted(day: ProgramDay, env: ApplyEnv): ApplyResult {
         const bonus = cfg.adaptation.restBonusSec;
         if (pend.restSec !== ex.restSec + bonus) return cancel('programme');
         if (ex.supersetGroup || a.restMaxSec === undefined || ex.restSec + bonus > a.restMaxSec) return cancel('limite');
+        // Relecteur 06/11 : +30 s de repos allongent la séance : jamais au-delà de la durée limite.
+        if (!fitsWith(ex, { restSec: ex.restSec + bonus })) return cancel('limite');
         return ok({ restSec: ex.restSec + bonus });
       }
       case 'decharge': {
@@ -192,5 +225,25 @@ export function applyAccepted(day: ProgramDay, env: ApplyEnv): ApplyResult {
       }
     }
   });
-  return { day: applied.length ? { ...day, exercises } : day, applied, cancelled };
+  let out: ProgramDay = applied.length ? { ...day, exercises } : day;
+  const f = fillFor as { ex: PlannedExercise; pend: Accepted } | null;
+  if (f) {
+    // Verrouillés : l'exercice facile lui-même (son changement est l'ajout), changements déjà appliqués, plafonds, cases de sécurité, gel douleur.
+    const locked = (e: PlannedExercise): boolean =>
+      // Relecteur 06/11 : aussi la semaine allégée après une décharge acceptée (§7.7) et les exercices en superset.
+      e.movementId === f.ex.movementId || !!e.adaptApplied || e.capped || e.adaptation != null || !!e.supersetGroup ||
+      deloadWeekActive(env.events, e.movementId, env.now ?? Date.now(), cfg) ||
+      painFrozen({ movementId: e.movementId, zones: env.adaptOf(e).zonesOfFiche ?? [], sets: env.sets, sessions: env.sessions, zonesOfMovement: env.adaptOf(e).zonesOfMovement, cfg });
+    // Relecteur 06/11 (bloquant) : aucune fiche ajoutée sur une zone gelée par une douleur ; sans table des zones : rien n'est ajouté.
+    const zom = env.adaptOf(f.ex).zonesOfMovement;
+    const frozenFiche = (id: string): boolean =>
+      !zom || env.frozenBySymptom || painFrozen({ movementId: id, zones: zom(id), sets: env.sets, sessions: env.sessions, zonesOfMovement: zom, cfg });
+    const filled = env.fillExercise?.(out, locked, frozenFiche) ?? null;
+    if (!filled || (env.fits && !env.fits(filled))) cancelled.push({ kind: 'exercice', movementId: f.ex.movementId, reason: 'limite' });
+    else {
+      applied.push({ kind: 'exercice', movementId: f.ex.movementId });
+      out = { ...filled, exercises: filled.exercises.map((e) => (e.movementId === f.ex.movementId ?{ ...e, adaptApplied: 'exercice' as const } : e)) };
+    }
+  }
+  return { day: out, applied, cancelled };
 }

@@ -114,24 +114,25 @@ describe('variante selon le matériel', () => {
   it('sans matériel : aucune variante, et on dit ce qu’il manque', () => {
     const ch = chooseVariant(pallof, owned([]));
     expect(ch.best).toBeNull();
-    expect(ch.closest?.missing).toEqual(['elastique']);
+    expect(ch.closest?.missing).toEqual(['elastique', 'ancrage_porte']);
     const { container } = view(pallof, { equipment: eq([]) });
     expect(container.textContent).toContain('Il te manque du matériel');
     expect(container.textContent).toContain('un élastique');
+    expect(container.textContent).toContain('un ancrage de porte pour l’élastique');
       });
 
   it('avec un élastique : la variante la plus facile compatible', () => {
-    const ch = chooseVariant(pallof, owned(['elastique']));
+    const ch = chooseVariant(pallof, owned(['elastique', 'ancrage_porte']));
     expect(ch.best?.id).toBe('pallof-elastique-genoux');
-    const { container } = view(pallof, { equipment: eq(['elastique']) });
+    const { container } = view(pallof, { equipment: eq(['elastique', 'ancrage_porte']) });
     expect(container.textContent).toMatch(/Pour toi.*À genoux — Élastique ancré/);
     expect(container.textContent).not.toContain('Pour toi : ');
   });
 
-  it('sans la porte (implicite décochée) : la variante n’est plus compatible', () => {
-    const ch = chooseVariant(pallof, availableTags(eq(['elastique'], 'perso', ['porte'])));
+  it('sans la case « Ancrage de porte » : la variante n’est pas compatible', () => {
+    const ch = chooseVariant(pallof, availableTags(eq(['elastique'])));
     expect(ch.best).toBeNull();
-    expect(ch.closest?.missing).toEqual(['porte']);
+    expect(ch.closest?.missing).toEqual(['ancrage_porte']);
   });
 
   it('haltères : choisit l’échelon le plus bas dont tout le matériel est possédé', () => {
@@ -286,7 +287,7 @@ describe('vidéo, signalement, images', () => {
   it('ReportButton présent, et enregistre le signalement avec le bon ficheId', async () => {
     HTMLDialogElement.prototype.showModal = function (this: HTMLDialogElement) { this.setAttribute('open', ''); };
     HTMLDialogElement.prototype.close = function (this: HTMLDialogElement) { this.removeAttribute('open'); };
-    view(byId('pallof-elastique'), { equipment: eq(['elastique']) });
+    view(byId('pallof-elastique'), { equipment: eq(['elastique', 'ancrage_porte']) });
     const btn = screen.getByRole('button', { name: /signaler un problème/i });
     fireEvent.click(btn);
     fireEvent.click(screen.getByRole('button', { name: 'Consigne pas claire' }));

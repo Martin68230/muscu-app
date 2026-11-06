@@ -98,6 +98,7 @@ export function Equipment() {
                 <input type="checkbox" checked={checked(o)} onChange={(e) => save(toggleTag(eq, o.tag, e.currentTarget.checked))} />
                 <span>{o.label}</span>
               </label>
+              {o.hint && <p class="dim small">{o.hint}</p>}
               {weightField(o)}
             </div>
           ))}

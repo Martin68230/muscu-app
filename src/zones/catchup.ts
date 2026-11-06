@@ -38,6 +38,8 @@ export interface CatchUpWeek {
   dayIndex: number;
   /** Durée choisie (Program.durationMin) ; absente = aucun ajout (lecture prudente). */
   durationMin?: number;
+  /** Limite des ajouts (06/11/2026) : « illimité » = UNLIMITED.capMin (75), le rattrapage peut aller de la cible (60) jusqu'à la limite ; durée choisie : absente (= durationMin, jamais dépassée). */
+  limitMin?: number;
 }
 
 export interface CatchUpAdd { movementId: string; zone: ZoneId }
@@ -72,7 +74,7 @@ function blockOf(p: CatchUpProfile): CatchUpBlock | null {
 }
 
 /** Forme « générateur » d'un exercice prévu (plafonds V-PLAF, zones, durée) ; null pour le cardio ou une fiche inconnue. */
-function genOf(ex: PlannedExercise, ctx: Ctx): (GenExercise & DurExercise) | null {
+export function genOf(ex: PlannedExercise, ctx: Ctx): (GenExercise & DurExercise) | null {
   if (ex.role === 'cardio' || ex.slot === 'cardio') return null;
   const f = ctx.fichesById.get(ex.movementId);
   if (!f) return null;
@@ -83,7 +85,7 @@ function genOf(ex: PlannedExercise, ctx: Ctx): (GenExercise & DurExercise) | nul
   } as unknown as GenExercise & DurExercise;
 }
 
-const durOf = (day: ProgramDay, exs: DurExercise[], ctx: Ctx): number =>
+export const durOf = (day: ProgramDay, exs: DurExercise[], ctx: Ctx): number =>
   estimerDuree({
     label: day.sessionType ?? 'CE', days: 1, level: ctx.level, pregnant: ctx.pregnant, exercises: exs,
     e1Sec: day.warmup?.generalSec ?? 0, e2Count: day.warmup?.mobility.length ?? 0,
@@ -124,7 +126,7 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
   const none: CatchUpResult = { day: today, added: [], low, blocked };
   if (!today || blocked || !low.length || next.durationMin === undefined) return none;
 
-  const budgetSec = next.durationMin * 60;
+  const budgetSec = Math.max(next.durationMin, next.limitMin ?? 0) * 60;
   const plaf = makePlaf(ctx, 'auto');
   const gens = (d: ProgramDay) => d.exercises.map((e) => genOf(e, ctx)).filter((e): e is GenExercise & DurExercise => e !== null);
   const week = next.days.map((d) => ({ exercises: gens(d) }));

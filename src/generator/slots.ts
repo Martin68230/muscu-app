@@ -20,7 +20,31 @@ interface SchemaReq {
   schema: string;
   /** Muscle principal exigé pour une fiche « pleine » (au moins un) ; null = aucun. */
   required: string[] | null;
+  /** Repli « exercice utile » (lot cohérence 5 a) : fiche pleine seulement (aucun substitut), jamais ces muscles en principal. */
+  strict?: boolean;
+  excludedPrincipal?: string[];
 }
+
+/**
+ * Lot cohérence, point 5 a (décision de l'utilisateur du 06/11/2026) : jamais deux fiches « jumelles » dans une séance, c'est-à-dire de
+ * même schéma ET de mêmes muscles principaux et secondaires (ex. tirage-vertical-elastique-haut et tirage-vertical-un-bras-elastique :
+ * le même exercice deux fois). `used` = fiches déjà placées dans la séance.
+ */
+const sameSet = (a: readonly string[], b: readonly string[]) => a.length === b.length && a.every((x) => b.includes(x));
+export function isTwinOfUsed(f: Fiche, used: ReadonlySet<string>, ctx: Pick<Ctx, 'fichesById'>): boolean {
+  for (const id of used) {
+    const g = ctx.fichesById.get(id);
+    if (g && g.id !== f.id && g.schema === f.schema && sameSet(g.musclesPrincipaux, f.musclesPrincipaux) && sameSet(g.musclesSecondaires, f.musclesSecondaires)) return true;
+  }
+  return false;
+}
+/**
+ * Lot cohérence 5 a : tirage_3 / tirage_4 d'un plan vertical sans autre fiche sûre du même plan : un exercice utile (arrière d'épaule,
+ * biceps, avant-bras, trapèzes), en tirage horizontal sans grand dorsal ni rhomboïdes en principal (pas un 2e rowing).
+ */
+const PULL_ACCESSORY: SchemaReq = {
+  schema: 'tirage_h', required: ['deltoides_posterieurs', 'biceps', 'avant_bras', 'trapezes'], strict: true, excludedPrincipal: ['grand_dorsal'],
+};
 interface SlotDef {
   /** Repli a : schémas du même plan, dans l'ordre de préférence. */
   a: SchemaReq[];
@@ -98,9 +122,14 @@ export function slotDef(slot: SlotKey, st: SessionState): SlotDef {
     case 'poussee_4':
       return { a: [req(st.placedSchema.poussee_2 ?? other(st.placedSchema.poussee_1 ?? (B ? 'poussee_v' : 'poussee_h')))], b: [], allowB: false, allowSubst: true };
     case 'tirage_3':
-      return { a: [req(st.placedSchema.tirage_1 ?? (B ? 'tirage_v' : 'tirage_h'))], b: [], allowB: false, allowSubst: true };
-    case 'tirage_4':
-      return { a: [req(st.placedSchema.tirage_2 ?? other(st.placedSchema.tirage_1 ?? (B ? 'tirage_v' : 'tirage_h')))], b: [], allowB: false, allowSubst: true };
+    case 'tirage_4': {
+      const t = slot === 'tirage_3'
+        ? st.placedSchema.tirage_1 ?? (B ? 'tirage_v' : 'tirage_h')
+        : st.placedSchema.tirage_2 ?? other(st.placedSchema.tirage_1 ?? (B ? 'tirage_v' : 'tirage_h'));
+      // Plan horizontal : les fiches utiles (face pull, curl) sont déjà du même schéma (pleines ou substituts).
+      const acc = t === 'tirage_v' ? [PULL_ACCESSORY] : [];
+      return { a: [req(t)], b: acc, allowB: acc.length > 0, allowSubst: true };
+    }
     // jambes_3 : un seul exercice, chaîne de repli charnière (si V-PLAF le permet, vérifié à la construction) -> cheville_mollet ->
     // hanche_laterale ; jambes_4 : cheville_mollet -> hanche_laterale. Aucun substitut (schémas sans muscle exigé).
     case 'jambes_3':
@@ -170,6 +199,7 @@ const cmp = (a: (number | string)[], b: (number | string)[]): number => {
 
 function isPleine(f: Fiche, r: SchemaReq): boolean {
   if (f.couverture) return false;
+  if (r.excludedPrincipal?.some((m) => f.musclesPrincipaux.includes(m))) return false;
   return !r.required || r.required.some((m) => f.musclesPrincipaux.includes(m));
 }
 
@@ -196,13 +226,14 @@ export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx
     for (const c of resolveFiche(X, ctx).candidates) {
       const s = schemas.get(c.fiche.schema);
       if (!s || used.has(c.fiche.id)) continue;
+      if (isTwinOfUsed(c.fiche, used, ctx)) continue; // lot cohérence 5 a : jamais le même exercice deux fois sous deux noms
       if (MAIN_EXERCISE_SLOTS.includes(slot) && PILLAR_EXCLUDED_FICHES.includes(c.fiche.id)) continue; // lancers : jamais exercice principal
       if (slot === 'tronc' && CORE_NOT_CORE_IDS.includes(c.fiche.id)) continue; // D26 : copenhague-court hors famille core (inventaire, kiné)
       // STR-ISO-0 : le repli de jambes_3 / jambes_4 vers cheville_mollet compte comme isolation « mollets » : interdit au débutant avant l'exception.
       if (ctx.calfFallbackForbidden && (slot === 'jambes_3' || slot === 'jambes_4') && c.fiche.schema === 'cheville_mollet') continue;
       // jambes_2 / fonctionnel : un schéma sans muscle exigé ne peut pas être « substitut »
       const full = isPleine(c.fiche, s.r);
-      if (!full && !def.allowSubst) continue;
+      if (!full && (!def.allowSubst || s.r.strict)) continue;
       const tier = full ? s.tierFull : s.tierSub;
       const r: Ranked = { cand: c, tier, key: [tierRank(tier), ...rankKey(c, slot, s.rank, ctx)] };
       const prev = best.get(c.fiche.id);

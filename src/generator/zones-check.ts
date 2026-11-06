@@ -10,9 +10,9 @@ import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
 import { estimerDuree, type DurSession } from './duration';
 import { resolveFiche, type Candidate } from './safety';
-import { tierRank } from './slots';
+import { isTwinOfUsed, tierRank } from './slots';
 import type { Fiche, GenExercise } from './types';
-import { capGroupOf, capGroupPoints, pointsByZone, zoneCaps, zoneCoefs, zonesOfInjury, zoneStatus, ZONES, type ZoneFiche, type ZoneId, type ZoneStatus } from '../zones/zones';
+import { capGroupOf, capGroupPoints, pointsByZone, thresholdsOf, zoneCaps, zoneCoefs, zonesOfInjury, zoneStatus, ZONES, type ZoneFiche, type ZoneId, type ZoneStatus } from '../zones/zones';
 
 type Sess = DurSession<GenExercise>;
 export type ZoneExclusion = 'blessure' | 'materiel';
@@ -139,21 +139,30 @@ function correctifExercise(c: Candidate, ctx: Ctx): GenExercise {
  * tient dans la durée choisie, V-PLAF, le plafond hebdomadaire et les plafonds par zone ; jamais une fiche déjà dans la semaine.
  * Aucun correctif en semaine allégée ni en reprise (protections de canAddSets). Modifie `sessions` en place.
  */
-export function addCorrectifs(sessions: Sess[], d: FillDeps): void {
+export function addCorrectifs(
+  sessions: Sess[], d: FillDeps,
+  opts: { orange?: boolean; canUse?: (s: Sess) => boolean } = {},
+): void {
   const { ctx, pool } = d;
   if (ctx.repriseActive || ctx.lightWeek) return;
   const maxPer = ctx.level === 'debutant' ? CORRECTIF.maxPerSessionDebutant : CORRECTIF.maxPerSession;
   const count = (s: Sess) => s.exercises.filter((e) => e.slot === 'correctif').length;
   const free = (s: Sess) => d.budget(s) - estimerDuree(s);
-  for (const z of SLOTLESS_ZONES) {
-    if (checkZones(sessions, ctx, pool).status[z] !== 'gris' || excludedZones(ctx, pool)[z]) continue;
+  // Lot cohérence 3 b : en remplissage du temps, aussi les petites zones orange (les moins travaillées d'abord).
+  const zc0 = checkZones(sessions, ctx, pool);
+  const ratio = (z: ZoneId) => zc0.points[z] / Math.max(1e-9, thresholdsOf(z, ctx.goalKey).rouge);
+  const zones = opts.orange ? [...SLOTLESS_ZONES].sort((a, b) => ratio(a) - ratio(b)) : SLOTLESS_ZONES;
+  for (const z of zones) {
+    const st = checkZones(sessions, ctx, pool).status[z];
+    if ((st !== 'gris' && !(opts.orange && st === 'orange')) || excludedZones(ctx, pool)[z]) continue;
     const weekIds = new Set(sessions.flatMap((s) => s.exercises.map((e) => e.ficheId)));
-    const order = sessions.filter((s) => count(s) < maxPer).sort((a, b) => count(a) - count(b) || free(b) - free(a));
+    const order = sessions.filter((s) => count(s) < maxPer && (opts.canUse?.(s) ?? true)).sort((a, b) => count(a) - count(b) || free(b) - free(a));
     let done = false;
     for (const c of correctifCandidates(z, ctx, pool)) {
       if (done || weekIds.has(c.fiche.id)) continue;
       const ex = correctifExercise(c, ctx);
       for (const s of order) {
+        if (isTwinOfUsed(c.fiche, new Set(s.exercises.map((e) => e.ficheId)), ctx)) continue; // lot cohérence 5 a
         const trial = { ...s, exercises: [...s.exercises, ex] };
         const all = sessions.map((x) => (x === s ? trial : x));
         if (estimerDuree(trial) > d.budget(s)) continue;
@@ -240,9 +249,9 @@ function trySwap(sessions: Sess[], z: ZoneId, d: FillDeps): boolean {
 }
 
 /** Une série de plus sur le meilleur exercice possible de la zone (copie de travail), ou false. */
-function addOneSet(work: Sess[], z: ZoneId, d: FillDeps): boolean {
+function addOneSet(work: Sess[], z: ZoneId, d: FillDeps, canUse: (s: Sess) => boolean = () => true): boolean {
   const cands: { i: number; e: GenExercise; c: number }[] = [];
-  work.forEach((s, i) => s.exercises.forEach((e) => {
+  work.forEach((s, i) => canUse(s) && s.exercises.forEach((e) => {
     const f = zf(d.ctx, e.ficheId);
     const c = f ? zoneCoefs(f).get(z) ?? 0 : 0;
     if (c >= MIN_COEF) cands.push({ i, e, c });
@@ -285,6 +294,65 @@ export function fillGreyZones(sessions: Sess[], d: FillDeps): void {
     for (const z of grey) if (trySwap(sessions, z, d)) { progressed = true; break; }
     if (!progressed) for (const z of grey) if (tryAddSets(sessions, z, d)) { progressed = true; break; }
     if (!progressed) return;
+  }
+}
+
+/**
+ * Lot cohérence, point 3 (décision de l'utilisateur du 06/11/2026) : temps restant d'une séance sous sa cible (« illimité » : 60 min ;
+ * durée choisie : cette durée, budget = jamais au-delà), rempli dans cet ordre : a) zones de la semaine encore orange, jusqu'au rouge,
+ * par séries ajoutées (mêmes garde-fous que fillGreyZones : V-PLAF « auto », plafond hebdomadaire, plafonds par zone, dose de la fiche,
+ * protections canAddSets) ; b) petites zones grises ou orange par l'emplacement correctif (fiches existantes de CORRECTIF seulement) ;
+ * c) le cardio reste en dernier (bloc décidé après, dans index.ts). Aucune règle de sécurité ni aucun plafond n'est relâché ; grossesse,
+ * reprise et semaine allégée : rien n'est ajouté (lecture prudente). Modifie `sessions` en place.
+ */
+export function fillToTarget(
+  sessions: Sess[],
+  d: FillDeps & { target: (s: Sess) => number; functional?: (s: Sess, all: readonly Sess[]) => Iterable<GenExercise> },
+): void {
+  const { ctx, pool } = d;
+  if (ctx.pregnant || ctx.repriseActive || ctx.lightWeek) return;
+  const under = (s: Sess) => estimerDuree(s) < d.target(s);
+  if (canAddSets(ctx)) {
+    // Une zone sans série possible le reste (les ajouts ne font que monter le volume et la durée) : elle n'est plus réessayée.
+    const blocked = new Set<ZoneId>();
+    for (let guard = 0; guard < 300 && sessions.some(under); guard++) {
+      const zc = checkZones(sessions, ctx, pool);
+      const ratio = (z: ZoneId) => zc.points[z] / Math.max(1e-9, thresholdsOf(z, ctx.goalKey).rouge);
+      // Zones principales seulement (les petites zones passent par l'emplacement correctif, comme fillGreyZones).
+      const orange = zc.orange.filter((z) => !SLOTLESS_ZONES.includes(z) && !blocked.has(z)).sort((a, b) => ratio(a) - ratio(b));
+      let progressed = false;
+      for (const z of orange) {
+        const work = sessions.map((s) => ({ ...s }));
+        if (!addOneSet(work, z, d, under)) {
+          blocked.add(z);
+          continue;
+        }
+        sessions.forEach((s, i) => { s.exercises = work[i].exercises; });
+        progressed = true;
+        break;
+      }
+      if (!progressed) break;
+    }
+  }
+  // b) Exercice fonctionnel (emplacement `fonctionnel` du type de séance, mêmes règles que le placement), puis correctifs des petites zones.
+  if (d.functional) {
+    for (const s of sessions) {
+      if (!under(s) || s.exercises.some((e) => e.slot === 'fonctionnel')) continue;
+      for (const ex of d.functional(s, sessions)) {
+        const trial = { ...s, exercises: [...s.exercises, ex] };
+        const all = sessions.map((x) => (x === s ? trial : x));
+        if (estimerDuree(trial) > d.budget(s)) continue;
+        if (!d.sessionOk(trial.exercises, 'auto') || !d.weekOk(all) || !zoneCapsOk(sessions, all, ctx)) continue;
+        s.exercises = trial.exercises;
+        break;
+      }
+    }
+  }
+  // Plusieurs passes : une zone encore orange peut recevoir une 2e fiche correctif (jamais une fiche déjà dans la semaine ; plafonds inchangés).
+  for (let pass = 0; pass < sessions.length; pass++) {
+    const before = sessions.map((s) => s.exercises.length).join();
+    addCorrectifs(sessions, d, { orange: true, canUse: under });
+    if (sessions.map((s) => s.exercises.length).join() === before) break;
   }
 }
 

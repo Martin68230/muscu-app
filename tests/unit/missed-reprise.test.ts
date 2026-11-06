@@ -24,9 +24,9 @@ describe('moteur : étalonnage de reprise', () => {
     let s = startSession(d, 0);
     const r1 = completeSet(d, s, { reps: 12, loadKg: 18, rir: 4 }, ctxLoads(dumbbells), 1000);
     expect(r1.entry.isCalibration).toBe(true);
-    expect(r1.suggestion?.loadKg).toBe(20);
+    expect(r1.suggestion?.loadKg).toBe(18); // 06/11/2026 : 2 séries propres avant la 1re hausse
     s = r1.state;
-    const r2 = completeSet(d, s, { reps: 12, loadKg: 20, rir: 4 }, ctxLoads(dumbbells), 2000);
+    const r2 = completeSet(d, s, { reps: 12, loadKg: 18, rir: 4 }, ctxLoads(dumbbells), 2000);
     expect(r2.suggestion?.loadKg).toBe(20); // 22 et 24 refusés : plafond C0
     const r3 = completeSet(d, r2.state, { reps: 12, loadKg: 24, rir: 4 }, ctxLoads(dumbbells), 3000);
     expect(r3.state.loads[0]).toBeLessThanOrEqual(20);

@@ -23,7 +23,8 @@ const demo = (profile: Record<string, unknown>, equipment: GeneratorInput['equip
 const PROFILS: [string, GeneratorInput][] = [
   ['1 débutant muscle maison', demo({ level: 'debutant', daysPerWeek: 3 }, eq(HE), 'muscle')],
   ['2 intermédiaire force salle 4 j', demo({ level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle', salleAccess: true }, salle, 'force')],
-  ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq(HE), 'perte_gras', 'cardio')],
+  // Profil 3 avec la case « Ancrage de porte » cochée (06/11/2026) : sans ancrage de porte, aucune fiche correctif ne lui est compatible.
+  ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq([...HE, 'ancrage_porte']), 'perte_gras', 'cardio')],
   ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(['elastique', 'chaise', 'poids_du_corps', 'tapis']), 'sport')],
   ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle')],
   ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle')],

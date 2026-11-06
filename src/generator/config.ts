@@ -1005,7 +1005,7 @@ export const MACHINE_TAGS: readonly string[] = ['machine', 'poulie', 'machine_ca
  * salle, une variante qui porte un de ces tags n'est pas proposée hors échauffement / activation / mobilité. Pénurie (moins de 2 fiches
  * pleines d'un plan après le filtre) : seuls `elastique` et `mini_bande` reviennent, pour ce plan, avec « (à la maison) ».
  */
-export const SALLE_EXCLUS: readonly string[] = ['sac_a_dos', 'bidons_ou_sacs', 'sac_de_sable', 'bosu', 'elastique', 'mini_bande', 'porte'];
+export const SALLE_EXCLUS: readonly string[] = ['sac_a_dos', 'bidons_ou_sacs', 'sac_de_sable', 'bosu', 'elastique', 'mini_bande', 'porte', 'ancrage_porte'];
 export const SALLE_PENURIE_READMIS: readonly string[] = ['elastique', 'mini_bande'];
 export const SALLE_PENURIE_MIN_FICHES = 2;
 export const SALLE_HOME_SUFFIX = ' (à la maison)';

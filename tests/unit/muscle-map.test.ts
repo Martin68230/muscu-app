@@ -2,7 +2,7 @@
 import { describe, expect, it } from 'vitest';
 import corr from '../../knowledge/zones-correspondance.json';
 import { cycleMaps, sessionMap, statusesFromPoints, setsOfExercises, setsOfLogs, statusesForExercise, weekMap } from '../../src/zones/map-data';
-import { pointsByZone, thresholdsOf, zoneStatus, ZONES } from '../../src/zones/zones';
+import { pointsByZone, thresholdsOf, zoneCoefs, zoneStatus, ZONES } from '../../src/zones/zones';
 import { generateProgram, toProgramDays } from '../../src/generator';
 import { HIT_RADIUS_PX, piecesOfPath, zoneAt } from '../../src/ui/muscle-hit';
 import { ZONE_PATHS } from '../../src/ui/muscle-silhouette';
@@ -74,12 +74,38 @@ describe('map-data : vues', () => {
     { movementId: 'developpe-couche-barre', sets: 4 },
     { movementId: 'elevation-laterale', sets: 3 },
   ];
-  it('séance : points de la séance, échelle d\'une séance sur N par semaine', () => {
-    const m = sessionMap(setsOfExercises(push), byId, 3, 'muscle');
+  it("séance : points de la séance SANS mise à l’échelle ; couleur selon le rôle des exercices (jamais plus que orange sans muscle principal)", () => {
+    const m = sessionMap(setsOfExercises(push), byId, "muscle");
     const pts = pointsByZone(push.map((e) => ({ ficheId: e.movementId, sets: e.sets })), byId);
     expect(m.points).toEqual(pts);
-    for (const [z, p] of Object.entries(pts)) expect(m.statuses[z], z).toBe(zoneStatus(p * 3, z, 'muscle'));
-    expect(Object.values(m.statuses)).toContain('gris');
+    for (const z of ZONES) {
+      const principal = push.filter((e) => zoneCoefs({ ...byId.get(e.movementId)!, musclesSecondaires: [] }).get(z.id)).length;
+      if (m.statuses[z.id] === "rouge") expect(principal, z.id).toBeGreaterThanOrEqual(1);
+      if (principal === 0) expect(m.statuses[z.id], z.id).not.toBe("rouge");
+      if (pts[z.id] < thresholdsOf(z.id, "muscle").gris) expect(m.statuses[z.id], z.id).toBe("gris");
+    }
+    expect(Object.values(m.statuses)).toContain("gris");
+  });
+  it("règle de rouge : 2 exercices en principal, ou 1 en principal + 2 en secondaire ; un seul exercice en principal = orange", () => {
+    const one = sessionMap(setsOfExercises([{ movementId: "developpe-couche-barre", sets: 4 }]), byId, "muscle");
+    expect(one.statuses.pectoraux_milieu_bas).toBe("orange");
+    const two = sessionMap(setsOfExercises([{ movementId: "developpe-couche-barre", sets: 3 }, { movementId: "developpe-incline-barre", sets: 3 }]), byId, "muscle");
+    expect(two.statuses.pectoraux_milieu_bas).toBe("rouge");
+    // les séries d’un même exercice (journal) ne comptent qu’une fois
+    const logs = setsOfLogs(Array.from({ length: 5 }, () => ({ movementId: "developpe-couche-barre", sessionId: "s", completedAt: "2026-11-06T10:00:00Z" })), "s");
+    expect(sessionMap(logs, byId, "muscle").statuses.pectoraux_milieu_bas).toBe("orange");
+  });
+  it("cas de contrôle (fiches réelles) : Poussée B sans les abdos en rouge, Bas du corps A sans les obliques en rouge", () => {
+    const pousseeB = [
+      { movementId: "developpe-epaules-assis-dossier-incline", sets: 3 }, { movementId: "developpe-couche-barre", sets: 3 },
+      { movementId: "extension-triceps-couche-halteres", sets: 3 }, { movementId: "gainage-creux", sets: 2 },
+    ];
+    const pb = sessionMap(setsOfExercises(pousseeB), byId, "muscle");
+    expect(pb.statuses.abdominaux_droits).not.toBe("rouge");
+    const basA = ["squat-arriere-barre", "hip-thrust-banc", "abduction-hanche-poulie", "curl-ischios-serviette", "marche-pointes-talons", "bird-dog"]
+      .map((movementId) => ({ movementId, sets: 3 }));
+    const ba = sessionMap(setsOfExercises(basA), byId, "muscle");
+    expect(ba.statuses.obliques).not.toBe("rouge");
   });
   it('semaine : le cardio ne compte pas', () => {
     const m = weekMap([{ exercises: [...push, { movementId: 'developpe-couche-barre', sets: 6, role: 'cardio' }] }], byId);
@@ -111,6 +137,8 @@ describe('map-data : vues', () => {
     expect(c.map((g) => g.group)).toEqual(['poussee', 'jambes']);
     expect(c[0].count).toBe(2);
     expect(c[0].map.points.pectoraux_milieu_bas).toBe(2 * pointsByZone([{ ficheId: 'developpe-couche-barre', sets: 4 }], byId).pectoraux_milieu_bas);
+    // deux séances de poussée = deux exercices en principal pour les pectoraux : rouge (même règle que la séance)
+    expect(c[0].map.statuses.pectoraux_milieu_bas).toBe('rouge');
   });
 });
 

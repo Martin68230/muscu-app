@@ -349,7 +349,11 @@ export interface NextSession {
 export function nextSession(program: Program, sessions: readonly WorkoutSession[], nowMs: number): NextSession | null {
   const n = program.days.length;
   if (!n) return null;
-  const mine = sessions.filter((s) => !s.deletedAt && s.programId === program.id);
+  // Rotation et 48 h sur les séances de TOUS les programmes (un programme régénéré ne remet pas la rotation à zéro).
+  const mine = sessions.filter((s) => !s.deletedAt);
+  const dayOf = (s: WorkoutSession): ProgramDay | undefined =>
+    s.plan ?? (s.programId === program.id && s.programDayIndex !== null ? program.days[s.programDayIndex] : undefined);
+  const dayKey = (d: ProgramDay | undefined) => (d ? `${d.sessionType ?? 'CE'}|${d.label}` : '');
   const sortKey = (s: WorkoutSession) => s.decidedAt ?? s.endedAt ?? s.startedAt ?? s.plannedDate;
   const byKey = (a: WorkoutSession, b: WorkoutSession) => (sortKey(a) < sortKey(b) ? -1 : sortKey(a) > sortKey(b) ? 1 : 0);
   const rotation = mine
@@ -357,19 +361,30 @@ export function nextSession(program: Program, sessions: readonly WorkoutSession[
     .sort(byKey);
   const done = mine.filter((s) => s.status === 'faite').sort(byKey);
   const last = rotation[rotation.length - 1];
-  const dayIndex = last && last.programDayIndex !== null ? (last.programDayIndex + 1) % n : 0;
+  let dayIndex = 0;
+  if (last && last.programDayIndex !== null) {
+    if (last.programId === program.id) dayIndex = (last.programDayIndex + 1) % n;
+    else {
+      // Programme régénéré : on retrouve le même type de séance dans le programme actif, puis on prend la suivante.
+      const key = dayKey(last.plan ?? undefined);
+      const at = key ? program.days.findIndex((d) => dayKey(d) === key) : -1;
+      dayIndex = at >= 0 ? (at + 1) % n : (last.programDayIndex + 1) % n;
+      // Jamais la séance qui vient d'être faite deux fois de suite.
+      if (n > 1 && key && dayKey(program.days[dayIndex]) === key) dayIndex = (dayIndex + 1) % n;
+    }
+  }
   const day = program.days[dayIndex];
   // 48 h entre deux séances de musculation (V-JOURS) ; une séance de cardio dédiée (B4, effort modéré) n'attend pas et ne
   // compte pas comme séance de musculation (cardio-regles.md §3.6 : le cardio modéré reste permis).
   const isMuscu = (s: WorkoutSession) => {
-    const d = s.plan ?? (s.programDayIndex !== null ? program.days[s.programDayIndex] : undefined);
+    const d = dayOf(s);
     return !d || !isCardioDay(d);
   };
   const lastMuscu = [...done].reverse().find(isMuscu);
   const endedMs = lastMuscu ? Date.parse(lastMuscu.endedAt ?? lastMuscu.startedAt ?? lastMuscu.plannedDate) : NaN;
   // D25 (STR-REP-8) : les 48 h ne valent qu'entre deux séances qui chargent un même grand groupe (haut puis bas le lendemain : permis).
   // Séance précédente illisible (sans type ni plan) : comme le corps entier (lecture prudente).
-  const lastDay = lastMuscu ? (lastMuscu.plan ?? (lastMuscu.programDayIndex !== null ? program.days[lastMuscu.programDayIndex] : undefined)) : undefined;
+  const lastDay = lastMuscu ? dayOf(lastMuscu) : undefined;
   const typeLabel = (d: ProgramDay | undefined) => (d?.sessionType && d.sessionType !== 'CE' ? `${d.sessionType}-A` : 'A');
   const shares = conflicts(typeLabel(lastDay), typeLabel(day));
   const availableAtMs = !isCardioDay(day) && shares && Number.isFinite(endedMs) ? endedMs + MIN_GAP_DAYS * DAY_MS : null;
@@ -377,7 +392,7 @@ export function nextSession(program: Program, sessions: readonly WorkoutSession[
   const weekdayToday = (now.getDay() + 6) % 7;
   const todayKey = `${now.getFullYear()}-${String(now.getMonth() + 1).padStart(2, '0')}-${String(now.getDate()).padStart(2, '0')}`;
   // SM-D2 : un jour décalé (ligne N `prevue`) pour cette séance aujourd'hui compte comme « prévue aujourd'hui ».
-  const shiftedToday = mine.some((s) => s.status === 'prevue' && s.dejaDecalee && s.programDayIndex === dayIndex && s.plannedDate === todayKey);
+  const shiftedToday = mine.some((s) => s.programId === program.id && s.status === 'prevue' && s.dejaDecalee && s.programDayIndex === dayIndex && s.plannedDate === todayKey);
   return {
     dayIndex,
     day,

@@ -9,6 +9,8 @@ export interface EquipmentOption {
   label: string;
   /** Tag implicite : coché par défaut, stocké dans disabledImplicit quand décoché. */
   implicit?: boolean;
+  /** Aide courte affichée sous la case. */
+  hint?: string;
   /** Champ de poids associé. */
   weights?: 'dumbbell' | 'kettlebell' | 'plates';
 }
@@ -38,6 +40,7 @@ export const EQUIPMENT_GROUPS: EquipmentGroup[] = [
       { tag: 'halteres', label: 'Haltères', weights: 'dumbbell' },
       { tag: 'kettlebell', label: 'Kettlebells', weights: 'kettlebell' },
       { tag: 'elastique', label: 'Élastique (bande longue ou à poignées)' },
+      { tag: 'ancrage_porte', label: 'Ancrage de porte', hint: 'Un ancrage adapté pour poser l’élastique en haut d’une porte fermée.' },
       { tag: 'mini_bande', label: 'Élastique en boucle (mini-bande)' },
       { tag: 'barre_traction', label: 'Barre de traction' },
       { tag: 'banc', label: 'Banc plat' },

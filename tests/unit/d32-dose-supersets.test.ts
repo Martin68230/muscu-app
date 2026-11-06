@@ -31,7 +31,8 @@ const input = (profile: Record<string, unknown>, equipment: GeneratorInput['equi
 });
 const PROFIL_2 = input({ level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle' }, salle, ['force']);
 const PROFIL_3 = input({ level: 'intermediaire', daysPerWeek: 3 }, eq(['halteres', 'elastique', 'chaise', 'poids_du_corps', 'tapis']), ['perte_gras', 'cardio'], { seanceCardio: true });
-const PROFIL_4 = input({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(['elastique', 'chaise', 'poids_du_corps', 'tapis']), ['sport']);
+// 06/11/2026 : profil 4 avec la case « Ancrage de porte » cochée (sans elle, le tirage à l'élastique ancré en haut d'une porte n'est plus proposé et la paire P1 ne se forme pas).
+const PROFIL_4 = input({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(['elastique', 'ancrage_porte', 'chaise', 'poids_du_corps', 'tapis']), ['sport']);
 const PROFIL_6 = input({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle' }, salle, ['muscle']);
 const gen = (i: GeneratorInput): GenProgram => {
   const r = generateProgram(i);

@@ -111,10 +111,26 @@ export const CALIBRATION_JUMP = {
   heavyTechnicalRatio: 0.2, // PROVISOIRE
   otherRatio: 0.5, // PROVISOIRE
   minRir: 4, // PROVISOIRE (« 4+ »)
+  // Décision de l'utilisateur du 06/11/2026 (lot cohérence point 4) : 1re hausse après 2 séries propres CONSÉCUTIVES, puis au plus une hausse par
+  // exercice et par séance d'étalonnage. NON SOURCÉ.
+  cleanSetsToRaise: 2,
+  maxRaisesPerSession: 1,
   heavyTechnicalFiches: [
     ...TECHNICAL_CAP_FICHES, 'souleve-de-terre-sac', 'developpe-couche-barre', 'developpe-couche-prise-serree-barre', 'developpe-incline-barre',
   ] as readonly string[],
 };
+
+/**
+ * Lot cohérence, point 4 (décision de l'utilisateur du 06/11/2026, sous réserve du relecteur) : séance « trop facile » (toutes les séries
+ * au haut de la fourchette ou au-dessus, réserve >= 3) -> la séance suivante monte, selon le temps disponible (src/session/intensity.ts).
+ * `easyRir` vient de la demande de l'utilisateur ; on exige en plus la cible + 1 (une réserve 3 pour une cible 3 n'est pas « trop facile »,
+ * biais de sous-estimation d'environ 1 répétition, Halperin 2022, adaptation-regles.md §3). `repsStep` : NON SOURCÉ (pas de 2 répétitions,
+ * dans la fourchette du rôle ou de la classe, jamais au-delà).
+ */
+export const INTENSITY = {
+  easyRir: 3,
+  repsStep: 2, // NON SOURCÉ
+} as const;
 
 export const PROGRESSION: ProgressionConfig = {
   echelon: {

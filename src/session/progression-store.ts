@@ -110,6 +110,11 @@ export interface ProposalData {
   cfg?: ProgressionConfig;
   /** adaptation-regles.md §6 [kine] : une séance manquée depuis la dernière : aucune proposition de montée à l'ouverture. */
   missedSinceLast?: boolean;
+  /**
+   * Décision du chef de projet (06/11/2026) : vrai si l'intensité (ajout, répétitions, série) s'applique à cet exercice : la montée
+   * d'échelon n'est alors pas proposée (elle passe après). Absent : comportement antérieur.
+   */
+  intensityFirst?: (ex: PlannedExercise) => boolean;
 }
 
 /** Propositions pour l'ouverture de la séance (jamais automatiques) : un échelon par fiche, et au plus une proposition de niveau. */
@@ -151,6 +156,7 @@ export function computeProposals(d: ProposalData): ProposalSet {
 
   const items: ProposalItem[] = [];
   for (const [movementId, r] of results) {
+    if (r.res.proposal?.kind === 'montee' && d.intensityFirst?.(r.exercise)) continue;
     if (r.day === d.dayIndex && r.res.proposal) items.push({ exerciseIndex: r.index, movementId, proposal: r.res.proposal });
   }
   const readyFiches = [...results.values()].filter((r) => r.res.readyBlockedByLevel).length;
@@ -245,6 +251,9 @@ export interface AdaptCard {
   sets?: number;
   variantId?: string;
   restSec?: number;
+  /** Point 4 : fourchette de répétitions visée. */
+  repsMin?: number;
+  repsMax?: number;
 }
 
 async function recordEvents(evs: ProgressionEvent[]): Promise<void> {
@@ -259,6 +268,8 @@ export async function acceptAdapt(c: AdaptCard, now: Date = new Date()): Promise
   if (c.sets !== undefined) ev.sets = c.sets;
   if (c.variantId !== undefined) ev.variantId = c.variantId;
   if (c.restSec !== undefined) ev.restSec = c.restSec;
+  if (c.repsMin !== undefined) ev.repsMin = c.repsMin;
+  if (c.repsMax !== undefined) ev.repsMax = c.repsMax;
   await recordEvents([ev]);
 }
 

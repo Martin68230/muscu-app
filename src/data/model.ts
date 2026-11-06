@@ -124,12 +124,13 @@ export type ProgressionEvent =
   /** Montée ou descente acceptée puis annulée parce que le programme a été régénéré entre-temps. */
   | { type: 'annule'; movementId: string; at: string }
   /** Adaptation après séance (knowledge/adaptation-regles.md §6) : acceptée / « plus tard » / appliquée à la séance suivante / annulée (gel, changement). */
-  | { type: 'adapt_accepte'; kind: AdaptKind; movementId: string; at: string; sets?: number; variantId?: string; restSec?: number }
+  | { type: 'adapt_accepte'; kind: AdaptKind; movementId: string; at: string; sets?: number; variantId?: string; restSec?: number; repsMin?: number; repsMax?: number }
   | { type: 'adapt_plus_tard'; kind: AdaptKind; movementId: string; at: string }
   | { type: 'adapt_applique' | 'adapt_annule'; kind: AdaptKind; movementId: string; at: string; reason?: string };
 
 /** Changement proposé après séance puis accepté en un appui : une série en plus, une version plus dure, 30 s de repos en plus, ou une décharge de 10 %. */
-export type AdaptKind = 'serie' | 'variante' | 'repos' | 'decharge';
+/** Lot cohérence point 4 (06/11/2026) : fourchette de répétitions plus haute, ajout dans le temps libre de la séance (séance trop facile). */
+export type AdaptKind = 'serie' | 'variante' | 'repos' | 'decharge' | 'repetitions' | 'exercice';
 
 export interface EquipmentProfile extends SyncFields {
   preset: EquipmentPreset;
@@ -350,6 +351,8 @@ export interface WorkoutSession extends SyncFields {
   calibDecided?: number[];
   /** Baisses de charge d’étalonnage de la séance (index d’exercice, une entrée par baisse ; 2 au plus par exercice). */
   calibDrops?: number[];
+  calibClean?: number[];
+  calibRaises?: number[];
   /** Bilan calculé à la fin (recalculable à partir des séries) ; absent si séance abandonnée ou arrêtée par un symptôme. */
   summary?: Record<string, unknown> | null;
   // Ajoutés par « séance manquée » (SM-D1, SM-D2) : peuvent manquer dans une ancienne sauvegarde.

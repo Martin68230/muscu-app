@@ -44,6 +44,8 @@ function toPatch(state: EngineState, day: ProgramDay, now: number): Partial<NewR
     echelonSwitches: Object.fromEntries(Object.entries(state.echelonSwitches).map(([k, v]) => [k, { ...v }])),
     calibDecided: [...state.calibDecided],
     calibDrops: [...(state.calibDrops ?? [])],
+    calibClean: [...(state.calibClean ?? [])],
+    calibRaises: [...(state.calibRaises ?? [])],
   };
 }
 
@@ -69,6 +71,8 @@ function stateFromRow(row: WorkoutSession, day: ProgramDay, workSetsDone: number
     echelonSwitches: Object.fromEntries(Object.entries(row.echelonSwitches ?? {}).map(([k, v]) => [Number(k), { ...v }])),
     calibDecided: [...(row.calibDecided ?? [])],
     calibDrops: [...(row.calibDrops ?? [])],
+    calibClean: [...(row.calibClean ?? [])],
+    calibRaises: [...(row.calibRaises ?? [])],
   };
 }
 

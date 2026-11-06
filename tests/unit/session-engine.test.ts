@@ -185,7 +185,10 @@ describe('étalonnage série par série (generateur-v1.md §5.2)', () => {
   const d = day([ex({ variantId: 'a', sets: 3, repsMin: 10, repsMax: 12, rirTarget: 3, startLoadKg: 6 })]);
 
   it('réserve haute et haut de fourchette : propose le poids supérieur pour la série suivante', () => {
-    const r = completeSet(d, startSession(d, T0), { reps: 12, loadKg: 6, rir: 4 }, cal, T0);
+    // Décision de l'utilisateur du 06/11/2026 : 2 séries propres consécutives avant la 1re hausse.
+    const r0 = completeSet(d, startSession(d, T0), { reps: 12, loadKg: 6, rir: 4 }, cal, T0);
+    expect(r0.suggestion).toMatchObject({ action: 'garder', loadKg: 6 });
+    const r = completeSet(d, r0.state, { reps: 12, loadKg: 6, rir: 4 }, cal, T0 + 1000);
     expect(r.suggestion).toMatchObject({ action: 'hausse', loadKg: 8 });
     expect(currentView(d, r.state).loadKg).toBe(8);
   });

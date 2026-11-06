@@ -19,7 +19,7 @@ afterEach(cleanup);
 
 describe('MuscleMapCard', () => {
   it('au toucher d\'une zone (clic ou Entrée) : nom de la zone et ses points dans le panneau sous la carte, zone entourée', () => {
-    const m = sessionMap(setsOfExercises(PUSH), byId, 3);
+    const m = sessionMap(setsOfExercises(PUSH), byId);
     const { container } = render(<MuscleMapCard id="t" title="Muscles de cette séance" statuses={m.statuses} points={m.points} period="dans cette séance" />);
     expect(screen.getByText(/Touche une zone pour voir son nom et ses points/)).toBeTruthy();
     const pec = container.querySelector('path[data-zone="pectoraux_milieu_bas"]')!;
@@ -30,7 +30,7 @@ describe('MuscleMapCard', () => {
     fireEvent.keyDown(pec, { key: 'Enter' });
     const panel = container.querySelector('.mm-panel')!;
     expect(panel.getAttribute('role')).toBe('status');
-    expect(panel.textContent).toMatch(/Pectoraux \(milieu et bas\) : bien travaillée, 4 points dans cette séance\./);
+    expect(panel.textContent).toMatch(/Pectoraux \(milieu et bas\) : travaillée en partie, 4 points dans cette séance\./);
     expect(pec.getAttribute('class')).toContain('mm-sel');
     fireEvent.click(container.querySelector('path[data-zone="mollets_soleaire"]')!);
     expect(panel.textContent).toMatch(/: peu ou pas travaillée, 0 points dans cette séance/);

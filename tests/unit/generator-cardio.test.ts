@@ -163,8 +163,10 @@ describe('Cardio secondaire : bloc court après la musculation (§3.4, goal-reso
     expect(msgIds(p)).not.toContain('T0');
   });
 
-  it('perte de gras garde la musculation (famille muscle) ; le bloc s\'ajoute à 60 min', () => {
-    const p = ok(run({ days: 3, dur: 60 }, ['perte_gras', 'cardio']));
+  // Lot cohérence 3 (06/11/2026) : cardio « en plus » en dernier, sur le temps qui reste ; à 60 min, la musculation prend le temps
+  // (ordre de remplissage de l'utilisateur) ; en « illimité » (cible 60, plafond 75), le bloc s'ajoute.
+  it('perte de gras garde la musculation (famille muscle) ; le bloc s\'ajoute en « illimité »', () => {
+    const p = ok(run({ days: 3, dur: null }, ['perte_gras', 'cardio']));
     expect(p.family).toBe('muscle');
     expect(blocksOf(p).length).toBeGreaterThan(0);
   });

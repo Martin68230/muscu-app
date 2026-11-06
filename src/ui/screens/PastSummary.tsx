@@ -14,10 +14,9 @@ import { mainGoalKey } from '../../zones/main-goal';
  * Bilan d'une séance passée, en lecture seule (rien n'est recalculé dans la base). Mêmes règles que le bilan de fin de séance :
  * grossesse et post-partum = durée et séries seulement ; abandon et symptôme = aucun chiffre de performance.
  */
-export function PastSummary({ sessionId, pregnancy, sessionsPerWeek, onBack, onDeleted }: {
+export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
   sessionId: string;
   /** Séances par semaine du profil : échelle de la carte des muscles (3 par défaut). */
-  sessionsPerWeek?: number;
   pregnancy: PregnancyStatus | null | undefined;
   onBack: () => void;
   onDeleted: () => void;
@@ -49,7 +48,7 @@ export function PastSummary({ sessionId, pregnancy, sessionsPerWeek, onBack, onD
         const detail = ['premiere', 'complete', 'ecourtee', 'douleur', 'grossesse'].includes(summary.status);
         // Carte des muscles de cette date : séries faites de la séance, mêmes conditions que le détail ; calcul local, rien n'est stocké.
         const done = detail ? setsOfLogs(sets, row.id) : [];
-        const muscles = done.length && fichesForMap.length ? sessionMap(done, fichesForMap, sessionsPerWeek, await mainGoalKey()) : null;
+        const muscles = done.length && fichesForMap.length ? sessionMap(done, fichesForMap, await mainGoalKey()) : null;
         setState({ row, text: summaryText(summary, { names, pregnancy }), sets, sessions, names, detail, muscles });
       } catch {
         setState('absent');

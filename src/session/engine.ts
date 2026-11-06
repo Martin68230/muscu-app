@@ -205,6 +205,10 @@ export interface EngineState {
   calibDecided: number[];
   /** adaptation-regles.md C1 [kine] : un index d’exercice par baisse de charge d’étalonnage faite dans la séance (2 au plus). */
   calibDrops?: number[];
+  /** Point 4 (06/11/2026) : un index d'exercice par série propre consécutive d'étalonnage (réserve >= 4 au haut de la fourchette) ; remis à zéro sinon. */
+  calibClean?: number[];
+  /** Point 4 : un index d'exercice par hausse d'étalonnage faite dans la séance (1 au plus). */
+  calibRaises?: number[];
 }
 
 export interface SetInput {
@@ -275,6 +279,8 @@ const clone = (s: EngineState): EngineState => ({
   echelonSwitches: { ...s.echelonSwitches },
   calibDecided: [...s.calibDecided],
   calibDrops: [...(s.calibDrops ?? [])],
+  calibClean: [...(s.calibClean ?? [])],
+  calibRaises: [...(s.calibRaises ?? [])],
 });
 
 function hasWarmup(day: ProgramDay): boolean {
@@ -434,6 +440,24 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
         next.loads[st.exercise] = entry.loadKg;
       } else if (calibrating && entry.rir !== null && entry.reps !== null && ex.unit !== 'sec') {
         const maxKg = rep?.maxKg ?? null;
+        // Point 4 (décision de l'utilisateur) : hausse seulement après 2 séries propres consécutives, et une seule hausse par séance.
+        const clean = !entry.pain && entry.rir >= CALIBRATION_JUMP.minRir && entry.reps >= ex.repsMax;
+        // Relecteur 06/11 : le compte est par SÉRIE ; à un bras ou une jambe, la série = gauche puis droite, les deux propres. Le 1er côté
+        // propre est noté en attente (-(index + 1)) ; un côté non propre remet tout à zéro ; aucune hausse entre les deux côtés.
+        const pending = -(st.exercise + 1);
+        const lastSide = !isPerSide(ex) || st.side === 'droite';
+        const prev = state.calibClean ?? [];
+        const reset = (next.calibClean ?? []).filter((x) => x !== st.exercise && x !== pending);
+        let streak = 0;
+        if (!clean) next.calibClean = reset;
+        else if (!lastSide) next.calibClean = [...reset, ...prev.filter((x) => x === st.exercise), pending];
+        else if (isPerSide(ex) && !prev.includes(pending)) next.calibClean = reset;
+        else {
+          streak = prev.filter((x) => x === st.exercise).length + 1;
+          next.calibClean = [...reset, ...prev.filter((x) => x === st.exercise), st.exercise];
+        }
+        const raisesDone = (state.calibRaises ?? []).filter((x) => x === st.exercise).length;
+        const raiseLocked = streak < CALIBRATION_JUMP.cleanSetsToRaise || raisesDone >= CALIBRATION_JUMP.maxRaisesPerSession;
         const loads = ctx.availableLoadsKg(ex, entry.loadKg);
         suggestion = nextCalibrationStep({
           rir: entry.rir,
@@ -441,7 +465,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
           repsMin: ex.repsMin,
           repsMax: ex.repsMax,
           rirTarget: ex.rirTarget,
-          capped: capped || !!rep?.noRaise || !!ctx.raiseFrozen?.(ex),
+          capped: capped || !!rep?.noRaise || !!ctx.raiseFrozen?.(ex) || raiseLocked,
           // Décision utilisateur 05/11 (PROVISOIRE) : plafond du saut entre deux séries et série propre exigée.
           maxJumpRatio: CALIBRATION_JUMP.heavyTechnicalFiches.includes(ex.movementId) ? CALIBRATION_JUMP.heavyTechnicalRatio : CALIBRATION_JUMP.otherRatio,
           minRirToRaise: CALIBRATION_JUMP.minRir,
@@ -452,6 +476,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
           availableEchelons: ctx.availableEchelons?.(ex),
         });
         if (maxKg !== null && suggestion.loadKg !== null && suggestion.loadKg > maxKg) suggestion = { ...suggestion, action: 'baisse', loadKg: maxKg };
+        if (suggestion.action === 'hausse') next.calibRaises = [...(next.calibRaises ?? []), st.exercise];
         // adaptation-regles.md C1 [kine] : au plus MAX_CALIB_DROPS paliers de baisse dans une même séance sur un exercice ; ensuite on garde
         // la charge et l'écran propose une version plus facile ou d'arrêter là (la baisse reste un choix de la personne).
         if (suggestion.action === 'baisse') {
