@@ -338,7 +338,7 @@ Répartition : corps_entier, 3 séance(s) de force, 1 séance(s) dédiée(s) de 
   5. Développé épaules alterné à l'élastique (Assis sur une chaise) : 2 x 6-10, repos 90 s, RIR 3, étalonnage
   6. Tirage vertical à un bras, à l'élastique (Debout, l'autre main tient l'élastique en haut) : 2 x 6-10, repos 90 s, RIR 3, étalonnage
   7. Gainage en creux (Genoux pliés) : 3 x 30 s, repos 60 s, RIR 3, étalonnage
-  8. Relevé des pointes de pieds (devant de la jambe) (Assis, talons au sol) : 2 x 12-15, repos 60 s, RIR 3, étalonnage, charge maintenue
+  8. Adduction couchée sur le côté (Jambe du dessus fléchie devant) : 2 x 12-15, repos 60 s, RIR 3, étalonnage, charge maintenue
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -377,11 +377,11 @@ Répartition : corps_entier, 3 séance(s) de force, 1 séance(s) dédiée(s) de 
 
 ### Zones musculaires (semaine type, points = séries de travail ; seuils de l'objectif « sport »)
 
-- Rouge (repère atteint) : pectoraux (milieu et bas) 8,5 ; épaules (avant) 13 ; épaules (arrière) 7 ; dentelé antérieur 6,5 ; grand dorsal 10 ; haut du dos : trapèzes moyens et rhomboïdes 14,38 ; triceps (chefs latéral et médial) 11 ; avant-bras 5 ; abdominaux (grand droit) 7 ; obliques 8,5 ; fessiers (grand fessier) 17 ; quadriceps (vastes) 8 ; ischio-jambiers 10 ; mollets (jumeaux) 3,5
-- Orange : pectoraux (haut) 5 ; trapèzes (haut) 4,25 ; trapèzes (bas) 3 ; biceps 5 ; triceps (long chef) 5,5 ; abdominaux profonds (transverse) 1,5 ; lombaires (érecteurs du rachis) 4 ; fessiers (moyen fessier) 4,5 ; abducteurs (côté de la hanche) 2 ; fléchisseurs de hanche 1,5 ; quadriceps (droit fémoral) 4 ; mollets (soléaire) 1,75 ; tibiaux (devant du tibia) 2 ; péroniers (côté de la jambe) 2
-- Gris (à corriger) : épaules (côté) 2,5 ; coiffe des rotateurs 1 ; carré des lombes 0
-- Emplacement correctif (petites zones, fin de séance) : Relevé des pointes de pieds (devant de la jambe) (A, 2 séries) ; Renforcement de cheville à l'élastique (B, 2 séries) ; Abduction couchée sur le côté (C, 2 séries)
-- Zones sans emplacement (grises, aucune fiche correctif compatible avec ce profil) : adducteurs (intérieur des cuisses) 2,5
+- Rouge (repère atteint) : pectoraux (milieu et bas) 8,5 ; épaules (avant) 13 ; épaules (arrière) 7 ; dentelé antérieur 6,5 ; grand dorsal 10 ; haut du dos : trapèzes moyens et rhomboïdes 14,38 ; triceps (chefs latéral et médial) 11 ; avant-bras 5 ; abdominaux (grand droit) 8 ; obliques 8,5 ; fessiers (grand fessier) 17 ; quadriceps (vastes) 9 ; ischio-jambiers 10 ; mollets (jumeaux) 3,5
+- Orange : pectoraux (haut) 5 ; trapèzes (haut) 4,25 ; trapèzes (bas) 3 ; biceps 5 ; triceps (long chef) 5,5 ; abdominaux profonds (transverse) 1,5 ; lombaires (érecteurs du rachis) 4 ; fessiers (moyen fessier) 4,5 ; abducteurs (côté de la hanche) 2 ; adducteurs (intérieur des cuisses) 4,5 ; fléchisseurs de hanche 1,5 ; quadriceps (droit fémoral) 4,5 ; mollets (soléaire) 1,75 ; péroniers (côté de la jambe) 2
+- Gris (à corriger) : épaules (côté) 2,5 ; coiffe des rotateurs 1 ; carré des lombes 0 ; tibiaux (devant du tibia) 0
+- Emplacement correctif (petites zones, fin de séance) : Adduction couchée sur le côté (A, 2 séries) ; Renforcement de cheville à l'élastique (B, 2 séries) ; Abduction couchée sur le côté (C, 2 séries)
+- Zones sans emplacement (grises, aucune fiche correctif compatible avec ce profil) : aucune
 - Hors contrôle (aucune fiche possible avec ce matériel / ce niveau, ou zone d'une blessure) : cou (pas de fiche, 0)
 
 Variété : pénurie signalée pour tirage_h, tirage_v (penurieVariete).
@@ -400,7 +400,7 @@ Variété : pénurie signalée pour tirage_h, tirage_v (penurieVariete).
 - [T1u] Douleur ou pression dans la poitrine qui ne passe pas quand tu te reposes, perte de connaissance, difficulté à respirer au repos. Urgence : appelle le 15 (SAMU) ou le 112.
 - [V-MSG-CARDIO-OMS] Repère de l'OMS : 150 à 300 min d'effort modéré par semaine (ou 75 à 150 min d'effort soutenu). Ton programme en compte environ 30 min.
 - [V-MSG-SPORT-MATCH] Évite de faire ta séance de cardio la veille d’un match, et le lendemain d’un match en cas de courbatures.
-- [V-MSG-ZONES-GRIS] Presque pas travaillé cette semaine : épaules (côté), coiffe des rotateurs et carré des lombes. Le programme n'a pas pu faire plus sans dépasser la durée ou les limites de sécurité.
+- [V-MSG-ZONES-GRIS] Presque pas travaillé cette semaine : épaules (côté), coiffe des rotateurs, carré des lombes et tibiaux (devant du tibia). Le programme n'a pas pu faire plus sans dépasser la durée ou les limites de sécurité.
 
 ### Explication du générateur
 - 3 séances par semaine en corps entier : chaque grand muscle travaille 3 fois.
@@ -425,10 +425,10 @@ Répartition : corps_entier, 3 séance(s) de force, 0 séance(s) dédiée(s) de 
   2. Pompe (Au mur) : 2 x 12-20, repos 60 s, RIR 3, étalonnage
   3. Écartement d'une serviette bras tendus (Debout, serviette tendue devant la poitrine) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   4. Bonjour au poids du corps (Bras croisés sur la poitrine) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
-  5. Tirage vertical à la serviette (bras en l'air) (Debout) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
-  6. Marche latérale (Genoux légèrement fléchis) : 2 x 10-15, repos 60 s, RIR 3, étalonnage
-  7. Gainage en creux (Genoux pliés) : 2 x 20 s, repos 60 s, RIR 3, étalonnage
-  8. Lever de bras en Y, T et W (Sans charge, allongé sur le ventre) : 2 x 12-15, repos 60 s, RIR 3, étalonnage, charge maintenue
+  5. Poussée verticale contre un mur (Mains à hauteur du front) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
+  6. Tirage vertical à la serviette (bras en l'air) (Debout) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
+  7. Marche latérale (Genoux légèrement fléchis) : 2 x 10-15, repos 60 s, RIR 3, étalonnage
+  8. Gainage en creux (Genoux pliés) : 2 x 20 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -441,10 +441,10 @@ Répartition : corps_entier, 3 séance(s) de force, 0 séance(s) dédiée(s) de 
   2. Pompe (Au mur) : 2 x 12-20, repos 60 s, RIR 3, étalonnage
   3. Tirage vertical au sol, sur le ventre (Front posé sur une serviette pliée, mains glissant sur le sol) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
   4. Charnière de hanche, dos au mur (Fesses vers le mur, mains sur les cuisses) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
-  5. Oiseau un bras, main appuyée sur une chaise (Sans charge, une main sur une chaise) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
-  6. Squat au poids du corps (Libre) : 2 x 8-15, repos 90 s, RIR 3, étalonnage ; semaines 2 et 4 : Squat sumo
+  5. Poussée verticale contre un mur (Mains à hauteur du front) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
+  6. Oiseau un bras, main appuyée sur une chaise (Sans charge, une main sur une chaise) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   7. Quadrupédie bras-jambe opposés (Au sol) : 2 x 6-8 par côté, repos 60 s, RIR 3, étalonnage
-  8. Montée sur les pointes, assis (Assis sur une chaise, sans charge) : 2 x 10-15, repos 60 s, RIR 3, étalonnage, charge maintenue
+  8. Insecte sur le dos, jambes seules (Talon qui touche le sol) : 2 x 6-8 par côté, repos 60 s, RIR 3, étalonnage, charge maintenue
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
@@ -457,33 +457,32 @@ Répartition : corps_entier, 3 séance(s) de force, 0 séance(s) dédiée(s) de 
   2. Pompe (Au mur) : 2 x 12-20, repos 60 s, RIR 3, étalonnage
   3. Oiseau (écartement des bras vers l'arrière) (Sans charge, assis penché) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
   4. Curl des ischios en glissant sur une serviette (Deux jambes, talons sur la serviette) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
-  5. Tirage en W allongé sur le ventre (Au sol) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
-  6. Fente avant (Poids du corps, retour au point de départ) : 2 x 8-15, repos 90 s, RIR 3, étalonnage ; semaines 2 et 4 : Squat fendu
-  7. Planche (Sur les genoux) : 2 x 20 s, repos 60 s, RIR 3, étalonnage
-  8. Insecte sur le dos, jambes seules (Talon qui touche le sol) : 2 x 6-8 par côté, repos 60 s, RIR 3, étalonnage, charge maintenue
+  5. Poussée verticale contre un mur (Mains à hauteur du front) : 2 x 8-15, repos 90 s, RIR 3, étalonnage
+  6. Tirage en W allongé sur le ventre (Au sol) : 2 x 12-15, repos 60 s, RIR 3, étalonnage
+  7. Fente avant (Poids du corps, retour au point de départ) : 2 x 8-15, repos 90 s, RIR 3, étalonnage ; semaines 2 et 4 : Squat fendu
+  8. Planche (Sur les genoux) : 2 x 20 s, repos 60 s, RIR 3, étalonnage
 - Paires de superset : aucune
 - Bloc de cardio : aucun
 - Retour au calme : Étirement des fessiers en « 4 » (Assis, cheville sur le genou) (facultatif, non compté dans la durée)
 
 ### Zones musculaires (semaine type, points = séries de travail ; seuils de l'objectif « muscle »)
 
-- Rouge (repère atteint) : épaules (arrière) 11 ; haut du dos : trapèzes moyens et rhomboïdes 16 ; abdominaux profonds (transverse) 5 ; fessiers (grand fessier) 18 ; quadriceps (vastes) 11 ; ischio-jambiers 11
-- Orange : pectoraux (haut) 3 ; pectoraux (milieu et bas) 6 ; épaules (avant) 5 ; coiffe des rotateurs 2 ; dentelé antérieur 3 ; grand dorsal 5 ; trapèzes (bas) 4 ; triceps (chefs latéral et médial) 4 ; abdominaux (grand droit) 9 ; obliques 8 ; lombaires (érecteurs du rachis) 7 ; fessiers (moyen fessier) 4 ; abducteurs (côté de la hanche) 2 ; adducteurs (intérieur des cuisses) 4 ; fléchisseurs de hanche 2 ; quadriceps (droit fémoral) 5,5 ; mollets (jumeaux) 2 ; mollets (soléaire) 3
-- Gris (à corriger) : épaules (côté) 0 ; triceps (long chef) 2 ; tibiaux (devant du tibia) 0
-- Emplacement correctif (petites zones, fin de séance) : Lever de bras en Y, T et W (A, 2 séries) ; Montée sur les pointes, assis (B, 2 séries) ; Insecte sur le dos, jambes seules (C, 2 séries)
-- Zones sans emplacement (grises, aucune fiche correctif compatible avec ce profil) : carré des lombes 0 ; péroniers (côté de la jambe) 0
-- Hors contrôle (aucune fiche possible avec ce matériel / ce niveau, ou zone d'une blessure) : trapèzes (haut) (pas de fiche, 1,25) ; cou (pas de fiche, 0) ; biceps (pas de fiche, 0) ; avant-bras (pas de fiche, 0)
+- Rouge (repère atteint) : épaules (avant) 11 ; dentelé antérieur 6 ; haut du dos : trapèzes moyens et rhomboïdes 16 ; triceps (chefs latéral et médial) 10 ; abdominaux profonds (transverse) 5 ; fessiers (grand fessier) 17 ; ischio-jambiers 10
+- Orange : pectoraux (haut) 4,5 ; pectoraux (milieu et bas) 9 ; épaules (arrière) 9 ; grand dorsal 5 ; trapèzes (bas) 4 ; triceps (long chef) 5 ; abdominaux (grand droit) 9 ; obliques 8 ; lombaires (érecteurs du rachis) 6 ; fessiers (moyen fessier) 4 ; abducteurs (côté de la hanche) 2 ; adducteurs (intérieur des cuisses) 3 ; fléchisseurs de hanche 2 ; quadriceps (vastes) 9 ; quadriceps (droit fémoral) 4,5 ; mollets (jumeaux) 2
+- Gris (à corriger) : épaules (côté) 0 ; biceps 0 ; avant-bras 0 ; mollets (soléaire) 1 ; tibiaux (devant du tibia) 0
+- Emplacement correctif (petites zones, fin de séance) : Insecte sur le dos, jambes seules (B, 2 séries)
+- Zones sans emplacement (grises, aucune fiche correctif compatible avec ce profil) : coiffe des rotateurs 1 ; carré des lombes 0 ; péroniers (côté de la jambe) 0
+- Hors contrôle (aucune fiche possible avec ce matériel / ce niveau, ou zone d'une blessure) : trapèzes (haut) (pas de fiche, 2,25) ; cou (pas de fiche, 0)
 
-Variété : pénurie signalée pour poussee_h, tirage_v (penurieVariete).
+Variété : pénurie signalée pour poussee_h, poussee_v, tirage_v (penurieVariete).
 
 ### Messages affichés
-- [V-MSG-ZONES-GRIS] Presque pas travaillé cette semaine : épaules (côté), triceps (long chef) et tibiaux (devant du tibia). Le programme n'a pas pu faire plus sans dépasser la durée ou les limites de sécurité.
+- [V-MSG-ZONES-GRIS] Presque pas travaillé cette semaine : épaules (côté), biceps, avant-bras, mollets (soléaire) et tibiaux (devant du tibia). Le programme n'a pas pu faire plus sans dépasser la durée ou les limites de sécurité.
 - [V-MSG-SUBST] (séance A) Avec ton matériel, pas de vrai tirage horizontal : Écartement d'une serviette bras tendus le remplace en partie.
 - [V-MSG-PLAN] (séance B) Pas de poussée vers le haut possible ici : Pompe le remplace.
 - [V-MSG-SUBST] (séance B) Avec ton matériel, pas de vrai tirage vertical : Tirage vertical au sol, sur le ventre le remplace en partie.
 - [V-MSG-SUBST] (séance C) Avec ton matériel, pas de vrai tirage horizontal : Oiseau (écartement des bras vers l'arrière) le remplace en partie.
 - [V-MSG-ACHAT] L'achat le plus utile pour toi : un élastique avec un ancrage de porte. Il permet 9 exercice(s) de plus.
-- [V-MSG-EPAULES] Avec ton matériel, pas de poussée vers le haut : tes épaules sont peu travaillées.
 
 ### Explication du générateur
 - 3 séances par semaine en corps entier : chaque grand muscle travaille 3 fois.
@@ -673,14 +672,14 @@ Variété : pénurie signalée pour cheville_mollet, tirage_v (penurieVariete).
 | 2. Intermédiaire, force, 4 jours, salle (haut / bas) | 26 | 25 | 9 | 0 |
 | 3. Intermédiaire, perte de gras + cardio en objectif seconda | 19 | 19 | 8 | 0 |
 | 4. Intermédiaire, volley (objectif sport), 3 jours, maison ( | 24 | 22 | 12 | 1 |
-| 5. Débutant, sans matériel, 3 jours (poids du corps) | 24 | 22 | 6 | 0 |
+| 5. Débutant, sans matériel, 3 jours (poids du corps) | 24 | 20 | 6 | 0 |
 | 6. Avancé, 5 jours, salle | 26 | 25 | 9 | 0 |
 
 - 1. Débutant, prise de muscle, 3 jours, m : chevauchements S1 A/B : 0 commun(s) sur 8 ; S1 A/C : 1 commun(s) sur 8 ; S1 B/C : 1 commun(s) sur 8 ; S2 A/B : 0 commun(s) sur 8 ; S2 A/C : 1 commun(s) sur 8 ; S2 B/C : 1 commun(s) sur 8 ; exercices répétés (semaine 1) : tirage-vertical-un-bras-elastique x2, developpe-epaules-halteres x2 ; accessoires qui changent en semaine 2 : 1
 - 2. Intermédiaire, force, 4 jours, salle  : chevauchements S1 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S1 HAUT-A/HAUT-B : 1 commun(s) sur 6 ; S1 HAUT-A/BAS-B : 0 commun(s) sur 7 ; S1 BAS-A/HAUT-B : 0 commun(s) sur 6 ; S1 BAS-A/BAS-B : 0 commun(s) sur 7 ; S1 HAUT-B/BAS-B : 0 commun(s) sur 7 ; S2 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S2 HAUT-A/HAUT-B : 1 commun(s) sur 6 ; S2 HAUT-A/BAS-B : 0 commun(s) sur 7 ; S2 BAS-A/HAUT-B : 0 commun(s) sur 6 ; S2 BAS-A/BAS-B : 0 commun(s) sur 7 ; S2 HAUT-B/BAS-B : 0 commun(s) sur 7 ; exercices répétés (semaine 1) : tirage-vertical-un-bras-elastique x2 ; accessoires qui changent en semaine 2 : 5
 - 3. Intermédiaire, perte de gras + cardio : chevauchements S1 A/B : 0 commun(s) sur 7 ; S1 A/C : 0 commun(s) sur 6 ; S1 B/C : 0 commun(s) sur 6 ; S2 A/B : 0 commun(s) sur 7 ; S2 A/C : 0 commun(s) sur 6 ; S2 B/C : 0 commun(s) sur 6 ; exercices répétés (semaine 1) : aucun ; accessoires qui changent en semaine 2 : 1
 - 4. Intermédiaire, volley (objectif sport : chevauchements S1 A/B : 0 commun(s) sur 8 ; S1 A/C : 0 commun(s) sur 8 ; S1 B/C : 2 commun(s) sur 8 ; S2 A/B : 0 commun(s) sur 8 ; S2 A/C : 0 commun(s) sur 8 ; S2 B/C : 2 commun(s) sur 8 ; exercices répétés (semaine 1) : tirage-vertical-elastique-haut x2, rowing-elastique x2 ; accessoires qui changent en semaine 2 : 0
-- 5. Débutant, sans matériel, 3 jours (poi : chevauchements S1 A/B : 1 commun(s) sur 8 ; S1 A/C : 1 commun(s) sur 8 ; S1 B/C : 1 commun(s) sur 8 ; S2 A/B : 1 commun(s) sur 8 ; S2 A/C : 1 commun(s) sur 8 ; S2 B/C : 1 commun(s) sur 8 ; exercices répétés (semaine 1) : pompe x3 ; accessoires qui changent en semaine 2 : 2
+- 5. Débutant, sans matériel, 3 jours (poi : chevauchements S1 A/B : 2 commun(s) sur 8 ; S1 A/C : 2 commun(s) sur 8 ; S1 B/C : 2 commun(s) sur 8 ; S2 A/B : 2 commun(s) sur 8 ; S2 A/C : 2 commun(s) sur 8 ; S2 B/C : 2 commun(s) sur 8 ; exercices répétés (semaine 1) : pompe x3, poussee-verticale-mur x3 ; accessoires qui changent en semaine 2 : 1
 - 6. Avancé, 5 jours, salle : chevauchements S1 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S1 HAUT-A/PUSH-B : 0 commun(s) sur 4 ; S1 HAUT-A/PULL-B : 1 commun(s) sur 5 ; S1 HAUT-A/LEGS-B : 0 commun(s) sur 5 ; S1 BAS-A/PUSH-B : 0 commun(s) sur 4 ; S1 BAS-A/PULL-B : 0 commun(s) sur 5 ; S1 BAS-A/LEGS-B : 0 commun(s) sur 5 ; S1 PUSH-B/PULL-B : 0 commun(s) sur 5 ; S1 PUSH-B/LEGS-B : 0 commun(s) sur 5 ; S1 PULL-B/LEGS-B : 0 commun(s) sur 5 ; S2 HAUT-A/BAS-A : 0 commun(s) sur 6 ; S2 HAUT-A/PUSH-B : 0 commun(s) sur 4 ; S2 HAUT-A/PULL-B : 1 commun(s) sur 5 ; S2 HAUT-A/LEGS-B : 0 commun(s) sur 5 ; S2 BAS-A/PUSH-B : 0 commun(s) sur 4 ; S2 BAS-A/PULL-B : 0 commun(s) sur 5 ; S2 BAS-A/LEGS-B : 0 commun(s) sur 5 ; S2 PUSH-B/PULL-B : 0 commun(s) sur 5 ; S2 PUSH-B/LEGS-B : 0 commun(s) sur 5 ; S2 PULL-B/LEGS-B : 0 commun(s) sur 5 ; exercices répétés (semaine 1) : traction-barre x2 ; accessoires qui changent en semaine 2 : 2
 
 ## Zones musculaires par profil (semaine type)
@@ -690,8 +689,8 @@ Variété : pénurie signalée pour cheville_mollet, tirage_v (penurieVariete).
 | 1. Débutant, prise de muscle, 3 jours, maison (haltères + él | 6 | 21 | mollets (soléaire), tibiaux (devant du tibia), péroniers (côté de la jambe) | Rotation externe de l'épaule (C, 2 séries) | carré des lombes, fléchisseurs de hanche | 1 |
 | 2. Intermédiaire, force, 4 jours, salle (haut / bas) | 27 | 3 | coiffe des rotateurs, carré des lombes | Abduction couchée sur le côté (HAUT-A, 2 séries), Équilibre sur une jambe (BAS-B, 2 séries) | 0 | 1 |
 | 3. Intermédiaire, perte de gras + cardio en objectif seconda | 16 | 10 | coiffe des rotateurs, trapèzes (bas), carré des lombes, abducteurs (côté de la hanche), mollets (soléaire), tibiaux (devant du tibia) | Renforcement de cheville à l'élastique (B, 2 séries) | 0 | 1 |
-| 4. Intermédiaire, volley (objectif sport), 3 jours, maison ( | 14 | 14 | épaules (côté), coiffe des rotateurs, carré des lombes | Relevé des pointes de pieds (devant de la jambe) (A, 2 séries), Renforcement de cheville à l'élastique (B, 2 séries), Abduction couchée sur le côté (C, 2 séries) | adducteurs (intérieur des cuisses) | 1 |
-| 5. Débutant, sans matériel, 3 jours (poids du corps) | 6 | 18 | épaules (côté), triceps (long chef), tibiaux (devant du tibia) | Lever de bras en Y, T et W (A, 2 séries), Montée sur les pointes, assis (B, 2 séries), Insecte sur le dos, jambes seules (C, 2 séries) | carré des lombes, péroniers (côté de la jambe) | 4 |
+| 4. Intermédiaire, volley (objectif sport), 3 jours, maison ( | 14 | 14 | épaules (côté), coiffe des rotateurs, carré des lombes, tibiaux (devant du tibia) | Adduction couchée sur le côté (A, 2 séries), Renforcement de cheville à l'élastique (B, 2 séries), Abduction couchée sur le côté (C, 2 séries) | 0 | 1 |
+| 5. Débutant, sans matériel, 3 jours (poids du corps) | 7 | 16 | épaules (côté), biceps, avant-bras, mollets (soléaire), tibiaux (devant du tibia) | Insecte sur le dos, jambes seules (B, 2 séries) | coiffe des rotateurs, carré des lombes, péroniers (côté de la jambe) | 2 |
 | 6. Avancé, 5 jours, salle | 12 | 16 | coiffe des rotateurs, trapèzes (haut), abducteurs (côté de la hanche) | Planche latérale, jambe levée (PUSH-B, 2 séries), Insecte sur le dos, jambes seules (PULL-B, 2 séries) | péroniers (côté de la jambe) | 1 |
 
 ## Analyse rédigée (lue par tools/demo-programmes.mjs)

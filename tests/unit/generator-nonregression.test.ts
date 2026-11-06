@@ -88,6 +88,12 @@ import { mk, type MkOpts } from './generator-helpers';
 // fléchisseurs de hanche 132, rotation externe 116, soléaire 85, Y-T-W 81, planche latérale jambe levée 65, abduction couchée 58, relevé
 // tibial 54, cheville à l'élastique 45, autres 4), 329 par le seul message V-MSG-ZONES-GRIS qui cite désormais les petites zones à fiche
 // correctif compatible restées grises ; aucun autre changement, aucune séance hors durée, débutant 1 correctif par séance au plus, autres 2.
+// Référence régénérée le 06/11/2026 pour le lot 13 (poussee-verticale-mur en substitut, couverture: substitut : jamais avant un développé d'épaules ;
+// rowing-serviette-resistee, descente-une-jambe-chaise, equilibre-sur-une-jambe-en-mouvement, adduction-couchee-cote ; adducteurs ajoutés à
+// CORRECTIF.ids) : avant (mêmes fiches sans les 5) = ancienne référence pour les 662 cas ; 287 cas changent (débutant 74, intermédiaire 119,
+// avancé 92, autres 2), 213 par une nouvelle fiche (poussée au mur 56, descente sur une jambe 143, rowing à la serviette 28 ; recoupements
+// possibles), 6 par l'adduction en correctif, le reste par effets de bord (échanges D34, V-MSG-EPAULES -72, V-MSG-PLANS -27, DUREE +3).
+// Aucun débutant ne reçoit la descente (intermédiaire minimum) ; en grossesse seule la poussée au mur apparaît (case « garder »).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

@@ -14,22 +14,22 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| reception-saut-petit-saut | Petit saut sur place, réception stabilisée | 1 | debutant | poids_du_corps | Sol plat, antidérapant, espace dégagé. |
-| reception-saut-marche | Descente d'une marche, réception stabilisée | 2 | debutant | poids_du_corps, marche_escalier | Première marche d'un escalier éclairé et dégagé, rampe à côté ; tu descends en avant d'un pas. |
-| reception-saut-une-jambe | Réception sur une jambe après un petit saut | 3 | intermediaire | poids_du_corps | Sol plat, antidérapant ; saut léger vers l'avant, réception sur une seule jambe. |
+| reception-saut-pas-stabilise | Grand pas en avant, pied posé et stable | 1 | debutant | poids_du_corps | Sol plat, antidérapant, espace dégagé ; aucun saut : tu fais un grand pas en avant et tu poses le pied. |
+| reception-saut-petit-saut | Petit saut sur place, réception stabilisée | 2 | intermediaire | poids_du_corps | Sol plat, antidérapant, espace dégagé. |
 
 ## Consignes
 1. Debout, pieds largeur de hanches, bras prêts devant toi.
-2. Fais le petit saut (ou descends de la marche) puis reçois-toi sur la plante des pieds, doucement.
+2. Version sans saut : fais un grand pas en avant (une main près d’un mur si tu n’es pas sûr de ton équilibre), pose le pied sur toute la plante et tiens-toi stable 2 secondes. Version avec petit saut : fais un petit saut puis reçois-toi sur la plante des pieds, doucement.
 3. Plie les genoux et les hanches pour amortir ; les genoux restent au-dessus des pieds, sans rentrer vers l'intérieur.
 4. Stabilise la position d'arrivée avant de bouger, puis redresse-toi.
 5. Recommence en visant une réception silencieuse.
-6. Variante « sur une jambe » : réception sur un seul pied, l'autre pied léger près de la cheville ; tu recommences ensuite sur l'autre jambe, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
+6. Version sans saut : alterne un pas avec chaque jambe. Version avec saut : reste toujours à deux pieds.
 
 ## Points d'attention
 - Qualité avant hauteur : une réception silencieuse et stable est le but.
 - Aucune hauteur ni distance n'est donnée ici (aucune valeur sourcée).
-- Pas de saut intensif la veille d'un match (sports.md, règle 5 : PROVISOIRE).
+- Aucun saut dans les 48 h qui précèdent un match (programmes-v3.md PV3-SPO-5, choix du kiné du 31/10/2026, NON SOURCÉ).
+- Le débutant ne fait que la version sans saut (échelon 1) : le petit saut est réservé à l'intermédiaire et à l'avancé (cardio-regles.md §5.2).
 - Chaussures qui tiennent bien le pied.
 
 ## Erreurs fréquentes
@@ -39,10 +39,10 @@ statut: utilisable
 
 ## Progression / régression
 - plus-facile : aucun
-- plus-dur : saut-vertical-demi-squat, saut-longueur-sur-place
+- plus-dur : squat-petit-saut
 
 ## Repères de dosage
-Aucun nombre de contacts sourcé. Pas de saut intensif la veille d'un match (sports.md, règle 5 : PROVISOIRE).
+Aucun nombre de contacts sourcé. Aucun saut dans les 48 h avant un match (NON SOURCÉ, choix du kiné).
 
 ## Sécurité et contre-indications
 Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
@@ -71,7 +71,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - cuisse-n2 : exercice retiré.
 - aine-n1 : exercice retiré dès la gêne légère (cardio-regles.md §5.1 (2) et précision de `kine` du 30/10/2026 : aucun saut dès la gêne légère) ; NON SOURCÉ.
 - aine-n2 : exercice retiré.
-- grossesse : aucun saut ni descente de marche : risque de chute et d'impact (G4, extrapolation : la HAS vise surtout le 2e et le 3e trimestre) ; remplacé par le squat assis-debout. Post-partum : G7, le schéma saut n'est pas proposé tant que le réglage est coché.
+- grossesse : aucun saut ni grand pas en avant : risque de chute et d'impact (G4, extrapolation : la HAS vise surtout le 2e et le 3e trimestre) ; remplacé par le squat assis-debout. Post-partum : G7, le schéma saut n'est pas proposé tant que le réglage est coché.
 - general : échelon le plus simple du schéma saut : pas de version plus douce dans la fiche. Conseil non codé : ne proposer le saut qu'après un squat sans gêne et jamais le jour d'un match ou fatigué (questions pour l'utilisateur).
 
 **Grossesse** : retirer: remplacant:squat-assis-debout
@@ -87,7 +87,6 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 
 **Objets du quotidien**
 - Sol antidérapant, plat, chaussures qui tiennent le pied, espace dégagé (R8).
-- Marche (échelon 2) : la première marche d'un escalier éclairé et dégagé, rampe à côté, chaussures aux pieds ; on descend d'un pas, on ne saute pas de la marche ; jamais une marche plus haute (R8, §7).
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
@@ -103,10 +102,10 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 | Le programme FIFA 11+ (échauffement de football) réduit les blessures de 39 % (rapport des taux 0,61) | Thorborg et al., Br J Sports Med 2017;51:562 https://bjsm.bmj.com/content/51/7/562, repris dans knowledge/sports.md | méta-analyse de 6 essais, joueurs amateurs et sub-élite ; résumé lu à la rédaction de sports.md, non rouvert | 2026-10-21 | OK pour le programme dans son ensemble. Que CET exercice (ou cette forme) en fasse partie : NON SOURCÉ (contenu détaillé du programme non lu) |
 | Échelons, niveaux, muscles et répartition principaux / secondaires | choix de coach (décision de format de l'utilisateur, 21/10/2026) | - | - | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U (niveaux de gêne, arrêt si douleur, pas de progression, signes d'arrêt, quand consulter, grossesse) | knowledge/regles-securite-communes.md (sources : HAS 2019 lombalgie et grossesse, NICE NG59, Smith 2017, Riebe 2015, Mottola 2019) | voir ce fichier | 2026-10-22 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE ; G : voir ce fichier |
+| Correction K-03 (variante de marche et variante sur une jambe retirées, échelon 1 sans saut ajouté, petit saut en échelon 2 intermédiaire) | programmes-v3.md §3.1 et K-03 (avis du kiné du 31/10/2026), appliquée le 2026-11-06 | avis d'expert | 2026-11-06 | NON SOURCÉ |
 | Tableau par zone, version plus douce et signes d'arrêt de cette fiche | choix de `kine` par extrapolation des règles communes ; aucune étude ne teste ces adaptations exercice par exercice | avis d'expert (extrapolation) | 2026-10-22 | NON SOURCÉ (extrapolation, à valider) |
 | Sauts et réceptions : retrait dès la gêne légère au genou, à la cheville ou au dos ; pas de saut sans prérequis (réception contrôlée d'abord) ; aucun saut en grossesse ni, tant que le réglage est coché, en post-partum | choix de `kine` par prudence ; HAS 2019 (post-partum : aucune activité à impact avant rééducation périnéale et avis médical ; grossesse : éviter les risques de chute) ; aucune étude lue sur le retrait au niveau 1 ni sur les prérequis | recommandation officielle (grossesse, post-partum) ; avis d'expert pour le reste | 2026-10-22 | grossesse et post-partum : PROVISOIRE (G4, G7) ; retrait dès le niveau 1 et prérequis : NON SOURCÉ |
 | Sol antidérapant, chaussures qui tiennent le pied, plafond et espace dégagés, voisins en dessous pour le bruit | raisonnement de `kine` ; aucune source lue | - | 2026-10-22 | NON SOURCÉ |
-| Marche d'escalier : la première seulement, éclairée et dégagée, rampe à portée, chaussures aux pieds | regles-securite-communes.md §7 (raisonnement mécanique de `kine`) ; aucune source lue | - | 2026-10-22 | NON SOURCÉ |
 | Zones cuisse (ischios) et aine (adducteurs) ajoutées par la décision D3 ; tendon d'Achille rangé sous cheville faute de zone dédiée | choix de conception de `kine` (les zones de l'app sont cou, épaule, coude, poignet, dos, hanche, genou, cheville, cuisse et aine depuis la décision D3 du 22/10/2026) | - | 2026-10-22 | NON SOURCÉ (conception) |
 | Gêne au dos de niveau 1-2 : adapter plutôt que tout retirer | HAS, Prise en charge du patient présentant une lombalgie commune, 2019 https://has-sante.fr/upload/docs/application/pdf/2019-04/fm_lombalgie_v2_2.pdf (rester actif, pas de repos au lit) ; NICE NG59 https://www.nice.org.uk/guidance/ng59 (exercice en première intention) | recommandations officielles, adultes avec lombalgie commune ; HAS : fiche mémo PDF lue en entier le 2026-10-21 ; NICE : résumés seulement | 2026-10-21 | PROVISOIRE (extrapolation : l'app ne sait pas de quel type de douleur il s'agit) |
 | Grossesse et post-partum, classement de cette fiche | HAS 2019 https://www.has-sante.fr/upload/docs/application/pdf/2019-07/app_329_ref_aps_grossesse_vf.pdf et fiche HAS 2022 https://www.has-sante.fr/upload/docs/application/pdf/2022-11/ap_fiche_grossesse.pdf ; Mottola 2019 https://csepguidelines.ca/?p=1037 | recommandations officielles et de consensus ; aucun essai par exercice | 2026-10-22 | principe : OK ; classement de cette fiche : PROVISOIRE (extrapolation de `kine`) |

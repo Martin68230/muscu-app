@@ -4,18 +4,18 @@ nom: Squat avec petit saut
 alias: [squat jump léger, small squat jump]
 schema: saut
 type: fonctionnel
-niveau_min: debutant
+niveau_min: intermediaire
 muscles_principaux: [quadriceps, fessiers]
 muscles_secondaires: [mollets, ischios, abdominaux]
 source_brouillon: []
 statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
-`echelon` : 1 = plus facile. L'échelon 1 est la version sans saut ; le saut arrive à l'échelon 2, réservé à l'intermédiaire et à l'avancé (cardio-regles.md §5.2 : le débutant n'a que la version douce). Échelons et niveaux : choix de coach, NON SOURCÉ.
+`echelon` : 1 = plus facile. L'échelon 1 est la version sans saut ; le saut arrive à l'échelon 2, réservé à l'intermédiaire et à l'avancé (cardio-regles.md §5.2 : le débutant n'a que le squat au poids du corps, jamais cette fiche). Échelons et niveaux : choix de coach, NON SOURCÉ.
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| squat-petit-saut-douce | Squat sans saut, montée rapide | 1 | debutant | poids_du_corps | Sol plat, antidérapant, espace dégagé autour de toi. |
+| squat-petit-saut-douce | Squat sans saut, montée rapide | 1 | intermediaire | poids_du_corps | Sol plat, antidérapant, espace dégagé autour de toi. |
 | squat-petit-saut-saut | Squat avec petit saut | 2 | intermediaire | poids_du_corps | Même installation, plafond dégagé, rien sur la trajectoire, chaussures de sport qui tiennent le pied. |
 
 ## Consignes
@@ -28,8 +28,8 @@ statut: utilisable
 
 ## Points d'attention
 - Le saut est petit : l'objectif n'est pas de sauter haut mais de rester silencieux et stable à la réception.
-- Le débutant ne fait que la version douce (montée rapide sans décoller) ; ce choix est celui de cardio-regles.md §5.2 (précision de `kine` du 30/10/2026), NON SOURCÉ.
-- Clarification R-PLIO condition 1 : le débutant n'a que la version douce (échelon 1, squat sans saut) ; le squat avec petit saut (échelon 2) est de niveau intermédiaire minimum.
+- Cette fiche est de niveau intermédiaire minimum : le débutant n'a que le squat au poids du corps (cardio-regles.md §5.2 ; K-03, avis du kiné du 31/10/2026), NON SOURCÉ.
+- Clarification R-PLIO condition 1 : la version sans saut (échelon 1) et le petit saut (échelon 2) sont de niveau intermédiaire minimum.
 - Les sauts passent toujours en premier dans la séance, jambes fraîches, jamais après des séries de jambes (cardio-regles.md §5.2bis, règle R-PLIO) ; l'app l'applique, mais garde-le en tête si tu composes ta séance.
 - Pas de charge, pas d'élastique, pas de chaise ni de box sous les pieds : seulement le sol.
 - Si tes jambes sont lourdes ou courbaturées, reste sur la version douce.
@@ -64,7 +64,7 @@ Rédigé par `coach` le 2026-10-31, complété et corrigé par `kine` le 2026-10
 | Aine | retirer: remplacant:squat-poids-du-corps | retirer | retirer |
 
 **Notes**
-- general : niveau par variante : la version douce (échelon 1) est de niveau débutant, le saut (échelon 2) est de niveau intermédiaire ; niveau_min de la fiche = celui de l'échelon 1.
+- general : niveau par variante : les deux échelons sont de niveau intermédiaire (correction K-03 du 2026-11-06) ; niveau_min de la fiche = celui de l'échelon 1.
 - general : aucun saut et aucune course dès la gêne légère à ces six zones, à tout niveau (cardio-regles.md §5.1 (2), avis `kine` D30). La fiche entière est retirée, même la version douce (squat sans saut) : ce squat est le même geste que le squat au poids du corps, qui a ses propres adaptations par zone. Une personne qui a une gêne déclarée ne passe donc pas par cette fiche ; le débutant sans gêne, lui, ne voit que la version douce (échelon 1).
 - genou-n1 : le squat au poids du corps remplace la fiche (sa case est `garder` à ce niveau).
 - cheville-n1 : sans remplaçant, car le squat au poids du corps est lui-même adapté pour la cheville dès ce niveau (règle du remplaçant adapté, regles-securite-communes.md §0) ; le générateur choisit un autre exercice.

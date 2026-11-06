@@ -1054,6 +1054,7 @@ export const CORRECTIF = {
     flechisseurs_hanche: ['dead-bug-jambes-seules', 'dead-bug', 'gainage-creux'],
     peroniers: ['cheville-elastique', 'marche-pointes-talons', 'equilibre-unipodal'],
     abducteurs: ['abduction-couchee-cote', 'abduction-quatre-pattes', 'abduction-hanche-debout', 'marche-laterale-poids-du-corps', 'marche-laterale-elastique', 'abduction-hanche-machine', 'abduction-hanche-poulie'],
+    adducteurs: ['adduction-couchee-cote'],
     mollets_soleaire: ['releve-mollets-assis', 'releve-mollets', 'marche-pointes-talons'],
     tibiaux: ['releve-tibial-mur', 'marche-pointes-talons'],
   } as Readonly<Record<string, readonly string[]>>,

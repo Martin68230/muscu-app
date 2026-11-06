@@ -36,7 +36,7 @@ statut: utilisable
 - Continuer fatigué avec une technique qui se dégrade.
 
 ## Progression / régression
-- plus-facile : reception-saut-petit-saut, squat-poids-du-corps-libre
+- plus-facile : reception-saut-stabilisee, squat-poids-du-corps-libre
 - plus-dur : saut-fendu-sur-place
 
 ## Repères de dosage
@@ -73,7 +73,7 @@ Rédigé par `kine` le 2026-10-22. Règles communes R1 à R10 et grossesse (G) :
 - general : version plus douce : le petit saut sur place avec réception stabilisée. Conseil non codé : saut proposé seulement après la réception contrôlée sans gêne ; jamais fatigué ni la veille d'un match (sports.md règle 5, PROVISOIRE).
 
 **Grossesse** : retirer: remplacant:squat-assis-debout
-**Version plus douce** : reception-saut-petit-saut
+**Version plus douce** : reception-saut-pas-stabilise
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) à la cheville, au genou, à la hanche ou au bas du dos.

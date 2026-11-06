@@ -29,11 +29,14 @@ const demo = (profile: Record<string, unknown>, equipment: GeneratorInput['equip
 const PROFILS: [string, GeneratorInput, string[]][] = [
   // Petites zones à fiche correctif compatible restées grises (06/11/2026) : places par séance (8 exercices, 1 correctif au débutant),
   // durée ou plafond par zone (groupe déjà au-dessus de 20) ; elles sont citées dans V-MSG-ZONES-GRIS.
+  // Lot 13 (06/11/2026), profil 4 : l'adduction couchée (adducteurs grises) prend la place du relevé tibial ; tibiaux cités dans le message.
+  // Lot 13 (06/11/2026), profil 5 (sans matériel) : la poussée verticale au mur (substitut) prend la place d'un correctif (8 exercices par séance) ;
+  // biceps, avant-bras et soléaire passent au gris, cités dans le message. Profil 1 inchangé (la fiche est un substitut, après les développés).
   ['1 débutant muscle maison', demo({ level: 'debutant', daysPerWeek: 3 }, eq(HE), 'muscle'), ['mollets_soleaire', 'tibiaux', 'peroniers']],
   ['2 intermédiaire force salle 4 j', demo({ level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle', salleAccess: true }, salle, 'force'), ['coiffe_rotateurs', 'carre_des_lombes']],
   ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq(HE), 'perte_gras', 'cardio'), ['trapezes_bas', 'coiffe_rotateurs', 'carre_des_lombes', 'abducteurs', 'mollets_soleaire', 'tibiaux']],
-  ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(E), 'sport'), ['epaules_cote', 'fessiers_moyen', 'coiffe_rotateurs', 'carre_des_lombes']],
-  ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef', 'tibiaux']],
+  ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(E), 'sport'), ['epaules_cote', 'fessiers_moyen', 'coiffe_rotateurs', 'carre_des_lombes', 'tibiaux']],
+  ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef', 'tibiaux', 'biceps', 'avant_bras', 'mollets_soleaire']],
   ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut', 'coiffe_rotateurs', 'abducteurs']],
 ];
 

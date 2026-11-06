@@ -976,4 +976,35 @@ export const EXERCICES = [
     a: { p: [0, 112], armN: { to: [10, 104], bend: 'd' }, armF: { to: [6, 104], bend: 'd' }, back: [['wall', -39, 14]] },
     b: { p: [-14, 108], t: 60, h: 60, armN: { to: [1, 94], bend: 'd' }, armF: { to: [-3, 96], bend: 'd' }, back: [['wall', -39, 14]], props: [['arrow', [44, 130], [44, 100]]] },
   },
+  // ---- Lot 13 (fiches manquantes) ----
+  {
+    id: 'poussee-verticale-mur', titre: 'Poussée verticale au mur, vue de profil : debout face au mur, mains à hauteur du front, la tête passe entre les bras et s’arrête à une main du mur, rien sur la tête',
+    labels: ['Mains à hauteur du front, bras tendus', 'Tête entre les bras, à une main du mur'],
+    a: { p: [-12.6, 109.3], t: 77, h: 77, armN: { to: [66, 190], bend: 'd' }, armF: { to: [64, 188], bend: 'd' }, legN: { to: [-36, A], bend: 'f' }, legF: { to: [-40, A], bend: 'f' }, back: [['wall', 68, 14]], props: [['arrow', [12, 232], [48, 232]]] },
+    b: { p: [3, 104.4], t: 68, h: 68, armN: { to: [66, 190], bend: 'd' }, armF: { to: [64, 188], bend: 'd' }, legN: { to: [-36, A], bend: 'f' }, legF: { to: [-40, A], bend: 'f' }, back: [['wall', 68, 14]], props: [['arrow', [52, 232], [16, 232]]] },
+  },
+  {
+    id: 'rowing-serviette-resistee', titre: 'Rowing à la serviette, vue de dessus : serviette tendue entre les mains, une main résiste bras presque tendu, l’autre ramène la serviette vers le côté de la poitrine, coude près du corps',
+    view: 'top', labels: ['Serviette tendue devant la poitrine', 'Une main tire, l’autre résiste'],
+    a: { p: [0, 40], t: 90, tl: 70, hl: 18, sw: 22, hw: 8, h: 90, hide: ['legN', 'legF'], armN: { to: [24, 172], bend: 'f' }, armF: { to: [-24, 172], bend: 'f' }, props: (J) => [['towel', [J.haF, J.haN]]] },
+    b: { p: [0, 40], t: 90, tl: 70, hl: 18, sw: 22, hw: 8, h: 90, hide: ['legN', 'legF'], armN: { to: [36, 116], bend: 'd' }, armF: { to: [-24, 172], bend: 'f' }, props: (J) => [['towel', [J.haF, J.haN]], ['arrow', [66, 170], [66, 128]]] },
+  },
+  {
+    id: 'descente-une-jambe-chaise', titre: 'Descente sur une jambe vers une chaise, vue de profil : chaise calée contre un mur, l’autre pied frôle le sol, descente lente jusqu’à l’assise, remontée à deux jambes',
+    labels: ['Sur une jambe, chaise derrière', 'Descente lente jusqu’à l’assise'],
+    a: { p: [-1, 112], t: 90, armN: { a: [5, 0] }, armF: { a: [3, -2] }, legN: { to: [8, A], bend: 'f' }, legF: { to: [34, 24], bend: 'u' }, back: [['wall', -79, -14], ['chair', -75, 46, 1]], props: [['arrow', [88, 120], [88, 70]]] },
+    b: { p: [-48, 58], t: 72, h: 72, armN: { a: [5, 0] }, armF: { a: [3, -2] }, legN: { to: [10, A], bend: 'f' }, legF: { to: [46, 22], bend: 'u' }, back: [['wall', -79, -14], ['chair', -75, 46, 1]] },
+  },
+  {
+    id: 'equilibre-sur-une-jambe-en-mouvement', titre: 'Équilibre sur une jambe avec mouvement des bras, vue de profil : yeux ouverts, bras montent devant jusqu’à l’horizontale au plus, mur à portée',
+    labels: ['Sur une jambe, bras le long du corps', 'Bras devant, à l’horizontale au plus'],
+    a: { p: [0, 110], legN: { to: [0, A], bend: 'f' }, legF: { to: [-4, 24], bend: 'b' }, armN: { a: [-90, -88] }, armF: { a: [-88, -86] }, back: [['wall', 112, 14]] },
+    b: { p: [0, 110], legN: { to: [0, A], bend: 'f' }, legF: { to: [-4, 24], bend: 'b' }, armN: { a: [2, 0] }, armF: { a: [0, -2] }, back: [['wall', 112, 14]], props: [['arrow', [70, 130], [70, 175]]] },
+  },
+  {
+    id: 'adduction-couchee-cote', titre: 'Adduction couchée sur le côté, vue de face : jambe du dessus fléchie, pied au sol devant le genou, jambe du dessous tendue levée de quelques centimètres',
+    view: 'front', labels: ['Sur le côté, jambe du dessus fléchie', 'Jambe du dessous levée de quelques cm'],
+    a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { to: [20, 8], bend: 'u' }, legF: { a: [1, 1] }, back: [['mat', -170, 130]] },
+    b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { to: [20, 8], bend: 'u' }, legF: { a: [9, 9] }, back: [['mat', -170, 130]], props: [['arrow', [76, 40], [76, 80]]] },
+  },
 ];

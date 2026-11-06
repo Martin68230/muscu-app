@@ -37,7 +37,7 @@ statut: utilisable
 - Sauts trop longs, arrivée instable.
 
 ## Progression / régression
-- plus-facile : reception-saut-petit-saut
+- plus-facile : aucun
 - plus-dur : saut-fendu-sur-place
 
 ## Repères de dosage

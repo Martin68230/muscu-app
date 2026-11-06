@@ -37,7 +37,7 @@ statut: utilisable
 - Continuer quand la cheville fatigue.
 
 ## Progression / régression
-- plus-facile : releve-mollets-mur, reception-saut-petit-saut
+- plus-facile : releve-mollets-mur, reception-saut-stabilisee
 - plus-dur : aucun
 
 ## Repères de dosage
