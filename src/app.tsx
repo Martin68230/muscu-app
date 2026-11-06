@@ -15,7 +15,7 @@ import { loadFiches, type Fiche as FicheData } from './data/fiches';
 import { SessionController } from './session/store';
 import { SessionPreview } from './ui/screens/Preview';
 import { SessionPlayer } from './ui/screens/Player';
-import { applyEnvOf, loadPlayerData, type PlayerData } from './ui/session/launch';
+import { applyEnvOf, catchUpOf, loadPlayerData, type PlayerData } from './ui/session/launch';
 import { applyAccepted } from './session/adapt-accept';
 import { recordAdaptResult } from './session/progression-store';
 import { list } from './data/repo';
@@ -86,7 +86,9 @@ export function App() {
     const plan = planReprise(weekDay, { reprise: repriseOf(profiles[0]), sessions, programs, sets, now: new Date(), ctx: data.ctx });
     // Changements acceptés après la séance précédente (série en plus, version plus dure, repos, décharge) : revérifiés ici, jamais en reprise douce.
     const accepted = applyAccepted(weekDay, applyEnvOf(data, !!plan?.state.actif));
-    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : accepted.day });
+    // Niveau 2, étape 3 : séries de rattrapage des zones peu travaillées la semaine écoulée (première séance de la semaine, recalculé).
+    const catchUp = catchUpOf(data, program, dayIndex, accepted.day, !!plan?.state.actif, Date.now());
+    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : catchUp?.day ?? accepted.day });
     await recordAdaptResult(accepted).catch(() => undefined);
     if (plan) await saveReprise(() => plan.state);
     data.repriseActive = !!plan?.state.actif;

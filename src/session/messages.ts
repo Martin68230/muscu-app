@@ -53,6 +53,12 @@ export const PROGRESSION_TEXT = {
 } as const;
 
 /** Acceptation en un appui des propositions d'adaptation (textes de conception, NON SOURCÉ ; aucun sigle ni id interne). */
+/** Niveau 2, étape 3 : rattrapage des zones (src/zones/catchup.ts), une seule ligne dans l'aperçu. */
+export const ZONE_CATCHUP_TEXT = {
+  line: (noms: readonly string[]): string =>
+    `Cette semaine : une série en plus ${noms.length > 1 ? `à ${noms.length} exercices (${noms.join(', ')})` : `à ${noms[0]}`}, pour des zones qui ont eu peu de travail la semaine dernière.`,
+};
+
 export const ADAPT_TEXT = {
   accept: 'Accepter',
   later: 'Plus tard',

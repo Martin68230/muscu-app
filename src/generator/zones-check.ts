@@ -81,7 +81,7 @@ export function checkZones(sessions: readonly { exercises: readonly GenExercise[
 
 /** Plafonds par zone (§3) : hebdomadaire par groupe (maximum des sous-zones) ; par séance pour les petites zones (6). Lecture relative :
  * un changement ne doit jamais faire passer un groupe au-dessus de son plafond, ni monter un groupe déjà au-dessus. */
-function zoneCapsOk(before: readonly Sess[], after: readonly Sess[], ctx: Ctx): boolean {
+export function zoneCapsOk(before: readonly Pick<Sess, 'exercises'>[], after: readonly Pick<Sess, 'exercises'>[], ctx: Ctx): boolean {
   const gb = capGroupPoints(weekPoints(before, ctx));
   const ga = capGroupPoints(weekPoints(after, ctx));
   for (const [g, a] of ga) {

@@ -87,6 +87,8 @@ body {
   flex: 1;
   overflow-y: auto;
   -webkit-overflow-scrolling: touch;
+  /* Un élément amené à l'écran (focus, scrollIntoView) s'arrête au-dessus du bouton principal fixé en bas (.thumb-zone). */
+  scroll-padding-bottom: calc(env(safe-area-inset-bottom) + 96px);
   padding:
     calc(env(safe-area-inset-top) + 16px)
     calc(env(safe-area-inset-right) + 16px)

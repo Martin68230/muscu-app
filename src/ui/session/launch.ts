@@ -1,12 +1,14 @@
 // Données du lecteur de séance : lues une fois au démarrage ou à la reprise (aucun réseau pendant la séance).
 import { list } from '../../data/repo';
-import type { EquipmentProfile, Injury, PlannedExercise, Profile, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
+import type { EquipmentProfile, Injury, PlannedExercise, Profile, Program, ProgramDay, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
 import type { Fiche } from '../../data/fiches';
 import { buildCtx, isChargeable, isUnilateral, type Ctx } from '../../generator/context';
 import type { Fiche as GenFiche, GeneratorInput } from '../../generator/types';
 import type { EngineContext } from '../../session/engine';
 import { buildEngineContext, gentlerAlternative, type BodyweightProgression, type ProgressionInput } from '../../session/history';
-import { loadGeneratorInput } from '../../session/program';
+import { loadGeneratorInput, programWeek, rotationFreeze, withProgramWeek } from '../../session/program';
+import { painFrozen } from '../../session/adaptation';
+import { lastWeekOf, zoneCatchUp, type CatchUpResult } from '../../zones/catchup';
 import { pendingArrival, startRepsFor, symptomFrozen } from '../../session/progression';
 import { echelonInfoFor, progVariants } from '../../session/progression-store';
 import { repriseOf } from '../../session/missed-config';
@@ -61,7 +63,26 @@ export function applyEnvOf(data: PlayerData, repriseActive: boolean = data.repri
   };
 }
 
-export const isPregnant = (p: Pick<Profile, 'pregnancy'> | null | undefined): boolean => p?.pregnancy === 'enceinte' || p?.pregnancy === 'post_partum';
+/**
+ * Rattrapage des zones (src/zones/catchup.ts) pour la séance `dayIndex` qui démarre : seulement à la première séance de la semaine du
+ * programme, recalculé depuis l'historique (rien n'est stocké). `day` = copie du jour après les changements acceptés.
+ */
+export function catchUpOf(data: PlayerData, program: Program, dayIndex: number, day: ProgramDay, repriseActive: boolean, nowMs: number): CatchUpResult | null {
+  if (!data.input || repriseActive) return null;
+  const lw = lastWeekOf(program.startDate, data.sets, nowMs);
+  if (!lw || !lw.firstOfWeek) return null;
+  const ctx = buildCtx(data.input);
+  const week = programWeek(program, nowMs);
+  const freeze = rotationFreeze(data.sets, data.injuries, nowMs);
+  const days = program.days.map((d, i) => (i === dayIndex ? day : withProgramWeek(d, week, freeze)));
+  const zonesOfMovement = (id: string): readonly string[] => Object.keys(data.fiches.find((f) => f.id === id)?.securite.zones ?? {});
+  return zoneCatchUp(lw.weekSets, { days, dayIndex, durationMin: program.durationMin }, {
+    ctx, pool: data.input.fiches, repriseActive, symptomFrozen: data.frozen,
+    painFrozen: (ex) => painFrozen({ movementId: ex.movementId, zones: zonesOfMovement(ex.movementId), sets: data.sets, sessions: data.sessions, zonesOfMovement }),
+  });
+}
+
+export const isPregnant =(p: Pick<Profile, 'pregnancy'> | null | undefined): boolean => p?.pregnancy === 'enceinte' || p?.pregnancy === 'post_partum';
 
 /** Les fiches de l'écran et celles du générateur sont le même fichier JSON. */
 export const asGenFiches = (f: Fiche[]): GenFiche[] => f as unknown as GenFiche[];
