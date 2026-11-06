@@ -2,14 +2,25 @@
 import { list } from '../../data/repo';
 import type { EquipmentProfile, Injury, PlannedExercise, Profile, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
 import type { Fiche } from '../../data/fiches';
-import { buildCtx, isChargeable, type Ctx } from '../../generator/context';
+import { buildCtx, isChargeable, isUnilateral, type Ctx } from '../../generator/context';
 import type { Fiche as GenFiche, GeneratorInput } from '../../generator/types';
 import type { EngineContext } from '../../session/engine';
-import { buildEngineContext, gentlerAlternative, type BodyweightProgression } from '../../session/history';
+import { buildEngineContext, gentlerAlternative, type BodyweightProgression, type ProgressionInput } from '../../session/history';
 import { loadGeneratorInput } from '../../session/program';
 import { pendingArrival, startRepsFor, symptomFrozen } from '../../session/progression';
 import { echelonInfoFor, progVariants } from '../../session/progression-store';
 import { repriseOf } from '../../session/missed-config';
+import { lastMuscuKey, missedDays } from '../../session/missed';
+import { dateKey } from '../../session/calendar';
+import { CORE_HEAVY_MAX_HOLD_SEC, D_CLASS, doseLimitOf, TECHNICAL_CAP_FICHES, TECHNICAL_NO_LOW_FICHES } from '../../generator/config';
+import { isHeavyExercise } from '../../generator/core';
+import { isNeverProposed, variantClass } from '../../generator/reps';
+
+/** Entrées de l'adaptation automatique (knowledge/adaptation-regles.md) pour proposeProgression. */
+export type AdaptInput = Pick<
+  ProgressionInput,
+  'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'technical' | 'ficheMaxSets' | 'missedSinceLast' | 'now' | 'holdSchema' | 'holdMaxSec'
+>;
 
 export interface PlayerData {
   fiches: Fiche[];
@@ -30,6 +41,8 @@ export interface PlayerData {
   bodyweightOf(ex: PlannedExercise): BodyweightProgression | undefined;
   /** V-PROG-E8 : reprise douce active (seance-manquee-v1.md SM-13) : aucune proposition de montée. */
   repriseActive: boolean;
+  /** adaptation-regles.md : niveau, zones, version plus dure, plafond de séries. `nextTime` (bilan) : la séance manquée ne compte plus. */
+  adaptOf?(ex: PlannedExercise, nextTime?: boolean): AdaptInput;
 }
 
 export const isPregnant = (p: Pick<Profile, 'pregnancy'> | null | undefined): boolean => p?.pregnancy === 'enceinte' || p?.pregnancy === 'post_partum';
@@ -38,7 +51,22 @@ export const isPregnant = (p: Pick<Profile, 'pregnancy'> | null | undefined): bo
 export const asGenFiches = (f: Fiche[]): GenFiche[] => f as unknown as GenFiche[];
 
 export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeSessionId: string | null = null): Promise<PlayerData> {
-  const [sets, equipments, injuries, sessions, profiles] = await Promise.all([list('sets'), list('equipment'), list('injuries'), list('sessions'), list('profile')]);
+  const [sets, equipments, injuries, sessions, profiles, programs] = await Promise.all([
+    list('sets'), list('equipment'), list('injuries'), list('sessions'), list('profile'), list('programs'),
+  ]);
+  const zonesOfMovement = (id: string): readonly string[] => Object.keys(fiches.find((f) => f.id === id)?.securite.zones ?? {});
+  // §6 / §8 [kine] : une séance prévue manquée (ou renoncée) depuis la dernière séance faite : aucune montée à la séance de retour.
+  const active = programs.filter((p) => p.active && !p.deletedAt)[0];
+  const lastKey = lastMuscuKey(sessions, programs);
+  let missedSinceLast = false;
+  try {
+    missedSinceLast = !!active && lastKey !== null && (
+      missedDays(active, sessions, sets, dateKey(new Date())).some((d) => d > lastKey) ||
+      sessions.some((s) => !s.deletedAt && s.status === 'sautee' && s.plannedDate.slice(0, 10) > lastKey)
+    );
+  } catch {
+    missedSinceLast = false;
+  }
   const equipment = equipments[0] ?? null;
   const pregnant = isPregnant(profile);
   const events = profiles.find((p) => p.id === profile.id)?.progressionLog ?? profile.progressionLog ?? [];
@@ -58,7 +86,21 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
     excludeSessionId,
     zoneOnFiche: (ex, zone) => !!fiches.find((f) => f.id === ex.movementId)?.securite.zones[zone],
     mainMusclesOf: (ex) => fiches.find((f) => f.id === ex.movementId)?.musclesPrincipaux ?? null,
+    perSideOf: (ex) => {
+      const v = variants.get(ex.variantId);
+      return !!v && isUnilateral(v);
+    },
+    zonesOfMovement,
+    sessions,
   });
+  const heavyDayOf = (ex: PlannedExercise): boolean => {
+    const days = active?.days.filter((d) => d.exercises.some((e) => e.movementId === ex.movementId)) ?? [];
+    return days.some((d) => d.exercises.some((e) => {
+      if (e.movementId === ex.movementId) return false;
+      const f = fiches.find((x) => x.id === e.movementId);
+      return !!f && isHeavyExercise({ slot: '', schema: f.schema, ficheId: f.id, tags: variants.get(e.variantId)?.tags ?? [] });
+    }));
+  };
   const bodyweightFiche = (ex: PlannedExercise) => {
     const fiche = gctx?.fichesById.get(ex.movementId);
     const variant = fiche?.variantes.find((v) => v.id === ex.variantId);
@@ -91,6 +133,31 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
         gentler: gentlerAlternative(ex.movementId, loaded.input),
         restricted: ex.adaptation !== null,
         arrival: !!arrival && arrival.to === b.variant.echelon,
+      };
+    },
+    adaptOf: (ex, nextTime = false) => {
+      const level = gctx?.level ?? 'debutant';
+      const fiche = gctx?.fichesById.get(ex.movementId);
+      const variant = fiche?.variantes.find((v) => v.id === ex.variantId);
+      const k = fiche && variant ? variantClass(fiche, variant) : null;
+      const classCap = k === null ? undefined : level === 'debutant' ? D_CLASS[k].maxSetsDebutant : D_CLASS[k].maxSets;
+      const limit = variant ? doseLimitOf(ex.movementId, variant.id, variant.tags).maxSets : undefined;
+      return {
+        level,
+        zonesOfFiche: zonesOfMovement(ex.movementId),
+        zonesOfMovement,
+        // C8 : jamais une variante D4 ni une variante jamais proposée (D4_NEVER) par la progression.
+        variants: fiche && gctx ? progVariants(fiche, gctx).filter((v) => {
+          const fv = fiche.variantes.find((x) => x.id === v.id);
+          return !!fv && !isNeverProposed(fiche, fv) && variantClass(fiche, fv) !== 4;
+        }) : undefined,
+        technical: TECHNICAL_CAP_FICHES.includes(ex.movementId) || TECHNICAL_NO_LOW_FICHES.includes(ex.movementId) || k === 3 || k === 4,
+        ficheMaxSets: Math.min(classCap ?? Infinity, limit ?? Infinity),
+        missedSinceLast: nextTime ? false : missedSinceLast,
+        now: Date.now(),
+        // Maintiens : schéma de la fiche ; 30 s au plus si le même jour de programme contient une charge lourde (CORE-ORD-4, lecture sans emplacement).
+        holdSchema: ex.unit === 'sec' ? fiche?.schema : undefined,
+        holdMaxSec: ex.unit === 'sec' && heavyDayOf(ex) ? CORE_HEAVY_MAX_HOLD_SEC : undefined,
       };
     },
   };

@@ -200,6 +200,12 @@ export interface PlannedExercise {
    * NON appliqué cette fois-ci, parce qu'un des deux exercices est en étalonnage ou en retour après gêne. Absent sinon.
    */
   pairDeferred?: 'etalonnage' | 'gene' | 'veille' | null;
+  /**
+   * Exercice d'un seul côté (un bras, une jambe, alterné, planche latérale…) qui reste en répétitions ou en durée : une série = les deux côtés,
+   * gauche puis droite, avec le même nombre de répétitions (ou la même durée) de chaque côté. Déduit de la variante par `isUnilateral`.
+   * Absent = les deux côtés ensemble. `unit: 'reps_par_cote'` (dose fixe, rotation) a le même sens.
+   */
+  perSide?: boolean;
   /** Cardio (cardio-regles.md §3.4 (g), STR-REP-7) : effort « facile » au lieu de « modéré ». Absent = modéré. */
   intensity?: 'moderee' | 'facile';
   /** STR-SEA-4 : dernières minutes du cardio en allure lente (comprises dans la durée). Absent = 0. */
@@ -333,6 +339,8 @@ export interface WorkoutSession extends SyncFields {
   /** Ajoutés par F6 : échelon changé pendant la séance (index d'exercice -> échelon, variante, échelon de départ) et exercices déjà décidés. */
   echelonSwitches?: Record<string, { echelon: number; variantId: string; from: number }>;
   calibDecided?: number[];
+  /** Baisses de charge d’étalonnage de la séance (index d’exercice, une entrée par baisse ; 2 au plus par exercice). */
+  calibDrops?: number[];
   /** Bilan calculé à la fin (recalculable à partir des séries) ; absent si séance abandonnée ou arrêtée par un symptôme. */
   summary?: Record<string, unknown> | null;
   // Ajoutés par « séance manquée » (SM-D1, SM-D2) : peuvent manquer dans une ancienne sauvegarde.
@@ -379,6 +387,8 @@ export interface SetLog extends SyncFields {
   painZone?: InjuryZone | 'inconnu' | null;
   /** Ajouté par F6 : repos réellement pris après cette série de travail (secondes), absent si sauté, interrompu ou hors travail. */
   restTakenSec?: number | null;
+  /** Ressenti 0 à 4 (« combien t'en restait-il ? ») d'un exercice à durée ou « par côté » à dose fixe : jamais lu par la progression. */
+  felt?: number | null;
 }
 
 export interface BodyWeight extends SyncFields {

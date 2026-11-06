@@ -1,3 +1,4 @@
+import { tapPrimary } from './helpers-seance';
 import { expect, test, type Page } from '@playwright/test';
 
 // F6 : parcours jusqu'au bilan (séance complète, abandonnée, avec douleur). Captures iPhone SE sombre et grand iPhone clair seulement (quota),
@@ -65,7 +66,7 @@ test('F6 : séance complète -> bilan', async ({ page }, info) => {
   for (let i = 0; i < 150; i++) {
     const label = await primary.first().textContent({ timeout: 1500 }).catch(() => null);
     if (label?.includes('Retour')) break; // le bilan est affiché : ne pas le fermer
-    if (label) await primary.first().click({ timeout: 3000 }).catch(() => undefined);
+    if (label) await tapPrimary(page).catch(() => undefined);
     await page.waitForTimeout(150);
   }
   await expect(page.getByRole('heading', { name: 'Première séance faite' })).toBeVisible();

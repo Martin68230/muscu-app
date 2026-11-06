@@ -45,7 +45,9 @@ function expectFixed(e: GenExercise, opts: { pregnantBeginner?: boolean } = {}) 
   expect(x, e.ficheId).toBeDefined();
   expect([e.repsMin, e.repsMax]).toEqual(x.reps);
   expect(e.unit).toBe(x.unit);
-  expect(e.restSec).toBe(x.restSec);
+  // En superset, le repos est le plus long des deux (T24) : il peut dépasser celui de la fiche (R-REPS : partenaire en D3 à 120 s), jamais moins.
+  if (e.supersetGroup) expect(e.restSec).toBeGreaterThanOrEqual(x.restSec);
+  else expect(e.restSec).toBe(x.restSec);
   expect(e.holdSec).toBeNull();
   // P-GROS ne fait que baisser : 1 série pour une débutante enceinte, sinon la dose de la fiche.
   expect(e.sets).toBe(opts.pregnantBeginner ? 1 : x.sets);

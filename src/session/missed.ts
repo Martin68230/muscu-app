@@ -2,6 +2,7 @@
 // Jours civils LOCAUX (clés AAAA-MM-JJ, `dayDiff` de calendar.ts) : aucun effet du changement d'heure sur les seuils en jours.
 // Les 48 h « réelles » (K4) sont, elles, comptées en millisecondes sur l'heure réelle.
 // Toutes les valeurs chiffrées viennent de missed-config.ts ; tous les textes de missed-texts.ts.
+import { isPerSide } from './sides';
 import type { Injury, MissedAnswer, NewRow, PlannedExercise, Profile, Program, ProgramDay, RepriseState, SetLog, WorkoutSession } from '../data/model';
 import { isCardioDay } from '../generator';
 import { buildEntries, dateKey, dayDiff, mondayKey, parseKey, plannedDates, plannedMark, sessionDate } from './calendar';
@@ -408,7 +409,7 @@ export function applyRepriseToDay(day: ProgramDay, i: ApplyRepriseInput): { day:
     const ex: PlannedExercise = { ...ex0 };
     if (tier.retirerSerie && ex.role === 'autre' && ex.sets >= 3 && ex.sets - 1 >= MISSED.seriesMin) {
       ex.sets -= 1;
-      const reps = ex.unit === 'sec' ? (ex.holdSec ?? 0) : ((ex.repsMin + ex.repsMax) / 2) * TIME.secPerRep * (ex.unit === 'reps_par_cote' ? TIME.unilateralFactor : 1);
+      const reps = ex.unit === 'sec' ? (ex.holdSec ?? 0) : ((ex.repsMin + ex.repsMax) / 2) * TIME.secPerRep * (isPerSide(ex) ? TIME.unilateralFactor : 1);
       removedSec += reps + ex.restSec;
     }
     let reprise: RepriseExercise = { calibration: ex.unit !== 'sec', noRaise: true, maxKg: null };

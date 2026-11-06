@@ -3,12 +3,13 @@
 import { readdirSync, readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../../src/data/injury-rules';
-import { DOSE, doseLimitOf, PREGNANCY, TEMPS, WARMUP } from '../../src/generator/config';
+import { D_CLASS, DOSE, doseLimitOf, PREGNANCY, TEMPS, WARMUP } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import { chooseDays } from '../../src/generator/days';
 import { buildExercise } from '../../src/generator/dose';
 import { ajusterDuree, estimerDuree, type DurExercise, type DurSession } from '../../src/generator/duration';
 import { generateProgram, nextCalibrationStep, painProposals, toProgramDays } from '../../src/generator/index';
+import { variantClass } from '../../src/generator/reps';
 import { allowedVariants, caseFor, chooseVariant, isCappedFiche, resolveFiche } from '../../src/generator/safety';
 import type { Fiche, GeneratorInput, GenProgram, GenerateResult } from '../../src/generator/types';
 import { allEx, byId, FICHES, LEVELS, mk, msgIds, PROFILE_KEYS, ZONES, type MkOpts } from './generator-helpers';
@@ -453,9 +454,14 @@ describe('T22-T26 : dose, supersets, volume (V-DOSE, V-ORDRE, V-SUP, V-VOL, V-PL
     }
     expect(p.sessions[0].exercises[0].chargeable).toBe(true);
   }, 300000);
-  it('T23 : force, profil A0 : piliers à 10-15 répétitions, V-MSG-FORCE', () => {
+  it('T23 : force, profil A0 : piliers au poids du corps dosés par leur classe D1-D4 (R-REPS, plus 10-15 partout), V-MSG-FORCE', () => {
     const p = ok(run({ profile: 'A0', goal: 'force' }));
-    for (const e of allEx(p).filter((x) => x.role === 'pilier')) expect([e.repsMin, e.repsMax]).toEqual([10, 15]);
+    for (const e of allEx(p).filter((x) => x.role === 'pilier')) {
+      const k = variantClass(byId(e.ficheId), byId(e.ficheId).variantes.find((v) => v.id === e.variantId)!);
+      expect(k, e.variantId).not.toBeNull();
+      expect(e.repsMin).toBeGreaterThanOrEqual(D_CLASS[k!].reps[0]);
+      expect(e.repsMax).toBeLessThanOrEqual(D_CLASS[k!].reps[1]);
+    }
     expect(msgIds(p)).toContain('V-MSG-FORCE');
   });
   it('T24/T25c : supersets formés : aucun muscle principal commun, jamais deux jambes, jamais piliers ni charnière, repos = le plus long', () => {

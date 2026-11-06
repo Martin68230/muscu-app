@@ -1,4 +1,5 @@
 import { expect, test, type Page } from '@playwright/test';
+import { tapPrimary } from './helpers-seance';
 
 // F5 partie B : séance de bout en bout (profil créé par l'interface). Captures iPhone SE sombre (375x667) et grand iPhone clair (430x932)
 // seulement (quota) + contrôles de la section D de CLAUDE.md : pas de défilement horizontal, cibles >= 44 px, saisie >= 16 px, aucune erreur CSP.
@@ -124,7 +125,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   await shot(page, 'lecteur-exercice', project);
 
   // ----- Repos : grand compte à rebours -----
-  await page.getByRole('button', { name: 'Série faite' }).click();
+  await tapPrimary(page);
   // une série d'échauffement peut venir avant : on passe les repos jusqu'à voir le grand compte à rebours d'un vrai repos
   await expect(page.getByRole('timer')).toBeVisible();
   const size = await page.locator('.rest-clock').evaluate((el) => parseFloat(getComputedStyle(el).fontSize));
@@ -138,7 +139,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   const primary = page.locator('.player-foot .btn-primary');
   const reps = page.getByRole('group', { name: 'Répétitions', exact: true });
   for (let i = 0; i < 40 && !(await reps.isVisible()); i++) {
-    await primary.click();
+    await tapPrimary(page);
     await page.waitForTimeout(350); // pause entre deux observations : la boucle clique à l'aveugle sur le bouton principal ; sur WebKit (Windows) un changement d'écran peut dépasser 150 ms et le clic suivant tombe alors sur l'écran suivant. Aucune lenteur de F6 (série et repos < 1 ms mesurés)
   }
   await expect(reps).toBeVisible();
@@ -170,7 +171,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   await expect(stepBtn).toBeVisible();
 
   // ----- Une série puis rechargement : reprise -----
-  await stepBtn.click();
+  await tapPrimary(page);
   await page.waitForTimeout(400);
   page.off('request', onRequest); // le rechargement relit les fiches dans le cache de l'appli (démarrage, pas la séance)
   await page.reload();
@@ -179,7 +180,7 @@ test('F5 : séance de bout en bout', async ({ page }, info) => {
   await page.getByRole('button', { name: 'Reprendre', exact: true }).click();
   await expect(page.getByRole('button', { name: 'Quitter' })).toBeVisible();
   for (let i = 0; i < 6; i++) {
-    await primary.click();
+    await tapPrimary(page);
     await page.waitForTimeout(350);
   }
 

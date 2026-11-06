@@ -96,9 +96,11 @@ describe('S4 lot 09 : le gilet lesté est une charge fixe, jamais chargeable', (
                 expect(e.rirAsked).toBe(false);
               } else {
                 // Jamais les 4-6 répétitions des piliers chargés ni la réserve 1 des variantes « sûres ».
-                expect([e.repsMin, e.repsMax], v.id).toEqual(d.repsBodyweight);
+                // R-REPS (repetitions-regles.md §4) : dose de sa classe D1-D4, jamais <= 5 répétitions (charge fixe, non réglable finement).
+                expect(e.repsMin, v.id).toBeGreaterThanOrEqual(6);
+                expect(e.repsMax, v.id).toBeLessThanOrEqual(15);
                 expect(e.rirAsked).toBe(true);
-                expect(e.rirTarget, v.id).toBe(d.rir);
+                expect(e.rirTarget, v.id).toBeGreaterThanOrEqual(d.rir);
                 expect(e.rirTarget).toBeGreaterThanOrEqual(2);
               }
               if (PILLAR_SLOTS.includes(slot)) expect(e.warmupSets.length, v.id).toBeGreaterThan(0);

@@ -163,14 +163,15 @@ describe('gel après symptôme, niveau, maintiens, suggestion, réglages', () =>
     expect(startRepsFor(M, 4, p.sets)).toBeNull();
     expect(startRepsFor(M, 2, p.sets)).toBeNull();
   });
-  it('T22 : maintien figé en v1 ; paliers activés : 25 s, plafond, côté non tenu, capped, grossesse', () => {
+  it('T22 : paliers de maintien (allumés le 05/11/2026) : 25 s, plafond, côté non tenu, capped, grossesse', () => {
     const h = (hold: number) => ({
       sets: [1, 3].flatMap((d) => sets(`a${d}`, d, { count: 2, holdSec: hold, reps: null, rir: null, echelon: null })),
       sessions: [session('a1', 1, { planSets: 2 }), session('a3', 3, { planSets: 2 })],
     });
     const cfg = withProgression({ hold: { enabled: true } });
     const input = (hold: number, p = h(hold)) => ({ movementId: M, schema: 'gainage', holdSec: hold, sets: p.sets, sessions: p.sessions, pregnant: false, capped: false, fallbackPlanned: 2 });
-    expect(proposeHold(input(20))).toBeNull();
+    // [kine 05/11/2026] : montée de durée allumée par défaut (conditions testées dans adaptation-regles.test.ts).
+    expect(proposeHold(input(20))).toBe(25);
     expect(proposeHold({ ...input(20), cfg })).toBe(25);
     expect(proposeHold({ ...input(45), cfg })).toBeNull();
     const miss = h(20);

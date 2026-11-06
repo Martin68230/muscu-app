@@ -101,6 +101,11 @@ export interface GeneratorInput {
     isoDebutantOuverte?: boolean;
     /** Reprise douce en cours (pause de plus de 2 semaines) : ni saut ni course (cardio-regles.md §5.1 (3)). */
     repriseActive?: boolean;
+    /**
+     * [kine 05/11/2026] Garde-fou D4 : variantes D4 ouvertes par l'historique (2 séances au haut du D3 voisin, session/adaptation.ts
+     * d4OpenVariants). Absent ou vide : aucune D4. Calculé hors du générateur (qui reste pur).
+     */
+    d4Open?: string[];
   };
 }
 
@@ -174,6 +179,8 @@ export interface GenExercise extends PlannedExercise {
   backLoaded: boolean;
   /** Ligne courte « Charge maintenue : gêne {zone} » (§6.8 point 1g), ou null. */
   cappedLabel: string | null;
+  /** R-REPS (repetitions-regles.md §4, traction) : séries au plus (classe D1-D4, traction), que V-VOL ne dépasse jamais. */
+  setsCap?: number;
 }
 export interface WarmupItem {
   ficheId: string;

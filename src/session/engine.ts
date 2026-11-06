@@ -9,6 +9,11 @@ import type { InjuryZone, PlannedExercise, ProgramDay, SessionCursor } from '../
 import { nextCalibrationStep, type CalibrationStep } from '../generator/calibration';
 import { SUPERSET_MIN_REST_SEC, TIME, WARMUP } from '../generator/config';
 import { echelonCalibrationStep } from './progression';
+import { CALIBRATION_JUMP } from './progression-config';
+
+/** adaptation-regles.md C1 [kine] : paliers de baisse d'étalonnage au plus par exercice et par séance. NON SOURCÉ. */
+export const MAX_CALIB_DROPS = 2;
+import { isPerSide, needsRir } from './sides';
 import { adjustRest as adjustRestState, REST_ADJUST_STEP_SEC, remainingMs, startRest, type RestState } from './timer';
 
 export class SessionError extends Error {}
@@ -59,7 +64,7 @@ export function buildSteps(exercises: readonly PlannedExercise[]): Step[] {
       // SUP-6 : repos de la paire = le plus long des deux, jamais moins de 60 s (exercice seul : son propre repos).
       const pairRest = Math.max(...active.map((m) => exercises[m].restSec), members.length > 1 ? SUPERSET_MIN_REST_SEC : 0);
       active.forEach((m, a) => {
-        const sides: ('gauche' | 'droite' | null)[] = exercises[m].unit === 'reps_par_cote' ? ['gauche', 'droite'] : [null];
+        const sides: ('gauche' | 'droite' | null)[] = isPerSide(exercises[m]) ? ['gauche', 'droite'] : [null];
         sides.forEach((side, s) => {
           const lastSide = s === sides.length - 1;
           const lastInRound = a === active.length - 1;
@@ -112,10 +117,26 @@ export interface EngineContext {
   echelonInfo?(ex: PlannedExercise): EchelonInfo | null;
   /** D26 (SUP-2 point 7) : retour après gêne (la dernière séance de cette fiche a eu « ça fait mal ») : nouvel étalonnage (R7). */
   afterPain?(ex: PlannedExercise): boolean;
+  /** adaptation-regles.md §5 [kine] : gel douleur sur une zone de la fiche : aucune montée d'étalonnage (charge ou échelon). */
+  raiseFrozen?(ex: PlannedExercise): boolean;
   /** D26 (SUP-8 point 2) : la fiche de l'exercice porte une ligne pour cette zone (quelle que soit la case). Absent : inconnu. */
   zoneOnFiche?(ex: PlannedExercise, zone: InjuryZone): boolean;
   /** SUP-10 : muscles principaux de la fiche de l'exercice ; null = inconnus (doute : pas de paire). */
   mainMusclesOf?(ex: PlannedExercise): string[] | null;
+  /** L'exercice se fait un côté à la fois (variante « un bras », « une jambe », « alterné »…), pour compléter un programme généré avant le champ `perSide`. */
+  perSideOf?(ex: PlannedExercise): boolean;
+}
+
+/** Complète `perSide` sur la copie du jour jouée (plan enregistré avec la séance) : le lecteur suit ce plan, jamais une déduction à la volée. */
+export function withPerSide(day: ProgramDay, ctx: EngineContext): ProgramDay {
+  if (!ctx.perSideOf) return day;
+  let changed = false;
+  const exercises = day.exercises.map((e) => {
+    if (isPerSide(e) || e.role === 'cardio' || e.jump || !ctx.perSideOf!(e)) return e;
+    changed = true;
+    return { ...e, perSide: true };
+  });
+  return changed ? { ...day, exercises } : day;
 }
 
 /**
@@ -182,6 +203,8 @@ export interface EngineState {
   echelonSwitches: Record<number, { echelon: number; variantId: string; from: number }>;
   /** F6 : exercices dont la première série de travail a déjà décidé de l'échelon. */
   calibDecided: number[];
+  /** adaptation-regles.md C1 [kine] : un index d’exercice par baisse de charge d’étalonnage faite dans la séance (2 au plus). */
+  calibDrops?: number[];
 }
 
 export interface SetInput {
@@ -191,6 +214,8 @@ export interface SetInput {
   rir?: number | null;
   side?: 'gauche' | 'droite' | null;
   holdSec?: number | null;
+  /** Le lecteur exige la réserve (RIR) à chaque série de travail : sans elle, la série est refusée (sauf douleur). */
+  requireRir?: boolean;
   pain?: boolean;
   painZone?: InjuryZone | 'inconnu' | null;
   comment?: string;
@@ -206,6 +231,8 @@ export interface SetEntry {
   reps: number | null;
   loadKg: number | null;
   rir: number | null;
+  /** Ressenti 0 à 4 (même échelle que la réserve) pour les exercices à durée ou « par côté » à dose fixe : enregistré, jamais lu par les règles de progression. */
+  felt: number | null;
   holdSec: number | null;
   pain: boolean;
   painZone: InjuryZone | 'inconnu' | null;
@@ -230,6 +257,8 @@ export interface SetResult {
   echelonChange: { exercise: number; from: number; to: number; variantId: string } | null;
   /** D26 (SUP-8) : douleur pendant une paire : partenaire et choix proposés ; null hors paire. */
   pairPain?: PairPain | null;
+  /** C1 [kine] : 2 baisses de charge déjà faites sur cet exercice dans la séance : plus de 3e baisse, message « version plus facile ou on arrête là ». */
+  dropLimit?: boolean;
 }
 
 // ----- Aides -----
@@ -245,6 +274,7 @@ const clone = (s: EngineState): EngineState => ({
   loads: { ...s.loads },
   echelonSwitches: { ...s.echelonSwitches },
   calibDecided: [...s.calibDecided],
+  calibDrops: [...(s.calibDrops ?? [])],
 });
 
 function hasWarmup(day: ProgramDay): boolean {
@@ -286,6 +316,7 @@ export function startSession(day: ProgramDay, now: number): EngineState {
     workSetsDone: 0,
     echelonSwitches: {},
     calibDecided: [],
+    calibDrops: [],
   };
 }
 
@@ -322,6 +353,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
   const holdSec = num(input.holdSec, 'Durée de maintien', 0, 3600);
   if (!pain && st.kind === 'work') {
     if (ex.unit === 'sec' ? (holdSec ?? ex.holdSec) === null : reps === null) throw new SessionError('Saisis les répétitions faites.');
+    if (input.requireRir && needsRir(ex, false) && rir === null) throw new SessionError(ex.unit === 'sec' ? 'Indique combien de temps tu aurais pu tenir en plus.' : 'Indique combien de répétitions te restaient.');
   }
 
   const info = ctx.echelonInfo?.(ex) ?? null;
@@ -340,7 +372,8 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     side: st.side ?? input.side ?? null,
     reps,
     loadKg: loadKg ?? (st.kind === 'warmup' ? null : state.loads[st.exercise] ?? null),
-    rir: st.kind === 'warmup' || ex.unit === 'sec' ? null : rir,
+    rir: st.kind === 'warmup' || ex.unit !== 'reps' ? null : rir,
+    felt: st.kind === 'warmup' || ex.unit === 'reps' || !needsRir(ex, false) ? null : rir,
     holdSec: ex.unit === 'sec' ? (holdSec ?? ex.holdSec) : null,
     pain,
     painZone: pain ? (input.painZone ?? 'inconnu') : null,
@@ -362,6 +395,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
   let suggestion: CalibrationStep | null = null;
   let echelonChange: SetResult['echelonChange'] = null;
   let pairPain: PairPain | null = null;
+  let dropLimit = false;
   if (pain) {
     // R4 : l'exercice s'arrête, séries restantes annulées, charge gelée, pas de repos.
     next.skipped.push(st.exercise);
@@ -385,7 +419,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
         if (!state.calibDecided.includes(st.exercise)) {
           next.calibDecided.push(st.exercise);
           if (entry.rir !== null && entry.reps !== null && curEchelon !== null) {
-            const canRaise = !capped && !info.noRaise && !rep?.noRaise && (info.ceiling === null || curEchelon < info.ceiling);
+            const canRaise = !capped && !info.noRaise && !rep?.noRaise && !ctx.raiseFrozen?.(ex) && (info.ceiling === null || curEchelon < info.ceiling);
             const step = echelonCalibrationStep({
               reps: entry.reps, rir: entry.rir, repsMin: ex.repsMin, repsMax: ex.repsMax, rirTarget: ex.rirTarget,
               echelon: curEchelon, up: info.up, down: info.down, canRaise,
@@ -407,7 +441,10 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
           repsMin: ex.repsMin,
           repsMax: ex.repsMax,
           rirTarget: ex.rirTarget,
-          capped: capped || !!rep?.noRaise,
+          capped: capped || !!rep?.noRaise || !!ctx.raiseFrozen?.(ex),
+          // Décision utilisateur 05/11 (PROVISOIRE) : plafond du saut entre deux séries et série propre exigée.
+          maxJumpRatio: CALIBRATION_JUMP.heavyTechnicalFiches.includes(ex.movementId) ? CALIBRATION_JUMP.heavyTechnicalRatio : CALIBRATION_JUMP.otherRatio,
+          minRirToRaise: CALIBRATION_JUMP.minRir,
           pain: false,
           loadKg: entry.loadKg,
           availableLoadsKg: maxKg === null ? loads : loads.filter((l) => l <= maxKg),
@@ -415,6 +452,15 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
           availableEchelons: ctx.availableEchelons?.(ex),
         });
         if (maxKg !== null && suggestion.loadKg !== null && suggestion.loadKg > maxKg) suggestion = { ...suggestion, action: 'baisse', loadKg: maxKg };
+        // adaptation-regles.md C1 [kine] : au plus MAX_CALIB_DROPS paliers de baisse dans une même séance sur un exercice ; ensuite on garde
+        // la charge et l'écran propose une version plus facile ou d'arrêter là (la baisse reste un choix de la personne).
+        if (suggestion.action === 'baisse') {
+          const done = (state.calibDrops ?? []).filter((x) => x === st.exercise).length;
+          if (done >= MAX_CALIB_DROPS) {
+            suggestion = { action: 'garder', loadKg: entry.loadKg, echelon: suggestion.echelon };
+            dropLimit = true;
+          } else next.calibDrops = [...(next.calibDrops ?? []), st.exercise];
+        }
         next.loads[st.exercise] = suggestion.loadKg;
       } else next.loads[st.exercise] = entry.loadKg;
     }
@@ -432,7 +478,7 @@ export function completeSet(day: ProgramDay, state: EngineState, input: SetInput
     next.phase = 'fin';
     next.rest = null;
   }
-  return { state: next, entry, suggestion, echelonChange, pairPain };
+  return { state: next, entry, suggestion, echelonChange, pairPain, ...(dropLimit ? { dropLimit } : {}) };
 }
 
 /** « Ça fait mal » : même effet que `completeSet({pain: true})`. La série en cours est enregistrée avec pain = true. */

@@ -4,7 +4,7 @@ import { zoneLevel } from '../data/injury-rules';
 import tagsJson from '../../knowledge/materiel-tags.json';
 import {
   CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
-  MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, type Family,
+  MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, UNILATERAL_WORDS, type Family,
 } from './config';
 import type { Fiche, FicheVariant, GeneratorInput, HistorySet } from './types';
 
@@ -72,6 +72,8 @@ export interface Ctx {
   calfFallbackForbidden: boolean;
   /** §5.1 (3) : reprise après une pause : ni saut ni course. */
   repriseActive: boolean;
+  /** [kine 05/11/2026] Garde-fou D4 : ids de variantes D4 ouvertes par l'historique. */
+  d4Open: Set<string>;
   /** Mémo de resolveFiche (dépend du contexte). */
   memo: Map<string, unknown>;
 }
@@ -88,9 +90,9 @@ export function availableTags(eq: GeneratorInput['equipment']): Set<string> {
 export const isChargeable = (v: FicheVariant): boolean => v.tags.some((t) => CHARGEABLE_TAGS.includes(t));
 /** Porte une charge, chargeable ou fixe (gilet lesté, FIXED_LOAD_TAGS) : pour les restrictions « sans charge » et la réserve. */
 export const carriesLoad = (v: FicheVariant): boolean => isChargeable(v) || v.tags.some((t) => FIXED_LOAD_TAGS.includes(t));
-export function isUnilateral(v: FicheVariant): boolean {
-  const s = `${v.id} ${v.nom}`.toLowerCase();
-  return UNILATERAL_MARKERS.some((m) => s.includes(m));
+export function isUnilateral(v: Pick<FicheVariant, 'id' | 'nom'>): boolean {
+  const s = ` ${v.id} ${v.nom} `.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[-,;:()'’]/g, ' ');
+  return UNILATERAL_MARKERS.some((m) => s.includes(m)) || UNILATERAL_WORDS.some((w) => s.includes(` ${w} `));
 }
 
 function buildHistory(h: HistorySet[] | undefined): Map<string, HistoryInfo> {
@@ -185,6 +187,7 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     isoOpen: level !== 'debutant' || !!opts.isoDebutantOuverte,
     calfFallbackForbidden: level === 'debutant' && !opts.isoDebutantOuverte,
     repriseActive: !!opts.repriseActive,
+    d4Open: new Set(opts.d4Open ?? []),
     memo: new Map(),
   };
 }

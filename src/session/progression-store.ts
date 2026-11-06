@@ -1,12 +1,15 @@
 // Progression par échelons (F6) : ce qui touche aux fiches, au générateur et à IndexedDB.
 // La logique est dans progression.ts (pure) ; ici : variantes vues par la progression, informations d'étalonnage pour le moteur,
 // propositions de l'aperçu, et enregistrement des décisions (accepter, plus tard) dans le profil.
+import { isPerSide } from './sides';
 import { list, update } from '../data/repo';
 import type { Level, ProgramDay, Program, ProgressionEvent, SetLog, WorkoutSession, PlannedExercise } from '../data/model';
 import { buildCtx, isChargeable, type Ctx } from '../generator/context';
 import { sortSameEchelon } from '../generator/safety';
+import { classAllowed } from '../generator/reps';
 import type { Fiche, GeneratorInput } from '../generator/types';
 import type { EchelonInfo } from './engine';
+import { painFrozen } from './adaptation';
 import { gentlerAlternative } from './history';
 import { PROGRESSION, type ProgressionConfig } from './progression-config';
 import {
@@ -25,7 +28,11 @@ export function progVariants(fiche: Fiche, ctx: Ctx): ProgVariant[] {
       nom: v.nom,
       echelon: v.echelon,
       niveau: v.niveau,
-      materielOk: v.tags.length > 0 && v.tags.every((t) => ctx.available.has(t)) && !(ctx.specialiseForbidden && v.tags.includes('materiel_specialise')),
+      // Contrôle relecteur du 05/11/2026 (bloquant) : la classe D1-D4 filtre aussi les échelons de la progression et de l'étalonnage en
+      // séance (`up` / `down`) : jamais de D3 en première séance pour un débutant, jamais de D4 hors garde-fou (classAllowed).
+      materielOk:
+        v.tags.length > 0 && v.tags.every((t) => ctx.available.has(t)) && !(ctx.specialiseForbidden && v.tags.includes('materiel_specialise')) &&
+        classAllowed(fiche, v, ctx),
       rank: sameEchelon.indexOf(v),
     };
   });
@@ -62,12 +69,21 @@ export function echelonInfoFor(ex: PlannedExercise, d: EchelonData): EchelonInfo
     echelon: variant.echelon,
     calibration,
     ceiling: arrival ? arrival.to : calibration && !cfg.echelon.firstSessionRaiseAllowed ? variant.echelon : null,
-    noRaise: d.ctx.pregnant || ex.capped || symptomFrozen(d.sessions) || restricted || arrival?.kind === 'descente',
+    noRaise: d.ctx.pregnant || ex.capped || symptomFrozen(d.sessions) || restricted || arrival?.kind === 'descente' || zoneFrozen(ex.movementId, d.ctx, others, d.sessions),
     up: restricted ? null : toPair(bestAt(vars, variant.echelon + 1, d.ctx.level)),
     down: restricted ? null : toPair(bestAt(vars, variant.echelon - 1)),
   };
 }
 const toPair = (v: ProgVariant | undefined) => (v ? { echelon: v.echelon, variantId: v.id } : null);
+
+/** Zones portées par une fiche (lignes de sa case de sécurité). */
+export const zonesOfFicheIn = (ctx: Pick<Ctx, 'fichesById'>) => (movementId: string): readonly string[] => Object.keys(ctx.fichesById.get(movementId)?.securite.zones ?? {});
+
+/** adaptation-regles.md §5 [kine] : gel douleur par zone, toutes fiches comprises. */
+function zoneFrozen(movementId: string, ctx: Pick<Ctx, 'fichesById'>, sets: readonly SetLog[], sessions: readonly WorkoutSession[]): boolean {
+  const zonesOf = zonesOfFicheIn(ctx);
+  return painFrozen({ movementId, zones: zonesOf(movementId), sets, sessions, zonesOfMovement: zonesOf });
+}
 
 // ----- Propositions de l'aperçu -----
 export interface ProposalItem {
@@ -91,6 +107,8 @@ export interface ProposalData {
   zoneLevel2Plus: boolean;
   now: number;
   cfg?: ProgressionConfig;
+  /** adaptation-regles.md §6 [kine] : une séance manquée depuis la dernière : aucune proposition de montée à l'ouverture. */
+  missedSinceLast?: boolean;
 }
 
 /** Propositions pour l'ouverture de la séance (jamais automatiques) : un échelon par fiche, et au plus une proposition de niveau. */
@@ -120,8 +138,9 @@ export function computeProposals(d: ProposalData): ProposalSet {
         pregnant: ctx.pregnant,
         capped: ex.capped,
         restricted: ex.adaptation !== null,
-        frozen,
-        fallbackPlanned: ex.sets * (ex.unit === 'reps_par_cote' ? 2 : 1),
+        // Réévaluation à l'ouverture (adaptation-regles.md §6 [kine]) : symptôme, douleur sur la zone, séance manquée.
+        frozen: frozen || !!d.missedSinceLast || zoneFrozen(ex.movementId, ctx, d.sets, d.sessions),
+        fallbackPlanned: ex.sets * (isPerSide(ex) ? 2 : 1),
         gentler: gentlerAlternative(ex.movementId, d.input),
         cfg,
       });

@@ -6,6 +6,7 @@ import {
   buildEntries, dateKey, dayMark, entriesOfMonth, frDate, frMonth, isDone, MARK_GLYPH, MARK_TEXT, monthSummary,
   PLANNED_GLYPH, PLANNED_TEXT, plannedDates, plannedMark, type HistoryEntry,
 } from '../../session/calendar';
+import { filterEntries, frMonthKey, monthOptions, typeOptions } from '../../session/history-view';
 import { PastSummary } from './PastSummary';
 import { shiftedDays } from '../../session/missed';
 
@@ -49,6 +50,8 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
+  const [fMonth, setFMonth] = useState<string | null>(null);
+  const [fType, setFType] = useState<string | null>(null);
   const { year, month } = cursor;
   const first = new Date(year, month, 1);
   const daysInMonth = new Date(year, month + 1, 0).getDate();
@@ -63,6 +66,9 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   };
   const sum = monthSummary(entries, year, month, { daysPerWeek, startKey, today });
   const inMonth = entriesOfMonth(entries, year, month);
+  const filtered = filterEntries(entries, { month: fMonth, type: fType });
+  const types = typeOptions(entries);
+  const months = monthOptions(entries);
   const dayEntries = selected ? entries.filter((e) => e.dateKey === selected) : [];
   const weekAfterEnd = dateKey(new Date(year, month + 1, 7));
   const planned = new Set(programStartKey ? plannedDates(plannedWeekdays, programStartKey, weekAfterEnd) : []);
@@ -146,12 +152,29 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
       )}
 
       <h2>Historique</h2>
+      {entries.length > 0 && (
+        <div class="hist-filters" role="group" aria-label="Filtrer l’historique">
+          <label class="small dim" for="hist-month">Mois</label>
+          <select id="hist-month" class="hist-select" value={fMonth ?? ''} onChange={(ev) => { setFMonth((ev.currentTarget as HTMLSelectElement).value || null); setShown(PAGE); }}>
+            <option value="">Tous les mois</option>
+            {months.map((m) => <option key={m} value={m}>{frMonthKey(m)}</option>)}
+          </select>
+          {types.length > 1 && (
+            <div class="chips" role="group" aria-label="Type de séance">
+              <button type="button" class="chip" aria-pressed={fType === null} onClick={() => { setFType(null); setShown(PAGE); }}>Tous</button>
+              {types.map((t) => (
+                <button type="button" class="chip" key={t.type} aria-pressed={fType === t.type} onClick={() => { setFType(fType === t.type ? null : t.type); setShown(PAGE); }}>{t.type}</button>
+              ))}
+            </div>
+          )}
+        </div>
+      )}
       {entries.length === 0 ? (
         <div class="card"><p class="dim">Tes séances apparaîtront ici dès la première. Pas de pression : à ton rythme.</p></div>
       ) : (
         <>
           <ul class="hist-list" aria-label="Séances passées">
-            {entries.slice(0, shown).map((e) => (
+            {filtered.slice(0, shown).map((e) => (
               <li key={e.id}>
                 <button type="button" class="hist-row" onClick={() => onOpen(e.id)}>
                   <span class="hist-date cap-first">{frDate(e.dateKey)}</span>
@@ -161,7 +184,8 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
               </li>
             ))}
           </ul>
-          {shown < entries.length && <button type="button" class="btn" onClick={() => setShown(shown + PAGE)}>Afficher plus</button>}
+          {filtered.length === 0 && <p class="dim" role="status">Aucune séance avec ces filtres.</p>}
+          {shown < filtered.length && <button type="button" class="btn" onClick={() => setShown(shown + PAGE)}>Afficher plus</button>}
         </>
       )}
       {entries.length > 0 && inMonth.length === 0 && <p class="dim small">Aucune séance ce mois-ci : l’historique ci-dessous montre les autres mois.</p>}

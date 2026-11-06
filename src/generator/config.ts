@@ -149,6 +149,176 @@ export const FIXED_LOAD_TAGS: readonly string[] = ['lest'];
 export const SAFE_LOAD_TAGS: readonly string[] = ['machine', 'poulie'];
 
 // ---------------------------------------------------------------------------------------------
+// R-REPS : répétitions, séries, repos et réserve par rôle x objectif x niveau, classes de variante D1-D4
+// (knowledge/repetitions-regles.md, coach 05/11/2026, durci et validé par kine « sous réserve du relecteur »).
+// Fourchettes générales (6-15 répétitions, 30-100 % du max, réserve jamais 0, <= 3 séries) : OK (SRC1, SRC6) ;
+// valeurs exactes par ligne : PROVISOIRE ; classes D1-D4, endurance, perte de gras, repos : NON SOURCÉ.
+// Ces tables remplacent DOSE pour les variantes hors FIXED_DOSE / TEMPS ; DOSE_LIMITS, NO_FAILURE_FICHES, P-GROS,
+// G4-G7 et les plafonds du tronc s'appliquent APRÈS et ne font que baisser (dose.ts).
+// ---------------------------------------------------------------------------------------------
+/** Rôle de dose (§2) : `pilier_lourd` = emplacements PILLAR_SLOTS (lecture prudente : tirage_1 et charnière restent accessoires). */
+export type DoseRole = 'pilier_lourd' | 'accessoire' | 'isolation';
+/** Clé d'objectif de la table : `perte_gras` n'a de lignes que pour accessoire / isolation (pilier = muscle). */
+export type RepsGoal = 'muscle' | 'perte_gras' | 'force' | 'sante' | 'sport' | 'endurance';
+export interface RepsRow {
+  sets: number;
+  reps: [number, number];
+  /** Repos en secondes : bas de la fourchette du tableau (choix de `dev`, durée de séance). */
+  restSec: number;
+  rir: number;
+}
+const row = (sets: number, a: number, b: number, restSec: number, rir: number): RepsRow => ({ sets, reps: [a, b], restSec, rir });
+/** §3 du fichier (repos : bas de la fourchette). */
+export const REPS_TABLE: Record<DoseRole, Partial<Record<RepsGoal, Record<Level, RepsRow>>>> = {
+  pilier_lourd: {
+    muscle: { debutant: row(2, 8, 12, 90, 3), intermediaire: row(3, 6, 10, 120, 2), avance: row(3, 5, 10, 150, 2) },
+    // [kine] force débutant 8-10 (et non 6-8) : technique pas encore stable.
+    force: { debutant: row(2, 8, 10, 120, 3), intermediaire: row(3, 4, 6, 180, 2), avance: row(3, 3, 5, 210, 2) }, // décision utilisateur 05/11 : repos du pilier de force au milieu de 180-240
+    sante: { debutant: row(2, 10, 15, 90, 3), intermediaire: row(2, 8, 12, 90, 3), avance: row(3, 8, 12, 90, 2) },
+    // Décision utilisateur 05/11 : sport intermédiaire réserve 3 ; 6-10 PROVISOIRE (au lieu de 5-8, à resserrer si le kiné confirme 5-8).
+    sport: { debutant: row(2, 8, 10, 90, 3), intermediaire: row(3, 6, 10, 120, 3), avance: row(3, 3, 6, 165, 2) }, // repos au milieu de 150-180 (avis kine 05/11 : pilier a 6 repetitions ou moins)
+    endurance: { debutant: row(2, 12, 15, 60, 3), intermediaire: row(2, 12, 15, 45, 3), avance: row(3, 12, 15, 45, 2) }, // intermédiaire : réserve 3 (décision utilisateur 05/11)
+  },
+  accessoire: {
+    muscle: { debutant: row(2, 10, 12, 90, 3), intermediaire: row(3, 8, 12, 90, 2), avance: row(3, 8, 12, 90, 2) },
+    perte_gras: { debutant: row(2, 10, 15, 60, 3), intermediaire: row(3, 10, 15, 60, 2), avance: row(3, 10, 15, 60, 2) },
+    force: { debutant: row(2, 8, 10, 90, 3), intermediaire: row(2, 6, 10, 90, 2), avance: row(3, 6, 8, 120, 2) },
+    sante: { debutant: row(2, 10, 15, 60, 3), intermediaire: row(2, 10, 15, 60, 3), avance: row(2, 10, 15, 60, 2) },
+    sport: { debutant: row(2, 8, 12, 60, 3), intermediaire: row(2, 6, 10, 90, 3), avance: row(3, 5, 8, 120, 2) }, // intermédiaire : réserve 3 (décision utilisateur 05/11)
+    endurance: { debutant: row(2, 12, 15, 45, 3), intermediaire: row(2, 15, 20, 45, 3), avance: row(3, 15, 20, 45, 2) }, // intermédiaire : réserve 3
+  },
+  isolation: {
+    muscle: { debutant: row(2, 12, 15, 60, 3), intermediaire: row(3, 10, 15, 60, 2), avance: row(3, 10, 15, 60, 2) },
+    perte_gras: { debutant: row(2, 12, 15, 45, 3), intermediaire: row(3, 12, 15, 45, 2), avance: row(3, 12, 15, 45, 2) },
+    force: { debutant: row(2, 10, 12, 60, 3), intermediaire: row(2, 8, 12, 60, 2), avance: row(2, 8, 12, 90, 2) },
+    sante: { debutant: row(2, 12, 15, 60, 3), intermediaire: row(2, 12, 15, 60, 3), avance: row(2, 10, 15, 60, 2) },
+    sport: { debutant: row(2, 10, 12, 60, 3), intermediaire: row(2, 8, 12, 60, 3), avance: row(2, 8, 12, 60, 2) }, // intermédiaire : réserve 3
+    endurance: { debutant: row(2, 15, 20, 45, 3), intermediaire: row(2, 15, 25, 45, 3), avance: row(3, 15, 25, 45, 2) }, // intermédiaire : réserve 3
+  },
+};
+/** Objectif de rang 1 -> clé de la table (objectif inconnu, forme, cardio, mobilité, fonctionnel : santé, comme GOAL_FAMILY). */
+export const REPS_GOAL: Record<string, RepsGoal> = {
+  muscle: 'muscle', perte_gras: 'perte_gras', force: 'force', sante: 'sante', forme: 'sante', cardio: 'sante',
+  mobilite: 'sante', fonctionnel: 'sante', sport: 'sport', endurance: 'endurance',
+};
+/**
+ * Fiches d'isolation (§2 : une articulation, un muscle) placées hors des emplacements `iso_*`. Attribut de fiche absent : liste
+ * de préfixes d'id lue par `dev` d'après les exemples du fichier (curl, extension triceps, élévation latérale, mollets, écarté, tirage au visage).
+ */
+export const ISOLATION_FICHE_PREFIXES: readonly string[] = [
+  'curl-', 'extension-triceps-', 'elevation-laterale', 'oiseau-', 'ecarte-', 'ecartement-', 'tirage-visage-', 'shrug-', 'rotation-externe-',
+  'releve-mollets', 'tirage-bras-tendus-', 'tirage-w-',
+];
+/**
+ * Variantes dont l'intensité se règle par une charge ou une tension choisie : table par rôle. Les autres (poids du corps, chaise, suspension,
+ * gilet lesté, sac de sable, traction assistée) suivent leur classe D1-D4 (§4). L'élastique d'assistance d'une traction ne compte pas.
+ */
+export const ADJUSTABLE_TAGS: readonly string[] = [...CHARGEABLE_TAGS, 'elastique', 'mini_bande'];
+/** [kine] §3 : charge « réglable finement », seule admise pour une série <= 5 répétitions (pas l'élastique, le sac à dos ni les bidons). */
+export const FINE_LOAD_TAGS: readonly string[] = ['barre', 'barre_ez', 'disques', 'halteres', 'kettlebell', 'machine', 'poulie'];
+export const ASSISTANCE_TAGS: readonly string[] = ['barre_traction'];
+/** §4 : classe d'une variante non réglable. NON SOURCÉ (choix de coach). Repos : bas de la fourchette, borné par celui du rôle. */
+export interface DClassRow {
+  reps: [number, number];
+  /** Débutant (D3 seulement) : [kine] 6-10. */
+  repsDebutant?: [number, number];
+  maxSets: number;
+  maxSetsDebutant: number;
+  restMinSec: number;
+  restMaxSec: number;
+  minRir: number;
+  minRirDebutant: number;
+}
+export const D_CLASS: Record<1 | 2 | 3 | 4, DClassRow> = {
+  1: { reps: [12, 20], maxSets: 2, maxSetsDebutant: 2, restMinSec: 60, restMaxSec: 60, minRir: 3, minRirDebutant: 3 },
+  2: { reps: [8, 15], maxSets: 3, maxSetsDebutant: 3, restMinSec: 60, restMaxSec: 90, minRir: 2, minRirDebutant: 3 },
+  3: { reps: [5, 10], repsDebutant: [6, 10], maxSets: 3, maxSetsDebutant: 2, restMinSec: 90, restMaxSec: 120, minRir: 2, minRirDebutant: 3 },
+  4: { reps: [2, 5], maxSets: 2, maxSetsDebutant: 2, restMinSec: 120, restMaxSec: 180, minRir: 3, minRirDebutant: 3 },
+};
+/**
+ * Classe par défaut d'une variante non réglable : niveau de la variante débutant -> D2, intermédiaire ou avancé -> D3. Exceptions
+ * ci-dessous (exemples du §4). Lecture de `dev`, NON SOURCÉ : à confirmer par coach (ex. pompe archer laissée en D3).
+ */
+export const D_CLASS_BY_NIVEAU: Record<Level, 2 | 3> = { debutant: 2, intermediaire: 3, avance: 3 };
+/** D1 très facile (§4 : pompe au mur, assis-debout mains sur les cuisses). Ids de variante. */
+export const D1_VARIANTS: readonly string[] = ['pompe-mur', 'assis-debout-mains-cuisses-chaise'];
+/** D3 parmi les variantes de niveau débutant (§4 : la pompe au sol). Ids de variante. */
+export const D3_VARIANTS: readonly string[] = ['pompe-sol'];
+/**
+ * D4 très difficile (§4 : pistol, nordique, pompe en équilibre), id de fiche -> zones sensibles qui l'excluent dès le niveau 1
+ * ([kine] épaule, coude, poignet pour les poussées ; ischios (cuisse), genou pour la nordique et le pistol). Avancé seulement,
+ * 2 séries au plus, réserve 3, 2-5 répétitions (par côté si unilatéral), jamais en grossesse / post-partum.
+ */
+export const D4_FICHES: Record<string, readonly string[]> = {
+  'nordique-ischios': ['cuisse', 'genou'],
+  'pompe-equilibre-mur': ['epaule', 'coude', 'poignet'],
+  'pistol-squat': ['genou', 'hanche', 'cheville'], // aucune fiche « pistol » aujourd'hui : prête pour le jour où elle arrive
+  // Décision de l'utilisateur (05/11/2026) : réservées aux avancés, exclues en grossesse / post-partum et avec une gêne déclarée au
+  // poignet, au coude ou à l'épaule. Encore dans D4_NEVER tant que le garde-fou du D3 voisin n'est pas codé (voir plus bas).
+  'pompe-un-bras': ['poignet', 'coude', 'epaule'],
+  'traction-un-bras': ['poignet', 'coude', 'epaule'], // aucune fiche aujourd'hui : prête pour le jour où elle arrive
+};
+/**
+ * Dose propre à une fiche D4, qui remplace la ligne D4 de D_CLASS (décision de l'utilisateur du 05/11/2026, PROVISOIRE, à confirmer par
+ * coach + kine dans le passage unique de fin de lot). Répétitions PAR CÔTÉ. Traction à un bras : assistée ou avec élastique seulement
+ * (à porter par les variantes de la future fiche).
+ */
+export const D4_FICHE_DOSE: Record<string, { reps: [number, number]; maxSets: number; minRir: number }> = {
+  'pompe-un-bras': { reps: [4, 8], maxSets: 2, minRir: 3 }, // avis kine 05/11 : 2 series au plus (et non 2-3)
+  'traction-un-bras': { reps: [1, 5], maxSets: 2, minRir: 3 },
+};
+/**
+ * Fiches ou variantes JAMAIS proposées par le générateur. MESURE PROVISOIRE (05/11/2026, décision de l'utilisateur) : le garde-fou
+ * [kine] « D4 seulement après 2 séances consécutives en haut de fourchette du D3 voisin, à la réserve cible, sans douleur »
+ * (repetitions-regles.md §4, adaptation-regles.md E2) n'est PAS codé : aucun fichier de knowledge/ ne dit quel est le « D3 voisin »
+ * de chaque D4 (une autre fiche, à fixer par coach + kine). En attendant, TOUTES les D4 sont ici. Quand le garde-fou sera codé :
+ * retirer les quatre ids ; la pompe et la traction à un bras suivront alors D4_FICHES (avancé seulement) et D4_FICHE_DOSE.
+ */
+export const D4_NEVER: readonly string[] = ['traction-un-bras'];
+/**
+ * [kine 05/11/2026] Garde-fou D4 (repetitions-regles.md §4, tableau « D4 -> D3 voisin ») : une D4 n'est ouverte qu'après 2 séances valables
+ * CONSÉCUTIVES de la variante voisine, toutes les séries au haut de leur fourchette, réserve >= D3 (2), sans symptôme, sans douleur ni gel
+ * sur la zone (le droit se referme alors), avancé, hors reprise douce et grossesse. `variants` absent = la (les) variante(s) du plus haut
+ * échelon de la fiche voisine. Dans la fiche D4, l'échelon suivant s'ouvre après 2 séances au haut de l'échelon d'en dessous (pompe à un
+ * bras au sol après la chaise). Traction à un bras : aucune fiche, reste dans D4_NEVER. Choix de coach / kiné, NON SOURCÉ.
+ */
+export const D4_NEIGHBORS: Record<string, { fiche: string; variants?: readonly string[] }> = {
+  'nordique-ischios': { fiche: 'curl-ischios-serviette', variants: ['curl-ischios-serviette-une-jambe'] },
+  'pompe-equilibre-mur': { fiche: 'pompe-piquee-pieds-sureleves' },
+  'pompe-un-bras': { fiche: 'pompe-archer' },
+};
+/** Séances valables consécutives au haut de la fourchette pour ouvrir une D4 (ou l'échelon D4 suivant). NON SOURCÉ (kiné). */
+export const D4_OPEN_SESSIONS = 2;
+/** Décision du chef de projet (contrôle relecteur 05/11/2026) : pilier chargé, 3 séries au plus (repetitions-regles.md §3 : 2-3 séries). */
+export const PILLAR_CHARGED_MAX_SETS = 3;
+/** [kine] Traction (même avancée) : réserve >= 2, 3 séries au plus, 5-10 répétitions (au-dessus de 10 : on monte d'échelon). */
+export const TRACTION_FICHES: readonly string[] = ['traction-barre', 'traction-gilet-lest'];
+export const TRACTION_RULE = { minRir: 2, maxSets: 3, reps: [5, 10] as [number, number] };
+/** [kine] Mouvements techniques à barre (squat, soulevé de terre, good-morning, rowing barre, hip thrust barre) : au plus 12 répétitions. */
+export const TECHNICAL_CAP_FICHES: readonly string[] = [
+  'squat-arriere-barre', 'squat-avant-barre', 'squat-barre-repere-banc', 'souleve-de-terre-barre', 'souleve-de-terre-roumain-barre',
+  'souleve-de-terre-sumo-barre', 'good-morning-barre', 'rowing-barre-penche', 'rowing-pendlay-barre', 'hip-thrust-barre',
+];
+export const TECHNICAL_MAX_REPS = 12;
+/** [kine] Fiches « techniques » (soulevé de terre, good-morning) : jamais de série <= 5 répétitions sans fiche qui l'autorise (aucune aujourd'hui). */
+export const TECHNICAL_NO_LOW_FICHES: readonly string[] = [
+  'souleve-de-terre-barre', 'souleve-de-terre-roumain-barre', 'souleve-de-terre-sumo-barre', 'good-morning-barre', 'souleve-de-terre-sac',
+];
+/** Répétitions minimales (bas de fourchette) : technique, débutant ([kine] jamais <= 5), unilatéral (§5 : jamais < 6 par côté, débutant chargé >= 8). */
+export const REPS_FLOOR = { technical: 6, debutant: 6, unilateral: 6, unilateralChargedDebutant: 8 };
+/**
+ * [kine] §6 : douleur ou gêne déclarée sur une zone (profil blessures, niveau >= 1, ligne de la fiche) : aucune fourchette <= 6 répétitions.
+ * Bas relevé à 8 (bas de la fourchette 8-12 des exercices « autres » de V-DOSE, choix de `dev`) ; même relèvement pour `noHeavyReps` (D32).
+ */
+export const PAIN_MIN_REPS = 8;
+/** Avancé, réserve 1 : seulement sur machine ou poulie (§3), jamais sur une variante au poids du corps, à l'élastique ou en charge libre. */
+export const RIR1_ONLY_TAGS: readonly string[] = ['machine', 'poulie'];
+/** [kine] P-GROS : gainage et portés à 20 s au plus par série. */
+export const PREGNANCY_MAX_HOLD_SEC = 20;
+/** [kine] Gainage (§5) : fourchettes de durée par niveau ; la durée de TEMPS, plus courte, l'emporte (ramenée dans la fourchette). */
+export const HOLD_RANGE: Record<Level, [number, number]> = { debutant: [15, 30], intermediaire: [30, 45], avance: [30, 60] };
+
+// ---------------------------------------------------------------------------------------------
 // Exercices à durée ou par côté (V-TEMPS §3.3) — NON SOURCÉ en entier ; DÉFAUT-2 (gainage 20-30 s, porté 30-40 s, 2 séries)
 // ---------------------------------------------------------------------------------------------
 export interface TempsRow {
@@ -388,8 +558,13 @@ export const TIME = {
   addIfUnderMarginSec: 600,
   displayRoundMin: 5,
 };
-/** « Unilatéral » = id ou nom de variante contenant un de ces mots (à remplacer par un champ `unilateral` de fiche). */
-export const UNILATERAL_MARKERS: readonly string[] = ['un-bras', 'une-jambe', 'unijambiste', 'un-haltere', 'bulgare', 'fente'];
+/**
+ * « Unilatéral » = l'id ou le nom de la variante contient une de ces expressions (minuscules, sans accent, tirets lus comme des espaces).
+ * Détection automatique, faute de champ `unilateral` dans les fiches. « un haltère » n'y est plus : « un haltère à deux mains » est bilatéral
+ * (« Un bras à la fois » est attrapé par « un bras »). Le mot « alterné » est cherché entier (pas « alternée » de la marche rapide).
+ */
+export const UNILATERAL_MARKERS: readonly string[] = ['un bras', 'une jambe', 'unijambiste', 'bulgare', 'fente', 'copenhague', 'planche laterale', 'unipodal'];
+export const UNILATERAL_WORDS: readonly string[] = ['alterne'];
 
 // ---------------------------------------------------------------------------------------------
 // Choix de la variante (V-ECHELON §6.3) — NON SOURCÉ

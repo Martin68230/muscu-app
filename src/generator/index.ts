@@ -7,12 +7,12 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf,
+  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin } from './impact';
 import { isoEligible, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
-import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, type Plaf } from './plaf';
+import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekMusclesOf, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
   blockCap, blocksForRank, cardioItem, cardioLevel, cardioRankOf, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, isHeavyLegsSession, legLoad,
@@ -155,8 +155,20 @@ function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback
       if (fixed) break;
     }
     if (fixed) continue;
-    const m = musclesOf(sessions).find((x) => sessions.reduce((a, s) => a + sessionVol(s, x), 0) > VOLUME.maxPerMuscleWeek);
+    const m = weekMusclesOf(sessions).find((x) => sessions.reduce((a, s) => a + sessionVol(s, x), 0) > VOLUME.maxPerMuscleWeek);
     if (!m) return;
+    // [kine 05/11/2026] Épaules (somme des trois chefs du deltoïde) au-delà de 20 : d'abord redescendre à 2 séries les accessoires qui les
+    // chargent (séance la plus tardive d'abord), avant tout retrait d'exercice.
+    if (m === 'deltoides') {
+      for (const s of [...sessions].reverse()) {
+        const e = s.exercises.find((x) => !MAIN_EXERCISE_SLOTS.includes(x.slot) && frac(x, m) > 0 && x.sets > VOLUME.minSets);
+        if (!e) continue;
+        s.exercises = s.exercises.map((x) => (x === e ? { ...x, sets: x.sets - 1 } : x));
+        fixed = true;
+        break;
+      }
+      if (fixed) continue;
+    }
     for (const slot of WEEK_CAP_ORDER) {
       for (const s of [...sessions].reverse()) {
         if (noyau(s).includes(slot)) continue;
@@ -212,6 +224,7 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
           if (!e || !e.rirAsked || e.unit !== 'reps' || e.capped || e.sets >= VOLUME.maxSetsPerExercise) continue;
           // D32 : jamais au-delà du nombre de séries écrit dans la fiche.
           if (e.sets >= (doseLimitOf(e.ficheId, e.variantId).maxSets ?? Infinity)) continue;
+          if (e.sets >= (e.setsCap ?? Infinity)) continue; // R-REPS : classe D1-D4, traction
           if (!e.musclesPrincipaux.some((x) => (m === 'deltoides' ? x.startsWith(VOLUME.deltoidPrefix) : x === m))) continue;
           const trial = { ...s, exercises: s.exercises.map((x) => (x === e ? { ...x, sets: x.sets + 1 } : x)) };
           const all = sessions.map((x) => (x === s ? trial : x));
@@ -1096,6 +1109,8 @@ function plannedOf(e: GenExercise): PlannedExercise {
     supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
     slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, adaptation: e.adaptation, substitut: e.substitut,
     ...(e.rotation ? { rotation: true } : {}),
+    // Un seul côté à la fois (un bras, une jambe, alterné) : une série = gauche puis droite. `reps_par_cote` l'est déjà.
+    ...(e.unilateral && e.unit !== 'reps_par_cote' && e.role !== 'cardio' ? { perSide: true } : {}),
   };
 }
 

@@ -102,7 +102,14 @@ async function mount(program: Program, profile: Profile, opts: { dayIndex?: numb
 }
 
 const tick = (ms = 0) => act(async () => { await new Promise((r) => setTimeout(r, ms)); });
+/** La réserve (RIR) est obligatoire à chaque série : une réponse est choisie avant « Série faite » (comme une personne le ferait). */
+async function chooseRir() {
+  const row = document.querySelector('.rir-row');
+  if (!row || row.querySelector('[aria-pressed="true"]')) return;
+  await act(async () => { fireEvent.click(row.querySelectorAll('.rir-btn')[2]); });
+}
 async function click(name: string | RegExp) {
+  if (name === 'Série faite') await chooseRir();
   const el = screen.getByRole('button', { name });
   await act(async () => { fireEvent.click(el); });
   await tick(15);
@@ -151,6 +158,14 @@ describe('parcours complet d’une séance générée', () => {
         await tick();
         continue;
       }
+      const startHold = screen.queryByRole('button', { name: /Démarrer le chronomètre/ });
+      if (startHold) {
+        await act(async () => { fireEvent.click(startHold); });
+        await act(async () => { fireEvent.click(await screen.findByRole('button', { name: 'Arrêter le chronomètre' })); });
+        await tick();
+        continue;
+      }
+      await chooseRir();
       const done = screen.queryByRole('button', { name: 'Série faite' });
       if (done) {
         const step = ctl.state.step;

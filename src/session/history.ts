@@ -1,17 +1,20 @@
 // Continuité entre les séances (F5) : « dernière fois », proposition de progression, douleur sur plusieurs séances.
 // Fonctions pures sur les lignes déjà lues dans IndexedDB. La v1 PROPOSE (« Essaie 2,5 kg de plus »), n'impose rien.
 // Règles : knowledge/generateur-v1.md §5.2 et §6.8, load-calibration.md règle 4 (double progression), V-PRIO (sécurité d'abord).
+import { isPerSide } from './sides';
 import type { EquipmentProfile, Injury, InjuryZone, Level, PlannedExercise, ProgressionEvent, SetLog, WorkoutSession } from '../data/model';
 import { zoneLevel } from '../data/injury-rules';
+import { HOLD_RANGE, PREGNANCY_MAX_HOLD_SEC } from '../generator/config';
 import { ZONE_GENE } from '../data/labels';
 import { nextCalibrationStep, painProposals, type PainProposal, type PainZone } from '../generator/calibration';
 import { buildCtx } from '../generator/context';
 import { resolveFiche } from '../generator/safety';
 import type { Fiche, GeneratorInput } from '../generator/types';
 import type { EchelonInfo, EngineContext } from './engine';
-import { ECHELON_TEXT, fmtKg, loadLessText, loadMoreText, PAIN_S1_TEXT, PROGRESSION_TEXT } from './messages';
-import { evaluateEchelon, proposeHold, type EchelonProposal, type ProgVariant } from './progression';
-import type { ProgressionConfig } from './progression-config';
+import { beginnerFailureLock, doneSessionsCount, jumpAllowed, painFrozen, setRaise, topRun } from './adaptation';
+import { ECHELON_TEXT, fmtKg, harderVariantText, holdMoreText, loadLessText, loadMoreText, PAIN_S1_TEXT, PROGRESSION_TEXT, setMoreText } from './messages';
+import { evaluateEchelon, firstFinishedAt, levelIndex, proposeHold, type EchelonProposal, type ProgVariant } from './progression';
+import { PROGRESSION, type ProgressionConfig } from './progression-config';
 
 /** Pas de charge quand aucun palier réel n'est connu (barre sans disques déclarés, machine, sac à dos…). Valeur prudente, NON SOURCÉ. */
 export const DEFAULT_LOAD_STEP_KG = 1;
@@ -61,7 +64,12 @@ export function availableLoadsFor(tags: readonly string[], eq: Pick<EquipmentPro
 }
 
 // ----- Proposition de progression -----
-export type ProgressionReason = 'etalonnage' | 'douleur' | 'plafond' | 'grossesse' | 'maintien' | 'incomplet' | 'double_progression' | 'sommet' | 'baisse' | 'garder' | 'symptome' | 'echelon' | 'reprise' | 'paire';
+export type ProgressionReason =
+  | 'etalonnage' | 'douleur' | 'plafond' | 'grossesse' | 'maintien' | 'incomplet' | 'double_progression' | 'sommet' | 'baisse' | 'garder' | 'symptome'
+  | 'echelon' | 'reprise' | 'paire'
+  // adaptation-regles.md : +1 série (C7), version plus dure (C8), saut trop grand (C6), critère à confirmer (C3), séance manquée (§8),
+  // débutant après un échec (C1), réserve sous la cible (C2), +répétitions (C4 / E3).
+  | 'serie' | 'variante' | 'saut' | 'attente' | 'manquee' | 'apprentissage' | 'reserve' | 'repetitions';
 export interface Progression {
   action: 'etalonnage' | 'hausse' | 'baisse' | 'garder';
   loadKg: number | null;
@@ -73,6 +81,10 @@ export interface Progression {
   echelonProposal?: EchelonProposal;
   /** F6 : durée de maintien proposée (secondes), seulement si les paliers de maintien sont activés (figés en v1). */
   holdSec?: number | null;
+  /** C7 : nombre de séries proposé (proposition seulement, jamais appliquée seule). */
+  setsProposal?: number;
+  /** C8 : version plus dure de la fiche (proposition seulement). */
+  harderVariant?: { variantId: string; nom: string };
 }
 
 /** F6 : exercice sans charge à échelons (poids du corps, élastique) : la clé de suivi est (fiche, échelon), pas la variante. */
@@ -116,6 +128,23 @@ export interface ProgressionInput {
    * à la dernière séance sur l'une de ces zones (ou sur une zone inconnue, ou si cette liste est absente : doute), aucune hausse.
    */
   zonesOfFiche?: readonly string[];
+  // ----- adaptation-regles.md -----
+  /** Niveau de la personne (débutant : règles C1, C3, C7). Absent : `bodyweight.level`, sinon prudence « débutant ». */
+  level?: Level;
+  /** §5 [kine] : zones de n'importe quelle fiche, pour le gel douleur par zone sur toutes les fiches. */
+  zonesOfMovement?: (movementId: string) => readonly string[];
+  /** C8 : variantes de la fiche (niveau, matériel) pour la version plus dure d'un exercice chargé ; les D4 sont déjà retirées par l'appelant. */
+  variants?: readonly ProgVariant[];
+  /** Fiche « technique » ou classe D3 / D4 : C3 sur 2 séances pour le débutant, jamais 3 séries pour le débutant. */
+  technical?: boolean;
+  /** Plafond de séries de la fiche (DOSE_LIMITS, classe). */
+  ficheMaxSets?: number;
+  /** §6 [kine] : une séance a été manquée depuis la dernière : aucune montée à la séance de retour (réévaluation à l'ouverture). */
+  missedSinceLast?: boolean;
+  /** Horloge (ms) pour l'ancienneté du débutant (C7). */
+  now?: number;
+  /** Maintiens : 30 s après une charge lourde dans la même séance (CORE-ORD-4), calculé par l'appelant. */
+  holdMaxSec?: number;
 }
 
 /** Séries de la fiche pour un échelon donné (poids du corps) : même difficulté, quelle que soit la variante. */
@@ -125,7 +154,7 @@ export function lastTimeEchelon(sets: readonly SetLog[], movementId: string, ech
 }
 
 const plannedFor = (row: WorkoutSession | undefined, movementId: string, fallback: number): number =>
-  (row?.plan ? row.plan.exercises.filter((e) => e.movementId === movementId).reduce((n, e) => n + e.sets * (e.unit === 'reps_par_cote' ? 2 : 1), 0) : 0) || fallback;
+  (row?.plan ? row.plan.exercises.filter((e) => e.movementId === movementId).reduce((n, e) => n + e.sets * (isPerSide(e) ? 2 : 1), 0) : 0) || fallback;
 
 export function proposeProgression(i: ProgressionInput): Progression {
   const ex = i.exercise;
@@ -156,34 +185,58 @@ export function proposeProgression(i: ProgressionInput): Progression {
     );
   })();
 
-  const fallbackPlanned = ex.sets * (ex.unit === 'reps_par_cote' ? 2 : 1);
+  const fallbackPlanned = ex.sets * (isPerSide(ex) ? 2 : 1);
+  // ----- adaptation-regles.md : entrées communes -----
+  const cfg = i.cfg ?? PROGRESSION;
+  const level: Level = i.level ?? bw?.level ?? 'debutant'; // niveau inconnu : la lecture la plus prudente (débutant)
+  const beginner = level === 'debutant';
+  const others = i.sets.filter((s) => s.sessionId !== i.excludeSessionId);
+  // §5 [kine] : gel douleur sur la zone, toutes fiches comprises, levé par 2 séances qui sollicitent la zone sans gêne.
+  const zoneFrozen = painFrozen({
+    movementId: ex.movementId, zones: i.zonesOfFiche, sets: i.sets, sessions: i.sessions, zonesOfMovement: i.zonesOfMovement, excludeSessionId: i.excludeSessionId, cfg,
+  });
+  const painNow = painLast || partnerPain || zoneFrozen;
+  const painText = painLast ? PROGRESSION_TEXT.douleur : PROGRESSION_TEXT.douleurZone;
+  // C1 [kine] : débutant, RIR 0 ou échec : aucune montée avant 2 séances valables au bon RIR.
+  const failureLock = beginner && beginnerFailureLock(ex.movementId, others, i.sessions, fallbackPlanned, ex.rirTarget, cfg);
+  const lastSets = last.lastSessionSets;
+  const rirOk = (s: SetLog) => s.rir !== null && s.rir >= ex.rirTarget;
+  // Unilatéral : le côté faible décide. « Toutes les séries » couvre les deux côtés (montée seulement si les deux remplissent le critère).
+  const allTop = lastSets.length > 0 && lastSets.every((s) => s.reps !== null && s.reps >= ex.repsMax && rirOk(s));
 
   // ----- Exercice sans charge à échelons : montée et descente par échelon (progression.ts) -----
   if (bw && i.echelon !== undefined && ex.unit !== 'sec') {
     const res = evaluateEchelon({
-      movementId: ex.movementId, echelon: i.echelon, sets: i.sets.filter((s) => s.sessionId !== i.excludeSessionId), sessions: i.sessions,
+      movementId: ex.movementId, echelon: i.echelon, sets: others, sessions: i.sessions,
       events: bw.events, variants: bw.variants, level: bw.level, pregnant: i.pregnant, capped: ex.capped, restricted: bw.restricted,
-      frozen: i.frozenBySymptom, fallbackPlanned, gentler: bw.gentler, cfg: i.cfg,
+      frozen: i.frozenBySymptom || zoneFrozen, fallbackPlanned, gentler: bw.gentler, cfg: i.cfg,
     });
     const p = res.proposal;
-    if (p?.kind === 'montee' && !i.repriseActive && !partnerPain) return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
+    // Réévaluée à chaque ouverture : reprise douce, douleur (zone), séance manquée, débutant après un échec -> aucune montée.
+    const noRaise = i.repriseActive || painNow || i.missedSinceLast || failureLock;
+    if (p?.kind === 'montee' && !noRaise) return { action: 'hausse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'descente') return { action: 'baisse', loadKg: null, echelon: p.to, reason: 'echelon', text: p.title, echelonProposal: p };
     if (p?.kind === 'plancher') return { ...keep('baisse', p.text), echelonProposal: p };
     if (i.repriseActive) return keep('reprise', '');
-    if (painLast || partnerPain) return keep('douleur', PROGRESSION_TEXT.douleur);
+    if (painNow) return keep('douleur', painText);
     if (i.pregnant || ex.capped) return keep(i.pregnant ? 'grossesse' : 'plafond', PROGRESSION_TEXT.plafond);
     if (i.frozenBySymptom) return keep('symptome', PROGRESSION_TEXT.symptome);
-    return keep('garder', PROGRESSION_TEXT.plusDeReps);
+    if (i.missedSinceLast) return keep('manquee', PROGRESSION_TEXT.manquee);
+    if (failureLock) return keep('apprentissage', PROGRESSION_TEXT.apprentissage);
+    // E2 : au sommet, mais pas encore assez de séances (ou rien au-dessus) : on garde, jamais de répétition au-delà du haut de la fourchette.
+    const upExists = bw.variants.some((v) => v.echelon === i.echelon! + 1 && v.materielOk && levelIndex(v.niveau) <= levelIndex(bw.level));
+    if (allTop) return upExists && !bw.restricted ? keep('attente', PROGRESSION_TEXT.attente) : keep('sommet', PROGRESSION_TEXT.garderVersion);
+    // E3 : +répétitions seulement si la réserve est conforme ; sinon on garde (C2).
+    return lastSets.every(rirOk) ? keep('garder', PROGRESSION_TEXT.plusDeRepsVersion) : keep('reserve', PROGRESSION_TEXT.garderVersion);
   }
 
   // ----- Exercice à charge -----
-  const lastSets = last.lastSessionSets;
   const cur = last.loadKg;
   const loads = cur !== null ? availableLoadsFor(i.variantTags ?? [], i.equipment ?? { dumbbellWeightsKg: [], kettlebellWeightsKg: [], platesKg: [] }, cur) : [];
   const painFreeSets = lastSets.filter((s) => !s.pain);
 
   // Baisse (toujours permise, même `capped`, en grossesse ou après une douleur : §1.3, §7 point 4) : une série sans douleur sous le bas
-  // de la fourchette, ou 2 de réserve de moins que la cible.
+  // de la fourchette, ou 2 de réserve de moins que la cible. Un seul palier (nextCalibrationStep), jamais sous la plus petite charge.
   const tooHard = painFreeSets.find((s) => (s.reps !== null && s.reps < ex.repsMin) || (s.rir !== null && s.rir <= ex.rirTarget - 2));
   if (tooHard && ex.unit !== 'sec' && cur !== null) {
     const step = nextCalibrationStep({
@@ -195,35 +248,58 @@ export function proposeProgression(i: ProgressionInput): Progression {
 
   if (i.repriseActive) return keep('reprise', ''); // aucun texte inventé : la ligne de progression n'est pas affichée
   // V-PRIO : la sécurité l'emporte. Jamais de hausse après une douleur, après un symptôme, sous plafond (R2, charge:legere), ni en grossesse.
-  if (painLast || partnerPain) return keep('douleur', PROGRESSION_TEXT.douleur);
+  if (painNow) return keep('douleur', painText);
   if (i.frozenBySymptom) return keep('symptome', PROGRESSION_TEXT.symptome);
   if (i.pregnant) return keep('grossesse', PROGRESSION_TEXT.plafond);
   if (ex.capped) return keep('plafond', PROGRESSION_TEXT.plafond);
+  if (i.missedSinceLast) return keep('manquee', PROGRESSION_TEXT.manquee);
   if (ex.unit === 'sec') {
     const hold =
       i.holdSchema && ex.holdSec !== null
-        ? proposeHold({ movementId: ex.movementId, schema: i.holdSchema, holdSec: ex.holdSec, sets: i.sets, sessions: i.sessions, pregnant: i.pregnant, capped: ex.capped, frozen: i.frozenBySymptom, fallbackPlanned, cfg: i.cfg })
+        ? proposeHold({
+            movementId: ex.movementId, schema: i.holdSchema, holdSec: ex.holdSec, sets: others, sessions: i.sessions, pregnant: i.pregnant, capped: ex.capped,
+            // [kine 05/11/2026] : reprise douce comprise dans le gel ; plafond = fiche (fourchette du niveau), charge lourde, P-GROS.
+            frozen: i.frozenBySymptom || painNow || !!i.repriseActive,
+            maxSec: Math.min(i.holdMaxSec ?? Infinity, i.pregnant ? PREGNANCY_MAX_HOLD_SEC : Infinity, i.holdSchema === 'gainage' ? HOLD_RANGE[level][1] : Infinity),
+            fallbackPlanned, cfg: i.cfg,
+          })
         : null;
-    return hold !== null ? { ...keep('maintien', `Essaie ${hold} secondes.`), holdSec: hold } : keep('maintien', PROGRESSION_TEXT.maintien);
+    return hold !== null ? { ...keep('maintien', holdMoreText(hold)), holdSec: hold } : keep('maintien', PROGRESSION_TEXT.maintien);
   }
 
   // Séance valable (§1.1, §7 point 8) : terminée, toutes les séries PRÉVUES de cette séance-là faites (et non celles du plan actuel), hors étalonnage.
   const row = i.sessions?.find((s) => s.id === lastSets[0]?.sessionId);
   if ((row && row.status !== 'faite') || lastSets.length < plannedFor(row, ex.movementId, fallbackPlanned)) return keep('incomplet', PROGRESSION_TEXT.garder);
   if (lastSets.some((s) => s.isCalibration)) return keep('garder', PROGRESSION_TEXT.garder);
+  if (failureLock) return keep('apprentissage', PROGRESSION_TEXT.apprentissage);
 
-  const rirOk = (s: SetLog) => s.rir !== null && s.rir >= ex.rirTarget;
   // Double progression (load-calibration.md règle 4) : toutes les séries au haut de la fourchette, à la réserve visée.
-  const allTop = lastSets.every((s) => s.reps !== null && s.reps >= ex.repsMax && rirOk(s));
   if (allTop) {
     if (cur === null) return keep('sommet', PROGRESSION_TEXT.sommet);
     // D26 (SUP-0 point 2, R3) : un exercice en superset garde la charge de départ du plan ; aucune hausse de charge proposée.
     if (ex.supersetGroup) return keep('paire', PROGRESSION_TEXT.paire);
+    // C3 [kine] : débutant et fiche « technique » : critère tenu sur 2 séances valables de suite.
+    const run = topRun(ex.movementId, others, i.sessions, fallbackPlanned, { repsMax: ex.repsMax, rirTarget: ex.rirTarget });
+    if (run < (beginner || i.technical ? cfg.adaptation.topSessionsBeginnerOrTechnical : 1)) return keep('attente', PROGRESSION_TEXT.attente);
+    // C3 + C6 [kine] : un seul cran au-dessus, et jamais plus de +20 % de la charge actuelle.
     const next = loads.filter((l) => l > cur).sort((a, b) => a - b)[0];
-    if (next === undefined) return keep('sommet', PROGRESSION_TEXT.sommet);
-    return { action: 'hausse', loadKg: next, echelon: null, reason: 'double_progression', text: loadMoreText(next - cur) };
+    if (next !== undefined && jumpAllowed(cur, next, cfg)) return { action: 'hausse', loadKg: next, echelon: null, reason: 'double_progression', text: loadMoreText(next - cur) };
+    // C6 : alternative dans l'ordre +1 série (C7), puis version plus dure (C8), sinon garder au sommet. Propositions seulement.
+    const first = firstFinishedAt(i.sessions ?? []);
+    const setsUp = setRaise({
+      sets: ex.sets, ficheMaxSets: i.ficheMaxSets, beginner, technicalOrHardClass: !!i.technical, topRun: run,
+      followedMs: first === null ? null : (i.now ?? Date.now()) - first, doneSessions: doneSessionsCount(i.sessions), cfg,
+    });
+    if (setsUp !== null) return { ...keep('serie', setMoreText(setsUp)), action: 'hausse', setsProposal: setsUp };
+    // Contrôle relecteur 05/11 : jamais de version plus dure pour un exercice adapté par une case de sécurité (blessure).
+    const harder = i.echelon === undefined || ex.adaptation != null ? undefined : (i.variants ?? [])
+      .filter((v) => v.echelon === i.echelon! + 1 && v.materielOk && levelIndex(v.niveau) <= levelIndex(level))
+      .sort((a, b) => a.rank - b.rank)[0];
+    if (harder) return { ...keep('variante', harderVariantText(harder.nom)), action: 'hausse', harderVariant: { variantId: harder.id, nom: harder.nom } };
+    return next === undefined ? keep('sommet', PROGRESSION_TEXT.sommet) : keep('saut', PROGRESSION_TEXT.saut);
   }
-  return keep('garder', PROGRESSION_TEXT.plusDeReps);
+  // C4 : +1 répétition seulement si la réserve est conforme sur toutes les séries ; C2 [kine] : réserve sous la cible -> garder.
+  return !tooHard && lastSets.every(rirOk) ? keep('garder', PROGRESSION_TEXT.plusDeReps) : keep('reserve', PROGRESSION_TEXT.garderReserve);
 }
 
 /** Contexte du lecteur de séance : étalonnage = aucune série de travail faite pour cette variante ; paliers réels du profil. */
@@ -242,6 +318,10 @@ export function buildEngineContext(p: {
   zoneOnFiche?: (ex: PlannedExercise, zone: InjuryZone) => boolean;
   /** SUP-10 : muscles principaux de la fiche (null = inconnus). */
   mainMusclesOf?: (ex: PlannedExercise) => string[] | null;
+  perSideOf?: (ex: PlannedExercise) => boolean;
+  /** adaptation-regles.md §5 [kine] : zones portées par une fiche (gel douleur par zone, étalonnage compris). */
+  zonesOfMovement?: (movementId: string) => readonly string[];
+  sessions?: readonly WorkoutSession[];
 }): EngineContext {
   const done = new Set(p.sets.filter((s) => isWork(s) && s.sessionId !== p.excludeSessionId).map((s) => s.variantId));
   // D26 (SUP-2 point 7) : retour après gêne = la dernière séance où la fiche a été faite contient une série « ça fait mal ».
@@ -258,6 +338,11 @@ export function buildEngineContext(p: {
     afterPain: (ex) => painAfter.has(ex.movementId),
     zoneOnFiche: p.zoneOnFiche,
     mainMusclesOf: p.mainMusclesOf,
+    perSideOf: p.perSideOf,
+    // §5 [kine] : douleur récente sur une zone de la fiche : l'étalonnage ne monte pas (garder / descendre seulement).
+    raiseFrozen: p.zonesOfMovement
+      ? (ex) => painFrozen({ movementId: ex.movementId, zones: p.zonesOfMovement!(ex.movementId), sets: p.sets, sessions: p.sessions, zonesOfMovement: p.zonesOfMovement, excludeSessionId: p.excludeSessionId })
+      : undefined,
   };
 }
 

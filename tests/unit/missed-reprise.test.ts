@@ -51,7 +51,7 @@ describe('V-PROG-E8 : reprise douce active', () => {
       variantId: 'v', exerciseIndex: 0, setIndex: i, targetRepsMin: 8, targetRepsMax: 12, reps: 12, loadKg: 10, rir: 3, pain: false, comment: '',
       completedAt: `2026-10-20T10:0${i}:00.000Z`, isCalibration: false, isWarmup: false,
     }));
-    const base = { exercise: exo, sets, pregnant: false, variantTags: ['halteres'], equipment: { dumbbellWeightsKg: dumbbells, kettlebellWeightsKg: [], platesKg: [] } };
+    const base = { exercise: exo, sets, pregnant: false, level: 'intermediaire' as const, variantTags: ['halteres'], equipment: { dumbbellWeightsKg: dumbbells, kettlebellWeightsKg: [], platesKg: [] } };
     expect(proposeProgression(base).action).toBe('hausse');
     const p = proposeProgression({ ...base, repriseActive: true });
     expect(p.action).toBe('garder');

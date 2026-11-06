@@ -40,6 +40,25 @@ import { mk, type MkOpts } from './generator-helpers';
 // Référence régénérée le 01/11/2026 pour la mesure provisoire B1 du contrôle des exemples de programmes : DOSE_LIMITS limite nordique-ischios et
 // pompe-equilibre-mur à une réserve >= 2 et 2 séries au plus (config.ts) ; 87 cas sur 662 changent, tous de niveau avancé (RIR 1 de l'avancé et 3 séries
 // sur ces deux fiches) ; aucun cas débutant ni intermédiaire ne change.
+// Référence régénérée le 06/11/2026 (avis kiné, contrôle relecteur, décisions du chef de projet), comparée à celle du 05/11 ci-dessous,
+// en deux étapes mesurées séparément : (1) épaules = somme des trois chefs du deltoïde au plafond de 20 / semaine (avec baisse des
+// accessoires à 2 séries d'abord) et repos du pilier sport avancé 165 s : 489 cas sur 662 changent (débutant 144, intermédiaire 162,
+// avancé 170, grossesse / cardio 13) ; (2) pilier chargé plafonné à 3 séries (PILLAR_CHARGED_MAX_SETS) : 445 cas (144 par niveau, 13).
+// Contrôle sur le programme final (repetitions-regles.test.ts) : épaules <= 20, piliers chargés <= 3 séries, weekCapsOk vrai. Aucune D4
+// placée sans historique (garde-fou d4Open vide dans la grille) : le garde-fou ne change pas la référence.
+// Référence régénérée le 05/11/2026 (tâche « adaptation automatique » et décisions de l'utilisateur) : 190 cas sur 662 changent, aucun
+// débutant. Intermédiaire : seulement sport (24/24) et endurance (24/24) : réserve 3 au lieu de 2, pilier sport 6-10 au lieu de 5-8
+// (PROVISOIRE). Avancé : force (24/24, dont force+muscle+perte_gras) : repos du pilier de force 210 s (milieu de 180-240) au lieu de 180 ;
+// autres objectifs (13-14 cas chacun) : nordique des ischios et pompe en équilibre retirées (D4_NEVER, garde-fou du D3 voisin non codé).
+// Référence régénérée le 05/11/2026 pour deux causes, comparées séparément (empreintes « marqueurs seuls » puis « marqueurs + règles ») :
+// (1) marqueurs unilatéraux UNILATERAL_MARKERS (champ perSide ; « un haltère » retiré, planche latérale, copenhague, unipodal, alterné) :
+// 24 cas, tous profil F à 2 jours, intermédiaire 12 et avancé 12 (santé, endurance, sport, mobilité, 45 / 60 min / sans limite), par les
+// durées estimées et l'ordre ; (2) R-REPS (knowledge/repetitions-regles.md : table rôle x objectif x niveau, classes D1-D4, règles du kiné) :
+// 661 cas sur 662 (débutant 218, intermédiaire 216, avancé 218, défaut 9 ; seul « dos niveau 3 » est inchangé : programme refusé), dont 425
+// par la dose seule (mêmes variantes) et 236 avec des variantes changées (pompe à un bras retirée, D4_NEVER : 47 ; exercices retirés ou
+// ajoutés par la nouvelle durée : 83 programmes ont moins d'exercices, 132 plus ; D3 / D4 hors grossesse). Les 24 cas de (1) changent aussi
+// par (2). Contrôles : aucun cas débutant n'a une série <= 5 répétitions ni un D3 (pompe au sol) en première séance ; D4 (pompe en
+// équilibre, 2 x 2-5, réserve 3) seulement chez l'avancé ; traction toujours en réserve >= 2 ; réserve 1 seulement sur machine ou poulie.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

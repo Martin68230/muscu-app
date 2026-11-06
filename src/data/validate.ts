@@ -89,6 +89,7 @@ export const SPECS: Record<TableName, Spec> = {
     endReason: 'string?',
     echelonSwitches: 'object?',
     calibDecided: 'array?',
+    calibDrops: 'array?',
     summary: 'object?',
     decidedAt: 'string?',
     originDate: 'string?',
@@ -119,6 +120,7 @@ export const SPECS: Record<TableName, Spec> = {
     capped: 'boolean',
     painZone: 'string?',
     restTakenSec: 'number?',
+    felt: 'number?',
   },
   bodyWeights: { date: 'string', kg: 'number' },
   meals: { date: 'string', time: 'string?', label: 'string', items: 'array' },
@@ -138,8 +140,8 @@ export const SPECS: Record<TableName, Spec> = {
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
   profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur'],
   programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays', 'cardioOption'],
-  sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee'],
-  sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec'],
+  sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'calibDrops', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee'],
+  sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec', 'felt'],
   injuries: ['afterShock'],
   equipment: ['dumbbellKind', 'platesKg', 'other'],
 };

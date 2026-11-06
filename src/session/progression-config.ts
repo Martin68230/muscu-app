@@ -5,6 +5,7 @@
 // record (progression-et-bilan-v1.md §0). Elles sont codées avec les CHOIX PAR DÉFAUT de §5 en attendant la décision de
 // l'utilisateur et le contrôle de `relecteur` (CLAUDE.md règle 10). La logique (progression.ts, summary.ts) ne contient
 // aucune de ces valeurs en dur : changer un réglage ici change le résultat (testé).
+import { D_CLASS, TECHNICAL_CAP_FICHES } from '../generator/config';
 
 export interface ProgressionConfig {
   echelon: {
@@ -51,6 +52,29 @@ export interface ProgressionConfig {
     /** Plafond au-dessus duquel un maintien ne donne jamais de record (le plus bas des plafonds, par prudence). */
     recordCapSec: number;
   };
+  /**
+   * Adaptation automatique après chaque séance (knowledge/adaptation-regles.md, coach + kine 05/11/2026, sous réserve du relecteur).
+   * Toutes NON SOURCÉ sauf mention ; changer une valeur ici change le résultat (testé dans adaptation-regles.test.ts).
+   */
+  adaptation: {
+    /** C6 [kine] : plafond de saut de charge, en part de la charge actuelle (+20 %). PROVISOIRE (lecture la plus prudente : un seul cran ET <= +20 %). */
+    maxLoadJumpRatio: number;
+    /** C3 [kine] : débutant ou fiche « technique » : séances valables de suite au haut de la fourchette avant +charge. NON SOURCÉ. */
+    topSessionsBeginnerOrTechnical: number;
+    /** C7 : séances de suite au haut de la fourchette avant de proposer +1 série. NON SOURCÉ. */
+    topSessionsForSet: number;
+    /** C7 : plafond de séries du rôle (SRC1 ACSM : 2-3 séries par exercice). PROVISOIRE. */
+    roleMaxSets: number;
+    /** C7 [kine] : débutant 2 -> 3 séries seulement après ce nombre de semaines ET de séances valables. NON SOURCÉ. */
+    beginnerSetMinWeeks: number;
+    beginnerSetMinSessions: number;
+    /** C1 [kine] : débutant, RIR 0 ou échec : séances valables au bon RIR avant toute montée. NON SOURCÉ. */
+    beginnerCleanSessionsAfterFailure: number;
+    /** §5 [kine] : séances valables qui sollicitent la zone sans gêne avant de lever le gel douleur. NON SOURCÉ. */
+    painCleanSessions: number;
+    /** §9 [kine] : pas maximal d'une montée de durée (secondes). NON SOURCÉ. */
+    holdMaxStepSec: number;
+  };
   bilan: {
     /** Q8 : au-delà, durée « non fiable » (séance reprise) et exclue des comparaisons. NON SOURCÉ. */
     maxReliableDurationMin: number;
@@ -70,6 +94,21 @@ export interface ProgressionConfig {
   };
 }
 
+/**
+ * Décision de l'utilisateur (05/11/2026), PROVISOIRE : plafond du saut de charge ENTRE DEUX SÉRIES pendant l'étalonnage d'un exercice
+ * chargé. Un seul cran de matériel est toujours proposé (donc « un cran » et « 2 crans » sont tenus) ; le plafond en % s'y ajoute.
+ * Techniques lourds (squat, soulevé de terre, développé couché, rowing barre) : +20 % ; autres : +50 %. Seulement après une série propre
+ * (réserve >= 4, sans douleur) ; jamais pendant un gel douleur (engine.raiseFrozen : aucune montée).
+ */
+export const CALIBRATION_JUMP = {
+  heavyTechnicalRatio: 0.2, // PROVISOIRE
+  otherRatio: 0.5, // PROVISOIRE
+  minRir: 4, // PROVISOIRE (« 4+ »)
+  heavyTechnicalFiches: [
+    ...TECHNICAL_CAP_FICHES, 'souleve-de-terre-sac', 'developpe-couche-barre', 'developpe-couche-prise-serree-barre', 'developpe-incline-barre',
+  ] as readonly string[],
+};
+
 export const PROGRESSION: ProgressionConfig = {
   echelon: {
     validSessionsToRaise: 2, // Q1, NON SOURCÉ
@@ -78,21 +117,37 @@ export const PROGRESSION: ProgressionConfig = {
     validSessionsToLower: 2, // NON SOURCÉ
     lowerShare: 0.5, // NON SOURCÉ (asymétrie assumée avec la montée : plus facile de redescendre)
     lowerRirMargin: 2, // NON SOURCÉ
-    defaultRepsMin: 10, // generateur-v1.md §3.2 (repsBodyweight), NON SOURCÉ
-    defaultRepsMax: 15,
+    // Repli quand une série n'a pas gardé sa cible (anciennes données) : classe D2, classe par défaut d'une variante de niveau débutant
+    // (repetitions-regles.md §4, generator/config.ts D_CLASS), au lieu de l'ancien 10-15 unique. NON SOURCÉ (choix de coach).
+    defaultRepsMin: D_CLASS[2].reps[0],
+    defaultRepsMax: D_CLASS[2].reps[1],
     defaultRirTarget: 3,
     rirButtonMax: 4,
     firstSessionRaiseAllowed: true, // ambiguïté (e) / T18, voir docs/f6-notes-dev.md
   },
   level: { minFiches: 3, minWeeksFollowed: 8, quietWeeks: 4, blockWeeks: 4 }, // Q3, NON SOURCÉ
   hold: {
-    enabled: false, // Q4 : durées figées en v1
+    // [kine 05/11/2026] Allumé sous 4 conditions testées (adaptation-regles.test.ts) : aucune montée en grossesse / post-partum, fiche
+    // capped, gel (douleur, symptôme, reprise douce) ; plafond = le plus bas de la ligne, de la fiche, 30 s après charge lourde, 20 s
+    // P-GROS ; une position dégradée ou un symptôme refusent ; pas <= 5 s. Valeurs 45 / 60 s : NON SOURCÉ.
+    enabled: true,
     perSchema: {
       gainage: { startBeginnerSec: 20, startOtherSec: 30, stepSec: 5, capSec: 45 }, // NON SOURCÉ
       porte: { startBeginnerSec: 30, startOtherSec: 40, stepSec: 5, capSec: 60 }, // NON SOURCÉ
     },
     validSessionsToRaise: 2, // NON SOURCÉ
     recordCapSec: 45, // NON SOURCÉ
+  },
+  adaptation: {
+    maxLoadJumpRatio: 0.2, // C6, PROVISOIRE (plafond)
+    topSessionsBeginnerOrTechnical: 2, // C3 [kine], NON SOURCÉ
+    topSessionsForSet: 2, // C7, NON SOURCÉ
+    roleMaxSets: 3, // C7, PROVISOIRE (SRC1)
+    beginnerSetMinWeeks: 4, // C7 [kine], NON SOURCÉ
+    beginnerSetMinSessions: 8, // C7 [kine], NON SOURCÉ
+    beginnerCleanSessionsAfterFailure: 2, // C1 [kine], NON SOURCÉ
+    painCleanSessions: 2, // §5 [kine], NON SOURCÉ
+    holdMaxStepSec: 5, // §9 [kine], NON SOURCÉ
   },
   bilan: {
     maxReliableDurationMin: 180, // Q8, NON SOURCÉ

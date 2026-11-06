@@ -8,13 +8,14 @@ import { ZONE_LABEL } from '../../data/labels';
 import type { SetInput } from '../../session/engine';
 import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression } from '../../session/history';
 import {
-  C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
+  C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, DROP_LIMIT_TEXT, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
   PAIN_HELP_TEXT, PAIN_STOP_TEXT, PAIR_FIRST_SESSION_TEXT, CARDIO_PLAY_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
 } from '../../session/messages';
 import type { PairPain } from '../../session/engine';
 import { loadGeneratorInput } from '../../session/program';
 import type { SessionController } from '../../session/store';
 import { formatClock, startDisplayTick } from '../../session/timer';
+import { clearHold, heldSec, HOLD_RIR_LABELS, holdOver, holdRemainingMs, isHoldExercise, isPerSide, loadHold, needsRir, PER_SIDE_RULE, saveHold, startHold, type HoldState } from '../../session/sides';
 import { ReportButton } from '../ReportButton';
 import { cleanText, type Fiche } from '../../data/fiches';
 import { FicheImages, FicheView } from './Fiche';
@@ -33,6 +34,13 @@ interface Form {
   loadText: string;
   reps: number;
   rir: number | null;
+}
+
+/** Chronomètre d'une position tenue (par série) : `timer` = décompte en cours, `held` = secondes tenues une fois arrêté ou terminé. */
+interface HoldUi {
+  step: number;
+  timer: HoldState | null;
+  held: number | null;
 }
 
 interface PainInfo {
@@ -244,6 +252,8 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
             bodyweight,
             repriseActive: data.repriseActive,
             zonesOfFiche: Object.keys(ficheOf(all, ex)?.securite.zones ?? {}),
+            // adaptation-regles.md : proposition RÉÉVALUÉE à l'ouverture (douleur sur la zone, séance manquée, reprise, niveau).
+            ...(data.adaptOf?.(ex) ?? {}),
           })
         : null,
     [ex?.variantId],
@@ -262,6 +272,50 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   const setForm = (patch: Partial<Form>) => setFormRaw({ ...form, ...patch });
   const curLoad = parseNumber(form.loadText);
 
+  // ----- Chronomètre des exercices en durée (gainage, planche, équilibre) : heure réelle, retrouvé après un rechargement -----
+  const holdEx = !!ex && !v.isWarmupSet && isHoldExercise(ex);
+  const [holdRaw, setHoldRaw] = useState<HoldUi | null>(null);
+  const [rirHint, setRirHint] = useState(false);
+  const alertedHold = useRef<number | null>(null);
+  const savedHold = useMemo(() => (holdEx && cursorStep >= 0 ? loadHold(ctl.sessionId, cursorStep) : null), [cursorStep, holdEx]);
+  const holdUi: HoldUi = holdRaw && holdRaw.step === cursorStep ? holdRaw : { step: cursorStep, timer: savedHold, held: null };
+  const holdNow = Date.now();
+  const holdRunning = holdEx && holdUi.held === null && holdUi.timer !== null && !holdOver(holdUi.timer, holdNow);
+  // Chrono terminé (y compris pendant une absence de l'écran) : durée prévue entière.
+  const holdValue: number | null = !holdEx ? null : holdUi.held !== null ? holdUi.held : holdUi.timer && holdOver(holdUi.timer, holdNow) ? Math.round(holdUi.timer.totalMs / 1000) : null;
+  const holdStart = () => {
+    if (!ex || !holdEx) return;
+    const timer = startHold(Date.now(), ex.holdSec ?? ex.repsMin);
+    if (!timer) return;
+    alertedHold.current = null;
+    saveHold(ctl.sessionId, cursorStep, timer);
+    setHoldRaw({ step: cursorStep, timer, held: null });
+  };
+  const holdStop = () => {
+    if (!holdUi.timer) return;
+    clearHold();
+    setHoldRaw({ step: cursorStep, timer: holdUi.timer, held: heldSec(holdUi.timer, Date.now()) });
+  };
+  const holdReset = () => {
+    clearHold();
+    setHoldRaw({ step: cursorStep, timer: null, held: null });
+  };
+  useEffect(() => {
+    if (!holdRunning || !holdUi.timer) return;
+    const timer = holdUi.timer;
+    return startDisplayTick(() => {
+      if (holdOver(timer, Date.now())) {
+        if (alertedHold.current !== timer.endsAt) {
+          alertedHold.current = timer.endsAt;
+          playRestEnd();
+          vibrateRestEnd();
+        }
+        clearHold();
+        setHoldRaw({ step: cursorStep, timer, held: Math.round(timer.totalMs / 1000) });
+      } else refresh();
+    }, 250);
+  }, [holdRunning, cursorStep]);
+
   const bumpLoad = (dir: 1 | -1) => {
     if (!ex) return;
     const next = stepLoad(data, ex, curLoad, dir);
@@ -272,14 +326,23 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   const doneSet = () =>
     act(async () => {
       if (!ex) return;
+      // La réserve est demandée à CHAQUE série de travail (répétitions ou durée), sauf cardio et sauts : sans elle, la série est refusée.
+      if (!v.isWarmupSet && needsRir(ex, false) && form.rir === null) {
+        setRirHint(true);
+        throw new Error(ex.unit === 'sec' ? 'Choisis combien de temps tu aurais pu tenir en plus.' : 'Choisis combien de répétitions te restaient.');
+      }
+      if (holdEx && holdValue === null) throw new Error('Lance le chronomètre, puis tiens la position jusqu’au signal (ou arrête-le).');
       const input: SetInput = v.isWarmupSet
         ? { reps: ex.warmupSets[v.setNumber - 1]?.reps ?? null, loadKg: v.loadKg }
         : ex.unit === 'sec'
-          ? { holdSec: ex.holdSec }
-          : { reps: form.reps, loadKg: loadable || v.loadKg !== null ? curLoad : null, rir: ex.unit === 'reps' ? form.rir : null };
+          ? { holdSec: holdEx ? holdValue : ex.holdSec, rir: needsRir(ex, false) ? form.rir : null, requireRir: true }
+          : { reps: form.reps, loadKg: loadable || v.loadKg !== null ? curLoad : null, rir: needsRir(ex, false) ? form.rir : null, requireRir: true };
       const r = await ctl.completeSet(input);
+      clearHold();
+      setRirHint(false);
       const s = r.suggestion;
-      if (r.echelonChange) {
+      if (r.dropLimit) setSuggestion({ exercise: r.entry.exercise, text: DROP_LIMIT_TEXT });
+      else if (r.echelonChange) {
         const nom = all.flatMap((f) => f.variantes).find((x) => x.id === r.echelonChange!.variantId)?.nom ?? 'la version suivante';
         setSuggestion({ exercise: r.entry.exercise, text: r.echelonChange.to > r.echelonChange.from ? ECHELON_TEXT.switchedUp(nom) : ECHELON_TEXT.switchedDown(nom) });
       } else if (s && s.loadKg !== null && input.loadKg != null && s.loadKg !== input.loadKg) {
@@ -502,7 +565,8 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   const progLine = ex.role === 'cardio' ? null : suggestion && suggestion.exercise === v.exerciseIndex ? suggestion.text : v.setNumber === 1 && prog && !prog.echelonProposal ? prog.text : null;
   const showLoad = !v.isWarmupSet && ex.unit !== 'sec' && (loadable || v.loadKg !== null);
   // D30 : séries de sauts : pas de question de réserve (on s'arrête au premier signe, 5.2bis condition 7).
-  const askRir = !v.isWarmupSet && ex.unit === 'reps' && !ex.jump;
+  const sided = isPerSide(ex);
+  const askRir = needsRir(ex, v.isWarmupSet) && (!holdEx || holdValue !== null);
   const askReps = !v.isWarmupSet && ex.unit !== 'sec';
 
   function quitSheet() {
@@ -527,8 +591,8 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
             <strong>{supersetText}</strong>
           </div>
         )}
-        <div class="ex-head">
-          {fiche && (
+        <div class={holdEx && (holdUi.timer !== null || holdValue !== null) ? 'ex-head ex-head-small' : 'ex-head'}>
+          {fiche && !(holdEx && (holdUi.timer !== null || holdValue !== null)) && (
             <button type="button" class="img-btn" aria-label="Agrandir l’image" onClick={() => setZoom(true)}>
               <FicheImages fiche={fiche} compact />
             </button>
@@ -543,6 +607,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {v.isWarmupSet ? `Série d’échauffement ${v.setNumber} sur ${v.setsTotal}` : `Série ${v.setNumber} sur ${v.setsTotal}`}
           {v.side ? ` · côté ${v.side}` : ''}
         </p>
+        {sided && !v.isWarmupSet && <p class="side-rule">{PER_SIDE_RULE}</p>}
         <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}</p>
         {lastLine && !v.isWarmupSet && <p class="dim small">{lastLine}</p>}
         {progLine && !v.isWarmupSet && <p class="small prog-line">{progLine}</p>}
@@ -569,19 +634,34 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           </div>
         )}
         </div>
+        {holdEx && (
+          <section class="card hold-card" aria-label="Chronomètre">
+            {holdUi.timer && holdValue === null ? (
+              <>
+                <div class="rest-clock" role="timer" aria-label={`Chronomètre : ${formatClock(holdRemainingMs(holdUi.timer, holdNow))}`}>{formatClock(holdRemainingMs(holdUi.timer, holdNow))}</div>
+                <div class="rest-bar" aria-hidden="true"><div class="rest-bar-fill" style={{ width: `${Math.round((holdRemainingMs(holdUi.timer, holdNow) / (holdUi.timer.totalMs || 1)) * 100)}%` }} /></div>
+                <p class="dim small">Tiens la position. Un signal sonne à la fin.</p>
+              </>
+            ) : holdValue !== null ? (
+              <p class="hold-done" role="status"><strong>Tenu : {holdValue} s</strong>{ex.holdSec && holdValue < ex.holdSec ? ` sur ${ex.holdSec} s prévues` : ''} <button type="button" class="btn btn-link" onClick={holdReset}>Refaire</button></p>
+            ) : (
+              <p class="dim">Prêt ? Lance le chronomètre ({ex.holdSec ?? ex.repsMin} s), puis tiens la position.</p>
+            )}
+          </section>
+        )}
         {askRir && (
-          <div role="group" aria-label="Répétitions en réserve">
-            <p class="small dim rir-q">Combien de répétitions te restait-il ?</p>
+          <div role="group" aria-label={ex.unit === 'sec' ? 'Temps de tenue en plus' : 'Répétitions en réserve'} class={rirHint && form.rir === null ? 'rir-missing' : ''}>
+            <p class="small dim rir-q">{ex.unit === 'sec' ? 'Combien de temps aurais-tu pu tenir en plus ?' : 'Combien de répétitions te restait-il ?'}</p>
             <div class="rir-row">
               {[0, 1, 2, 3, 4].map((n) => (
-                <button key={n} type="button" class="chip rir-btn" aria-pressed={form.rir === n} onClick={() => setForm({ rir: form.rir === n ? null : n })}>
-                  {n === 4 ? '4+' : n}
+                <button key={n} type="button" class="chip rir-btn" aria-pressed={form.rir === n} onClick={() => { setRirHint(false); setForm({ rir: n }); }}>
+                  {ex.unit === 'sec' ? HOLD_RIR_LABELS[n] : n === 4 ? '4+' : n}
                 </button>
               ))}
             </div>
+            {form.rir === null && <p class="small rir-need" role="status">Choisis une réponse pour valider la série.</p>}
           </div>
         )}
-        {ex.unit === 'sec' && ex.role !== 'cardio' && <p class="dim small">Tiens la position, puis touche « Série faite ».</p>}
         <JumpPlayNotes ex={ex} />
         <OutdoorPlayNotes ex={ex} />
         {ex.role === 'cardio' && !ex.jump && (
@@ -594,7 +674,16 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
         {fiche && <HowTo steps={fiche.consignes} all={all} />}
       </div>
       <div class="player-foot">
-        <button type="button" class="btn btn-primary btn-big" onClick={doneSet}>Série faite</button>
+        {holdEx && holdValue === null ? (
+          holdUi.timer ? (
+            <button type="button" class="btn btn-primary btn-big" onClick={holdStop}>Arrêter le chronomètre</button>
+          ) : (
+            <button type="button" class="btn btn-primary btn-big" onClick={holdStart}>Démarrer le chronomètre ({ex.holdSec ?? ex.repsMin} s)</button>
+          )
+        ) : (
+          <button type="button" class="btn btn-primary btn-big" onClick={doneSet}>Série faite</button>
+        )}
+
         <div class="foot-row">
           <button type="button" class="btn btn-sec" onClick={() => { setPainInfo(null); setZone(null); setSheet('pain'); }}>Ça fait mal</button>
           <button type="button" class="btn btn-sec" onClick={() => setSheet('skip')}>Passer cet exercice</button>

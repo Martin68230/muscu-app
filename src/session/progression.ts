@@ -1,6 +1,7 @@
 // Progression par échelons (F6) : knowledge/progression-et-bilan-v1.md §1 (V-PROG-E*), §2 (V-ETAL-E*), §1.6 (maintiens).
 // Fonctions PURES : mêmes données = mêmes propositions. Aucune écriture, aucune horloge cachée (`now` fourni).
 // Toutes les valeurs chiffrées viennent de progression-config.ts (NON SOURCÉ / PROVISOIRE). La v1 PROPOSE, n'impose rien.
+import { isPerSide } from './sides';
 import type { Level, ProgressionEvent, SetLog, WorkoutSession } from '../data/model';
 import { nextCalibrationStep } from '../generator/calibration';
 import { ECHELON_TEXT } from './messages';
@@ -48,7 +49,7 @@ export interface FicheSession {
 function plannedIn(row: WorkoutSession | undefined, movementId: string, fallback: number): number {
   const exs = row?.plan?.exercises.filter((e) => e.movementId === movementId) ?? [];
   if (!exs.length) return fallback;
-  return exs.reduce((n, e) => n + e.sets * (e.unit === 'reps_par_cote' ? 2 : 1), 0);
+  return exs.reduce((n, e) => n + e.sets * (isPerSide(e) ? 2 : 1), 0);
 }
 
 /**
@@ -366,15 +367,25 @@ export interface HoldInput {
   frozen?: boolean;
   fallbackPlanned?: number;
   cfg?: ProgressionConfig;
+  /**
+   * [kine 05/11/2026] Durée maximale permise en plus du plafond de la ligne : la plus basse de la durée de la fiche (fourchette du niveau),
+   * 30 s après une charge lourde (CORE-ORD-4), 20 s en grossesse / post-partum (P-GROS). Calculée par l'appelant.
+   */
+  maxSec?: number;
 }
-/** Nouvelle durée proposée, ou null. Les deux côtés doivent avoir tenu ; douleur, gel, `capped`, grossesse : durée figée. */
+/**
+ * Nouvelle durée proposée, ou null. Les deux côtés doivent avoir tenu ; douleur, gel (symptôme ou douleur sur la zone), `capped`, grossesse :
+ * durée figée. adaptation-regles.md §9 [kine] : une séance arrêtée sur un symptôme ou une douleur ne compte jamais « tenue », une seule
+ * position dégradée avant la cible (durée < cible) refuse la montée, et le pas ne dépasse jamais `adaptation.holdMaxStepSec` (+5 s).
+ */
 export function proposeHold(i: HoldInput): number | null {
   const cfg = i.cfg ?? PROGRESSION;
   if (!cfg.hold.enabled || i.pregnant || i.capped || i.frozen) return null;
   const row = cfg.hold.perSchema[i.schema];
-  if (!row || i.holdSec >= row.capSec) return null;
+  if (!row || i.holdSec >= Math.min(row.capSec, i.maxSec ?? Infinity)) return null;
   const newest = ficheSessions(i.movementId, i.sets, i.sessions, i.fallbackPlanned ?? 0).reverse();
-  const ok = (f: FicheSession) => f.valid && f.work.every((s) => (s.holdSec ?? 0) >= i.holdSec);
+  const ok = (f: FicheSession) => f.valid && f.endReason !== 'symptome' && f.work.every((s) => (s.holdSec ?? 0) >= i.holdSec);
   if (run(newest, ok) < cfg.hold.validSessionsToRaise) return null;
-  return Math.min(row.capSec, i.holdSec + row.stepSec);
+  const next = Math.min(row.capSec, i.maxSec ?? Infinity, i.holdSec + Math.min(row.stepSec, cfg.adaptation.holdMaxStepSec));
+  return next > i.holdSec ? next : null;
 }

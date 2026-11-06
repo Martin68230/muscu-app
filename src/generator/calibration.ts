@@ -18,6 +18,13 @@ export interface CalibrationInput {
   availableLoadsKg: number[];
   echelon?: number;
   availableEchelons?: number[];
+  /**
+   * Décision de l’utilisateur (05/11/2026, PROVISOIRE, valeurs dans session/progression-config.ts `calibrationJump`) : saut de charge
+   * maximal ENTRE DEUX SÉRIES d’étalonnage, en part de la charge actuelle (un seul cran est toujours proposé). Absent : pas de plafond.
+   */
+  maxJumpRatio?: number;
+  /** Réserve minimale de la série précédente pour monter (série « propre »). Absent : règle V-ETAL habituelle seule. */
+  minRirToRaise?: number;
 }
 export interface CalibrationStep {
   action: 'hausse' | 'baisse' | 'garder' | 'arret';
@@ -33,13 +40,15 @@ export function nextCalibrationStep(i: CalibrationInput): CalibrationStep {
   const ech = i.echelon ?? null;
   if (i.pain) return { action: 'arret', loadKg: i.loadKg, echelon: ech };
   const rir = Math.min(i.rir, CALIBRATION.rirButtonMax);
-  const up = rir >= Math.min(i.rirTarget + CALIBRATION.raiseMargin, CALIBRATION.rirButtonMax) && i.reps >= i.repsMax;
+  const up = rir >= Math.max(Math.min(i.rirTarget + CALIBRATION.raiseMargin, CALIBRATION.rirButtonMax), i.minRirToRaise ?? 0) && i.reps >= i.repsMax;
   const down = rir <= i.rirTarget - CALIBRATION.lowerMargin || i.reps < i.repsMin;
   const loads = [...i.availableLoadsKg].sort((a, b) => a - b);
   const echs = [...(i.availableEchelons ?? [])].sort((a, b) => a - b);
   const move = (dir: 1 | -1): CalibrationStep | null => {
     if (i.loadKg !== null) {
       const next = dir > 0 ? loads.find((l) => l > i.loadKg!) : [...loads].reverse().find((l) => l < i.loadKg!);
+      // Plafond du saut d’étalonnage : au-delà, on garde la charge (jamais de saut, même depuis l’haltère le plus léger).
+      if (dir > 0 && next !== undefined && i.maxJumpRatio !== undefined && !(i.loadKg! > 0 && next <= i.loadKg! * (1 + i.maxJumpRatio) + 1e-9)) return null;
       return next === undefined ? null : { action: dir > 0 ? 'hausse' : 'baisse', loadKg: next, echelon: ech };
     }
     if (ech === null) return null;

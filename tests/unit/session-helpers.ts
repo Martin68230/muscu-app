@@ -21,6 +21,7 @@ export function ex(o: Partial<PlannedExercise> & { variantId: string }): Planned
     adaptation: null,
     substitut: false,
     ...(o.reprise !== undefined ? { reprise: o.reprise } : {}),
+    ...(o.perSide !== undefined ? { perSide: o.perSide } : {}),
   };
 }
 

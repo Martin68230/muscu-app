@@ -20,7 +20,8 @@ const topSession = (sessionId: string, at: string, loadKg = 10, over: Partial<Om
   [0, 1, 2].map((i) => log({ sessionId, variantId: 'v', completedAt: new Date(Date.parse(at) + i * 60_000).toISOString(), loadKg, reps: 12, rir: 2, ...over }));
 const exo = ex({ variantId: 'v', sets: 3, repsMin: 8, repsMax: 12, rirTarget: 2 });
 const eq = { dumbbellWeightsKg: [2, 4, 6, 8, 10, 12.5, 15], kettlebellWeightsKg: [], platesKg: [] };
-const halteres = { variantTags: ['halteres'], equipment: eq, pregnant: false };
+// Niveau intermédiaire : double progression sur UNE séance (adaptation-regles.md C3 ; le débutant en demande 2 : adaptation-regles.test.ts).
+const halteres = { variantTags: ['halteres'], equipment: eq, pregnant: false, level: 'intermediaire' as const };
 
 describe('« dernière fois »', () => {
   it('dernière charge sans douleur, répétitions et date ; ignore l’échauffement', () => {
@@ -43,17 +44,19 @@ describe('proposition de progression (la v1 propose, n’impose pas)', () => {
   });
 
   it('toutes les séries au haut de la fourchette à la réserve visée : palier suivant des haltères du profil', () => {
-    const p = proposeProgression({ exercise: exo, sets: topSession('a', D1, 10), ...halteres });
-    expect(p).toMatchObject({ action: 'hausse', loadKg: 12.5, text: 'Essaie 2,5 kg de plus.' });
+    const p = proposeProgression({ exercise: exo, sets: topSession('a', D1, 12.5), ...halteres });
+    expect(p).toMatchObject({ action: 'hausse', loadKg: 15, text: 'Essaie 2,5 kg de plus.' });
   });
 
   it('les paliers réels sont respectés (pas de 1 kg inventé quand des haltères sont déclarés)', () => {
-    const p = proposeProgression({ exercise: exo, sets: topSession('a', D1, 4), ...halteres });
-    expect(p.loadKg).toBe(6);
+    const p = proposeProgression({ exercise: exo, sets: topSession('a', D1, 12.5), ...halteres });
+    expect(p.loadKg).toBe(15);
+    // adaptation-regles.md C6 [kine] : 4 -> 6 kg = +50 %, au-delà du plafond de +20 % : pas de hausse de charge.
+    expect(proposeProgression({ exercise: exo, sets: topSession('a', D1, 4), ...halteres })).toMatchObject({ action: 'garder', reason: 'saut', loadKg: 4 });
   });
 
   it('sans liste de paliers (ex. sac à dos) : pas de 1 kg', () => {
-    const p = proposeProgression({ exercise: exo, sets: topSession('a', D1, 10), pregnant: false, variantTags: ['sac_a_dos'], equipment: { ...eq, dumbbellWeightsKg: [] } });
+    const p = proposeProgression({ exercise: exo, sets: topSession('a', D1, 10), pregnant: false, level: 'intermediaire', variantTags: ['sac_a_dos'], equipment: { ...eq, dumbbellWeightsKg: [] } });
     expect(p).toMatchObject({ action: 'hausse', loadKg: 11 });
     expect(availableLoadsFor(['barre'], { ...eq, platesKg: [1.25] }, 40)).toEqual([37.5, 40, 42.5]);
   });
@@ -84,9 +87,12 @@ describe('proposition de progression (la v1 propose, n’impose pas)', () => {
     const sets = [...topSession('a', D1, 10), ...topSession('b', D2, 10, { pain: true, movementId: 'v' })];
     const p = proposeProgression({ exercise: exo, sets, ...halteres });
     expect(p).toMatchObject({ action: 'garder', reason: 'douleur' });
-    // une séance suivante sans douleur lève le gel
+    // adaptation-regles.md §5 [kine] : une seule séance sans douleur ne lève plus le gel ; il en faut deux.
     const next = [...sets, ...topSession('c', '2026-10-24T10:00:00.000Z', 10)];
-    expect(proposeProgression({ exercise: exo, sets: next, ...halteres }).action).toBe('hausse');
+    expect(proposeProgression({ exercise: exo, sets: next, ...halteres }).reason).toBe('douleur');
+    const next2 = [...next, ...topSession('d', '2026-10-26T10:00:00.000Z', 10)];
+    // gel levé ; 10 -> 12,5 kg (+25 %) dépasse le plafond de saut : on garde, sans motif « douleur »
+    expect(proposeProgression({ exercise: exo, sets: next2, ...halteres }).reason).toBe('saut');
   });
 
   it('séance précédente incomplète : pas de hausse', () => {

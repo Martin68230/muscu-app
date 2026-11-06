@@ -8,6 +8,7 @@ import {
 } from './config';
 import { carriesLoad, isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
 import { coreRule } from './core';
+import { classAllowed } from './reps';
 import type { Fiche, FicheVariant, SafetyCase } from './types';
 
 export const USABLE_STATUTS = ['utilisable', 'verifie'];
@@ -58,6 +59,7 @@ function filterVariants(f: Fiche, ctx: Ctx, r: Restrict): FicheVariant[] {
     if (r.sansCharge && carriesLoad(v)) return false; // gilet lesté compris (lot 09, sérieux n° 4)
     if ((ctx.pregnant || ctx.postPartum) && IMPACT_VARIANTS.includes(v.id)) return false; // §5.1 (1) : variantes avec saut ou course
     if (ctx.salleFilter && !r.warmup && !salleVariantOk(f, v, ctx)) return false; // D33 (PV3-SALLE-1)
+    if (!classAllowed(f, v, ctx)) return false; // R-REPS §4 : D4_NEVER, D4 avancé seulement, D3 / D4 hors grossesse, D3 débutant pas en 1re séance
     return true;
   });
 }

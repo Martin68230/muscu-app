@@ -2,6 +2,8 @@
 import type { PlannedExercise } from '../../data/model';
 import { ficheOfId, type Fiche, type Variante } from '../../data/fiches';
 import { fmtKg } from '../../session/messages';
+import { isUnilateral } from '../../generator/context';
+import { isPerSide, perSideTarget } from '../../session/sides';
 
 export { fmtKg };
 
@@ -27,9 +29,9 @@ export function durationText(sec: number): string {
 export function targetText(ex: PlannedExercise): string {
   if (ex.jump) return `${ex.sets} × ${ex.repsMax} ${ex.jump.soft ? 'répétitions, sans saut' : 'sauts'} · repos ${ex.restSec} s`;
   if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · effort ${ex.intensity === 'facile' ? 'facile' : 'modéré'}`;
+  if (isPerSide(ex)) return ex.unit === 'reps' ? `${perSideTarget(ex)} · réserve ${ex.rirTarget}` : perSideTarget(ex);
   if (ex.unit === 'sec') return `${ex.holdSec ?? ex.repsMin} s`;
   const range = ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
-  if (ex.unit === 'reps_par_cote') return `${range} répétitions par côté`;
   return `${range} répétitions · réserve ${ex.rirTarget}`;
 }
 
@@ -39,7 +41,7 @@ export function lineText(ex: PlannedExercise): string {
   if (ex.jump) return `${ex.sets} séries de ${ex.repsMax} ${ex.jump.soft ? 'répétitions, version sans saut' : 'sauts, réception douce'} · repos ${ex.restSec} s en marchant`;
   if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · ${ex.intensity === 'facile' ? 'effort facile' : 'effort modéré (5-6 sur 10)'}${ex.slowEndMin ? `, ${ex.slowEndMin} dernières min lentes` : ''}`;
   const t = ex.unit === 'sec' ? `${ex.holdSec ?? ex.repsMin} s` : ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
-  const unit = ex.unit === 'reps_par_cote' ? ' par côté' : '';
+  const unit = isPerSide(ex) ? ' de chaque côté' : '';
   return `${ex.sets} × ${t}${unit} · repos ${durationText(ex.restSec)}`;
 }
 
@@ -51,3 +53,13 @@ export function parseNumber(text: string): number | null {
 /** Matériel pour lequel la saisie d'une charge a un sens même sans charge de départ. */
 const LOADABLE = ['halteres', 'kettlebell', 'barre', 'barre_ez', 'disques', 'sac_a_dos', 'bidons_ou_sacs', 'lest', 'sac_de_sable', 'poulie', 'machine'];
 export const isLoadable = (v: Variante | undefined): boolean => !!v && v.tags.some((t) => LOADABLE.includes(t));
+
+/**
+ * Exercice d'un seul côté pour l'aperçu d'une séance : les programmes générés avant l'arrivée du champ `perSide` ne l'ont pas, on le
+ * déduit de la variante (même règle que le générateur). Le lecteur, lui, suit toujours le plan enregistré (SessionController.start le complète).
+ */
+export function withSides(all: Fiche[], ex: PlannedExercise): PlannedExercise {
+  if (isPerSide(ex) || ex.role === 'cardio' || ex.jump) return ex;
+  const v = variantOf(all, ex);
+  return v && isUnilateral(v) ? { ...ex, perSide: true } : ex;
+}

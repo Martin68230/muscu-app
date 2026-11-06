@@ -67,6 +67,7 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
             const p = proposeProgression({
               exercise: exo, sets, sessions, pregnant: data.pregnant, variantTags: variant?.tags, equipment: data.equipment ?? undefined,
               echelon: variant?.echelon, bodyweight, frozenBySymptom: frozen, repriseActive,
+              ...(data.adaptOf?.(exo, true) ?? {}),
             });
             if (p.echelonProposal) {
               if (p.echelonProposal.kind === 'montee') next.push(ECHELON_TEXT.nextTime(exName(data.fiches, exo)));

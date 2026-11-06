@@ -4,7 +4,7 @@ import { getDB } from '../data/db';
 import { create, get, list, update } from '../data/repo';
 import type { InjuryZone, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import {
-  abandonSession, adjustRest, completeSet, currentView, endWarmup, finishSession, markPain, pairsForSession, reportSymptom, skipExercise, skipRest, startSession,
+  abandonSession, adjustRest, completeSet, currentView, endWarmup, finishSession, markPain, pairsForSession, reportSymptom, skipExercise, skipRest, startSession, withPerSide,
   restTaken, SessionError, type EngineContext, type EngineState, type Outcome, type SessionView, type SetEntry, type SetInput, type SetResult,
 } from './engine';
 import { PROGRESSION } from './progression-config';
@@ -43,6 +43,7 @@ function toPatch(state: EngineState, day: ProgramDay, now: number): Partial<NewR
     endReason: state.outcome === 'en_cours' ? null : state.outcome === 'terminee' ? 'terminee' : state.outcome === 'symptome' ? 'symptome' : 'abandon',
     echelonSwitches: Object.fromEntries(Object.entries(state.echelonSwitches).map(([k, v]) => [k, { ...v }])),
     calibDecided: [...state.calibDecided],
+    calibDrops: [...(state.calibDrops ?? [])],
   };
 }
 
@@ -67,6 +68,7 @@ function stateFromRow(row: WorkoutSession, day: ProgramDay, workSetsDone: number
     workSetsDone,
     echelonSwitches: Object.fromEntries(Object.entries(row.echelonSwitches ?? {}).map(([k, v]) => [Number(k), { ...v }])),
     calibDecided: [...(row.calibDecided ?? [])],
+    calibDrops: [...(row.calibDrops ?? [])],
   };
 }
 
@@ -112,7 +114,7 @@ export class SessionController {
     // D26 (SUP-2 point 7) : paires non appliquées si un exercice est en étalonnage ou en retour après gêne (plan enregistré tel quel) ;
     // SUP-10 : ni si la séance de musculation de la veille (date réellement jouée) a travaillé un même muscle principal.
     const veille = ctx.mainMusclesOf ? veilleMuscles(program, sessions, dateKey(new Date(t0)), (ex) => ctx.mainMusclesOf!(ex)) : undefined;
-    const day = pairsForSession(planned, ctx, { veille });
+    const day = withPerSide(pairsForSession(planned, ctx, { veille }), ctx);
     if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
     const t = now();
     const state = startSession(day, t);
@@ -261,6 +263,7 @@ export class SessionController {
       reps: e.reps,
       loadKg: e.loadKg,
       rir: e.rir,
+      felt: e.felt,
       pain: e.pain,
       comment: e.comment,
       completedAt: iso(e.completedAt),

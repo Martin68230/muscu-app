@@ -26,13 +26,46 @@ export const PROGRESSION_TEXT = {
   douleur: 'Douleur à la dernière séance : garde la même charge, sans augmenter.',
   plafond: 'Charge maintenue (gêne déclarée ou grossesse) : pas d’augmentation.',
   plusDeReps: 'Garde cette charge et essaie une répétition de plus par série.',
-  sommet: 'Tu es au plus lourd de ton matériel : ajoute des répétitions.',
+  // adaptation-regles.md C4 [kine] : jamais au-delà du haut de la fourchette, donc plus de « ajoute des répétitions » au sommet.
+  sommet: 'Tu es au plus lourd de ton matériel : garde cette charge, sans dépasser le nombre de répétitions prévu.',
   maintien: 'Pour les maintiens, la durée n’augmente pas dans cette version.',
   garder: 'Garde la même charge.',
   symptome: 'Pas d’augmentation tant qu’une séance n’est pas terminée sans symptôme.',
   /** D26 (SUP-0 point 2, R3) : charge fixe tant que l'exercice est en superset. */
-  paire: 'Exercice en superset : garde la même charge, ajoute des répétitions.',
+  paire: 'Exercice en superset : garde la même charge, sans dépasser le nombre de répétitions prévu.',
+  // ----- adaptation-regles.md (coach + kine 05/11/2026). Textes de conception, NON SOURCÉ ; aucun sigle ni id interne. -----
+  /** C2 [kine] : réserve sous la cible : on ne pousse pas. */
+  garderReserve: 'Garde la même charge et le même nombre de répétitions : pas besoin d’en faire plus.',
+  /** E3 : même version, réserve sous la cible. */
+  garderVersion: 'Garde la même version et le même nombre de répétitions.',
+  /** E3 : même version, réserve conforme. */
+  plusDeRepsVersion: 'Garde cette version et essaie une répétition de plus par série, sans dépasser le nombre prévu.',
+  /** C3 / E2 : critère tenu une fois, il faut une 2e séance (débutant, exercice technique, échelon). */
+  attente: 'Bien joué. Garde la même difficulté encore une séance : si c’est aussi facile, on te proposera de monter.',
+  /** C6 [kine] : le poids suivant est un trop grand saut. */
+  saut: 'Le poids suivant serait un trop grand saut : garde cette charge, sans dépasser le nombre de répétitions prévu.',
+  /** §5 [kine] : gel douleur sur la zone. */
+  douleurZone: 'Gêne récente sur cette zone : on garde la même difficulté, sans augmenter, pendant deux séances sans gêne.',
+  /** §8 / §6 [kine] : séance manquée depuis la dernière fois. */
+  manquee: 'Tu as manqué une séance : garde la même difficulté aujourd’hui.',
+  /** C1 [kine] : débutant après une série à l’échec, sans reproche. */
+  apprentissage: 'Garde la même difficulté : le plus important pour l’instant, c’est un mouvement propre avec un peu de réserve à chaque série.',
 } as const;
+
+/** C1 [kine] : 2 baisses de charge déjà faites dans la séance sur cet exercice. */
+export const DROP_LIMIT_TEXT = 'C’est encore dur après deux baisses : essaie une version plus facile, ou arrête cet exercice pour aujourd’hui.';
+/** C7 : +1 série, proposition seulement (jamais appliquée seule). */
+export function setMoreText(sets: number): string {
+  return `Si tu te sens bien, tu peux faire ${sets} séries au lieu de ${sets - 1}, même charge. C’est une proposition, pas une obligation.`;
+}
+/** C8 : version plus dure, proposition seulement. */
+export function harderVariantText(nom: string): string {
+  return `Tu es au plus lourd raisonnable pour cet exercice. Tu peux essayer « ${nom} » à la place, en recommençant léger. C’est une proposition, pas une obligation.`;
+}
+/** §9 : maintien, +5 s au plus. */
+export function holdMoreText(sec: number): string {
+  return `Essaie ${sec} secondes.`;
+}
 /** D26 (SUP-0, E17) : texte unique de la séance 1 quand les supersets ne sont pas encore appliqués (core-et-supersets.md §4.0). */
 export const PAIR_FIRST_SESSION_TEXT =
   'Cette première séance peut durer un peu plus longtemps : les exercices nouveaux sont faits un par un. Le temps gagné apparaît dès la séance suivante.';

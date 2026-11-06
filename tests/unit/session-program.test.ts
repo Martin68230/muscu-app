@@ -214,7 +214,7 @@ describe('séance complète sur un vrai programme généré (avec supersets)', (
     const { SessionController } = await import('../../src/session/store');
     const { generateProgram, toProgramDays } = await import('../../src/generator');
     // D26 : SUP-0 (haltères légers, élastique, jamais un niveau avancé) : profil D intermédiaire.
-    const gen = generateProgram(mk({ profile: 'D', level: 'intermediaire', dur: 75, options: { gagnerDuTemps: true } }));
+    const gen = generateProgram(mk({ profile: 'D', level: 'intermediaire', dur: 75, days: 2, options: { gagnerDuTemps: true } })) // 05/11 : 3 jours n'ont plus de paire (piliers chargés plafonnés à 3 séries, séances plus courtes);
     if (!gen.ok) throw new Error('attendu ok');
     const days = toProgramDays(gen.program);
     expect(days.some((d) => d.exercises.some((e) => e.supersetGroup))).toBe(true);

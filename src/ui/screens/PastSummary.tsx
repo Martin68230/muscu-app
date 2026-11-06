@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'preact/hooks';
-import type { PregnancyStatus, WorkoutSession } from '../../data/model';
+import type { PregnancyStatus, SetLog, WorkoutSession } from '../../data/model';
 import { list, softDelete } from '../../data/repo';
 import { loadFiches } from '../../data/fiches';
 import { dateKey, frDate, sessionDate } from '../../session/calendar';
 import { computeSummary } from '../../session/summary';
+import { SessionDetail, type DetailNames } from './SessionDetail';
 import { summaryText, type SummaryText } from '../../session/summary-texts';
 
 /**
@@ -16,7 +17,7 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
   onBack: () => void;
   onDeleted: () => void;
 }) {
-  const [state, setState] = useState<{ row: WorkoutSession; text: SummaryText } | 'absent' | null>(null);
+  const [state, setState] = useState<{ row: WorkoutSession; text: SummaryText; sets: SetLog[]; sessions: WorkoutSession[]; names: DetailNames; detail: boolean } | 'absent' | null>(null);
   const [ask, setAsk] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -26,7 +27,7 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
         const [sets, sessions] = await Promise.all([list('sets'), list('sessions')]);
         const row = sessions.find((s) => s.id === sessionId);
         if (!row) return setState('absent');
-        let names = { fiche: (_id: string) => 'Exercice', variant: (_id: string) => 'Exercice' };
+        let names: DetailNames = { fiche: (_id: string) => 'Exercice', variant: (_id: string) => 'Exercice' };
         try {
           const fiches = await loadFiches();
           names = {
@@ -37,7 +38,9 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
           /* hors ligne sans fiches : le bilan reste lisible, sans noms d'exercices */
         }
         const summary = computeSummary({ session: row, sets, sessions, pregnancy });
-        setState({ row, text: summaryText(summary, { names, pregnancy }) });
+        // Détail : seulement pour une séance menée à bout ou avec douleur (aucun chiffre après un abandon ou un symptôme).
+        const detail = ['premiere', 'complete', 'ecourtee', 'douleur', 'grossesse'].includes(summary.status);
+        setState({ row, text: summaryText(summary, { names, pregnancy }), sets, sessions, names, detail });
       } catch {
         setState('absent');
       }
@@ -83,6 +86,9 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
             <section class="card" aria-label="Records">
               {t.records.map((r, i) => <p key={i}><strong>{r}</strong></p>)}
             </section>
+          )}
+          {state.detail && (
+            <SessionDetail session={state.row} sets={state.sets} sessions={state.sessions} names={state.names} numbers={pregnancy !== 'enceinte' && pregnancy !== 'post_partum'} />
           )}
           {t.details.length > 0 && <p class="dim small">{t.details.join(' ')}</p>}
           {!ask && <button type="button" class="btn btn-danger" onClick={() => setAsk(true)}>Supprimer cette séance</button>}

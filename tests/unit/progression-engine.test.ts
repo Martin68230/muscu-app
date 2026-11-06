@@ -82,8 +82,10 @@ describe('exercices à charge : corrections des écarts F5 (§7)', () => {
   const load = sex({ variantId: 'v', sets: 3, repsMin: 8, repsMax: 12, rirTarget: 2 });
   const mk = (id: string, d: number, o = {}) =>
     [0, 1, 2].map((i) => ({ ...sets(id, d, { count: 1, variantId: 'v', movementId: 'v', loadKg: 10, reps: 12, rir: 2, targetRir: 2, targetRepsMin: 8, targetRepsMax: 12, echelon: null, setIndex: i, ...o })[0] }));
-  const eq = { dumbbellWeightsKg: [8, 10, 12.5], kettlebellWeightsKg: [], platesKg: [] };
-  const base = { exercise: load, pregnant: false, variantTags: ['halteres'], equipment: eq };
+  // 10 -> 12 kg = +20 % : dans le plafond de saut (adaptation-regles.md C6 ; 12,5 kg serait +25 %).
+  const eq = { dumbbellWeightsKg: [8, 10, 12], kettlebellWeightsKg: [], platesKg: [] };
+  // Intermédiaire : une séance au sommet suffit (adaptation-regles.md C3 ; débutant : 2 séances).
+  const base = { exercise: load, pregnant: false, variantTags: ['halteres'], equipment: eq, level: 'intermediaire' as const };
   it('séance valable : le nombre de séries prévues est celui de CETTE séance, pas du plan actuel', () => {
     const two = mk('a', 1).slice(0, 2);
     const row = session('a', 1, { planSets: 2 });

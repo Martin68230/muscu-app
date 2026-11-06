@@ -14,7 +14,7 @@ import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
 import { SessionError } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
-import { exName, lineText, ficheOf, variantOf } from '../session/text';
+import { exName, lineText, ficheOf, variantOf, withSides } from '../session/text';
 import { unlockSound } from '../session/sound';
 import { acquireWakeLock } from '../session/wakelock';
 import { loadPlayerData } from '../session/launch';
@@ -209,7 +209,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
               <li key={i}>
                 <a class="fiche-link" href={`#/fiche/${ex.movementId}`}>{exName(fiches, ex)}</a>
                 {v && many && <div class="dim small">{v.nom}</div>}
-                <div class="small">{lineText(ex)}</div>
+                <div class="small">{lineText(withSides(fiches, ex))}</div>
                 {ex.jump?.softNom && !ex.jump.soft && <div class="dim small">{D30_TEXT.softLine(ex.jump.softNom)}</div>}
                 {partner && <div class="small prev-super">Superset avec {exName(fiches, partner)} : enchaîne sans repos long.</div>}
               </li>

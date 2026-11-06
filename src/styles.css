@@ -526,3 +526,32 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .light-timer { font-size: 2.5rem; font-variant-numeric: tabular-nums; font-weight: 700; text-align: center; margin: 8px 0; }
 .jump-notes { margin: 8px 0; }
 .jump-notes .foot-row .btn[aria-pressed='true'] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+
+/* Lecteur : exercice d'un seul côté, chronomètre d'une position tenue, réserve obligatoire */
+.side-rule { margin: 0 0 4px; font-size: 0.9375rem; color: var(--text-dim); }
+.side-rule strong { color: var(--text); text-transform: capitalize; }
+.hold-card { text-align: center; padding: 8px 12px; margin: 6px 0; }
+.hold-card .rest-clock { font-size: 3.5rem; margin: 0 0 6px; }
+.hold-card .rest-bar { margin-bottom: 8px; }
+.hold-card p { margin: 0; }
+.hold-done { font-size: 1.25rem; }
+.rir-missing { outline: 2px solid var(--danger); outline-offset: 4px; border-radius: 12px; }
+.rir-need { margin: 0; color: var(--text-dim); }
+.rir-row .rir-btn { font-size: 1rem; }
+
+/* Historique : filtres, détail, comparaison, courbe */
+.hist-filters { margin: 0 0 12px; }
+.hist-select {
+  display: block; width: 100%; min-height: 48px; padding: 8px 12px; margin-top: 4px; border: 1px solid var(--line); border-radius: 12px;
+  background: var(--surface-2); color: var(--text); font: inherit; font-size: 16px;
+}
+.ex-detail h3 { margin: 0 0 6px; }
+.ex-series { margin: 0 0 10px; padding-left: 22px; display: grid; gap: 4px; overflow-wrap: anywhere; }
+.cmp { list-style: none; margin: 0; padding: 0; display: grid; gap: 10px; }
+.cmp-list { margin: 4px 0 0; padding-left: 18px; }
+.curve { margin: 12px 0 0; }
+.curve-svg { width: 100%; height: auto; display: block; }
+.curve-axis { stroke: var(--line); stroke-width: 1; }
+.curve-line { stroke: var(--accent); stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
+.curve-dot { fill: var(--accent); stroke: var(--surface); stroke-width: 2; }
+.curve-txt { fill: var(--text-dim); font-size: 12px; font-family: inherit; }

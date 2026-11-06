@@ -86,6 +86,15 @@ export function splitCapsOk(exercises: readonly Ex[], p: Plaf): boolean {
   return back <= cap;
 }
 
+/**
+ * Muscles contrôlés par le plafond hebdomadaire : chaque muscle, PLUS la somme des trois chefs du deltoïde (« deltoides »), comptés
+ * ensemble ([kine 05/11/2026] : plafond 20 séries fractionnaires par semaine sur la somme ; frac compte un exercice une seule fois).
+ */
+export const weekMusclesOf = (s: { exercises: readonly Ex[] }[]): string[] => {
+  const ms = musclesOf(s);
+  return ms.some((m) => m.startsWith(VOLUME.deltoidPrefix)) ? [...ms, 'deltoides'] : ms;
+};
+
 export function weekCapsOk(ss: { exercises: readonly Ex[] }[]): boolean {
-  return musclesOf(ss).every((m) => ss.reduce((a, s) => a + sessionVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
+  return weekMusclesOf(ss).every((m) => ss.reduce((a, s) => a + sessionVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
 }
