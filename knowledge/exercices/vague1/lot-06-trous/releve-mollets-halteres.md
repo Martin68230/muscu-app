@@ -24,6 +24,7 @@ statut: utilisable
 3. Marque un court arrêt en haut en serrant les mollets.
 4. Redescends lentement ; sur la marche, descends seulement jusqu'à une position étirée confortable.
 5. Recommence sans rebondir, sans plier les genoux.
+6. Variante « une jambe » : un haltère dans la main du même côté, l'autre pied levé sans appui, une main libre peut se poser au mur, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Haltères légers pour apprendre le geste ; la charge de départ se règle par l'étalonnage (load-calibration.md).

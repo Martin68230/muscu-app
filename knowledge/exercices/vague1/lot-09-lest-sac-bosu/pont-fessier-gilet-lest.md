@@ -25,6 +25,7 @@ statut: utilisable
 3. Garde le menton légèrement rentré et la nuque détendue ; ne cambre pas le bas du dos.
 4. Redescends lentement, le bassin presque au sol, sans te laisser tomber.
 5. Respire sans bloquer : souffle en montant. Si le gilet gêne ta respiration à plat, retire-le.
+6. Variante « une jambe » : un pied au sol, l'autre jambe tendue en l'air, le bassin reste à plat, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Le gilet repose sur le buste : sa charge pèse moins sur les hanches qu'un haltère sur le bassin ; l'exercice reste surtout modéré.

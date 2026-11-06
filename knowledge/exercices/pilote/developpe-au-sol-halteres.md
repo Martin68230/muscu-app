@@ -23,6 +23,7 @@ statut: utilisable
 3. Descends jusqu'à ce que le haut des bras touche doucement le sol.
 4. Garde les coudes un peu écartés du corps, ni collés ni à l'horizontale des épaules.
 5. Pousse pour tendre les bras à nouveau.
+6. Variante « un bras à la fois » : un seul haltère, l'autre main posée à plat sur le ventre ou le sol, sans tourner le buste, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Le sol limite l'amplitude : les épaules restent protégées.

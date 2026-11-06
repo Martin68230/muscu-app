@@ -27,6 +27,7 @@ Travaille le muscle du devant de la jambe (tibial antérieur), qui relève la po
 3. Marque un court arrêt en haut.
 4. Redescends lentement jusqu'au sol, sans claquer les pieds.
 5. Recommence en gardant le mouvement fluide.
+6. Variante « un pied » : un seul pied lève la pointe, l'autre reste à plat, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Les orteils restent détendus : ce sont les chevilles qui bougent.

@@ -19,10 +19,10 @@ couverture: substitut
 | rotation-externe-halteres-couche | Couché sur le côté avec un haltère léger | 1 | debutant | halteres, tapis | Couché sur le côté, tête sur le bras du dessous, coude du dessus plié à 90 degrés contre le côté, haltère très léger dans la main. |
 
 ## Consignes
-1. Coude plié à 90 degrés, collé au côté du corps (une serviette roulée entre le coude et le corps aide).
-2. Garde le coude en place et fais pivoter l'avant-bras vers l'extérieur, en ouvrant l'épaule.
+1. Départ : coude plié à 90 degrés, collé au côté du corps (une serviette roulée entre le coude et le corps aide), la main devant le ventre. Avec l'élastique, la main qui travaille et l'autre main tiennent chacune un bout, l'autre main reste immobile ; avec l'haltère, tu es couché sur le côté et la main tient l'haltère.
+2. Trajet : garde le coude en place et fais tourner la main vers l'extérieur, comme pour ouvrir une porte, en ouvrant l'épaule.
 3. Va jusqu'où tu contrôles, sans que le buste ne tourne ni que l'épaule ne monte.
-4. Reviens lentement à la position de départ.
+4. Fin : marque un court arrêt, puis reviens lentement à la position de départ, main devant le ventre.
 5. Fais toutes les répétitions d'un côté, puis de l'autre.
 
 ## Points d'attention

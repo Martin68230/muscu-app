@@ -24,6 +24,7 @@ statut: utilisable
 3. Pousse les haltères vers le haut jusqu'à tendre les bras.
 4. En haut, les bras sont près des oreilles.
 5. Redescends lentement à hauteur d'épaules.
+6. Variante « debout, un bras » : l'haltère part à hauteur d'épaule, l'autre main reste libre le long du corps, sans pencher le buste sur le côté, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Ne te cambre pas en arrière pour pousser.

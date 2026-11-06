@@ -25,6 +25,7 @@ statut: utilisable
 3. Serre les fessiers en haut une seconde, regard devant, menton légèrement rentré, sans jamais laisser la tête tomber en arrière ni cambrer la nuque.
 4. Redescends lentement. Variantes 2 et 3 : couché sur le dos, talons sur le ballon, soulève le bassin en poussant sur les talons, jambes tendues.
 5. Pose le bassin au sol en fin de série avant de bouger le ballon ; ne roule pas le ballon d'un coup.
+6. Variante « talons sur le ballon, une jambe » : un seul talon sur le ballon, l'autre jambe tendue en l'air, le bassin reste à plat, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Le ballon sert à varier la stabilité, pas à rendre le pont plus efficace pour les fessiers : le pont au sol marche aussi bien (voir sources).

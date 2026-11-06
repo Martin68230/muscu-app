@@ -24,6 +24,7 @@ statut: utilisable
 3. Marque un court arrêt en haut, mollets serrés.
 4. Redescends lentement jusqu'à ce que les talons touchent le sol, sans rebondir.
 5. Avec un haltère : tiens-le fermement près des genoux, jamais au-dessus du ventre.
+6. Variante « une jambe à la fois » : l'autre pied reste à plat, sans pousser avec lui, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Genoux pliés : la partie profonde du mollet (soléaire) travaille davantage, et cela ne remplace pas la montée debout (NON SOURCÉ, explication de coach).

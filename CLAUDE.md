@@ -25,7 +25,12 @@ Gratuite, sans pub, sans chat, sans photos des utilisateurs, simple et sûre. iP
   5. Une seule boucle de correction ; s'il reste un problème, le signaler à l'utilisateur au lieu de relancer.
   6. Statut `controle_relecteur` exigé seulement pour les fiches à enjeu de sécurité.
   7. Ne pas relire un fichier qu'on vient d'écrire ; rapport d'agent : 3 lignes, sans répéter ce qui s'affiche déjà.
-- Avant une fonctionnalité : relire le plan, plan court, question à l'utilisateur seulement si le choix est vraiment ambigu. Après : tests, déploiement, liste de ce qu'il faut vérifier sur l'iPhone. Un commit par étape cohérente.
+- Avant une fonctionnalité : relire le plan, plan court. Après : contrôle automatique unique, déploiement, liste de ce qu'il faut vérifier sur l'iPhone. Un commit par étape cohérente.
+- **Autonomie (règle du 05/11/2026, remplace les anciennes règles sur les questions)** :
+  1. Question technique, de contenu ou de réglage : décider avec les experts (coach, kine, dev, relecteur) et enchaîner, sans poser la question à l'utilisateur ; ne jamais demander « je lance X ? », « je continue ? », « je pousse ? » quand c'est dans l'ordre de priorité convenu.
+  2. N'interrompre l'utilisateur que pour : une préférence d'usage (ce qu'il voit ou ressent), une dépense, une action irréversible ou qui expose des données, un conflit d'experts non tranché, une règle de sécurité que personne ne peut valider.
+  3. Sinon appliquer le choix recommandé et le noter en une ligne dans docs/decisions-prises.md (date, choix, raison, comment l'annuler) ; ne pas le résumer à chaque fois.
+  4. Plusieurs questions : un seul message en fin de lot, avec la recommandation par défaut de chacune (réponse possible : « ok »). Rapports : 5 lignes au plus.
 - Sonnet par défaut ; Opus pour le modèle de données, les règles du générateur, les relectures des règles de sécurité et l'audit de sécurité. Une conversation par fonctionnalité ; bilan court dans docs/ ; indiquer le % de quota consommé en fin de fonctionnalité.
 - Économie : chercher avant de lire, ne pas relire un fichier déjà lu, sorties de commandes limitées (tail / head), jamais un fichier de plus de 200 lignes en entier, pas de skills de design externes, vérifier toute skill ou plugin avant installation (skill verif-securite-skills).
 - Commandes et scripts lancés par un agent : délai maximum obligatoire (commande `timeout`), jamais en tâche de fond sans limite ; un script sans sortie depuis plus de 5 minutes est arrêté et signalé à l'utilisateur (incidents `python3 -` bloqués des 25/10 et 31/10) ; pour modifier des fichiers, préférer les outils d'édition ou Node à `python -` + heredoc.

@@ -24,6 +24,7 @@ statut: utilisable
 3. Garde les hanches hautes et plie les genoux pour tirer le ballon vers les fessiers, en le faisant rouler sous les talons.
 4. Fais une courte pause, puis étends lentement les jambes en gardant les hanches hautes.
 5. Pose les hanches au sol en fin de série, avant de bouger le ballon.
+6. Variante « une jambe » : un seul talon sur le ballon, l'autre jambe tendue en l'air, le bassin reste haut et à plat, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Les hanches restent hautes pendant tout le mouvement : si elles tombent, la charge se déplace sur le dos.

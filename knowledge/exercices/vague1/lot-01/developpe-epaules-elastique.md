@@ -23,6 +23,7 @@ statut: utilisable
 2. Les coudes sont sous les poignées, les avant-bras verticaux ; le ventre est serré.
 3. Pousse les poignées vers le haut jusqu'à ce que les bras soient tendus au-dessus de la tête.
 4. Redescends lentement jusqu'aux épaules, élastique toujours tendu.
+5. Variante « un bras » : une seule main pousse l'élastique, l'autre reste le long du corps, sans pencher le buste sur le côté, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Souffle en poussant.

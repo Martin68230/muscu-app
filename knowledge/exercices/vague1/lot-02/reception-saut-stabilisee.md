@@ -24,6 +24,7 @@ statut: utilisable
 3. Plie les genoux et les hanches pour amortir ; les genoux restent au-dessus des pieds, sans rentrer vers l'intérieur.
 4. Stabilise la position d'arrivée avant de bouger, puis redresse-toi.
 5. Recommence en visant une réception silencieuse.
+6. Variante « sur une jambe » : réception sur un seul pied, l'autre pied léger près de la cheville ; tu recommences ensuite sur l'autre jambe, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Qualité avant hauteur : une réception silencieuse et stable est le but.

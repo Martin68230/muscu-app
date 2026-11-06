@@ -20,7 +20,7 @@ statut: utilisable
 
 ## Consignes
 1. Choisis un sac que tu peux tenir bras tendus, buste penché, sans arrondir le dos ; sinon, il est trop lourd.
-2. Variante chaise : une main sur la chaise, pieds écartés, genoux fléchis, dos plat, regard au sol devant toi. Variante deux mains : buste penché à 45 degrés environ, dos plat.
+2. Variante chaise : une main sur la chaise, l'autre main tient le sac bras tendu vers le sol, pieds écartés, genoux fléchis, dos plat, regard au sol devant toi. Variante deux mains : buste penché à 45 degrés environ, dos plat.
 3. Tire le sac vers le bas de la poitrine ou le ventre en ramenant le coude vers l'arrière, le long du corps.
 4. Tiens une seconde, serre les omoplates, puis redescends lentement, bras presque tendus.
 5. Fais toutes les répétitions d'un côté puis change (variante chaise). Respire sans bloquer.

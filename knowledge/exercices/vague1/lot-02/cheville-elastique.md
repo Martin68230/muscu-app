@@ -19,7 +19,7 @@ statut: utilisable
 
 ## Consignes
 1. Assis sur une chaise stable, une jambe tendue devant toi, talon posé sur le sol.
-2. Passe l'élastique autour de l'avant du pied et tiens l'autre bout (ou fixe-le à un pied de meuble lourd).
+2. Passe l'élastique autour de l'avant du pied et tiens l'autre bout dans la main, du côté indiqué par la variante, l'élastique déjà légèrement tendu et le genou immobile (ou fixe-le à un pied de meuble lourd).
 3. Tourne le pied lentement, uniquement à la cheville : vers l'extérieur ou vers l'intérieur selon la variante.
 4. Reviens lentement en gardant l'élastique tendu.
 5. Fais tous les mouvements d'un côté, puis de l'autre.

@@ -25,7 +25,7 @@ statut: utilisable
 3. Pousse sur le pied (ou les pieds) pour monter les hanches, jusqu'à ce que le haut des cuisses et le tronc soient alignés. Serre les fessiers en haut une seconde.
 4. Redescends en 3 secondes, sans poser les fesses au sol, puis recommence. Le regard reste devant toi, pas vers le plafond.
 5. Une jambe : fais toutes les répétitions d'un côté, puis de l'autre. Garde le bassin à plat : les deux hanches restent à la même hauteur. Ta main au sol ne sert qu'à t'équilibrer ; si tu dois pousser dessus, reviens à deux jambes.
-6. Avec l'élastique : une main le tient à plat sur la hanche, l'autre main est à plat au sol (D28 le dit « à deux mains » : écart signalé à `kine`) ; il appuie vers le bas pendant que tu montes ; relâche-le lentement en redescendant. Si tu perds l'équilibre, lâche-le.
+6. Avec l'élastique : une main le tient à plat sur la hanche, l'autre main est à plat au sol ; il appuie vers le bas pendant que tu montes ; relâche-le lentement en redescendant. Si tu perds l'équilibre, lâche-le.
 
 ## Points d'attention
 - La chaise est la partie la plus risquée : elle doit être calée contre un mur ; si elle bouge, arrête (R8).

@@ -23,6 +23,7 @@ statut: utilisable
 3. Glisse les talons loin de toi en tendant les jambes, le plus loin que tu peux en gardant le bassin haut.
 4. Ramène les talons vers les fesses en tirant avec l'arrière des cuisses.
 5. Les fesses ne touchent pas le sol entre deux répétitions ; pose-les seulement à la fin de la série.
+6. Variante « une jambe » : un seul talon sur la serviette, l'autre jambe pliée ou tendue en l'air sans toucher le sol, le bassin reste à plat, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Version douce du travail des ischios : l'amplitude se règle par la distance de glissement.

@@ -25,6 +25,7 @@ statut: utilisable
 3. Marque un court arrêt en haut en serrant les mollets.
 4. Redescends lentement, en contrôlant, jusqu'à une position étirée (échelons 2 et 3) ou jusqu'au sol (échelon 1).
 5. Recommence sans rebondir.
+6. Variante « une jambe » : l'autre pied reste levé ou posé derrière la cheville, sans appui dessus ; une main garde l'appui, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Descente lente : c'est elle qui sollicite le mollet.

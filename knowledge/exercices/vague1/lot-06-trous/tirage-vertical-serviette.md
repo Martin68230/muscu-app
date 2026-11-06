@@ -28,6 +28,7 @@ Substitut sans matériel du tirage vertical : une serviette tendue entre les mai
 3. Descends les mains vers le haut de la poitrine en gardant les coudes sous la serviette, omoplates vers le bas.
 4. Marque un court arrêt, puis remonte lentement bras tendus au-dessus de la tête, toujours serviette tendue.
 5. Garde les côtes rentrées : ne cambre pas le bas du dos.
+6. Variante « une main résiste » : une main tient la serviette en haut, immobile, devant le front ; l'autre main la tire vers le haut de la poitrine. Fais toutes les répétitions, puis échange le rôle des deux mains.
 
 ## Points d'attention
 - Toujours devant la tête, jamais derrière la nuque.

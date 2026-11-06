@@ -24,6 +24,7 @@ statut: utilisable
 3. Tire les coudes vers le bas et vers l'arrière, les mains arrivent à hauteur de la poitrine devant toi.
 4. Serre les omoplates en bas du mouvement.
 5. Remonte les bras lentement, élastique toujours tendu.
+6. Variante « un bras, à genoux » : une seule main tire, l'autre reste le long du corps, le buste droit, fais toutes les répétitions d'un côté, puis autant de l'autre côté, en commençant par le côté le plus faible.
 
 ## Points d'attention
 - Tire devant la tête, jamais derrière la nuque.

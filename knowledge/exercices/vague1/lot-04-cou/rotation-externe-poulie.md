@@ -20,7 +20,7 @@ couverture: substitut
 ## Consignes
 1. Règle la poulie à la hauteur du coude ; mets-toi de côté et prends la poignée de la main éloignée de la poulie, coude plié à 90 degrés contre le flanc.
 2. Glisse une serviette roulée entre le coude et le flanc pour garder le coude collé.
-3. Pars avec la main devant le ventre, puis tourne l'avant-bras vers l'extérieur (« geste de revers »), le coude restant en place.
+3. Pars avec la main devant le ventre, puis tourne la main vers l'extérieur (« geste de revers ») jusqu'où tu contrôles, le coude restant en place et le buste immobile.
 4. Marque un court instant, puis reviens lentement.
 5. Fais tous les mouvements d'un côté, puis change de côté.
 

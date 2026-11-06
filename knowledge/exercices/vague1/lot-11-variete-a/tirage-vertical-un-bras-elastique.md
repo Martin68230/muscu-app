@@ -21,12 +21,12 @@ Fiche du lot 11A (variété du générateur, programmes-v3.md §9). Elle ne dema
 | tirage-un-bras-elastique-assis | Assis sur une chaise | 1 | debutant | elastique, chaise | Même prise, assis sur une chaise stable à 4 pieds, sans roulettes, dossier calé contre un mur, dos droit près du dossier, pieds à plat. |
 
 ## Consignes
-1. Vérifie l'élastique en entier (fentes, rayures, amincissements), puis prends-le comme indiqué : la main du haut reste fixe, c'est elle qui sert de point d'appui ; elle tient aussi fort que la main qui tire.
-2. Redresse-toi, ventre serré, épaules loin des oreilles, regard devant toi.
-3. La main qui travaille tire le coude vers le bas, le long du corps, sans pencher le buste.
-4. En bas, serre l'omoplate de ce côté une seconde, la main arrive à hauteur de l'épaule (à hauteur de la poitrine si ta main du haut est réglée au menton) ; ne tire pas plus bas.
-5. Remonte lentement en 3 secondes : l'élastique ne te tire jamais vers le haut d'un coup.
-6. Fais toutes les répétitions d'un côté, puis de l'autre.
+1. Vérifie l'élastique en entier (fentes, rayures, amincissements). Il reste tenu à la main : jamais accroché, jamais enroulé autour de la main ou du poignet.
+2. Position de départ : debout (ou assis sur la chaise, dos près du dossier), pieds à largeur de hanches, ventre serré, épaules loin des oreilles, regard devant toi.
+3. Main du haut : elle tient un bout de l'élastique à hauteur du front, un peu devant la tête, le coude légèrement plié ; jamais plus haut, jamais le bras tendu au-dessus de la tête. Elle reste immobile et serre aussi fort que la main qui tire. Main qui tire : elle tient l'autre bout, juste sous la main du haut, devant le visage, le bras plié sans être verrouillé, l'élastique déjà légèrement tendu.
+4. Trajet : fais descendre le coude vers la hanche du même côté, le long du corps, sans pencher le buste en arrière ; la main descend devant toi, toujours devant la tête.
+5. Fin du mouvement : la main arrive à hauteur de l'épaule (à hauteur de la poitrine si ta main du haut est réglée au menton), le coude contre le côté du corps. Serre l'omoplate de ce côté une seconde ; ne tire pas plus bas. Remonte ensuite lentement en 3 secondes, bras plié : l'élastique ne te tire jamais vers le haut d'un coup.
+6. Fais toutes les répétitions d'un côté, puis autant de l'autre côté, en échangeant le rôle des deux mains.
 
 ## Points d'attention
 - Tire devant la tête, jamais derrière la nuque.
