@@ -131,7 +131,8 @@ describe('reprise en pleine séance avec un exercice d’un seul côté', () => 
     expect(await list('sets')).toHaveLength(1);
     await back.completeSet({ reps: 6, rir: 1, requireRir: true });
     const sets = await list('sets');
-    expect(sets.map((s) => s.side)).toEqual(['gauche', 'droite']);
+    // l'ordre de list() n'est pas un contrat (identifiants aléatoires) : on vérifie les deux côtés, une fois chacun
+    expect(sets.map((s) => s.side).sort()).toEqual(['droite', 'gauche']);
     expect(back.state.rest?.totalMs).toBe(60_000);
   });
 });
