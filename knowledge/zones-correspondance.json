@@ -1,0 +1,1049 @@
+{
+ "version": "2026-11-06",
+ "redige_par": "coach",
+ "statut_global": "PROVISOIRE : sous-zones indicatives, seuils NON SOURCÉ sauf 10 (prise de muscle)",
+ "lecture": "Une série de travail d'une fiche (type force, fonctionnel, gainage) ajoute coef x 1 (muscle principal) ou coef x 0,5 (secondaire) à chaque zone du muscle ; une règle de regles_sous_zones dont motif_id (regex sur l'id de fiche) et/ou schema correspondent remplace les coefficients du muscle concerné pour cette fiche. Mobilité, récupération, cardio et échauffement : 0 point. Plafond par muscle mère = maximum des sous-zones.",
+ "points": {
+  "principal": 1,
+  "secondaire": 0.5,
+  "mobilite_recup": 0,
+  "cardio": 0,
+  "echauffement": 0
+ },
+ "zones": [
+  {
+   "id": "pectoraux_haut",
+   "nom": "Pectoraux (haut)",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "pectoraux_milieu_bas",
+   "nom": "Pectoraux (milieu et bas)",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "epaules_avant",
+   "nom": "Épaules (avant)",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "epaules_cote",
+   "nom": "Épaules (côté)",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face_et_dos",
+   "seuil": "G"
+  },
+  {
+   "id": "epaules_arriere",
+   "nom": "Épaules (arrière)",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "coiffe_rotateurs",
+   "nom": "Coiffe des rotateurs",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "dos",
+   "seuil": "P"
+  },
+  {
+   "id": "dentele_anterieur",
+   "nom": "Dentelé antérieur",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "P"
+  },
+  {
+   "id": "grand_dorsal",
+   "nom": "Grand dorsal",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "trapezes_haut",
+   "nom": "Trapèzes (haut)",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "trapezes_moyen",
+   "nom": "Haut du dos : trapèzes moyens et rhomboïdes",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "trapezes_bas",
+   "nom": "Trapèzes (bas)",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "cou",
+   "nom": "Cou",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face_et_dos",
+   "seuil": "P"
+  },
+  {
+   "id": "biceps",
+   "nom": "Biceps",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "triceps_long_chef",
+   "nom": "Triceps (long chef)",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "triceps_lateral_medial",
+   "nom": "Triceps (chefs latéral et médial)",
+   "groupe": "haut",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "avant_bras",
+   "nom": "Avant-bras",
+   "groupe": "haut",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face_et_dos",
+   "seuil": "P"
+  },
+  {
+   "id": "abdominaux_droits",
+   "nom": "Abdominaux (grand droit)",
+   "groupe": "tronc",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "obliques",
+   "nom": "Obliques",
+   "groupe": "tronc",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "transverse",
+   "nom": "Abdominaux profonds (transverse)",
+   "groupe": "tronc",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "P"
+  },
+  {
+   "id": "lombaires",
+   "nom": "Lombaires (érecteurs du rachis)",
+   "groupe": "tronc",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "carre_des_lombes",
+   "nom": "Carré des lombes",
+   "groupe": "tronc",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "dos",
+   "seuil": "P"
+  },
+  {
+   "id": "fessiers_grand",
+   "nom": "Fessiers (grand fessier)",
+   "groupe": "bas",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "fessiers_moyen",
+   "nom": "Fessiers (moyen fessier)",
+   "groupe": "bas",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "abducteurs",
+   "nom": "Abducteurs (côté de la hanche)",
+   "groupe": "bas",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face_et_dos",
+   "seuil": "P"
+  },
+  {
+   "id": "adducteurs",
+   "nom": "Adducteurs (intérieur des cuisses)",
+   "groupe": "bas",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "flechisseurs_hanche",
+   "nom": "Fléchisseurs de hanche",
+   "groupe": "bas",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "P"
+  },
+  {
+   "id": "quadriceps_vastes",
+   "nom": "Quadriceps (vastes)",
+   "groupe": "bas",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "quadriceps_droit_femoral",
+   "nom": "Quadriceps (droit fémoral)",
+   "groupe": "bas",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "face",
+   "seuil": "G"
+  },
+  {
+   "id": "ischios",
+   "nom": "Ischio-jambiers",
+   "groupe": "bas",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "dos",
+   "seuil": "G"
+  },
+  {
+   "id": "mollets_gastrocnemien",
+   "nom": "Mollets (jumeaux)",
+   "groupe": "bas",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "P"
+  },
+  {
+   "id": "mollets_soleaire",
+   "nom": "Mollets (soléaire)",
+   "groupe": "bas",
+   "sous_zone": true,
+   "indicatif": true,
+   "vue": "dos",
+   "seuil": "P"
+  },
+  {
+   "id": "tibiaux",
+   "nom": "Tibiaux (devant du tibia)",
+   "groupe": "bas",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face",
+   "seuil": "P"
+  },
+  {
+   "id": "peroniers",
+   "nom": "Péroniers (côté de la jambe)",
+   "groupe": "bas",
+   "sous_zone": false,
+   "indicatif": false,
+   "vue": "face_et_dos",
+   "seuil": "P"
+  }
+ ],
+ "seuils": {
+  "G": {
+   "gris_sous": 3,
+   "rouge_defaut": 6,
+   "rouge_muscle": 10,
+   "rouge_force": 4,
+   "plafond_semaine": 20,
+   "plafond_seance_standard": 10,
+   "plafond_seance_slots": 12,
+   "plafond_seance_auto": 11
+  },
+  "P": {
+   "gris_sous": 1.5,
+   "rouge_defaut": 3,
+   "rouge_muscle": 5,
+   "rouge_force": 2,
+   "plafond_semaine": 10,
+   "plafond_seance_standard": 6,
+   "plafond_seance_slots": 6,
+   "plafond_seance_auto": 6
+  },
+  "statuts": {
+   "gris_sous": "NON SOURCÉ",
+   "rouge_defaut": "NON SOURCÉ",
+   "rouge_muscle": "OK (ACSM 2026, Schoenfeld 2017)",
+   "rouge_force": "NON SOURCÉ",
+   "plafond_semaine_G": "OK comme seuil, NON SOURCÉ comme plafond",
+   "plafond_P": "NON SOURCÉ"
+  }
+ },
+ "muscles": {
+  "pectoraux": [
+   {
+    "zone": "pectoraux_milieu_bas",
+    "coef": 1
+   },
+   {
+    "zone": "pectoraux_haut",
+    "coef": 0.5
+   }
+  ],
+  "deltoides_anterieurs": [
+   {
+    "zone": "epaules_avant",
+    "coef": 1
+   }
+  ],
+  "deltoides_lateraux": [
+   {
+    "zone": "epaules_cote",
+    "coef": 1
+   }
+  ],
+  "deltoides_posterieurs": [
+   {
+    "zone": "epaules_arriere",
+    "coef": 1
+   }
+  ],
+  "coiffe_des_rotateurs": [
+   {
+    "zone": "coiffe_rotateurs",
+    "coef": 1
+   }
+  ],
+  "dentele_anterieur": [
+   {
+    "zone": "dentele_anterieur",
+    "coef": 1
+   }
+  ],
+  "grand_dorsal": [
+   {
+    "zone": "grand_dorsal",
+    "coef": 1
+   }
+  ],
+  "trapezes": [
+   {
+    "zone": "trapezes_moyen",
+    "coef": 1
+   },
+   {
+    "zone": "trapezes_haut",
+    "coef": 0.5
+   }
+  ],
+  "rhomboides": [
+   {
+    "zone": "trapezes_moyen",
+    "coef": 1
+   }
+  ],
+  "biceps": [
+   {
+    "zone": "biceps",
+    "coef": 1
+   }
+  ],
+  "triceps": [
+   {
+    "zone": "triceps_lateral_medial",
+    "coef": 1
+   },
+   {
+    "zone": "triceps_long_chef",
+    "coef": 0.5
+   }
+  ],
+  "avant_bras": [
+   {
+    "zone": "avant_bras",
+    "coef": 1
+   }
+  ],
+  "abdominaux": [
+   {
+    "zone": "abdominaux_droits",
+    "coef": 1
+   }
+  ],
+  "obliques": [
+   {
+    "zone": "obliques",
+    "coef": 1
+   }
+  ],
+  "transverse": [
+   {
+    "zone": "transverse",
+    "coef": 1
+   }
+  ],
+  "erecteurs_rachis": [
+   {
+    "zone": "lombaires",
+    "coef": 1
+   }
+  ],
+  "carre_des_lombes": [
+   {
+    "zone": "carre_des_lombes",
+    "coef": 1
+   }
+  ],
+  "fessiers": [
+   {
+    "zone": "fessiers_grand",
+    "coef": 1
+   }
+  ],
+  "moyen_fessier": [
+   {
+    "zone": "fessiers_moyen",
+    "coef": 1
+   }
+  ],
+  "quadriceps": [
+   {
+    "zone": "quadriceps_vastes",
+    "coef": 1
+   },
+   {
+    "zone": "quadriceps_droit_femoral",
+    "coef": 0.5
+   }
+  ],
+  "ischios": [
+   {
+    "zone": "ischios",
+    "coef": 1
+   }
+  ],
+  "adducteurs": [
+   {
+    "zone": "adducteurs",
+    "coef": 1
+   }
+  ],
+  "flechisseurs_hanche": [
+   {
+    "zone": "flechisseurs_hanche",
+    "coef": 1
+   }
+  ],
+  "mollets": [
+   {
+    "zone": "mollets_gastrocnemien",
+    "coef": 1
+   },
+   {
+    "zone": "mollets_soleaire",
+    "coef": 0.5
+   }
+  ],
+  "tibial_anterieur": [
+   {
+    "zone": "tibiaux",
+    "coef": 1
+   }
+  ],
+  "peroniers": [
+   {
+    "zone": "peroniers",
+    "coef": 1
+   }
+  ]
+ },
+ "regles_sous_zones": [
+  {
+   "id": "R-PEC-HAUT",
+   "muscle": "pectoraux",
+   "motif_id": "(incline|pieds-ballon|pieds-sureleves|piquee)",
+   "zones": [
+    {
+     "zone": "pectoraux_haut",
+     "coef": 1
+    },
+    {
+     "zone": "pectoraux_milieu_bas",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-PEC-BAS",
+   "muscle": "pectoraux",
+   "motif_id": "(dips|decline)",
+   "zones": [
+    {
+     "zone": "pectoraux_milieu_bas",
+     "coef": 1
+    },
+    {
+     "zone": "pectoraux_haut",
+     "coef": 0.25
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-TRAP-HAUT",
+   "muscle": "trapezes",
+   "motif_id": "(shrug|porte|marche-du-fermier|marche-sac|marche-gilet|souleve-de-terre|squat-avant|developpe-epaules|developpe-militaire|elevation-laterale|pompe-piquee|pompe-equilibre|inclinaison-douce-cou|rotation-douce-cou|isometrique-cou|retraction-cervicale|passage-de-bras|glissement-mur|cercles-de-bras|chat-vache|extension-thoracique)",
+   "zones": [
+    {
+     "zone": "trapezes_haut",
+     "coef": 1
+    },
+    {
+     "zone": "trapezes_moyen",
+     "coef": 0.25
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-TRAP-MOYEN",
+   "muscle": "trapezes",
+   "motif_id": "(rowing|oiseau|face-pull|tirage-visage|ecartement|retraction-omoplates|ytw|rotation-externe)",
+   "zones": [
+    {
+     "zone": "trapezes_moyen",
+     "coef": 1
+    },
+    {
+     "zone": "trapezes_haut",
+     "coef": 0.25
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-TRAP-BAS",
+   "muscle": "trapezes",
+   "motif_id": "(traction|tirage-vertical|tirage-w|ytw)",
+   "zones": [
+    {
+     "zone": "trapezes_bas",
+     "coef": 1
+    },
+    {
+     "zone": "trapezes_moyen",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-EPAULE-ARRIERE-NOTE",
+   "note": "deltoides_posterieurs va toujours sur epaules_arriere (oiseau, tirage au visage, écartement, rowing) : pas de règle d'id nécessaire."
+  },
+  {
+   "id": "R-TRI-LONG",
+   "muscle": "triceps",
+   "motif_id": "(extension-triceps|pullover|tirage-bras-tendus)",
+   "zones": [
+    {
+     "zone": "triceps_long_chef",
+     "coef": 1
+    },
+    {
+     "zone": "triceps_lateral_medial",
+     "coef": 1
+    }
+   ],
+   "statut": "PROVISOIRE (Z4, Maeo 2023)",
+   "ids_ambigus": [
+    "extension-triceps-assis-halteres",
+    "extension-triceps-couche-halteres",
+    "extension-triceps-barre-ez-allonge"
+   ]
+  },
+  {
+   "id": "R-TRI-DEFAUT",
+   "muscle": "triceps",
+   "motif_id": "(developpe|pompe|dips)",
+   "zones": [
+    {
+     "zone": "triceps_lateral_medial",
+     "coef": 1
+    },
+    {
+     "zone": "triceps_long_chef",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-QUAD-DROIT",
+   "muscle": "quadriceps",
+   "motif_id": "(montees-genoux|mountain-climbers|saut|rebonds|pas-chasses|course|jumping|marche-rapide|etirement-flechisseurs|etirement-quadriceps)",
+   "zones": [
+    {
+     "zone": "quadriceps_droit_femoral",
+     "coef": 1
+    },
+    {
+     "zone": "quadriceps_vastes",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-QUAD-VASTES",
+   "muscle": "quadriceps",
+   "motif_id": "(squat|fente|montee-sur|assis-debout|souleve-de-terre|hip-thrust|pont-fessier)",
+   "zones": [
+    {
+     "zone": "quadriceps_vastes",
+     "coef": 1
+    },
+    {
+     "zone": "quadriceps_droit_femoral",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif) ; charnière : vastes 0,5 seulement via le rôle secondaire"
+  },
+  {
+   "id": "R-MOLLET-SOLEAIRE",
+   "muscle": "mollets",
+   "motif_id": "(releve-mollets-assis|soleaire)",
+   "zones": [
+    {
+     "zone": "mollets_soleaire",
+     "coef": 1
+    },
+    {
+     "zone": "mollets_gastrocnemien",
+     "coef": 0
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-MOLLET-JUMEAUX",
+   "muscle": "mollets",
+   "motif_id": "(releve-mollets-(debout|halteres|machine)|saut|rebonds|corde|marche-pointes|montees-genoux|jumping)",
+   "zones": [
+    {
+     "zone": "mollets_gastrocnemien",
+     "coef": 1
+    },
+    {
+     "zone": "mollets_soleaire",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-OBLIQUES-SCHEMA",
+   "muscle": "abdominaux",
+   "schema": [
+    "anti_rotation",
+    "rotation"
+   ],
+   "motif_id": "(planche-laterale|pallof|rotation|bucheron|crunch-bicyclette|lancer-rotation|bird-dog|dead-bug)",
+   "zones": [
+    {
+     "zone": "obliques",
+     "coef": 1
+    },
+    {
+     "zone": "abdominaux_droits",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif)"
+  },
+  {
+   "id": "R-ABDUCTEURS",
+   "muscle": "moyen_fessier",
+   "schema": [
+    "hanche_laterale"
+   ],
+   "motif_id": "(abduction|clam|marche-laterale)",
+   "zones": [
+    {
+     "zone": "abducteurs",
+     "coef": 1
+    },
+    {
+     "zone": "fessiers_moyen",
+     "coef": 1
+    }
+   ],
+   "statut": "NON SOURCÉ (indicatif) ; seule exception où un muscle compte dans deux zones (surveiller le double comptage)"
+  },
+  {
+   "id": "R-COU",
+   "muscle": null,
+   "motif_id": "(-cou$|^retraction-cervicale)",
+   "zones": [
+    {
+     "zone": "cou",
+     "coef": 1
+    }
+   ],
+   "ids_ambigus": [
+    "inclinaison-douce-cou",
+    "isometrique-cou",
+    "rotation-douce-cou",
+    "retraction-cervicale"
+   ],
+   "statut": "NON SOURCÉ ; ces fiches sont de la mobilité : 0 point de série de travail, la zone ne se remplit que si `cou` devient un muscle de fiche"
+  },
+  {
+   "id": "R-BRACHIO-RADIAL",
+   "muscle": "biceps",
+   "motif_id": "(marteau)",
+   "zones": [
+    {
+     "zone": "biceps",
+     "coef": 1
+    },
+    {
+     "zone": "avant_bras",
+     "coef": 0.5
+    }
+   ],
+   "statut": "NON SOURCÉ (aucune fiche marteau aujourd'hui)"
+  }
+ ],
+ "zones_blessures": {
+  "cou": [
+   "cou",
+   "trapezes_haut"
+  ],
+  "epaule": [
+   "epaules_avant",
+   "epaules_cote",
+   "epaules_arriere",
+   "coiffe_rotateurs",
+   "dentele_anterieur",
+   "pectoraux_haut",
+   "pectoraux_milieu_bas",
+   "trapezes_haut",
+   "trapezes_moyen",
+   "trapezes_bas",
+   "grand_dorsal"
+  ],
+  "coude": [
+   "biceps",
+   "triceps_long_chef",
+   "triceps_lateral_medial",
+   "avant_bras"
+  ],
+  "poignet": [
+   "avant_bras"
+  ],
+  "dos": [
+   "lombaires",
+   "carre_des_lombes",
+   "grand_dorsal",
+   "trapezes_moyen",
+   "trapezes_bas",
+   "abdominaux_droits",
+   "obliques",
+   "transverse"
+  ],
+  "hanche": [
+   "fessiers_grand",
+   "fessiers_moyen",
+   "abducteurs",
+   "adducteurs",
+   "flechisseurs_hanche"
+  ],
+  "genou": [
+   "quadriceps_vastes",
+   "quadriceps_droit_femoral",
+   "ischios",
+   "mollets_gastrocnemien"
+  ],
+  "cheville": [
+   "mollets_gastrocnemien",
+   "mollets_soleaire",
+   "tibiaux",
+   "peroniers"
+  ],
+  "cuisse": [
+   "quadriceps_vastes",
+   "quadriceps_droit_femoral",
+   "ischios",
+   "adducteurs"
+  ],
+  "aine": [
+   "adducteurs",
+   "flechisseurs_hanche"
+  ]
+ },
+ "fiches_a_verifier_coach": {
+  "comptes": {
+   "pectoraux": 25,
+   "dos_trapezes_rhomboides": 56,
+   "epaules_deltoides_principal": 21,
+   "abdos_obliques_transverse_principal": 29,
+   "quadriceps": 45
+  },
+  "total_distinct": 137,
+  "hors_demande": {
+   "triceps": 37,
+   "mollets": 27
+  },
+  "ids": {
+   "pectoraux": [
+    "developpe-au-sol-halteres",
+    "developpe-couche-barre",
+    "developpe-couche-halteres",
+    "developpe-couche-prise-serree-barre",
+    "developpe-incline-barre",
+    "developpe-incline-halteres",
+    "developpe-sol-elastique",
+    "dips-banc-triceps",
+    "ecarte-couche-halteres",
+    "lancer-poitrine-mur",
+    "lancer-rotation-mur",
+    "pompe",
+    "pompe-archer",
+    "pompe-bosu",
+    "pompe-diamant",
+    "pompe-ecartee",
+    "pompe-equilibre-mur",
+    "pompe-gilet-lest",
+    "pompe-mains-ballon",
+    "pompe-pieds-ballon",
+    "pompe-piquee",
+    "pompe-plus",
+    "pompe-un-bras",
+    "pullover-haltere-au-sol",
+    "squat-lancer-mur"
+   ],
+   "dos_trapezes_rhomboides": [
+    "developpe-epaules-assis-dossier-incline",
+    "developpe-epaules-elastique",
+    "developpe-epaules-elastique-alterne",
+    "developpe-epaules-halteres",
+    "developpe-epaules-sac-a-dos",
+    "developpe-militaire-barre",
+    "ecartement-elastique",
+    "ecartement-serviette",
+    "elevation-laterale",
+    "elevation-laterale-assis-halteres",
+    "extension-dorsale-ballon",
+    "face-pull-elastique",
+    "marche-du-fermier",
+    "marche-gilet-lest",
+    "marche-sac-a-dos",
+    "oiseau-banc-incline",
+    "oiseau-halteres",
+    "oiseau-machine-poulie",
+    "oiseau-un-bras-appuye",
+    "pompe-equilibre-mur",
+    "pompe-piquee",
+    "pompe-piquee-pieds-sureleves",
+    "porte-ballon-lest",
+    "porte-sac-a-dos-devant",
+    "porte-sac-berceau",
+    "porte-serveur",
+    "porte-un-haltere-epaule",
+    "porte-valise",
+    "retraction-omoplates",
+    "rotation-externe-epaule",
+    "rotation-externe-poulie",
+    "rowing-barre-ez",
+    "rowing-barre-penche",
+    "rowing-buste-penche-halteres",
+    "rowing-elastique",
+    "rowing-pendlay-barre",
+    "rowing-poitrine-appuyee-banc",
+    "rowing-sac-a-dos",
+    "rowing-sac-de-sable",
+    "rowing-unilateral-haltere",
+    "shrug-barre",
+    "souleve-de-terre-barre",
+    "souleve-de-terre-roumain-barre",
+    "souleve-de-terre-sac",
+    "souleve-de-terre-sumo-barre",
+    "squat-avant-barre",
+    "tirage-vertical-allonge-ventre",
+    "tirage-vertical-elastique-haut",
+    "tirage-vertical-serviette",
+    "tirage-vertical-un-bras-elastique",
+    "tirage-visage-sangles",
+    "tirage-w-allonge",
+    "traction-barre",
+    "traction-gilet-lest",
+    "traction-un-bras",
+    "ytw-sol"
+   ],
+   "epaules_deltoides_principal": [
+    "developpe-epaules-assis-dossier-incline",
+    "developpe-epaules-elastique",
+    "developpe-epaules-elastique-alterne",
+    "developpe-epaules-halteres",
+    "developpe-epaules-sac-a-dos",
+    "developpe-incline-barre",
+    "developpe-militaire-barre",
+    "ecartement-elastique",
+    "ecartement-serviette",
+    "elevation-laterale",
+    "elevation-laterale-assis-halteres",
+    "face-pull-elastique",
+    "oiseau-banc-incline",
+    "oiseau-halteres",
+    "oiseau-machine-poulie",
+    "oiseau-un-bras-appuye",
+    "pompe-equilibre-mur",
+    "pompe-piquee",
+    "pompe-piquee-pieds-sureleves",
+    "tirage-visage-sangles",
+    "ytw-sol"
+   ],
+   "abdos_obliques_transverse_principal": [
+    "bird-dog",
+    "bird-dog-pause",
+    "bucheron-ballon-lest",
+    "crunch-bicyclette",
+    "dead-bug",
+    "dead-bug-jambes-seules",
+    "gainage-creux",
+    "genoux-poitrine-ballon",
+    "lancer-rotation-mur",
+    "pallof-elastique",
+    "planche",
+    "planche-ballon",
+    "planche-bosu",
+    "planche-bras-jambe-leves",
+    "planche-cercles-ballon",
+    "planche-laterale",
+    "planche-laterale-jambe-levee",
+    "planche-touche-epaule",
+    "porte-ballon-lest",
+    "porte-sac-a-dos-devant",
+    "porte-sac-berceau",
+    "porte-serveur",
+    "porte-un-haltere-epaule",
+    "porte-valise",
+    "rollout-ballon",
+    "rotation-assise-ballon-lest",
+    "rotation-bucheron",
+    "rotation-russe",
+    "roue-abdos"
+   ],
+   "quadriceps": [
+    "assis-debout-mains-cuisses",
+    "fente-arriere",
+    "fente-avant",
+    "fente-gilet-lest",
+    "fente-laterale",
+    "hip-thrust-banc",
+    "hip-thrust-barre",
+    "hip-thrust-chaise",
+    "lancer-bas-haut-mur",
+    "marche-du-fermier",
+    "marche-gilet-lest",
+    "marche-laterale-elastique",
+    "marche-laterale-poids-du-corps",
+    "marche-sac-a-dos",
+    "montee-gilet-lest",
+    "montee-sur-banc",
+    "montee-sur-marche",
+    "pont-fessier-ballon",
+    "porte-sac-a-dos-devant",
+    "rebonds-chevilles",
+    "reception-saut-stabilisee",
+    "saut-fendu-alterne",
+    "saut-lateral-patineur",
+    "saut-longueur-pieds-joints",
+    "saut-vertical",
+    "souleve-de-terre-barre",
+    "souleve-de-terre-sac",
+    "souleve-de-terre-sumo-barre",
+    "squat-arriere-barre",
+    "squat-assis-debout",
+    "squat-avant-barre",
+    "squat-ballon-lest",
+    "squat-barre-repere-banc",
+    "squat-bosu",
+    "squat-bulgare",
+    "squat-fendu",
+    "squat-gilet-lest",
+    "squat-gobelet",
+    "squat-gobelet-banc",
+    "squat-lancer-mur",
+    "squat-mur-ballon",
+    "squat-petit-saut",
+    "squat-poids-du-corps",
+    "squat-sac-berceau",
+    "squat-sumo"
+   ]
+  }
+ }
+}
