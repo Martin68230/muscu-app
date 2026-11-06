@@ -74,9 +74,12 @@ const prog = (r: GenerateResult) => {
 
 describe('V-MSG-EPAULES (T48)', () => {
   const base = { profile: 'A0', level: 'debutant' as const, days: 3, goal: 'sante' };
+  // Depuis le lot 13, la poussée verticale au mur (substitut) travaille les épaules d'un débutant sans matériel : le message ne s'affiche plus.
+  // Le mécanisme du message est donc testé sans cette fiche (état d'avant le lot 13).
+  const NO_WALL = FICHES.filter((f) => f.id !== 'poussee-verticale-mur');
   const count = (o: Parameters<typeof mk>[0]) => msgIds(prog(generateProgram(mk(o)))).filter((i) => i === 'V-MSG-EPAULES').length;
   it('débutant, maison sans matériel : une seule fois, message de fusion ou suggestion', () => {
-    const p = prog(generateProgram(mk(base)));
+    const p = prog(generateProgram(mk({ ...base, fiches: NO_WALL })));
     expect(msgIds(p).filter((i) => i === 'V-MSG-EPAULES')).toHaveLength(1);
     const m = p.messages.find((x) => x.id === 'V-MSG-EPAULES')!;
     expect(m.text).toContain('peu travaillées');
@@ -95,10 +98,13 @@ describe('V-MSG-EPAULES (T48)', () => {
     expect(count({ ...base, profile: 'C' })).toBe(0);
   });
   it('un sac à dos seul ne le supprime pas pour un débutant (et ne figure pas dans la suggestion)', () => {
-    const p = prog(generateProgram(mk({ ...base, profile: 'A' })));
+    const p = prog(generateProgram(mk({ ...base, profile: 'A', fiches: NO_WALL })));
     const m = p.messages.filter((x) => x.id === 'V-MSG-EPAULES');
     expect(m).toHaveLength(1);
     expect(m[0].text).not.toContain('sac à dos');
+  });
+  it('débutant sans matériel avec la poussée au mur : les épaules sont travaillées, le message est absent', () => {
+    expect(count(base)).toBe(0);
   });
   it('intermédiaire sans matériel : absent (pompe piquée)', () => {
     expect(count({ ...base, level: 'intermediaire' })).toBe(0);
