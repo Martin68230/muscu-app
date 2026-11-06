@@ -232,11 +232,11 @@ describe('Garde-fou D4 : 2 séances au haut du D3 voisin [kine 05/11/2026]', () 
     sess(id, d, { movementId, variantId, loadKg: null, reps: 10, targetRepsMin: 5, targetRepsMax: 10, targetRir: 2, rir: 2, ...o }, 2);
   const open = (sets: SetLog[], allowed = true, sessions?: WorkoutSession[]) => d4OpenVariants({ fiches: FICHES, sets, sessions, allowed });
   const ancrage = { extraTags: ['partenaire_ou_ancrage'] };
-  it('sans historique : aucune D4, même à l\'avancé ; traction à un bras toujours dans D4_NEVER', () => {
+  it('sans historique : aucune D4, même à l\'avancé ; traction à un bras ouverte par le garde-fou', () => {
     expect(open([])).toEqual([]);
-    expect(D4_NEVER).toEqual(['traction-un-bras']);
+    expect(D4_NEVER).toEqual([]);
     const ctx = buildCtx(mkInput({ level: 'avance', goal: 'muscle', ...ancrage }));
-    for (const id of ['nordique-ischios', 'pompe-equilibre-mur', 'pompe-un-bras'])
+    for (const id of ['nordique-ischios', 'pompe-equilibre-mur', 'pompe-un-bras', 'traction-un-bras'])
       for (const v of byId(id).variantes) expect(classAllowed(byId(id), v, ctx), v.id).toBe(false);
   });
   it('nordique : 2 séances au haut du curl ischios à une jambe -> le premier échelon de la nordique s\'ouvre, pas les suivants', () => {
@@ -279,6 +279,35 @@ describe('Garde-fou D4 : 2 séances au haut du D3 voisin [kine 05/11/2026]', () 
     // pompe en équilibre : voisine pompe piquée pieds surélevés (plus haut échelon : pieds sur une chaise)
     const pique = [...top('e', 1, 'pompe-piquee-pieds-sureleves', 'pompe-piquee-pieds-chaise'), ...top('f', 3, 'pompe-piquee-pieds-sureleves', 'pompe-piquee-pieds-chaise')];
     expect(open(pique)).toEqual(['pompe-equilibre-mur-pieds']);
+  });
+  it('traction à un bras : voisin traction-barre (mains vers soi / vers l’avant), jamais avant 2 séances au haut, jamais hors avancé / grossesse / douleur', () => {
+    const f = byId('traction-un-bras');
+    expect(f.variantes.map((v) => v.id)).toEqual(['traction-un-bras-aide-main-libre', 'traction-un-bras-elastique']);
+    expect(open([])).toEqual([]);
+    const tb = (id: string, d: number, v: string) => top(id, d, 'traction-barre', v);
+    expect(open(tb('a', 1, 'traction-barre-pronation'))).toEqual([]); // une seule séance
+    // l'échelon 2 (assistée par élastique) ne compte pas
+    expect(open([...tb('a', 1, 'traction-barre-assistee-elastique'), ...tb('b', 3, 'traction-barre-assistee-elastique')])).toEqual([]);
+    const two = [...tb('a', 1, 'traction-barre-pronation'), ...tb('b', 3, 'traction-barre-supination')];
+    expect(open(two)).toEqual(['traction-un-bras-aide-main-libre']); // échelon 1 seulement, le 2 après 2 séances au haut de l'échelon 1
+    expect(open([...tb('a', 1, 'traction-barre-pronation'), ...tb('b', 3, 'traction-barre-pronation')].map((x, i) => (i >= 2 ? { ...x, reps: 9 } : x)))).toEqual([]);
+    expect(open(two, false)).toEqual([]); // non avancé, grossesse, post-partum : l'appelant passe allowed = false
+    const ctxOf = (o: Parameters<typeof mkInput>[0] = {}) => buildCtx({ ...mkInput({ level: 'avance', goal: 'muscle', profile: 'F', place: 'salle', ...o }), options: { d4Open: open(two) } });
+    const aide = f.variantes[0]!;
+    expect(classAllowed(f, aide, ctxOf())).toBe(true);
+    expect(classAllowed(f, aide, ctxOf({ level: 'intermediaire' }))).toBe(false);
+    expect(classAllowed(f, aide, ctxOf({ level: 'debutant' }))).toBe(false);
+    expect(classAllowed(f, aide, ctxOf({ preg: 'enceinte' }))).toBe(false);
+    expect(classAllowed(f, aide, ctxOf({ preg: 'post_partum' }))).toBe(false);
+    expect(classAllowed(f, aide, buildCtx({ ...mkInput({ level: 'avance', goal: 'muscle', profile: 'F', place: 'salle' }), options: { d4Open: open(two), repriseActive: true } }))).toBe(false);
+    // sans le garde-fou ouvert : jamais proposée, même à l'avancé
+    expect(classAllowed(f, aide, buildCtx(mkInput({ level: 'avance', goal: 'muscle', profile: 'F', place: 'salle' })))).toBe(false);
+    // gêne légère déclarée : poignet, coude, épaule, cou, dos
+    for (const z of ['poignet', 'coude', 'epaule', 'cou', 'dos'] as const)
+      expect(classAllowed(f, aide, ctxOf({ injuries: [[z, 1]] })), z).toBe(false);
+    // une douleur notée sur la zone referme le droit
+    const pain = sess('p', 4, { movementId: 'traction-barre', variantId: 'traction-barre-pronation', pain: true, painZone: 'coude' }, 1);
+    expect(open([...two, ...pain])).toEqual([]);
   });
   it('dose D4 : pompe à un bras 4-8 par côté, 2 séries au plus, réserve 3 ; traction à un bras 1-5, 2 séries', () => {
     expect(D4_FICHE_DOSE['pompe-un-bras']).toEqual({ reps: [4, 8], maxSets: 2, minRir: 3 });

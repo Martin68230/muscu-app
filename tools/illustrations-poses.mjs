@@ -817,6 +817,13 @@ export const EXERCICES = [
     b: { vest: true, p: [0, 180], t: 90, h: 90, armN: { to: [31, 252], bend: 'f' }, armF: { to: [-31, 252], bend: 'b' }, legN: { to: [7, 74], bend: 'f' }, legF: { to: [-7, 74], bend: 'b' }, back: [['rect', -86, 0, 8, 258, 2], ['rect', 78, 0, 8, 258, 2], ['lin', [[-82, 254], [82, 254]], 7]], props: [['arrow', [112, 130], [112, 190]]] },
   },
   {
+    id: 'traction-un-bras', titre: 'Traction à un bras assistée, échelon 1, vue de face : élastique épais noué à la barre et passé sous le pied, une main tire, l’autre main reste posée sur la barre sans tirer',
+    view: 'front',
+    labels: ['Un bras tire, l’autre main soutient', 'Menton à la barre, sans balancer'],
+    a: { p: [0, 122], t: 90, h: 90, armN: { to: [31, 252], bend: 'f' }, armF: { to: [-31, 252], bend: 'b' }, legN: { to: [7, 30], bend: 'f' }, legF: { to: [-7, 16], bend: 'b' }, back: [['rect', -86, 0, 8, 258, 2], ['rect', 78, 0, 8, 258, 2], ['lin', [[-82, 254], [82, 254]], 7]], props: (J) => [['band', [[-62, 254], J.anN]]] },
+    b: { p: [0, 180], t: 90, h: 90, armN: { to: [31, 252], bend: 'f' }, armF: { to: [-31, 252], bend: 'b' }, legN: { to: [7, 88], bend: 'f' }, legF: { to: [-7, 74], bend: 'b' }, back: [['rect', -86, 0, 8, 258, 2], ['rect', 78, 0, 8, 258, 2], ['lin', [[-82, 254], [82, 254]], 7]], props: (J) => [['band', [[-62, 254], J.anN]], ['arrow', [112, 130], [112, 190]]] },
+  },
+  {
     id: 'marche-gilet-lest', titre: 'Marche avec un gilet lesté, vue de profil : pas courts, buste droit, épaules loin des oreilles',
     labels: ['Gilet serré, buste droit', 'Pas courts, à vitesse tranquille'],
     a: stride({ vest: true, props: walkFwd }),

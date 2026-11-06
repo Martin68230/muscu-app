@@ -136,8 +136,8 @@ describe('R-REPS : classes D3 / D4 et liste D4_NEVER', () => {
     // Avec le garde-fou ouvert (d4Open), les D4 placées gardent leur dose D4.
     expect(n).toBeGreaterThan(0);
   });
-  it('pompe à un bras : jamais sans le garde-fou ; ouverte, 4-8 par côté, 2 séries, réserve 3 ; traction à un bras : D4_NEVER', () => {
-    expect(D4_NEVER).toEqual(['traction-un-bras']);
+  it('pompe à un bras : jamais sans le garde-fou ; ouverte, 4-8 par côté, 2 séries, réserve 3 ; traction à un bras : ouverte par le garde-fou', () => {
+    expect(D4_NEVER).toEqual([]);
     expect(allowedVariants(byId('pompe-un-bras'), ctxOf('muscle', 'avance'))).toEqual([]);
     const f = byId('pompe-un-bras');
     const ctx = buildCtx({ ...mk({ goal: 'muscle', level: 'avance', profile: 'F', place: 'salle' }), options: { d4Open: ['pompe-un-bras-chaise'] } });

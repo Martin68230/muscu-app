@@ -32,11 +32,13 @@ function useOnline(): boolean {
   useEffect(() => {
     const on = () => setOnline(true);
     const off = () => setOnline(false);
-    addEventListener('online', on);
-    addEventListener('offline', off);
+    window.addEventListener('online', on);
+    window.addEventListener('offline', off);
     return () => {
-      removeEventListener('online', on);
-      removeEventListener('offline', off);
+      // le nettoyage peut s'exécuter après la fermeture de la page (tests lents, onglet quitté) : window n'existe plus alors
+      if (typeof window === 'undefined') return;
+      window.removeEventListener('online', on);
+      window.removeEventListener('offline', off);
     };
   }, []);
   return online;

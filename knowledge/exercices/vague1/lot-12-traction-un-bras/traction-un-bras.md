@@ -7,7 +7,7 @@ niveau_min: avance
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [biceps, trapezes, rhomboides, avant_bras, obliques]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Cette fiche est réservée aux avancés (décision de l'utilisateur du 05/11/2026) et reste toujours ASSISTÉE : la traction à un bras SANS aucune assistance n'est pas une variante de cette fiche et n'existe pas dans l'app. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -86,7 +86,8 @@ Rédigé par `coach` le 2026-11-06 (brouillon, à compléter par `kine`). Règle
 - Plafond ou linteau : tête et dos dégagés ; réception au sol dégagée (tapis), jamais de saut brutal depuis la barre.
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/traction-un-bras.svg : affichable : oui (illustration originale de l'app)
+- légende : Échelon 1 : élastique épais noué à la barre sous le pied, une main tire, l’autre reste posée sur la barre sans tirer.
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

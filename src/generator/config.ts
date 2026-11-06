@@ -256,7 +256,7 @@ export const D4_FICHES: Record<string, readonly string[]> = {
   // Décision de l'utilisateur (05/11/2026) : réservées aux avancés, exclues en grossesse / post-partum et avec une gêne déclarée au
   // poignet, au coude ou à l'épaule. Encore dans D4_NEVER tant que le garde-fou du D3 voisin n'est pas codé (voir plus bas).
   'pompe-un-bras': ['poignet', 'coude', 'epaule'],
-  'traction-un-bras': ['poignet', 'coude', 'epaule'], // aucune fiche aujourd'hui : prête pour le jour où elle arrive
+  'traction-un-bras': ['poignet', 'coude', 'epaule'], // fiche active (06/11/2026), échelons assistés seulement
 };
 /**
  * Dose propre à une fiche D4, qui remplace la ligne D4 de D_CLASS (décision de l'utilisateur du 05/11/2026, PROVISOIRE, à confirmer par
@@ -274,7 +274,7 @@ export const D4_FICHE_DOSE: Record<string, { reps: [number, number]; maxSets: nu
  * de chaque D4 (une autre fiche, à fixer par coach + kine). En attendant, TOUTES les D4 sont ici. Quand le garde-fou sera codé :
  * retirer les quatre ids ; la pompe et la traction à un bras suivront alors D4_FICHES (avancé seulement) et D4_FICHE_DOSE.
  */
-export const D4_NEVER: readonly string[] = ['traction-un-bras'];
+export const D4_NEVER: readonly string[] = [];
 /**
  * [kine 05/11/2026] Garde-fou D4 (repetitions-regles.md §4, tableau « D4 -> D3 voisin ») : une D4 n'est ouverte qu'après 2 séances valables
  * CONSÉCUTIVES de la variante voisine, toutes les séries au haut de leur fourchette, réserve >= D3 (2), sans symptôme, sans douleur ni gel
@@ -286,6 +286,8 @@ export const D4_NEIGHBORS: Record<string, { fiche: string; variants?: readonly s
   'nordique-ischios': { fiche: 'curl-ischios-serviette', variants: ['curl-ischios-serviette-une-jambe'] },
   'pompe-equilibre-mur': { fiche: 'pompe-piquee-pieds-sureleves' },
   'pompe-un-bras': { fiche: 'pompe-archer' },
+  // Fiche active depuis le 06/11/2026 : voisin D3 = traction-barre (repetitions-regles.md §4), plus haut échelon de la traction à deux mains.
+  'traction-un-bras': { fiche: 'traction-barre', variants: ['traction-barre-supination', 'traction-barre-pronation'] },
 };
 /** Séances valables consécutives au haut de la fourchette pour ouvrir une D4 (ou l'échelon D4 suivant). NON SOURCÉ (kiné). */
 export const D4_OPEN_SESSIONS = 2;
