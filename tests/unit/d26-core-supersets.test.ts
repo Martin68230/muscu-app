@@ -313,7 +313,8 @@ describe('T-D26-13 et 22, 23 : lecteur de séance (SUP-2 point 7, SUP-8) et prog
     expect(inPair.action).toBe('garder');
     expect(inPair.reason).toBe('paire');
     expect(inPair.loadKg).toBe(4);
-    const alone = proposeProgression({ ...base, exercise: { ...LA, supersetGroup: null }, sessions: [sess('s2', [{ ...LA, supersetGroup: null }])] });
+    // 06/11 (adaptation-regles.md C3 / C6) : niveau intermédiaire (débutant : 2 séances) et un cran <= +20 % (4 -> 6 kg = +50 % refusé).
+    const alone = proposeProgression({ ...base, level: 'intermediaire', equipment: { ...eq, dumbbellWeightsKg: [2, 4, 4.5, 6] }, exercise: { ...LA, supersetGroup: null }, sessions: [sess('s2', [{ ...LA, supersetGroup: null }])] });
     expect(alone.action).toBe('hausse');
   });
 

@@ -7,6 +7,7 @@ import { DOSE_LIMITS, doseLimitOf, UNSTABLE_TAGS, WARMUP } from '../../src/gener
 import { buildCtx } from '../../src/generator/context';
 import { buildExercise } from '../../src/generator/dose';
 import { estimerDuree, pairEligible, type DurSession } from '../../src/generator/duration';
+import { sessionVol } from '../../src/generator/plaf';
 import type { Candidate } from '../../src/generator/safety';
 import type { Fiche, GenExercise, GenProgram, GenSession, GeneratorInput, SlotKey } from '../../src/generator/types';
 import { byId, FICHES, mk } from './generator-helpers';
@@ -103,14 +104,16 @@ describe('D32-1 : limites de dose des fiches', () => {
 });
 
 describe('D32-2 : paires retentées après le placement final', () => {
-  it('profil 4 (volley, intermédiaire, maison) : la séance B reçoit sa paire P1 (tirage_2 ajouté après la 1re formation)', () => {
+  it('profil 4 (volley, intermédiaire, maison) : la séance B n\x27a plus de tirage_2 ni de paire P1 (épaules : 20 séries par semaine au plus)', () => {
+    // 06/11/2026, changement voulu (avis kiné : les trois chefs du deltoïde se comptent ensemble, plafond 20) : le tirage_2 ajouté après la
+    // 1re formation (tirage au visage, épaule principale) porterait les épaules de 20 à 22 ; il n'est plus ajouté, donc pas de paire P1.
     const p = gen(PROFIL_4);
     const b = p.sessions.find((s) => s.label === 'B')!;
-    // Lot 11 (fiches élastique) : une 2e paire B-P3 (jambes_2 + tronc) devient possible en plus de B-P1.
-    expect(pairsOf(b)).toContain('B-P1');
-    const pair = b.exercises.filter((e) => e.supersetGroup === 'B-P1');
-    expect(pair.map((e) => e.slot).sort()).toEqual(['poussee_2', 'tirage_2']);
-    for (const e of pair) expect(pairEligible(e)).toBe(true);
+    expect(b.exercises.some((e) => e.slot === 'tirage_2')).toBe(false);
+    expect(pairsOf(b)).not.toContain('B-P1');
+    expect(p.sessions.reduce((a, s) => a + sessionVol(s, 'deltoides'), 0)).toBeLessThanOrEqual(20);
+    // les paires restent formées dès que SUP-0 à SUP-10 et les plafonds le permettent (profil D, 2 jours)
+    expect(gen(mk({ profile: 'D', level: 'intermediaire', dur: 75, days: 2, options: { gagnerDuTemps: true } })).sessions.some((s) => pairsOf(s).length > 0)).toBe(true);
   });
   it('règles inchangées : jamais de core apparié à une fiche dont la ligne dos n\'est pas « garder » (SUP-2 point 4)', () => {
     for (const i of [PROFIL_2, PROFIL_4, PROFIL_6]) {
@@ -127,9 +130,11 @@ describe('D32-2 : paires retentées après le placement final', () => {
     expect(pairsOf(gen(PROFIL_4).sessions.find((s) => s.label === 'A')!)).toEqual([]);
   });
   it('le temps gagné par la paire est compté dans la durée affichée', () => {
-    const b = gen(PROFIL_4).sessions.find((s) => s.label === 'B')!;
+    // 06/11/2026 : le profil 4 n'a plus de paire en séance B (plafond des épaules) : première séance appariée (profils 2, 4, 6, puis profil D à 2 jours).
+    const found = [PROFIL_2, PROFIL_4, PROFIL_6, mk({ profile: 'D', level: 'intermediaire', dur: 75, days: 2, options: { gagnerDuTemps: true } })].flatMap((i) => gen(i).sessions.map((s) => ({ s, i }))).find((x) => pairsOf(x.s).length > 0)!;
+    const b = found.s;
     const dur: DurSession = {
-      label: b.label, days: 3, level: 'intermediaire', pregnant: false, exercises: b.exercises, e1Sec: b.warmup.generalSec, e2Count: b.warmup.mobility.length,
+      label: b.label, days: found.i.profile.daysPerWeek ?? 3, level: found.i.profile.level ?? 'intermediaire', pregnant: false, exercises: b.exercises, e1Sec: b.warmup.generalSec, e2Count: b.warmup.mobility.length,
     };
     expect(estimerDuree(dur)).toBe(b.estimatedSec);
     const unpaired = estimerDuree({ ...dur, exercises: b.exercises.map((e) => ({ ...e, supersetGroup: null })) });

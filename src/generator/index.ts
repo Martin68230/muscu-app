@@ -30,7 +30,7 @@ import type {
   CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, JumpBlock, JumpItem, SlotKey, Tier,
 } from './types';
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
-import { fillWeekVariety } from './variety';
+import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
 
 export type { CardioItem, GenCardioSession, GenerateResult, GeneratorInput, GenLightDay, GenProgram, GenSession, GenExercise, GenMessage } from './types';
@@ -160,12 +160,17 @@ function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback
     // [kine 05/11/2026] Épaules (somme des trois chefs du deltoïde) au-delà de 20 : d'abord redescendre à 2 séries les accessoires qui les
     // chargent (séance la plus tardive d'abord), avant tout retrait d'exercice.
     if (m === 'deltoides') {
-      for (const s of [...sessions].reverse()) {
-        const e = s.exercises.find((x) => !MAIN_EXERCISE_SLOTS.includes(x.slot) && frac(x, m) > 0 && x.sets > VOLUME.minSets);
-        if (!e) continue;
-        s.exercises = s.exercises.map((x) => (x === e ? { ...x, sets: x.sets - 1 } : x));
-        fixed = true;
-        break;
+      // Les exercices où l'épaule est le muscle PRINCIPAL d'abord (élévations, développé épaules, oiseau), pour ne pas retirer le volume
+      // des pectoraux ou du dos qui ne la sollicitent qu'en secondaire.
+      for (const weight of [1]) {
+        for (const s of [...sessions].reverse()) {
+          const e = s.exercises.find((x) => !MAIN_EXERCISE_SLOTS.includes(x.slot) && frac(x, m) === weight && x.sets > VOLUME.minSets);
+          if (!e) continue;
+          s.exercises = s.exercises.map((x) => (x === e ? { ...x, sets: x.sets - 1 } : x));
+          fixed = true;
+          break;
+        }
+        if (fixed) break;
       }
       if (fixed) continue;
     }
@@ -234,6 +239,24 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
             done = true;
             break;
           }
+          // [kine 05/11/2026] Épaules comptées ensemble (plafond 20) : si SEULE la somme des épaules bloque la série de pectoraux ou de dos
+          // (qui ne les sollicite qu'en secondaire), on prend la place sur un accessoire où l'épaule est principale (jamais sous 2 séries).
+          if (m !== 'deltoides' && estimerDuree(trial) <= budget(s) && capsOk) {
+            const over = (ss: typeof all) => ss.reduce((a, x) => a + sessionVol(x, 'deltoides'), 0) > VOLUME.maxPerMuscleWeek;
+            const others = (ss: typeof all) => weekCapsOk(ss.map((x) => ({ exercises: x.exercises.map((y) => ({ ...y, musclesPrincipaux: y.musclesPrincipaux.filter((q) => !q.startsWith(VOLUME.deltoidPrefix)), musclesSecondaires: y.musclesSecondaires.filter((q) => !q.startsWith(VOLUME.deltoidPrefix)) })) })));
+            if (over(all) && others(all)) {
+              const donorSession = [...all].reverse().find((x) => x.exercises.some((y) => y !== e && !MAIN_EXERCISE_SLOTS.includes(y.slot) && frac(y, 'deltoides') === 1 && frac(y, m) === 0 && y.sets > VOLUME.minSets));
+              const donor = donorSession?.exercises.find((y) => y !== e && !MAIN_EXERCISE_SLOTS.includes(y.slot) && frac(y, 'deltoides') === 1 && frac(y, m) === 0 && y.sets > VOLUME.minSets);
+              if (donorSession && donor) {
+                const lowered = all.map((x) => (x === donorSession ? { ...x, exercises: x.exercises.map((y) => (y === donor ? { ...y, sets: y.sets - 1 } : y)) } : x));
+                if (weekCapsOk(lowered)) {
+                  sessions.forEach((x, k) => { x.exercises = lowered[k].exercises; });
+                  done = true;
+                  break;
+                }
+              }
+            }
+          }
         }
         if (done) break;
       }
@@ -241,6 +264,28 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
     }
     if (week() < VOLUME.targetMuscle) out.push(msg.vol(MUSCLE_LABEL[m] ?? m, week()));
   }
+}
+
+/**
+ * PV3-VAR-6 point 4 : indicateur de pénurie HONNÊTE sur le programme final (semaines 1 et 2) : un plan est signalé dès qu'une fiche
+ * revient dans la semaine ou qu'une famille dépasse VAR_MAX_PER_FAMILY_WEEK (hors tronc et isolation), même si la répétition vient des
+ * piliers ou du noyau, où la rotation ne s'applique pas (cas révélé quand les D4 ne sont plus proposées sans le garde-fou).
+ */
+function varietyShortage(sessions: readonly GenSession[], flagged: ReadonlySet<string>): Set<string> {
+  const out = new Set(flagged);
+  for (const w of [1, 2]) {
+    const all = sessions.flatMap((s) => s.exercises.map((e) => (w === 2 && e.alt ? e.alt : e))).filter((e) => e.slot !== 'tronc' && !e.slot.startsWith('iso_'));
+    const cnt = new Map<string, number>();
+    const fam = new Map<string, number>();
+    for (const e of all) {
+      cnt.set(e.ficheId, (cnt.get(e.ficheId) ?? 0) + 1);
+      const k = familyOf({ id: e.ficheId, schema: e.schema });
+      fam.set(k, (fam.get(k) ?? 0) + 1);
+    }
+    for (const e of all) if ((cnt.get(e.ficheId) ?? 0) > 1) out.add(e.schema);
+    for (const [k, v] of fam) if (v > VAR_MAX_PER_FAMILY_WEEK && !/^(gainage|anti_rotation|rotation)/.test(k)) out.add(k.split(':')[0]);
+  }
+  return out;
 }
 
 function orderExercises(list: GenExercise[]): GenExercise[] {
@@ -967,7 +1012,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     ...(cardioRole || cardioSessions.length ? { cardioRole, cardioSessions, cardioMinWeek } : {}),
     cardioOption: ded.option,
     penurie: [...new Set(sessions.flatMap((s) => s.exercises).filter((e) => e.variantNom.endsWith(SALLE_HOME_SUFFIX)).map((e) => e.schema))].sort(),
-    penurieVariete: [...penurieVar].sort(),
+    penurieVariete: [...varietyShortage(sessions, penurieVar)].sort(),
   };
   return { ok: true, program, messages };
 }

@@ -40,6 +40,11 @@ import { mk, type MkOpts } from './generator-helpers';
 // Référence régénérée le 01/11/2026 pour la mesure provisoire B1 du contrôle des exemples de programmes : DOSE_LIMITS limite nordique-ischios et
 // pompe-equilibre-mur à une réserve >= 2 et 2 séries au plus (config.ts) ; 87 cas sur 662 changent, tous de niveau avancé (RIR 1 de l'avancé et 3 séries
 // sur ces deux fiches) ; aucun cas débutant ni intermédiaire ne change.
+// Référence régénérée de nouveau le 06/11/2026 après la suite complète : 63 cas sur 662 changent (intermédiaire et avancé, objectifs
+// muscle / force / perte de gras / sport / endurance, 6-7 cas chacun ; 1 cas cardio 4 jours). Causes : (1) au-delà de 20 séries d'épaules,
+// on baisse d'abord les accessoires où l'épaule est PRINCIPALE (plus les pressions où elle est secondaire : pectoraux >= 9 gardé) et une
+// série de pectoraux ou de dos bloquée par les seules épaules prend la place d'un accessoire d'épaule ; (2) indicateur de pénurie de variété
+// calculé sur le programme final (semaines 1 et 2).
 // Référence régénérée le 06/11/2026 (avis kiné, contrôle relecteur, décisions du chef de projet), comparée à celle du 05/11 ci-dessous,
 // en deux étapes mesurées séparément : (1) épaules = somme des trois chefs du deltoïde au plafond de 20 / semaine (avec baisse des
 // accessoires à 2 séries d'abord) et repos du pilier sport avancé 165 s : 489 cas sur 662 changent (débutant 144, intermédiaire 162,
