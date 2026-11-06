@@ -6,18 +6,23 @@ import { dateKey, frDate, sessionDate } from '../../session/calendar';
 import { computeSummary } from '../../session/summary';
 import { SessionDetail, type DetailNames } from './SessionDetail';
 import { summaryText, type SummaryText } from '../../session/summary-texts';
+import { MuscleMapCard } from '../MuscleMapCard';
+import { sessionMap, setsOfLogs, type ZoneMap } from '../../zones/map-data';
+import { mainGoalKey } from '../../zones/main-goal';
 
 /**
  * Bilan d'une séance passée, en lecture seule (rien n'est recalculé dans la base). Mêmes règles que le bilan de fin de séance :
  * grossesse et post-partum = durée et séries seulement ; abandon et symptôme = aucun chiffre de performance.
  */
-export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
+export function PastSummary({ sessionId, pregnancy, sessionsPerWeek, onBack, onDeleted }: {
   sessionId: string;
+  /** Séances par semaine du profil : échelle de la carte des muscles (3 par défaut). */
+  sessionsPerWeek?: number;
   pregnancy: PregnancyStatus | null | undefined;
   onBack: () => void;
   onDeleted: () => void;
 }) {
-  const [state, setState] = useState<{ row: WorkoutSession; text: SummaryText; sets: SetLog[]; sessions: WorkoutSession[]; names: DetailNames; detail: boolean } | 'absent' | null>(null);
+  const [state, setState] = useState<{ row: WorkoutSession; text: SummaryText; sets: SetLog[]; sessions: WorkoutSession[]; names: DetailNames; detail: boolean; muscles: ZoneMap | null } | 'absent' | null>(null);
   const [ask, setAsk] = useState(false);
   const [busy, setBusy] = useState(false);
 
@@ -27,9 +32,11 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
         const [sets, sessions] = await Promise.all([list('sets'), list('sessions')]);
         const row = sessions.find((s) => s.id === sessionId);
         if (!row) return setState('absent');
+        let fichesForMap: Awaited<ReturnType<typeof loadFiches>> = [];
         let names: DetailNames = { fiche: (_id: string) => 'Exercice', variant: (_id: string) => 'Exercice' };
         try {
           const fiches = await loadFiches();
+          fichesForMap = fiches;
           names = {
             fiche: (id) => fiches.find((f) => f.id === id)?.nom ?? 'Exercice',
             variant: (id) => fiches.flatMap((f) => f.variantes).find((v) => v.id === id)?.nom ?? 'Exercice',
@@ -40,7 +47,10 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
         const summary = computeSummary({ session: row, sets, sessions, pregnancy });
         // Détail : seulement pour une séance menée à bout ou avec douleur (aucun chiffre après un abandon ou un symptôme).
         const detail = ['premiere', 'complete', 'ecourtee', 'douleur', 'grossesse'].includes(summary.status);
-        setState({ row, text: summaryText(summary, { names, pregnancy }), sets, sessions, names, detail });
+        // Carte des muscles de cette date : séries faites de la séance, mêmes conditions que le détail ; calcul local, rien n'est stocké.
+        const done = detail ? setsOfLogs(sets, row.id) : [];
+        const muscles = done.length && fichesForMap.length ? sessionMap(done, fichesForMap, sessionsPerWeek, await mainGoalKey()) : null;
+        setState({ row, text: summaryText(summary, { names, pregnancy }), sets, sessions, names, detail, muscles });
       } catch {
         setState('absent');
       }
@@ -90,6 +100,7 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
           {state.detail && (
             <SessionDetail session={state.row} sets={state.sets} sessions={state.sessions} names={state.names} numbers={pregnancy !== 'enceinte' && pregnancy !== 'post_partum'} />
           )}
+          {state.muscles && <MuscleMapCard id="hist-carte" title="Muscles travaillés ce jour-là" statuses={state.muscles.statuses} points={state.muscles.points} period="dans cette séance" />}
           {t.details.length > 0 && <p class="dim small">{t.details.join(' ')}</p>}
           {!ask && <button type="button" class="btn btn-danger" onClick={() => setAsk(true)}>Supprimer cette séance</button>}
           {ask && (

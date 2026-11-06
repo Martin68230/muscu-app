@@ -25,6 +25,9 @@ import { repriseOf } from '../../session/missed-config';
 import { showT12 } from '../../session/missed';
 import { skipSession } from '../../session/missed-store';
 import { PreviewSkipLinks } from '../MissedCard';
+import { MuscleMapCard } from '../MuscleMapCard';
+import { sessionMap, setsOfExercises } from '../../zones/map-data';
+import { mainGoalKey } from '../../zones/main-goal';
 
 export function goHome(): void {
   location.hash = '#/accueil';
@@ -126,6 +129,10 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
   // T-19 = T3 du cardio : jamais deux fois le même texte sur l'écran.
   const safety = split.safety.filter((t) => !repriseTexts.includes(t));
   const info = split.info;
+  // Carte des muscles de la séance (niveau 3) : séries prévues, échelle d'une séance sur les séances de musculation de la semaine.
+  const [objectif, setObjectif] = useState<string | null>(null);
+  useEffect(() => { void mainGoalKey().then(setObjectif); }, []);
+  const muscles = cardioDay ? null : sessionMap(setsOfExercises(day.exercises), fiches, program.days.filter((d) => !isCardioDay(d)).length, objectif);
   const lines = program.explanation ?? [];
   const [skipped, setSkipped] = useState<string[] | null>(null);
   if (skipped) {
@@ -235,6 +242,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
           })}
         </ol>
       </section>
+      {muscles && <MuscleMapCard id="prev-carte" title="Muscles de cette séance" statuses={muscles.statuses} points={muscles.points} period="dans cette séance" />}
       {onSkip && onUnwell && (
         <PreviewSkipLinks nom={day.label} twoDays={showT12(program)} onSkip={onSkip} onUnwell={onUnwell} onDone={setSkipped} />
       )}

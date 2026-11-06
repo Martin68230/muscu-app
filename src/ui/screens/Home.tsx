@@ -4,7 +4,7 @@ import { LightDayCard } from '../LightDayCard';
 import { isProfileComplete, type ProfileStep } from '../../data/profile-setup';
 import { FICHES_ERROR, loadFiches } from '../../data/fiches';
 import type { GenMessage } from '../../generator/types';
-import { ensureActiveProgram, getNextSession, type NextSession } from '../../session/program';
+import { ensureActiveProgram, getNextSession, programWeek, withProgramWeek, type NextSession } from '../../session/program';
 import { closeStaleSession, findResumable, type Resumable } from '../../session/store';
 import { NEUTRAL_CONTEXT } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
@@ -16,6 +16,9 @@ import { missedCard as computeMissedCard, showT12 } from '../../session/missed';
 import { MISSED_TEXT } from '../../session/missed-texts';
 import { PAIN_S1_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
 import { MissedCardView, type MissedActions } from '../MissedCard';
+import { MuscleMapCard } from '../MuscleMapCard';
+import { cycleMaps, weekMap, type ZoneMap } from '../../zones/map-data';
+import { mainGoalKey } from '../../zones/main-goal';
 
 type Status =
   | { kind: 'loading' }
@@ -38,8 +41,28 @@ type Status =
       /** D30 (STR-REP-12) : jour léger d'aujourd'hui (facultatif) et douleur déclarée la veille (mobilité seule). */
       lightToday?: LightDay | null;
       painYesterday?: boolean;
+      /** Niveau 3 : carte des muscles de la semaine prévue et, par type de séance, du cycle (calcul local). */
+      muscles?: WeekMuscles | null;
     }
   | { kind: 'reprise'; resume: Resumable };
+
+export interface WeekMuscles { week: ZoneMap; cycle: ReturnType<typeof cycleMaps> }
+
+/** Vue « cycle » (sous-écran de la carte de la semaine) : une carte par type de séance (haut / bas, poussée / tirage / jambes). */
+export function CycleMuscles({ muscles, onBack }: { muscles: WeekMuscles; onBack: () => void }) {
+  const one = muscles.cycle.length <= 1;
+  return (
+    <>
+      <button type="button" class="btn btn-back" onClick={onBack}>‹ Retour à l’accueil</button>
+      <h1>Muscles par type de séance</h1>
+      {one && <p class="dim">Ton programme fait travailler tout le corps à chaque séance : une seule carte.</p>}
+      {muscles.cycle.map((c) => (
+        <MuscleMapCard key={c.group} id={`cycle-${c.group}`} title={`${c.label} (${c.count} ${c.count > 1 ? 'séances' : 'séance'} par semaine)`} statuses={c.map.statuses} points={c.map.points} period="sur la semaine" />
+      ))}
+      <button type="button" class="btn" onClick={onBack}>Retour à l’accueil</button>
+    </>
+  );
+}
 
 const NOTICE_KEY = 'muscu.equipmentNoticeDismissed';
 function noticeDismissed(programId: string): boolean {
@@ -149,12 +172,17 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
   const complete = isProfileComplete(profile);
   const [hidden, setHidden] = useState(false);
   const [confirm, setConfirm] = useState<string[] | null>(null);
+  const [cycle, setCycle] = useState(false);
   // Un seul message par écran, dans l'ordre de SM-3 : sécurité, « consulte », carte de séance manquée, équipement, bandeau.
   const seance = status.kind === 'seance' ? status : null;
   const security = !!seance?.security;
   const consulte = !security && !!seance?.consulte;
   const missed = !security && !consulte && !confirm && seance?.missed && missedActions ? seance.missed : null;
   const anyMessage = security || consulte || !!missed || !!confirm;
+  const muscles = seance?.muscles ?? null;
+  if (cycle && muscles) {
+    return <CycleMuscles muscles={muscles} onBack={() => { setCycle(false); scrollTo(0, 0); }} />;
+  }
   return (
     <>
       <h1>{hello}</h1>
@@ -220,6 +248,11 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       {status.kind === 'seance' && !anyMessage && status.lightToday && <LightDayCard day={status.lightToday} painYesterday={!!status.painYesterday} />}
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
       <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} />
+      {muscles && !security && (
+        <MuscleMapCard id="home-carte" title="Muscles de ta semaine" intro="Ce que ton programme prévoit cette semaine." statuses={muscles.week.statuses} points={muscles.week.points} period="sur la semaine">
+          <button type="button" class="btn" onClick={() => { setCycle(true); scrollTo(0, 0); }}>Voir par type de séance</button>
+        </MuscleMapCard>
+      )}
       {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
       <div class="thumb-zone">
         {!complete && <button type="button" class="btn btn-primary" onClick={onStart}>Créer mon programme</button>}
@@ -271,8 +304,18 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
         const y1 = y0 + 24 * 3600 * 1000;
         painYesterday = (await list('sets').catch(() => [])).some((s) => s.pain && s.completedAt && Date.parse(s.completedAt) >= y0 && Date.parse(s.completedAt) < y1);
       }
+      // Niveau 3 : semaine prévue (jeu de la semaine en cours), calculée localement depuis le programme et les fiches.
+      let muscles: WeekMuscles | null = null;
+      try {
+        const week = programWeek(res.program, now.getTime());
+        const days = res.program.days.map((d) => withProgramWeek(d, week));
+        const objectif = await mainGoalKey();
+        muscles = { week: weekMap(days, fiches, objectif), cycle: cycleMaps(days, fiches, objectif) };
+      } catch {
+        muscles = null;
+      }
       setStatus({
-        kind: 'seance', next, resume: null, equipmentChangedId,
+        kind: 'seance', next, resume: null, equipmentChangedId, muscles,
         missed: mc ? computeMissedCard(mc) : null,
         twoDays: showT12(res.program),
         security: !!mc?.profile.reprise?.securiteALire,

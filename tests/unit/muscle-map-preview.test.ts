@@ -4,7 +4,7 @@
 import { mkdirSync, writeFileSync } from 'node:fs';
 import { expect, it } from 'vitest';
 import { generateProgram, toProgramDays } from '../../src/generator';
-import { statusesForSession, statusesForWeek } from '../../src/zones/map-data';
+import { sessionMap, setsOfExercises, weekMap } from '../../src/zones/map-data';
 import { MuscleMap, MuscleMapLegend } from '../../src/ui/MuscleMap';
 import { FICHES, mk } from './generator-helpers';
 
@@ -40,8 +40,8 @@ it('génère le HTML de l\'aperçu (séance de poussée, semaine du profil 2)', 
   const r = generateProgram(mk({ level: 'intermediaire', days: 4, dur: 60, goal: 'force', profile: 'F', place: 'salle' }));
   if (!r.ok) throw new Error('programme');
   const days = toProgramDays(r.program).filter((d) => d.exercises.some((e) => e.role !== 'cardio'));
-  const session = statusesForSession(PUSH, FICHE_BY_ID, 'muscle', 3);
-  const week = statusesForWeek(days, FICHE_BY_ID, 'force');
+  const session = sessionMap(setsOfExercises(PUSH), FICHE_BY_ID, 3).statuses;
+  const week = weekMap(days, FICHE_BY_ID).statuses;
   const body = html([
     { type: 'h2', props: { children: 'Séance de poussée' } },
     { type: 'p', props: { class: 'dim', children: 'Développé couché, développé incliné, élévations latérales, triceps (prise de muscle).' } },

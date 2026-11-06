@@ -22,6 +22,8 @@ import {
 import { MUSCLE_LABEL, SCHEMA_LABEL } from '../../data/labels';
 import { ReportButton } from '../ReportButton';
 import { VideoButton, type VideoRef } from '../VideoButton';
+import { MuscleMapCard } from '../MuscleMapCard';
+import { statusesForExercise } from '../../zones/map-data';
 
 export const MEDICAL_REMINDER = 'Cette appli n’est pas un avis médical. Arrête-toi en cas de douleur.';
 
@@ -102,6 +104,7 @@ export interface FicheViewProps {
 
 /** Contenu de la fiche (sans accès à la base : testable). */
 export function FicheView({ fiche, all, equipment, injuries, pregnancy }: FicheViewProps) {
+  const exMap = statusesForExercise(fiche);
   const owned = availableTags(equipment ?? { preset: 'A', tags: [], disabledImplicit: [], dumbbellWeightsKg: [], kettlebellWeightsKg: [] });
   const choice = chooseVariant(fiche, owned);
   const lines = injuryLines(fiche, injuries, all);
@@ -139,6 +142,8 @@ export function FicheView({ fiche, all, equipment, injuries, pregnancy }: FicheV
           </p>
         )}
       </section>
+
+      {Object.values(exMap).some((x) => x !== 'gris') && <MuscleMapCard id="f-carte" title="Où ça travaille" statuses={exMap} />}
 
       <section class="card fiche-pour-toi" aria-labelledby="f-variante">
         <h2 id="f-variante">Pour toi</h2>

@@ -13,6 +13,9 @@ import { ReportButton } from '../ReportButton';
 import { releaseWakeLock } from '../session/wakelock';
 import type { PlayerData } from '../session/launch';
 import { exName, variantOf } from '../session/text';
+import { MuscleMapCard } from '../MuscleMapCard';
+import { sessionMap, setsOfLogs, type ZoneMap } from '../../zones/map-data';
+import { mainGoalKey } from '../../zones/main-goal';
 
 export interface SummaryScreenProps {
   ctl: SessionController;
@@ -30,6 +33,8 @@ interface Loaded {
   text: SummaryText;
   next: NextItem[];
   pain: { text: string | null; s1: string | null };
+  /** Carte des muscles des séries faites (aucune après un abandon ou un symptôme). */
+  muscles?: ZoneMap | null;
 }
 
 /** Bilan de séance (F6) : sobre, 3 à 4 chiffres, un texte de fin, des propositions pour la prochaine fois. Rien n'est partagé. */
@@ -98,7 +103,9 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
           });
         }
         const check = painCheck(sets, sessions, injuries);
-        setLoaded({ summary, text, next, pain: { text: check.proposals[0]?.text ?? null, s1: check.s1Text } });
+        const done = summary.status !== 'abandon' && summary.status !== 'symptome' ? setsOfLogs(sets, row.id) : [];
+        const muscles = done.length ? sessionMap(done, data.fiches, data.input?.profile.daysPerWeek ?? undefined, await mainGoalKey()) : null;
+        setLoaded({ summary, text, next, pain: { text: check.proposals[0]?.text ?? null, s1: check.s1Text }, muscles });
       } catch {
         // Le bilan reste lisible même si le calcul échoue : durée et séries de la séance.
         const minutes = Math.max(1, Math.round(((ctl.state.endedAt ?? ctl.state.startedAt) - ctl.state.startedAt) / 60000));
@@ -167,6 +174,7 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
               </section>
             )}
             {t.details.length > 0 && <p class="dim small">{t.details.join(' ')}</p>}
+            {loaded.muscles && <MuscleMapCard id="bilan-carte" title="Muscles travaillés aujourd’hui" statuses={loaded.muscles.statuses} points={loaded.muscles.points} period="dans cette séance" />}
             {loaded.next.length > 0 && (
               <section class="card" aria-label="La prochaine fois">
                 <h2>La prochaine fois</h2>
