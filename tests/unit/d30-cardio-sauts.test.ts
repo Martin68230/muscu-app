@@ -392,7 +392,7 @@ describe('STR-ISO : isolation', () => {
       expect(it.length).toBeLessThanOrEqual(ISOLATION.maxPerSession);
       expect(new Set(it.map((e) => e.slot)).size).toBe(it.length);
       expect(it.every((e) => e.sets === ISOLATION.setsPerExercise)).toBe(true);
-      const last = s.exercises.filter((e) => e.slot !== 'tronc' && e.slot !== 'fonctionnel');
+      const last = s.exercises.filter((e) => e.slot !== 'tronc' && e.slot !== 'fonctionnel' && e.slot !== 'correctif');
       expect(last.slice(last.length - it.length).every((e) => e.slot.startsWith('iso_'))).toBe(true);
     }
     for (const def of ISOLATION.slots) expect(iso(p).filter((e) => e.slot === def.slot).reduce((a, e) => a + e.sets, 0)).toBeLessThanOrEqual(ISOLATION.maxSetsPerGroupWeek);

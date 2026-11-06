@@ -32,9 +32,9 @@ import type {
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
-import { checkZones, fillGreyZones } from './zones-check';
+import { addCorrectifs, checkZones, fillGreyZones } from './zones-check';
 import { zoneName } from '../zones/zones';
-export { checkZones, SLOTLESS_ZONES } from './zones-check';
+export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
 export { zoneName, ZONES } from '../zones/zones';
 
 export type { CardioItem, GenCardioSession, GenerateResult, GeneratorInput, GenLightDay, GenProgram, GenSession, GenExercise, GenMessage } from './types';
@@ -47,7 +47,7 @@ const LABELS: Label[] = ['A', 'B', 'C'];
 /** V-ORDRE §4.1 : piliers, tirage_1, charnière, accessoires (indices croissants), tronc, fonctionnel. */
 const DISPLAY_ORDER: SlotKey[] = [
   'jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'poussee_2', 'tirage_2', 'jambes_2', 'poussee_3', 'tirage_3', 'jambes_3',
-  'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_mollets', 'tronc', 'fonctionnel',
+  'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_mollets', 'tronc', 'fonctionnel', 'correctif',
 ];
 /** Ordre de retrait pour respecter les plafonds de volume par séance (V-PLAF) : le moins prioritaire d'abord. */
 const PLAF_ORDER: SlotKey[] = [
@@ -838,7 +838,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   // changement d'exercice (même emplacement, même classement, hors piliers, tronc, isolation et supersets), puis séries ajoutées, sous
   // V-PLAF, le plafond hebdomadaire, les plafonds par zone et la durée ; zones sans emplacement (SLOTLESS_ZONES) : ni corrigées ni citées.
   function* zoneAlternatives(s: DurSession<GenExercise>, e: GenExercise, all: readonly DurSession<GenExercise>[]): Generator<GenExercise> {
-    if (e.slot === 'tronc' || isIsoSlot(e.slot)) return;
+    if (e.slot === 'tronc' || e.slot === 'correctif' || isIsoSlot(e.slot)) return;
     const used = new Set(s.exercises.map((x) => x.ficheId));
     const placed: Partial<Record<SlotKey, string>> = {};
     for (const x of s.exercises) if (x !== e) placed[x.slot] = x.schema;
@@ -850,16 +850,19 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       yield alt;
     }
   }
-  fillGreyZones(kept, {
+  const zoneDeps = {
     ctx, pool,
-    budget: (s) => budget.get(s.label) ?? dSec,
-    sessionOk: (exs, mode) => {
+    budget: (s: DurSession<GenExercise>) => budget.get(s.label) ?? dSec,
+    sessionOk: (exs: GenExercise[], mode: 'slot' | 'auto') => {
       const p = mode === 'slot' ? plafSlot : plafAuto;
       return isSplit ? splitCapsOk(exs, p) : sessionCapsOk({ exercises: exs }, p);
     },
-    weekOk: (ss) => weekCapsOk([...ss]),
+    weekOk: (ss: readonly DurSession<GenExercise>[]) => weekCapsOk([...ss]),
     alternatives: zoneAlternatives,
-  });
+  };
+  fillGreyZones(kept, zoneDeps);
+  // Emplacement correctif (06/11/2026) : petites zones restées grises, 1 à 2 exercices légers en fin de séance (zones-check.ts).
+  addCorrectifs(kept, zoneDeps);
   const zoneState = checkZones(kept, ctx, pool);
   // Décision du 06/11/2026 : zones orange jamais affichées (bruit : 661 cas sur 662) ; grises citées seulement si un exercice existe.
   if (zoneState.greyFixable.length) msgs.push(msg.zonesGris(zoneState.greyFixable.map(zoneName)));

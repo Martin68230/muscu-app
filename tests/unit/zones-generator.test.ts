@@ -1,6 +1,6 @@
 // Niveau 2, étape 2 : le générateur contrôle les zones de la semaine prévue (src/generator/zones-check.ts).
-// Décision du chef de projet (06/11/2026) : zones sans emplacement (SLOTLESS_ZONES : coiffe, carré des lombes, fléchisseurs de hanche,
-// péroniers, abducteurs, adducteurs, soléaire, tibiaux) ni corrigées ni citées ; zones orange jamais affichées.
+// Décision du chef de projet (06/11/2026) : petites zones (SLOTLESS_ZONES : coiffe, carré des lombes, fléchisseurs de hanche,
+// péroniers, abducteurs, adducteurs, soléaire, tibiaux) couvertes par l'emplacement correctif (correctif.test.ts) ; sans fiche correctif compatible : ni corrigées ni citées ; zones orange jamais affichées.
 // Zones grises restantes à corriger sur les 6 profils de tools/demo-programmes.mjs (exceptions documentées) : aucune correction possible
 // sans ajouter d'exercice : débutants à 2 séries (STR-REP), échange jamais vers une fiche déjà dans la semaine (D34), plafond hebdomadaire
 // de 20 (somme des épaules, trapèzes / rhomboïdes) ou maximum de séries de la fiche (D32, R-REPS).
@@ -27,12 +27,14 @@ const demo = (profile: Record<string, unknown>, equipment: GeneratorInput['equip
 
 /** Les 6 profils du rapport et les zones grises admises (voir l'en-tête). */
 const PROFILS: [string, GeneratorInput, string[]][] = [
-  ['1 débutant muscle maison', demo({ level: 'debutant', daysPerWeek: 3 }, eq(HE), 'muscle'), []],
-  ['2 intermédiaire force salle 4 j', demo({ level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle', salleAccess: true }, salle, 'force'), []],
-  ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq(HE), 'perte_gras', 'cardio'), ['trapezes_bas']],
-  ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(E), 'sport'), ['epaules_cote', 'fessiers_moyen']],
-  ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef']],
-  ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut']],
+  // Petites zones à fiche correctif compatible restées grises (06/11/2026) : places par séance (8 exercices, 1 correctif au débutant),
+  // durée ou plafond par zone (groupe déjà au-dessus de 20) ; elles sont citées dans V-MSG-ZONES-GRIS.
+  ['1 débutant muscle maison', demo({ level: 'debutant', daysPerWeek: 3 }, eq(HE), 'muscle'), ['mollets_soleaire', 'tibiaux', 'peroniers']],
+  ['2 intermédiaire force salle 4 j', demo({ level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle', salleAccess: true }, salle, 'force'), ['coiffe_rotateurs', 'carre_des_lombes']],
+  ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq(HE), 'perte_gras', 'cardio'), ['trapezes_bas', 'coiffe_rotateurs', 'carre_des_lombes', 'abducteurs', 'mollets_soleaire', 'tibiaux']],
+  ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(E), 'sport'), ['epaules_cote', 'fessiers_moyen', 'coiffe_rotateurs', 'carre_des_lombes']],
+  ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef', 'tibiaux']],
+  ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut', 'coiffe_rotateurs', 'abducteurs']],
 ];
 
 function capsHold(input: GeneratorInput) {

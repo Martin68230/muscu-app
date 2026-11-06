@@ -70,7 +70,7 @@ describe('T-D25-01 à 06 : répartition et calendrier (STR-REP-1, 2, 8)', () => 
     for (const dur of [20, 30, 45, 60, 75]) {
       for (const p of [prog(PS[4]({ dur })), prog(PS[6]({ dur })), prog(PS[7]({ dur }))]) {
         for (const s of p.sessions) {
-          const slots = s.exercises.map((e) => e.slot);
+          const slots = s.exercises.map((e) => e.slot).filter((x) => x !== 'correctif'); // emplacement correctif (06/11/2026) : hors règle de type
           const t = typeOf(s.label);
           if (t === 'HAUT') expect(slots.some((x) => x.startsWith('jambes') || x === 'charniere' || x === 'fonctionnel'), s.label).toBe(false);
           if (t === 'BAS' || t === 'LEGS') expect(slots.some((x) => x.startsWith('poussee') || x.startsWith('tirage')), s.label).toBe(false);

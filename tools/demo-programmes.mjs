@@ -92,9 +92,10 @@ for (const p of PROFILS) {
   const fmt = (ids) => ids.map((z) => `${gen.zoneName(z)} ${String(zr.points[z]).replace('.', ',')}`).join(' ; ') || 'aucune';
   const byStatus = (st) => gen.ZONES.map((z) => z.id).filter((z) => !zr.excluded[z] && zr.status[z] === st);
   const excl = gen.ZONES.map((z) => z.id).filter((z) => zr.excluded[z]);
-  st.zones = { rouge: byStatus('rouge').length, orange: byStatus('orange').length, gris: zr.greyFixable, sansPlace: zr.greySlotless, exclues: excl.length };
+  const correctifs = g.sessions.flatMap((s) => s.exercises.filter((e) => e.slot === 'correctif').map((e) => `${e.nom} (${s.label}, ${e.sets} séries)`));
+  st.zones = { rouge: byStatus('rouge').length, orange: byStatus('orange').length, gris: zr.greyFixable, sansPlace: zr.greySlotless, exclues: excl.length, correctifs };
   out.push('### Zones musculaires (semaine type, points = séries de travail ; seuils de l\'objectif « ' + (p.input.goals[0].goalKey) + ' »)', '',
-    `- Rouge (repère atteint) : ${fmt(byStatus('rouge'))}`, `- Orange : ${fmt(byStatus('orange'))}`, `- Gris (à corriger) : ${fmt(zr.greyFixable)}`, `- Zones sans emplacement (grises, non corrigées pour l\'instant, backlog) : ${fmt(zr.greySlotless)}`,
+    `- Rouge (repère atteint) : ${fmt(byStatus('rouge'))}`, `- Orange : ${fmt(byStatus('orange'))}`, `- Gris (à corriger) : ${fmt(zr.greyFixable)}`, `- Emplacement correctif (petites zones, fin de séance) : ${correctifs.join(' ; ') || 'aucun'}`, `- Zones sans emplacement (grises, aucune fiche correctif compatible avec ce profil) : ${fmt(zr.greySlotless)}`,
     `- Hors contrôle (aucune fiche possible avec ce matériel / ce niveau, ou zone d\'une blessure) : ${excl.map((z) => `${gen.zoneName(z)} (${zr.excluded[z] === 'blessure' ? 'blessure' : 'pas de fiche'}, ${String(zr.points[z]).replace('.', ',')})`).join(' ; ') || 'aucune'}`, '');
   out.push(`Variété : pénurie signalée pour ${g.penurieVariete?.length ? g.penurieVariete.join(', ') : 'aucun plan'} (penurieVariete).`, '');
   (g.cardioSessions ?? []).forEach((c) => {
@@ -155,8 +156,8 @@ out.push('| Profil | Exercices placés | Distincts | Doses distinctes | Paires d
 stats.filter((s) => s.ok).forEach((s) => out.push(`| ${s.titre.slice(0, 60)} | ${s.nbEx} | ${s.distinct} | ${s.doses} | ${s.pairs} |`));
 out.push('');
 stats.filter((s) => s.ok).forEach((s) => out.push(`- ${s.titre.slice(0, 40)} : chevauchements ${s.overlap.join(' ; ')} ; exercices répétés (semaine 1) : ${s.repeats.join(', ') || 'aucun'} ; accessoires qui changent en semaine 2 : ${s.rotation}`));
-out.push('', '## Zones musculaires par profil (semaine type)', '', '| Profil | Rouge | Orange | Gris (à corriger) | Zones sans emplacement | Hors contrôle |', '|---|---|---|---|---|---|');
-stats.filter((s) => s.ok).forEach((s) => out.push(`| ${s.titre.slice(0, 60)} | ${s.zones.rouge} | ${s.zones.orange} | ${s.zones.gris.length ? s.zones.gris.map(gen.zoneName).join(', ') : '0'} | ${s.zones.sansPlace.length ? s.zones.sansPlace.map(gen.zoneName).join(', ') : '0'} | ${s.zones.exclues} |`));
+out.push('', '## Zones musculaires par profil (semaine type)', '', '| Profil | Rouge | Orange | Gris (à corriger) | Correctifs ajoutés | Zones sans emplacement | Hors contrôle |', '|---|---|---|---|---|---|---|');
+stats.filter((s) => s.ok).forEach((s) => out.push(`| ${s.titre.slice(0, 60)} | ${s.zones.rouge} | ${s.zones.orange} | ${s.zones.gris.length ? s.zones.gris.map(gen.zoneName).join(', ') : '0'} | ${s.zones.correctifs.length ? s.zones.correctifs.join(', ') : '0'} | ${s.zones.sansPlace.length ? s.zones.sansPlace.map(gen.zoneName).join(', ') : '0'} | ${s.zones.exclues} |`));
 out.push('');
 const prose = join(root, 'tools/demo-programmes-analyse.md');
 if (existsSync(prose)) out.push(readFileSync(prose, 'utf8'));

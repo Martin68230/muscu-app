@@ -141,7 +141,9 @@ export type SlotKey =
   // D25 (STR-REP-3, E-2) : emplacements de volume des séances haut / bas / push / pull / legs.
   | 'poussee_3' | 'poussee_4' | 'tirage_3' | 'tirage_4' | 'jambes_3' | 'jambes_4'
   // D30 (STR-ISO-0) : isolation, ajoutée après tous les autres emplacements, coupée en premier.
-  | 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets';
+  | 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets'
+  // Emplacement correctif (06/11/2026, zones-check.ts) : petites zones grises, en fin de séance, après tous les autres.
+  | 'correctif';
 /** D25 : séance de la semaine : 'A' | 'B' | 'C' (corps entier) ou '<TYPE>-<gabarit>' (HAUT-A, BAS-B, PUSH-A…). */
 export type SessionLabel = string;
 export type Tier = 'a' | 'b' | 'c' | 'd' | 'e';

@@ -83,6 +83,11 @@ import { mk, type MkOpts } from './generator-helpers';
 // précédente : 661 cas sur 662 changent (216 par niveau, + 9 cas blessure / 4 jours ; « dos niveau 3 », refusé, inchangé), tous au moins
 // par le retrait du message orange ; dans les 6 profils de démonstration, les profils 2 et 6 retrouvent leurs exercices d'avant le contrôle
 // des zones (plus d'échange pour les mollets / tibias) ; profils 1 et 5 : 1 accessoire de plus change en semaines 2 et 4.
+// Référence régénérée le 06/11/2026 pour l'emplacement correctif (zones-check.ts addCorrectifs, CORRECTIF) après comparaison avec la
+// référence précédente : 659 cas sur 662 changent, tous voulus : 330 par 1 à 2 exercices correctifs ajoutés en fin de séance (640 en tout :
+// fléchisseurs de hanche 132, rotation externe 116, soléaire 85, Y-T-W 81, planche latérale jambe levée 65, abduction couchée 58, relevé
+// tibial 54, cheville à l'élastique 45, autres 4), 329 par le seul message V-MSG-ZONES-GRIS qui cite désormais les petites zones à fiche
+// correctif compatible restées grises ; aucun autre changement, aucune séance hors durée, débutant 1 correctif par séance au plus, autres 2.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

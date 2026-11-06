@@ -1039,6 +1039,28 @@ export const ISOLATION = {
   minDays: 3,
 };
 
+/**
+ * Emplacement correctif (décision du chef de projet, 06/11/2026) : petites zones restées grises sur la semaine (SLOTLESS_ZONES), couvertes
+ * en fin de séance par 1 à 2 exercices légers de fiches existantes. Listes fermées par zone (ordre = préférence, du plus simple au plus
+ * exigeant) ; la dose vient de la fiche (TEMPS, ligne « isolation » de R-REPS, DOSE_LIMITS, P-GROS), plafonnée à `maxSets`, charge la plus
+ * légère jamais augmentée. Adducteurs : aucune fiche légère (copenhague court jugé trop exigeant, à confirmer par `coach` / `kine`).
+ */
+export const CORRECTIF = {
+  ids: {
+    coiffe_rotateurs: ['rotation-externe-epaule', 'rotation-externe-poulie', 'ytw-sol', 'face-pull-elastique', 'ecartement-serviette'],
+    carre_des_lombes: ['planche-laterale', 'planche-laterale-jambe-levee'],
+    flechisseurs_hanche: ['dead-bug-jambes-seules', 'dead-bug', 'gainage-creux'],
+    peroniers: ['cheville-elastique', 'marche-pointes-talons', 'equilibre-unipodal'],
+    abducteurs: ['abduction-couchee-cote', 'abduction-quatre-pattes', 'abduction-hanche-debout', 'marche-laterale-poids-du-corps', 'marche-laterale-elastique', 'abduction-hanche-machine', 'abduction-hanche-poulie'],
+    mollets_soleaire: ['releve-mollets-assis', 'releve-mollets', 'marche-pointes-talons'],
+    tibiaux: ['releve-tibial-mur', 'marche-pointes-talons'],
+  } as Readonly<Record<string, readonly string[]>>,
+  maxSets: 2,
+  maxPerSession: 2,
+  maxPerSessionDebutant: 1,
+  label: 'Exercice correctif : charge légère, jamais augmentée.',
+};
+
 /** STR-REP-12 : cardio doux du jour léger (marche à plat, facile), proposé jamais exigé : départ au bas de la fourchette. NON SOURCÉ. */
 export const LIGHT_DAY_CARDIO = { startMin: 10, maxMin: { debutant: 15, autres: 20 } };
 
