@@ -15,7 +15,7 @@ couverture: substitut
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| tirage-bras-tendus-elastique-debout | Debout face à un ancrage haut | 1 | debutant | elastique, porte | Élastique ancré en haut de la porte avec un ancrage adapté, utilisé selon sa notice ; debout face à la porte, bras presque tendus. |
+| tirage-bras-tendus-elastique-debout | Debout face à un ancrage haut | 1 | debutant | elastique, ancrage_porte | Élastique ancré en haut de la porte avec un ancrage adapté, utilisé selon sa notice ; debout face à la porte, bras presque tendus. |
 
 ## Consignes
 1. Debout face à l'ancrage, pieds à largeur de hanches, genoux légèrement fléchis, poignées en main, élastique tendu.

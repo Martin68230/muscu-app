@@ -16,8 +16,8 @@ statut: utilisable
 |---|---|---|---|---|---|
 | rowing-elastique-assis | Assis, élastique autour des pieds | 1 | debutant | elastique, tapis | Assis au sol, jambes tendues, élastique passé autour des pieds ; tu tires les extrémités vers le ventre. |
 | rowing-elastique-penche | Debout sur l'élastique, buste penché | 1 | debutant | elastique | Debout, un pied sur l'élastique, genoux fléchis, buste penché dos plat ; tu tires vers le bas des côtes. |
-| rowing-elastique-porte | Debout face à un ancrage de porte | 1 | debutant | elastique, porte | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice ; debout face à la porte, élastique tendu. |
-| rowing-elastique-un-bras | Un bras, debout face à l'ancrage | 2 | intermediaire | elastique, porte | Même ancrage de porte ; tu tires d'un seul bras, l'autre main sur la hanche. |
+| rowing-elastique-porte | Debout face à un ancrage de porte | 1 | debutant | elastique, ancrage_porte | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice ; debout face à la porte, élastique tendu. |
+| rowing-elastique-un-bras | Un bras, debout face à l'ancrage | 2 | intermediaire | elastique, ancrage_porte | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice (porte pleine, fermée à clé si possible, côté gonds, qui s'ouvre en s'éloignant de toi) ; debout face à la porte, pieds à largeur de hanches, élastique tendu ; tu tires d'un seul bras, l'autre main sur la hanche. Sans ancrage adapté, choisis une autre installation de cet exercice. |
 
 ## Consignes
 1. Prends une position stable, élastique tendu : bras allongés devant toi (ou vers le bas pour le buste penché).

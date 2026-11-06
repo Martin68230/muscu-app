@@ -14,9 +14,9 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| tirage-vertical-elastique-genoux | À genoux | 1 | debutant | elastique, porte, tapis | Élastique ancré en haut de la porte avec un ancrage de porte adapté, utilisé selon sa notice ; à genoux face à la porte, bras tendus vers le haut. |
-| tirage-vertical-elastique-assis | Assis sur une chaise | 1 | debutant | elastique, porte, chaise | Même ancrage ; assis sur une chaise stable face à la porte, bras tendus vers le haut. |
-| tirage-vertical-elastique-un-bras | Un bras, à genoux | 2 | intermediaire | elastique, porte, tapis | Même ancrage ; à genoux, tu tires une seule poignée. |
+| tirage-vertical-elastique-genoux | À genoux | 1 | debutant | elastique, ancrage_porte, tapis | Élastique ancré en haut de la porte avec un ancrage de porte adapté, utilisé selon sa notice ; à genoux face à la porte, bras tendus vers le haut. |
+| tirage-vertical-elastique-assis | Assis sur une chaise | 1 | debutant | elastique, ancrage_porte, chaise | Élastique ancré en haut de la porte avec un ancrage de porte adapté, utilisé selon sa notice (porte pleine, fermée à clé si possible, côté gonds, qui s'ouvre en s'éloignant de toi) ; assis sur une chaise stable face à la porte, bras tendus vers le haut. |
+| tirage-vertical-elastique-un-bras | Un bras, à genoux | 2 | intermediaire | elastique, ancrage_porte, tapis | Élastique ancré en haut de la porte avec un ancrage de porte adapté, utilisé selon sa notice (porte pleine, fermée à clé si possible, côté gonds, qui s'ouvre en s'éloignant de toi) ; à genoux face à la porte, tu tires une seule poignée, l'autre main le long du corps. Sans ancrage adapté, choisis une autre installation de cet exercice. |
 
 ## Consignes
 1. Place-toi face à l'ancrage, assez loin pour que l'élastique soit tendu ; attrape les poignées bras tendus vers le haut.

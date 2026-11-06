@@ -18,15 +18,15 @@ Fiche du lot 11A (variété du générateur, programmes-v3.md §9). Elle ne dema
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | tirage-un-bras-elastique-debout | Debout, l'autre main tient l'élastique en haut | 1 | debutant | elastique | Debout, pieds à largeur de hanches, ventre serré. Élastique long plié en deux ou tenu large : une main le tient en haut, à hauteur du front et un peu devant la tête (pas plus haut), coude légèrement plié et immobile ; l'autre main attrape l'autre bout, un peu plus bas, de façon que l'élastique soit déjà légèrement tendu au départ. Élastique à poignées ou bande longue, tenu dans le creux de la main, pouce refermé ; le bout ne sort pas de la main. L'élastique n'est ni enroulé autour de la main ni du poignet, et il n'est accroché à aucun meuble ni aucune porte. |
-| tirage-un-bras-elastique-assis | Assis sur une chaise | 1 | debutant | elastique, chaise | Même prise, assis sur une chaise stable à 4 pieds, sans roulettes, dossier calé contre un mur, dos droit près du dossier, pieds à plat. |
+| tirage-un-bras-elastique-assis | Assis sur une chaise | 1 | debutant | elastique, chaise | Mêmes mains qu'en position debout (une main en haut, une main qui tire), assis sur une chaise stable à 4 pieds, sans roulettes, dossier calé contre un mur, dos droit près du dossier, pieds à plat. |
 
 ## Consignes
-1. Vérifie l'élastique en entier (fentes, rayures, amincissements). Il reste tenu à la main : jamais accroché, jamais enroulé autour de la main ou du poignet.
-2. Position de départ : debout (ou assis sur la chaise, dos près du dossier), pieds à largeur de hanches, ventre serré, épaules loin des oreilles, regard devant toi.
-3. Main du haut : elle tient un bout de l'élastique à hauteur du front, un peu devant la tête, le coude légèrement plié ; jamais plus haut, jamais le bras tendu au-dessus de la tête. Elle reste immobile et serre aussi fort que la main qui tire. Main qui tire : elle tient l'autre bout, juste sous la main du haut, devant le visage, le bras plié sans être verrouillé, l'élastique déjà légèrement tendu.
-4. Trajet : fais descendre le coude vers la hanche du même côté, le long du corps, sans pencher le buste en arrière ; la main descend devant toi, toujours devant la tête.
-5. Fin du mouvement : la main arrive à hauteur de l'épaule (à hauteur de la poitrine si ta main du haut est réglée au menton), le coude contre le côté du corps. Serre l'omoplate de ce côté une seconde ; ne tire pas plus bas. Remonte ensuite lentement en 3 secondes, bras plié : l'élastique ne te tire jamais vers le haut d'un coup.
-6. Fais toutes les répétitions d'un côté, puis autant de l'autre côté, en échangeant le rôle des deux mains.
+1. Position : debout (ou assis, dos près du dossier), pieds à largeur de hanches, ventre serré. Élastique vérifié en entier, tenu seulement dans les mains : jamais accroché, jamais enroulé autour de la main ou du poignet.
+2. Main du haut : elle tient un bout de l'élastique à hauteur du front, devant la tête, le bras plié (jamais tendu, jamais plus haut que le front). Elle ne bouge pas pendant toute la série.
+3. Départ : l'autre main tient l'autre bout, juste sous la main du haut, devant le visage, le bras presque tendu, l'élastique déjà un peu tendu.
+4. Mouvement : plie le bras qui tire et fais descendre le coude vers ta hanche, le long du corps ; la main descend devant toi, buste droit.
+5. Arrivée : la main s'arrête à hauteur de l'épaule, le coude contre le côté ; serre l'omoplate une seconde. Remonte en 3 secondes, sans lâcher l'élastique.
+6. Erreur à éviter : pencher le buste en arrière ou monter l'épaule. Fais toutes les répétitions d'un côté, puis de l'autre en échangeant le rôle des deux mains.
 
 ## Points d'attention
 - Tire devant la tête, jamais derrière la nuque.

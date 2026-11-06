@@ -17,7 +17,7 @@ statut: utilisable
 |---|---|---|---|---|---|
 | rotation-bucheron-sans-charge | Sans charge, mains jointes | 1 | intermediaire | poids_du_corps | Debout, pieds largeur d'épaules, mains jointes. |
 | rotation-bucheron-halteres | Avec un haltère à deux mains | 2 | intermediaire | halteres | Même installation, un haltère tenu à deux mains. |
-| rotation-bucheron-elastique | Élastique ancré en haut | 2 | intermediaire | elastique, porte | Élastique solidement ancré en haut, debout de côté, deux mains sur l'élastique. |
+| rotation-bucheron-elastique | Élastique ancré en haut | 2 | intermediaire | elastique, ancrage_porte | Élastique solidement ancré en haut, debout de côté, deux mains sur l'élastique. |
 
 ## Consignes
 1. Debout de côté, pieds largeur d'épaules, mains jointes (ou haltère/élastique) d'un côté, au-dessus de l'épaule.

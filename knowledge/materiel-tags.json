@@ -15,10 +15,11 @@
     { "id": "mur", "groupe": "implicite", "detail": "Mur dégagé." },
     { "id": "marche_escalier", "groupe": "implicite", "detail": "Première marche d'un escalier éclairé et dégagé ; un banc de parc de hauteur comparable convient. Remplace marche_ou_box (décision du 21/10/2026)." },
     { "id": "serviette", "groupe": "implicite", "detail": "Serviette." },
-    { "id": "porte", "groupe": "implicite", "detail": "Pour ancrer un élastique, seulement avec ancrage adapté." },
+    { "id": "porte", "groupe": "implicite", "detail": "Plus porté par aucune variante depuis le 06/11/2026 (l'ancrage d'élastique est le tag explicite ancrage_porte)." },
 
     { "id": "halteres", "groupe": "maison", "detail": "Fixes ou réglables ; liste des poids disponibles dans le profil." },
     { "id": "kettlebell", "groupe": "maison", "detail": "Poids dans le profil." },
+    { "id": "ancrage_porte", "groupe": "maison", "detail": "Accessoire explicite (jamais supposé présent) : ancrage adapté pour poser l'élastique en haut d'une porte fermée, utilisé selon sa notice. Exigé par toute variante dont l'élastique est ancré à une porte ; décision du 06/11/2026." },
     { "id": "elastique", "groupe": "maison", "detail": "Bande longue ou bande avec poignées ; résistance dans le profil. La boucle fermée est le tag mini_bande (distinct)." },
     { "id": "barre_traction", "groupe": "maison" },
     { "id": "banc", "groupe": "maison" },

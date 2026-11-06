@@ -14,7 +14,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| face-pull-elastique-porte | Élastique ancré en haut d'une porte | 1 | debutant | elastique, porte | Élastique avec un vrai ancrage de porte, placé en haut de la porte (côté gonds, porte fermée, à clé si possible), un peu au-dessus de ton visage ; poignets ou extrémités tenus à deux mains. |
+| face-pull-elastique-porte | Élastique ancré en haut d'une porte | 1 | debutant | elastique, ancrage_porte | Élastique avec un vrai ancrage de porte, placé en haut de la porte (côté gonds, porte fermée, à clé si possible), un peu au-dessus de ton visage ; poignets ou extrémités tenus à deux mains. |
 | face-pull-poulie-corde | Poulie haute avec une corde | 1 | debutant | poulie | Poulie réglée un peu au-dessus du visage, corde ou deux poignées ; recule jusqu'à ce que la charge soit décollée. |
 
 ## Consignes

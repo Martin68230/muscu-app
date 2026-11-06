@@ -16,9 +16,9 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pallof-elastique-genoux | À genoux | 1 | debutant | elastique, porte, tapis | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice ; à genoux, de profil par rapport à la porte, élastique tendu. |
-| pallof-elastique-debout | Debout, pieds largeur de hanches | 2 | debutant | elastique, porte | Même ancrage ; debout de profil, pieds à largeur de hanches, genoux légèrement fléchis. |
-| pallof-elastique-pieds-serres | Debout, pieds rapprochés | 3 | intermediaire | elastique, porte | Même ancrage ; debout de profil, pieds proches l'un de l'autre, élastique plus tendu. |
+| pallof-elastique-genoux | À genoux | 1 | debutant | elastique, ancrage_porte, tapis | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice ; à genoux, de profil par rapport à la porte, élastique tendu. |
+| pallof-elastique-debout | Debout, pieds largeur de hanches | 2 | debutant | elastique, ancrage_porte | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice (porte pleine, fermée à clé si possible) ; debout de profil, pieds à largeur de hanches, genoux légèrement fléchis. |
+| pallof-elastique-pieds-serres | Debout, pieds rapprochés | 3 | intermediaire | elastique, ancrage_porte | Élastique ancré à hauteur de poitrine avec un ancrage de porte adapté, utilisé selon sa notice (porte pleine, fermée à clé si possible) ; debout de profil, pieds proches l'un de l'autre, élastique plus tendu. |
 
 ## Consignes
 1. Place-toi de profil par rapport à l'ancrage, assez loin pour que l'élastique soit tendu, et tiens la poignée à deux mains contre le milieu de la poitrine.
