@@ -134,6 +134,9 @@ export const msg = {
     ),
   force: () =>
     m('V-MSG-FORCE', 'La force maximale progresse surtout avec des charges lourdes. Sans elles, on travaille avec des variantes plus difficiles.'),
+  // Niveau 2 (06/11/2026), rédaction de `dev`, NON SOURCÉ : repère d'équilibre, jamais une obligation ni un avis médical.
+  zonesGris: (zones: string[]) =>
+    m('V-MSG-ZONES-GRIS', `Presque pas travaillé cette semaine : ${list(zones)}. Le programme n'a pas pu faire plus sans dépasser la durée ou les limites de sécurité.`, { data: { zones } }),
   vol: (muscle: string, n: number) =>
     m('V-MSG-VOL', `${cap(muscle)} : ${frNum(n)} séries par semaine, sous le repère de 10 pour la prise de muscle. Allonge la séance ou ajoute du matériel.`, {
       data: { muscle, n },

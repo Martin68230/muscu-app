@@ -409,6 +409,12 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .player-quit-spacer { display: inline-block; min-width: 44px; min-height: 44px; }
 .proposal .btn + .btn { margin-top: 10px; }
 .proposal h2 { margin-top: 0; }
+/* Bilan : propositions d'adaptation, Accepter / Plus tard côte à côte (boutons >= 44 px). */
+.adapt-list { list-style: none; margin: 0; padding: 0; }
+.adapt-list li { margin-bottom: 18px; }
+.adapt-list li p { margin: 0 0 8px; }
+.adapt-actions { display: flex; gap: 10px; }
+.adapt-actions .btn, .adapt-actions .btn + .btn { margin-top: 0; flex: 1; min-width: 0; }
 .player-scroll {
   flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; padding: 12px calc(env(safe-area-inset-right) + 16px) 12px calc(env(safe-area-inset-left) + 16px);
 }

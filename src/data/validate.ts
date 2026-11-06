@@ -187,7 +187,7 @@ export function validateRow(table: TableName, row: unknown): string[] {
     errors.push(`${table}/${String(r.id ?? '?')} : champ « restTakenSec » hors limites`);
   }
   if (table === 'profile' && Array.isArray(r.progressionLog)) {
-    const kinds = ['montee', 'descente', 'refus', 'niveau', 'annule'];
+    const kinds = ['montee', 'descente', 'refus', 'niveau', 'annule', 'adapt_accepte', 'adapt_plus_tard', 'adapt_applique', 'adapt_annule'];
     const bad = r.progressionLog.some((e) => typeOf(e) !== 'object' || !kinds.includes(String((e as Record<string, unknown>).type)));
     if (bad) errors.push(`${table}/${String(r.id ?? '?')} : champ « progressionLog » contient une décision inconnue`);
   }

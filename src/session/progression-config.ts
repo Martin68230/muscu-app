@@ -74,6 +74,13 @@ export interface ProgressionConfig {
     painCleanSessions: number;
     /** §9 [kine] : pas maximal d'une montée de durée (secondes). NON SOURCÉ. */
     holdMaxStepSec: number;
+    /** §3 repos : la dernière série perd plus de cette part des répétitions de la première (malgré une réserve conforme) : +30 s proposées. NON SOURCÉ. */
+    restDropRatio: number;
+    restBonusSec: number;
+    /** §7.7 décharge : baisse de charge proposée (part de la charge ; 10 % = bas de la plage 10-20 %), au plus une proposition par N jours, aucune montée pendant N jours. NON SOURCÉ. */
+    deloadRatio: number;
+    deloadMinGapDays: number;
+    deloadWeekDays: number;
   };
   bilan: {
     /** Q8 : au-delà, durée « non fiable » (séance reprise) et exclue des comparaisons. NON SOURCÉ. */
@@ -148,6 +155,11 @@ export const PROGRESSION: ProgressionConfig = {
     beginnerCleanSessionsAfterFailure: 2, // C1 [kine], NON SOURCÉ
     painCleanSessions: 2, // §5 [kine], NON SOURCÉ
     holdMaxStepSec: 5, // §9 [kine], NON SOURCÉ
+    restDropRatio: 0.3, // §3 repos, NON SOURCÉ
+    restBonusSec: 30, // §3 repos, NON SOURCÉ
+    deloadRatio: 0.1, // §7.7 décharge, NON SOURCÉ (bas de la plage 10-20 %)
+    deloadMinGapDays: 28, // §7.7 [kine] : une proposition par 4 semaines
+    deloadWeekDays: 7, // §7.7 [kine] : aucune montée pendant la semaine
   },
   bilan: {
     maxReliableDurationMin: 180, // Q8, NON SOURCÉ

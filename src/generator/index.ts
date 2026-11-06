@@ -32,6 +32,10 @@ import type {
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
+import { checkZones, fillGreyZones } from './zones-check';
+import { zoneName } from '../zones/zones';
+export { checkZones, SLOTLESS_ZONES } from './zones-check';
+export { zoneName, ZONES } from '../zones/zones';
 
 export type { CardioItem, GenCardioSession, GenerateResult, GeneratorInput, GenLightDay, GenProgram, GenSession, GenExercise, GenMessage } from './types';
 export { sessionTitle, typeOf, conflicts } from './split';
@@ -131,8 +135,14 @@ function removeEx(s: DurSession<GenExercise>, e: GenExercise) {
  */
 /** D33 (PV3-PLAF-2) : repli de `jambes_3` qui ne charge pas le muscle `m` comme principal (curl d'ischios seul -> cheville_mollet -> hanche_laterale). */
 type J3Fallback = (s: DurSession<GenExercise>, e: GenExercise, m: string) => GenExercise | null;
+/**
+ * 06/11/2026 (plafond des épaules = somme des trois chefs) : avant de retirer un accessoire qui fait dépasser 20 séries d'épaules par
+ * semaine, on le remplace dans le même emplacement par une fiche qui charge moins les épaules (sans épaules d'abord), si les plafonds de
+ * séance, de semaine (aucun autre muscle au-delà de 20) et la durée tiennent. Le plafond et les protections ne changent pas.
+ */
+type DeltFallback = (s: DurSession<GenExercise>, e: GenExercise, all: DurSession<GenExercise>[]) => GenExercise | null;
 
-function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback) {
+function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback, deltFallback?: DeltFallback) {
   const noyau = (s: DurSession<GenExercise>) => TYPE_NOYAU[typeOf(s.label)];
   for (let guard = 0; guard < 300; guard++) {
     let fixed = false;
@@ -167,6 +177,23 @@ function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback
           const e = s.exercises.find((x) => !MAIN_EXERCISE_SLOTS.includes(x.slot) && frac(x, m) === weight && x.sets > VOLUME.minSets);
           if (!e) continue;
           s.exercises = s.exercises.map((x) => (x === e ? { ...x, sets: x.sets - 1 } : x));
+          fixed = true;
+          break;
+        }
+        if (fixed) break;
+      }
+      if (fixed) continue;
+      // 06/11/2026 : puis remplacer (même emplacement, moins d'épaules : DeltFallback) un accessoire où l'épaule est principale, dans
+      // l'ordre de retrait de STR-REP-3 et séance la plus tardive d'abord, AVANT tout retrait (qui reste le dernier recours).
+      for (const slot of WEEK_CAP_ORDER) {
+        for (const s of [...sessions].reverse()) {
+          if (noyau(s).includes(slot)) continue;
+          const e = s.exercises.find((x) => x.slot === slot && frac(x, m) === 1);
+          const alt = e ? deltFallback?.(s, e, sessions) ?? null : null;
+          if (!e || !alt) continue;
+          const at = s.exercises.indexOf(e);
+          removeEx(s, e);
+          s.exercises = [...s.exercises.slice(0, at), alt, ...s.exercises.slice(at)];
           fixed = true;
           break;
         }
@@ -721,7 +748,42 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
     return null;
   };
-  enforcePlaf(durSessions, plafSlot, j3Fallback);
+  // 06/11/2026 : repli « moins d'épaules » (DeltFallback) : même emplacement, même classement (V-CLASSE, fiches absentes de la semaine
+  // d'abord), fiche absente de la séance ; sans épaules d'abord, puis épaules en secondaire seulement ; jamais de durée en plus du budget.
+  const deltFallback: DeltFallback = (s, e, all) => {
+    const used = new Set(s.exercises.map((x) => x.ficheId));
+    const placed: Partial<Record<SlotKey, string>> = {};
+    for (const x of s.exercises) if (x !== e) placed[x.slot] = x.schema;
+    const weekIds = new Set(all.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
+    const ranked = freshFirst(rankSlot(e.slot, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds);
+    const weekOf = (ss: DurSession<GenExercise>[], m: string) => ss.reduce((a, x) => a + sessionVol(x, m), 0);
+    const limitSec = Math.max(budget.get(s.label) ?? dSec, estimerDuree(s));
+    // Ordre : fiche pleine (niveaux a, b) sans épaules ; fiche pleine à épaules secondaires si elle suffit seule à repasser sous 20 ;
+    // substitut sans épaules (évite un retrait d'exercice) ; puis le reste. Fiches de même classement : celles absentes de la semaine d'abord.
+    const SW = VOLUME.secondaryWeight;
+    const passes = [[true, 0, false], [true, SW, true], [false, 0, false], [true, SW, false], [false, SW, false]] as const;
+    for (const [full, target, mustResolve] of passes) {
+      for (const r of ranked) {
+        if ((r.tier === 'a' || r.tier === 'b') !== full) continue;
+        const alt = buildExercise(r.cand, e.slot, r.tier, ctx);
+        if (frac(alt, 'deltoides') !== target) continue;
+        alt.warmupSets = e3Sets(alt, ctx);
+        const exs = s.exercises.map((x) => (x === e ? alt : x));
+        if (!(isSplit ? splitCapsOk(exs, plafSlot) : sessionCapsOk({ exercises: exs }, plafSlot))) continue;
+        const trial = { ...s, exercises: exs };
+        if (estimerDuree(trial) > limitSec) continue;
+        const after = all.map((x) => (x === s ? trial : x));
+        if (weekOf(after, 'deltoides') >= weekOf(all, 'deltoides')) continue;
+        if (mustResolve && weekOf(after, 'deltoides') > VOLUME.maxPerMuscleWeek) continue;
+        if (weekMusclesOf([{ exercises: [alt] }]).some((m) => m !== 'deltoides' && weekOf(after, m) > Math.max(VOLUME.maxPerMuscleWeek, weekOf(all, m)))) continue;
+        return alt;
+      }
+    }
+    return null;
+  };
+  enforcePlaf(durSessions, plafSlot, j3Fallback, deltFallback);
+  // Paires retentées après les plafonds (mêmes règles SUP-0 à SUP-10, canPair) : un repli ou un retrait a pu défaire une paire.
+  if (ctx.gagnerDuTemps) durSessions.forEach((s, i) => { durSessions[i] = formAllPairs(s); });
   applyVolume(durSessions, (s) => budget.get(s.label) ?? dSec, ctx, msgs);
 
   // STR-REP-14 (b) : une séance HAUT, PUSH ou PULL de moins de 3 exercices de force devient un jour léger (jamais une séance presque vide).
@@ -771,6 +833,36 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       }
     }
   }
+
+  // Niveau 2 (06/11/2026, zones-check.ts) : aucune zone grise dans la semaine prévue (hors blessure et zones sans fiche admissible) :
+  // changement d'exercice (même emplacement, même classement, hors piliers, tronc, isolation et supersets), puis séries ajoutées, sous
+  // V-PLAF, le plafond hebdomadaire, les plafonds par zone et la durée ; zones sans emplacement (SLOTLESS_ZONES) : ni corrigées ni citées.
+  function* zoneAlternatives(s: DurSession<GenExercise>, e: GenExercise, all: readonly DurSession<GenExercise>[]): Generator<GenExercise> {
+    if (e.slot === 'tronc' || isIsoSlot(e.slot)) return;
+    const used = new Set(s.exercises.map((x) => x.ficheId));
+    const placed: Partial<Record<SlotKey, string>> = {};
+    for (const x of s.exercises) if (x !== e) placed[x.slot] = x.schema;
+    const weekIds = new Set(all.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
+    for (const r of freshFirst(rankSlot(e.slot, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+      if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34) : jamais une fiche déjà placée ailleurs dans la semaine
+      const alt = buildExercise(r.cand, e.slot, r.tier, ctx);
+      alt.warmupSets = e3Sets(alt, ctx);
+      yield alt;
+    }
+  }
+  fillGreyZones(kept, {
+    ctx, pool,
+    budget: (s) => budget.get(s.label) ?? dSec,
+    sessionOk: (exs, mode) => {
+      const p = mode === 'slot' ? plafSlot : plafAuto;
+      return isSplit ? splitCapsOk(exs, p) : sessionCapsOk({ exercises: exs }, p);
+    },
+    weekOk: (ss) => weekCapsOk([...ss]),
+    alternatives: zoneAlternatives,
+  });
+  const zoneState = checkZones(kept, ctx, pool);
+  // Décision du 06/11/2026 : zones orange jamais affichées (bruit : 661 cas sur 662) ; grises citées seulement si un exercice existe.
+  if (zoneState.greyFixable.length) msgs.push(msg.zonesGris(zoneState.greyFixable.map(zoneName)));
 
   // Finalisation des séances.
   const beginnerRamp = blockRole !== null && !ctx.pregnant && ctx.level === 'debutant';
@@ -1027,6 +1119,9 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   if (!r1.ok) return r1;
   const r2 = generateWeek(input, 2);
   if (r2.ok) mergeRotation(r1.program, r2.program, buildCtx(input));
+  // PV3-VAR-6 point 4 : pénurie recalculée sur le programme fusionné (semaines 1 et 2 réellement affichées) ; un remplaçant « moins
+  // d'épaules » peut répéter une fiche ou une famille de la semaine faute d'autre fiche : le plan est alors signalé honnêtement.
+  r1.program.penurieVariete = [...varietyShortage(r1.program.sessions, new Set(r1.program.penurieVariete ?? []))].sort();
   return r1;
 }
 
@@ -1230,3 +1325,14 @@ export const isCardioDay = (d: Pick<ProgramDay, 'exercises'>): boolean => d.exer
 /** Utilitaire : niveaux de base, pour les tests. */
 export const LEVEL_LIST: Level[] = ['debutant', 'intermediaire', 'avance'];
 export { units };
+
+/**
+ * Niveau 2 : zones de la semaine type (semaine 1, ou 2 avec `week: 2` = exercices `alt`) d'un programme généré, recalculées à la demande
+ * (rien n'est stocké). Même contrôle que le générateur (zones-check.ts), pour le rapport par profil et les tests.
+ */
+export function zoneReport(program: GenProgram, input: GeneratorInput, week: 1 | 2 = 1) {
+  const ctx = buildCtx(input);
+  const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut));
+  const sessions = program.sessions.map((s) => ({ exercises: s.exercises.map((e) => (week === 2 && e.alt ? e.alt : e)) }));
+  return checkZones(sessions, ctx, pool);
+}

@@ -104,16 +104,17 @@ describe('D32-1 : limites de dose des fiches', () => {
 });
 
 describe('D32-2 : paires retentées après le placement final', () => {
-  it('profil 4 (volley, intermédiaire, maison) : la séance B n\x27a plus de tirage_2 ni de paire P1 (épaules : 20 séries par semaine au plus)', () => {
-    // 06/11/2026, changement voulu (avis kiné : les trois chefs du deltoïde se comptent ensemble, plafond 20) : le tirage_2 ajouté après la
-    // 1re formation (tirage au visage, épaule principale) porterait les épaules de 20 à 22 ; il n'est plus ajouté, donc pas de paire P1.
+  it('profil 4 (volley, intermédiaire, maison) : la séance B reçoit sa paire P1 (tirage_2 ajouté après la 1re formation)', () => {
     const p = gen(PROFIL_4);
     const b = p.sessions.find((s) => s.label === 'B')!;
-    expect(b.exercises.some((e) => e.slot === 'tirage_2')).toBe(false);
-    expect(pairsOf(b)).not.toContain('B-P1');
+    expect(pairsOf(b)).toContain('B-P1');
+    const pair = b.exercises.filter((e) => e.supersetGroup === 'B-P1');
+    expect(pair.map((e) => e.slot).sort()).toEqual(['poussee_2', 'tirage_2']);
+    for (const e of pair) expect(pairEligible(e)).toBe(true);
+    // 06/11/2026 : épaules = somme des trois chefs, 20 au plus par semaine ; le tirage au visage (épaule principale) qui portait la
+    // semaine à 21 est remplacé par un tirage où l'épaule n'est que secondaire (repli DeltFallback), et la paire se reforme.
     expect(p.sessions.reduce((a, s) => a + sessionVol(s, 'deltoides'), 0)).toBeLessThanOrEqual(20);
-    // les paires restent formées dès que SUP-0 à SUP-10 et les plafonds le permettent (profil D, 2 jours)
-    expect(gen(mk({ profile: 'D', level: 'intermediaire', dur: 75, days: 2, options: { gagnerDuTemps: true } })).sessions.some((s) => pairsOf(s).length > 0)).toBe(true);
+    expect(pair.find((e) => e.slot === 'tirage_2')!.musclesPrincipaux.some((m) => m.startsWith('deltoides'))).toBe(false);
   });
   it('règles inchangées : jamais de core apparié à une fiche dont la ligne dos n\'est pas « garder » (SUP-2 point 4)', () => {
     for (const i of [PROFIL_2, PROFIL_4, PROFIL_6]) {
@@ -130,11 +131,9 @@ describe('D32-2 : paires retentées après le placement final', () => {
     expect(pairsOf(gen(PROFIL_4).sessions.find((s) => s.label === 'A')!)).toEqual([]);
   });
   it('le temps gagné par la paire est compté dans la durée affichée', () => {
-    // 06/11/2026 : le profil 4 n'a plus de paire en séance B (plafond des épaules) : première séance appariée (profils 2, 4, 6, puis profil D à 2 jours).
-    const found = [PROFIL_2, PROFIL_4, PROFIL_6, mk({ profile: 'D', level: 'intermediaire', dur: 75, days: 2, options: { gagnerDuTemps: true } })].flatMap((i) => gen(i).sessions.map((s) => ({ s, i }))).find((x) => pairsOf(x.s).length > 0)!;
-    const b = found.s;
+    const b = gen(PROFIL_4).sessions.find((s) => s.label === 'B')!;
     const dur: DurSession = {
-      label: b.label, days: found.i.profile.daysPerWeek ?? 3, level: found.i.profile.level ?? 'intermediaire', pregnant: false, exercises: b.exercises, e1Sec: b.warmup.generalSec, e2Count: b.warmup.mobility.length,
+      label: b.label, days: 3, level: 'intermediaire', pregnant: false, exercises: b.exercises, e1Sec: b.warmup.generalSec, e2Count: b.warmup.mobility.length,
     };
     expect(estimerDuree(dur)).toBe(b.estimatedSec);
     const unpaired = estimerDuree({ ...dur, exercises: b.exercises.map((e) => ({ ...e, supersetGroup: null })) });

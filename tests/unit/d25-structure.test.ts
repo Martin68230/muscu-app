@@ -278,14 +278,10 @@ describe('T-D25-17, 18, 20, 20b : cardio et grossesse', () => {
   it('T-D25-17 : cardio rang 2 en haut / bas : exactement 2 blocs, sur HAUT-A puis HAUT-B, >= 10 min, aucun jour de plus', () => {
     const p = prog(PS[14]());
     const withBlock = p.sessions.filter((s) => s.cardio);
-    // 06/11/2026, conséquence de l'avis kiné (épaules = somme des trois chefs, 20 séries par semaine) : les séances HAUT descendent sous
-    // 40 min de force, et le bloc (25 % au plus de la force, 10 min au moins) n'y tient plus : aucun bloc, et le message « pas le temps »
-    // l'annonce honnêtement. Les règles du bloc restent vérifiées dès qu'un bloc est placé. Point remonté au chef de projet.
-    if (withBlock.length) expect(withBlock.map((s) => s.label)).toEqual(['HAUT-A', 'HAUT-B']);
-    else {
-      expect(msgIds(p)).toContain('V-MSG-CARDIO-TEMPS');
-      for (const s of p.sessions.filter((x) => x.label.startsWith('HAUT'))) expect(Math.floor((s.estimatedSec / 60) * CARDIO.secondaryMaxShare)).toBeLessThan(CARDIO.blockMinMin);
-    }
+    // 06/11/2026 : avec les épaules comptées ensemble (20 par semaine), les accessoires d'épaule en trop sont remplacés par des fiches
+    // sans épaules (repli DeltFallback) au lieu d'être retirés : les séances HAUT gardent leur durée et le bloc y tient de nouveau.
+    expect(withBlock.map((s) => s.label)).toEqual(['HAUT-A', 'HAUT-B']);
+    expect(weekVol(p, 'deltoides')).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
     for (const s of withBlock) {
       expect(s.cardio!.minutes).toBeGreaterThanOrEqual(CARDIO.blockMinMin);
       expect(s.cardio!.capMin).toBeLessThanOrEqual(Math.floor((s.estimatedSec / 60) * CARDIO.secondaryMaxShare));

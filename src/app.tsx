@@ -15,7 +15,9 @@ import { loadFiches, type Fiche as FicheData } from './data/fiches';
 import { SessionController } from './session/store';
 import { SessionPreview } from './ui/screens/Preview';
 import { SessionPlayer } from './ui/screens/Player';
-import { loadPlayerData, type PlayerData } from './ui/session/launch';
+import { applyEnvOf, loadPlayerData, type PlayerData } from './ui/session/launch';
+import { applyAccepted } from './session/adapt-accept';
+import { recordAdaptResult } from './session/progression-store';
 import { list } from './data/repo';
 import { planReprise } from './session/reprise-plan';
 import { programWeek, rotationFreeze, withProgramWeek } from './session/program';
@@ -82,7 +84,10 @@ export function App() {
     // D34 (PV3-VAR-4, 5 d) : jeu de la semaine en cours (gel après une douleur) AVANT la reprise douce, qui s'applique sur cette copie.
     const weekDay = withProgramWeek(program.days[dayIndex], programWeek(program, Date.now()), rotationFreeze(sets, injuries, Date.now()));
     const plan = planReprise(weekDay, { reprise: repriseOf(profiles[0]), sessions, programs, sets, now: new Date(), ctx: data.ctx });
-    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : weekDay });
+    // Changements acceptés après la séance précédente (série en plus, version plus dure, repos, décharge) : revérifiés ici, jamais en reprise douce.
+    const accepted = applyAccepted(weekDay, applyEnvOf(data, !!plan?.state.actif));
+    const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : accepted.day });
+    await recordAdaptResult(accepted).catch(() => undefined);
     if (plan) await saveReprise(() => plan.state);
     data.repriseActive = !!plan?.state.actif;
     // Un rechargement pendant la séance revient sur l'Accueil, qui propose de la reprendre.

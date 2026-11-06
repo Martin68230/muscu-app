@@ -30,6 +30,7 @@ export const MUSCLE_LABEL: Record<string, string> = {
   coiffe_des_rotateurs: 'petits muscles stabilisateurs de l’épaule',
   peroniers: 'côté de la jambe et de la cheville',
   tibial_anterieur: 'devant du tibia',
+  cou: 'muscles du cou',
 };
 
 /** Version courte, pour la liste de la bibliothèque. */

@@ -141,7 +141,9 @@ describe('N4 / Q23 : dose fixe des lancers et du gainage dynamique', () => {
           expect(e.warmupSets.every((w) => w.percent === null)).toBe(true);
         }
       }
-    // D26 : lancer-rotation-mur n'est plus placé (kiné §11 point 2 : « non proposé par défaut ») : 3 fiches au moins.
-    expect(placed.size).toBeGreaterThanOrEqual(3);
+    // D26 : lancer-rotation-mur n'est plus placé (kiné §11 point 2 : « non proposé par défaut »). 06/11/2026 (zones, niveau 2) : le contrôle
+    // des zones échange un accessoire de ce catalogue forcé contre une fiche qui sort une zone du gris : 2 fiches au moins ; la dose fixe de
+    // chaque fiche placée reste vérifiée ci-dessus, et aucune série n'est jamais ajoutée à une fiche à dose fixe (zones-check.ts).
+    expect(placed.size).toBeGreaterThanOrEqual(2);
   });
 });

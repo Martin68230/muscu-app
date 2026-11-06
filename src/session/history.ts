@@ -12,7 +12,8 @@ import { resolveFiche } from '../generator/safety';
 import type { Fiche, GeneratorInput } from '../generator/types';
 import type { EchelonInfo, EngineContext } from './engine';
 import { beginnerFailureLock, doneSessionsCount, jumpAllowed, painFrozen, setRaise, topRun } from './adaptation';
-import { ECHELON_TEXT, fmtKg, harderVariantText, holdMoreText, loadLessText, loadMoreText, PAIN_S1_TEXT, PROGRESSION_TEXT, setMoreText } from './messages';
+import { ADAPT_TEXT, deloadText, ECHELON_TEXT, fmtKg, harderVariantText, holdMoreText, loadLessText, loadMoreText, PAIN_S1_TEXT, PROGRESSION_TEXT, restMoreText, setMoreText } from './messages';
+import { deloadGapBlocked, deloadLoad, deloadSignal, deloadWeekActive, laterActive, pendingAdapt, restSignal } from './adapt-accept';
 import { evaluateEchelon, firstFinishedAt, levelIndex, proposeHold, type EchelonProposal, type ProgVariant } from './progression';
 import { PROGRESSION, type ProgressionConfig } from './progression-config';
 
@@ -69,7 +70,9 @@ export type ProgressionReason =
   | 'echelon' | 'reprise' | 'paire'
   // adaptation-regles.md : +1 série (C7), version plus dure (C8), saut trop grand (C6), critère à confirmer (C3), séance manquée (§8),
   // débutant après un échec (C1), réserve sous la cible (C2), +répétitions (C4 / E3).
-  | 'serie' | 'variante' | 'saut' | 'attente' | 'manquee' | 'apprentissage' | 'reserve' | 'repetitions';
+  | 'serie' | 'variante' | 'saut' | 'attente' | 'manquee' | 'apprentissage' | 'reserve' | 'repetitions'
+  // Acceptation en un appui : +30 s de repos, décharge.
+  | 'repos' | 'decharge';
 export interface Progression {
   action: 'etalonnage' | 'hausse' | 'baisse' | 'garder';
   loadKg: number | null;
@@ -85,6 +88,10 @@ export interface Progression {
   setsProposal?: number;
   /** C8 : version plus dure de la fiche (proposition seulement). */
   harderVariant?: { variantId: string; nom: string };
+  /** Repos : nouveau repos entre les séries (secondes), proposition seulement. */
+  restProposal?: number;
+  /** Décharge : charge proposée pour la prochaine séance (kg), proposition seulement. */
+  deloadProposal?: { loadKg: number };
 }
 
 /** F6 : exercice sans charge à échelons (poids du corps, élastique) : la clé de suivi est (fiche, échelon), pas la variante. */
@@ -145,6 +152,10 @@ export interface ProgressionInput {
   now?: number;
   /** Maintiens : 30 s après une charge lourde dans la même séance (CORE-ORD-4), calculé par l'appelant. */
   holdMaxSec?: number;
+  /** Repos maximal de la classe de l'exercice (secondes) : sans lui, aucune proposition de repos. */
+  restMaxSec?: number;
+  /** Décisions d'adaptation (acceptées, « plus tard ») : un seul changement à la fois, rien avant la séance suivante après « Plus tard ». */
+  adaptEvents?: readonly ProgressionEvent[];
 }
 
 /** Séries de la fiche pour un échelon donné (poids du corps) : même difficulté, quelle que soit la variante. */
@@ -273,6 +284,19 @@ export function proposeProgression(i: ProgressionInput): Progression {
   if (lastSets.some((s) => s.isCalibration)) return keep('garder', PROGRESSION_TEXT.garder);
   if (failureLock) return keep('apprentissage', PROGRESSION_TEXT.apprentissage);
 
+  // Acceptation en un appui : un seul changement à la fois par exercice ; pendant la semaine allégée aucune montée.
+  const adaptEvents = i.adaptEvents ?? [];
+  const nowMs = i.now ?? Date.now();
+  if (ex.adaptApplied) return keep('garder', ADAPT_TEXT.applied[ex.adaptApplied]);
+  if (pendingAdapt(adaptEvents, ex.movementId)) return keep('garder', PROGRESSION_TEXT.garder);
+  if (deloadWeekActive(adaptEvents, ex.movementId, nowMs, cfg)) return keep('garder', ADAPT_TEXT.applied.decharge);
+  const later = laterActive(adaptEvents, ex.movementId, i.sets);
+  // Décharge (§7.7) : baisse nette sur 2 séances de suite, à réserve égale. Proposition seulement, une par 4 semaines.
+  if (!later && cur !== null && !deloadGapBlocked(adaptEvents, nowMs, cfg) && deloadSignal(ex.movementId, ex.variantId, others, i.sessions, fallbackPlanned)) {
+    const dl = deloadLoad(cur, loads, cfg);
+    if (dl !== null) return { ...keep('decharge', deloadText(cur, dl)), action: 'baisse', deloadProposal: { loadKg: dl } };
+  }
+
   // Double progression (load-calibration.md règle 4) : toutes les séries au haut de la fourchette, à la réserve visée.
   if (allTop) {
     if (cur === null) return keep('sommet', PROGRESSION_TEXT.sommet);
@@ -290,13 +314,18 @@ export function proposeProgression(i: ProgressionInput): Progression {
       sets: ex.sets, ficheMaxSets: i.ficheMaxSets, beginner, technicalOrHardClass: !!i.technical, topRun: run,
       followedMs: first === null ? null : (i.now ?? Date.now()) - first, doneSessions: doneSessionsCount(i.sessions), cfg,
     });
-    if (setsUp !== null) return { ...keep('serie', setMoreText(setsUp)), action: 'hausse', setsProposal: setsUp };
+    if (setsUp !== null && !later) return { ...keep('serie', setMoreText(setsUp)), action: 'hausse', setsProposal: setsUp };
     // Contrôle relecteur 05/11 : jamais de version plus dure pour un exercice adapté par une case de sécurité (blessure).
     const harder = i.echelon === undefined || ex.adaptation != null ? undefined : (i.variants ?? [])
       .filter((v) => v.echelon === i.echelon! + 1 && v.materielOk && levelIndex(v.niveau) <= levelIndex(level))
       .sort((a, b) => a.rank - b.rank)[0];
-    if (harder) return { ...keep('variante', harderVariantText(harder.nom)), action: 'hausse', harderVariant: { variantId: harder.id, nom: harder.nom } };
+    if (harder && !later) return { ...keep('variante', harderVariantText(harder.nom)), action: 'hausse', harderVariant: { variantId: harder.id, nom: harder.nom } };
     return next === undefined ? keep('sommet', PROGRESSION_TEXT.sommet) : keep('saut', PROGRESSION_TEXT.saut);
+  }
+  // Repos (§3) : la dernière série perd plus de 30 % des répétitions de la première malgré une réserve conforme : +30 s, dans la plage de la classe.
+  const bonus = cfg.adaptation.restBonusSec;
+  if (!later && !tooHard && !ex.supersetGroup && !isPerSide(ex) && i.restMaxSec !== undefined && ex.restSec + bonus <= i.restMaxSec && lastSets.every(rirOk) && restSignal(lastSets, cfg)) {
+    return { ...keep('repos', restMoreText(ex.restSec + bonus, bonus)), action: 'hausse', restProposal: ex.restSec + bonus };
   }
   // C4 : +1 répétition seulement si la réserve est conforme sur toutes les séries ; C2 [kine] : réserve sous la cible -> garder.
   return !tooHard && lastSets.every(rirOk) ? keep('garder', PROGRESSION_TEXT.plusDeReps) : keep('reserve', PROGRESSION_TEXT.garderReserve);

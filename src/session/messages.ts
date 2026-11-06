@@ -52,6 +52,40 @@ export const PROGRESSION_TEXT = {
   apprentissage: 'Garde la même difficulté : le plus important pour l’instant, c’est un mouvement propre avec un peu de réserve à chaque série.',
 } as const;
 
+/** Acceptation en un appui des propositions d'adaptation (textes de conception, NON SOURCÉ ; aucun sigle ni id interne). */
+export const ADAPT_TEXT = {
+  accept: 'Accepter',
+  later: 'Plus tard',
+  accepted: 'C’est noté : ce sera dans ta prochaine séance.',
+  laterDone: 'D’accord, on en reparle plus tard.',
+  /** Exercice dont le changement accepté est appliqué à cette séance (ligne du lecteur). */
+  applied: {
+    serie: 'Une série en plus, comme tu l’as accepté. Même charge.',
+    variante: 'Nouvelle version, comme tu l’as accepté : commence doucement.',
+    repos: 'Repos un peu plus long, comme tu l’as accepté.',
+    decharge: 'Séance allégée, comme tu l’as accepté : charge un peu plus basse, sans chercher à monter.',
+  },
+  /** Aperçu : changement qui sera appliqué à cette séance. */
+  willApply: {
+    serie: (nom: string): string => `${nom} : une série en plus, comme tu l’as accepté.`,
+    variante: (nom: string): string => `${nom} : version un peu plus difficile, comme tu l’as accepté.`,
+    repos: (nom: string): string => `${nom} : repos un peu plus long, comme tu l’as accepté.`,
+    decharge: (nom: string): string => `${nom} : charge un peu plus basse, comme tu l’as accepté.`,
+  },
+  /** Proposition annulée au moment d'appliquer : texte simple, pas de reproche. */
+  cancelled: (nom: string, reason: 'gel' | 'reprise' | 'grossesse' | 'manquee' | 'programme' | 'limite'): string => {
+    const why = {
+      gel: 'une gêne ou un symptôme récent demande de garder l’exercice tel quel pour l’instant',
+      reprise: 'tu reprends doucement, on ne change rien pour l’instant',
+      grossesse: 'on ne change rien pendant la grossesse ou après l’accouchement',
+      manquee: 'tu as manqué une séance, on garde la même difficulté pour revenir en douceur',
+      programme: 'ton programme a changé depuis',
+      limite: 'ça dépasserait ce qui est prévu pour cet exercice',
+    }[reason];
+    return `${nom} : le changement accepté est annulé, car ${why}.`;
+  },
+} as const;
+
 /** C1 [kine] : 2 baisses de charge déjà faites dans la séance sur cet exercice. */
 export const DROP_LIMIT_TEXT = 'C’est encore dur après deux baisses : essaie une version plus facile, ou arrête cet exercice pour aujourd’hui.';
 /** C7 : +1 série, proposition seulement (jamais appliquée seule). */
@@ -61,6 +95,14 @@ export function setMoreText(sets: number): string {
 /** C8 : version plus dure, proposition seulement. */
 export function harderVariantText(nom: string): string {
   return `Tu es au plus lourd raisonnable pour cet exercice. Tu peux essayer « ${nom} » à la place, en recommençant léger. C’est une proposition, pas une obligation.`;
+}
+/** Repos : la dernière série tombe beaucoup, +30 s proposées (proposition seulement). */
+export function restMoreText(sec: number, bonus: number): string {
+  return `Tes dernières séries tombent beaucoup. Tu peux te reposer ${bonus} secondes de plus entre les séries (${sec} s au lieu de ${sec - bonus} s). C’est une proposition, pas une obligation.`;
+}
+/** Décharge : charge un peu plus basse pour la prochaine séance (proposition seulement). */
+export function deloadText(fromKg: number, toKg: number): string {
+  return `Tes dernières séances ont baissé. Si tu es fatigué, tu peux alléger un peu la prochaine fois : ${fmtKg(toKg)} kg au lieu de ${fmtKg(fromKg)} kg. C’est une proposition, pas une obligation.`;
 }
 /** §9 : maintien, +5 s au plus. */
 export function holdMoreText(sec: number): string {

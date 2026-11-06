@@ -15,11 +15,12 @@ import { dateKey } from '../../session/calendar';
 import { CORE_HEAVY_MAX_HOLD_SEC, D_CLASS, doseLimitOf, TECHNICAL_CAP_FICHES, TECHNICAL_NO_LOW_FICHES } from '../../generator/config';
 import { isHeavyExercise } from '../../generator/core';
 import { isNeverProposed, variantClass } from '../../generator/reps';
+import type { ApplyEnv } from '../../session/adapt-accept';
 
 /** Entrées de l'adaptation automatique (knowledge/adaptation-regles.md) pour proposeProgression. */
 export type AdaptInput = Pick<
   ProgressionInput,
-  'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'technical' | 'ficheMaxSets' | 'missedSinceLast' | 'now' | 'holdSchema' | 'holdMaxSec'
+  'level' | 'zonesOfFiche' | 'zonesOfMovement' | 'variants' | 'technical' | 'ficheMaxSets' | 'missedSinceLast' | 'now' | 'holdSchema' | 'holdMaxSec' | 'restMaxSec' | 'adaptEvents'
 >;
 
 export interface PlayerData {
@@ -43,6 +44,21 @@ export interface PlayerData {
   repriseActive: boolean;
   /** adaptation-regles.md : niveau, zones, version plus dure, plafond de séries. `nextTime` (bilan) : la séance manquée ne compte plus. */
   adaptOf?(ex: PlannedExercise, nextTime?: boolean): AdaptInput;
+}
+
+/** Entrées de applyAccepted (acceptation des adaptations) tirées des données du lecteur. */
+export function applyEnvOf(data: PlayerData, repriseActive: boolean = data.repriseActive): ApplyEnv {
+  return {
+    events: data.events,
+    sets: data.sets,
+    sessions: data.sessions,
+    pregnant: data.pregnant,
+    repriseActive,
+    frozenBySymptom: data.frozen,
+    adaptOf: (ex) => data.adaptOf?.(ex) ?? {},
+    echelonOf: (id) => data.fiches.flatMap((f) => f.variantes).find((v) => v.id === id)?.echelon,
+    loadsFor: (ex, cur) => data.ctx.availableLoadsKg(ex, cur),
+  };
 }
 
 export const isPregnant = (p: Pick<Profile, 'pregnancy'> | null | undefined): boolean => p?.pregnancy === 'enceinte' || p?.pregnancy === 'post_partum';
@@ -153,6 +169,8 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
         }) : undefined,
         technical: TECHNICAL_CAP_FICHES.includes(ex.movementId) || TECHNICAL_NO_LOW_FICHES.includes(ex.movementId) || k === 3 || k === 4,
         ficheMaxSets: Math.min(classCap ?? Infinity, limit ?? Infinity),
+        restMaxSec: k === null ? undefined : D_CLASS[k].restMaxSec,
+        adaptEvents: events,
         missedSinceLast: nextTime ? false : missedSinceLast,
         now: Date.now(),
         // Maintiens : schéma de la fiche ; 30 s au plus si le même jour de programme contient une charge lourde (CORE-ORD-4, lecture sans emplacement).

@@ -2,7 +2,8 @@ import { useEffect, useState } from 'preact/hooks';
 import type { Program, ProgramDay, Profile } from '../../data/model';
 import { FICHES_ERROR, loadFiches, type Fiche } from '../../data/fiches';
 import { list } from '../../data/repo';
-import { D30_TEXT, ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT } from '../../session/messages';
+import { ADAPT_TEXT, D30_TEXT, ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT } from '../../session/messages';
+import { applyAccepted, type AdaptCancel, type AdaptChange } from '../../session/adapt-accept';
 import { SwitchRow } from '../SwitchRow';
 import { CardioDayNotes } from '../session/CardioNotes';
 import { ensureActiveProgram, getNextSession, loadGeneratorInput, programWeek, rotationFreeze, withProgramWeek, type NextSession } from '../../session/program';
@@ -11,9 +12,9 @@ import { update } from '../../data/repo';
 import { WEEKDAY_NAMES } from '../../generator/messages';
 import { isCardioDay } from '../../generator';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
-import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
+import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, recordAdaptResult, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
 import { SessionError } from '../../session/engine';
-import { asGenFiches } from '../session/launch';
+import { applyEnvOf, asGenFiches } from '../session/launch';
 import { exName, lineText, ficheOf, variantOf, withSides } from '../session/text';
 import { unlockSound } from '../session/sound';
 import { acquireWakeLock } from '../session/wakelock';
@@ -77,6 +78,9 @@ export interface PreviewViewProps {
   week?: number;
   /** D31 : « Ajouter une séance de cardio ? » (force, muscle, perte de gras) ou séance de sport incluse. */
   cardioOpt?: { state: NonNullable<Program['cardioOption']>; onToggle: (on: boolean) => void; busy?: boolean };
+  /** Changements acceptés après la dernière séance : appliqués à cette séance, ou annulés (gel, programme changé). */
+  adaptApplied?: AdaptChange[];
+  adaptCancelled?: AdaptCancel[];
 }
 
 /** Cartes de progression de l'aperçu : « Prêt pour l'échelon suivant : <nom> ? » Accepter / Plus tard. */
@@ -109,7 +113,7 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
 }
 
 /** Contenu de l'aperçu (sans accès à la base : testable). */
-export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1, cardioOpt }: PreviewViewProps) {
+export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1, cardioOpt, adaptApplied = [], adaptCancelled = [] }: PreviewViewProps) {
   const day = withProgramWeek(repriseDay ?? next.day, week);
   const hasPair = day.exercises.some((e) => !!e.supersetGroup);
   // Séance de cardio dédiée : l'option « Gagner du temps » (supersets de musculation) n'a pas d'objet.
@@ -169,6 +173,12 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
         </div>
       )}
       {cancelled && <div class="notice small" role="status"><p>{ECHELON_TEXT.cancelled}</p></div>}
+      {(adaptApplied.length > 0 || adaptCancelled.length > 0) && (
+        <section class="notice small" role="status" aria-label="Changements acceptés">
+          {adaptApplied.map((a) => <p key={`a${a.movementId}`}>{ADAPT_TEXT.willApply[a.kind](fiches.find((f) => f.id === a.movementId)?.nom ?? 'Exercice')}</p>)}
+          {adaptCancelled.map((a) => <p key={`c${a.movementId}`}>{ADAPT_TEXT.cancelled(fiches.find((f) => f.id === a.movementId)?.nom ?? 'Exercice', a.reason)}</p>)}
+        </section>
+      )}
       {proposals && <ProposalCards proposals={proposals} onAnswer={onAnswer} onAnswerLevel={onAnswerLevel} />}
       {safety.length > 0 && (
         <section class="notice" aria-label="À savoir">
@@ -229,6 +239,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
 }
 
 type Loaded = {
+  adaptApplied: AdaptChange[]; adaptCancelled: AdaptCancel[];
   program: Program; next: NextSession; fiches: Fiche[]; repriseTexts: string[]; repriseDay: ProgramDay | null; repriseActive: boolean;
   gainOn: boolean; gainReason: string | null; firstSession: boolean;
 };
@@ -254,11 +265,18 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     let reprise: { texts: string[]; day: ProgramDay | null; active: boolean } = { texts: [], day: null, active: false };
     let me: Profile = profile;
     let firstSession = false;
+    let adapt: { day: ProgramDay | null; applied: AdaptChange[]; cancelled: AdaptCancel[] } = { day: null, applied: [], cancelled: [] };
     try {
       const [profiles, programs, allSessions, allSets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
       me = profiles[0] ?? profile;
       const pdata = await loadPlayerData(fiches, me).catch(() => null);
       const plan = planReprise(next.day, { reprise: repriseOf(profiles[0]), sessions: allSessions, programs, sets: allSets, now: new Date(), ctx: pdata?.ctx ?? null });
+      // Changements acceptés après la séance précédente : montrés ici, enregistrés « annulés » une fois ; l'application réelle est au démarrage.
+      if (pdata) {
+        const res = applyAccepted(next.day, applyEnvOf(pdata, !!plan?.state.actif));
+        adapt = { day: res.applied.length ? res.day : null, applied: res.applied, cancelled: res.cancelled };
+        if (res.cancelled.length) await recordAdaptResult({ applied: [], cancelled: res.cancelled });
+      }
       if (plan) reprise = { texts: plan.start.texts, day: plan.state.actif ? plan.day : null, active: plan.state.actif };
       // SUP-2 point 7 : première séance d'un exercice de la paire -> exercices faits un par un (texte de la séance 1).
       if (pdata) firstSession = pairsForSession(reprise.day ?? next.day, pdata.ctx).exercises.some((e) => e.pairDeferred === 'etalonnage');
@@ -266,7 +284,8 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
       /* sans reprise : la séance reste utilisable */
     }
     setData({
-      program: res.program, next, fiches, repriseTexts: reprise.texts, repriseDay: reprise.day, repriseActive: reprise.active,
+      program: res.program, next, fiches, repriseTexts: reprise.texts, repriseDay: reprise.day ?? adapt.day, repriseActive: reprise.active,
+      adaptApplied: adapt.applied, adaptCancelled: adapt.cancelled,
       gainOn: !!me.gagnerDuTemps, gainReason: gainDisabledReason(me), firstSession,
     });
     if (reprise.active) return setProposals(null); // V-PROG-E8 : reprise douce active, aucune proposition de montée
@@ -350,6 +369,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
       onAnswer={answer} onAnswerLevel={answerLevelFn} repriseTexts={data.repriseTexts} repriseDay={data.repriseDay}
       gain={{ on: data.gainOn, disabledReason: data.gainReason, onToggle: toggleGain, busy: gainBusy, firstSession: data.firstSession }}
       week={programWeek(data.program, Date.now())}
+      adaptApplied={data.adaptApplied} adaptCancelled={data.adaptCancelled}
       cardioOpt={data.program.cardioOption ? { state: data.program.cardioOption, onToggle: toggleCardio, busy: optBusy } : undefined}
       onSkip={() => skipSession(data.program.id, data.next.dayIndex, 'renonce', null)}
       onUnwell={() => skipSession(data.program.id, data.next.dayIndex, 'pas_bien', null)}

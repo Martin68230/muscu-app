@@ -122,7 +122,14 @@ export type ProgressionEvent =
   | { type: 'refus'; kind: 'montee' | 'descente'; movementId: string; from: number; to: number; at: string }
   | { type: 'niveau'; accepted: boolean; at: string }
   /** Montée ou descente acceptée puis annulée parce que le programme a été régénéré entre-temps. */
-  | { type: 'annule'; movementId: string; at: string };
+  | { type: 'annule'; movementId: string; at: string }
+  /** Adaptation après séance (knowledge/adaptation-regles.md §6) : acceptée / « plus tard » / appliquée à la séance suivante / annulée (gel, changement). */
+  | { type: 'adapt_accepte'; kind: AdaptKind; movementId: string; at: string; sets?: number; variantId?: string; restSec?: number }
+  | { type: 'adapt_plus_tard'; kind: AdaptKind; movementId: string; at: string }
+  | { type: 'adapt_applique' | 'adapt_annule'; kind: AdaptKind; movementId: string; at: string; reason?: string };
+
+/** Changement proposé après séance puis accepté en un appui : une série en plus, une version plus dure, 30 s de repos en plus, ou une décharge de 10 %. */
+export type AdaptKind = 'serie' | 'variante' | 'repos' | 'decharge';
 
 export interface EquipmentProfile extends SyncFields {
   preset: EquipmentPreset;
@@ -206,6 +213,8 @@ export interface PlannedExercise {
    * Absent = les deux côtés ensemble. `unit: 'reps_par_cote'` (dose fixe, rotation) a le même sens.
    */
   perSide?: boolean;
+  /** Changement accepté après la séance précédente et appliqué à ce plan (série en plus, version plus dure, repos allongé, décharge). */
+  adaptApplied?: AdaptKind;
   /** Cardio (cardio-regles.md §3.4 (g), STR-REP-7) : effort « facile » au lieu de « modéré ». Absent = modéré. */
   intensity?: 'moderee' | 'facile';
   /** STR-SEA-4 : dernières minutes du cardio en allure lente (comprises dans la durée). Absent = 0. */

@@ -40,6 +40,13 @@ import { mk, type MkOpts } from './generator-helpers';
 // Référence régénérée le 01/11/2026 pour la mesure provisoire B1 du contrôle des exemples de programmes : DOSE_LIMITS limite nordique-ischios et
 // pompe-equilibre-mur à une réserve >= 2 et 2 séries au plus (config.ts) ; 87 cas sur 662 changent, tous de niveau avancé (RIR 1 de l'avancé et 3 séries
 // sur ces deux fiches) ; aucun cas débutant ni intermédiaire ne change.
+// Référence régénérée une 3e fois le 06/11/2026 (repli « moins d'épaules », docs/decisions-prises.md) après comparaison ancien / nouveau
+// générateur sur 2 700 profils (objectifs de la grille, 2 à 6 jours, 3 niveaux, profils A0 / C / D / F, 30 à 75 min et sans limite) :
+// 446 changent, tous intermédiaires ou avancés (aucun débutant : plafond de séance de 10, rien à remplacer) ; 323 ont plus d'exercices
+// (l'accessoire d'épaule en trop est remplacé au lieu d'être retiré), 119 autant, 4 un de moins (A0, intermédiaire, 3 jours, 60 min et
+// sans limite : un remplacement en B ne suffit pas, un tirage est retiré en C) ; épaules <= 20 par semaine dans les 2 700 ; avec « Gagner du
+// temps », 111 programmes gagnent une paire, aucun n'en perd. Cardio de rang 2 en haut / bas (salle F, 60 min, 4 jours) : 0 -> 2 blocs.
+// Dans la grille de cette référence (2 et 3 jours) : 35 empreintes sur 662 changent (intermédiaire 15, avancé 20 ; aucun débutant).
 // Référence régénérée de nouveau le 06/11/2026 après la suite complète : 63 cas sur 662 changent (intermédiaire et avancé, objectifs
 // muscle / force / perte de gras / sport / endurance, 6-7 cas chacun ; 1 cas cardio 4 jours). Causes : (1) au-delà de 20 séries d'épaules,
 // on baisse d'abord les accessoires où l'épaule est PRINCIPALE (plus les pressions où elle est secondaire : pectoraux >= 9 gardé) et une
@@ -64,6 +71,18 @@ import { mk, type MkOpts } from './generator-helpers';
 // ajoutés par la nouvelle durée : 83 programmes ont moins d'exercices, 132 plus ; D3 / D4 hors grossesse). Les 24 cas de (1) changent aussi
 // par (2). Contrôles : aucun cas débutant n'a une série <= 5 répétitions ni un D3 (pompe au sol) en première séance ; D4 (pompe en
 // équilibre, 2 x 2-5, réserve 3) seulement chez l'avancé ; traction toujours en réserve >= 2 ; réserve 1 seulement sur machine ou poulie.
+// Référence régénérée le 06/11/2026 pour le contrôle des zones musculaires (niveau 2, src/generator/zones-check.ts) après comparaison avant /
+// après : 661 cas sur 662 changent (seul « dos niveau 3 », refusé, est inchangé) ; 117 par les seuls messages V-MSG-ZONES-GRIS / ORANGE ;
+// 544 aussi par les exercices (changement d'exercice hors piliers, tronc, isolation et supersets, jamais une fiche déjà dans la semaine ;
+// séries ajoutées hors débutant, grossesse, reprise, zone épaule / dos >= 2), dont 162 débutants (échanges seulement) et, hors grille,
+// grossesse et post-partum débutants, épaule 1 et 3, 4 jours (comptes faits avant le garde-fou « dose fixe et isolation : aucune série
+// ajoutée », qui ne touche que des intermédiaires / avancés à 75 min ; référence écrite après). Mesure faite avant les deux garde-fous débutant / variété : zones grises
+// 7 573 -> 4 400 sur la grille, aucune séance nouvellement hors durée. Plafonds V-PLAF et hebdomadaire vérifiés (zones-generator.test.ts).
+// Référence régénérée de nouveau le 06/11/2026 (décisions du chef de projet) : V-MSG-ZONES-ORANGE retiré des messages ; V-MSG-ZONES-GRIS
+// seulement pour les zones corrigeables ; zones sans emplacement (SLOTLESS_ZONES) ni corrigées ni citées. Comparaison avec la référence
+// précédente : 661 cas sur 662 changent (216 par niveau, + 9 cas blessure / 4 jours ; « dos niveau 3 », refusé, inchangé), tous au moins
+// par le retrait du message orange ; dans les 6 profils de démonstration, les profils 2 et 6 retrouvent leurs exercices d'avant le contrôle
+// des zones (plus d'échange pour les mollets / tibias) ; profils 1 et 5 : 1 accessoire de plus change en semaines 2 et 4.
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

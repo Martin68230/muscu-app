@@ -3,7 +3,8 @@
 // propositions de l'aperçu, et enregistrement des décisions (accepter, plus tard) dans le profil.
 import { isPerSide } from './sides';
 import { list, update } from '../data/repo';
-import type { Level, ProgramDay, Program, ProgressionEvent, SetLog, WorkoutSession, PlannedExercise } from '../data/model';
+import type { AdaptKind, Level, ProgramDay, Program, ProgressionEvent, SetLog, WorkoutSession, PlannedExercise } from '../data/model';
+import type { AdaptCancel, AdaptChange } from './adapt-accept';
 import { buildCtx, isChargeable, type Ctx } from '../generator/context';
 import { sortSameEchelon } from '../generator/safety';
 import { classAllowed } from '../generator/reps';
@@ -234,6 +235,45 @@ export async function acceptEchelon(p: MoveProposal, now: Date = new Date()): Pr
 /** « Plus tard » : refus enregistré, pas de nouvelle proposition avant quelques séances valables de plus. */
 export async function refuseEchelon(p: MoveProposal, now: Date = new Date()): Promise<void> {
   await recordEvent({ type: 'refus', kind: p.kind, movementId: p.movementId, from: p.from, to: p.to, at: now.toISOString() });
+}
+
+// ----- Acceptation en un appui des propositions d'adaptation (série, version plus dure, repos, décharge) -----
+export interface AdaptCard {
+  movementId: string;
+  kind: AdaptKind;
+  /** Nombre de séries visé (série), version visée (variante), repos visé en secondes (repos). Vérifiés de nouveau au moment d'appliquer. */
+  sets?: number;
+  variantId?: string;
+  restSec?: number;
+}
+
+async function recordEvents(evs: ProgressionEvent[]): Promise<void> {
+  const p = await profileRow();
+  if (!p || !evs.length) return;
+  await update('profile', p.id, { progressionLog: [...(p.progressionLog ?? []), ...evs].slice(-MAX_EVENTS) });
+}
+
+/** « Accepter » : mémorisé avec l'exercice, le type et la date ; appliqué à la prochaine séance de cet exercice (applyAccepted). */
+export async function acceptAdapt(c: AdaptCard, now: Date = new Date()): Promise<void> {
+  const ev: ProgressionEvent = { type: 'adapt_accepte', kind: c.kind, movementId: c.movementId, at: now.toISOString() };
+  if (c.sets !== undefined) ev.sets = c.sets;
+  if (c.variantId !== undefined) ev.variantId = c.variantId;
+  if (c.restSec !== undefined) ev.restSec = c.restSec;
+  await recordEvents([ev]);
+}
+
+/** « Plus tard » : pas de nouvelle proposition de cet exercice avant la séance suivante. */
+export async function laterAdapt(c: AdaptCard, now: Date = new Date()): Promise<void> {
+  await recordEvents([{ type: 'adapt_plus_tard', kind: c.kind, movementId: c.movementId, at: now.toISOString() }]);
+}
+
+/** Enregistre ce que `applyAccepted` a appliqué (démarrage de la séance) et annulé (gel, programme changé). */
+export async function recordAdaptResult(r: { applied: readonly AdaptChange[]; cancelled: readonly AdaptCancel[] }, now: Date = new Date()): Promise<void> {
+  const at = now.toISOString();
+  await recordEvents([
+    ...r.applied.map((a): ProgressionEvent => ({ type: 'adapt_applique', kind: a.kind, movementId: a.movementId, at })),
+    ...r.cancelled.map((a): ProgressionEvent => ({ type: 'adapt_annule', kind: a.kind, movementId: a.movementId, at, reason: a.reason })),
+  ]);
 }
 
 /** Réponse à la proposition de niveau : l'appui de la personne est nécessaire (jamais de bascule seule). */

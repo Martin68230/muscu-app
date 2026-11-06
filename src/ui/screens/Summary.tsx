@@ -2,7 +2,8 @@ import { useEffect, useState } from 'preact/hooks';
 import type { PregnancyStatus, WorkoutSession } from '../../data/model';
 import { list, update } from '../../data/repo';
 import { gentlerAlternative, painCheck, proposeProgression } from '../../session/history';
-import { ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
+import { acceptAdapt, laterAdapt, loadEvents, type AdaptCard } from '../../session/progression-store';
+import { ADAPT_TEXT, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
 import { symptomFrozen } from '../../session/progression';
 import { repriseOf } from '../../session/missed-config';
 import type { SessionController } from '../../session/store';
@@ -21,16 +22,21 @@ export interface SummaryScreenProps {
   onEditInjuries?: () => void;
 }
 
+/** Une ligne de « La prochaine fois » ; `card` : proposition qu'on peut accepter en un appui. */
+interface NextItem { text: string; card?: AdaptCard }
+
 interface Loaded {
   summary: SummaryData;
   text: SummaryText;
-  next: string[];
+  next: NextItem[];
   pain: { text: string | null; s1: string | null };
 }
 
 /** Bilan de séance (F6) : sobre, 3 à 4 chiffres, un texte de fin, des propositions pour la prochaine fois. Rien n'est partagé. */
 export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }: SummaryScreenProps) {
   const [loaded, setLoaded] = useState<Loaded | null>(null);
+  const [answers, setAnswers] = useState<Record<string, 'ok' | 'later'>>({});
+  const [adaptError, setAdaptError] = useState(false);
   const pregnant = pregnancy === 'enceinte' || pregnancy === 'post_partum';
   const outcome = ctl.state.outcome;
   const day = ctl.day;
@@ -55,7 +61,9 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
         // Abandon et symptôme : aucun bilan stocké (§3.4). Sinon le bilan est gardé sur la séance (recalculable).
         if (summary.status !== 'abandon' && summary.status !== 'symptome') await update('sessions', row.id, { summary: summary as unknown as Record<string, unknown> });
 
-        const next: string[] = [];
+        const next: NextItem[] = [];
+        const adaptEvents = await loadEvents();
+        let deloadShown = false;
         if (outcome === 'terminee' && !pregnant) {
           const frozen = symptomFrozen(sessions);
           // R-FIN vient d'être appliquée : la reprise peut s'être terminée à cette séance (progression normale ensuite).
@@ -68,12 +76,25 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
               exercise: exo, sets, sessions, pregnant: data.pregnant, variantTags: variant?.tags, equipment: data.equipment ?? undefined,
               echelon: variant?.echelon, bodyweight, frozenBySymptom: frozen, repriseActive,
               ...(data.adaptOf?.(exo, true) ?? {}),
+              adaptEvents,
             });
             if (p.echelonProposal) {
-              if (p.echelonProposal.kind === 'montee') next.push(ECHELON_TEXT.nextTime(exName(data.fiches, exo)));
+              if (p.echelonProposal.kind === 'montee') next.push({ text: ECHELON_TEXT.nextTime(exName(data.fiches, exo)) });
               return;
             }
-            if (p.action === 'hausse' || p.action === 'baisse' || p.reason === 'douleur') next.push(`${exName(data.fiches, exo)} : ${p.text}`);
+            // Acceptation en un appui : série en plus, version plus dure, repos, décharge (une seule décharge proposée par bilan).
+            const base = { movementId: exo.movementId };
+            const card: AdaptCard | null = p.setsProposal ? { ...base, kind: 'serie', sets: p.setsProposal }
+              : p.harderVariant ? { ...base, kind: 'variante', variantId: p.harderVariant.variantId }
+              : p.restProposal ? { ...base, kind: 'repos', restSec: p.restProposal }
+              : p.deloadProposal && !deloadShown ? { ...base, kind: 'decharge' } : null;
+            if (card) {
+              if (card.kind === 'decharge') deloadShown = true;
+              next.push({ text: `${exName(data.fiches, exo)} : ${p.text}`, card });
+              return;
+            }
+            if (p.deloadProposal) return;
+            if (p.action === 'hausse' || p.action === 'baisse' || p.reason === 'douleur') next.push({ text: `${exName(data.fiches, exo)} : ${p.text}` });
           });
         }
         const check = painCheck(sets, sessions, injuries);
@@ -93,6 +114,11 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
     })();
   }, []);
 
+  const answer = (card: AdaptCard, ok: boolean) => {
+    (ok ? acceptAdapt(card) : laterAdapt(card))
+      .then(() => setAnswers((a) => ({ ...a, [card.movementId]: ok ? 'ok' : 'later' })))
+      .catch(() => setAdaptError(true));
+  };
   const symptom = outcome === 'symptome';
   const t = loaded?.text;
   return (
@@ -144,7 +170,24 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
             {loaded.next.length > 0 && (
               <section class="card" aria-label="La prochaine fois">
                 <h2>La prochaine fois</h2>
-                <ul class="fiche-liste">{loaded.next.map((l, i) => <li key={i}>{l}</li>)}</ul>
+                <ul class="adapt-list">
+                  {loaded.next.map((l, i) => {
+                    const done = l.card ? answers[l.card.movementId] : undefined;
+                    return (
+                      <li key={i}>
+                        <p>{l.text}</p>
+                        {l.card && !done && (
+                          <div class="adapt-actions">
+                            <button type="button" class="btn btn-primary" onClick={() => answer(l.card!, true)}>{ADAPT_TEXT.accept}</button>
+                            <button type="button" class="btn" onClick={() => answer(l.card!, false)}>{ADAPT_TEXT.later}</button>
+                          </div>
+                        )}
+                        {done && <p class="dim" role="status">{done === 'ok' ? ADAPT_TEXT.accepted : ADAPT_TEXT.laterDone}</p>}
+                      </li>
+                    );
+                  })}
+                </ul>
+                {adaptError && <p class="dim" role="alert">Enregistrement impossible. Réessaie.</p>}
               </section>
             )}
             {loaded.pain.text && <div class="notice"><p>{loaded.pain.text}</p></div>}

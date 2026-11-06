@@ -117,6 +117,8 @@ export type MessageId =
   // Cardio (B4, knowledge/cardio-regles.md) : textes de `kine` T0-T5 et messages du générateur.
   | 'T0' | 'T1' | 'T1u' | 'T3' | 'T4' | 'T5' | 'V-MSG-CARDIO-OMS' | 'V-MSG-CARDIO-TEMPS' | 'V-MSG-CARDIO-IMPOS' | 'V-MSG-CARDIO-MACHINE'
   | 'V-MSG-CARDIO-JOURS'
+  // Niveau 2 (06/11/2026) : zones musculaires de la semaine prévue (zones-check.ts).
+  | 'V-MSG-ZONES-GRIS'
   // D25 (structure-programmes.md) : 1 jour (STR-REP-1), jours légers (STR-REP-6), grossesse (STR-REP-11), séance unique courte.
   | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE'
   // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).

@@ -87,6 +87,15 @@ for (const p of PROFILS) {
     out.push('### Semaine 2 (et 4) de la rotation, séances complètes', '');
     g.sessions.forEach((s) => out.push(...sessionBlock(s, 2), ''));
   }
+  // Niveau 2 : points par zone sur la semaine type (séries de travail, principal 1, secondaire 0,5, coefficients du coach) et statut.
+  const zr = gen.zoneReport(g, p.input);
+  const fmt = (ids) => ids.map((z) => `${gen.zoneName(z)} ${String(zr.points[z]).replace('.', ',')}`).join(' ; ') || 'aucune';
+  const byStatus = (st) => gen.ZONES.map((z) => z.id).filter((z) => !zr.excluded[z] && zr.status[z] === st);
+  const excl = gen.ZONES.map((z) => z.id).filter((z) => zr.excluded[z]);
+  st.zones = { rouge: byStatus('rouge').length, orange: byStatus('orange').length, gris: zr.greyFixable, sansPlace: zr.greySlotless, exclues: excl.length };
+  out.push('### Zones musculaires (semaine type, points = séries de travail ; seuils de l\'objectif « ' + (p.input.goals[0].goalKey) + ' »)', '',
+    `- Rouge (repère atteint) : ${fmt(byStatus('rouge'))}`, `- Orange : ${fmt(byStatus('orange'))}`, `- Gris (à corriger) : ${fmt(zr.greyFixable)}`, `- Zones sans emplacement (grises, non corrigées pour l\'instant, backlog) : ${fmt(zr.greySlotless)}`,
+    `- Hors contrôle (aucune fiche possible avec ce matériel / ce niveau, ou zone d\'une blessure) : ${excl.map((z) => `${gen.zoneName(z)} (${zr.excluded[z] === 'blessure' ? 'blessure' : 'pas de fiche'}, ${String(zr.points[z]).replace('.', ',')})`).join(' ; ') || 'aucune'}`, '');
   out.push(`Variété : pénurie signalée pour ${g.penurieVariete?.length ? g.penurieVariete.join(', ') : 'aucun plan'} (penurieVariete).`, '');
   (g.cardioSessions ?? []).forEach((c) => {
     out.push(`### ${c.label}${c.kind ? ` [${c.kind}]` : ''}, ${JOURS[c.weekday]}, environ ${c.estimatedMin} min`);
@@ -146,6 +155,8 @@ out.push('| Profil | Exercices placés | Distincts | Doses distinctes | Paires d
 stats.filter((s) => s.ok).forEach((s) => out.push(`| ${s.titre.slice(0, 60)} | ${s.nbEx} | ${s.distinct} | ${s.doses} | ${s.pairs} |`));
 out.push('');
 stats.filter((s) => s.ok).forEach((s) => out.push(`- ${s.titre.slice(0, 40)} : chevauchements ${s.overlap.join(' ; ')} ; exercices répétés (semaine 1) : ${s.repeats.join(', ') || 'aucun'} ; accessoires qui changent en semaine 2 : ${s.rotation}`));
+out.push('', '## Zones musculaires par profil (semaine type)', '', '| Profil | Rouge | Orange | Gris (à corriger) | Zones sans emplacement | Hors contrôle |', '|---|---|---|---|---|---|');
+stats.filter((s) => s.ok).forEach((s) => out.push(`| ${s.titre.slice(0, 60)} | ${s.zones.rouge} | ${s.zones.orange} | ${s.zones.gris.length ? s.zones.gris.map(gen.zoneName).join(', ') : '0'} | ${s.zones.sansPlace.length ? s.zones.sansPlace.map(gen.zoneName).join(', ') : '0'} | ${s.zones.exclues} |`));
 out.push('');
 const prose = join(root, 'tools/demo-programmes-analyse.md');
 if (existsSync(prose)) out.push(readFileSync(prose, 'utf8'));
