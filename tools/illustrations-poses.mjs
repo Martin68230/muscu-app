@@ -926,6 +926,12 @@ export const EXERCICES = [
     a: { p: [0, 114], t: 88, h: 88, legN: { to: [14, 44], bend: 'f', foot: -20 }, legF: { to: [-4, A], bend: 'f' }, armN: { a: [-125, -50] }, armF: { a: [-55, 35] } },
     b: { p: [0, 114], t: 88, h: 88, legN: { to: [-4, A], bend: 'f' }, legF: { to: [12, 46], bend: 'f', foot: -20 }, armN: { a: [-55, 35] }, armF: { a: [-125, -50] } },
   },
+  {
+    id: 'corde-a-sauter', titre: 'Corde à sauter, vue de profil : petits sauts bas, pieds joints, coudes près du corps, les poignets font tourner la corde',
+    labels: ['Pieds au sol, genoux souples', 'Petit saut, quelques centimètres'],
+    a: { p: [0, 112], t: 90, legN: { to: [4, A], bend: 'f' }, legF: { to: [-2, A], bend: 'f' }, armN: { a: [-80, 10] }, armF: { a: [-82, 8] } },
+    b: { p: [0, 122], t: 90, legN: { to: [4, 12], bend: 'f', foot: -40 }, legF: { to: [-2, 10], bend: 'f', foot: -40 }, armN: { a: [-80, 10] }, armF: { a: [-82, 8] }, props: [['arrow', [70, 150], [70, 190]]] },
+  },
   // ---- Lot 11 (variété : curl, développés et tirage à l'élastique) ----
   {
     id: 'curl-halteres', titre: 'Curl aux haltères, debout, vue de profil : bras le long du corps, puis haltères montés vers les épaules, coudes contre les côtes (prise marteau : même geste, paumes face aux cuisses)',

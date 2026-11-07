@@ -124,7 +124,8 @@ export type MessageId =
   // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).
   | 'T8' | 'V-MSG-SPORT-MATCH' | 'T9'
   // D33 (programmes-v3.md §6, PV3-CAR-3) : séance de cardio incluse par défaut en perte de gras.
-  | 'V-MSG-CARDIO-DEFAUT';
+  | 'V-MSG-CARDIO-DEFAUT'
+  | 'V-MSG-CORDE';
 export interface GenMessage {
   id: MessageId;
   text: string;

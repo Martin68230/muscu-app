@@ -157,6 +157,8 @@ export const msg = {
   /** D31 (cardio-regles.md §3.2ter B (c), `kine`) : séance de sport incluse. */
   sportMatch: () => m('V-MSG-SPORT-MATCH', 'Évite de faire ta séance de cardio la veille d’un match, et le lendemain d’un match en cas de courbatures.'),
   /** D33 (programmes-v3.md §6, PV3-CAR-3) : texte de `coach`, confirmé par `kine`. */
+  /** 07/11/2026 : la personne a une corde mais elle n'est pas proposée : la raison, et la marche à la place. */
+  corde: (why: string) => m('V-MSG-CORDE', `La corde à sauter n’est pas proposée cette semaine (${why}) : une marche rapide la remplace.`),
   cardioDefaut: () => m('V-MSG-CARDIO-DEFAUT', 'Tu as choisi de perdre du gras : une séance de cardio facile est ajoutée. Tu peux la retirer dans ton profil.'),
 };
 

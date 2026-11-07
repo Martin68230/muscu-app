@@ -7,10 +7,10 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CARDIO_CAPS, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CARDIO_CAPS, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
-import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin } from './impact';
+import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
 import { isoEligible, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
 import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekMusclesOf, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
@@ -1045,6 +1045,26 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     if (ded.kind === 'sport' && cardioSessions.length) extraMsgs.push(msg.sportMatch());
     // D33 (PV3-CAR-3) : séance ajoutée par défaut (perte de gras), réglage non touché par la personne.
     if (ded.kind === 'option' && cardioSessions.length && input.options?.seanceCardio === undefined && CARDIO_OPTION.defaultOnGoals.includes(ctx.goalKey ?? '')) extraMsgs.push(msg.cardioDefaut());
+  }
+  // 07/11/2026 : corde à sauter. Remplace le contenu d'UNE séance dédiée de la semaine (la première jour permis), jamais un bloc après la
+  // musculation ; durée courte et fixe. Sinon marche (déjà en place) et un message qui dit pourquoi.
+  {
+    const probe = ropeCardio(ctx);
+    // Relecteur 07/11 : une séance avec sauts (sport) la même semaine = déjà un impact : pas de corde (1 impact par semaine au plus).
+    if (probe.rope && cardioSessions.length && cardioSessions.some((s) => s.jumps)) extraMsgs.push(msg.corde('une séance avec sauts est déjà prévue cette semaine'));
+    else if (probe.rope && cardioSessions.length) {
+      const impactDays = new Set<number>();
+      const idx = cardioSessions.findIndex((s) => ropeCardio(ctx, { d: s.weekday, heavyDays, impactDays }).rope && !s.jumps && !ded.easyDays.includes(s.weekday));
+      if (idx >= 0) {
+        const s = cardioSessions[idx];
+        const min = Math.min(ROPE.minutes[ctx.level], s.cardio.capMin);
+        s.cardio = { ...cardioItem('seance', probe.rope, min, min, BLOCK_WEEKS, ctx, { flat: true }), slowEndMin: 0 };
+        s.estimatedMin = Math.ceil(min / TIME.displayRoundMin) * TIME.displayRoundMin;
+      } else {
+        const why = cardioSessions.map((s) => ropeCardio(ctx, { d: s.weekday, heavyDays, impactDays }).why).find((w) => w) ?? 'aucun jour ne convient';
+        extraMsgs.push(msg.corde(why));
+      }
+    } else if (!probe.rope && probe.why) extraMsgs.push(msg.corde(probe.why));
   }
   // 3.2bis (OMS, OK) : jamais plus de 300 min modérées par semaine (plafond de sécurité, jamais une cible) : la dernière dédiée saute.
   const weekTotal = (w: number) =>

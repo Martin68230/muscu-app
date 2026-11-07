@@ -2,7 +2,7 @@
 // (§5.1 (6ter), écran D28 non codé : fonctions pures prêtes). Toutes les valeurs viennent de config.ts (JUMPS, RUN, IMPACT, PLIO_COMPOSE,
 // IMPACT_EXCLUDED_ZONES, JUMP_MOVEMENTS) avec leur statut. Aucune fiche n'est inventée : un mouvement sans fiche est « non disponible ».
 import type { Level } from '../data/model';
-import { itemNom, FICHES_NON_DISPONIBLES, IMPACT, IMPACT_EXCLUDED_ZONES, JUMP_MOVEMENTS, JUMPS, OUTDOOR_RUN_REQUIRES, PLIO_COMPOSE, RUN, type JumpMovement } from './config';
+import { itemNom, ROPE, FICHES_NON_DISPONIBLES, IMPACT, IMPACT_EXCLUDED_ZONES, JUMP_MOVEMENTS, JUMPS, OUTDOOR_RUN_REQUIRES, PLIO_COMPOSE, RUN, type JumpMovement } from './config';
 import { levelIdx, type Ctx } from './context';
 import { allowedVariants, caseFor, ficheAdmissible, USABLE_STATUTS } from './safety';
 import type { Fiche, JumpBlock, JumpItem } from './types';
@@ -325,4 +325,25 @@ export function createSessionCheck(req: CreateRequest, st: CreateState): CreateC
     order: req.jumps ? ['echauffement', 'sauts', ...(req.legsStrength ? ['force'] : []), 'retour_au_calme'] : ['echauffement', ...(req.run ? ['course'] : []), ...(req.legsStrength ? ['force'] : []), 'retour_au_calme'],
     startContacts: st.pauseOver2Weeks ? JUMPS.startContacts[st.level] : null,
   };
+}
+
+// ----- Cardio « Corde à sauter » (07/11/2026) -----
+export interface RopeChoice { ficheId: string; variantId: string; nom: string }
+/**
+ * La corde comme cardio d'une séance dédiée : la personne a la corde, aucune exclusion d'impact (grossesse / post-partum, zone du bas
+ * du corps, reprise : impactExclusion), la fiche est sûre pour le profil (épaule / poignet niveau 2-3 compris, via ses cases), et le jour
+ * est permis (jambes lourdes, autre impact la veille ou le lendemain). Renvoie la corde, ou la raison du refus (null si la personne n'a
+ * pas la corde : rien à dire). `day` absent : seuls les critères du profil sont vérifiés.
+ */
+export function ropeCardio(ctx: Ctx, day?: { d: number; heavyDays: ReadonlySet<number>; impactDays: ReadonlySet<number> }): { rope: RopeChoice | null; why: string | null } {
+  if (!ctx.available.has(ROPE.tag)) return { rope: null, why: null };
+  const ex = impactExclusion(ctx);
+  if (ex === 'grossesse') return { rope: null, why: 'grossesse ou post-partum : pas d’impact' };
+  if (ex === 'zone') return { rope: null, why: 'une zone gênée du bas du corps ou du dos exclut les sauts' };
+  if (ex === 'reprise') return { rope: null, why: 'reprise après une pause : pas de saut pour l’instant' };
+  const f = ctx.variantOwner.get(ROPE.variantId);
+  if (!f || !variantSafe(f, ctx, ROPE.variantId)) return { rope: null, why: 'elle ne convient pas à tes zones sensibles' };
+  if (day && !jumpDayAllowed(day.d, day.heavyDays, ctx.level, day.impactDays)) return { rope: null, why: 'trop près d’une séance de jambes lourdes ou d’un autre impact' };
+  const v = f.variantes.find((x) => x.id === ROPE.variantId)!;
+  return { rope: { ficheId: f.id, variantId: ROPE.variantId, nom: itemNom(f.nom, v) }, why: null };
 }

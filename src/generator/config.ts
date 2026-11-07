@@ -850,7 +850,7 @@ export const PENDING_RULES = {
 
 /** Fiches que les règles citent mais qui n'existent pas encore (vague 2 de `coach`) : jamais proposées par le générateur. */
 export const FICHES_NON_DISPONIBLES: readonly string[] = [
-  'corde-a-sauter', 'saut-longueur-pieds-joints',
+  'saut-longueur-pieds-joints',
   'velo', 'rameur', 'tapis-de-course', 'elliptique', 'presse-a-cuisses',
 ];
 
@@ -1083,4 +1083,15 @@ export const IMPACT_SCHEMAS: readonly string[] = ['saut', 'course'];
  * §5.1 (1) : variantes avec saut ou course rangées dans d'autres schémas (cardio), jamais en grossesse ni en post-partum. Liste tenue à
  * jour avec les fiches (variantes avec saut de JUMP_MOVEMENTS, course sur place, pas chassés rapides, mountain climbers rapides).
  */
-export const IMPACT_VARIANTS: readonly string[] = ['jumping-jacks-saut', 'montees-genoux-course', 'pas-chasses-rapides', 'mountain-climbers-rapide', 'rebonds-deux-pieds'];
+export const IMPACT_VARIANTS: readonly string[] = ['jumping-jacks-saut', 'montees-genoux-course', 'pas-chasses-rapides', 'mountain-climbers-rapide', 'rebonds-deux-pieds', 'corde-intervalles'];
+
+/**
+ * 07/11/2026 (décision de l'utilisateur) : cardio « Corde à sauter » en intervalles. Proposée seulement dans une séance de cardio
+ * dédiée (jamais dans un bloc après la musculation, cardio-regles.md §5.1 (6)), 1 par semaine, courte et fixe. NON SOURCÉ.
+ */
+export const ROPE = {
+  variantId: 'corde-intervalles',
+  tag: 'corde_a_sauter',
+  maxPerWeek: 1,
+  minutes: { debutant: 8, intermediaire: 10, avance: 10 } as Record<Level, number>,
+};
