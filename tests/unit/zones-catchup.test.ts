@@ -159,3 +159,83 @@ describe('simulation : profil 1 (débutant muscle maison, 3 jours) avec une séa
     expect(r.added).toEqual([]);
   });
 });
+
+describe('zoneCatchUp : échange d’exercice (dernier recours)', () => {
+  // Séance telle que générée (pleine : peu ou pas de série en plus possible), pour que seul l'échange puisse agir.
+  const full = (input: GeneratorInput) => {
+    const w = weekOf(input);
+    return { ...w, days: w.days.map((d) => ({ ...d, exercises: d.exercises })) };
+  };
+  const run = (input: GeneratorInput, o: Partial<CatchUpProfile> = {}, dm?: number) => {
+    const { days, durationMin } = full(input);
+    return { days, r: zoneCatchUp([], { days, dayIndex: 0, durationMin: dm ?? durationMin }, prof(input, o)) };
+  };
+
+  it('+1 série possible : pas d’échange', () => {
+    const { days, durationMin } = weekOf(INTER, true);
+    const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER));
+    expect(r.added.length).toBeGreaterThan(0);
+    expect(r.swapped).toBeUndefined();
+  });
+
+  it('échange fait : une seule fiche change, hors semaine, même emplacement, zone mieux travaillée, séries non augmentées', () => {
+    const INPUTS = [INTER, mk({ level: 'avance', days: 3, dur: 60, goal: 'muscle', profile: 'F', place: 'salle' }), mk({ level: 'intermediaire', days: 4, dur: 75, goal: 'muscle', profile: 'F', place: 'salle' })];
+    let swapped = 0;
+    for (const input of INPUTS) {
+      const { days, r } = run(input);
+      if (!r.swapped) continue;
+      swapped++;
+      const was = days[0].exercises, now = r.day.exercises;
+      expect(now.length).toBe(was.length);
+      const diff = now.filter((e, i) => e.movementId !== was[i].movementId);
+      expect(diff).toHaveLength(1);
+      const i = now.findIndex((e) => e.movementId === r.swapped!.to);
+      expect(was[i].movementId).toBe(r.swapped!.from);
+      expect(now[i].slot).toBe(was[i].slot);
+      expect(now[i].sets).toBeLessThanOrEqual(was[i].sets);
+      expect(now[i].startLoadKg).toBeNull();
+      expect(days.flatMap((d) => d.exercises.map((e) => e.movementId))).not.toContain(r.swapped!.to);
+      expect(r.low.map((z) => z.zone)).toContain(r.swapped!.zone);
+    }
+    expect(swapped).toBeGreaterThan(0);
+  });
+
+  const D4 = mk({ level: 'intermediaire', days: 4, dur: 75, goal: 'muscle', profile: 'F', place: 'salle' });
+  const D4X = (o: Partial<Parameters<typeof mk>[0]>) => mk({ level: 'intermediaire', days: 4, dur: 75, goal: 'muscle', profile: 'F', place: 'salle', ...o });
+
+  it('référence : ce profil échange bien un exercice (les refus ci-dessous ne sont donc pas vides)', () => {
+    expect(run(D4).r.swapped).toBeDefined();
+  });
+
+  it('refusé : grossesse / post-partum, symptôme, épaule niveau 2, débutant, reprise', () => {
+    for (const [input, o] of [
+      [D4X({ preg: 'post_partum' }), {}],
+      [D4, { symptomFrozen: true }],
+      [D4, { repriseActive: true }],
+      [D4X({ injuries: [['epaule', 2]] }), {}],
+      [D4X({ level: 'debutant' }), {}],
+    ] as [GeneratorInput, Partial<CatchUpProfile>][]) {
+      expect(run(input, o).r.swapped).toBeUndefined();
+    }
+  });
+
+  it('refusé : exercice gelé par la douleur, ou durée sans marge', () => {
+    expect(run(D4, { painFrozen: () => true }).r.swapped).toBeUndefined();
+    const { days, r } = run(D4, {}, 1);
+    expect(r.swapped).toBeUndefined();
+    expect(r.day).toBe(days[0]);
+  });
+
+  it('refusé : zone gênée (genou niveau 1) : jamais une fiche qui touche cette zone, jamais la zone elle-même', () => {
+    const { r } = run(D4X({ injuries: [['genou', 1]] }));
+    if (r.swapped) expect(Object.keys(FICHES.find((x) => x.id === r.swapped!.to)!.securite.zones)).not.toContain('genou');
+    expect(r.low.map((z) => z.zone)).not.toContain('quadriceps');
+  });
+
+  it('plafonds : aucune zone ne perd son statut et le plafond de 20 par zone tient', () => {
+    const { days, r } = run(D4);
+    const pts = (ds: readonly ProgramDay[]) => capGroupPoints(pointsByZone(ds.flatMap((d) => d.exercises.map((e) => ({ ficheId: e.movementId, sets: e.sets }))), FICHES as never));
+    const before = pts(days);
+    for (const [g, v] of pts([r.day, ...days.slice(1)])) expect(v.points, g).toBeLessThanOrEqual(Math.max(zoneCaps(v.zone).week, before.get(g)!.points));
+  });
+});

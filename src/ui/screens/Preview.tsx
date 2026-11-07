@@ -3,7 +3,7 @@ import type { Program, ProgramDay, Profile } from '../../data/model';
 import { FICHES_ERROR, loadFiches, type Fiche } from '../../data/fiches';
 import { list } from '../../data/repo';
 import { ADAPT_TEXT, D30_TEXT, ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT, ZONE_CATCHUP_TEXT } from '../../session/messages';
-import type { CatchUpAdd } from '../../zones/catchup';
+import type { CatchUpAdd, CatchUpSwap } from '../../zones/catchup';
 import { applyAccepted, type AdaptCancel, type AdaptChange } from '../../session/adapt-accept';
 import { SwitchRow } from '../SwitchRow';
 import { CardioDayNotes } from '../session/CardioNotes';
@@ -87,6 +87,7 @@ export interface PreviewViewProps {
   adaptCancelled?: AdaptCancel[];
   /** Niveau 2, étape 3 : séries de rattrapage des zones peu travaillées la semaine écoulée, appliquées à cette séance. */
   catchUp?: CatchUpAdd[];
+  catchUpSwap?: CatchUpSwap;
 }
 
 /** Cartes de progression de l'aperçu : « Prêt pour l'échelon suivant : <nom> ? » Accepter / Plus tard. */
@@ -119,7 +120,7 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
 }
 
 /** Contenu de l'aperçu (sans accès à la base : testable). */
-export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1, cardioOpt, adaptApplied = [], adaptCancelled = [], catchUp = [] }: PreviewViewProps) {
+export function PreviewView({ program, next, fiches, error, onBegin, proposals, cancelled, onAnswer, onAnswerLevel, repriseTexts = [], repriseDay, onSkip, onUnwell, gain, week = 1, cardioOpt, adaptApplied = [], adaptCancelled = [], catchUp = [], catchUpSwap }: PreviewViewProps) {
   const day = withProgramWeek(repriseDay ?? next.day, week);
   const hasPair = day.exercises.some((e) => !!e.supersetGroup);
   // Séance de cardio dédiée : l'option « Gagner du temps » (supersets de musculation) n'a pas d'objet.
@@ -199,6 +200,11 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
           <p>{ZONE_CATCHUP_TEXT.line(catchUp.map((c) => fiches.find((f) => f.id === c.movementId)?.nom ?? 'Exercice'))}</p>
         </section>
       )}
+      {catchUpSwap && (
+        <section class="notice small" role="status" aria-label="Échange d’exercice">
+          <p>{ZONE_CATCHUP_TEXT.swap(fiches.find((f) => f.id === catchUpSwap.from)?.nom ?? 'Exercice', fiches.find((f) => f.id === catchUpSwap.to)?.nom ?? 'Exercice')}</p>
+        </section>
+      )}
       {proposals && <ProposalCards proposals={proposals} onAnswer={onAnswer} onAnswerLevel={onAnswerLevel} />}
       {safety.length > 0 && (
         <section class="notice" aria-label="À savoir">
@@ -260,7 +266,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
 }
 
 type Loaded = {
-  adaptApplied: AdaptChange[]; adaptCancelled: AdaptCancel[]; catchUp: CatchUpAdd[];
+  adaptApplied: AdaptChange[]; adaptCancelled: AdaptCancel[]; catchUp: CatchUpAdd[]; catchUpSwap?: CatchUpSwap;
   program: Program; next: NextSession; fiches: Fiche[]; repriseTexts: string[]; repriseDay: ProgramDay | null; repriseActive: boolean;
   gainOn: boolean; gainReason: string | null; firstSession: boolean;
 };
@@ -288,6 +294,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     let firstSession = false;
     let adapt: { day: ProgramDay | null; applied: AdaptChange[]; cancelled: AdaptCancel[] } = { day: null, applied: [], cancelled: [] };
     let catchUp: CatchUpAdd[] = [];
+    let catchUpSwap: CatchUpSwap | undefined;
     const program = res.program;
     try {
       const [profiles, programs, allSessions, allSets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
@@ -301,8 +308,9 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
         if (res.cancelled.length) await recordAdaptResult({ applied: [], cancelled: res.cancelled });
         // Rattrapage des zones : même calcul qu'au démarrage (app.tsx), rien n'est enregistré.
         const cu = catchUpOf(pdata, program, next.dayIndex, res.day, !!plan?.state.actif, Date.now());
-        if (cu?.added.length) {
+        if (cu?.added.length || cu?.swapped) {
           catchUp = cu.added;
+          catchUpSwap = cu.swapped;
           adapt = { ...adapt, day: cu.day };
         }
       }
@@ -314,7 +322,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     }
     setData({
       program: res.program, next, fiches, repriseTexts: reprise.texts, repriseDay: reprise.day ?? adapt.day, repriseActive: reprise.active,
-      adaptApplied: adapt.applied, adaptCancelled: adapt.cancelled, catchUp,
+      adaptApplied: adapt.applied, adaptCancelled: adapt.cancelled, catchUp, catchUpSwap,
       gainOn: !!me.gagnerDuTemps, gainReason: gainDisabledReason(me), firstSession,
     });
     if (reprise.active) return setProposals(null); // V-PROG-E8 : reprise douce active, aucune proposition de montée
@@ -402,7 +410,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
       onAnswer={answer} onAnswerLevel={answerLevelFn} repriseTexts={data.repriseTexts} repriseDay={data.repriseDay}
       gain={{ on: data.gainOn, disabledReason: data.gainReason, onToggle: toggleGain, busy: gainBusy, firstSession: data.firstSession }}
       week={programWeek(data.program, Date.now())}
-      adaptApplied={data.adaptApplied} adaptCancelled={data.adaptCancelled} catchUp={data.catchUp}
+      adaptApplied={data.adaptApplied} adaptCancelled={data.adaptCancelled} catchUp={data.catchUp} catchUpSwap={data.catchUpSwap}
       cardioOpt={data.program.cardioOption ? { state: data.program.cardioOption, onToggle: toggleCardio, busy: optBusy } : undefined}
       onSkip={() => skipSession(data.program.id, data.next.dayIndex, 'renonce', null)}
       onUnwell={() => skipSession(data.program.id, data.next.dayIndex, 'pas_bien', null)}

@@ -57,6 +57,7 @@ export const PROGRESSION_TEXT = {
 export const ZONE_CATCHUP_TEXT = {
   line: (noms: readonly string[]): string =>
     `Cette semaine : une série en plus ${noms.length > 1 ? `à ${noms.length} exercices (${noms.join(', ')})` : `à ${noms[0]}`}, pour des zones qui ont eu peu de travail la semaine dernière.`,
+  swap: (de: string, vers: string): string => `Cette séance : ${vers} remplace ${de}, pour travailler une zone qui a eu peu de travail la semaine dernière. Commence doucement.`,
 };
 
 export const ADAPT_TEXT = {
