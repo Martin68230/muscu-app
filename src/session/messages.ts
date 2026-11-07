@@ -263,7 +263,7 @@ export const D30_TEXT = {
   outdoorHelp: 'Facultatif. Aucune localisation : l’app compte seulement le temps. Chaque séance dehors garde une version à l’intérieur.',
   /** 07/11/2026 (`kine`) : dépistage du cou, posé une seule fois ; seul « Non, rien » permet un exercice de cou. */
   neckTitle: 'Ton cou',
-  neckQuestion: 'Ces dernières semaines, as-tu eu mal, une raideur ou un vertige au niveau du cou ?',
+  neckQuestion: 'Ces dernières semaines, as-tu eu mal, une raideur, un vertige ou une gêne au cou, ou un problème de cou connu (cervicalgie, coup du lapin, choc) ?',
   neckHelp: 'Facultatif. Seulement si tu réponds « Non, rien », l’app peut ajouter un petit exercice du cou très doux. Sinon, aucun exercice du cou.',
   neckChoices: [['non', 'Non, rien'], ['oui', 'Oui'], ['refus', 'Je préfère ne pas répondre']] as readonly (readonly [string, string])[],
   gymLabel: 'J’ai accès à une salle',

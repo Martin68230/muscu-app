@@ -23,6 +23,7 @@ import { SummaryScreen } from './Summary';
 import { asGenFiches, type PlayerData } from '../session/launch';
 import { playRestEnd, vibrateRestEnd } from '../session/sound';
 import { acquireWakeLock, releaseWakeLock, useWakeLockOk } from '../session/wakelock';
+import { NECK_FICHE_ID } from '../../session/neck-stop';
 import { durationText, exName, fmtKg, ficheOf, isLoadable, parseNumber, targetText, variantOf } from '../session/text';
 
 type SheetKind = null | 'quit' | 'skip' | 'pain' | 'symptom';
@@ -607,6 +608,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {v.isWarmupSet ? `Série d’échauffement ${v.setNumber} sur ${v.setsTotal}` : `Série ${v.setNumber} sur ${v.setsTotal}`}
           {v.side ? ` · côté ${v.side}` : ''}
         </p>
+        {ex.cappedLabel && ex.movementId === NECK_FICHE_ID && <p class="small prog-line" role="note">{ex.cappedLabel}</p>}
         {sided && !v.isWarmupSet && <p class="side-rule">{PER_SIDE_RULE}</p>}
         <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}</p>
         {lastLine && !v.isWarmupSet && <p class="dim small">{lastLine}</p>}

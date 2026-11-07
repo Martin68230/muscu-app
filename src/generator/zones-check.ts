@@ -4,7 +4,7 @@
 // Correction : d'abord changer d'exercice (même emplacement, même classement), puis ajouter des séries ; jamais au-delà des plafonds
 // V-PLAF / hebdomadaire (plaf.ts), des plafonds par zone (§3 : 20 / 10 par semaine, 6 par séance pour une petite zone), de la durée
 // choisie ni d'une protection (grossesse, reprise, semaine allégée, douleur : aucune série ajoutée sur une fiche qui touche une zone gênée).
-import { CORRECTIF, CORRECTIF_COU, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, VOLUME } from './config';
+import { CORRECTIF, CORRECTIF_COU, HEAVY_TAGS_B1, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, VOLUME } from './config';
 import { isIsoSlot } from './isolation';
 import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
@@ -96,6 +96,14 @@ export const neckAllowed = (ctx: Ctx): boolean =>
   CORRECTIF_COU.enabled && ctx.neckScreenOk && !ctx.pregnant && !ctx.postPartum && !ctx.repriseActive &&
   !ctx.zones.some((z) => !z.isG && (z.key === 'cou' || (z.level >= 2 && CORRECTIF_COU.blockZonesFromLevel2.includes(z.key))));
 
+/** Cou (`kine`, 07/11/2026) : pas de cou dans une séance qui contient un exercice lourd (chargé) de trapèzes ou d'épaules (lecture prudente : matériel lourd ou haltères). */
+export const hasHeavyShoulderTrap = (s: Pick<Sess, 'exercises'>, ctx: Ctx): boolean =>
+  s.exercises.some((e) => [e, ...(e.alt ? [e.alt] : [])].some((x) => {
+    if (x.slot === 'correctif' || !x.chargeable || !x.tags.some((t) => HEAVY_TAGS_B1.includes(t) || t === 'halteres')) return false;
+    const f = zf(ctx, x.ficheId);
+    return !!f && [...zoneCoefs(f)].some(([z, c]) => c >= MIN_COEF && (z.startsWith('trapezes') || z.startsWith('epaules')));
+  }));
+
 /** Fiches correctif admissibles d'une zone pour le profil (liste fermée CORRECTIF, matériel, niveau, cases de sécurité, grossesse). */
 export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[]): Candidate[] {
   const key = `correctif:${z}`;
@@ -183,6 +191,7 @@ export function addCorrectifs(
       if (done || weekIds.has(c.fiche.id)) continue;
       const ex = correctifExercise(c, ctx);
       for (const s of order) {
+        if (z === 'cou' && hasHeavyShoulderTrap(s, ctx)) continue;
         if (isTwinOfUsed(c.fiche, new Set(s.exercises.map((e) => e.ficheId)), ctx)) continue; // lot cohérence 5 a
         const trial = { ...s, exercises: [...s.exercises, ex] };
         const all = sessions.map((x) => (x === s ? trial : x));

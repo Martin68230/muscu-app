@@ -16,8 +16,6 @@ export const NECK_DEDICATED_IDS: readonly string[] = [
   'inclinaison-douce-cou',
   'retraction-cervicale',
   'isometrique-cou',
-  // Réserve tant que CORRECTIF_COU.enabled est false (config.ts) ; à retirer de cette liste à l'activation du placement du cou.
-  'renfo-cou-isometrique',
 ];
 
 export interface FicheRuleInfo {

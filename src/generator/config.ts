@@ -1073,12 +1073,8 @@ export const CORRECTIF = {
  * post-partum / reprise, aucune gêne déclarée au cou, à l'épaule ou au dos (niveau 2 et plus pour l'épaule et le dos). NON SOURCÉ.
  */
 export const CORRECTIF_COU = {
-  /**
-   * DÉSACTIVÉ le 07/11/2026 : le relecteur a trouvé 2 bloquants. (1) Le message d'arrêt (`stopMessage`) n'est jamais affiché (`cappedLabel`
-   * n'est ni copié par `plannedOf` ni lu par l'interface) ; (2) une séance interrompue par un malaise (T1) ou une douleur pendant
-   * l'exercice ne retire pas le cou des séances suivantes. À corriger, puis un nouveau passage de `relecteur`, avant de passer à true.
-   */
-  enabled: false,
+  /** Activé le 07/11/2026 après les 2 bloquants du relecteur (message d'arrêt affiché, arrêt retirant le cou : neck-stop.ts) et la validation de `kine`. */
+  enabled: true,
   ficheId: 'renfo-cou-isometrique',
   variantId: 'renfo-cou-simple',
   sets: 1,

@@ -4,6 +4,7 @@ import type { Profile, Program, RepriseState } from '../data/model';
 import { painCheck } from './history';
 import { dateKey } from './calendar';
 import { missedCard, onPasBien, onSecurityAck, postponeRows, skipRow, withAnswer, type MissedCard, type MissedContext } from './missed';
+import { removeNeckFromProfile } from './neck-stop';
 import { repriseOf } from './missed-config';
 
 export async function loadMissedContext(program: Program, now: Date = new Date()): Promise<MissedContext | null> {
@@ -57,7 +58,10 @@ export async function skipSession(programId: string, i: number, reason: 'renonce
   const p = await fresh(programId);
   await create('sessions', skipRow(p, i, missedDay ?? dateKey(now), reason, now.toISOString()));
   if (missedDay) await update('programs', p.id, { missedAnswers: withAnswer(p, missedDay, 'sauter', now.toISOString()) });
-  if (reason === 'pas_bien') await saveReprise(onPasBien);
+  if (reason === 'pas_bien') {
+    await saveReprise(onPasBien);
+    await removeNeckFromProfile();
+  }
 }
 
 /** Bouton T-22 (K1(b)). */

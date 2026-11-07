@@ -4,6 +4,7 @@ import { list, update } from '../../data/repo';
 import { gentlerAlternative, painCheck, proposeProgression } from '../../session/history';
 import { acceptAdapt, laterAdapt, loadEvents, type AdaptCard } from '../../session/progression-store';
 import { ADAPT_TEXT, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
+import { neckMustBeRemoved, removeNeckFromProfile } from '../../session/neck-stop';
 import { symptomFrozen } from '../../session/progression';
 import { repriseOf } from '../../session/missed-config';
 import type { SessionController } from '../../session/store';
@@ -57,6 +58,8 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
         const [sets, sessions, injuries] = await Promise.all([list('sets'), list('sessions'), list('injuries')]);
         const row: WorkoutSession | undefined = sessions.find((s) => s.id === ctl.sessionId);
         if (!row) throw new Error('séance introuvable');
+        // Cou placé automatiquement : malaise ou douleur sur cet exercice, le cou est retiré des séances suivantes.
+        if (neckMustBeRemoved({ endReason: row.endReason, painExercises: row.painExercises, exercises: day.exercises })) await removeNeckFromProfile();
         const summary = computeSummary({ session: row, sets, sessions, pregnancy });
         const text = summaryText(summary, {
           names,

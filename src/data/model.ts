@@ -200,6 +200,8 @@ export interface PlannedExercise {
   startLoadKg: number | null;
   /** Charge bloquée (charge:legere, niveau 2, grossesse) : jamais de hausse automatique. */
   capped: boolean;
+  /** Message de sécurité affiché avec l'exercice (cou : arrêt immédiat), absent sinon. */
+  cappedLabel?: string | null;
   /** Case de sécurité appliquée (charge:legere, amplitude:<v>, appui:<v>), pour l'affichage. */
   adaptation: string | null;
   substitut: boolean;

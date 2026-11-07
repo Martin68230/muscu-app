@@ -19,11 +19,12 @@ statut: utilisable
 | renfo-cou-mains | Mains contre la tête (4 directions) | 1 | debutant | poids_du_corps | Assis ou debout, dos droit, tête et cou en position neutre, regard droit devant ; une main posée sur le front, la nuque, ou le côté de la tête. Jamais placée automatiquement : sur demande de la personne seulement. |
 
 ## Consignes
-1. Assis, dos droit, regard droit devant, épaules basses.
-2. Pose une main sur le front et pousse doucement la tête vers elle ; la tête ne bouge pas.
-3. Tiens 5 secondes en respirant normalement, puis relâche lentement.
-4. Même chose avec la main derrière la tête, puis sur chaque côté de la tête.
-5. 2 à 3 fois par direction, toujours avec une pression légère.
+1. Arrête tout de suite si tu ressens une douleur ou un vertige.
+2. Assis, dos droit, regard droit devant, épaules basses.
+3. Pose une main sur le front et pousse doucement la tête vers elle ; la tête ne bouge pas.
+4. Version la plus simple (main sur le front) : tiens 3 secondes en respirant normalement, relâche lentement, 30 secondes de repos, puis recommence une fois (2 maintiens en tout, une seule série). Version 4 directions (sur demande seulement) : tiens 5 secondes.
+5. Version 4 directions seulement : même chose avec la main derrière la tête, puis sur chaque côté de la tête.
+6. Version 4 directions seulement : 2 à 3 fois par direction. Toujours avec une pression légère, sans jamais augmenter.
 
 ## Points d'attention
 - Pression légère, tu peux parler normalement ; jamais d'effort maximal.
@@ -63,7 +64,7 @@ Rédigé par `coach` le 2026-11-07, complété par `kine` le 2026-11-07 ; un seu
 - general : maintien de 5 secondes au plus, 1 seule série de 2 maintiens par direction pour un débutant ou une reprise ; respiration continue (pas de blocage du souffle).
 - general : reprise après un arrêt ou après une gêne du cou récente : ne pas utiliser cette fiche ; passer par les fiches douces du cou (C1) si la zone est gênée.
 - general : placement automatique (décision de l'utilisateur 07/11/2026, remplace l'avis C2 précédent) : UNIQUEMENT la variante `renfo-cou-simple`, et seulement si TOUTES ces conditions sont vraies (choix prudents NON SOURCÉS, à contrôler par `relecteur`) :
-  (a) dépistage posé une seule fois, stocké dans le profil local : « Ces dernières semaines, as-tu eu mal, une raideur ou un vertige au niveau du cou ? » Choix : « Non, rien » / « Oui » / « Je préfère ne pas répondre ». Seul « Non, rien » autorise ; « Oui », « Je préfère ne pas répondre » ou pas de réponse = aucun exercice de cou (l'utilisateur peut changer sa réponse dans le profil, jamais de relance automatique) ;
+  (a) dépistage posé une seule fois, stocké dans le profil local : « Ces dernières semaines, as-tu eu mal, une raideur, un vertige ou une gêne au cou, ou un problème de cou connu (cervicalgie, coup du lapin, choc) ? » Choix : « Non, rien » / « Oui » / « Je préfère ne pas répondre ». Seul « Non, rien » autorise ; « Oui », « Je préfère ne pas répondre » ou pas de réponse = aucun exercice de cou (l'utilisateur peut changer sa réponse dans le profil, jamais de relance automatique) ;
   (b) 1 direction (avant, main sur le front), 1 série de 2 maintiens de 3 secondes, pression légère (tu peux parler), repos 30 s entre les deux, jamais augmentée (ni durée, ni répétitions, ni pression), même dose pour débutant et non-débutant ;
   (c) message d'arrêt affiché dans la fiche : « Arrête tout de suite si tu ressens une douleur, un vertige, un engourdissement ou des fourmillements. Ne refais pas cet exercice et parle à un professionnel de santé si ça revient ou si ça dure. » ; en cas de signes d'alerte (visage qui tombe, difficulté à parler, mal de tête brutal) : 15 ou 112 ;
   (d) jamais de cou automatique si : zone cou déclarée (tout niveau, y compris « après un choc »), séance interrompue par un malaise (signe T1), grossesse ou post-partum (retirer, pas de placement automatique ; la fiche reste choisissable à la main en grossesse), reprise après un arrêt (tant qu'une nouvelle séance complète sans gêne n'a pas été faite), gêne d'épaule ou de dos de niveau 2 ou plus ;
