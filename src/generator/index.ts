@@ -462,6 +462,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const heavyFill = (f: Map<SlotKey, SlotFill>) =>
     [...f.entries()].some(([slot, fl]) => !!fl.cand && isHeavyExercise({ slot, schema: fl.cand.fiche.schema, ficheId: fl.cand.fiche.id, tags: fl.cand.variant.tags }));
   const heavyBy = new Map<Label, boolean>();
+  // 07/11/2026 (`kine`, tronc 5-6 jours) : le 2e jour de core consécutif se limite à CF1 / CF2 (comme une séance à charge lourde).
+  const followsCore = (l: Label) => labels.some((o) => o !== l && coreLabels.has(o) && (dayOf(o) + 1) % 7 === dayOf(l));
   // D34 (PV3-VAR-6, E-01) : attribution des fiches à l'échelle de la semaine (variety.ts), pour la semaine `week` du bloc `block`.
   const fillWeek = (c: Ctx, main = false) => {
     const assign = (w: number, heavySet: Set<Label>) => {
@@ -476,7 +478,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           const order = [...CORE_FAMILY_ORDER.slice(rot % n), ...CORE_FAMILY_ORDER.slice(0, rot % n)];
           // Jamais la même famille que la séance de core précédente, sauf s'il n'en reste qu'une admissible.
           for (const fam of [...order.filter((x) => x !== prevFam), ...order.filter((x) => x === prevFam)]) {
-            const fill = fillSlot('tronc', st, used, weekUsed, c, troncPool(fam, heavySet.has(l)));
+            const fill = fillSlot('tronc', st, used, weekUsed, c, troncPool(fam, heavySet.has(l) || followsCore(l)));
             if (fill.cand) {
               rot = CORE_FAMILY_ORDER.indexOf(fam) + 1;
               prevFam = fam;

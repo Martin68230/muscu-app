@@ -632,8 +632,8 @@ export const CORE_TARGET_SESSIONS: Record<number, Record<CoreGoal, number>> = {
   2: { force: 2, muscle: 2, cardio: 2, sante: 2 },
   3: { force: 2, muscle: 3, cardio: 2, sante: 3 },
   4: { force: 2, muscle: 3, cardio: 2, sante: 3 },
-  5: { force: 3, muscle: 3, cardio: 3, sante: 3 },
-  6: { force: 3, muscle: 3, cardio: 3, sante: 3 },
+  5: { force: 4, muscle: 4, cardio: 4, sante: 4 },
+  6: { force: 4, muscle: 4, cardio: 4, sante: 4 },
 };
 /** CORE-FREQ-5 (3) : en corps entier, séances qui reçoivent le core d'abord (A puis C, puis B). NON SOURCÉ. */
 export const CORE_SESSION_PRIORITY: Record<2 | 3, readonly ('A' | 'B' | 'C')[]> = { 2: ['A', 'B'], 3: ['A', 'C', 'B'] };
