@@ -825,67 +825,42 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
 
   // STR-ISO-0 à 4 : isolation ajoutée en dernier, s'il reste du temps (T < D - 10 min, comme l'ajout §4.4), sous le plafond
   // d'emplacements (N de départ), 2 séries, 2 exercices d'isolation par séance au plus, un par groupe, 4 séries par groupe et par semaine.
-  if (isoEligible(ctx, split, kept.length)) {
-    const weekSets = new Map<string, number>();
-    for (const def of ISOLATION.slots) weekSets.set(def.slot, kept.reduce((a, s) => a + isoSetsIn(s.exercises, def), 0));
-    for (const s of kept) {
-      let inSession = 0;
-      const cap = isSplit ? dur.startNSplit : dur.startN;
-      const budgetS = budget.get(s.label) ?? dSec;
-      for (const def of ISOLATION.slots) {
-        if (inSession >= ISOLATION.maxPerSession || s.exercises.length >= Math.min(cap, VOLUME.maxExercisesPerSession)) break;
-        if (isoSetsIn(s.exercises, def) > 0 || (weekSets.get(def.slot) ?? 0) + ISOLATION.setsPerExercise > ISOLATION.maxSetsPerGroupWeek) continue;
-        // Lecture de `dev` : biceps et deltoïdes latéraux dans une séance du haut (ou corps entier), mollets dans une séance du bas (ou corps entier).
-        const t = typeOf(s.label);
-        if (!isoSlotFitsType(def.slot, t)) continue;
-        if (estimerDuree(s) >= budgetS - TIME.addIfUnderMarginSec) break;
-        // D34 (PV3-VAR-2, 4) : fiches des autres séances en dernier ; rotation sur deux jeux (k = séances où ce groupe peut aller, borné par 4 séries / semaine).
-        const isoK = Math.min(
-          kept.filter((x) => isoSlotFitsType(def.slot, typeOf(x.label))).length,
-          Math.floor(ISOLATION.maxSetsPerGroupWeek / ISOLATION.setsPerExercise),
-        );
-        const weekUsed = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((e) => e.ficheId)));
-        const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
-        if (!ex) continue;
-        const trial = { ...s, exercises: [...s.exercises, ex] };
-        if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
-        if (!weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
-        s.exercises = trial.exercises;
-        inSession++;
-        weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
-      }
-    }
-  }
-
-  // D24 (CAL-1, 07/11/2026) : remplissage PPL, extension de PV3-REINV-1 aux séances PUSH / PULL / LEGS. Si T <= D - 4 min, UN accessoire
-  // d'indice >= 3 du type (emplacement libre, mêmes classement et filtres de sécurité que le placement) ; jamais pour un débutant, en
-  // grossesse, en reprise ou en semaine allégée ; plafonds de séance, hebdomadaire (20) et de zones inchangés ; coupé le premier si besoin.
-  if (isSplit && ctx.goalKey === ISOLATION.goal && ctx.level !== 'debutant' && !ctx.pregnant && !ctx.repriseActive && !ctx.lightWeek) {
-    for (const s of kept) {
-      const t = typeOf(s.label);
-      if (t !== 'PUSH' && t !== 'PULL' && t !== 'LEGS') continue;
-      if (estimerDuree(s) > (budget.get(s.label) ?? dSec) - D24_FILL_MARGIN_SEC || s.exercises.length >= VOLUME.maxExercisesPerSession) continue;
-      const free = TYPE_SLOTS[t].filter((sl) => /_[34]$/.test(sl) && !s.exercises.some((e) => e.slot === sl));
-      const used = new Set(s.exercises.map((e) => e.ficheId));
-      const placed: Partial<Record<SlotKey, string>> = {};
-      for (const x of s.exercises) placed[x.slot] = x.schema;
-      const weekIds = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
-      let added = false;
-      for (const sl of free) {
-        for (const r of freshFirst(rankSlot(sl, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
-          if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34)
-          const ex = buildExercise(r.cand, sl, r.tier, ctx);
-          ex.warmupSets = e3Sets(ex, ctx);
+  const isPpl = split === 'push_pull_legs' || split === 'haut_bas_ppl';
+  const addIsolation = (): void => {
+    if (isoEligible(ctx, split, kept.length)) {
+      const weekSets = new Map<string, number>();
+      for (const def of ISOLATION.slots) weekSets.set(def.slot, kept.reduce((a, s) => a + isoSetsIn(s.exercises, def), 0));
+      for (const s of kept) {
+        let inSession = 0;
+        const cap = isSplit ? dur.startNSplit : dur.startN;
+        const budgetS = budget.get(s.label) ?? dSec;
+        for (const def of ISOLATION.slots) {
+          if (inSession >= ISOLATION.maxPerSession || s.exercises.length >= Math.min(cap, VOLUME.maxExercisesPerSession)) break;
+          if (isoSetsIn(s.exercises, def) > 0 || (weekSets.get(def.slot) ?? 0) + ISOLATION.setsPerExercise > ISOLATION.maxSetsPerGroupWeek) continue;
+          // Lecture de `dev` : biceps et deltoïdes latéraux dans une séance du haut (ou corps entier), mollets dans une séance du bas (ou corps entier).
+          const t = typeOf(s.label);
+          if (!isoSlotFitsType(def.slot, t)) continue;
+          if (estimerDuree(s) >= budgetS - TIME.addIfUnderMarginSec) break;
+          // D34 (PV3-VAR-2, 4) : fiches des autres séances en dernier ; rotation sur deux jeux (k = séances où ce groupe peut aller, borné par 4 séries / semaine).
+          const isoK = Math.min(
+            kept.filter((x) => isoSlotFitsType(def.slot, typeOf(x.label))).length,
+            Math.floor(ISOLATION.maxSetsPerGroupWeek / ISOLATION.setsPerExercise),
+          );
+          const weekUsed = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((e) => e.ficheId)));
+          const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
+          if (!ex) continue;
           const trial = { ...s, exercises: [...s.exercises, ex] };
-          if (estimerDuree(trial) > (budget.get(s.label) ?? dSec) || !splitCapsOk(trial.exercises, plafAuto) || !weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
+          if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
+          if (!weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
           s.exercises = trial.exercises;
-          added = true;
-          break;
+          inSession++;
+          weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
         }
-        if (added) break;
       }
     }
-  }
+  };
+  // D24 : en PPL, l'isolation vient après le correctif des zones (elle ne prend ni la place ni le temps d'une zone à corriger).
+  if (!isPpl) addIsolation();
 
   // Niveau 2 (06/11/2026, zones-check.ts) : aucune zone grise dans la semaine prévue (hors blessure et zones sans fiche admissible) :
   // changement d'exercice (même emplacement, même classement, hors piliers, tronc, isolation et supersets), puis séries ajoutées, sous
@@ -916,6 +891,37 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   fillGreyZones(kept, zoneDeps);
   // Emplacement correctif (06/11/2026) : petites zones restées grises, 1 à 2 exercices légers en fin de séance (zones-check.ts).
   addCorrectifs(kept, zoneDeps);
+  if (isPpl) addIsolation();
+  // D24 (CAL-1, 07/11/2026) : remplissage PPL (après le correctif des zones : il ne prend jamais la place ni le temps d'une zone à corriger), extension de PV3-REINV-1 aux séances PUSH / PULL / LEGS. Si T <= D - 4 min, UN accessoire
+  // d'indice >= 3 du type (emplacement libre, mêmes classement et filtres de sécurité que le placement) ; jamais pour un débutant, en
+  // grossesse, en reprise ou en semaine allégée ; plafonds de séance, hebdomadaire (20) et de zones inchangés ; coupé le premier si besoin.
+  if (isSplit && ctx.goalKey === ISOLATION.goal && ctx.level !== 'debutant' && !ctx.pregnant && !ctx.repriseActive && !ctx.lightWeek) {
+    for (const s of kept) {
+      const t = typeOf(s.label);
+      if (t !== 'PUSH' && t !== 'PULL' && t !== 'LEGS') continue;
+      if (estimerDuree(s) > (budget.get(s.label) ?? dSec) - D24_FILL_MARGIN_SEC || s.exercises.length >= VOLUME.maxExercisesPerSession) continue;
+      const free = TYPE_SLOTS[t].filter((sl) => /_[34]$/.test(sl) && !s.exercises.some((e) => e.slot === sl));
+      const used = new Set(s.exercises.map((e) => e.ficheId));
+      const placed: Partial<Record<SlotKey, string>> = {};
+      for (const x of s.exercises) placed[x.slot] = x.schema;
+      const weekIds = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
+      let added = false;
+      for (const sl of free) {
+        for (const r of freshFirst(rankSlot(sl, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+          if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34)
+          const ex = buildExercise(r.cand, sl, r.tier, ctx);
+          ex.warmupSets = e3Sets(ex, ctx);
+          const trial = { ...s, exercises: [...s.exercises, ex] };
+          if (estimerDuree(trial) > (budget.get(s.label) ?? dSec) || !splitCapsOk(trial.exercises, plafAuto) || !weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
+          s.exercises = trial.exercises;
+          added = true;
+          break;
+        }
+        if (added) break;
+      }
+    }
+  }
+
   // Lot cohérence 3 (décision de l'utilisateur du 06/11/2026) : temps restant jusqu'à la cible de la séance (« illimité » : 60 min, budget
   // 75 ; durée choisie : cette durée, jamais dépassée ; séance avec bloc de cardio : budget moins la place du bloc). Ordre : zones orange
   // jusqu'au rouge, puis petites zones (correctif), puis le cardio (finalisation ci-dessous). Plafonds et protections inchangés.

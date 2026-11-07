@@ -18,7 +18,8 @@ export function isoEligible(ctx: Ctx, split: GenProgram['split'], nDays: number)
   if (ctx.goalKey !== ISOLATION.goal || ctx.pregnant || !ctx.isoOpen) return false;
   if (nDays < ISOLATION.minDays) return false;
   // D24 (CAL-1 / CAL-8, 07/11/2026) : séparations PUSH / PULL / LEGS admises (PV3-ISO-2) ; l'emplacement de chaque séance est filtré par isoSlotFitsType.
-  return split === 'corps_entier' || split === 'haut_bas' || split === 'push_pull_legs' || split === 'haut_bas_ppl';
+  // Retiré (T-D25-02 : une séance PUSH / PULL / LEGS ne contient que des emplacements de son type) : pas d'isolation en PPL.
+  return split === 'corps_entier' || split === 'haut_bas';
 }
 
 /** D24 : emplacement d'isolation admis selon le type de séance (CE : tous ; HAUT : biceps, latéraux ; BAS : mollets ; PUSH : latéraux ; PULL : biceps ; LEGS : mollets). */
