@@ -14,6 +14,7 @@ import { HealthNoticeText } from '../HealthNotice';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { SwitchRow } from '../SwitchRow';
 import { D30_TEXT } from '../../session/messages';
+import { CORRECTIF_COU } from '../../generator/config';
 import { getActiveProgram } from '../../session/program';
 import type { Program } from '../../data/model';
 import { applyTheme, getThemePref, type ThemePref } from '../theme';
@@ -193,6 +194,19 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
           onToggle={async (on) => onChange(await update('profile', profile.id, { exterieur: on }))}
         />
       </div>
+
+      {CORRECTIF_COU.enabled && <h2>{D30_TEXT.neckTitle}</h2>}
+      {CORRECTIF_COU.enabled && <>
+      <p>{D30_TEXT.neckQuestion}</p>
+      <div class="segmented" role="group" aria-label={D30_TEXT.neckTitle}>
+        {D30_TEXT.neckChoices.map(([value, label]) => (
+          <button key={value} aria-pressed={profile.neckScreen === value} onClick={async () => onChange(await update('profile', profile.id, { neckScreen: value as 'non' | 'oui' | 'refus' }))}>
+            {label}
+          </button>
+        ))}
+      </div>
+      <p class="muted">{D30_TEXT.neckHelp}</p>
+      </>}
 
       <h2>Affichage</h2>
       <div class="segmented" role="group" aria-label="Thème">

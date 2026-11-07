@@ -15,7 +15,8 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| renfo-cou-mains | Mains contre la tête | 1 | debutant | poids_du_corps | Assis ou debout, dos droit, tête et cou en position neutre, regard droit devant ; une main posée sur le front, la nuque, ou le côté de la tête. |
+| renfo-cou-simple | Cou : main sur le front (la plus simple) | 1 | debutant | poids_du_corps | Assis sur une chaise stable, dos droit, regard droit devant ; une main à plat sur le front. Une seule direction (avant). Seule variante éligible au placement automatique (décision 07/11/2026, conditions kine ci-dessous). |
+| renfo-cou-mains | Mains contre la tête (4 directions) | 1 | debutant | poids_du_corps | Assis ou debout, dos droit, tête et cou en position neutre, regard droit devant ; une main posée sur le front, la nuque, ou le côté de la tête. Jamais placée automatiquement : sur demande de la personne seulement. |
 
 ## Consignes
 1. Assis, dos droit, regard droit devant, épaules basses.
@@ -42,7 +43,7 @@ statut: utilisable
 - plus-dur : aucun
 
 ## Repères de dosage
-Petite quantité : 2 à 3 maintiens de 5 secondes par direction, pression légère, repos 30 s entre les directions ; NON SOURCÉ (choix de `coach`, prudent).
+Variante `renfo-cou-simple` (placement automatique) : 1 direction (avant), 2 maintiens de 3 secondes, pression légère, repos 30 s, jamais augmentée ; NON SOURCÉ (choix de `kine`, prudent). Variante 4 directions, sur demande seulement : 2 à 3 maintiens de 5 secondes par direction, pression légère, repos 30 s entre les directions ; NON SOURCÉ (choix de `coach`, prudent).
 
 ## Sécurité et contre-indications
 Rédigé par `coach` le 2026-11-07, complété par `kine` le 2026-11-07 ; un seul contrôle de `relecteur` par lot. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic. Tous les choix par zone sont des choix prudents NON SOURCÉS.
@@ -61,7 +62,13 @@ Rédigé par `coach` le 2026-11-07, complété par `kine` le 2026-11-07 ; un seu
 - general : jamais si la gêne du cou date d'un choc ou d'un coup du lapin (regles-securite-communes.md §9).
 - general : maintien de 5 secondes au plus, 1 seule série de 2 maintiens par direction pour un débutant ou une reprise ; respiration continue (pas de blocage du souffle).
 - general : reprise après un arrêt ou après une gêne du cou récente : ne pas utiliser cette fiche ; passer par les fiches douces du cou (C1) si la zone est gênée.
-- general : cette fiche ne doit pas être placée automatiquement (voir avis de `kine` : lancée seulement sur demande de la personne, C2).
+- general : placement automatique (décision de l'utilisateur 07/11/2026, remplace l'avis C2 précédent) : UNIQUEMENT la variante `renfo-cou-simple`, et seulement si TOUTES ces conditions sont vraies (choix prudents NON SOURCÉS, à contrôler par `relecteur`) :
+  (a) dépistage posé une seule fois, stocké dans le profil local : « Ces dernières semaines, as-tu eu mal, une raideur ou un vertige au niveau du cou ? » Choix : « Non, rien » / « Oui » / « Je préfère ne pas répondre ». Seul « Non, rien » autorise ; « Oui », « Je préfère ne pas répondre » ou pas de réponse = aucun exercice de cou (l'utilisateur peut changer sa réponse dans le profil, jamais de relance automatique) ;
+  (b) 1 direction (avant, main sur le front), 1 série de 2 maintiens de 3 secondes, pression légère (tu peux parler), repos 30 s entre les deux, jamais augmentée (ni durée, ni répétitions, ni pression), même dose pour débutant et non-débutant ;
+  (c) message d'arrêt affiché dans la fiche : « Arrête tout de suite si tu ressens une douleur, un vertige, un engourdissement ou des fourmillements. Ne refais pas cet exercice et parle à un professionnel de santé si ça revient ou si ça dure. » ; en cas de signes d'alerte (visage qui tombe, difficulté à parler, mal de tête brutal) : 15 ou 112 ;
+  (d) jamais de cou automatique si : zone cou déclarée (tout niveau, y compris « après un choc »), séance interrompue par un malaise (signe T1), grossesse ou post-partum (retirer, pas de placement automatique ; la fiche reste choisissable à la main en grossesse), reprise après un arrêt (tant qu'une nouvelle séance complète sans gêne n'a pas été faite), gêne d'épaule ou de dos de niveau 2 ou plus ;
+  (e) placement : en toute fin de séance, après le tronc, jamais en échauffement, jamais en superset ni circuit, jamais plus d'une fois par semaine pour un débutant et deux fois pour les autres, jamais deux jours de suite ; jamais enchaîné avec un exercice lourd de trapèzes ou d'épaules ;
+  (f) la variante 4 directions (`renfo-cou-mains`) n'est jamais placée automatiquement.
 - general : douleur pendant l'exercice : arrête, pas de progression (R4).
 - grossesse : garder, maintien court, respiration continue, assise (G4, extrapolation prudente) ; vertige ou maux de tête : arrête et parle à ta sage-femme ou ton médecin (G6).
 

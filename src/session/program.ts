@@ -39,7 +39,7 @@ function canonical(input: GeneratorInput, fichesSig: string): unknown {
     fiches: fichesSig,
     profile: [
       p.level ?? null, p.daysPerWeek ?? null, sortedNums(p.blockedWeekdays), p.sessionDurationMin ?? null, p.place ?? null, p.pregnancy ?? null,
-      !!p.salleAccess, !!p.exterieur, sortedStrs(p.sports),
+      !!p.salleAccess, !!p.exterieur, p.neckScreen ?? null, sortedStrs(p.sports),
     ],
     equipment: [eq.preset, sortedStrs(eq.tags), sortedStrs(eq.disabledImplicit), sortedNums(eq.dumbbellWeightsKg), sortedNums(eq.kettlebellWeightsKg), sortedNums(eq.platesKg)],
     injuries: (input.injuries ?? [])
@@ -99,6 +99,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
       pregnancy: profile.pregnancy ?? null,
       salleAccess: !!profile.salleAccess,
       exterieur: !!profile.exterieur,
+      neckScreen: profile.neckScreen,
       sports: profile.sports ?? [],
     },
     equipment: {

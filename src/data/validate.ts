@@ -37,6 +37,7 @@ export const SPECS: Record<TableName, Spec> = {
     seanceCardio: 'boolean?',
     salleAccess: 'boolean?',
     exterieur: 'boolean?',
+    neckScreen: 'string?',
   },
   equipment: {
     preset: 'string',
@@ -138,7 +139,7 @@ export const SPECS: Record<TableName, Spec> = {
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
-  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur'],
+  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur', 'neckScreen'],
   programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays', 'cardioOption'],
   sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'calibDrops', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee'],
   sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec', 'felt'],
@@ -148,7 +149,7 @@ const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
 
 /** Valeurs permises des champs qui pilotent la sécurité (un import ne doit pas en introduire d'inconnues). */
 const ENUMS: Partial<Record<TableName, Record<string, string[]>>> = {
-  profile: { place: ['maison', 'salle'], pregnancy: ['non', 'enceinte', 'post_partum'], level: ['debutant', 'intermediaire', 'avance'] },
+  profile: { place: ['maison', 'salle'], pregnancy: ['non', 'enceinte', 'post_partum'], neckScreen: ['non', 'oui', 'refus'], level: ['debutant', 'intermediaire', 'avance'] },
   sessions: {
     status: ['prevue', 'en_cours', 'faite', 'reportee', 'sautee'],
     endReason: ['terminee', 'abandon', 'symptome', 'renonce', 'pas_bien'],

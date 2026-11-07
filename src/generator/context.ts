@@ -64,6 +64,8 @@ export interface Ctx {
   lightWeek: boolean;
   /** D30 (§5.4) : « je peux sortir dehors ». */
   exterieur: boolean;
+  /** Dépistage du cou répondu « Non, rien » (seule réponse qui autorise l'exercice de cou). */
+  neckScreenOk: boolean;
   /** Sports déclarés. */
   sports: string[];
   /** STR-ISO-0 / 1 : isolation possible pour ce profil (intermédiaire, avancé, ou débutant après l'exception). */
@@ -183,6 +185,7 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     salleFilter: !!p.salleAccess && !pregnant,
     lightWeek: false,
     exterieur: !!p.exterieur,
+    neckScreenOk: p.neckScreen === 'non',
     sports: [...(p.sports ?? [])],
     isoOpen: level !== 'debutant' || !!opts.isoDebutantOuverte,
     calfFallbackForbidden: level === 'debutant' && !opts.isoDebutantOuverte,

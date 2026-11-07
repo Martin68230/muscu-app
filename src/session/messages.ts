@@ -261,6 +261,11 @@ export const D30_TEXT = {
   /** dev : réglages du profil (5.4 « je peux marcher ou courir dehors, sur un trajet sûr » ; machines-etiquettes.md §2). */
   outdoorLabel: 'Je peux marcher ou courir dehors, sur un trajet sûr',
   outdoorHelp: 'Facultatif. Aucune localisation : l’app compte seulement le temps. Chaque séance dehors garde une version à l’intérieur.',
+  /** 07/11/2026 (`kine`) : dépistage du cou, posé une seule fois ; seul « Non, rien » permet un exercice de cou. */
+  neckTitle: 'Ton cou',
+  neckQuestion: 'Ces dernières semaines, as-tu eu mal, une raideur ou un vertige au niveau du cou ?',
+  neckHelp: 'Facultatif. Seulement si tu réponds « Non, rien », l’app peut ajouter un petit exercice du cou très doux. Sinon, aucun exercice du cou.',
+  neckChoices: [['non', 'Non, rien'], ['oui', 'Oui'], ['refus', 'Je préfère ne pas répondre']] as readonly (readonly [string, string])[],
   gymLabel: 'J’ai accès à une salle',
   gymHelp: 'Facultatif. Les exercices sur machine guidée ou à la poulie ne sont proposés qu’avec une salle.',
   /** dev : lecteur du jour léger (STR-REP-12 : proposé, jamais exigé). */

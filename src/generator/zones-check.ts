@@ -4,7 +4,7 @@
 // Correction : d'abord changer d'exercice (même emplacement, même classement), puis ajouter des séries ; jamais au-delà des plafonds
 // V-PLAF / hebdomadaire (plaf.ts), des plafonds par zone (§3 : 20 / 10 par semaine, 6 par séance pour une petite zone), de la durée
 // choisie ni d'une protection (grossesse, reprise, semaine allégée, douleur : aucune série ajoutée sur une fiche qui touche une zone gênée).
-import { CORRECTIF, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, VOLUME } from './config';
+import { CORRECTIF, CORRECTIF_COU, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, VOLUME } from './config';
 import { isIsoSlot } from './isolation';
 import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
@@ -22,7 +22,7 @@ export type ZoneExclusion = 'blessure' | 'materiel';
  * ni série ajoutée (fillGreyZones) ; couvertes par l'emplacement correctif (addCorrectifs, CORRECTIF) quand une fiche légère compatible
  * existe pour le profil. Sans fiche compatible (slotlessFor) : ni corrigées ni citées, le rapport les liste à part.
  */
-export const SLOTLESS_ZONES: readonly ZoneId[] = ['coiffe_rotateurs', 'carre_des_lombes', 'flechisseurs_hanche', 'peroniers', 'abducteurs', 'adducteurs', 'mollets_soleaire', 'tibiaux', 'avant_bras'];
+export const SLOTLESS_ZONES: readonly ZoneId[] = ['coiffe_rotateurs', 'carre_des_lombes', 'flechisseurs_hanche', 'peroniers', 'abducteurs', 'adducteurs', 'mollets_soleaire', 'tibiaux', 'avant_bras', 'cou'];
 
 export interface ZoneCheck {
   points: Record<ZoneId, number>;
@@ -88,17 +88,29 @@ export function checkZones(sessions: readonly { exercises: readonly GenExercise[
 const ficheTouchesSensitive = (f: Fiche, ctx: Ctx) =>
   ctx.zones.some((z) => !z.isG && z.level >= 1 && Object.prototype.hasOwnProperty.call(f.securite.zones, z.key));
 
+/**
+ * Cou (`kine`, 07/11/2026) : dépistage « Non, rien » ; ni grossesse / post-partum, ni reprise ; aucune gêne déclarée au cou (tout niveau,
+ * dont après un choc) ; épaule ou dos au niveau 2 et plus : rien.
+ */
+export const neckAllowed = (ctx: Ctx): boolean =>
+  CORRECTIF_COU.enabled && ctx.neckScreenOk && !ctx.pregnant && !ctx.postPartum && !ctx.repriseActive &&
+  !ctx.zones.some((z) => !z.isG && (z.key === 'cou' || (z.level >= 2 && CORRECTIF_COU.blockZonesFromLevel2.includes(z.key))));
+
 /** Fiches correctif admissibles d'une zone pour le profil (liste fermée CORRECTIF, matériel, niveau, cases de sécurité, grossesse). */
 export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[]): Candidate[] {
   const key = `correctif:${z}`;
   const hit = ctx.memo.get(key) as Candidate[] | undefined;
   if (hit) return hit;
   const out: Candidate[] = [];
+  if (z === 'cou' && !neckAllowed(ctx)) {
+    ctx.memo.set(key, out);
+    return out;
+  }
   for (const id of CORRECTIF.ids[z] ?? []) {
     const f = pool.find((x) => x.id === id);
     if (!f || ficheTouchesSensitive(f, ctx) || (zoneCoefs(f as ZoneFiche).get(z) ?? 0) < MIN_COEF) continue;
     if (ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0) continue;
-    const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces);
+    const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces && (z !== 'cou' || c.variant.id === CORRECTIF_COU.variantId));
     if (cand) out.push(cand);
   }
   ctx.memo.set(key, out);
@@ -126,6 +138,15 @@ export function slotlessFor(ctx: Ctx, pool: readonly Fiche[]): ReadonlySet<ZoneI
 function correctifExercise(c: Candidate, ctx: Ctx): GenExercise {
   const ex = buildExercise({ ...c, capped: true }, 'correctif', 'a', ctx);
   ex.sets = Math.min(ex.sets, CORRECTIF.maxSets);
+  if (c.fiche.id === CORRECTIF_COU.ficheId) {
+    // Cou : 1 série de 2 maintiens de 3 s, effort léger, jamais augmenté ; message d'arrêt affiché avec l'exercice.
+    ex.sets = CORRECTIF_COU.sets;
+    ex.unit = 'sec';
+    ex.holdSec = CORRECTIF_COU.holdSec;
+    ex.repsMin = CORRECTIF_COU.holds;
+    ex.repsMax = CORRECTIF_COU.holds;
+    ex.cappedLabel = CORRECTIF_COU.stopMessage;
+  }
   ex.role = 'autre';
   ex.warmupSets = [];
   ex.capped = true;
@@ -167,7 +188,7 @@ export function addCorrectifs(
         const all = sessions.map((x) => (x === s ? trial : x));
         if (estimerDuree(trial) > d.budget(s)) continue;
         if (!d.sessionOk(trial.exercises, 'auto') || !d.weekOk(all) || !zoneCapsOk(sessions, all, ctx)) continue;
-        if (checkZones(all, ctx, pool).status[z] === 'gris') break; // la fiche ne suffit pas à sortir la zone du gris : fiche suivante
+        if (z !== 'cou' && checkZones(all, ctx, pool).status[z] === 'gris') break; // la fiche ne suffit pas à sortir la zone du gris : fiche suivante
         s.exercises = trial.exercises;
         done = true;
         break;

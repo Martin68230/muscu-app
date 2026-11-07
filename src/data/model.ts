@@ -89,6 +89,11 @@ export interface Profile extends SyncFields {
   salleAccess?: boolean;
   /** D30 (cardio-regles.md §5.4) : « Je peux marcher ou courir dehors, sur un trajet sûr ». Absent = non ; aucune localisation. */
   exterieur?: boolean;
+  /**
+   * 07/11/2026 (`kine`, fiche renfo-cou-isometrique) : question de dépistage du cou, posée une seule fois, locale, jamais partagée.
+   * 'non' = « Non, rien » (seule réponse qui autorise un exercice de cou) ; 'oui' ou 'refus' ou absent = aucun exercice de cou.
+   */
+  neckScreen?: 'non' | 'oui' | 'refus';
 }
 
 /** SM-D4 : état de reprise après une absence (un seul objet, sur le profil). */

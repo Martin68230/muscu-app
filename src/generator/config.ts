@@ -1057,13 +1057,35 @@ export const CORRECTIF = {
     adducteurs: ['adduction-couchee-cote'],
     mollets_soleaire: ['releve-mollets-assis', 'releve-mollets', 'marche-pointes-talons'],
     tibiaux: ['releve-tibial-mur', 'marche-pointes-talons'],
-    // 07/11/2026 : avant-bras (fiches de `coach`, cases de `kine`). Cou : volontairement ABSENT (avis `kine` : pas de placement automatique, C2).
+    // 07/11/2026 : avant-bras (fiches de `coach`, cases de `kine`). Cou : placement automatique sous les conditions de `kine` (CORRECTIF_COU).
+    cou: ['renfo-cou-isometrique'],
     avant_bras: ['essorage-serviette', 'flexion-poignet-avant-bras', 'extension-poignet-avant-bras'],
   } as Readonly<Record<string, readonly string[]>>,
   maxSets: 2,
   maxPerSession: 2,
   maxPerSessionDebutant: 1,
   label: 'Exercice correctif : charge légère, jamais augmentée.',
+};
+
+/**
+ * Cou (décision de l'utilisateur 07/11/2026, conditions de `kine`) : placement automatique, même pour un débutant, SEULEMENT si le
+ * dépistage est répondu « Non, rien », variante la plus simple, 1 série de 2 maintiens de 3 s, jamais augmentée, pas de grossesse /
+ * post-partum / reprise, aucune gêne déclarée au cou, à l'épaule ou au dos (niveau 2 et plus pour l'épaule et le dos). NON SOURCÉ.
+ */
+export const CORRECTIF_COU = {
+  /**
+   * DÉSACTIVÉ le 07/11/2026 : le relecteur a trouvé 2 bloquants. (1) Le message d'arrêt (`stopMessage`) n'est jamais affiché (`cappedLabel`
+   * n'est ni copié par `plannedOf` ni lu par l'interface) ; (2) une séance interrompue par un malaise (T1) ou une douleur pendant
+   * l'exercice ne retire pas le cou des séances suivantes. À corriger, puis un nouveau passage de `relecteur`, avant de passer à true.
+   */
+  enabled: false,
+  ficheId: 'renfo-cou-isometrique',
+  variantId: 'renfo-cou-simple',
+  sets: 1,
+  holdSec: 3,
+  holds: 2,
+  blockZonesFromLevel2: ['epaule', 'dos'] as readonly string[],
+  stopMessage: 'Arrête tout de suite si tu ressens une douleur, un vertige, un engourdissement ou des fourmillements. Ne refais pas cet exercice et parle à un professionnel de santé si ça revient ou si ça dure.',
 };
 
 /** STR-REP-12 : cardio doux du jour léger (marche à plat, facile), proposé jamais exigé : départ au bas de la fourchette. NON SOURCÉ. */

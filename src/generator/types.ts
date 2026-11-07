@@ -70,6 +70,8 @@ export interface GeneratorInput {
     salleAccess?: boolean;
     /** D30 (cardio-regles.md §5.4) : « je peux marcher ou courir dehors, sur un trajet sûr ». Absent = non. */
     exterieur?: boolean;
+    /** Dépistage du cou (`kine`, 07/11/2026) : seule la valeur 'non' autorise l'exercice de cou. */
+    neckScreen?: 'non' | 'oui' | 'refus';
     /** Sports déclarés (clés de SPORT_FAMILIES) ; leur fréquence n'est pas connue (lecture prudente : 2 fois par semaine ou plus). */
     sports?: string[];
   };

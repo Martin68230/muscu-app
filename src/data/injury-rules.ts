@@ -16,7 +16,7 @@ export const NECK_DEDICATED_IDS: readonly string[] = [
   'inclinaison-douce-cou',
   'retraction-cervicale',
   'isometrique-cou',
-  // 07/11/2026 (relecteur) : défense en profondeur, jamais placée automatiquement (avis kine, C2).
+  // Réserve tant que CORRECTIF_COU.enabled est false (config.ts) ; à retirer de cette liste à l'activation du placement du cou.
   'renfo-cou-isometrique',
 ];
 
