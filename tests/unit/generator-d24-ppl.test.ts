@@ -14,7 +14,7 @@ const PPL = ['PUSH', 'PULL', 'LEGS'];
 describe('D24 : séances PPL remplies jusqu’à la durée choisie, sous les plafonds', () => {
   for (const [name, o] of CASES) {
     it(name, () => {
-      const p = generateProgram(mk(o)).program as any;
+      const p = (generateProgram(mk(o)) as any).program;
       expect(p).toBeTruthy();
       const ppl = p.sessions.filter((s: any) => PPL.includes(s.type));
       expect(ppl.length).toBe(3);
@@ -37,7 +37,7 @@ describe('D24 : séances PPL remplies jusqu’à la durée choisie, sous les pla
     });
   }
   it('débutant : aucune isolation PPL ajoutée (inchangé)', () => {
-    const p = generateProgram(mk({ profile: 'F', place: 'salle', days: 5, level: 'debutant', goal: 'muscle', dur: 60 })).program as any;
+    const p = (generateProgram(mk({ profile: 'F', place: 'salle', days: 5, level: 'debutant', goal: 'muscle', dur: 60 })) as any).program;
     for (const s of p?.sessions ?? []) expect(s.exercises.filter((e: any) => String(e.slot).startsWith('iso_') && PPL.includes(s.type)).length).toBe(0);
   });
 });
