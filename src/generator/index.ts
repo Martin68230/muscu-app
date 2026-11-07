@@ -11,7 +11,7 @@ import {
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
-import { isoEligible, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
+import { isoEligible, isoSlotFitsType, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
 import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekMusclesOf, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
@@ -126,6 +126,8 @@ export function coverageOf(sessions: { exercises: GenExercise[] }[]): Record<GG,
 }
 
 // ----- Volume (V-VOL, V-PLAF) -----
+/** D24 (CAL-1) : marge de PV3-REINV-1, T <= D - 4 min (NON SOURCÉ, jugement de coach). */
+const D24_FILL_MARGIN_SEC = 4 * 60;
 // D33 : frac, sessionVol, musclesOf, plafonds par séance (G1 à G4) et hebdomadaire : plaf.ts.
 
 function removeEx(s: DurSession<GenExercise>, e: GenExercise) {
@@ -835,11 +837,11 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
         if (isoSetsIn(s.exercises, def) > 0 || (weekSets.get(def.slot) ?? 0) + ISOLATION.setsPerExercise > ISOLATION.maxSetsPerGroupWeek) continue;
         // Lecture de `dev` : biceps et deltoïdes latéraux dans une séance du haut (ou corps entier), mollets dans une séance du bas (ou corps entier).
         const t = typeOf(s.label);
-        if (t !== 'CE' && (def.slot === 'iso_mollets' ? t !== 'BAS' : t !== 'HAUT')) continue;
+        if (!isoSlotFitsType(def.slot, t)) continue;
         if (estimerDuree(s) >= budgetS - TIME.addIfUnderMarginSec) break;
         // D34 (PV3-VAR-2, 4) : fiches des autres séances en dernier ; rotation sur deux jeux (k = séances où ce groupe peut aller, borné par 4 séries / semaine).
         const isoK = Math.min(
-          kept.filter((x) => typeOf(x.label) === 'CE' || (def.slot === 'iso_mollets' ? typeOf(x.label) === 'BAS' : typeOf(x.label) === 'HAUT')).length,
+          kept.filter((x) => isoSlotFitsType(def.slot, typeOf(x.label))).length,
           Math.floor(ISOLATION.maxSetsPerGroupWeek / ISOLATION.setsPerExercise),
         );
         const weekUsed = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((e) => e.ficheId)));
@@ -851,6 +853,36 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
         s.exercises = trial.exercises;
         inSession++;
         weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
+      }
+    }
+  }
+
+  // D24 (CAL-1, 07/11/2026) : remplissage PPL, extension de PV3-REINV-1 aux séances PUSH / PULL / LEGS. Si T <= D - 4 min, UN accessoire
+  // d'indice >= 3 du type (emplacement libre, mêmes classement et filtres de sécurité que le placement) ; jamais pour un débutant, en
+  // grossesse, en reprise ou en semaine allégée ; plafonds de séance, hebdomadaire (20) et de zones inchangés ; coupé le premier si besoin.
+  if (isSplit && ctx.goalKey === ISOLATION.goal && ctx.level !== 'debutant' && !ctx.pregnant && !ctx.repriseActive && !ctx.lightWeek) {
+    for (const s of kept) {
+      const t = typeOf(s.label);
+      if (t !== 'PUSH' && t !== 'PULL' && t !== 'LEGS') continue;
+      if (estimerDuree(s) > (budget.get(s.label) ?? dSec) - D24_FILL_MARGIN_SEC || s.exercises.length >= VOLUME.maxExercisesPerSession) continue;
+      const free = TYPE_SLOTS[t].filter((sl) => /_[34]$/.test(sl) && !s.exercises.some((e) => e.slot === sl));
+      const used = new Set(s.exercises.map((e) => e.ficheId));
+      const placed: Partial<Record<SlotKey, string>> = {};
+      for (const x of s.exercises) placed[x.slot] = x.schema;
+      const weekIds = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
+      let added = false;
+      for (const sl of free) {
+        for (const r of freshFirst(rankSlot(sl, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+          if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34)
+          const ex = buildExercise(r.cand, sl, r.tier, ctx);
+          ex.warmupSets = e3Sets(ex, ctx);
+          const trial = { ...s, exercises: [...s.exercises, ex] };
+          if (estimerDuree(trial) > (budget.get(s.label) ?? dSec) || !splitCapsOk(trial.exercises, plafAuto) || !weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
+          s.exercises = trial.exercises;
+          added = true;
+          break;
+        }
+        if (added) break;
       }
     }
   }

@@ -17,7 +17,16 @@ import { rotationStart } from './variety';
 export function isoEligible(ctx: Ctx, split: GenProgram['split'], nDays: number): boolean {
   if (ctx.goalKey !== ISOLATION.goal || ctx.pregnant || !ctx.isoOpen) return false;
   if (nDays < ISOLATION.minDays) return false;
-  return split === 'corps_entier' || split === 'haut_bas';
+  // D24 (CAL-1 / CAL-8, 07/11/2026) : séparations PUSH / PULL / LEGS admises (PV3-ISO-2) ; l'emplacement de chaque séance est filtré par isoSlotFitsType.
+  return split === 'corps_entier' || split === 'haut_bas' || split === 'push_pull_legs' || split === 'haut_bas_ppl';
+}
+
+/** D24 : emplacement d'isolation admis selon le type de séance (CE : tous ; HAUT : biceps, latéraux ; BAS : mollets ; PUSH : latéraux ; PULL : biceps ; LEGS : mollets). */
+export function isoSlotFitsType(slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets', t: string): boolean {
+  if (t === 'CE') return true;
+  if (slot === 'iso_mollets') return t === 'BAS' || t === 'LEGS';
+  if (slot === 'iso_biceps') return t === 'HAUT' || t === 'PULL';
+  return t === 'HAUT' || t === 'PUSH';
 }
 
 export type IsoDef = (typeof ISOLATION.slots)[number];
