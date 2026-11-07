@@ -11,7 +11,7 @@ const prog = (i: GeneratorInput): GenProgram => {
   return r.program;
 };
 const withRope = (o: MkOpts = {}): GeneratorInput => {
-  const i = mk({ goal: 'muscle', days: 3, dur: 60, level: 'intermediaire', extraTags: [ROPE.tag], ...o });
+  const i = mk({ goal: 'muscle', days: 2, dur: 60, level: 'intermediaire', extraTags: [ROPE.tag], ...o });
   return { ...i, options: { ...(i.options ?? {}), seanceCardio: true } };
 };
 const ropeSessions = (p: GenProgram) => (p.cardioSessions ?? []).filter((c) => c.cardio.variantId === ROPE.variantId);
