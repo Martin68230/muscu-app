@@ -16,6 +16,8 @@ export const NECK_DEDICATED_IDS: readonly string[] = [
   'inclinaison-douce-cou',
   'retraction-cervicale',
   'isometrique-cou',
+  // 07/11/2026 (relecteur) : défense en profondeur, jamais placée automatiquement (avis kine, C2).
+  'renfo-cou-isometrique',
 ];
 
 export interface FicheRuleInfo {

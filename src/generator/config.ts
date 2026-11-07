@@ -1057,6 +1057,8 @@ export const CORRECTIF = {
     adducteurs: ['adduction-couchee-cote'],
     mollets_soleaire: ['releve-mollets-assis', 'releve-mollets', 'marche-pointes-talons'],
     tibiaux: ['releve-tibial-mur', 'marche-pointes-talons'],
+    // 07/11/2026 : avant-bras (fiches de `coach`, cases de `kine`). Cou : volontairement ABSENT (avis `kine` : pas de placement automatique, C2).
+    avant_bras: ['essorage-serviette', 'flexion-poignet-avant-bras', 'extension-poignet-avant-bras'],
   } as Readonly<Record<string, readonly string[]>>,
   maxSets: 2,
   maxPerSession: 2,

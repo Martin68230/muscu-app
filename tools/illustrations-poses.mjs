@@ -946,6 +946,30 @@ export const EXERCICES = [
     b: { p: [0, 112], armN: { a: [-88, 68] }, armF: { a: [-90, 64] }, props: (J) => [['band', [[19, 5], J.haN]], ['band', [[19, 5], J.haF]], ['arrow', [62, 120], [62, 165]]] },
   },
   {
+    id: 'essorage-serviette', titre: 'Essorage de serviette : serviette roulée tenue à deux mains devant la poitrine, les mains tournent en sens inverses',
+    labels: ['Serviette tenue à deux mains', 'Les mains tournent en sens inverses'],
+    a: { p: [0, 112], armN: { to: [30, 100], bend: 'd' }, armF: { to: [30, 100], bend: 'd' }, props: (J) => [['band', [J.haN, J.haF]]] },
+    b: { p: [0, 112], armN: { to: [30, 100], bend: 'd' }, armF: { to: [30, 100], bend: 'd' }, props: (J) => [['band', [J.haN, J.haF]], ['arrow', [52, 118], [52, 90]]] },
+  },
+  {
+    id: 'flexion-poignet-avant-bras', titre: 'Curl de poignet à l’élastique, assis, avant-bras posé sur la cuisse, paume vers le haut, élastique sous le pied',
+    labels: ['Main dans le vide, paume en haut', 'Le poignet plie, la paume monte'],
+    a: { p: [-48, 58], t: 80, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [14, 66], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: (J) => [['band', [[10, 5], J.haN]]] },
+    b: { p: [-48, 58], t: 80, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [14, 66], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: (J) => [['band', [[10, 5], J.haN]], ['arrow', [30, 62], [30, 90]]] },
+  },
+  {
+    id: 'extension-poignet-avant-bras', titre: 'Extension de poignet à l’élastique, assis, avant-bras posé sur la cuisse, paume vers le bas, élastique sous le pied',
+    labels: ['Main dans le vide, paume en bas', 'Le dos de la main monte'],
+    a: { p: [-48, 58], t: 80, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [14, 66], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: (J) => [['band', [[10, 5], J.haN]]] },
+    b: { p: [-48, 58], t: 80, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [14, 66], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: (J) => [['band', [[10, 5], J.haN]], ['arrow', [30, 62], [30, 90]]] },
+  },
+  {
+    id: 'renfo-cou-isometrique', titre: 'Renfo du cou en isométrie, assis, une main contre le front : la main pousse la tête, la tête ne bouge pas',
+    labels: ['Main sur le front, tête neutre', 'On pousse sans bouger la tête'],
+    a: { p: [-48, 58], t: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [22, 128], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]] },
+    b: { p: [-48, 58], t: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [22, 128], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: [['arrow', [70, 135], [40, 135]]] },
+  },
+  {
     id: 'developpe-epaules-elastique-alterne', titre: 'Développé épaules alterné à l’élastique, assis sur une chaise calée contre un mur, élastique sous les pieds : une main pousse, l’autre reste à hauteur d’épaule',
     labels: ['Mains aux épaules', 'Un bras pousse, l’autre attend', 'L’autre bras pousse'],
     a: { p: [-21, 58], t: 90, legN: { to: [36, A], bend: 'f' }, legF: { to: [30, A], bend: 'f' }, armN: { a: [-50, 92] }, armF: { a: [-52, 92] }, back: [['wall', -50, 14], ['chair', -34, 46, 1]], props: (J) => [['band', [[47, 5], J.haN]], ['band', [[47, 5], J.haF]]] },

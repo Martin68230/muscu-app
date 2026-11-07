@@ -22,7 +22,7 @@ export type ZoneExclusion = 'blessure' | 'materiel';
  * ni série ajoutée (fillGreyZones) ; couvertes par l'emplacement correctif (addCorrectifs, CORRECTIF) quand une fiche légère compatible
  * existe pour le profil. Sans fiche compatible (slotlessFor) : ni corrigées ni citées, le rapport les liste à part.
  */
-export const SLOTLESS_ZONES: readonly ZoneId[] = ['coiffe_rotateurs', 'carre_des_lombes', 'flechisseurs_hanche', 'peroniers', 'abducteurs', 'adducteurs', 'mollets_soleaire', 'tibiaux'];
+export const SLOTLESS_ZONES: readonly ZoneId[] = ['coiffe_rotateurs', 'carre_des_lombes', 'flechisseurs_hanche', 'peroniers', 'abducteurs', 'adducteurs', 'mollets_soleaire', 'tibiaux', 'avant_bras'];
 
 export interface ZoneCheck {
   points: Record<ZoneId, number>;
