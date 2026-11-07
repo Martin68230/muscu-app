@@ -6,7 +6,7 @@ schema: cardio
 type: cardio
 niveau_min: debutant
 muscles_principaux: [mollets, quadriceps]
-muscles_secondaires: [fessiers, epaules]
+muscles_secondaires: [fessiers, deltoides_anterieurs]
 source_brouillon: []
 statut: utilisable
 ---
