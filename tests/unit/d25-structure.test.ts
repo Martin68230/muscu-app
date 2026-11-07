@@ -244,8 +244,9 @@ describe('T-D25-12 à 16, 19, 22, 23 : débutant, jours légers, rotation, super
   it('T-D25-16 : core : plancher, séances désignées bas / legs, puis haut, puis pull ; familles qui tournent', () => {
     const order = (p: GenProgram) => p.sessions.filter((s) => s.exercises.some((e) => e.slot === 'tronc')).map((s) => s.label);
     expect(order(prog(PS[4]()))).toEqual(['HAUT-A', 'BAS-A', 'BAS-B']);
-    expect(order(prog(PS[6]()))).toEqual(['HAUT-A', 'BAS-A', 'LEGS-B']);
-    expect(order(prog(PS[7]()))).toEqual(['PULL-A', 'LEGS-A', 'LEGS-B']);
+    // 07/11/2026 : cible de 4 séances à 5 et 6 jours (PULL et LEGS ont du tronc, PUSH jamais).
+    expect(order(prog(PS[6]())).sort()).toEqual(['BAS-A', 'HAUT-A', 'LEGS-B', 'PULL-B']);
+    expect(order(prog(PS[7]())).sort()).toEqual(['LEGS-A', 'LEGS-B', 'PULL-A', 'PULL-B']);
     for (const p of [prog(PS[4]()), prog(PS[6]()), prog(PS[7]())]) {
       const fams = p.sessions.flatMap((s) => s.exercises.filter((e) => e.slot === 'tronc').map((e) => e.coreFamily));
       for (let i = 1; i < fams.length; i++) expect(fams[i]).not.toBe(fams[i - 1]);
