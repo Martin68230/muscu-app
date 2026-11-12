@@ -6,9 +6,10 @@ import { BLOCK_WEEKS, ISOLATION, LIGHT_SPLIT_MAX_FORCE, MIN_GAP_DAYS } from '../
 import { conflicts, generateProgram, isCardioDay, toLightDays, toProgramDays } from '../generator';
 import type { Fiche, GeneratorInput, GenerateResult, GenMessage, GenProgram, HistorySet } from '../generator/types';
 import { d4OpenVariants } from './adaptation';
+import { recentPain } from '../generator/context';
 
 /** À changer quand les règles du générateur changent : force la régénération chez tout le monde. */
-export const GENERATOR_VERSION = 'v1.8'; // v1.8 (D34) : variété (attribution des fiches à l'échelle de la semaine, PV3-VAR-1, 2, 6), rotation des accessoires sur deux jeux (semaines impaires / paires, PV3-VAR-4), supersets par jeu, indicateur penurieVariete ; v1.7 (D33) : plafond 12, cardio par défaut en perte de gras, filtre salle, isolation par liste fermée ; v1.6 (D32) : limites de dose des fiches (réserve, séries, haltères légers), surfaces instables en réserve >= 2, paires retentées après l'ajout d'emplacements, message de cardio corrigé ; v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
+export const GENERATOR_VERSION = 'v1.9'; // v1.9 (CAL-11 / CAL-12) : compléments PUSH / HAUT, critère du cou durci; v1.8 (D34) : variété (attribution des fiches à l'échelle de la semaine, PV3-VAR-1, 2, 6), rotation des accessoires sur deux jeux (semaines impaires / paires, PV3-VAR-4), supersets par jeu, indicateur penurieVariete ; v1.7 (D33) : plafond 12, cardio par défaut en perte de gras, filtre salle, isolation par liste fermée ; v1.6 (D32) : limites de dose des fiches (réserve, séries, haltères légers), surfaces instables en réserve >= 2, paires retentées après l'ajout d'emplacements, message de cardio corrigé ; v1.5 (D30 / D31) : plafonds de cardio par objectif, option « Ajouter une séance de cardio ? », séance de sport, sauts (5.2), extérieur, accès à une salle, isolation (STR-ISO), cardio doux du jour léger ; v1.4 (D25) : 1 à 6 jours (haut / bas, push / pull / legs, jours légers), cardio par rang, SUP-10, option « gagner du temps » ; v1.3 (D26) : core (plancher, familles, CORE-ORD-4) et supersets (SUP-0 à SUP-9) ; v1.2 (B4) : cardio
 export const PROGRAM_TEMPLATE_KEY = 'generateur-v1';
 const DAY_MS = 24 * 3600 * 1000;
 
@@ -31,6 +32,9 @@ const sortedNums = (a: readonly number[] | undefined): number[] => [...(a ?? [])
 const sortedStrs = (a: readonly string[] | undefined): string[] => [...(a ?? [])].sort();
 
 /** Représentation canonique des entrées qui décident du programme (ni l'historique, ni les fiches elles-mêmes). */
+const recentPainList = (input: GeneratorInput): string[] =>
+  [...recentPain((input.injuries ?? []).map((i) => ({ ...i, deletedAt: i.deletedAt ?? null })), input.options?.nowIso)].sort();
+
 function canonical(input: GeneratorInput, fichesSig: string): unknown {
   const p = input.profile;
   const eq = input.equipment;
@@ -42,6 +46,8 @@ function canonical(input: GeneratorInput, fichesSig: string): unknown {
       !!p.salleAccess, !!p.exterieur, p.neckScreen ?? null, sortedStrs(p.sports),
     ],
     equipment: [eq.preset, sortedStrs(eq.tags), sortedStrs(eq.disabledImplicit), sortedNums(eq.dumbbellWeightsKg), sortedNums(eq.kettlebellWeightsKg), sortedNums(eq.platesKg)],
+    // CAL-11 : zones à douleur récente (7 jours, même passée) ; vide dans la plupart des cas, l'empreinte ne change alors que si l'ensemble change.
+    ...(recentPainList(input).length ? { recentPain: recentPainList(input) } : {}),
     injuries: (input.injuries ?? [])
       .filter((i) => i.active && !i.deletedAt)
       .map((i) => `${i.zone}:${i.level}:${i.afterShock ? 1 : 0}`)
@@ -110,7 +116,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
       kettlebellWeightsKg: equipment.kettlebellWeightsKg,
       platesKg: equipment.platesKg ?? [],
     },
-    injuries: injuries.map((i) => ({ zone: i.zone, level: i.level, active: i.active, deletedAt: i.deletedAt, afterShock: i.afterShock })),
+    injuries: injuries.map((i) => ({ zone: i.zone, level: i.level, active: i.active, deletedAt: i.deletedAt, afterShock: i.afterShock, updatedAt: i.updatedAt })),
     goals: goals.map((g) => ({ goalKey: g.goalKey, rank: g.rank })),
     fiches,
     history: historyFromSets(sets),

@@ -3,7 +3,7 @@ import type { InjuryZone, Level } from '../data/model';
 import { zoneLevel } from '../data/injury-rules';
 import tagsJson from '../../knowledge/materiel-tags.json';
 import {
-  CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
+  CAL11, CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
   MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, UNILATERAL_WORDS, type Family,
 } from './config';
 import type { Fiche, FicheVariant, GeneratorInput, HistorySet } from './types';
@@ -76,6 +76,8 @@ export interface Ctx {
   repriseActive: boolean;
   /** [kine 05/11/2026] Garde-fou D4 : ids de variantes D4 ouvertes par l'historique. */
   d4Open: Set<string>;
+  /** CAL-11 : zones de blessure avec une gêne (même passée) mise à jour dans les 7 derniers jours, ou passée sans date connue (prudence). */
+  recentPainZones: Set<InjuryZone>;
   /** Mémo de resolveFiche (dépend du contexte). */
   memo: Map<string, unknown>;
 }
@@ -106,6 +108,20 @@ function buildHistory(h: HistorySet[] | undefined): Map<string, HistoryInfo> {
       lastAt: s.completedAt!,
       lastPainFreeLoadKg: s.pain ? (prev?.lastPainFreeLoadKg ?? null) : s.loadKg,
     });
+  }
+  return out;
+}
+
+/** CAL-11 : gêne non supprimée avec niveau >= 1 mise à jour il y a moins de 7 jours ; gêne passée sans date lisible : comptée (prudence). */
+export function recentPain(injuries: readonly { zone: InjuryZone; level: number; active: boolean; deletedAt: string | null; updatedAt?: string }[], nowIso?: string): Set<InjuryZone> {
+  const out = new Set<InjuryZone>();
+  const now = nowIso ? Date.parse(nowIso) : Date.now();
+  for (const i of injuries) {
+    if (i.deletedAt || i.level < 1) continue;
+    const t = i.updatedAt ? Date.parse(i.updatedAt) : NaN;
+    if (Number.isNaN(t) || Number.isNaN(now)) {
+      if (!i.active) out.add(i.zone);
+    } else if (now - t < CAL11.painDays * 86400000) out.add(i.zone);
   }
   return out;
 }
@@ -191,6 +207,7 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     calfFallbackForbidden: level === 'debutant' && !opts.isoDebutantOuverte,
     repriseActive: !!opts.repriseActive,
     d4Open: new Set(opts.d4Open ?? []),
+    recentPainZones: recentPain(injuries, opts.nowIso),
     memo: new Map(),
   };
 }

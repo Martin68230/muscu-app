@@ -7,7 +7,7 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CORRECTIF_COU, CARDIO_CAPS, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CAL11, CORRECTIF_COU, CARDIO_CAPS, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
@@ -32,6 +32,7 @@ import type {
 import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from './warmup';
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
+import { addCal11 } from './cal11';
 import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
@@ -939,6 +940,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
   }
   fillToTarget(kept, { ...zoneDeps, target: (s) => Math.min(dur.targetMin * 60, budget.get(s.label) ?? dSec), functional: functionalAlternatives });
+  // CAL-11 (kiné 12/11/2026) : compléments de fin de séance PUSH / HAUT sous tous les plafonds (aucune série de deltoïdes en plus).
+  addCal11(kept, zoneDeps, typeOf);
   // Cou (`kine`, 07/11/2026) : l'isolation, le remplissage PPL et le remplissage du temps passent après le correctif ; si l'un d'eux a ajouté un exercice lourd
   // d'épaules / trapèzes dans une séance qui a déjà le cou, le cou en est retiré (jamais ailleurs).
   for (const s of kept) {
@@ -1394,7 +1397,7 @@ export function plannedOf(e: GenExercise): PlannedExercise {
   return {
     movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
     supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
-    slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, ...(e.ficheId === CORRECTIF_COU.ficheId && e.cappedLabel ? { cappedLabel: e.cappedLabel } : {}), adaptation: e.adaptation, substitut: e.substitut,
+    slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, ...((e.ficheId === CORRECTIF_COU.ficheId || e.cappedLabel === CAL11.stopMessage) && e.cappedLabel ? { cappedLabel: e.cappedLabel } : {}), adaptation: e.adaptation, substitut: e.substitut,
     ...(e.rotation ? { rotation: true } : {}),
     // Un seul côté à la fois (un bras, une jambe, alterné) : une série = gauche puis droite. `reps_par_cote` l'est déjà.
     ...(e.unilateral && e.unit !== 'reps_par_cote' && e.role !== 'cardio' ? { perSide: true } : {}),

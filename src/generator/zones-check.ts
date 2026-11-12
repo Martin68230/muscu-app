@@ -96,13 +96,31 @@ export const neckAllowed = (ctx: Ctx): boolean =>
   CORRECTIF_COU.enabled && ctx.neckScreenOk && !ctx.pregnant && !ctx.postPartum && !ctx.repriseActive &&
   !ctx.zones.some((z) => !z.isG && (z.key === 'cou' || (z.level >= 2 && CORRECTIF_COU.blockZonesFromLevel2.includes(z.key))));
 
-/** Cou (`kine`, 07/11/2026) : pas de cou dans une séance qui contient un exercice lourd (chargé) de trapèzes ou d'épaules (lecture prudente : matériel lourd ou haltères). */
+const PUSH_PULL_SCHEMAS: readonly string[] = ['poussee_h', 'poussee_v', 'tirage_h', 'tirage_v'];
+const isExternalLoadTag = (t: string) => HEAVY_TAGS_B1.includes(t) || t === 'halteres' || t === 'anneaux' || t.startsWith('sangle');
+
+/**
+ * CAL-12 (kiné 12/11/2026, NON SOURCÉ, prudent : un doute = lourd) : exercice « lourd » d'épaules / trapèzes pour le cou. Lourd si :
+ * 1. coefficient >= 0,5 sur trapezes_* / epaules_* / cou et (a) tag de charge externe (liste B1, haltères, anneaux, sangle), (b) élastique,
+ *    (c) schéma de poussée ou de tirage (poids du corps, barre de traction, tout autre appui), (d) schéma porté ou gainage (appui des épaules) ;
+ * 2. squat avec barre ou rack, sans condition de coefficient.
+ * Non lourd : mobilité, cardio, et tout exercice sous 0,5 sur toutes ces zones. Fiche ou tags illisibles : lourd.
+ */
+export function isHeavyShoulderTrapExercise(x: Pick<GenExercise, 'ficheId' | 'tags' | 'schema'>, ctx: Ctx): boolean {
+  const f = zf(ctx, x.ficheId);
+  if (!f || !Array.isArray(x.tags)) return true;
+  const type = (f as { type?: string }).type ?? '';
+  if (type.startsWith('mobilite') || type === 'cardio') return false;
+  if (x.schema === 'squat' && x.tags.some((t) => t === 'barre' || t === 'rack')) return true;
+  const coefs = zoneCoefs(f);
+  if (!coefs.size) return true;
+  if (![...coefs].some(([z, c]) => c >= MIN_COEF && (z.startsWith('trapezes') || z.startsWith('epaules') || z === 'cou'))) return false;
+  return x.tags.some(isExternalLoadTag) || x.tags.includes('elastique') || PUSH_PULL_SCHEMAS.includes(x.schema) || x.schema === 'porte' || x.schema === 'gainage';
+}
+
+/** Cou (CAL-12) : pas de cou dans une séance dont l'exercice principal ou son alternative est lourd (hors emplacement correctif). */
 export const hasHeavyShoulderTrap = (s: Pick<Sess, 'exercises'>, ctx: Ctx): boolean =>
-  s.exercises.some((e) => [e, ...(e.alt ? [e.alt] : [])].some((x) => {
-    if (x.slot === 'correctif' || !x.chargeable || !x.tags.some((t) => HEAVY_TAGS_B1.includes(t) || t === 'halteres')) return false;
-    const f = zf(ctx, x.ficheId);
-    return !!f && [...zoneCoefs(f)].some(([z, c]) => c >= MIN_COEF && (z.startsWith('trapezes') || z.startsWith('epaules')));
-  }));
+  s.exercises.some((e) => [e, ...(e.alt ? [e.alt] : [])].some((x) => x.slot !== 'correctif' && isHeavyShoulderTrapExercise(x, ctx)));
 
 /** Fiches correctif admissibles d'une zone pour le profil (liste fermée CORRECTIF, matériel, niveau, cases de sécurité, grossesse). */
 export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[]): Candidate[] {
@@ -143,7 +161,7 @@ export function slotlessFor(ctx: Ctx, pool: readonly Fiche[]): ReadonlySet<ZoneI
 }
 
 /** Exercice correctif : dose de la fiche (ligne « isolation »), 2 séries au plus, aucun échauffement, charge la plus légère jamais augmentée. */
-function correctifExercise(c: Candidate, ctx: Ctx): GenExercise {
+export function correctifExercise(c: Candidate, ctx: Ctx): GenExercise {
   const ex = buildExercise({ ...c, capped: true }, 'correctif', 'a', ctx);
   ex.sets = Math.min(ex.sets, CORRECTIF.maxSets);
   if (c.fiche.id === CORRECTIF_COU.ficheId) {

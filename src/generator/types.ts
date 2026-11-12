@@ -56,7 +56,8 @@ export interface HistorySet {
   pain: boolean;
   echelon?: number | null;
 }
-export type InjuryInput = Pick<Injury, 'zone' | 'level' | 'active'> & { deletedAt?: string | null; afterShock?: boolean };
+/** `updatedAt` : date de la dernière mise à jour de la gêne (CAL-11 : douleur déclarée dans les 7 derniers jours, même passée). */
+export type InjuryInput = Pick<Injury, 'zone' | 'level' | 'active'> & { deletedAt?: string | null; afterShock?: boolean; updatedAt?: string };
 export interface GeneratorInput {
   profile: {
     level?: Level | null;
@@ -84,6 +85,8 @@ export interface GeneratorInput {
   fiches: Fiche[];
   history?: HistorySet[];
   options?: {
+    /** Date du jour (ISO) pour les règles datées (CAL-11) ; absent = l'horloge. */
+    nowIso?: string;
     /** Option « gagner du temps » : supersets dès la génération (V-SUP). Défaut : non. */
     gagnerDuTemps?: boolean;
     /** D34 (PV3-VAR-4, 6) : bloc de 4 semaines (1, 2…) ; absent = 1. Le bloc 2 change le noyau stable et les jeux d'accessoires. */

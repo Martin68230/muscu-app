@@ -172,6 +172,7 @@ test('D30 : séance de sport avec sauts (T8) et version sans saut du débutant',
   await page.reload();
   await expect(page.getByRole('button', { name: 'Voir la séance' })).toBeVisible({ timeout: 20_000 });
   await goToCardioDay(page);
+  await page.getByText('Précautions avant les sauts').click();
   await expect(page.getByText(/Les sauts demandent plus aux genoux/)).toBeVisible();
   await shot(page, 'apercu-sauts-t8', project);
   await page.getByRole('heading', { name: 'Les exercices' }).scrollIntoViewIfNeeded();
@@ -188,6 +189,7 @@ test('D30 : séance de sport avec sauts (T8) et version sans saut du débutant',
   await db(page, 'soft');
 
   await goToCardioDay(page);
+  await page.getByText('Précautions avant les sauts').click();
   await expect(page.getByText('Version sans saut d’abord : c’est la version prévue pour toi.').first()).toBeVisible();
   await page.getByText('Version sans saut d’abord : c’est la version prévue pour toi.').first().scrollIntoViewIfNeeded();
   await shot(page, 'apercu-sauts-t8-debutant', project);

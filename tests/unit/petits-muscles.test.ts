@@ -43,11 +43,15 @@ const neckEx = (o: Parameters<typeof mk>[0], neckScreen?: 'non' | 'oui' | 'refus
   return r.program.sessions.flatMap((s) => s.exercises).filter((e) => e.ficheId === NECK);
 };
 describe('Cou : placement automatique sous conditions (kiné, 07/11/2026)', () => {
-  it('activé : « Non, rien » place le cou pour un débutant sans signe', () => {
+  it('activé : « Non, rien » place le cou dans une séance sans exercice lourd (jambes sans barre), plus dans PUSH / PULL / HAUT (CAL-12)', () => {
     expect(CORRECTIF_COU.enabled).toBe(true);
-    let seen = 0;
-    for (const days of [2, 3]) seen += neckEx({ level: 'debutant', profile: 'B', days, dur: 30 }, 'non').length;
-    expect(seen).toBeGreaterThan(0);
+    const i = mk({ goal: 'muscle', days: 5, dur: 60, level: 'avance', profile: 'F', place: 'salle' });
+    const r = generateProgram({ ...i, profile: { ...i.profile, neckScreen: 'non' } });
+    expect(r.ok).toBe(true);
+    if (!r.ok) return;
+    const withNeck = r.program.sessions.filter((s) => s.exercises.some((e) => e.ficheId === NECK)).map((s) => s.type);
+    expect(withNeck.length).toBeGreaterThan(0);
+    for (const t of withNeck) expect(['PUSH', 'PULL', 'HAUT']).not.toContain(t);
   });
   it('placé en correctif : variante simple, 1 série de 3 s, jamais plus, sans progression, au plus une fois par semaine', () => {
     for (const level of ['debutant', 'intermediaire'] as const) for (const profile of ['A0', 'B', 'F']) {

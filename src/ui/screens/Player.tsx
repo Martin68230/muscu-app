@@ -608,7 +608,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {v.isWarmupSet ? `Série d’échauffement ${v.setNumber} sur ${v.setsTotal}` : `Série ${v.setNumber} sur ${v.setsTotal}`}
           {v.side ? ` · côté ${v.side}` : ''}
         </p>
-        {ex.cappedLabel && ex.movementId === NECK_FICHE_ID && <p class="small prog-line" role="note">{ex.cappedLabel}</p>}
+        {ex.cappedLabel && (ex.movementId === NECK_FICHE_ID || ex.cappedLabel.startsWith('Arrête tout de suite si tu ressens une douleur vive')) && <p class="small prog-line" role="note">{ex.cappedLabel}</p>}
         {sided && !v.isWarmupSet && <p class="side-rule">{PER_SIDE_RULE}</p>}
         <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}</p>
         {lastLine && !v.isWarmupSet && <p class="dim small">{lastLine}</p>}

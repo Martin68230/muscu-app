@@ -570,3 +570,13 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .mm-panel p { margin: 6px 0; }
 .mm-list summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; color: var(--accent); font-weight: 600; }
 .mm-groups { display: flex; flex-wrap: wrap; gap: 8px; margin: 8px 0; }
+
+/* Volets « Précautions » : fermés par défaut, cadre jaune seulement une fois ouverts (zone tactile 44 px, texte 16 px). */
+.precautions { margin: 8px 0 12px; }
+.precautions summary {
+  min-height: 44px; display: flex; align-items: center; cursor: pointer; font-size: 16px; font-weight: 600; color: var(--accent);
+}
+.precautions[open] { background: var(--warn-bg); border: 1px solid var(--warn-line); border-radius: 14px; padding: 0 16px 8px; }
+.precautions-body p { margin: 6px 0; font-size: 16px; }
+.precautions-body p.small { font-size: 16px; }
+.stop-line { margin: 8px 0; font-size: 16px; font-weight: 600; }

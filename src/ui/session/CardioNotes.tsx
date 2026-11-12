@@ -4,6 +4,7 @@
 import { useState } from 'preact/hooks';
 import type { PlannedExercise, ProgramDay } from '../../data/model';
 import { D30_TEXT } from '../../session/messages';
+import { Precautions } from '../Precautions';
 
 const hasJump = (d: Pick<ProgramDay, 'exercises'>) => d.exercises.some((e) => !!e.jump);
 const isOutdoor = (d: Pick<ProgramDay, 'exercises'>) => d.exercises.some((e) => !!e.outdoor);
@@ -17,20 +18,23 @@ export function CardioDayNotes({ day }: { day: Pick<ProgramDay, 'exercises'>; fi
   return (
     <>
       {jump && (
-        <section class="notice" aria-label="Avant les sauts">
-          <p><strong>Avant les sauts</strong></p>
-          <p>{D30_TEXT.T8}</p>
-          {allSoft && <p>{D30_TEXT.softFirst}</p>}
-          <p>{D30_TEXT.jumpStop}</p>
-          <p class="small">{D30_TEXT.courbatures}</p>
-        </section>
+        <>
+          <Precautions title="Précautions avant les sauts" label="Avant les sauts">
+            <p>{D30_TEXT.T8}</p>
+            {allSoft && <p>{D30_TEXT.softFirst}</p>}
+            <p>{D30_TEXT.courbatures}</p>
+          </Precautions>
+          {/* Arrêt au premier signe pendant les sauts : toujours visible, ligne courte neutre. */}
+          <p class="stop-line" role="note">{D30_TEXT.jumpStop}</p>
+        </>
       )}
       {out && (
-        <section class="notice" aria-label="Dehors">
-          <p><strong>Dehors</strong></p>
-          <p>{D30_TEXT.T9}</p>
-          <p><strong>{D30_TEXT.indoorTitle}</strong> {D30_TEXT.indoorWalk}</p>
-        </section>
+        <>
+          <Precautions title="Précautions pour dehors" label="Dehors">
+            <p>{D30_TEXT.T9}</p>
+          </Precautions>
+          <p class="small"><strong>{D30_TEXT.indoorTitle}</strong> {D30_TEXT.indoorWalk}</p>
+        </>
       )}
     </>
   );
@@ -56,7 +60,7 @@ export function JumpPlayNotes({ ex }: { ex: PlannedExercise }) {
           {heavy !== true && ex.jump.softNom && <p class="dim">{D30_TEXT.softLine(ex.jump.softNom)}</p>}
         </>
       )}
-      <p>{D30_TEXT.jumpStop}</p>
+      <p class="stop-line" role="note">{D30_TEXT.jumpStop}</p>
     </div>
   );
 }
@@ -66,7 +70,7 @@ export function OutdoorPlayNotes({ ex }: { ex: PlannedExercise }) {
   if (!ex.outdoor) return null;
   return (
     <div class="small">
-      <p>{D30_TEXT.T9short}</p>
+      <Precautions title="Précautions pour dehors" label="Dehors"><p>{D30_TEXT.T9short}</p></Precautions>
       <p class="dim"><strong>{D30_TEXT.indoorTitle}</strong> {D30_TEXT.indoorWalk}</p>
     </div>
   );

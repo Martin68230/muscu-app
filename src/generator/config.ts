@@ -1091,6 +1091,29 @@ export const CORRECTIF_COU = {
   stopMessage: 'Arrête tout de suite si tu ressens une douleur, un vertige, un engourdissement ou des fourmillements. Ne refais pas cet exercice et parle à un professionnel de santé si ça revient ou si ça dure.',
 };
 
+/**
+ * CAL-11 (knowledge/calibrage-kaggle.md §5, kiné 12/11/2026 ; dose NON SOURCÉ) : compléments en PUSH / HAUT quand les deltoïdes sont au plafond.
+ * Dose fixe (2 séries, jamais de montée de charge), au plus 2 exercices et 4 séries par séance, une zone par exercice. Triceps EXCLU (CAL-9 refusé).
+ */
+export const CAL11 = {
+  enabled: true,
+  types: ['PUSH', 'HAUT'] as readonly string[],
+  setsPerAdd: 2,
+  maxExercises: 2,
+  maxSets: 4,
+  /** PV3-REINV-1 : temps libre minimal (s) avant un ajout. */
+  minFreeSec: 4 * 60,
+  /** Séance <= 19 séries de travail (haut de CAL-3), ajout compris. */
+  maxSessionSets: 19,
+  /** Douleur déclarée sur la zone liée dans les 7 derniers jours (même passée) : aucun ajout. */
+  painDays: 7,
+  dentele: { ids: ['pompe-plus'] as readonly string[], repsMin: 8, repsMax: 12, rir: 3 },
+  coiffe: { repsMin: 12, repsMax: 15, rir: 3 },
+  /** Gainage / anti-rotation en appui sur les mains ou les poignets : refusés si le poignet est gêné (niveau >= 1). */
+  handSupportedCoreIds: ['planche', 'planche-ballon', 'planche-bosu', 'planche-bras-jambe-leves', 'planche-cercles-ballon', 'planche-touche-epaule', 'genoux-poitrine-ballon', 'bird-dog', 'bird-dog-jambe-seule', 'bird-dog-pause', 'rollout-ballon', 'roue-abdos'] as readonly string[],
+  stopMessage: 'Arrête tout de suite si tu ressens une douleur vive, un pincement, un engourdissement ou des fourmillements, et ne refais pas cet exercice. Douleur la nuit, perte de force ou gonflement : consulte un professionnel de santé.',
+};
+
 /** STR-REP-12 : cardio doux du jour léger (marche à plat, facile), proposé jamais exigé : départ au bas de la fourchette. NON SOURCÉ. */
 export const LIGHT_DAY_CARDIO = { startMin: 10, maxMin: { debutant: 15, autres: 20 } };
 

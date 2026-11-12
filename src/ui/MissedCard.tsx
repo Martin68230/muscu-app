@@ -13,6 +13,24 @@ export interface MissedActions {
 
 type Step = 'carte' | 'jours' | 'sauter' | 'pas_bien';
 
+/** Choix du jour de « Décaler » (T-6) : partagé par la carte de l'Accueil et l'aperçu de séance (décision du 12/11/2026). */
+function DayChoices({ card, busy, error, onPick, onBack }: { card: MissedCard; busy: boolean; error: string | null; onPick: (day: string) => void; onBack: () => void }) {
+  return (
+    <section class="card missed-card" aria-label={MISSED_TEXT.T6_TITLE}>
+      <h2>{MISSED_TEXT.T6_TITLE}</h2>
+      <div class="missed-days">
+        {card.jours.map((j) => (
+          <button type="button" class="btn btn-primary" key={j} disabled={busy} onClick={() => onPick(j)}>
+            {dayButton(j)}
+          </button>
+        ))}
+      </div>
+      <button type="button" class="btn" onClick={onBack}>{MISSED_TEXT.T6_BACK}</button>
+      {error && <p role="alert">{error}</p>}
+    </section>
+  );
+}
+
 export function MissedCardView({ card, actions, twoDays, onDone }: {
   card: MissedCard;
   actions: MissedActions;
@@ -40,18 +58,7 @@ export function MissedCardView({ card, actions, twoDays, onDone }: {
 
   if (step === 'jours') {
     return (
-      <section class="card missed-card" aria-label={MISSED_TEXT.T6_TITLE}>
-        <h2>{MISSED_TEXT.T6_TITLE}</h2>
-        <div class="missed-days">
-          {card.jours.map((j) => (
-            <button type="button" class="btn btn-primary" key={j} disabled={busy} onClick={() => run(() => actions.postpone(j), [MISSED_TEXT.t7(card.nom, dayName(j))])}>
-              {dayButton(j)}
-            </button>
-          ))}
-        </div>
-        <button type="button" class="btn" onClick={() => setStep('carte')}>{MISSED_TEXT.T6_BACK}</button>
-        {error && <p role="alert">{error}</p>}
-      </section>
+      <DayChoices card={card} busy={busy} error={error} onPick={(j) => run(() => actions.postpone(j), [MISSED_TEXT.t7(card.nom, dayName(j))])} onBack={() => setStep('carte')} />
     );
   }
   if (step === 'sauter') {
@@ -137,4 +144,31 @@ export function PreviewSkipLinks({ nom, twoDays, onSkip, onUnwell, onDone }: {
       <button type="button" class="btn btn-link" onClick={() => setStep('pas_bien')}>{MISSED_TEXT.T18_LINK}</button>
     </div>
   );
+}
+
+/**
+ * Bouton « Décaler » de l'aperçu de séance (SM-6, décision de l'utilisateur 12/11/2026) : mêmes conditions que sur la carte
+ * (la carte porte au moins un jour libre à 48 h réelles, SM-5), même choix de jour, même enregistrement. Rien sans jour possible.
+ */
+export function PreviewPostpone({ card, postpone, onDone }: { card: MissedCard; postpone: (day: string) => Promise<void>; onDone: (texts: string[]) => void }) {
+  const [step, setStep] = useState<'bouton' | 'jours'>('bouton');
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  if (card.jours.length === 0) return null;
+  if (step === 'jours') {
+    const pick = async (j: string) => {
+      if (busy) return;
+      setBusy(true);
+      try {
+        await postpone(j);
+        onDone([MISSED_TEXT.t7(card.nom, dayName(j))]);
+      } catch {
+        setError('Enregistrement impossible. Réessaie.');
+      } finally {
+        setBusy(false);
+      }
+    };
+    return <DayChoices card={card} busy={busy} error={error} onPick={pick} onBack={() => setStep('bouton')} />;
+  }
+  return <button type="button" class="btn" onClick={() => setStep('jours')}>{MISSED_TEXT.T3}</button>;
 }
