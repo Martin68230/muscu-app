@@ -364,7 +364,8 @@ export function nextSession(program: Program, sessions: readonly WorkoutSession[
   const sortKey = (s: WorkoutSession) => s.decidedAt ?? s.endedAt ?? s.startedAt ?? s.plannedDate;
   const byKey = (a: WorkoutSession, b: WorkoutSession) => (sortKey(a) < sortKey(b) ? -1 : sortKey(a) > sortKey(b) ? 1 : 0);
   const rotation = mine
-    .filter((s) => s.status === 'faite' || (s.status === 'sautee' && (s.endReason === 'renonce' || s.endReason === 'pas_bien')))
+    // D28 : une séance créée à la demande (hors programme) n'avance jamais la rotation A, B, C.
+    .filter((s) => !s.created && (s.status === 'faite' || (s.status === 'sautee' && (s.endReason === 'renonce' || s.endReason === 'pas_bien'))))
     .sort(byKey);
   const done = mine.filter((s) => s.status === 'faite').sort(byKey);
   const last = rotation[rotation.length - 1];

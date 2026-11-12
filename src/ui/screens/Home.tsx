@@ -101,6 +101,8 @@ export interface HomeViewProps {
   regularity?: Regularity | null;
   today?: Date;
   onOpenHistory?: () => void;
+  /** D28 : ouvre l'écran « Créer une séance ». */
+  onCreateSession?: () => void;
   /** Réponses à la carte « séance manquée ». */
   missedActions?: MissedActions;
   onAckSecurity?: () => Promise<void>;
@@ -168,7 +170,7 @@ export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity 
 }
 
 /** Contenu de l'accueil (sans accès à la base : testable). */
-export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
+export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, onCreateSession, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
   const hello = profile.displayName ? `Salut ${profile.displayName}` : 'Salut';
   const complete = isProfileComplete(profile);
   const [hidden, setHidden] = useState(false);
@@ -254,6 +256,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
           <button type="button" class="btn" onClick={() => { setCycle(true); scrollTo(0, 0); }}>Voir par type de séance</button>
         </MuscleMapCard>
       )}
+      {complete && onCreateSession && !security && <button type="button" class="btn" onClick={onCreateSession}>Créer une séance</button>}
       {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
       <div class="thumb-zone">
         {!complete && <button type="button" class="btn btn-primary" onClick={onStart}>Créer mon programme</button>}
@@ -265,13 +268,14 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
   );
 }
 
-export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory }: {
+export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory, onCreateSession }: {
   profile: Profile;
   onStart: () => void;
   onEditStep: (step: ProfileStep) => void;
   onResume: (sessionId: string) => void;
   onOpenSession: () => void;
   onOpenHistory?: () => void;
+  onCreateSession?: () => void;
 }) {
   const [reg, setReg] = useState<Regularity | null>(null);
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
@@ -379,6 +383,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       }}
       regularity={reg}
       onOpenHistory={onOpenHistory}
+      onCreateSession={onCreateSession}
       missedActions={missedActions}
       onAckSecurity={acknowledgeSecurity}
       onChanged={() => {

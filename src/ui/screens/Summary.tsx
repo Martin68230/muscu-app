@@ -72,7 +72,8 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
         const next: NextItem[] = [];
         const adaptEvents = await loadEvents();
         let deloadShown = false;
-        if (outcome === 'terminee' && !pregnant) {
+        // D28 : une séance créée à la demande ne propose aucune progression et ne sert pas de base à celles du programme.
+        if (outcome === 'terminee' && !pregnant && !ctl.created) {
           const frozen = symptomFrozen(sessions);
           // R-FIN vient d'être appliquée : la reprise peut s'être terminée à cette séance (progression normale ensuite).
           const repriseActive = repriseOf((await list('profile'))[0]).actif;

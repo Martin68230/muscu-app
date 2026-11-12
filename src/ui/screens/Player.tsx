@@ -6,7 +6,7 @@ import type { InjuryZone, PlannedExercise, Profile } from '../../data/model';
 import { list } from '../../data/repo';
 import { ZONE_LABEL } from '../../data/labels';
 import type { SetInput } from '../../session/engine';
-import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression } from '../../session/history';
+import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression, withoutCreatedSets } from '../../session/history';
 import {
   C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, DROP_LIMIT_TEXT, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
   PAIN_HELP_TEXT, PAIN_STOP_TEXT, PAIR_FIRST_SESSION_TEXT, CARDIO_PLAY_TEXT, R5_SIGNS, R5_STOP_TEXT, SOUND_NOTE, SYMPTOM_RESUME_CONFIRM, U1_TEL, U1_TEXT, WAKE_LOCK_BANNER,
@@ -233,8 +233,9 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   const variant = ex ? variantOf(all, ex) : undefined;
   const loadable = isLoadable(variant);
   const bodyweight = ex ? data.bodyweightOf(ex) : undefined;
+  const progSets = useMemo(() => withoutCreatedSets({ sets: data.sets, sessions: data.sessions }).sets, []);
   const last = useMemo(
-    () => (ex ? (bodyweight && variant ? lastTimeEchelon(data.sets, ex.movementId, variant.echelon, ctl.sessionId) : lastTime(data.sets, ex.variantId, ctl.sessionId)) : null),
+    () => (ex ? (bodyweight && variant ? lastTimeEchelon(progSets, ex.movementId, variant.echelon, ctl.sessionId) : lastTime(progSets, ex.variantId, ctl.sessionId)) : null),
     [ex?.variantId],
   );
   const prog = useMemo(

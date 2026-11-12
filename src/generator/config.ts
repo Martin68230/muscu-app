@@ -851,8 +851,8 @@ export const PENDING_RULES = {
   etiquettesMachines: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
   /** STR-ISO : isolation (intermédiaire / avancé ; exception du débutant en prise de muscle). */
   isolationDebutant: { status: 'VALIDE_SOUS_RESERVE', enabled: true },
-  /** D28 « Créer une séance » (5.1 (6ter)) : écran NON codé (étape suivante) ; verrous en fonctions pures (impact.ts). */
-  creerSeance: { status: 'ETAPE_SUIVANTE', enabled: false },
+  /** D28 « Créer une séance » (5.1 (6ter)) : écran codé (étape 2, src/ui/screens/CreateSession.tsx) ; réglages PROVISOIRE / NON SOURCÉ (CREER_SEANCE). */
+  creerSeance: { status: 'PROVISOIRE_NON_SOURCE', enabled: true },
 } as const;
 
 /** Fiches que les règles citent mais qui n'existent pas encore (vague 2 de `coach`) : jamais proposées par le générateur. */
@@ -1144,4 +1144,203 @@ export const ROPE = {
   tag: 'corde_a_sauter',
   maxPerWeek: 1,
   minutes: { debutant: 8, intermediaire: 10, avance: 10 } as Record<Level, number>,
+};
+
+// ---------------------------------------------------------------------------------------------
+// D28 « Créer une séance » (knowledge/creer-seance-v1.md, rédigé par `coach` le 12/11/2026, avis `kine` §8 du 12/11/2026).
+// Statut global : PROVISOIRE quand la règle reprend une règle déjà sourcée (citée), NON SOURCÉ pour les chiffres propres à cet écran.
+// Le relecteur doit encore passer UNE fois sur ce bloc (dose, sauts, espacement). Le composeur (create-session.ts) ne contient aucune
+// valeur sportive : tout vient d'ici ou des réglages existants (JUMPS, IMPACT, PLIO_COMPOSE, VOLUME).
+// ---------------------------------------------------------------------------------------------
+export type CreateZone = 'jambes' | 'haut' | 'tronc' | 'corps_entier';
+export type CreateIntensity = 'douce' | 'moderee' | 'soutenue';
+export type CreateBlock = 'explosive' | 'slow' | 'posterior' | 'finisher';
+
+/** Une fiche de la liste fermée d'un bloc : variantes acceptables dans l'ordre de préférence, conditions propres à « Créer ». */
+export interface CreateEntry {
+  id: string;
+  variants: readonly string[];
+  minLevel: Level;
+  /** §4 : chaise exigée stable et calée contre un mur (réponse de la personne) ; sinon l'entrée est écartée. */
+  needsStableChair?: boolean;
+  /** Séries au plus (ex. force explosive : 2). */
+  maxSets?: number;
+  /** Répétitions imposées (ex. montée rapide : 6 par jambe) ; sinon la table de repetitions-regles.md (force lente : slowReps). */
+  reps?: [number, number];
+  /** Intensités où l'entrée est interdite. */
+  notIn?: readonly CreateIntensity[];
+  /** Zones dont une gêne (même niveau 1, ou douleur des 7 derniers jours) retire l'entrée. */
+  blockZones?: readonly string[];
+  /** Descente lente de 3 s ou nordique : retirée en séance adoucie (24 à 48 h). */
+  slow3s?: boolean;
+  /** Consigne de tempo affichée. */
+  tempo?: string;
+}
+
+export const CREER_SEANCE = {
+  /** La fonction `createSession` est codée ; l'écran l'est aussi (PENDING_RULES.creerSeance actif, étape 2). */
+  status: 'PROVISOIRE_NON_SOURCE',
+  source: 'knowledge/creer-seance-v1.md',
+  /** §1 : objectif de la séance -> objectif de dose (repetitions-regles.md) : forme = santé, détente et sport = sport. */
+  objectiveGoal: { forme: 'sante', detente: 'sport', sport: 'sport' } as Record<string, string>,
+  /** §1 : sports dont la case « avec des sauts » est pré-cochée (sports.md règle 4) ; foot et raquette : cochable, jamais d'office (D31 n° 2). */
+  jumpSports: ['volley', 'danse'] as readonly string[],
+  /** §3 CAL-1 : exercices de force selon la durée choisie (plus grand seuil <= durée) ; 7 au plus ; le bloc de sauts en compte 1. NON SOURCÉ. */
+  strengthCount: [[20, 2], [30, 3], [45, 5], [60, 6]] as readonly (readonly [number, number])[],
+  maxStrength: 7,
+  jumpsCountForOne: 1,
+  /** Force explosive (bloc 3) : à partir de cette durée seulement (le cas de 30 min n'en a pas). NON SOURCÉ. */
+  explosiveMinDurationMin: 45,
+  /** Finisher de tronc (bloc 6) : à partir de cette durée. NON SOURCÉ. */
+  coreMinDurationMin: 45,
+  /** §3 : séries par exercice selon l'intensité (débutant : 2 ; jamais 4 ou plus, STR-REP / SRC1). */
+  sets: { douce: 2, moderee: 3, moderateBeginner: 2, soutenue: 3 },
+  /** §3 : séries au plus d'un exercice unilatéral placé après des sauts. */
+  afterJumpsUnilateralMaxSets: 2,
+  /** §3 : séance adoucie (24 à 48 h après des jambes lourdes). */
+  softenedSets: 2,
+  /** §3 : réserve : +1 en douce, -1 en soutenue, jamais sous 2 ; 3 au moins pour un unilatéral ou une force de jambes après des sauts (`kine` 12/11/2026). */
+  rirDelta: { douce: 1, moderee: 0, soutenue: -1 } as Record<CreateIntensity, number>,
+  rirFloor: 2,
+  rirUnilateralOrAfterJumps: 3,
+  /** §3 : force lente 8 à 12, plafond 15 pour toutes les répétitions. */
+  slowReps: [8, 12] as [number, number],
+  repsCap: 15,
+  /** §3 : repos entre séries de force 60 à 90 s (douce 90). */
+  restSec: { min: 60, max: 90, douce: 90 },
+  /** §3 : total de séries de la séance (force + séries de sauts) par zone (CAL-3) et plafond absolu 19. */
+  totalSets: { jambes: [10, 18], haut: [12, 21], corps_entier: [12, 20], tronc: [0, 19] } as Record<CreateZone, [number, number]>,
+  totalSetsMax: 19,
+  /** §3 : marge de durée (min) sous la durée choisie, échauffement et retour au calme compris. */
+  marginMin: 2,
+  /** §2 : retour au calme 3 min, 5 min si la durée est >= 45 min. */
+  cooldownMin: 3,
+  cooldownLongMin: 5,
+  cooldownLongFromMin: 45,
+  /** §2 bloc 2 : exercices de sauts au plus (2 jusqu'à 30 min, 3 au-delà) ; séries de départ par exercice (5.2bis) ; séries minimales avant de retirer les sauts. */
+  jumpExercises: { short: 2, long: 3, longFromMin: 45 },
+  jumpStartSeries: [4, 3, 2] as readonly number[],
+  jumpMinSeries: 3,
+  /** §3 contacts : soutenue = départ + 20 seulement avec une séance de sauts sans douleur dans les 14 jours ; +5 au plus par rapport à elle. */
+  contacts: { soutenueBonus: 20, recentDays: 14, stepOverPrevious: 5, beginnerMax: 20 },
+  /** §3 espacement des séances de jambes (heures depuis la fin de la dernière séance de jambes lourdes). */
+  spacing: { refuseHours: 24, softenHours: 48, warnHours: 72 },
+  /** Textes : §4 (grossesse, plafond hebdomadaire) mot pour mot ; les autres sont une rédaction de `dev`, à relire par `kine` ou `coach`. */
+  text: {
+    header: 'Séance ponctuelle : elle s’ajoute à ton programme, elle ne le remplace pas.',
+    pregnancy: 'Cette séance n’est pas proposée pendant la grossesse ou le post-partum ; ton programme adapté reste disponible.',
+    weekCap: 'Tu as déjà beaucoup travaillé cette zone cette semaine ; essaie une autre zone ou attends.',
+    tooClose: 'Tes jambes ont travaillé il y a moins de 24 h : elles ont besoin de récupérer. Essaie plutôt une séance du haut du corps ou du tronc.',
+    softened: 'Tes jambes ont travaillé il y a moins de 48 h : séance adoucie (intensité douce, 2 séries, sans sauts ni exercice sur une jambe).',
+    warn72: 'Tes jambes ont travaillé il y a moins de 72 h : écoute-les et allège si elles sont lourdes.',
+    heavyLegs: 'Cette séance demande plus à tes jambes : si elles sont lourdes, fais la version sans saut en premier.',
+    tomorrowLegs: 'Une séance de jambes est prévue demain : garde de la réserve aujourd’hui.',
+    jumpsOff: 'Pas de sauts aujourd’hui : ',
+    unstableChair: 'Chaise non calée : aucun exercice sur chaise ; chaise murale, fente arrière contre un mur et pont fessier au sol à la place.',
+    tooShort: 'Cette durée est trop courte pour cette séance ; choisis une durée plus longue ou une autre zone.',
+    detenteNoLegs: 'Les sauts ne se font qu’avec les jambes ou le corps entier : séance sans saut.',
+    notMedical: 'Cette séance ne remplace pas l’avis d’un professionnel de santé. Arrête-toi en cas de douleur.',
+    noExercise: 'Aucun exercice de cette zone ne convient à ton profil et à ton matériel.',
+    beginnerSoft: 'Version sans saut : montée sur la pointe des pieds.',
+  },
+  /** Raisons courtes d'un verrou des sauts (codes de createSessionCheck et du composeur), pour « Pas de sauts aujourd'hui : … ». */
+  lockReason: {
+    grossesse: 'grossesse ou post-partum',
+    zone: 'une zone gênée du bas du corps ou du dos',
+    'douleur-recente': 'une douleur dans les 7 derniers jours sur une zone du bas du corps ou du dos',
+    reprise: 'reprise après une pause',
+    'seance-interrompue': 'une séance interrompue aujourd’hui',
+    'sauts-moins-de-48h': 'moins de 48 h depuis ta dernière séance de sauts',
+    'impact-deux-jours-de-suite': 'une séance avec impact hier',
+    'plus-de-3-impacts-par-semaine': '3 séances avec impact déjà cette semaine',
+    adoucie: 'séance adoucie',
+    debutant: 'niveau débutant',
+    'douleur-sauts-recents': 'une douleur à ta dernière séance de sauts',
+    'signe-arret': 'un signe d’arrêt des sauts à ta dernière séance',
+    indisponible: 'aucun saut disponible avec ton matériel et ton profil',
+    duree: 'durée trop courte',
+    demande: 'sauts non demandés',
+  } as Record<string, string>,
+  /** §2 et §5 : listes fermées de fiches par bloc de jambes (ordre = préférence). NON SOURCÉ (`coach`, `kine`). */
+  legs: {
+    explosive: [
+      // Remplace le « step-up explosif » (fiche à écrire) par la montée sur chaise existante (creer-seance-v1.md §5, §7 point 1).
+      {
+        id: 'montee-sur-marche', variants: ['montee-sur-chaise'], minLevel: 'intermediaire', needsStableChair: true, maxSets: 2, reps: [6, 6],
+        notIn: ['soutenue'], blockZones: ['genou', 'hanche', 'cheville', 'dos'],
+        tempo: 'Montée rapide, descente en 3 secondes, le pied entier posé : aucun décollage.',
+      },
+    ] as readonly CreateEntry[],
+    slow: {
+      debutant: [
+        { id: 'squat-assis-debout', variants: ['squat-assis-debout-chaise'], minLevel: 'debutant', needsStableChair: true },
+        { id: 'squat-poids-du-corps', variants: ['squat-poids-du-corps-libre'], minLevel: 'debutant' },
+        { id: 'chaise-murale', variants: ['chaise-murale-haute'], minLevel: 'debutant' },
+      ] as readonly CreateEntry[],
+      autres: [
+        { id: 'squat-bulgare', variants: ['squat-bulgare-chaise'], minLevel: 'intermediaire', needsStableChair: true, slow3s: true, tempo: 'Descente en 3 secondes, une main contre un mur ou le dossier.' },
+        { id: 'descente-une-jambe-chaise', variants: ['descente-une-jambe-chaise-appui'], minLevel: 'intermediaire', needsStableChair: true, slow3s: true, tempo: 'Descente en 3 secondes, une main contre le mur.' },
+        { id: 'squat-fendu', variants: ['squat-fendu-mur'], minLevel: 'debutant', tempo: 'Descente en 3 secondes.' },
+        { id: 'fente-arriere', variants: ['fente-arriere-mur'], minLevel: 'debutant', tempo: 'Descente en 3 secondes.' },
+        { id: 'chaise-murale', variants: ['chaise-murale-haute', 'chaise-murale-cuisses-horizontales'], minLevel: 'debutant' },
+        { id: 'squat-poids-du-corps', variants: ['squat-poids-du-corps-libre'], minLevel: 'debutant', tempo: 'Descente en 3 secondes.' },
+      ] as readonly CreateEntry[],
+    },
+    posterior: {
+      debutant: [
+        { id: 'pont-fessier', variants: ['pont-fessier-sol'], minLevel: 'debutant' },
+        { id: 'curl-ischios-serviette', variants: ['curl-ischios-serviette-pont'], minLevel: 'debutant' },
+        { id: 'curl-ischios-elastique', variants: ['curl-ischios-elastique-mur'], minLevel: 'debutant' },
+      ] as readonly CreateEntry[],
+      autres: [
+        { id: 'hip-thrust-chaise', variants: ['hip-thrust-chaise-une-jambe-elastique', 'hip-thrust-chaise-une-jambe', 'hip-thrust-chaise-deux-jambes'], minLevel: 'intermediaire', needsStableChair: true },
+        { id: 'pont-fessier-une-jambe', variants: ['pont-fessier-une-jambe-sol'], minLevel: 'intermediaire' },
+        { id: 'curl-ischios-elastique', variants: ['curl-ischios-elastique-mur'], minLevel: 'debutant' },
+        { id: 'curl-ischios-serviette', variants: ['curl-ischios-serviette-une-jambe', 'curl-ischios-serviette-pont'], minLevel: 'debutant' },
+        // Nordique assisté : seulement avec un ancrage sûr (tag partenaire_ou_ancrage au profil), jamais en séance adoucie.
+        { id: 'nordique-ischios', variants: ['nordique-ischios-court'], minLevel: 'intermediaire', slow3s: true },
+        { id: 'pont-fessier', variants: ['pont-fessier-sol'], minLevel: 'debutant' },
+      ] as readonly CreateEntry[],
+    },
+    finisher: {
+      debutant: [
+        { id: 'releve-mollets', variants: ['releve-mollets-mur'], minLevel: 'debutant' },
+        { id: 'marche-pointes-talons', variants: ['marche-pointes'], minLevel: 'debutant' },
+      ] as readonly CreateEntry[],
+      autres: [
+        { id: 'releve-mollets', variants: ['releve-mollets-une-jambe', 'releve-mollets-marche', 'releve-mollets-mur'], minLevel: 'debutant' },
+        { id: 'marche-pointes-talons', variants: ['marche-pointes'], minLevel: 'debutant' },
+      ] as readonly CreateEntry[],
+    },
+    /** Ordre de priorité des blocs quand le nombre d'exercices est limité (le dernier est retiré en premier). */
+    priority: ['slow', 'posterior', 'explosive', 'finisher', 'slow', 'posterior'] as readonly CreateBlock[],
+    /** Ordre d'affichage (§2 : blocs 3, 4, 5, 6). */
+    displayOrder: ['explosive', 'slow', 'posterior', 'finisher'] as readonly CreateBlock[],
+  },
+  /** §2 bloc 2 : liste fermée de sauts (5.2) : variante avec saut, variante douce, répétitions par série (5 à 8). Intermédiaire et avancé seulement dans « Créer ». */
+  plio: [
+    { ficheId: 'squat-petit-saut', variantId: 'squat-petit-saut-saut', softVariantId: 'squat-petit-saut-douce', reps: 6 },
+    { ficheId: 'saut-longueur-pieds-joints', variantId: 'saut-longueur-sur-place', softVariantId: null, reps: 5 },
+    { ficheId: 'rebonds-chevilles', variantId: 'rebonds-deux-pieds', softVariantId: 'rebonds-chevilles-pointe', reps: 8 },
+  ] as readonly { ficheId: string; variantId: string; softVariantId: string | null; reps: number }[],
+  plioMinLevel: 'intermediaire' as Level,
+  /** Débutant : la montée sur la pointe des pieds seulement (0 contact), 2 séries de 10. */
+  beginnerSoft: { ficheId: 'releve-mollets', variantId: 'releve-mollets-mur', sets: 2, reps: 10 },
+  /** §2 bloc 7 : étirements par zone (ids de fiches de mobilité). */
+  stretch: {
+    jambes: ['etirement-quadriceps', 'etirement-ischios-serviette', 'etirement-flechisseurs-hanche', 'etirement-mollets-mur'],
+    corps_entier: ['etirement-quadriceps', 'etirement-ischios-serviette', 'etirement-flechisseurs-hanche', 'etirement-pectoraux-mur'],
+    haut: ['etirement-pectoraux-mur', 'passage-de-bras-serviette', 'rotation-thoracique-assise'],
+    tronc: ['chat-vache', 'ouverture-livre-thoracique', 'etirement-flechisseurs-hanche'],
+  } as Record<CreateZone, readonly string[]>,
+  /** §2 bloc 1 : squats poids du corps en échauffement des jambes. */
+  warmupLegsExtra: ['squat-poids-du-corps'] as readonly string[],
+  /** Emplacements du générateur utilisés pour haut du corps / tronc / corps entier, dans l'ordre de priorité (V-EMP). */
+  slots: {
+    haut: ['poussee_1', 'tirage_1', 'tronc', 'poussee_2', 'tirage_2', 'poussee_3', 'tirage_3'],
+    corps_entier: ['jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'tronc', 'poussee_2', 'tirage_2'],
+    tronc: ['tronc', 'tronc', 'tronc', 'tronc'],
+  } as Record<'haut' | 'corps_entier' | 'tronc', readonly string[]>,
+  /** Gabarits des emplacements (A : squat / gainage, B : anti-rotation, C : rotation). */
+  trunkLabels: ['A', 'B', 'C', 'A'] as readonly string[],
 };

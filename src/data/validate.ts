@@ -96,6 +96,7 @@ export const SPECS: Record<TableName, Spec> = {
     originDate: 'string?',
     postponedTo: 'string?',
     dejaDecalee: 'boolean?',
+    created: 'object?',
   },
   sets: {
     sessionId: 'string',
@@ -141,7 +142,7 @@ export const SPECS: Record<TableName, Spec> = {
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
   profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur', 'neckScreen'],
   programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays', 'cardioOption'],
-  sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'calibDrops', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee'],
+  sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'calibDrops', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee', 'created'],
   sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec', 'felt'],
   injuries: ['afterShock'],
   equipment: ['dumbbellKind', 'platesKg', 'other'],
@@ -197,6 +198,13 @@ export function validateRow(table: TableName, row: unknown): string[] {
     for (const f of ['originDate', 'postponedTo']) {
       if (r[f] !== undefined && r[f] !== null && !isDay(r[f])) errors.push(`${table}/${String(r.id ?? '?')} : champ « ${f} » date invalide`);
     }
+  }
+  // D28 : séance créée à la demande ; heavyLegs et impact booléens, contacts 0 à 120, request objet (sinon l'import est refusé).
+  if (table === 'sessions' && r.created !== undefined && r.created !== null) {
+    const c = r.created as Record<string, unknown>;
+    const ok = typeOf(c) === 'object' && typeof c.heavyLegs === 'boolean' && typeof c.impact === 'boolean'
+      && typeof c.contacts === 'number' && Number.isFinite(c.contacts) && c.contacts >= 0 && c.contacts <= 120 && typeOf(c.request) === 'object';
+    if (!ok) errors.push(`${table}/${String(r.id ?? '?')} : champ « created » invalide`);
   }
   if (table === 'programs' && typeOf(r.missedAnswers) === 'object') {
     const answers = ['decaler', 'quand_je_peux', 'sauter'];

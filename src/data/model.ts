@@ -371,6 +371,18 @@ export interface WorkoutSession extends SyncFields {
   postponedTo?: string | null;
   /** Vrai sur la ligne N (et la séance faite qui en découle) : déjà décalée une fois (SM-6). */
   dejaDecalee?: boolean;
+  /**
+   * D28 « Créer une séance » : séance ponctuelle hors programme (programId null). heavyLegs, impact et contacts nourrissent l'espacement
+   * 24 / 48 / 72 h et les contacts de sauts des séances créées suivantes ; request permet de recomposer la séance (jour ajouté au calendrier).
+   */
+  created?: CreatedMeta | null;
+}
+
+export interface CreatedMeta {
+  heavyLegs: boolean;
+  impact: boolean;
+  contacts: number;
+  request: { zone: string; sport: string | null; chairStable: boolean; durationMin: number; intensity: string };
 }
 
 export interface SetLog extends SyncFields {

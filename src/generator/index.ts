@@ -42,6 +42,8 @@ export type { CardioItem, GenCardioSession, GenerateResult, GeneratorInput, GenL
 export { sessionTitle, typeOf, conflicts } from './split';
 export { estimerDuree, ajusterDuree } from './duration';
 export { nextCalibrationStep, painProposals } from './calibration';
+export { createSession } from './create-session';
+export type { CreateContext, CreateHistoryItem, CreatedExercise, CreatedSession, CreateMessage, CreateSessionRequest, CreateSessionResult } from './create-session';
 
 type Label = string;
 const LABELS: Label[] = ['A', 'B', 'C'];

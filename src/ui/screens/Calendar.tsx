@@ -9,6 +9,7 @@ import {
 import { filterEntries, frMonthKey, monthOptions, typeOptions } from '../../session/history-view';
 import { PastSummary } from './PastSummary';
 import { shiftedDays } from '../../session/missed';
+import { removeScheduled, scheduledOf, type ScheduledCreated } from '../../session/create-store';
 
 const DOW = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const PAGE = 10;
@@ -42,11 +43,15 @@ export interface CalendarViewProps {
   programStartKey?: string | null;
   /** Jours décalés en attente (lignes N, seance-manquee-v1.md SM-D2) : « Prévue », puis « Non faite » s'ils passent. */
   shiftedKeys?: string[];
+  /** D28 : séances créées ajoutées au calendrier (jours à venir). */
+  scheduled?: ScheduledCreated[];
+  onPrepareCreated?: (c: ScheduledCreated) => void;
+  onRemoveCreated?: (id: string) => void;
   onOpen: (sessionId: string) => void;
 }
 
 /** Calendrier du mois + historique (sans accès à la base : testable). */
-export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], onOpen }: CalendarViewProps) {
+export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], scheduled = [], onPrepareCreated, onRemoveCreated, onOpen }: CalendarViewProps) {
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
@@ -72,7 +77,8 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   const dayEntries = selected ? entries.filter((e) => e.dateKey === selected) : [];
   const weekAfterEnd = dateKey(new Date(year, month + 1, 7));
   const planned = new Set(programStartKey ? plannedDates(plannedWeekdays, programStartKey, weekAfterEnd) : []);
-  const shifted = new Set(shiftedKeys);
+  const shifted = new Set([...shiftedKeys, ...scheduled.map((c) => c.dateKey)]);
+  const createdOn = selected ? scheduled.filter((c) => c.dateKey === selected) : [];
   const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
   const plannedInMonth = new Set([...planned, ...shifted].filter((k) => k.startsWith(monthPrefix)));
   const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, entries, todayKey, shifted) : null);
@@ -126,7 +132,21 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
       </div>
       <p class="month-line" role="status">{monthLine(sum.done, sum.planned)}</p>
 
-      {selected && dayEntries.length === 0 && pm(selected) && (
+      {selected && dayEntries.length === 0 && createdOn.length > 0 && (
+        <section class="card" aria-label={`Séance créée du ${frDate(selected)}`}>
+          <h2 class="cap-first">{frDate(selected)}</h2>
+          {createdOn.map((c) => (
+            <div key={c.id}>
+              <p><strong>{PLANNED_GLYPH.prevue} {c.label}</strong></p>
+              <p class="dim">Séance que tu as ajoutée toi-même. Elle sera recalculée avec ton historique quand tu la prépares.</p>
+              {onPrepareCreated && <button type="button" class="btn btn-primary" onClick={() => onPrepareCreated(c)}>Préparer cette séance</button>}
+              {onRemoveCreated && <button type="button" class="btn" onClick={() => onRemoveCreated(c.id)}>Retirer du calendrier</button>}
+            </div>
+          ))}
+        </section>
+      )}
+
+      {selected && dayEntries.length === 0 && createdOn.length === 0 && pm(selected) && (
         <section class="card" aria-label={`Séance du ${frDate(selected)}`}>
           <h2 class="cap-first">{frDate(selected)}</h2>
           <p><strong>{PLANNED_GLYPH[pm(selected)!]} {PLANNED_TEXT[pm(selected)!]}</strong></p>
@@ -193,14 +213,16 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   );
 }
 
-export function Calendar({ profile }: { profile: Profile }) {
+export function Calendar({ profile, onPrepareCreated }: { profile: Profile; onPrepareCreated?: (c: ScheduledCreated) => void }) {
   const [entries, setEntries] = useState<HistoryEntry[] | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
+  const [scheduled, setScheduled] = useState<ScheduledCreated[]>([]);
   const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null; shifted: string[] }>({ weekdays: [], startKey: null, shifted: [] });
   const load = async () => {
     try {
       const [sessions, sets] = await Promise.all([list('sessions'), list('sets')]);
       setEntries(buildEntries(sessions, sets));
+      setScheduled(scheduledOf(sessions, dateKey(new Date())));
       const prog = await getActiveProgram();
       const weekdays = (prog?.days ?? []).map((d) => d.weekday).filter((w): w is number => typeof w === 'number');
       setPlan({
@@ -238,6 +260,9 @@ export function Calendar({ profile }: { profile: Profile }) {
       plannedWeekdays={plan.weekdays}
       programStartKey={plan.startKey}
       shiftedKeys={plan.shifted}
+      scheduled={scheduled}
+      onPrepareCreated={onPrepareCreated}
+      onRemoveCreated={(id) => void removeScheduled(id).then(load)}
       onOpen={setOpenId}
     />
   );

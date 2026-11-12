@@ -2,7 +2,7 @@
 // Tout est local : aucun accès réseau (CLAUDE.md A6). L'heure vient d'une horloge injectable (`now`, en ms).
 import { getDB } from '../data/db';
 import { create, get, list, update } from '../data/repo';
-import type { InjuryZone, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
+import type { CreatedMeta, InjuryZone, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import {
   abandonSession, adjustRest, completeSet, currentView, endWarmup, finishSession, markPain, pairsForSession, reportSymptom, skipExercise, skipRest, startSession, withPerSide,
   restTaken, SessionError, type EngineContext, type EngineState, type Outcome, type SessionView, type SetEntry, type SetInput, type SetResult,
@@ -99,6 +99,8 @@ export class SessionController {
     public state: EngineState,
     private ctx: EngineContext,
     private now: NowFn,
+    /** D28 : séance créée à la demande (hors programme) : ne touche ni la rotation, ni la reprise, ni le programme actif. */
+    readonly created: boolean = false,
   ) {}
 
   /**
@@ -136,13 +138,33 @@ export class SessionController {
     return new SessionController(row.id, day, program.id, state, ctx, now);
   }
 
+  /**
+   * D28 « Créer une séance » : commence une séance ponctuelle (jour composé par createSession), SANS programme : programId et programDayIndex
+   * sont null, le programme actif n'est pas lu ni modifié. `existingId` : ligne `prevue` ajoutée au calendrier, qui passe `en_cours` puis `faite`.
+   * Refuse s'il reste une séance « en cours ».
+   */
+  static async startCreated(day: ProgramDay, meta: CreatedMeta, ctx: EngineContext, now: NowFn = realNow, existingId: string | null = null): Promise<SessionController> {
+    const sessions = await list('sessions');
+    if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
+    const t = now();
+    // Les paires décidées par le composeur ne sont appliquées que hors étalonnage ou retour après gêne (comme pour un programme).
+    const played = withPerSide(pairsForSession(day, ctx), ctx);
+    const state = startSession(played, t);
+    const fields = { status: 'en_cours' as const, startedAt: iso(t), endedAt: null, plan: played, created: meta, ...toPatch(state, played, t) };
+    const planned = existingId ? sessions.find((s) => s.id === existingId && s.status === 'prevue' && !s.deletedAt) : undefined;
+    const row = planned
+      ? await update('sessions', planned.id, fields)
+      : await create('sessions', { programId: null, programDayIndex: null, plannedDate: dateKey(new Date(t)), note: '', ...fields } as NewRow<'sessions'>);
+    return new SessionController(row.id, played, null, state, ctx, now, true);
+  }
+
   /** Reprend une séance « en cours » (après fermeture de l'app). Le plan suivi est celui enregistré avec la séance. */
   static async resume(sessionId: string, ctx: EngineContext, now: NowFn = realNow): Promise<SessionController> {
     const row = await get('sessions', sessionId);
     if (!row || row.status !== 'en_cours' || !row.plan) throw new SessionError('Aucune séance à reprendre.');
     const sets = await setsOfSession(row.id);
     const state = stateFromRow(row, row.plan, sets.filter((s) => !s.isWarmup && s.completedAt).length);
-    return new SessionController(row.id, row.plan, row.programId, state, ctx, now);
+    return new SessionController(row.id, row.plan, row.programId, state, ctx, now, !!row.created);
   }
 
   view(): SessionView {
@@ -219,6 +241,8 @@ export class SessionController {
   /** R-FIN (seance-manquee-v1.md) : compteurs de reprise et plancher après un symptôme. Un échec ici ne bloque jamais la fin de séance. */
   private async afterEnd(row: WorkoutSession): Promise<WorkoutSession> {
     try {
+      // D28 : une séance créée ne compte pas pour la reprise douce (sauf un symptôme, qui pose le plancher et le message de sécurité).
+      if (this.created && row.endReason !== 'symptome') return row;
       const [profile] = await list('profile');
       if (!profile) return row;
       const [sets, programs] = await Promise.all([setsOfSession(row.id), list('programs')]);
@@ -249,7 +273,7 @@ export class SessionController {
     if (replaced && !result.entry.isWarmup) result.state.workSetsDone = Math.max(0, result.state.workSetsDone - 1);
     await this.commit(result.state);
     // Échelon changé pendant la séance (étalonnage) : la prochaine séance démarre à cette variante (progression-et-bilan-v1.md §2 point 3).
-    if (result.echelonChange) await patchProgramVariant(this.programId, this.day.exercises[result.echelonChange.exercise].movementId, result.echelonChange.variantId);
+    if (result.echelonChange && !this.created) await patchProgramVariant(this.programId, this.day.exercises[result.echelonChange.exercise].movementId, result.echelonChange.variantId);
     return result;
   }
 

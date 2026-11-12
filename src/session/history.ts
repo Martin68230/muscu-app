@@ -179,7 +179,17 @@ export function lastTimeEchelon(sets: readonly SetLog[], movementId: string, ech
 const plannedFor = (row: WorkoutSession | undefined, movementId: string, fallback: number): number =>
   (row?.plan ? row.plan.exercises.filter((e) => e.movementId === movementId).reduce((n, e) => n + e.sets * (isPerSide(e) ? 2 : 1), 0) : 0) || fallback;
 
-export function proposeProgression(i: ProgressionInput): Progression {
+/**
+ * D28 : les séries d'une séance créée à la demande (hors programme) ne servent pas de base de progression (« la dernière fois ») ;
+ * seule une douleur déclarée pendant une séance créée reste visible (prudence : pas de hausse après une douleur).
+ */
+export function withoutCreatedSets<T extends { sets: readonly SetLog[]; sessions?: readonly WorkoutSession[] }>(i: T): T {
+  const created = new Set((i.sessions ?? []).filter((s) => !!s.created).map((s) => s.id));
+  return created.size ? { ...i, sets: i.sets.filter((x) => !created.has(x.sessionId) || x.pain) } : i;
+}
+
+export function proposeProgression(i0: ProgressionInput): Progression {
+  const i = withoutCreatedSets(i0);
   const ex = i.exercise;
   const bw = i.bodyweight;
   const last = bw && i.echelon !== undefined ? lastTimeEchelon(i.sets, ex.movementId, i.echelon, i.excludeSessionId) : lastTime(i.sets, ex.variantId, i.excludeSessionId);

@@ -23,9 +23,14 @@ import { planReprise } from './session/reprise-plan';
 import { programWeek, rotationFreeze, withProgramWeek } from './session/program';
 import { repriseOf } from './session/missed-config';
 import { saveReprise } from './session/missed-store';
+import { CreateSessionScreen } from './ui/screens/CreateSession';
+import type { CreatedSession, CreateSessionRequest } from './generator';
+import { createdDay, metaOf, scheduleCreated, type ScheduledCreated } from './session/create-store';
 
 /** #/seance : aperçu de la séance du jour. */
 const previewFromHash = (): boolean => location.hash === '#/seance';
+/** #/creer : écran « Créer une séance » (D28). */
+const createFromHash = (): boolean => location.hash === '#/creer';
 
 interface Playing {
   controller: SessionController;
@@ -51,6 +56,8 @@ export function App() {
   const [tab, setTab] = useState<Tab>(tabFromHash());
   const [ficheId, setFicheId] = useState<string | null>(ficheFromHash());
   const [preview, setPreview] = useState(previewFromHash());
+  /** D28 : écran « Créer une séance » ouvert ; prefill = séance ajoutée au calendrier que l'on prépare. */
+  const [create, setCreate] = useState<{ prefill: ScheduledCreated | null } | null>(createFromHash() ? { prefill: null } : null);
   /** Séance en cours dans le lecteur (plein écran, sans barre d'onglets). */
   const [playing, setPlaying] = useState<Playing | null>(null);
   /** Parcours du profil : 'all' = les cartes à la suite ; sinon une seule carte (modification depuis Profil). */
@@ -64,6 +71,7 @@ export function App() {
       setTab(tabFromHash());
       setFicheId(ficheFromHash());
       setPreview(previewFromHash());
+      setCreate((c) => (createFromHash() ? c ?? { prefill: null } : null));
     };
     addEventListener('hashchange', onHash);
     return () => removeEventListener('hashchange', onHash);
@@ -74,6 +82,12 @@ export function App() {
     setTab(t);
     setFicheId(null);
     setPreview(false);
+    setCreate(null);
+  };
+  const openCreate = (prefill: ScheduledCreated | null = null) => {
+    setTab('accueil');
+    setCreate({ prefill });
+    location.hash = '#/creer';
   };
 
   const begin = async (program: Program, dayIndex: number, fiches: FicheData[]) => {
@@ -96,6 +110,20 @@ export function App() {
     location.hash = '#/accueil';
     setPlaying({ controller, data });
   };
+  /** D28 : lance une séance créée dans le lecteur existant, sans toucher au programme actif. */
+  const launchCreated = async (session: CreatedSession, request: CreateSessionRequest, scheduledId: string | null) => {
+    if (!profile) return;
+    const fiches = await loadFiches();
+    const data = await loadPlayerData(fiches, profile);
+    const controller = await SessionController.startCreated(createdDay(session), metaOf(session, request), data.ctx, undefined, scheduledId);
+    data.repriseActive = false;
+    setCreate(null);
+    location.hash = '#/accueil';
+    setPlaying({ controller, data });
+  };
+  const scheduleCreatedDay = async (session: CreatedSession, request: CreateSessionRequest, key: string) => {
+    await scheduleCreated(createdDay(session), metaOf(session, request), key);
+  };
   const resume = async (sessionId: string) => {
     if (!profile) return;
     const fiches = await loadFiches();
@@ -107,6 +135,7 @@ export function App() {
     setPlaying(null);
     location.hash = '#/accueil';
     setPreview(false);
+    setCreate(null);
   };
 
   if (!profile) return null;
@@ -147,8 +176,18 @@ export function App() {
 
   return (
     <div class="shell">
-      <main class="screen" key={ficheId ? `fiche-${ficheId}` : preview ? 'seance' : tab}>
-        {tab === 'accueil' && !preview && (
+      <main class="screen" key={ficheId ? `fiche-${ficheId}` : create ? 'creer' : preview ? 'seance' : tab}>
+        {tab === 'accueil' && create && (
+          <CreateSessionScreen
+            profile={profile}
+            prefill={create.prefill}
+            onBack={() => go('accueil')}
+            onEditProfile={() => setWizard('all')}
+            onLaunch={launchCreated}
+            onSchedule={scheduleCreatedDay}
+          />
+        )}
+        {tab === 'accueil' && !preview && !create && (
           <Home
             profile={profile}
             onStart={() => setWizard('all')}
@@ -156,10 +195,11 @@ export function App() {
             onResume={(id) => void resume(id)}
             onOpenSession={() => (location.hash = '#/seance')}
             onOpenHistory={() => go('calendrier')}
+            onCreateSession={() => openCreate()}
           />
         )}
         {tab === 'accueil' && preview && <SessionPreview profile={profile} onBegin={begin} />}
-        {tab === 'calendrier' && <Calendar profile={profile} />}
+        {tab === 'calendrier' && <Calendar profile={profile} onPrepareCreated={(c) => openCreate(c)} />}
         {tab === 'bibliotheque' && !ficheId && <Library />}
         {tab === 'bibliotheque' && ficheId && <Fiche id={ficheId} pregnancy={profile.pregnancy} />}
         {tab === 'profil' && <Profile profile={profile} onChange={setProfile} onWiped={load} onEditStep={(s) => setWizard(s ?? 'all')} />}
