@@ -107,6 +107,9 @@ import { mk, type MkOpts } from './generator-helpers';
 // salle 2 jours un peu plus courts) ; (4) cardio « en plus » en dernier : plus de cardio dans 66 programmes (illimité), moins dans 29 (60 min :
 // la musculation prend le temps) ; message V-MSG-CARDIO-PART au lieu de « pas assez de temps » dans 60. Contrôles : aucune séance vide, aucune
 // durée choisie dépassée, rien au-delà de 75 min en illimité, plafonds V-PLAF et hebdomadaires tenus (lot-coherence-duree.test.ts).
+// Référence régénérée le 12/11/2026 pour la vague 2 lot 01 (7 fiches : adduction-serrage-genoux, chaise-murale, curl-ischios-elastique, ecarte-sol-elastique,
+// extension-genou-elastique, extension-hanche-quatre-pattes, haussement-epaules-halteres) : 378 cas sur 662 changent ; vérifié qu'en retirant ces 7 fiches les 662 empreintes
+// redeviennent identiques à l'ancienne référence (seul effet : les nouvelles fiches). Six sont exclues des piliers (PILLAR_EXCLUDED_FICHES).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {

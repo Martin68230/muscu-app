@@ -468,7 +468,14 @@ export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_
  * Lancers au ballon lesté contre un mur (lot 08) : jamais un exercice principal (décision de l'utilisateur du 25/10/2026, choix prudent) ;
  * ils restent possibles aux emplacements secondaires. Dosage fixe : FIXED_DOSE (Q23).
  */
-export const PILLAR_EXCLUDED_FICHES: readonly string[] = ['lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur'];
+/**
+ * Vague 2 lot 01 (12/11/2026) : fiches d'isolation (une articulation) ou de maintien statique sans charge : jamais exercice principal, un pilier de force
+ * (4-6 répétitions, charge) ne doit pas devenir un écarté, un curl, une extension ou un maintien au mur. Possibles aux emplacements secondaires.
+ */
+export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
+  'lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur',
+  'ecarte-sol-elastique', 'curl-ischios-elastique', 'extension-genou-elastique', 'extension-hanche-quatre-pattes', 'haussement-epaules-halteres', 'chaise-murale',
+];
 
 // ---------------------------------------------------------------------------------------------
 // Plafonds de sécurité (V-PRIO §6.0 : P-CAP, P-GROS, P-ZONE3)
