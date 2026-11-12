@@ -377,6 +377,8 @@ export const FIXED_DOSE: Record<string, FixedDoseRow> = {
   'rollout-ballon': GAINAGE_DYNAMIQUE_DOSE,
   'genoux-poitrine-ballon': GAINAGE_DYNAMIQUE_DOSE,
   'planche-cercles-ballon': PLANCHE_CERCLES_DOSE,
+  // Step-up explosif (lot 02, validé kine 12/11/2026, NON SOURCÉ) : 6 répétitions par jambe, 2 séries, sans charge. Plafond que la fiche ne peut pas coder : valable dans le programme ET dans Créer une séance.
+  'montee-rapide-chaise': { unit: 'reps_par_cote', reps: [6, 6], sets: 2, restSec: 90 },
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -418,6 +420,8 @@ export const DOSE_LIMITS: Record<string, DoseLimit> = {
   'pompe-equilibre-mur': { minRir: 2, maxSets: 2 },
   // Fiche montee-sur-marche, variante haltères : « seulement sur la première ou la deuxième marche, haltères légers » : jamais 4-6.
   'montee-sur-marche-halteres': { noHeavyReps: true },
+  // Vague 2 lot 02 (relecteur 12/11/2026) : le plafond de 2 séries du step-up rapide vaut aussi pour la progression en séance (FIXED_DOSE ne la limite pas).
+  'montee-rapide-chaise': { maxSets: 2 },
   // Variantes nommées « haltères légers » dans leur fiche : jamais la dose lourde (lecture restrictive).
   'tirage-w-halteres-legers': { noHeavyReps: true },
   'oiseau-halteres-assis': { noHeavyReps: true },
@@ -475,6 +479,10 @@ export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_
 export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
   'lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur',
   'ecarte-sol-elastique', 'curl-ischios-elastique', 'extension-genou-elastique', 'extension-hanche-quatre-pattes', 'haussement-epaules-halteres', 'chaise-murale',
+  // Vague 2 lot 02 : step-up explosif (plafonds 6 rép. par jambe, 2 séries, non codables dans la fiche) : jamais exercice principal.
+  'montee-rapide-chaise',
+  // Vague 2 lot 02 (relecteur 12/11/2026) : good morning à l'élastique léger, jamais exercice principal (dose de pilier lourd contraire à la fiche).
+  'good-morning-elastique',
 ];
 
 // ---------------------------------------------------------------------------------------------
@@ -1264,9 +1272,9 @@ export const CREER_SEANCE = {
   /** §2 et §5 : listes fermées de fiches par bloc de jambes (ordre = préférence). NON SOURCÉ (`coach`, `kine`). */
   legs: {
     explosive: [
-      // Remplace le « step-up explosif » (fiche à écrire) par la montée sur chaise existante (creer-seance-v1.md §5, §7 point 1).
+      // Step-up explosif : fiche montee-rapide-chaise (lot 2, validée kine 12/11/2026). Les plafonds (6 rép. par jambe, 2 séries, jamais en soutenue) ne sont pas codables dans la fiche : ils sont appliqués ici en dur (creer-seance-v1.md §5).
       {
-        id: 'montee-sur-marche', variants: ['montee-sur-chaise'], minLevel: 'intermediaire', needsStableChair: true, maxSets: 2, reps: [6, 6],
+        id: 'montee-rapide-chaise', variants: ['montee-rapide-chaise-sans-charge'], minLevel: 'intermediaire', needsStableChair: true, maxSets: 2, reps: [6, 6],
         notIn: ['soutenue'], blockZones: ['genou', 'hanche', 'cheville', 'dos'],
         tempo: 'Montée rapide, descente en 3 secondes, le pied entier posé : aucun décollage.',
       },

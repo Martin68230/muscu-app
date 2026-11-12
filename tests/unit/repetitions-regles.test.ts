@@ -262,7 +262,7 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
     const REVUES = [
       'curl-barre', 'curl-elastique', 'curl-halteres', 'curl-incline-halteres', 'curl-ischios-ballon', 'curl-ischios-elastique', 'curl-ischios-serviette', 'ecarte-couche-halteres', 'ecarte-sol-elastique', // vague 2 lot 01 (curl-ischios-elastique, ecarte-sol-elastique)
       'ecartement-elastique', 'ecartement-serviette', 'elevation-laterale', 'elevation-laterale-assis-halteres', 'extension-triceps-assis-halteres',
-      'extension-triceps-barre-ez-allonge', 'extension-triceps-couche-halteres', 'oiseau-banc-incline', 'oiseau-halteres', 'oiseau-machine-poulie',
+      'extension-triceps-barre-ez-allonge', 'extension-triceps-couche-halteres', 'extension-triceps-sol-leger', 'oiseau-banc-incline', 'oiseau-halteres', 'oiseau-machine-poulie',
       'oiseau-un-bras-appuye', 'releve-mollets', 'releve-mollets-assis', 'releve-mollets-debout-barre', 'releve-mollets-halteres', 'releve-mollets-machine',
       'rotation-externe-epaule', 'rotation-externe-poulie', 'shrug-barre', 'tirage-bras-tendus-elastique', 'tirage-visage-sangles', 'tirage-w-allonge',
     ];

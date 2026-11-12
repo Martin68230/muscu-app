@@ -242,7 +242,7 @@ describe('Cas 6 : chaise non stable -> alternatives mur / sol, aucun exercice su
     invariants(input, r, s);
     for (const e of s.exercises) {
       expect(e.tags).not.toContain('chaise');
-      expect(['squat-bulgare', 'hip-thrust-chaise', 'descente-une-jambe-chaise', 'montee-sur-marche']).not.toContain(e.ficheId);
+      expect(['squat-bulgare', 'hip-thrust-chaise', 'descente-une-jambe-chaise', 'montee-rapide-chaise']).not.toContain(e.ficheId);
     }
     expect(s.exercises.some((e) => e.block === 'explosive')).toBe(false);
     expect(s.warnings.map((w) => w.id)).toContain('chaise');
@@ -256,13 +256,23 @@ describe('Cas 6 : chaise non stable -> alternatives mur / sol, aucun exercice su
     const r = req({ durationMin: 50 });
     const s = ok(home(), r);
     const up = s.exercises.find((e) => e.block === 'explosive');
-    expect(up?.variantId).toBe('montee-sur-chaise');
+    expect(up?.variantId).toBe('montee-rapide-chaise-sans-charge');
     expect(up?.sets).toBeLessThanOrEqual(2);
     expect(up?.repsMax).toBe(6);
     expect(up?.tempo).toContain('aucun décollage');
     expect(ok(home(), req({ durationMin: 50, intensity: 'soutenue' })).exercises.some((e) => e.block === 'explosive')).toBe(false);
     // Genou gêné niveau 1 : la montée sur chaise est retirée (et les sauts aussi).
     expect(ok(home({ injuries: [['genou', 1]] }), r).exercises.some((e) => e.block === 'explosive')).toBe(false);
+  });
+  it('lot 2 : les 4 fiches sont chargées ; step-up : fiche montee-rapide-chaise, 2 séries x 6, aucune charge', () => {
+    for (const id of ['montee-rapide-chaise', 'good-morning-elastique', 'balances-de-jambe', 'extension-triceps-sol-leger']) {
+      expect(FICHES.find((x) => x.id === id), id).toBeDefined();
+    }
+    const up = ok(home(), req({ durationMin: 50 })).exercises.find((e) => e.block === 'explosive');
+    expect(up?.ficheId).toBe('montee-rapide-chaise');
+    expect(up?.sets).toBe(2);
+    expect(up?.repsMax).toBe(6);
+    expect(up?.tags).not.toContain('halteres');
   });
 });
 

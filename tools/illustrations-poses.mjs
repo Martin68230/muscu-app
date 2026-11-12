@@ -1080,4 +1080,29 @@ export const EXERCICES = [
     a: { p: [0, 104], legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, props: (J) => [['plate', J.haN, 9], ['plate', J.haF, 9]] },
     b: { p: [0, 104], tl: 74, hl: -4, legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, props: (J) => [['plate', J.haN, 9], ['plate', J.haF, 9], ['arrow', [64, 150], [64, 176]], ['arrow', [-64, 150], [-64, 176]]] },
   },
+  // ================= D23 vague 2 lot 2 =================
+  {
+    id: 'montee-rapide-chaise', titre: 'Montée rapide sur chaise calée contre un mur, vue de profil : un pied posé au milieu de l’assise, puis debout sur la chaise, les deux pieds posés',
+    labels: ['Un pied entier sur l’assise', 'Debout sur la chaise, stable'],
+    a: { p: [38, 102], t: 90, h: 90, armN: { to: [48, 96], bend: 'b' }, armF: { to: [44, 96], bend: 'b' }, legN: { to: [88, 54], bend: 'f' }, legF: { to: [32, A], bend: 'f' }, back: [['chair', 112, 46, -1], ['wall', 112, 14]] },
+    b: { p: [84, 158], t: 90, h: 90, armN: { to: [94, 152], bend: 'b' }, armF: { to: [90, 152], bend: 'b' }, legN: { to: [94, 54], bend: 'f' }, legF: { to: [78, 54], bend: 'f' }, back: [['chair', 112, 46, -1], ['wall', 112, 14]], props: [['arrow', [20, 70], [20, 120]]] },
+  },
+  {
+    id: 'good-morning-elastique', titre: 'Good morning à l’élastique, vue de profil : élastique sous les pieds, mains près des épaules, les hanches reculent et le buste, dos plat, s’incline de moitié au plus, genoux souples',
+    labels: ['Debout sur l’élastique, mains aux épaules', 'Hanches en arrière, dos plat'],
+    a: { p: [0, 112], armN: { to: [14, 168], bend: 'd' }, armF: { to: [10, 170], bend: 'd' }, props: (J) => [['band', [[6, 4], J.haN]], ['band', [[-6, 4], J.haF]]] },
+    b: { p: [-34, 104], t: 45, h: 45, armN: { to: [14, 150], bend: 'd' }, armF: { to: [10, 152], bend: 'd' }, props: (J) => [['band', [[6, 4], J.haN]], ['band', [[-6, 4], J.haF]], ['arrow', [-30, 60], [-82, 60]]] },
+  },
+  {
+    id: 'balances-de-jambe', titre: 'Balances de jambe debout, une main sur un mur, vue de profil : jambe tendue qui se balance doucement vers l’avant, puis vers l’arrière, buste droit',
+    labels: ['Jambe balancée vers l’avant', 'Jambe balancée vers l’arrière'],
+    a: { p: [30, 112], t: 90, armN: { to: [82, 142], bend: 'd' }, armF: { to: [78, 142], bend: 'd' }, legN: { a: [-68, -68], foot: 0 }, legF: { to: [30, A], bend: 'f' }, back: [['wall', 88, 14]], props: [['arrow', [60, 40], [80, 52]]] },
+    b: { p: [30, 112], t: 90, armN: { to: [82, 142], bend: 'd' }, armF: { to: [78, 142], bend: 'd' }, legN: { a: [-112, -112], foot: -30 }, legF: { to: [30, A], bend: 'f' }, back: [['wall', 88, 14]], props: [['arrow', [0, 52], [-20, 40]]] },
+  },
+  {
+    id: 'extension-triceps-sol-leger', titre: 'Extension des triceps allongé au sol avec un haltère léger dans chaque main : les coudes restent fixes, les haltères descendent vers les côtés de la tête, jamais au-dessus du visage',
+    labels: ['Bras tendus au-dessus de la poitrine', 'Coudes fixes, haltères près de la tête'],
+    a: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, props: (J) => [['db', J.haN, 0], ['db', J.haF, 0]] }),
+    b: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 200] }, armF: { a: [88, 198] }, props: (J) => [['db', J.haN, 0], ['db', J.haF, 0], ['arrow', [-40, 100], [-86, 70]]] }),
+  },
 ];
