@@ -1,6 +1,6 @@
 ---
 id: ecarte-sol-elastique
-nom: Écarté des pectoraux (au sol ou à l'élastique)
+nom: Écarté des pectoraux
 alias: [chest fly, écarté poitrine, fly élastique, poulie vis-à-vis]
 schema: poussee_h
 type: force

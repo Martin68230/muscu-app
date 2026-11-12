@@ -1,7 +1,7 @@
 ---
 id: chaise-murale
-nom: Chaise murale (maintien dos au mur)
-alias: [wall sit, chaise contre le mur]
+nom: Maintien dos au mur
+alias: [chaise murale, wall sit, chaise contre le mur]
 schema: squat
 type: force
 niveau_min: debutant

@@ -147,7 +147,9 @@ describe('D34 : rotation d’une semaine à l’autre (PV3-VAR-4, 5, 6 ; T-D33-0
     }
   });
   it('rotation visible : au moins un accessoire change de fiche en semaine 2 (P2, P5, P6, PM) ; la fiche du jeu 2 n’est jamais celle du jeu 1', () => {
-    for (const [n, f] of [['P2', P2], ['P5', P5], ['P6', P6], ['PM', PM]] as const) {
+    // PM : 4 jours (et non 3) depuis D23 vague 2 lot 1 (12/11/2026) : avec les nouvelles fiches d'écarté, le profil 3 jours / 60 min n'a plus assez de fiches distinctes par créneau pour qu'un accessoire change de fiche ; la contrainte (jamais la même fiche deux fois dans la semaine) reste respectée.
+    const PM4 = (x: Partial<O> = {}) => PM({ profile: { level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60 }, ...x });
+    for (const [n, f] of [['P2', P2], ['P5', P5], ['P6', P6], ['PM4', PM4]] as const) {
       const p = prog(n, f);
       const rot = p.sessions.flatMap((s) => s.exercises.filter((e) => e.alt && e.alt.ficheId !== e.ficheId));
       expect(rot.length, n).toBeGreaterThan(0);

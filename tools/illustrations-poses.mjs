@@ -1037,4 +1037,47 @@ export const EXERCICES = [
     a: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { to: [20, 8], bend: 'u' }, legF: { a: [1, 1] }, back: [['mat', -170, 130]] },
     b: { p: [-40, 20], t: 180, h: 180, tl: 68, sw: 12, hw: 8, hide: ['armF'], armN: { to: [-96, 38], bend: 'u' }, legN: { to: [20, 8], bend: 'u' }, legF: { a: [9, 9] }, back: [['mat', -170, 130]], props: [['arrow', [76, 40], [76, 80]]] },
   },
+  // ================= D23 vague 2 lot 1 =================
+  {
+    id: 'adduction-serrage-genoux', titre: 'Serrage des genoux sur un objet souple, couché sur le dos, vue de profil : bassin au sol, puis bassin soulevé en pont',
+    labels: ['Serrer, bassin au sol', 'Serrer, en pont'],
+    a: supine({ p: [5, 12], t: 180, h: 175, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, props: (J) => [['bag', [J.knN[0] + 2, J.knN[1]], 18, 16, 0]] }),
+    b: supine({ p: [8, 38], t: 203, h: 170, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, props: (J) => [['bag', [J.knN[0] + 2, J.knN[1]], 18, 16, 0], ['arrow', [4, 90], [4, 120]]] }),
+  },
+  {
+    id: 'chaise-murale', titre: 'Chaise murale, vue de profil : dos contre le mur, genoux peu fléchis à gauche, puis cuisses presque à l’horizontale à droite',
+    labels: ['Genoux peu fléchis', 'Cuisses à l’horizontale'],
+    a: { p: [-14, 100], t: 94, h: 90, armN: { to: [12, 98], bend: 'd' }, armF: { to: [8, 98], bend: 'd' }, legN: { to: [32, A], bend: 'f' }, legF: { to: [26, A], bend: 'f' }, back: [['wall', -26, -14]] },
+    b: { p: [-14, 62], t: 94, h: 90, armN: { to: [12, 66], bend: 'd' }, armF: { to: [8, 66], bend: 'd' }, legN: { to: [42, A], bend: 'f' }, legF: { to: [36, A], bend: 'f' }, back: [['wall', -26, -14]], props: [['arrow', [96, 108], [96, 66]]] },
+  },
+  {
+    id: 'curl-ischios-elastique', titre: 'Curl des ischio-jambiers debout à l’élastique, une main sur une chaise, vue de profil : jambe tendue, puis talon ramené vers les fesses',
+    labels: ['Jambe tendue', 'Talon vers les fesses'],
+    a: { p: [0, 112], t: 90, armN: { to: [70, 100], bend: 'd' }, armF: { to: [66, 100], bend: 'd' }, legN: { a: [-92, -92], foot: -30 }, legF: { to: [0, A], bend: 'f' }, back: [['chair', 110, 46, -1]], props: (J) => [['band', [J.anN, [-70, 6]]]] },
+    b: { p: [0, 112], t: 90, armN: { to: [70, 100], bend: 'd' }, armF: { to: [66, 100], bend: 'd' }, legN: { a: [-92, 165], foot: -40 }, legF: { to: [0, A], bend: 'f' }, back: [['chair', 110, 46, -1]], props: (J) => [['band', [J.anN, [-70, 6]]], ['arrow', [-70, 40], [-70, 90]]] },
+  },
+  {
+    id: 'ecarte-sol-elastique', titre: 'Écarté à l’élastique passé derrière le dos, vue de face : mains devant la poitrine, puis bras ouverts sur les côtés',
+    view: 'front', labels: ['Mains devant la poitrine', 'Bras ouverts, coudes souples'],
+    a: { p: [0, 104], legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { to: [12, 152], bend: 'd' }, armF: { to: [-12, 152], bend: 'd' }, props: (J) => [['band', [J.haF, J.haN]]] },
+    b: { p: [0, 104], legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { a: [10, 2] }, armF: { a: [170, 178] }, props: (J) => [['band', [J.haF, J.haN]], ['arrow', [100, 190], [130, 190]], ['arrow', [-100, 190], [-130, 190]]] },
+  },
+  {
+    id: 'extension-genou-elastique', titre: 'Extension du genou assis sur une chaise avec un élastique à la cheville, vue de profil : genou fléchi, puis jambe tendue',
+    labels: ['Genou fléchi', 'Jambe tendue'],
+    a: { p: [-48, 58], t: 88, armN: { to: [4, 66], bend: 'd' }, armF: { to: [0, 66], bend: 'd' }, legN: { to: [8, A], bend: 'f' }, legF: { to: [2, A], bend: 'f' }, back: [['chair', -75, 46, 1]], props: (J) => [['band', [J.anN, [-100, 20]]]] },
+    b: { p: [-48, 58], t: 88, armN: { to: [4, 66], bend: 'd' }, armF: { to: [0, 66], bend: 'd' }, legN: { a: [-2, 4], foot: 60 }, legF: { to: [2, A], bend: 'f' }, back: [['chair', -75, 46, 1]], props: (J) => [['band', [J.anN, [-100, 20]]], ['arrow', [70, 40], [70, 60]]] },
+  },
+  {
+    id: 'extension-hanche-quatre-pattes', titre: 'Extension de la hanche à quatre pattes, vue de profil : genou sous la hanche, puis cuisse levée vers l’arrière, genou fléchi',
+    labels: ['Genou sous la hanche', 'Cuisse levée, genou fléchi'],
+    a: quad(),
+    b: quad({ legN: { a: [188, 90], foot: 60 }, props: [['arrow', [-120, 40], [-120, 80]]] }),
+  },
+  {
+    id: 'haussement-epaules-halteres', titre: 'Haussement d’épaules avec un haltère dans chaque main, vue de face : épaules basses, puis épaules montées vers les oreilles',
+    view: 'front', labels: ['Épaules basses', 'Épaules montées, bras tendus'],
+    a: { p: [0, 104], legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, props: (J) => [['plate', J.haN, 9], ['plate', J.haF, 9]] },
+    b: { p: [0, 104], tl: 74, hl: -4, legN: { to: [16, A], bend: 'f' }, legF: { to: [-16, A], bend: 'b' }, armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, props: (J) => [['plate', J.haN, 9], ['plate', J.haF, 9], ['arrow', [64, 150], [64, 176]], ['arrow', [-64, 150], [-64, 176]]] },
+  },
 ];
