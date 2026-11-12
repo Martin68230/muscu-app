@@ -15,7 +15,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | developpe-epaules-assis-chaise | Assis sur une chaise | 1 | debutant | halteres, chaise | Assis bien droit au fond d'une chaise stable, dossier calé contre un mur, dos près du dossier (sans te laisser aller en arrière), pieds à plat. |
-| developpe-epaules-debout | Debout | 2 | debutant | halteres | Debout, pieds à largeur de hanches, genoux souples. |
+| developpe-epaules-debout | Debout | 2 | intermediaire | halteres | Debout, pieds à largeur de hanches, genoux souples. |
 | developpe-epaules-un-bras | Debout, un bras | 3 | intermediaire | halteres | Debout, un seul haltère ; l'autre main sur la hanche. |
 
 ## Consignes
@@ -46,7 +46,7 @@ statut: utilisable
 Voir program-logic.md.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
+Rédigé par `kine` le 2026-10-21. Durci le 12/11/2026 sur avis du kiné (décision de l'utilisateur) : la variante debout (charge au-dessus de la tête) passe à intermediaire minimum ; la variante assise garde ses cases ; épaule niveau 1 = adapter vers la variante assise (le format ne permet pas un « retirer » par variante), choix prudent, tableaux NON SOURCÉ. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne.
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action (`garder`, `adapter: ...`, `retirer`, `retirer: ...`) ; format dans knowledge/format-fiches.md §4, vocabulaire dans regles-securite-communes.md §0. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder). Niveau 2 : aucune augmentation de charge ni de difficulté sur la zone (R2). Niveau 3 : retirer (R3).
 
