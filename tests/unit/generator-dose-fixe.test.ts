@@ -63,8 +63,8 @@ function expectFixed(e: GenExercise, opts: { pregnantBeginner?: boolean } = {}) 
 }
 
 describe('N4 / Q23 : dose fixe des lancers et du gainage dynamique', () => {
-  it('config : les 8 fiches citées, et elles seules, ont une dose fixe identique aux fiches', () => {
-    expect(Object.keys(FIXED_DOSE).sort()).toEqual([...IDS].sort());
+  it('config : les 8 fiches citées ont une dose fixe identique aux fiches (plus la montée rapide sur chaise, D28 lot 2, plafonds kiné 2 x 6 par jambe)', () => {
+    expect(Object.keys(FIXED_DOSE).sort()).toEqual([...IDS, 'montee-rapide-chaise'].sort());
     for (const id of IDS) {
       const d = FIXED_DOSE[id];
       expect({ unit: d.unit, reps: d.reps, sets: d.sets, restSec: d.restSec }, id).toEqual(EXPECTED[id]);
