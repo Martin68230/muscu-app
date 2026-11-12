@@ -6,6 +6,7 @@ import { CORRECTIF } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import { estimerDuree } from '../../src/generator/duration';
 import { caseFor } from '../../src/generator/safety';
+import { CAL11 } from '../../src/generator/config';
 import { addCorrectifs, checkZones, correctifCandidates, slotlessFor, SLOTLESS_ZONES } from '../../src/generator/zones-check';
 import type { GeneratorInput, GenExercise } from '../../src/generator/types';
 import { zonesOfInjury } from '../../src/zones/zones';
@@ -35,7 +36,9 @@ const gen = (input: GeneratorInput) => {
   if (!r.ok) throw new Error(r.code);
   return r.program;
 };
-const corr = (exs: readonly GenExercise[]) => exs.filter((e) => e.slot === 'correctif');
+// Les ajouts CAL-11 (slot correctif, marque cappedLabel) ont leurs propres règles (cal11-cal12.test.ts) : ni liste fermée CORRECTIF.ids ni limite 1 / 2 par séance.
+const isCal11 = (e: GenExercise) => e.cappedLabel === CAL11.stopMessage;
+const corr = (exs: readonly GenExercise[]) => exs.filter((e) => e.slot === 'correctif' && !isCal11(e));
 
 /** Semaine sans correctif (copie de travail) et dépendances ouvertes (durée, plafonds) pour isoler la règle. */
 function bare(input: GeneratorInput) {
@@ -56,7 +59,8 @@ describe('correctif : 6 profils du rapport', () => {
         const c = corr(s.exercises);
         expect(c.length).toBeLessThanOrEqual(max);
         // En fin de séance : après tous les exercices principaux.
-        if (c.length) expect(s.exercises.slice(-c.length).every((e) => e.slot === 'correctif')).toBe(true);
+        const tail = s.exercises.filter((e) => e.slot === 'correctif');
+        if (tail.length) expect(s.exercises.slice(-tail.length).every((e) => e.slot === 'correctif')).toBe(true);
         for (const e of c) {
           expect(ALL_IDS).toContain(e.ficheId);
           expect(e.sets).toBeLessThanOrEqual(2);
