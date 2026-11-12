@@ -42,7 +42,7 @@ M0406,Lever Bent Over Row,Smith Bent Over Row,force,pull_h,machine,oui,,back,upp
 M0409,Bent Press,Kettlebell Bent Press,force,a_classer,kettlebell,non,,waist,abs,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0410,Bent-Arm Barbell Pullover,Barbell Bent Arm Pullover,force,pull_h,barre,non,,back,lats,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0420,Lever Bicep Curl,Alternating Biceps Curls With Dumbbell,force,arms,halteres,non,,Arms,,wger,CC-BY-SA 4.0 (attribution : Franpol),à vérifier (licence par image),,brouillon_a_relire
-M0420,Lever Bicep Curl,Biceps Curl Machine,force,arms,machine,oui,,Arms,,wger,CC-BY-SA 4.0 (attribution : hpmbala@gmail.com),à vérifier (licence par image),,brouillon_a_relire
+M0420,Lever Bicep Curl,Biceps Curl Machine,force,arms,machine,oui,,Arms,,wger,CC-BY-SA 4.0 (attribution : hpmbala),à vérifier (licence par image),,brouillon_a_relire
 M0420,Lever Bicep Curl,Lever Bicep Curl,force,arms,machine,oui,,upper arms,biceps,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0420,Lever Bicep Curl,Smith Machine Bicep Curl,force,arms,machine,oui,,upper arms,biceps,maxwu-dataset,"MIT déclaré, provenance douteuse (texte seulement)",non (droits Gym visual),,brouillon_a_relire
 M0420,Lever Bicep Curl,Biceps Curls With Dumbbell,force,arms,halteres,non,,Arms,,wger,CC-BY-SA 3.0 (attribution : wger.de),à vérifier (licence par image),,brouillon_a_relire

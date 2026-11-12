@@ -232,3 +232,98 @@ describe('validation', () => {
     expect(errors.some((e) => e.includes('reps'))).toBe(true);
   });
 });
+describe('import JSON : validation en profondeur (audit 2026-11, constats 1 et 2)', () => {
+  const clone = <T,>(x: T): T => JSON.parse(JSON.stringify(x));
+
+  it('export puis import : les données sont identiques', async () => {
+    fixedClock('2026-10-21T10:00:00.000Z');
+    await ensureLocalUser();
+    await create('bodyWeights', weight(70));
+    await create('injuries', { zone: 'genou', side: 'gauche', level: 2, note: 'note', active: true });
+    const before = clone(await exportData());
+    await wipeAllData();
+    const r = await importData(clone(before));
+    expect(r.ok).toBe(true);
+    const after = await exportData();
+    const strip = (f: typeof before) => ({ ...f, exportedAt: '', data: { ...f.data, profile: [], equipment: [] } });
+    const norm = (f: typeof before) => JSON.parse(JSON.stringify(strip(f), (_k, v) => v));
+    expect(norm(after).data.bodyWeights).toEqual(norm(before).data.bodyWeights.map((x: object) => ({ ...x, ownerId: (after.data.bodyWeights[0] as { ownerId: string }).ownerId })));
+    expect(after.data.injuries).toHaveLength(1);
+  });
+
+  it('refuse proprement un texte trop long, une charge absurde, un plan mal formé, des aliments invalides', async () => {
+    await create('bodyWeights', weight(70));
+    const base = clone(await exportData());
+    const bad = (mut: (f: typeof base) => void) => {
+      const f = clone(base);
+      mut(f);
+      return importData(f);
+    };
+    const sRow = { ...base.data.bodyWeights[0], id: 's1', programId: null, programDayIndex: null, plannedDate: '2026-10-21', status: 'faite', startedAt: null, endedAt: null, note: '' };
+    const r1 = await bad((f) => { (f.data as Record<string, unknown>).sessions = [{ ...sRow, note: 'x'.repeat(5000) }]; });
+    expect(r1.ok).toBe(false);
+    expect(r1.errors.join(' ')).toContain('trop long');
+    const r2 = await bad((f) => { (f.data as Record<string, unknown>).sessions = [{ ...sRow, loadsKg: { a: 99999 } }]; });
+    expect(r2.ok).toBe(false);
+    const r3 = await bad((f) => { (f.data as Record<string, unknown>).sessions = [{ ...sRow, plan: { exercises: 'oups' } }]; });
+    expect(r3.ok).toBe(false);
+    const r4 = await bad((f) => { (f.data as Record<string, unknown>).meals = [{ ...sRow, date: 'd', time: null, label: 'l', items: [{ foodCode: 1, grams: -5 }] }]; });
+    expect(r4.ok).toBe(false);
+    const r5 = await bad((f) => { f.data.bodyWeights[0].kg = 1e12; });
+    expect(r5.ok).toBe(false);
+    const r6 = await bad((f) => { (f.data as Record<string, unknown>).sessions = [{ ...sRow, loadsKg: JSON.parse('{"__proto__": 1}') }]; });
+    expect(r6.ok).toBe(false);
+    const r7 = await bad((f) => { (f.data as Record<string, unknown>).sessions = [{ ...sRow, plan: { exercises: new Array(500).fill({}) } }]; });
+    expect(r7.ok).toBe(false);
+  });
+
+  it('refuse un tableau trop long et un nombre de lignes excessif sans planter', async () => {
+    const base = clone(await exportData());
+    const f = clone(base);
+    f.data.profile = [{ ...f.data.bodyWeights[0] } as never];
+    const r = await importData({ ...f, data: { ...f.data, goals: new Array(60000).fill(0) } });
+    expect(r.ok).toBe(false);
+    expect(r.errors.join(' ')).toContain('trop de lignes');
+  });
+
+  it('écarte les champs inconnus', async () => {
+    await create('bodyWeights', weight(70));
+    const file = clone(await exportData());
+    (file.data.bodyWeights[0] as unknown as Record<string, unknown>).intrus = { x: 1 };
+    await wipeAllData();
+    expect((await importData(file)).ok).toBe(true);
+    const [row] = await list('bodyWeights');
+    expect(row).not.toHaveProperty('intrus');
+  });
+
+  it('un fichier trop gros est refusé par la limite exposée', async () => {
+    const { MAX_IMPORT_BYTES } = await import('../../src/data/validate');
+    expect(MAX_IMPORT_BYTES).toBe(20 * 1024 * 1024);
+  });
+
+  it("updatedAt plus de 24 h dans le futur est ramené à maintenant ; une blessure locale n'est pas écrasée pour toujours", async () => {
+    fixedClock('2026-10-21T10:00:00.000Z');
+    const inj = await create('injuries', { zone: 'genou', side: null, level: 2, note: '', active: true });
+    const file = clone(await exportData());
+    const futur = { ...file.data.injuries[0], active: false, rev: 5, updatedAt: '2099-01-01T00:00:00.000Z' };
+    file.data.injuries = [futur];
+    expect((await importData(file)).ok).toBe(true);
+    const imported = await get('injuries', inj.id);
+    expect(imported?.updatedAt).toBe('2026-10-21T10:00:00.000Z');
+    // une vraie modification locale ultérieure l'emporte donc
+    fixedClock('2026-10-22T10:00:00.000Z');
+    await update('injuries', inj.id, { active: true });
+    const again = clone(file);
+    await importData(again);
+    expect((await get('injuries', inj.id))?.active).toBe(true);
+  });
+
+  it('une date dans les 24 h reste inchangée', async () => {
+    fixedClock('2026-10-21T10:00:00.000Z');
+    const row = await create('bodyWeights', weight(70));
+    const file = clone(await exportData());
+    file.data.bodyWeights = [{ ...row, kg: 71, rev: 2, updatedAt: '2026-10-22T08:00:00.000Z' }];
+    await importData(file);
+    expect((await get('bodyWeights', row.id))?.updatedAt).toBe('2026-10-22T08:00:00.000Z');
+  });
+});

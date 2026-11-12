@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import type { Profile as ProfileRow } from '../../data/model';
 import { update } from '../../data/repo';
+import { MAX_IMPORT_BYTES } from '../../data/validate';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
 import { Equipment } from './Equipment';
@@ -100,6 +101,10 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
 
   const doImport = async (file: File | undefined) => {
     if (!file) return;
+    if (file.size > MAX_IMPORT_BYTES) {
+      setMessage('Import refusé : ce fichier est trop gros (20 Mo au maximum).');
+      return;
+    }
     let parsed: unknown;
     try {
       parsed = JSON.parse(await file.text());

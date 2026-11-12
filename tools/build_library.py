@@ -141,7 +141,7 @@ for x in json.load(open(base + 'translations.json', encoding='utf-8')):
     if f.get('language') != 2 or not f.get('name'):
         continue
     e = ex.get(f.get('exercise'), {})
-    rows.append(dict(name=f['name'].strip(), src='wger', lic=lic_names.get(f.get('license') or e.get('license'), 'à vérifier') + ' (attribution : ' + (f.get('license_author') or 'wger.de') + ')',
+    rows.append(dict(name=f['name'].strip(), src='wger', lic=lic_names.get(f.get('license') or e.get('license'), 'à vérifier') + ' (attribution : ' + (f.get('license_author') or 'wger.de').split('@')[0] + ')',
                      eq='|'.join(eqs.get(i, '') for i in e.get('equipment', [])), group=cats.get(e.get('category'), ''),
                      level='', photo='à vérifier (licence par image)', muscles=''))
 

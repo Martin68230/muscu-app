@@ -145,11 +145,24 @@ export function incomingWins(local: SyncFields | undefined, incoming: SyncFields
   return incoming.rev > local.rev;
 }
 
-export async function mergeRows<T extends TableName>(table: T, rows: Row<T>[]): Promise<number> {
+/** Une date de modification plus de 24 h dans le futur est ramenée à maintenant (un fichier ne doit pas gagner pour toujours). */
+export const MAX_FUTURE_MS = 24 * 3600 * 1000;
+export function clampFuture<R extends SyncFields>(row: R, now: Date): R {
+  const limit = now.getTime() + MAX_FUTURE_MS;
+  const iso = now.toISOString();
+  let out = row;
+  if (Date.parse(row.updatedAt) > limit) out = { ...out, updatedAt: iso };
+  if (out.deletedAt && Date.parse(out.deletedAt) > limit) out = { ...out, deletedAt: iso };
+  return out;
+}
+
+export async function mergeRows<T extends TableName>(table: T, incomingRows: Row<T>[]): Promise<number> {
   const db = await getDB();
   const tx = db.transaction(table, 'readwrite');
   let applied = 0;
-  for (const row of rows) {
+  const now = clock();
+  for (const incoming of incomingRows) {
+    const row = clampFuture(incoming, now);
     const local = (await tx.store.get(row.id)) as Row<T> | undefined;
     if (incomingWins(local, row)) {
       await tx.store.put(row as never);

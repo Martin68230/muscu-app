@@ -217,7 +217,94 @@ export function validateRow(table: TableName, row: unknown): string[] {
   if (typeof r.updatedAt === 'string' && Number.isNaN(Date.parse(r.updatedAt))) {
     errors.push(`${table}/${String(r.id)} : date de modification invalide`);
   }
+  errors.push(...deepErrors(table, r));
   return errors;
+}
+
+// Constat 1 de l'audit : contenu des tableaux / objets, textes et nombres bornés (un fichier reçu ne doit pas faire planter l'app).
+export const MAX_IMPORT_BYTES = 20 * 1024 * 1024;
+export const MAX_ROWS_PER_TABLE = 50000;
+const MAX_TEXT = 2000;
+const MAX_ARRAY = 2000;
+const MAX_KEYS = 500;
+const MAX_DEPTH = 10;
+const MAX_ABS = 1e9;
+
+/** Bornes générales : profondeur, longueur des textes, taille des tableaux, nombres raisonnables, clés dangereuses. */
+function walk(v: unknown, path: string, depth: number, out: string[]): void {
+  if (out.length >= 5) return;
+  if (depth > MAX_DEPTH) return void out.push(`${path} : imbrication trop profonde`);
+  if (typeof v === 'string') {
+    if (v.length > MAX_TEXT) out.push(`${path} : texte trop long`);
+  } else if (typeof v === 'number') {
+    if (!Number.isFinite(v) || Math.abs(v) > MAX_ABS) out.push(`${path} : nombre hors limites`);
+  } else if (Array.isArray(v)) {
+    if (v.length > MAX_ARRAY) return void out.push(`${path} : liste trop longue`);
+    v.forEach((x, i) => walk(x, `${path}[${i}]`, depth + 1, out));
+  } else if (v !== null && typeof v === 'object') {
+    const keys = Object.keys(v as object);
+    if (keys.length > MAX_KEYS) return void out.push(`${path} : trop de champs`);
+    for (const k of keys) {
+      if (k === '__proto__' || k === 'constructor' || k === 'prototype') out.push(`${path} : champ interdit « ${k} »`);
+      else walk((v as Record<string, unknown>)[k], `${path}.${k}`, depth + 1, out);
+    }
+  } else if (v !== undefined && v !== null && typeof v !== 'boolean') out.push(`${path} : type de valeur non permis`);
+}
+
+const isObj = (v: unknown): v is Record<string, unknown> => typeOf(v) === 'object';
+const num = (v: unknown, min: number, max: number): boolean => typeof v === 'number' && Number.isFinite(v) && v >= min && v <= max;
+
+function dayErrors(d: unknown, where: string, out: string[]): void {
+  if (!isObj(d)) return void out.push(`${where} : jour de programme invalide`);
+  if (!Array.isArray(d.exercises) || d.exercises.length > 60) return void out.push(`${where} : liste d'exercices invalide`);
+  d.exercises.forEach((e, i) => {
+    if (!isObj(e)) return void out.push(`${where}.exercises[${i}] : exercice invalide`);
+    for (const f of ['sets', 'repsMin', 'repsMax', 'restSec', 'holdSec']) {
+      if (e[f] !== undefined && e[f] !== null && !num(e[f], 0, 10000)) out.push(`${where}.exercises[${i}] : « ${f} » hors limites`);
+    }
+    if (e.startLoadKg !== undefined && e.startLoadKg !== null && !num(e.startLoadKg, 0, 1000)) out.push(`${where}.exercises[${i}] : « startLoadKg » hors limites`);
+  });
+}
+
+function deepErrors(table: TableName, r: Record<string, unknown>): string[] {
+  const where = `${table}/${String(r.id ?? '?')}`;
+  const out: string[] = [];
+  walk(r, where, 0, out);
+  if (table === 'programs' && Array.isArray(r.days)) {
+    if (r.days.length > 100) out.push(`${where} : trop de jours`);
+    else r.days.forEach((d, i) => dayErrors(d, `${where}.days[${i}]`, out));
+  }
+  if (table === 'sessions') {
+    if (r.plan !== undefined && r.plan !== null) dayErrors(r.plan, `${where}.plan`, out);
+    if (isObj(r.loadsKg)) {
+      for (const [k, v] of Object.entries(r.loadsKg)) if (v !== null && !num(v, 0, 1000)) out.push(`${where} : charge « ${k} » hors limites (0 à 1000 kg)`);
+    }
+    if (typeof r.note === 'string' && r.note.length > MAX_TEXT) out.push(`${where} : note trop longue`);
+  }
+  if (table === 'meals' && Array.isArray(r.items)) {
+    r.items.forEach((it, i) => {
+      if (!isObj(it) || typeof it.foodCode !== 'string' || !num(it.grams, 0, 100000)) out.push(`${where}.items[${i}] : aliment invalide`);
+    });
+  }
+  if (table === 'sets') {
+    if (r.loadKg != null && !num(r.loadKg, 0, 1000)) out.push(`${where} : charge hors limites (0 à 1000 kg)`);
+    for (const f of ['reps', 'targetRepsMin', 'targetRepsMax', 'holdSec', 'exerciseIndex', 'setIndex']) {
+      if (r[f] != null && !num(r[f], 0, 10000)) out.push(`${where} : « ${f} » hors limites`);
+    }
+    if (r.rir != null && !num(r.rir, -1, 10)) out.push(`${where} : « rir » hors limites`);
+  }
+  if (table === 'bodyWeights' && !num(r.kg, 1, 1000)) out.push(`${where} : poids hors limites`);
+  if (table === 'profile' && r.heightCm != null && !num(r.heightCm, 30, 300)) out.push(`${where} : taille hors limites`);
+  if (table === 'injuries' && typeof r.level === 'number' && !num(r.level, 0, 5)) out.push(`${where} : niveau hors limites`);
+  return out;
+}
+
+/** Ne garde que les champs connus de la table (les champs inconnus d'un fichier importé sont écartés). */
+export function sanitizeRow(table: TableName, row: Record<string, unknown>): Record<string, unknown> {
+  const known = new Set([...Object.keys(SYNC), ...Object.keys(SPECS[table])]);
+  const out: Record<string, unknown> = {};
+  for (const k of Object.keys(row)) if (known.has(k)) out[k] = row[k];
+  return out;
 }
 
 const isDay = (v: unknown): boolean => typeof v === 'string' && /^\d{4}-\d{2}-\d{2}$/.test(v);

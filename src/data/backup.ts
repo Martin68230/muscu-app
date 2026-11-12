@@ -1,7 +1,7 @@
 import { closeDB, DB_NAME, getDB } from './db';
 import { getDevice, listAll, mergeRows } from './repo';
 import { SCHEMA_VERSION, TABLES, type Row, type TableName } from './model';
-import { validateRow } from './validate';
+import { MAX_ROWS_PER_TABLE, sanitizeRow, validateRow } from './validate';
 
 export const EXPORT_FORMAT = 'muscu-app-export';
 
@@ -47,6 +47,10 @@ export async function importData(input: unknown): Promise<ImportResult> {
       errors.push(`${table} : liste attendue`);
       continue;
     }
+    if (rows.length > MAX_ROWS_PER_TABLE) {
+      errors.push(`${table} : trop de lignes`);
+      continue;
+    }
     for (const row of rows) errors.push(...validateRow(table, row));
   }
   if (errors.length) return fail(...errors.slice(0, 20));
@@ -55,8 +59,8 @@ export async function importData(input: unknown): Promise<ImportResult> {
   const { localUserId } = await getDevice();
   const applied: ImportResult['applied'] = {};
   for (const table of TABLES) {
-    const rows = ((file.data as Record<string, Row<TableName>[]>)[table] ?? []).map((r) => ({
-      ...r,
+    const rows = ((file.data as unknown as Record<string, Record<string, unknown>[]>)[table] ?? []).map((r) => ({
+      ...sanitizeRow(table, r),
       ownerId: localUserId,
       syncedAt: null,
     }));
