@@ -184,8 +184,11 @@ const plannedFor = (row: WorkoutSession | undefined, movementId: string, fallbac
  * seule une douleur déclarée pendant une séance créée reste visible (prudence : pas de hausse après une douleur).
  */
 export function withoutCreatedSets<T extends { sets: readonly SetLog[]; sessions?: readonly WorkoutSession[] }>(i: T): T {
-  const created = new Set((i.sessions ?? []).filter((s) => !!s.created).map((s) => s.id));
-  return created.size ? { ...i, sets: i.sets.filter((x) => !created.has(x.sessionId) || x.pain) } : i;
+  const sessions = i.sessions ?? [];
+  const created = new Set(sessions.filter((s) => !!s.created).map((s) => s.id));
+  // D19 : les séries importées d'un CSV (charges d'une autre app, non vérifiées) ne servent jamais, pas même pour la douleur.
+  const imported = new Set(sessions.filter((s) => !!s.imported).map((s) => s.id));
+  return created.size || imported.size ? { ...i, sets: i.sets.filter((x) => !imported.has(x.sessionId) && (!created.has(x.sessionId) || x.pain)) } : i;
 }
 
 export function proposeProgression(i0: ProgressionInput): Progression {

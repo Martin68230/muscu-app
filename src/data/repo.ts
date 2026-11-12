@@ -75,6 +75,21 @@ export async function list<T extends TableName>(table: T): Promise<Row<T>[]> {
   return rows.filter((r) => !r.deletedAt);
 }
 
+/**
+ * Séances et séries SANS celles importées d'un CSV (D19) : à utiliser pour tout calcul (progression, dernière fois, zones, espacement,
+ * séries par semaine, bilans). Seuls l'historique affiché et la suppression lisent les lignes importées, via list.
+ */
+export async function listTrusted(table: 'sessions'): Promise<Row<'sessions'>[]>;
+export async function listTrusted(table: 'sets'): Promise<Row<'sets'>[]>;
+export async function listTrusted(table: 'sessions' | 'sets'): Promise<Row<'sessions'>[] | Row<'sets'>[]> {
+  const sessions = await list('sessions');
+  if (table === 'sessions') return sessions.filter((s) => !s.imported);
+  const imported = new Set(sessions.filter((s) => s.imported).map((s) => s.id));
+  const sets = await list('sets');
+  // Séries importées orphelines (séance absente après un import JSON ou une synchro) : repérées à leur variantId « import: ».
+  return sets.filter((s) => !imported.has(s.sessionId) && !s.variantId.startsWith('import:'));
+}
+
 /** Tous les enregistrements, supprimés compris (export, synchronisation). */
 export async function listAll<T extends TableName>(table: T): Promise<Row<T>[]> {
   const db = await getDB();

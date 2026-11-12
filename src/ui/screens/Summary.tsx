@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { PregnancyStatus, WorkoutSession } from '../../data/model';
-import { list, update } from '../../data/repo';
+import { list, update, listTrusted } from '../../data/repo';
 import { gentlerAlternative, painCheck, proposeProgression } from '../../session/history';
 import { acceptAdapt, laterAdapt, loadEvents, type AdaptCard } from '../../session/progression-store';
 import { ADAPT_TEXT, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
@@ -55,7 +55,7 @@ export function SummaryScreen({ ctl, data, pregnancy, onClose, onEditInjuries }:
         variant: (id: string) => data.fiches.flatMap((f) => f.variantes).find((v) => v.id === id)?.nom ?? 'Exercice',
       };
       try {
-        const [sets, sessions, injuries] = await Promise.all([list('sets'), list('sessions'), list('injuries')]);
+        const [sets, sessions, injuries] = await Promise.all([listTrusted('sets'), listTrusted('sessions'), list('injuries')]);
         const row: WorkoutSession | undefined = sessions.find((s) => s.id === ctl.sessionId);
         if (!row) throw new Error('séance introuvable');
         // Cou placé automatiquement : malaise ou douleur sur cet exercice, le cou est retiré des séances suivantes.

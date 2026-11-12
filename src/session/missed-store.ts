@@ -1,5 +1,5 @@
 // Séance manquée : lecture du contexte et enregistrement des choix (IndexedDB, local). La logique est dans missed.ts (pure).
-import { create, list, update } from '../data/repo';
+import { create, list, update, listTrusted } from '../data/repo';
 import type { Profile, Program, RepriseState } from '../data/model';
 import { painCheck } from './history';
 import { dateKey } from './calendar';
@@ -8,7 +8,7 @@ import { removeNeckFromProfile } from './neck-stop';
 import { repriseOf } from './missed-config';
 
 export async function loadMissedContext(program: Program, now: Date = new Date()): Promise<MissedContext | null> {
-  const [profiles, programs, sessions, sets, injuries] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets'), list('injuries')]);
+  const [profiles, programs, sessions, sets, injuries] = await Promise.all([list('profile'), list('programs'), listTrusted('sessions'), listTrusted('sets'), list('injuries')]);
   const profile = profiles[0];
   if (!profile) return null;
   return {

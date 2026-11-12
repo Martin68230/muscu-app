@@ -1,6 +1,6 @@
 // Programme actif et séance du jour (F5). Appelle le générateur v1 (pur), enregistre le résultat dans la table `programs`
 // (un seul programme actif) et le régénère seulement quand les entrées changent (empreinte `inputsHash`).
-import { list, create, update, get, softDelete } from '../data/repo';
+import { list, create, update, get, softDelete, listTrusted } from '../data/repo';
 import type { Injury, PlannedExercise, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import { BLOCK_WEEKS, ISOLATION, LIGHT_SPLIT_MAX_FORCE, MIN_GAP_DAYS } from '../generator/config';
 import { conflicts, generateProgram, isCardioDay, toLightDays, toProgramDays } from '../generator';
@@ -94,7 +94,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
   const [profile] = await list('profile');
   const [equipment] = await list('equipment');
   if (!profile || !equipment) return null;
-  const [injuries, goals, sets, sessions] = await Promise.all([list('injuries'), list('goals'), list('sets'), list('sessions')]);
+  const [injuries, goals, sets, sessions] = await Promise.all([list('injuries'), list('goals'), listTrusted('sets'), listTrusted('sessions')]);
   const input: GeneratorInput = {
     profile: {
       level: profile.level,
@@ -216,7 +216,7 @@ export async function ensureActiveProgram(fiches: Fiche[], opts: { force?: boole
   const equipmentChanged = !!active?.equipmentHash && active.equipmentHash !== equipmentHash;
   const program = await create('programs', { ...toStoredProgram(result.program, hash, today), equipmentHash, equipmentChanged });
   // SM-21 : les jours décalés en attente de l'ancien programme disparaissent ; reportée, sautée et faite restent à l'historique.
-  for (const s of await list('sessions')) {
+  for (const s of await listTrusted('sessions')) {
     if (s.status === 'prevue' && s.dejaDecalee && s.programId !== program.id) await softDelete('sessions', s.id);
   }
   return { ok: true, program, regenerated: true };
@@ -413,7 +413,7 @@ export function nextSession(program: Program, sessions: readonly WorkoutSession[
 export async function getNextSession(nowMs: number): Promise<NextSession | null> {
   const program = await getActiveProgram();
   if (!program) return null;
-  return nextSession(program, await list('sessions'), nowMs);
+  return nextSession(program, await listTrusted('sessions'), nowMs);
 }
 
 /** Aperçu avant de commencer : explication de 2 lignes, durée estimée, messages V-MSG-*. */

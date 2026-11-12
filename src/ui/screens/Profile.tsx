@@ -4,6 +4,7 @@ import { update } from '../../data/repo';
 import { MAX_IMPORT_BYTES } from '../../data/validate';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
+import { ImportCsv } from './ImportCsv';
 import { Equipment } from './Equipment';
 import { Credits } from './Credits';
 import {
@@ -241,6 +242,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
       <button class="btn btn-danger" onClick={() => confirmDialog.current?.showModal()}>
         Supprimer toutes mes données
       </button>
+
+      <ImportCsv />
 
       <Equipment key={'eq' + (message ?? profile.id)} />
 

@@ -376,6 +376,8 @@ export interface WorkoutSession extends SyncFields {
    * 24 / 48 / 72 h et les contacts de sauts des séances créées suivantes ; request permet de recomposer la séance (jour ajouté au calendrier).
    */
   created?: CreatedMeta | null;
+  /** D19 : séance importée d'un CSV Hevy ou Strong. Affichage seulement : jamais lue par la progression, la dernière fois, le rattrapage des zones, l'espacement ni les séries par semaine. */
+  imported?: boolean;
 }
 
 export interface CreatedMeta {

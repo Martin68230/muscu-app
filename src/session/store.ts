@@ -1,7 +1,7 @@
 // Séance en cours : machine à états (engine.ts) + enregistrement dans IndexedDB à CHAQUE action (reprise après fermeture).
 // Tout est local : aucun accès réseau (CLAUDE.md A6). L'heure vient d'une horloge injectable (`now`, en ms).
 import { getDB } from '../data/db';
-import { create, get, list, update } from '../data/repo';
+import { create, get, list, update, listTrusted } from '../data/repo';
 import type { CreatedMeta, InjuryZone, Program, ProgramDay, SetLog, WorkoutSession, NewRow } from '../data/model';
 import {
   abandonSession, adjustRest, completeSet, currentView, endWarmup, finishSession, markPain, pairsForSession, reportSymptom, skipExercise, skipRest, startSession, withPerSide,
@@ -111,11 +111,11 @@ export class SessionController {
   static async start(program: Program, dayIndex: number, ctx: EngineContext, now: NowFn = realNow, opts: { day?: ProgramDay } = {}): Promise<SessionController> {
     const base = opts.day ?? program.days[dayIndex];
     if (!base) throw new SessionError('Séance introuvable.');
-    const sessions = await list('sessions');
+    const sessions = await listTrusted('sessions');
     const t0 = now();
     // Rampe du débutant (cardio-regles.md §3.4 f) : un bloc prévu « à partir de la semaine 3 » n'est pas joué avant.
     // D34 (PV3-VAR-4, 5 d) : jeu 1 ou jeu 2 selon la semaine, rotation gelée 2 semaines après une douleur ou une zone passée au niveau >= 1.
-    const [allSets, injuries] = await Promise.all([list('sets'), list('injuries')]);
+    const [allSets, injuries] = await Promise.all([listTrusted('sets'), list('injuries')]);
     const planned = withProgramWeek(base, programWeek(program, t0), rotationFreeze(allSets, injuries, t0));
     // D26 (SUP-2 point 7) : paires non appliquées si un exercice est en étalonnage ou en retour après gêne (plan enregistré tel quel) ;
     // SUP-10 : ni si la séance de musculation de la veille (date réellement jouée) a travaillé un même muscle principal.
@@ -144,7 +144,7 @@ export class SessionController {
    * Refuse s'il reste une séance « en cours ».
    */
   static async startCreated(day: ProgramDay, meta: CreatedMeta, ctx: EngineContext, now: NowFn = realNow, existingId: string | null = null): Promise<SessionController> {
-    const sessions = await list('sessions');
+    const sessions = await listTrusted('sessions');
     if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
     const t = now();
     // Les paires décidées par le composeur ne sont appliquées que hors étalonnage ou retour après gêne (comme pour un programme).
@@ -329,7 +329,7 @@ export interface Resumable {
 }
 
 export async function findResumable(nowMs: number = Date.now()): Promise<Resumable | null> {
-  const open = (await list('sessions')).filter((s) => s.status === 'en_cours' && s.plan);
+  const open = (await listTrusted('sessions')).filter((s) => s.status === 'en_cours' && s.plan);
   if (!open.length) return null;
   const last = (s: WorkoutSession) => Date.parse(s.lastActionAt ?? s.startedAt ?? s.createdAt);
   const session = open.sort((a, b) => last(b) - last(a))[0];
@@ -347,7 +347,7 @@ export async function closeStaleSession(sessionId: string, how: 'terminer' | 'ab
 
 /** Douleur sur plusieurs séances : propositions niveau 2 ou 3 et signe S1 (jamais appliqués sans confirmation). */
 export async function currentPainCheck(): Promise<PainCheck> {
-  const [sets, sessions, injuries] = await Promise.all([list('sets'), list('sessions'), list('injuries')]);
+  const [sets, sessions, injuries] = await Promise.all([listTrusted('sets'), listTrusted('sessions'), list('injuries')]);
   return painCheck(sets, sessions, injuries);
 }
 

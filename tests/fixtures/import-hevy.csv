@@ -1,0 +1,7 @@
+"title","start_time","end_time","description","exercise_title","superset_id","exercise_notes","set_index","set_type","weight_kg","reps","distance_km","duration_seconds","rpe"
+"Push Day","26 Mar 2024, 18:30","26 Mar 2024, 19:20","Séance test","Bench Press (Barbell)","","Note avec, virgule",0,"warmup",20,10,,,
+"Push Day","26 Mar 2024, 18:30","26 Mar 2024, 19:20","Séance test","Bench Press (Barbell)","","Note sur
+deux lignes ""citée""",1,"normal",60,8,,,8
+"Push Day","26 Mar 2024, 18:30","26 Mar 2024, 19:20","Séance test","Bench Press (Barbell)","","",2,"normal",62.5,6,,,9.5
+"Push Day","26 Mar 2024, 18:30","26 Mar 2024, 19:20","Séance test","Zottman Curl (Dumbbell)","","",0,"normal",10,12,,,
+"Planche","28 Mar 2024, 07:00","28 Mar 2024, 07:10","","Plank","","",0,"normal",,,,60,

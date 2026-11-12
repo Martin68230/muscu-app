@@ -39,6 +39,8 @@ export interface HistoryEntry {
   mark: DayMark;
   /** Séance faite à partir d'un jour décalé (SM-D2) : ne « couvre » pas un autre jour planifié manqué. */
   shifted?: boolean;
+  /** D19 : séance importée d'un CSV (affichage seulement). */
+  imported?: boolean;
 }
 
 const pad = (n: number): string => String(n).padStart(2, '0');
@@ -106,6 +108,7 @@ export function buildEntries(sessions: readonly WorkoutSession[], sets: readonly
       setsDone: counted ? mine.length : 0,
       mark,
       ...(s.dejaDecalee ? { shifted: true } : {}),
+      ...(s.imported ? { imported: true } : {}),
     });
   }
   return out.sort((a, b) => b.atMs - a.atMs);

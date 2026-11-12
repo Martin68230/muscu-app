@@ -5,7 +5,7 @@
 // - ajoute / retire une séance créée du calendrier (ligne `prevue` sans programme).
 // Tout est local : aucun accès réseau, aucune IA, aucune donnée envoyée.
 import type { CreatedMeta, NewRow, PlannedWarmupItem, ProgramDay, Program, SetLog, WorkoutSession } from '../data/model';
-import { create, list, softDelete } from '../data/repo';
+import { create, list, softDelete, listTrusted } from '../data/repo';
 import { jumpPlanned, plannedOf } from '../generator';
 import type { CreateContext, CreateHistoryItem, CreatedSession, CreateSessionRequest } from '../generator';
 import type { CreateZone } from '../generator/config';
@@ -155,7 +155,7 @@ export function createContextOf(h: HistoryInput & { activeProgram: Pick<Program,
 }
 
 export async function loadCreateContext(schemaOf: (id: string) => string | undefined, now: Date = new Date(), musclesOf?: HistoryInput['musclesOf']): Promise<CreateContext> {
-  const [sessions, sets, programs] = await Promise.all([list('sessions'), list('sets'), list('programs')]);
+  const [sessions, sets, programs] = await Promise.all([listTrusted('sessions'), listTrusted('sets'), list('programs')]);
   const activeProgram = programs.find((p) => p.active && !p.deletedAt) ?? null;
   return createContextOf({ sessions, sets, programs, schemaOf, musclesOf, activeProgram, now });
 }

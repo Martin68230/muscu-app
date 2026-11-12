@@ -1,5 +1,5 @@
 // Données du lecteur de séance : lues une fois au démarrage ou à la reprise (aucun réseau pendant la séance).
-import { list } from '../../data/repo';
+import { list, listTrusted } from '../../data/repo';
 import type { EquipmentProfile, Injury, PlannedExercise, Profile, Program, ProgramDay, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
 import type { Fiche } from '../../data/fiches';
 import { buildCtx, isChargeable, isUnilateral, type Ctx } from '../../generator/context';
@@ -122,7 +122,7 @@ export const asGenFiches = (f: Fiche[]): GenFiche[] => f as unknown as GenFiche[
 
 export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeSessionId: string | null = null): Promise<PlayerData> {
   const [sets, equipments, injuries, sessions, profiles, programs] = await Promise.all([
-    list('sets'), list('equipment'), list('injuries'), list('sessions'), list('profile'), list('programs'),
+    listTrusted('sets'), list('equipment'), list('injuries'), listTrusted('sessions'), list('profile'), list('programs'),
   ]);
   const zonesOfMovement = (id: string): readonly string[] => Object.keys(fiches.find((f) => f.id === id)?.securite.zones ?? {});
   // §6 / §8 [kine] : une séance prévue manquée (ou renoncée) depuis la dernière séance faite : aucune montée à la séance de retour.

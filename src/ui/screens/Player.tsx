@@ -3,7 +3,7 @@ import { JumpPlayNotes, OutdoorPlayNotes } from '../session/CardioNotes';
 import { CARDIO_TEXT } from '../../generator/messages';
 import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/hooks';
 import type { InjuryZone, PlannedExercise, Profile } from '../../data/model';
-import { list } from '../../data/repo';
+import { list, listTrusted } from '../../data/repo';
 import { ZONE_LABEL } from '../../data/labels';
 import type { SetInput } from '../../session/engine';
 import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression, withoutCreatedSets } from '../../session/history';
@@ -373,7 +373,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
       let proposal: string | null = null;
       let s1: string | null = null;
       try {
-        const [sets, sessions, injuries] = await Promise.all([list('sets'), list('sessions'), list('injuries')]);
+        const [sets, sessions, injuries] = await Promise.all([listTrusted('sets'), listTrusted('sessions'), list('injuries')]);
         const nowIso = new Date().toISOString();
         const patched = sessions.map((s) => (s.id === ctl.sessionId ? { ...s, status: 'sautee' as const, endedAt: nowIso } : s));
         const check = painCheck(sets, patched, injuries);

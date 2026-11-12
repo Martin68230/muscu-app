@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { Program, ProgramDay, Profile } from '../../data/model';
 import { FICHES_ERROR, loadFiches, type Fiche } from '../../data/fiches';
-import { list } from '../../data/repo';
+import { list, listTrusted } from '../../data/repo';
 import { ADAPT_TEXT, D30_TEXT, ECHELON_TEXT, GAIN_TEXT, PAIR_FIRST_SESSION_TEXT, ZONE_CATCHUP_TEXT } from '../../session/messages';
 import type { CatchUpAdd, CatchUpSwap } from '../../zones/catchup';
 import { applyAccepted, type AdaptCancel, type AdaptChange } from '../../session/adapt-accept';
@@ -294,7 +294,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     const next0 = await getNextSession(Date.now());
     if (!next0) return setEmpty(true);
     // D34 (PV3-VAR-4, 5 d) : séance de la semaine en cours (jeu 1 ou jeu 2, gel après une douleur), AVANT la reprise douce.
-    const [fzSets, fzInjuries] = await Promise.all([list('sets'), list('injuries')]);
+    const [fzSets, fzInjuries] = await Promise.all([listTrusted('sets'), list('injuries')]);
     const next: NextSession = { ...next0, day: withProgramWeek(next0.day, programWeek(res.program, Date.now()), rotationFreeze(fzSets, fzInjuries, Date.now())) };
     // Reprise douce : calcul de R-DEM pour l'affichage seulement (rien n'est enregistré avant « Commencer »).
     let reprise: { texts: string[]; day: ProgramDay | null; active: boolean } = { texts: [], day: null, active: false };
@@ -307,7 +307,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     let missed: MissedCard | null = null;
     const program = res.program;
     try {
-      const [profiles, programs, allSessions, allSets] = await Promise.all([list('profile'), list('programs'), list('sessions'), list('sets')]);
+      const [profiles, programs, allSessions, allSets] = await Promise.all([list('profile'), list('programs'), listTrusted('sessions'), listTrusted('sets')]);
       me = profiles[0] ?? profile;
       const pdata = await loadPlayerData(fiches, me).catch(() => null);
       const plan = planReprise(next.day, { reprise: repriseOf(profiles[0]), sessions: allSessions, programs, sets: allSets, now: new Date(), ctx: pdata?.ctx ?? null });
@@ -344,7 +344,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     try {
       const loaded = await loadGeneratorInput(asGenFiches(fiches));
       if (!loaded) return;
-      const [sets, sessions, injuries, firstEvents] = await Promise.all([list('sets'), list('sessions'), list('injuries'), loadEvents()]);
+      const [sets, sessions, injuries, firstEvents] = await Promise.all([listTrusted('sets'), listTrusted('sessions'), list('injuries'), loadEvents()]);
       // Programme régénéré depuis l'acceptation : la décision est périmée, on le dit (une seule fois) au lieu de l'ignorer en silence.
       const stale = staleArrivals(res.program, asGenFiches(fiches), sets, firstEvents);
       if (stale.length) {

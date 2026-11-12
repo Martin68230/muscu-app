@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { PregnancyStatus, SetLog, WorkoutSession } from '../../data/model';
-import { list, softDelete } from '../../data/repo';
+import { list, listTrusted, softDelete } from '../../data/repo';
+import { IMPORT_PREFIX } from '../../data/import-csv-store';
 import { loadFiches } from '../../data/fiches';
 import { dateKey, frDate, sessionDate } from '../../session/calendar';
 import { computeSummary } from '../../session/summary';
@@ -37,13 +38,28 @@ export function PastSummary({ sessionId, pregnancy, onBack, onDeleted }: {
           const fiches = await loadFiches();
           fichesForMap = fiches;
           names = {
-            fiche: (id) => fiches.find((f) => f.id === id)?.nom ?? 'Exercice',
+            fiche: (id) => fiches.find((f) => f.id === id)?.nom ?? (id.startsWith(IMPORT_PREFIX) ? `${id.slice(IMPORT_PREFIX.length)} (importé)` : 'Exercice'),
             variant: (id) => fiches.flatMap((f) => f.variantes).find((v) => v.id === id)?.nom ?? 'Exercice',
           };
         } catch {
           /* hors ligne sans fiches : le bilan reste lisible, sans noms d'exercices */
         }
-        const summary = computeSummary({ session: row, sets, sessions, pregnancy });
+        if (row.imported) {
+          // D19 : séance importée, affichage seulement. Pas de bilan calculé : les charges d'une autre app ne sont pas vérifiées.
+          const nb = sets.filter((x) => x.sessionId === row.id && x.completedAt && !x.isWarmup).length;
+          const min = row.startedAt && row.endedAt ? Math.round((Date.parse(row.endedAt) - Date.parse(row.startedAt)) / 60000) : null;
+          const imp: SummaryText = {
+            title: 'Séance importée',
+            paragraphs: [
+              row.note || 'Séance importée.',
+              'Ces chiffres viennent d’une autre appli : l’app ne les a pas vérifiés et ne s’en sert ni pour ta progression, ni pour tes prochaines charges, ni pour ton planning.',
+            ],
+            stats: [...(min && min > 0 ? [{ label: 'Durée', value: `${min} min` }] : []), { label: 'Séries', value: String(nb) }],
+            comparison: [], records: [], details: [], safetyFirst: false,
+          };
+          return setState({ row, text: imp, sets, sessions, names, detail: true, muscles: null });
+        }
+        const summary = computeSummary({ session: row, sets: await listTrusted('sets'), sessions: await listTrusted('sessions'), pregnancy });
         // Détail : seulement pour une séance menée à bout ou avec douleur (aucun chiffre après un abandon ou un symptôme).
         const detail = ['premiere', 'complete', 'ecourtee', 'douleur', 'grossesse'].includes(summary.status);
         // Carte des muscles de cette date : séries faites de la séance, mêmes conditions que le détail ; calcul local, rien n'est stocké.

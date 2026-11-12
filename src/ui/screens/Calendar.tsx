@@ -69,7 +69,9 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
     setCursor({ year: d.getFullYear(), month: d.getMonth() });
     setSelected(null);
   };
-  const sum = monthSummary(entries, year, month, { daysPerWeek, startKey, today });
+  // D19 : les séances importées s'affichent mais ne comptent ni dans le résumé du mois ni dans les jours prévus.
+  const own = entries.filter((e) => !e.imported);
+  const sum = monthSummary(own, year, month, { daysPerWeek, startKey, today });
   const inMonth = entriesOfMonth(entries, year, month);
   const filtered = filterEntries(entries, { month: fMonth, type: fType });
   const types = typeOptions(entries);
@@ -81,7 +83,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   const createdOn = selected ? scheduled.filter((c) => c.dateKey === selected) : [];
   const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
   const plannedInMonth = new Set([...planned, ...shifted].filter((k) => k.startsWith(monthPrefix)));
-  const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, entries, todayKey, shifted) : null);
+  const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, own, todayKey, shifted) : null);
 
   return (
     <>
@@ -220,8 +222,9 @@ export function Calendar({ profile, onPrepareCreated }: { profile: Profile; onPr
   const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null; shifted: string[] }>({ weekdays: [], startKey: null, shifted: [] });
   const load = async () => {
     try {
-      const [sessions, sets] = await Promise.all([list('sessions'), list('sets')]);
-      setEntries(buildEntries(sessions, sets));
+      const [all, sets] = await Promise.all([list('sessions'), list('sets')]);
+      const sessions = all.filter((s) => !s.imported);
+      setEntries(buildEntries(all, sets));
       setScheduled(scheduledOf(sessions, dateKey(new Date())));
       const prog = await getActiveProgram();
       const weekdays = (prog?.days ?? []).map((d) => d.weekday).filter((w): w is number => typeof w === 'number');

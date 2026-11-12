@@ -9,7 +9,7 @@ import { ensureActiveProgram, getNextSession, programWeek, withProgramWeek, type
 import { closeStaleSession, findResumable, type Resumable } from '../../session/store';
 import { NEUTRAL_CONTEXT } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
-import { list } from '../../data/repo';
+import { listTrusted } from '../../data/repo';
 import { buildEntries, regularity, relativeDay, type Regularity } from '../../session/calendar';
 import type { MissedCard } from '../../session/missed';
 import { acknowledgeSecurity, answerLater, loadMissedContext, postponeTo, skipSession } from '../../session/missed-store';
@@ -307,7 +307,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       if (lightToday) {
         const y0 = new Date(now.getFullYear(), now.getMonth(), now.getDate() - 1).getTime();
         const y1 = y0 + 24 * 3600 * 1000;
-        painYesterday = (await list('sets').catch(() => [])).some((s) => s.pain && s.completedAt && Date.parse(s.completedAt) >= y0 && Date.parse(s.completedAt) < y1);
+        painYesterday = (await listTrusted('sets').catch(() => [])).some((s) => s.pain && s.completedAt && Date.parse(s.completedAt) >= y0 && Date.parse(s.completedAt) < y1);
       }
       // Niveau 3 : semaine prévue (jeu de la semaine en cours), calculée localement depuis le programme et les fiches.
       let muscles: WeekMuscles | null = null;
@@ -334,7 +334,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
 
   const loadRegularity = async () => {
     try {
-      const [sessions, sets] = await Promise.all([list('sessions'), list('sets')]);
+      const [sessions, sets] = await Promise.all([listTrusted('sessions'), listTrusted('sets')]);
       setReg(regularity(buildEntries(sessions, sets), new Date(), profile.daysPerWeek));
     } catch {
       setReg(null);

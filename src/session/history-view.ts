@@ -160,7 +160,7 @@ export function previousSameType(current: WorkoutSession, sessions: readonly Wor
   const at = sessionDate(current).getTime();
   const withSets = new Set(sets.filter(isWork).map((s) => s.sessionId));
   const older = sessions
-    .filter((s) => s.id !== current.id && !s.deletedAt && s.status === 'faite' && s.endReason !== 'symptome' && s.endReason !== 'abandon' && s.plan?.label === label && withSets.has(s.id) && sessionDate(s).getTime() < at)
+    .filter((s) => s.id !== current.id && !s.deletedAt && !!s.imported === !!current.imported && s.status === 'faite' && s.endReason !== 'symptome' && s.endReason !== 'abandon' && s.plan?.label === label && withSets.has(s.id) && sessionDate(s).getTime() < at)
     .sort((a, b) => sessionDate(b).getTime() - sessionDate(a).getTime());
   return older[0] ?? null;
 }
