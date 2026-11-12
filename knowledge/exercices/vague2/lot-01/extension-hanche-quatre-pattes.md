@@ -61,7 +61,7 @@ Rédigé par `coach` le 2026-11-12, **validé par `kine` le 12/11/2026** (dos, g
 
 **Notes**
 - dos-n1 : lever moins haut, sans cambrer ; dos-n2 : variante sans matériel imposée (case), amplitude réduite, sans augmentation (R2).
-- cuisse-n2 : ischios en muscle secondaire (principe D11) ; amplitude réduite, retiré dès une douleur nette (n3). Choix prudent NON SOURCÉ.
+- cuisse-n2 : les ischios travaillent en soutien ; amplitude réduite, retiré dès une douleur nette. Choix prudent NON SOURCÉ.
 - genou-n1 : coussin sous le genou d'appui.
 - poignet-n1 : appui sur les avant-bras plutôt que sur les mains.
 - general : douleur pendant l'exercice : arrête, pas de progression (R4).

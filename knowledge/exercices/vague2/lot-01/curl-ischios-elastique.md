@@ -61,7 +61,7 @@ Rédigé par `coach` le 2026-11-12, **validé par `kine` le 12/11/2026** (genou,
 **Notes**
 - cuisse-n1 : élastique le plus léger, sans augmentation (R2). cuisse-n2 : retiré, l'arrière de cuisse travaille directement.
 - genou-n1 : montée limitée à la moitié du chemin, descente lente. genou-n2 : même case, sans augmentation.
-- cheville-n1 : retiré (idem n2 et n3) : l'élastique passe autour de la cheville et tire sur l'articulation ; aucune variante sans cheville dans la fiche (choix prudent).
+- cheville-n1 : retiré pour tous : l'élastique passe autour de la cheville et tire sur l'articulation ; aucune variante sans cheville dans la fiche (choix prudent).
 - general : douleur pendant l'exercice : arrête, pas de progression (R4). Une crampe à l'arrière de la cuisse : arrête, étire doucement, reprends avec un élastique plus léger.
 - grossesse : exercice debout avec appui de la main, bien toléré ; équilibre moins sûr, garder la main sur le support. Post-partum : G7.
 

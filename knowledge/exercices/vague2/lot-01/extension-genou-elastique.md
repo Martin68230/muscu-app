@@ -59,7 +59,7 @@ Rédigé par `coach` le 2026-11-12, **validé par `kine` le 12/11/2026** (genou)
 
 **Notes**
 - genou-n1 : sans élastique, mouvement lent, sans verrouiller ; pas de progression (R2). genou-n2 : retiré, le genou travaille directement ; avis de `kine` attendu avant toute version isométrique à angle réduit.
-- cheville-n1 : imposé par la case (idem n2), version sans élastique (extension-genou-chaise-sans-charge) pour éviter toute traction sur l'articulation.
+- cheville-n1 : la version sans élastique (« Sans élastique ») est imposée, pour éviter toute traction sur l'articulation.
 - general : douleur pendant l'exercice : arrête, pas de progression (R4).
 - general : vérifie que l'élastique ne peut pas glisser ni claquer ; jamais autour d'une cheville douloureuse.
 - grossesse : exercice assis, bien toléré ; garder une amplitude confortable. Post-partum : G7.
