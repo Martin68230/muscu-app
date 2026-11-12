@@ -26,6 +26,7 @@ import { MISSED_TEXT } from '../../session/missed-texts';
 import { loadMissedContext, postponeTo, skipSession } from '../../session/missed-store';
 import { PreviewPostpone, PreviewSkipLinks } from '../MissedCard';
 import { CardioDayNotes } from '../session/CardioNotes';
+import { Precautions } from '../Precautions';
 import { MuscleMapCard } from '../MuscleMapCard';
 import { sessionMap, setsOfExercises } from '../../zones/map-data';
 import { mainGoalKey } from '../../zones/main-goal';
@@ -101,7 +102,7 @@ function ProposalCards({ proposals, onAnswer, onAnswerLevel }: { proposals: Prop
     <>
       {proposals.items.map((it) => {
         const p = it.proposal;
-        if (p.kind === 'plancher') return <div class="notice small" role="status" key={it.movementId}><p>{p.text}</p></div>;
+        if (p.kind === 'plancher') return <div class="info-line" role="status" key={it.movementId}><p>{p.text}</p></div>;
         return (
           <section class="card proposal" aria-label="Proposition" key={it.movementId}>
             <h2>{p.title}</h2>
@@ -168,7 +169,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
       {gain && !cardioDay && (
         <>
           <GainToggle on={gain.on} disabledReason={gain.disabledReason} onToggle={gain.onToggle} busy={gain.busy} />
-          {gain.on && !gain.disabledReason && hasPair && gain.firstSession && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
+          {gain.on && !gain.disabledReason && hasPair && gain.firstSession && <div class="info-line" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
           {gain.on && !gain.disabledReason && !hasPair && <p class="dim small">{GAIN_TEXT.noPairToday}</p>}
         </>
       )}
@@ -184,39 +185,39 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
         />
       )}
       {repriseTexts.length > 0 && (
-        <section class="notice" aria-label="Reprise">
+        <Precautions title={`Reprise (${repriseTexts.length})`} label="Reprise">
           {repriseTexts.map((t, i) => <p key={i}>{t}</p>)}
-        </section>
+        </Precautions>
       )}
       {next.tooSoon && repriseTexts.length === 0 && (
-        <div class="notice" role="status">
+        <Precautions title="Repos (1)" label="Repos">
           <p>Ta dernière séance date de moins de 48 h. Tes muscles ont besoin de repos : tu peux attendre, mais c’est toi qui décides.</p>
-        </div>
+        </Precautions>
       )}
-      {cancelled && <div class="notice small" role="status"><p>{ECHELON_TEXT.cancelled}</p></div>}
+      {cancelled && <div class="info-line" role="status"><p>{ECHELON_TEXT.cancelled}</p></div>}
       {(adaptApplied.length > 0 || adaptCancelled.length > 0) && (
-        <section class="notice small" role="status" aria-label="Changements acceptés">
+        <section class="info-line" role="status" aria-label="Changements acceptés">
           {adaptApplied.map((a) => <p key={`a${a.movementId}`}>{ADAPT_TEXT.willApply[a.kind](fiches.find((f) => f.id === a.movementId)?.nom ?? 'Exercice')}</p>)}
           {adaptCancelled.map((a) => <p key={`c${a.movementId}`}>{ADAPT_TEXT.cancelled(fiches.find((f) => f.id === a.movementId)?.nom ?? 'Exercice', a.reason)}</p>)}
         </section>
       )}
       {catchUp.length > 0 && (
-        <section class="notice small" role="status" aria-label="Rattrapage des zones">
+        <section class="info-line" role="status" aria-label="Rattrapage des zones">
           <p>{ZONE_CATCHUP_TEXT.line(catchUp.map((c) => fiches.find((f) => f.id === c.movementId)?.nom ?? 'Exercice'))}</p>
         </section>
       )}
       {catchUpSwap && (
-        <section class="notice small" role="status" aria-label="Échange d’exercice">
+        <section class="info-line" role="status" aria-label="Échange d’exercice">
           <p>{ZONE_CATCHUP_TEXT.swap(fiches.find((f) => f.id === catchUpSwap.from)?.nom ?? 'Exercice', fiches.find((f) => f.id === catchUpSwap.to)?.nom ?? 'Exercice')}</p>
         </section>
       )}
       {proposals && <ProposalCards proposals={proposals} onAnswer={onAnswer} onAnswerLevel={onAnswerLevel} />}
       {safety.length > 0 && (
-        <section class="notice" aria-label="À savoir">
+        <Precautions title={`À savoir (${safety.length})`} label="À savoir">
           {safety.map((t, i) => (
             <p key={i}>{t}</p>
           ))}
-        </section>
+        </Precautions>
       )}
       <CardioDayNotes day={day} />
       {(lines.length > 0 || info.length > 0) && (

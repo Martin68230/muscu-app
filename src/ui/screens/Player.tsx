@@ -496,7 +496,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {banners}
           <h1>Échauffement</h1>
           <p class="dim">Prends quelques minutes pour te mettre en route, tranquillement.</p>
-          {pairText && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
+          {pairText && <div class="info-line" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
           <section class="card">
             <ul class="fiche-liste">
               {w?.general && <li><strong>{w.general.nom}</strong> · {durationText(w.general.sec)}</li>}
@@ -586,9 +586,9 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
       {header}
       <div class="player-scroll">
         {bannersFor(!supersetText && !(pairText && state.workSetsDone === 0))}
-        {pairText && state.workSetsDone === 0 && !supersetText && <div class="notice small" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
+        {pairText && state.workSetsDone === 0 && !supersetText && <div class="info-line" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
         {supersetText && (
-          <div class="notice small superset" role="status">
+          <div class="card small superset" role="status">
             <strong>{supersetText}</strong>
           </div>
         )}

@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'preact/hooks';
 import type { LightDay, Profile } from '../../data/model';
 import { LightDayCard } from '../LightDayCard';
+import { Precautions } from '../Precautions';
 import { isProfileComplete, type ProfileStep } from '../../data/profile-setup';
 import { FICHES_ERROR, loadFiches } from '../../data/fiches';
 import type { GenMessage } from '../../generator/types';
@@ -196,7 +197,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       )}
       {consulte && <div class="notice" role="status"><p>{PAIN_S1_TEXT}</p></div>}
       {confirm && (
-        <div class="notice" role="status">
+        <div class="info-line" role="status">
           {confirm.map((t, i) => <p key={i}>{t}</p>)}
         </div>
       )}
@@ -237,9 +238,9 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
                 {status.next.day.estimatedMin ? `Environ ${status.next.day.estimatedMin} min · ` : ''}{status.next.day.exercises.length} exercices
               </p>
               {status.next.tooSoon && !anyMessage && !(status.equipmentChangedId && !hidden) && (
-                <div class="notice small" role="status">
+                <Precautions title="Repos (1)" label="Repos">
                   <p>Ta dernière séance date de moins de 48 h. Tu peux attendre un peu pour laisser reposer tes muscles, mais c’est toi qui décides.</p>
-                </div>
+                </Precautions>
               )}
             </>
           )}

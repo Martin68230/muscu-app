@@ -23,11 +23,12 @@ describe('aperçu : précautions en volets fermés', () => {
   it('volets « Précautions » fermés par défaut, consigne d’arrêt des sauts visible, message général non replié', () => {
     const { container } = render(<PreviewView program={program} next={next} fiches={[]} onBegin={() => undefined} />);
     const states = open(container);
-    expect(states.length).toBe(2); // sauts + dehors
+    expect(states.length).toBe(3); // sauts + dehors + « À savoir (1) »
     expect(states.every((o) => o === false)).toBe(true);
     expect(screen.getByText('Précautions avant les sauts').tagName).toBe('SUMMARY');
     expect(screen.getByText(D30_TEXT.jumpStop).closest('details')).toBeNull();
-    expect(screen.getByText('Message général de zone.').closest('details')).toBeNull();
+    expect(screen.getByText('À savoir (1)').tagName).toBe('SUMMARY');
+    expect(screen.getByText('Message général de zone.').closest('details')).not.toBeNull(); // message général replié (décision du 12/11/2026)
   });
   it('T-11 visible quand « Décaler » est impossible, absent sinon', () => {
     render(<PreviewView program={program} next={next} fiches={[]} onBegin={() => undefined} noPostpone />);

@@ -95,9 +95,9 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
               ))}
             </div>
             {days !== null && !isSupportedDays(days) && (
-              <div class="notice" role="status"><p>{unsupportedDaysMessage(days)}</p></div>
+              <div class="info-line" role="status"><p>{unsupportedDaysMessage(days)}</p></div>
             )}
-            {days === 1 && <div class="notice" role="status"><p>{ONE_DAY_NOTE}</p></div>}
+            {days === 1 && <div class="info-line" role="status"><p>{ONE_DAY_NOTE}</p></div>}
           </>
         );
       case 'bloques':
@@ -120,7 +120,7 @@ export function ProfileWizard({ profile, onChange, onExit, only }: {
               ))}
             </div>
             {!freeDaysEnough(days, blocked) && (
-              <div class="notice" role="status"><p>Il ne te reste pas assez de jours libres pour {days} séances par semaine.</p></div>
+              <div class="info-line" role="status"><p>Il ne te reste pas assez de jours libres pour {days} séances par semaine.</p></div>
             )}
           </>
         );

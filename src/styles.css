@@ -580,3 +580,6 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .precautions-body p { margin: 6px 0; font-size: 16px; }
 .precautions-body p.small { font-size: 16px; }
 .stop-line { margin: 8px 0; font-size: 16px; font-weight: 600; }
+/* Ligne d'information neutre (sans cadre jaune) : état ou changement qui explique l'écran. */
+.info-line { margin: 0 0 12px; color: var(--dim, inherit); }
+.info-line p { margin: 4px 0; }

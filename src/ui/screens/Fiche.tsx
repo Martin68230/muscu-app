@@ -24,6 +24,7 @@ import { ReportButton } from '../ReportButton';
 import { VideoButton, type VideoRef } from '../VideoButton';
 import { MuscleMapCard } from '../MuscleMapCard';
 import { statusesForExercise } from '../../zones/map-data';
+import { Precautions } from '../Precautions';
 
 export const MEDICAL_REMINDER = 'Cette appli n’est pas un avis médical. Arrête-toi en cas de douleur.';
 
@@ -182,12 +183,12 @@ export function FicheView({ fiche, all, equipment, injuries, pregnancy }: FicheV
       </section>
 
       {(lines.length > 0 || pregnancy === 'enceinte' || pregnancy === 'post_partum') && (
-        <section class="notice fiche-securite" aria-label="Adaptations pour toi">
+        <Precautions title={`Adaptations pour toi (${lines.length + (pregnancy === 'enceinte' || pregnancy === 'post_partum' ? 1 : 0)})`} label="Adaptations pour toi" className="fiche-securite">
           {lines.map((l) => (
             <p key={l.zone}>{c(l.text)}</p>
           ))}
           {(pregnancy === 'enceinte' || pregnancy === 'post_partum') && <p>{c(pregnancyLine(fiche, all, pregnancy))}</p>}
-        </section>
+        </Precautions>
       )}
 
       <section class="card" aria-labelledby="f-consignes">

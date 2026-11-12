@@ -149,11 +149,13 @@ test('D30 : option « Ajouter une séance de cardio ? », profil, aperçu de la 
 
   await goToCardioDay(page);
   await expect(page.getByText('Pas envie ou pas possible de sortir ?')).toBeVisible();
+  await page.getByText('Précautions pour dehors').first().click(); // volet replié par défaut
   await expect(page.getByText(/Garde le son bas/)).toBeVisible();
   await shot(page, 'apercu-cardio-dehors', project);
   await page.getByText('Pas envie ou pas possible de sortir ?').scrollIntoViewIfNeeded();
   await shot(page, 'apercu-cardio-dehors-alternative', project);
   await page.getByRole('button', { name: 'Commencer la séance' }).click();
+  await page.getByText('Précautions pour dehors').first().click({ timeout: 20_000 });
   await expect(page.getByText(/arrête-toi pour regarder l’écran/)).toBeVisible({ timeout: 20_000 });
   await shot(page, 'lecteur-cardio-dehors', project);
   expect(errors).toEqual([]);
