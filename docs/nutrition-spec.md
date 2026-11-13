@@ -21,12 +21,12 @@ Principes (règles du projet) :
 Barre du bas inchangée (5 onglets). Pas de 6e onglet (question Q1).
 - **Accueil** : carte « Aujourd'hui, à manger » (repas du jour, type de jour : lourd / léger / repos) et, le jour de pesée, carte « Pesée de la semaine ».
 - **Profil > Poids et objectif** : courbe, objectif, historique des pesées (existait au cahier des charges : « Poids (suivi) »).
-- **Bibliothèque > Nutrition** : accès au hub **Alimentation** (plan, recettes, courses, compléments), aux explications sourcées et à la composition des aliments (Ciqual).
+- **Bibliothèque > Nutrition** : **première entrée de la Bibliothèque** (en tête de liste, décision du 13/11/2026), accès au hub **Alimentation** (plan, recettes, courses, compléments), aux explications sourcées et à la composition des aliments (Ciqual).
 - Le hub Alimentation est aussi atteint par la carte de l'Accueil.
 
 ## 2. Écrans et flux
 
-Nommage N1 à N14 (réutilisé par les lots, §12).
+Nommage N1 à N15 (réutilisé par les lots, §12).
 
 ### N1. Préambule et orientation (premier accès, une fois)
 Avertissement « pas un avis médical », rappel « réservé aux majeurs » (déjà confirmé à l'inscription : `adultConfirmedAt`), présentation en 3 lignes de ce que l'app fait et ne fait pas. Bouton « Continuer ».
@@ -55,6 +55,7 @@ Le poids est saisi en kg, 0,1 près, clavier numérique 16 px.
 - **Allergies et intolérances** : liste des **14 allergènes officiels de l'UE** (pastilles à cocher, libellés français) + « autre à exclure » (texte libre : chaque mot normalisé exclut les ingrédients dont le nom ou une étiquette le contient ; **sans synonymes**, donc l'écran précise « utilise les mots de la liste d'ingrédients » et propose les noms d'ingrédients de l'app en autocomplétion ; en cas de doute l'exclusion est large). Les **sulfites** (≥ 10 mg/kg ou 10 mg/L) sont un allergène comme les autres : tout ingrédient étiqueté sulfites (vin, fruits secs, certains vinaigres) l'est explicitement. Case « allergie grave (réaction forte) » : active le mode strict renforcé (§8).
 - **Régime** : sans restriction / végétarien / végétalien / sans porc / halal / casher (étiquettes de recettes) ; intolérances courantes : sans lactose, sans gluten (cœliaque ou non : une case « cœliaque ou sensible » active le mode strict).
 - **Aliments à éviter** (recherche dans la liste d'ingrédients) et **aliments aimés**.
+- **Cuisiner pour 2** (décision du 13/11/2026) : réglage « nous sommes 2 » : les recettes sont multipliées en quantités de cuisine, **chaque personne garde ses propres grammes dans l'assiette** (voir N15). Les données de la personne 2 ne sont jamais enregistrées au-delà de ses objectifs saisis à la main (kcal, protéines, glucides, lipides, allergies à exclure) ; pas de compte, pas de partage.
 - **Pratique** : repas par jour (3 à 5, collation facultative), heures habituelles, temps de cuisine maximum (15 / 30 / 45 min / peu importe), niveau de cuisine, matériel (four, micro-ondes, plaques, blender, « repas à emporter / sans réchauffage »), budget (économique / normal : étiquette de coût relative, aucun prix en euros), nombre de portions (1 personne ; « cuisiner pour 2 » en lot ultérieur), repas préparés d'avance (« batch cooking » : oui / non).
 - Rappel visible en permanence sur cet écran et sur chaque recette : « Vérifie toujours l'étiquette des produits ; l'app peut se tromper. »
 
@@ -85,6 +86,10 @@ Générée depuis la semaine (ou les jours choisis). Regroupée par **rayon** (f
 
 ### N13. Compléments (journal) et alertes
 Reprend le modèle `Supplement` existant : l'utilisateur **enregistre** ce qu'il prend (nom, dose, fréquence, début / fin, macros éventuelles, mg de caféine pour les produits qui en contiennent). Le total du jour compte les macros et la caféine ; **alerte** (jaune) au-delà du seuil de caféine des règles : 400 mg/jour, et **200 mg/jour** si la personne est enceinte ou allaitante (lien avec `Profile.pregnancy` et le dépistage N2) ; alerte « créatine : demande l'avis d'un médecin » si une maladie rénale est déclarée (règles §4 et E). Aucun complément n'est recommandé par l'app, aucune dose conseillée ; seules les informations sourcées de `nutrition-rules.md` §4 s'affichent. Protéines en poudre = un aliment (macros).
+
+### N15. Export pour une IA externe ou pour un proche (courses, repas, recettes)
+Bouton « Exporter » dans N10 (semaine) et N12 (courses). Flux : 1) **choisir les jours** (cases par jour, « toute la semaine » par défaut, par exemple en début de semaine) ; 2) choisir le contenu : liste de courses des jours choisis (par rayon), repas et recettes complètes (ingrédients en grammes, étapes, macros par portion), **mes cibles du jour** (kcal, protéines, glucides, lipides), **allergies et régimes à exclure** ; 3) option **« Pour 2 personnes »** : saisie à la main des cibles de la personne 2 (kcal, protéines, glucides, lipides, allergies), non enregistrées sauf si on coche « garder » ; 4) format : **texte** (copier, ou feuille de partage du système) et fichier JSON ; 5) option **« Modèle de demande pour une IA »** : texte à coller avec l'export (« adapte les doses de chaque assiette à ces deux personnes, mélange ou fusionne les repas pour respecter les deux objectifs, recalcule macros et allergènes »).
+Sécurité et vie privée : **rien n'est envoyé par l'app** (copie ou fichier, la personne le colle elle-même dans l'IA de son choix) ; aucun nom, aucun poids, aucun IMC, aucune réponse de dépistage, aucune pathologie dans l'export ; avertissement avant export : « Tu envoies ces données à un service tiers, hors de l'app. Vérifie toujours les allergènes toi-même : une IA peut se tromper. » ; ce n'est pas une fonction « IA de l'app » (règle 9) : il reste visible IA coupée, car l'app ne fait que produire du texte. Dépistage « Repères seulement » : l'export ne contient aucune cible ni quantité chiffrée. La phase 8 pourra plus tard proposer le même échange intégré.
 
 ### N14. Réglages nutrition
 Jour de pesée, rappel (une carte dans l'app seulement, pas de notification sans serveur) ; unités ; masquer la tendance sur l'Accueil ; **recommencer le dépistage** ; **exporter / supprimer** les données nutrition (en plus de l'export global) ; crédits Ciqual et licences (renvoi à la page crédits).
@@ -126,7 +131,7 @@ export interface NutritionProfile extends SyncFields {
   dislikedFoods: string[];             // codes ingrédients de l'app
   likedFoods: string[];
   weighDay: number;                    // 0 = lundi
-  showTrendOnHome: boolean;
+  showTrendOnHome: boolean;        // défaut : true (décision Q4)
 }
 
 export interface NutritionGoal extends SyncFields {
@@ -221,7 +226,7 @@ Pour chaque date de la semaine, le type de jour est dérivé (fonction pure `day
 ### 6.3 Cibles par jour
 - **Cible hebdomadaire** : kcal moyens par jour (§5.5) x 7 = total de la semaine ; protéines en g/kg/jour (valeur `PROT_GKG` selon l'objectif) ; lipides au plancher g/kg ; glucides = le reste.
 - **Répartition** : on module les kcal par type de jour avec des coefficients (`COEF_JOUR`) **dont la moyenne pondérée sur la semaine est 1** (la fonction normalise : la somme des kcal de la semaine égale toujours la cible hebdomadaire, test de propriété). La variation passe **surtout par les glucides** (jour lourd : plus ; repos : moins), conformément aux fourchettes g/kg des règles (jamais sous le minimum de glucides ni en dessous du plancher de kcal d'un jour).
-- **Protéines : variation modérée** : la cible de la semaine est atteinte en moyenne, avec une variation de ± `VAR_PROT` autour du jour moyen (un peu plus après les jours lourds et les jours de repos qui suivent, un peu moins les jours légers), toujours **au-dessus du seuil par repas** et **sans jamais passer sous le minimum du jour**. But : réaliser la demande « varier glucides et protéines » sans aller contre les données (les protéines varient peu en pratique, voir `nutrition-rules.md`). Question Q2 : l'utilisateur veut-il une variation visible plus grande ?
+- **Protéines : variation modérée** : la cible de la semaine est atteinte en moyenne, avec une variation de ± `VAR_PROT` autour du jour moyen (un peu plus après les jours lourds et les jours de repos qui suivent, un peu moins les jours légers), toujours **au-dessus du seuil par repas** et **sans jamais passer sous le minimum du jour**. But : réaliser la demande « varier glucides et protéines » sans aller contre les données (les protéines varient peu en pratique, voir `nutrition-rules.md`). Décision du 13/11/2026 : pas besoin de varier tous les jours, mais de temps en temps : par défaut les protéines restent à la cible et ne varient (± `VAR_PROT`) que sur 1 ou 2 jours de la semaine (jour le plus lourd et le lendemain) ; les glucides varient chaque jour.
 - **Lipides** : stables, au plancher g/kg ou au-dessus.
 - **Variation de sources** (hors macros) : voir §7.4.
 
@@ -311,7 +316,7 @@ Chaque lot : plan court, code, **un contrôle automatique avant l'envoi** (règl
 | **L3** Besoins par jour et recalage | N7 ; `day-targets.ts` ; liaison aux programmes et séances ; recalage hebdomadaire §5.5 | L1, L2 | dev, coach (types de jour) |
 | **L4** Base de recettes | `knowledge/recettes/` lots de 10 à 15, `check:recettes`, `build-recettes`, couverture par allergène ; au moins 150 recettes avant L5 public | L0 | nutritionniste (rédaction), relecteur par lot (allergènes) |
 | **L5** Plan de repas | N10, N11 ; `plan.ts`, `scale.ts`, `substitutions.ts` ; verrouillage, remplacer, favoris | L3, L4 | dev |
-| **L6** Liste de courses | N12 ; `shopping.ts` | L5 | dev |
+| **L6** Liste de courses et export | N12, N15 ; `shopping.ts`, `export-ia.ts` (texte et JSON, jours choisis, pour 2 personnes) ; test : l'export ne contient jamais nom, poids, IMC ni dépistage | L5 | dev |
 | **L7** Compléments et journal | N13 ; « J'ai mangé » ; alertes caféine | L1 | dev |
 | **L8** Phase 6 et finitions | partage minimal, RLS et tests d'accès, export / suppression, page crédits (Ciqual), captures 375x667 et 430x932, liste iPhone, rapport de bilan | L1 à L7, phase 6 | dev, relecteur (contrôle de sécurité unique du chantier) |
 
@@ -329,16 +334,20 @@ Livraisons conseillées : L0+L1, puis L2, L3, (L4 en parallèle dès L0, car ne 
 
 ## 14. Hors périmètre de la v1 (idées gardées dans `docs/idees-fonctionnalites.md`)
 
-Photos de plats, scan de codes-barres (Open Food Facts), journal de calories détaillé, prix et enseignes, courses en ligne, recettes générées par IA, repas à plusieurs, suivi des micronutriments, mesure du tour de taille / masse grasse, notifications push, partage de recettes entre amis.
+Photos de plats, scan de codes-barres (Open Food Facts), journal de calories détaillé, prix et enseignes, courses en ligne, recettes générées par IA, suivi des micronutriments, mesure du tour de taille / masse grasse, notifications push, partage de recettes entre amis.
 
-## 15. Questions de préférence d'usage (une seule fois, avec la recommandation par défaut)
+## 15. Décisions de préférence d'usage (réponses de l'utilisateur, 13/11/2026)
 
-| # | Question | Recommandation par défaut |
-|---|---|---|
-| Q1 | Où mettre l'alimentation ? | Pas de 6e onglet : carte sur l'Accueil + entrée dans Bibliothèque > Nutrition |
-| Q2 | Variation des protéines d'un jour à l'autre : faible (± 10 %, ce que les études soutiennent) ou plus visible ? | Faible, glucides qui portent la variation |
-| Q3 | Jour de pesée : choisi par la personne, avec rappel seulement dans l'app ? | Oui, samedi ou dimanche matin par défaut |
-| Q4 | Voir le poids sur l'Accueil ? | Non : phrase de tendance seulement, désactivable |
-| Q5 | Plan complet généré d'office ou à la demande ? | Semaine entière à la demande, « Aujourd'hui » proposé d'abord |
-| Q6 | Journal « J'ai mangé » : coche simple, ou saisie libre d'aliments avec Ciqual ? | Coche simple en v1, saisie libre plus tard |
-| Q7 | Cuisiner pour 2 / portions multiples en v1 ? | Non, lot ultérieur |
+| # | Décision |
+|---|---|
+| Q1 | Pas de 6e onglet ; carte sur l'Accueil ; **entrée Nutrition en tête de la Bibliothèque**. |
+| Q2 | Variation des protéines : pas tout le temps, de temps en temps (1 à 2 jours par semaine) ; glucides variés chaque jour (§6.3). |
+| Q3 | Jour de pesée choisi par la personne, rappel dans l'app, samedi ou dimanche matin par défaut. |
+| Q4 | Poids visible sur l'Accueil : **oui** (poids lissé et phrase de tendance, désactivable dans N14 ; réponse « oui » prise à la lettre, à confirmer si l'intention était l'inverse). |
+| Q5 | Semaine entière à la demande, « Aujourd'hui » proposé d'abord. |
+| Q6 | Journal : coche « J'ai mangé » en v1, saisie libre d'aliments plus tard. |
+| Q7 | Cuisiner pour 2 en v1 : oui (N5, N15). |
+| Q8 | Sexe et année de naissance facultatifs : oui. |
+| Q9 | Plancher de calories **personnalisé** (objectif, poids, âge, sexe), pas un chiffre fixe ; filet de sécurité conservé (règles C). |
+| Q10 | Recettes originales (liste assez grande, 150 minimum) ; pas d'Open Food Facts ni de Wikibooks. |
+| Nouveau | Export des courses, repas et recettes pour des jours choisis, pour 2 personnes et pour une IA externe (N15, lot L6). |

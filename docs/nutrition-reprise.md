@@ -10,8 +10,11 @@ Fichier propre à ce chantier ; ne remplace pas `docs/reprendre-ici.md` (le chef
 ## Restent PROVISOIRE ou NON SOURCÉ (bloquent le codage de la valeur concernée)
 Coefficients et formules de calcul, glucides (ACSM / Burke), lissage du poids, 7700 kcal/kg, plafonds de déficit, de surplus et de prise, planchers kcal, section E (exclusions, seuil d'IMC, dépistage), hydratation, licences (Licence Ouverte 2.0, ODbL) à relire à la source, rendements de cuisson, fiabilité du lien Ciqual-allergènes. À valider : `nutritionniste` puis `relecteur` (lot L0).
 
+## Décisions de l'utilisateur (13/11/2026) : spec §15
+Préférences Q1-Q10 tranchées, plancher de calories personnalisé, recettes originales, export pour 2 personnes et IA externe (N15). Reste à confirmer : Q4 (poids visible sur l'Accueil, pris à la lettre) et les seuils de la section E des règles (validation nutritionniste, lot L0).
+
 ## Prochaine action exacte
-1. L'utilisateur répond au message unique de questions (spec §15, Q1-Q7) et aux 3 décisions des règles : demander sexe et année de naissance (facultatifs), accepter le plancher kcal et les seuils de la section E, renoncer à Open Food Facts et Wikibooks (recettes originales).
+1. Contrôle `relecteur` ciblé (sécurité seulement) sur les deux ajouts du 13/11 : plancher personnalisé (règles C) et export N15 (aucune donnée de santé sortante). Puis lot L0.
 2. Lot L0 : lever les PROVISOIRE (relire les sources bloquées), `tools/build-aliments.mjs` (Ciqual, version actualisée DOI 10.57745/RDMHWY), table des 14 allergènes, `SCHEMA_VERSION 5`, `src/nutrition/config.ts`.
 3. Puis L1 (profil, dépistage, besoins) ; L4 (recettes) peut démarrer en parallèle dès L0, il ne touche pas au code de l'app.
 
