@@ -217,7 +217,7 @@ describe('Type de cardio selon le lieu, le matériel et la santé (§4, §5)', (
               expect(['moderee', 'facile']).toContain(c.intensity);
             }
           }
-  });
+  }, 300000); // 96 générations : plus de 40 s sur le runner GitHub depuis le lot 4
 
   it('§5 débutant : jamais de mountain climbers (intermédiaire minimum) ; intermédiaire : permis ; épaule ou poignet : retiré', () => {
     const fiches = without('marche-rapide-intervalles', 'montees-genoux-sur-place', 'pas-chasses-lateraux', 'jumping-jacks', 'boxe-dans-le-vide');

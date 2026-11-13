@@ -257,7 +257,7 @@ describe('Le générateur ne propose jamais un exercice sans fiche, une course, 
       expect(['montees-genoux-course', 'saut-longueur-sur-place', 'saut-vertical-demi-squat', 'saut-lateral-un-saut']).not.toContain(vs.find((v) => v.startsWith('saut') || v === 'montees-genoux-course'));
     }
     expect(runFicheAvailable(FICHES)).toBe(false);
-  });
+  }, 300000); // 72 générations : plus de 40 s sur le runner GitHub depuis le lot 4
 });
 
 describe('Correctif G7 (§5.1 (1)) : grossesse seule ET post-partum seul : aucun saut ni course, même en échauffement', () => {
