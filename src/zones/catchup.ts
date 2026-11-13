@@ -5,11 +5,11 @@
 // src/generator/zones-check.ts. Dernier recours (07/11/2026) : si une zone reste orange ou grise après les séries en plus, UN seul
 // échange d'exercice dans cette séance (swapForZone), avec le classement et les filtres du générateur (rankSlot), sans dose nouvelle.
 import type { CatchUpLogEntry, PlannedExercise, ProgramDay, SetLog } from '../data/model';
-import { CATCHUP, CORRECTIF_COU, D_CLASS, doseLimitOf, FIXED_DOSE, ISOLATION_FICHE_PREFIXES, TIME, VOLUME } from '../generator/config';
+import { CATCHUP, CORRECTIF_COU, D_CLASS, doseLimitOf, FIXED_DOSE, ISOLATION_FICHE_PREFIXES, TIME, VOLUME, weekCountsSecondary } from '../generator/config';
 import type { Ctx } from '../generator/context';
 import { estimerDuree, type DurExercise, type DurSession } from '../generator/duration';
 import { isIsoSlot } from '../generator/isolation';
-import { makePlaf, splitCapsOk, weekCapsOk } from '../generator/plaf';
+import { makePlaf, splitCapsOk, weekCapFor, weekCapsOk } from '../generator/plaf';
 import { variantClass } from '../generator/reps';
 import type { Fiche, GenExercise } from '../generator/types';
 import { checkZones, excludedZones, hasHeavyShoulderTrap, SLOTLESS_ZONES, zoneCapsOk } from '../generator/zones-check';
@@ -42,6 +42,11 @@ export interface CatchUpProfile {
   log?: readonly CatchUpLogEntry[] | null;
   /** Douleur de niveau >= 1 LEVÉE (blessure supprimée ou désactivée) depuis moins de 7 jours, ou lecture impossible : aucun rattrapage (avis kine 13/11/2026). */
   liftedPain?: boolean;
+  /**
+   * Séries réelles des 7 derniers jours glissants par muscle (create-store.ts weekSetsOf, séances du programme et créées) : une série de rattrapage n'est jamais ajoutée
+   * si elle ferait dépasser le plafond hebdomadaire (weekCapFor) d'un muscle de l'exercice (relecteur 13/11/2026 : deux cycles courts dans la même semaine). Absent = non contrôlé.
+   */
+  recentWeek?: Readonly<Record<string, number>>;
   /**
    * RAT-7 : charge du sport à l'ouverture de la séance. Absent = aucun sport déclaré ni noté. `gate: null` = information illisible ou
    * ambiguë : aucun rattrapage. `hasPain` : gêne ou malaise noté, renvoi vers un professionnel. `shoulderSport` : un sport d'épaule est déclaré.
@@ -369,6 +374,12 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
       if (isShoulder(zone) && !lightShoulderIso(ex, ctx)) continue;
       if (sportRefuses(fiches.get(ex.movementId), profile)) { sportStop = true; continue; }
       if (ex.sets + 1 > maxSetsOf(ex, ctx)) continue;
+      // Plafond des 7 derniers jours glissants (volume réel déjà fait) : un muscle de l'exercice au plafond = aucune série en plus.
+      if (profile.recentWeek) {
+        const fx = fiches.get(ex.movementId);
+        const ms = fx ? [...fx.musclesPrincipaux, ...fx.musclesSecondaires.filter((m) => weekCountsSecondary(m))] : [];
+        if (ms.some((m) => (profile.recentWeek![m] ?? 0) + 1 > weekCapFor(ctx, m))) continue;
+      }
       const trial = exercises.map((x, j) => (j === i ? { ...x, sets: x.sets + 1 } : x));
       const tDay = { ...today, exercises: trial };
       const tGen = gens(tDay);

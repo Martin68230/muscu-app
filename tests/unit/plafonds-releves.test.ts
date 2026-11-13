@@ -211,6 +211,7 @@ describe('Plafonds relevés : séances plus longues sans rien relâcher', () => 
 import { CORRECTIF_COU } from '../../src/generator/config';
 import { toProgramDays } from '../../src/generator';
 import { weekCapsOk } from '../../src/generator/plaf';
+import { fillExerciseTime } from '../../src/session/intensity';
 import { genOf, zoneCatchUp, type CatchUpProfile } from '../../src/zones/catchup';
 import type { SetLog } from '../../src/data/model';
 import { FICHES } from './generator-helpers';
@@ -247,6 +248,22 @@ describe('CAL-12 avec les plafonds relevés : jamais d exercice lourd d épaules
     for (const skipZone of [(id: string) => id.includes('pompe') || id.includes('developpe'), (id: string) => id.includes('squat') || id.includes('fente'), () => false]) {
       const res = zoneCatchUp(doneAll(skipZone), { days, dayIndex: neckIdx, prevDays: days, durationMin: r.program.durationMin, weekKey: 'c00001' }, profile());
       const gens = res.day.exercises.map((e) => genOf(e, ctx)).filter((e): e is NonNullable<typeof e> => e !== null);
+      expect(hasHeavyShoulderTrap({ exercises: gens }, ctx)).toBe(false);
+    }
+  });
+  it('rattrapage : aucune série en plus quand le volume réel des 7 derniers jours est déjà au plafond du muscle (deux cycles courts dans la même semaine)', () => {
+    const musclesAll = [...new Set(FICHES.flatMap((x) => [...x.musclesPrincipaux, ...x.musclesSecondaires]))];
+    const saturated = Object.fromEntries(musclesAll.map((m) => [m, 100]));
+    for (let i = 0; i < days.length; i++) {
+      const res = zoneCatchUp(doneAll((id) => id.includes('pompe') || id.includes('developpe') || id.includes('rowing')), { days, dayIndex: i, prevDays: days, durationMin: r.program.durationMin, weekKey: 'c00001' }, { ...profile(), recentWeek: saturated });
+      expect(res.added, `séance ${i}`).toEqual([]);
+    }
+  });
+  it('remplissage du temps (fillExerciseTime) : jamais d exercice lourd ajouté dans la séance qui a le cou', () => {
+    for (let k = 0; k < 2; k++) {
+      const out = fillExerciseTime({ ctx, days, dayIndex: neckIdx, limitSec: 75 * 60, locked: () => false, frozenFiche: () => false });
+      if (!out) continue;
+      const gens = out.exercises.map((e) => genOf(e, ctx)).filter((e): e is NonNullable<typeof e> => e !== null);
       expect(hasHeavyShoulderTrap({ exercises: gens }, ctx)).toBe(false);
     }
   });

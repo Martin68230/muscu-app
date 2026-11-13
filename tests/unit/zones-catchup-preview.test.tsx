@@ -20,7 +20,7 @@ describe('aperçu : rattrapage des zones', () => {
   it('une ligne simple par série ajoutée', () => {
     const fiches = [{ id: d.exercises[0].movementId, nom: 'Pompes', variantes: [] }] as never;
     render(<PreviewView program={program} next={next} fiches={fiches} onBegin={() => undefined} catchUp={[{ movementId: d.exercises[0].movementId, zone: 'pectoraux_haut' }]} />);
-    expect(screen.getByText('Cette semaine : une série en plus à Pompes, pour des zones qui ont eu peu de travail la semaine dernière.')).toBeTruthy();
+    expect(screen.getByText('Ce cycle : une série en plus à Pompes, pour des zones qui ont eu peu de travail le cycle précédent.')).toBeTruthy();
   });
   it('RAT-3 : une zone restée basse deux semaines est dite avec sa cause, sans reproche', () => {
     const notes = [ZONE_CATCHUP_TEXT.stuck('épaules (côté)', 'sport'), ZONE_CATCHUP_TEXT.review(['ischios'])];
