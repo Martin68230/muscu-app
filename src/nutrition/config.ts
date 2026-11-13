@@ -1,7 +1,7 @@
 // Réglages de la nutrition (knowledge/nutrition-rules.md section K, CLAUDE.md règle 10).
 // Toutes les valeurs PROVISOIRE sont ici, avec leur statut ; la logique (src/nutrition/*.ts) n'en contient aucune en dur.
-// Statuts : OK = sourcé ; PROVISOIRE = règle d'app prudente validée par le nutritionniste ; (S) = touche la sécurité,
-// contrôle du relecteur exigé avant toute mise en ligne de la fonctionnalité qui l'utilise.
+// Statuts : OK = sourcé ; PROVISOIRE = règle d'app prudente, rédigée par le nutritionniste, validation finale en attente
+// (knowledge/nutrition-rules.md sections A, C, K) ; (S) = touche la sécurité, contrôle du relecteur exigé avant mise en ligne.
 
 /** Lissage exponentiel d'un point par semaine. PROVISOIRE (nutrition-rules.md D, K). */
 export const ALPHA_HEBDO = 0.3;
@@ -11,8 +11,15 @@ export const ALPHA_QUOTIDIEN = 0.1;
 export const N_PESEES_MIN = 3;
 /** Écart minimal (jours) entre la première et la dernière pesée du rythme. PROVISOIRE (S). */
 export const RYTHME_JOURS_MIN = 14;
-/** Semaines consécutives hors rythme avant d'agir. PROVISOIRE (S). */
+/** Semaines de pesées (>= 3 points) avant de décider un recalage (K). Non utilisé avant le lot de recalage. PROVISOIRE (S). */
 export const N_SEMAINES_MIN = 3;
+/** Semaines consécutives hors rythme pour l'alerte de rythme (K). Non utilisé avant le lot d'alertes. PROVISOIRE (S). */
+export const N_SEMAINES_ALERTE = 2;
+/** Maintien : rythme absolu (kg/semaine) sous lequel le poids est dit « stable ». PROVISOIRE. */
+export const STABLE_KG_SEMAINE = 0.15;
+/** Tolérance autour du rythme visé : de 75 % à 125 % = « dans le rythme ». PROVISOIRE. */
+export const RYTHME_TOL_BAS = 0.75;
+export const RYTHME_TOL_HAUT = 1.25;
 /** Pesée brute à plus de ce nombre de kg de la tendance = écart ponctuel. PROVISOIRE. */
 export const ECART_HASARD_KG = 1.5;
 /** Écart d'une semaine à l'autre (kg) qui déclenche « vérifie ta balance ». PROVISOIRE (S). */
@@ -58,3 +65,7 @@ export const KCAL_PAR_KG = 7700;
 /** IMC : sous 18,5 aucun calcul (Repères seulement) ; sous 22 aucun déficit chiffré. */
 export const IMC_REPERES = 18.5;
 export const IMC_SANS_DEFICIT = 22;
+/** IMC entre 22 et ce seuil : perte limitée au cran « doux » (0,5 %/semaine), règle C. PROVISOIRE (S). */
+export const IMC_PERTE_LENTE = 25;
+/** Âge prudent : le surplus est limité à ce pourcentage du besoin. PROVISOIRE (S). */
+export const SURPLUS_PCT_PRUDENT = 0.05;

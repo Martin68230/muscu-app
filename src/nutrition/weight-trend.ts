@@ -1,7 +1,10 @@
 // Poids lissé, rythme réel et phrase d'interprétation (docs/nutrition-spec.md §5, nutrition-rules.md D).
 // Fonctions PURES : aucun accès base. Une pesée par semaine suffit ; plusieurs pesées d'une même semaine sont moyennées.
 
-import { ALPHA_HEBDO, ALERTE_SAUT_KG, ECART_HASARD_KG, N_PESEES_MIN, RYTHME_JOURS_MIN, POIDS_KG_MAX, POIDS_KG_MIN } from './config';
+import {
+  ALPHA_HEBDO, ALERTE_SAUT_KG, ECART_HASARD_KG, N_PESEES_MIN, RYTHME_JOURS_MIN, POIDS_KG_MAX, POIDS_KG_MIN, STABLE_KG_SEMAINE,
+  RYTHME_TOL_BAS, RYTHME_TOL_HAUT,
+} from './config';
 
 export interface WeighIn {
   /** 'YYYY-MM-DD' */
@@ -41,7 +44,7 @@ export function isPlausibleWeight(kg: number): boolean {
 export function weeklyPoints(weighIns: readonly WeighIn[]): { weekStart: string; raw: number }[] {
   const byWeek = new Map<string, number[]>();
   for (const w of weighIns) {
-    if (w.excluded || !isPlausibleWeight(w.kg)) continue;
+    if (w.excluded || !isPlausibleWeight(w.kg) || !Number.isFinite(parse(w.date))) continue;
     const k = weekStartOf(w.date);
     byWeek.set(k, [...(byWeek.get(k) ?? []), w.kg]);
   }
@@ -54,7 +57,8 @@ export function weeklyPoints(weighIns: readonly WeighIn[]): { weekStart: string;
  * Lissage exponentiel : T0 = P0, Tn = Tn-1 + alpha (Pn - Tn-1). Une semaine sans pesée n'invente pas de point.
  * Propriété : chaque valeur lissée reste dans [min, max] des points.
  */
-export function smoothWeights(weighIns: readonly WeighIn[], alpha: number = ALPHA_HEBDO): TrendPoint[] {
+export function smoothWeights(weighIns: readonly WeighIn[], alphaIn: number = ALPHA_HEBDO): TrendPoint[] {
+  const alpha = Number.isFinite(alphaIn) ? Math.min(1, Math.max(0.01, alphaIn)) : ALPHA_HEBDO;
   const pts = weeklyPoints(weighIns);
   const out: TrendPoint[] = [];
   for (const p of pts) {
@@ -84,11 +88,11 @@ export type TrendState = 'pas_assez' | 'stable' | 'en_avance' | 'dans_le_rythme'
 export function interpretTrend(rate: { kgPerWeek: number } | null, targetKgPerWeek: number | null): TrendState {
   if (!rate) return 'pas_assez';
   const target = targetKgPerWeek ?? 0;
-  if (Math.abs(target) < 1e-9) return Math.abs(rate.kgPerWeek) <= 0.15 ? 'stable' : rate.kgPerWeek > 0 ? 'plus_rapide' : 'plus_lent';
+  if (Math.abs(target) < 1e-9) return Math.abs(rate.kgPerWeek) <= STABLE_KG_SEMAINE ? 'stable' : rate.kgPerWeek > 0 ? 'plus_rapide' : 'plus_lent';
   const ratio = rate.kgPerWeek / target; // même signe = bon sens
   if (ratio < 0) return 'plus_lent';
-  if (ratio > 1.25) return 'plus_rapide';
-  if (ratio < 0.75) return 'plus_lent';
+  if (ratio > RYTHME_TOL_HAUT) return 'plus_rapide';
+  if (ratio < RYTHME_TOL_BAS) return 'plus_lent';
   return 'dans_le_rythme';
 }
 

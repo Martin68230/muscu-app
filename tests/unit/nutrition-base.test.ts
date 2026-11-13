@@ -25,6 +25,13 @@ describe('allergènes', () => {
     expect(ingredientAllowed(riz, [...ALLERGENS])).toBe(true);
   });
 
+  it('une clé d\u2019allergène invalide rend l\u2019ingrédient inutilisable et fait échouer la recette', () => {
+    const bad = { code: 'z', allergenes: ['laitt'], statut: 'valide' } as unknown as LabeledIngredient;
+    expect(ingredientAllowed(bad, [])).toBe(false);
+    expect(ingredientAllowed(bad, ['lait'])).toBe(false);
+    expect(() => recipeAllergens([bad])).toThrow();
+  });
+
   it('une recette cumule les allergènes de ses ingrédients', () => {
     const l: LabeledIngredient[] = [
       { code: 'a', allergenes: ['lait', 'oeufs'], statut: 'valide' },
@@ -73,6 +80,13 @@ describe('poids lissé', () => {
     expect(interpretTrend({ kgPerWeek: -0.9 }, -0.5)).toBe('plus_rapide');
     expect(interpretTrend({ kgPerWeek: 0.2 }, -0.5)).toBe('plus_lent');
     expect(interpretTrend({ kgPerWeek: 0.05 }, 0)).toBe('stable');
+  });
+
+  it('date invalide ignorée, alpha invalide borné', () => {
+    expect(smoothWeights([w('pas-une-date', 80)])).toHaveLength(0);
+    const t = smoothWeights([w('2026-10-05', 80), w('2026-10-12', 78)], NaN);
+    expect(t[1].trend).toBeGreaterThan(78);
+    expect(t[1].trend).toBeLessThan(80);
   });
 
   it('saut suspect', () => {

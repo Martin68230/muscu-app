@@ -155,6 +155,11 @@ Aucune de ces valeurs n'a de source primaire : ce sont des règles d'app prudent
 | TOL_MACRO | repas : kcal et protéines ±10 % de la cible du repas ; glucides et lipides ±15 % ; jour : kcal ±5 % | PROVISOIRE | rapproché de la règle des substitutions G (<= 10 %) ; quantités faciles arrondies à 5 g |
 | ECART_HASARD | pesée brute à plus de 1,5 kg de la tendance | PROVISOIRE | eau, sel, glycogène : 1-2 kg possibles (D) |
 | ALERTE_SAUT_KG | 2,0 kg d'une semaine à l'autre | PROVISOIRE (S) | aligné sur l'alerte poids brut > 2 kg/sem (J) ; message neutre « vérifie ta balance ou la saisie » |
+| STABLE_KG_SEMAINE | 0,15 kg/semaine (maintien : « stable ») | PROVISOIRE | règle d'app, code relu le 13/11/2026 |
+| RYTHME_TOL_BAS / HAUT | 0,75 / 1,25 du rythme visé = « dans le rythme » | PROVISOIRE | règle d'app |
+| IMC_PERTE_LENTE | 25 : de 22 à 25, perte limitée au cran « doux » (0,5 %/sem) | PROVISOIRE (S) | règle C |
+| SURPLUS_PCT_PRUDENT | 5 % du besoin à 65 ans et plus | PROVISOIRE (S) | règle d'app prudente |
+| Constantes de besoins | PAL 1,40 / 1,55 / 1,70 / 1,85 ; filet 1500 H / 1200 F ; perte 0,5 / 0,75 / 1,0 %/sem ; déficit max 25 % ou 750 kcal (10 % à 65 ans) ; surplus 5 / 10 / 15 % max 300 kcal ; 7700 kcal/kg ; IMC 18,5 / 22 | PROVISOIRE (S) | codées dans src/nutrition/config.ts avec les mêmes statuts |
 | Seuil de durée d'un jour lourd | séance prévue >= 75 min, ou jour jambes / grands groupes, ou 2 séances dans la journée | PROVISOIRE | règle d'app ; sert à choisir le type de jour de B |
 
 ## 7. À sourcer (restant)

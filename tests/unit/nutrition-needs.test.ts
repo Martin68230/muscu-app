@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest';
-import { computeNeeds, restingEnergy, screenNutrition, type Body, type ScreeningAnswers } from '../../src/nutrition/needs';
+import { computeNeeds, palFor, restingEnergy, screenNutrition, type Body, type ScreeningAnswers } from '../../src/nutrition/needs';
 
 const clean: ScreeningAnswers = {
   grossesse: 'non', allaitement: 'non', postPartum: 'non', maladie: 'non', rapportAlimentation: 'non', medicament: 'non',
@@ -65,6 +65,22 @@ describe('besoins et plancher', () => {
   it('≥ 65 ans : déficit au plus 10 % du besoin', () => {
     const n = computeNeeds({ screen: 'prudent', body: { sex: 'homme', kg: 95, cm: 175, age: 70 }, sessionsPerWeek: 3, goal: 'perte', pace: 'ferme' })!;
     expect(-n.deltaKcal).toBeLessThanOrEqual(n.tdee * 0.1 + 1e-9);
+  });
+  it('le dépistage « libre » transmis par erreur ne contourne ni IMC bas ni âge', () => {
+    expect(computeNeeds({ screen: 'libre', body: { sex: 'homme', kg: 55, cm: 180, age: 30 }, sessionsPerWeek: 4, goal: 'perte', pace: 'standard' })).toBeNull();
+    const n = computeNeeds({ screen: 'libre', body: { sex: 'femme', kg: 90, cm: 160, age: 66 }, sessionsPerWeek: 3, goal: 'perte', pace: 'ferme' })!;
+    expect(-n.deltaKcal).toBeLessThanOrEqual(n.tdee * 0.1 + 1e-9);
+  });
+  it('IMC 22 à 25 : perte limitée au cran doux', () => {
+    const body: Body = { sex: 'homme', kg: 75, cm: 178, age: 30 };
+    const doux = computeNeeds({ screen: 'libre', body, sessionsPerWeek: 4, goal: 'perte', pace: 'doux' })!;
+    const ferme = computeNeeds({ screen: 'libre', body, sessionsPerWeek: 4, goal: 'perte', pace: 'ferme' })!;
+    expect(ferme.deltaKcal).toBe(doux.deltaKcal);
+  });
+  it('valeurs invalides : jamais le facteur d\u2019activité le plus haut', () => {
+    expect(palFor(NaN)).toBe(1.4);
+    expect(palFor(-3)).toBe(1.4);
+    expect(palFor(7)).toBe(1.85);
   });
   it('prise : surplus plafonné à 300 kcal', () => {
     const n = computeNeeds({ screen: 'libre', body: homme, sessionsPerWeek: 5, goal: 'prise', pace: 'ferme' })!;

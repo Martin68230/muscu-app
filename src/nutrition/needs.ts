@@ -3,7 +3,7 @@
 
 import {
   AGE_MAX, AGE_MIN, AGE_PRUDENT, DEFICIT_MAX_KCAL, DEFICIT_MAX_PCT, DEFICIT_MAX_PCT_65, FILET_KCAL, IMC_REPERES,
-  IMC_SANS_DEFICIT, KCAL_PAR_KG, PAL_BY_SESSIONS, PERTE_PCT_PLAFOND, PERTE_PCT_SEMAINE, POIDS_KG_MAX, POIDS_KG_MIN,
+  IMC_PERTE_LENTE, IMC_SANS_DEFICIT, KCAL_PAR_KG, SURPLUS_PCT_PRUDENT, PAL_BY_SESSIONS, PERTE_PCT_PLAFOND, PERTE_PCT_SEMAINE, POIDS_KG_MAX, POIDS_KG_MIN,
   SURPLUS_MAX_KCAL, SURPLUS_PCT, TAILLE_CM_MAX, TAILLE_CM_MIN,
 } from './config';
 
@@ -50,7 +50,9 @@ export function restingEnergy(b: { sex: 'homme' | 'femme'; kg: number; cm: numbe
 }
 
 export function palFor(sessionsPerWeek: number): number {
-  const row = PAL_BY_SESSIONS.find((r) => sessionsPerWeek <= r.maxSessions);
+  // Valeur invalide (NaN, négative) : facteur le plus bas, jamais le plus haut.
+  const n = Number.isFinite(sessionsPerWeek) && sessionsPerWeek > 0 ? sessionsPerWeek : 0;
+  const row = PAL_BY_SESSIONS.find((r) => n <= r.maxSessions);
   return (row ?? PAL_BY_SESSIONS[PAL_BY_SESSIONS.length - 1]).pal;
 }
 
@@ -96,6 +98,9 @@ export interface Needs {
 export function computeNeeds(input: NeedsInput): Needs | null {
   if (input.screen === 'reperes' || !validBody(input.body)) return null;
   const b = input.body;
+  // Le dépistage n'est pas pris sur parole : IMC bas = aucun chiffre ; 65 ans ou plus = prudent quoi qu'on passe.
+  if (bmi(b.kg, b.cm) < IMC_REPERES) return null;
+  const screen: ScreenResult = b.age >= AGE_PRUDENT ? 'prudent' : input.screen;
   const resting = restingEnergy(b);
   const tdee = resting * palFor(input.sessionsPerWeek);
   const floor = Math.max(resting, FILET_KCAL[b.sex]);
@@ -107,16 +112,17 @@ export function computeNeeds(input: NeedsInput): Needs | null {
     if (imc < IMC_SANS_DEFICIT) {
       noDeficitReason = 'imc';
     } else {
-      const pct = Math.min(PERTE_PCT_SEMAINE[input.pace], PERTE_PCT_PLAFOND);
+      const pace: Pace = imc < IMC_PERTE_LENTE ? 'doux' : input.pace;
+      const pct = Math.min(PERTE_PCT_SEMAINE[pace], PERTE_PCT_PLAFOND);
       const wanted = ((b.kg * pct) / 100) * (KCAL_PAR_KG / 7);
-      const cap = input.screen === 'prudent'
+      const cap = screen === 'prudent'
         ? tdee * DEFICIT_MAX_PCT_65
         : Math.min(tdee * DEFICIT_MAX_PCT, DEFICIT_MAX_KCAL);
       delta = -Math.min(wanted, cap);
     }
   } else if (input.goal === 'prise') {
     delta = Math.min(tdee * SURPLUS_PCT[input.pace], SURPLUS_MAX_KCAL);
-    if (input.screen === 'prudent') delta = Math.min(delta, tdee * 0.05);
+    if (screen === 'prudent') delta = Math.min(delta, tdee * SURPLUS_PCT_PRUDENT);
   }
 
   let target = tdee + delta;
@@ -124,7 +130,7 @@ export function computeNeeds(input: NeedsInput): Needs | null {
   if (delta < 0 && target < floor) {
     floorBinding = true;
     // Le plancher réduit le déficit ; s'il atteint le besoin, le déficit devient nul (maintien).
-    target = Math.min(floor, tdee);
+    target = Math.min(Math.ceil(floor), tdee);
     delta = target - tdee;
   }
   return { tdee, resting, floor, target, deltaKcal: delta, floorBinding, noDeficitReason };

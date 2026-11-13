@@ -54,6 +54,8 @@ export interface LabeledIngredient {
  */
 export function ingredientAllowed(ing: LabeledIngredient, excluded: readonly AllergenKey[]): boolean {
   if (ing.statut === 'inconnu') return false;
+  // Clé d'allergène invalide (faute de frappe) : l'étiquetage n'est pas fiable, donc traité comme inconnu.
+  if (!ing.allergenes.every((a) => (ALLERGENS as readonly string[]).includes(a))) return false;
   if (excluded.length === 0) return true;
   if (ing.statut !== 'valide') return false;
   return !ing.allergenes.some((a) => excluded.includes(a));
@@ -61,6 +63,9 @@ export function ingredientAllowed(ing: LabeledIngredient, excluded: readonly All
 
 /** Allergènes d'une recette = union de ceux de ses ingrédients. */
 export function recipeAllergens(ings: readonly LabeledIngredient[]): AllergenKey[] {
+  for (const i of ings) {
+    if (!i.allergenes.every((a) => (ALLERGENS as readonly string[]).includes(a))) throw new Error(`Allergène invalide pour ${i.code}`);
+  }
   const set = new Set<AllergenKey>();
   for (const i of ings) for (const a of i.allergenes) set.add(a);
   return ALLERGENS.filter((a) => set.has(a));
