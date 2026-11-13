@@ -353,7 +353,7 @@ function catchUpLogErrors(log: unknown, where: string): string[] {
   const id = (x: unknown) => typeof x === 'string' && /^[a-z0-9_-]{1,80}$/.test(x);
   const out: string[] = [];
   log.forEach((e, i) => {
-    if (!isObj(e) || Object.keys(e).some((k) => !known.includes(k)) || !isDay(e.week) || !id(e.zone)) return void out.push(...bad(`[${i}]`));
+    if (!isObj(e) || Object.keys(e).some((k) => !known.includes(k)) || !(isDay(e.week) || (typeof e.week === 'string' && /^c\d{5}$/.test(e.week))) || !id(e.zone)) return void out.push(...bad(`[${i}]`));
     if (e.movementId != null && !id(e.movementId)) out.push(...bad(`[${i}].movementId`));
     if (e.cause != null && !causes.includes(String(e.cause))) out.push(...bad(`[${i}].cause`));
   });

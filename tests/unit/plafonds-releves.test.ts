@@ -17,7 +17,7 @@ const place = (profile: string) => (profile === 'F' ? ('salle' as const) : ('mai
 const base = (o: MkOpts): MkOpts => ({ goal: 'muscle', level: 'intermediaire', dur: 60, days: 4, place: place(o.profile ?? 'C'), ...o });
 const ctxOf = (o: MkOpts) => buildCtx(mk(base(o)));
 
-const PROTECTED_MUSCLES = ['deltoides', 'deltoides_lateraux', 'deltoides_anterieurs', 'deltoides_posterieurs', 'trapezes', 'triceps', 'biceps', 'avant_bras', 'erecteurs_rachis', 'rhomboides', 'carre_des_lombes'];
+const PROTECTED_MUSCLES = ['coiffe_des_rotateurs', 'dentele_anterieur', 'deltoides', 'deltoides_lateraux', 'deltoides_anterieurs', 'deltoides_posterieurs', 'trapezes', 'triceps', 'biceps', 'avant_bras', 'erecteurs_rachis', 'rhomboides', 'carre_des_lombes'];
 const FREE_MUSCLES = ['quadriceps', 'fessiers', 'ischios', 'pectoraux', 'grand_dorsal', 'mollets'];
 
 describe('Plafonds relevés : qui y a droit', () => {
@@ -50,7 +50,7 @@ describe('Plafonds relevés : qui y a droit', () => {
     for (const m of FREE_MUSCLES) expect(weekCapFor(undefined, m)).toBe(VOLUME.maxPerMuscleWeek);
   });
   it('les muscles protégés de weekCountsSecondary (hors rhomboïdes et carré des lombes, protégés par weekCapFor seulement)', () => {
-    for (const m of PROTECTED_MUSCLES.filter((x) => x !== 'rhomboides' && x !== 'carre_des_lombes')) expect(weekCountsSecondary(m), m).toBe(true);
+    for (const m of PROTECTED_MUSCLES.filter((x) => !['rhomboides', 'carre_des_lombes', 'coiffe_des_rotateurs', 'dentele_anterieur'].includes(x))) expect(weekCountsSecondary(m), m).toBe(true);
     for (const m of FREE_MUSCLES) expect(weekCountsSecondary(m), m).toBe(false);
   });
 });
@@ -67,9 +67,14 @@ describe('Plafonds relevés : plafonds de zone', () => {
     }
     expect(relevees).toBeGreaterThan(10);
     // Les six groupes protégés existent bien comme zones.
-    for (const id of ['epaules_avant', 'epaules_cote', 'epaules_arriere', 'trapezes_haut', 'trapezes_bas', 'biceps', 'avant_bras', 'lombaires']) {
-      if (ZONES.some((z) => z.id === id)) expect(isProtectedZone(id), id).toBe(true);
+    // Les groupes protégés (épaules, trapèzes, triceps, biceps, avant-bras, lombaires / carré des lombes, coiffe, dentelé) existent comme zones : un id absent fait échouer le test.
+    const PROT_IDS = ['epaules_avant', 'epaules_cote', 'epaules_arriere', 'trapezes_haut', 'trapezes_moyen', 'trapezes_bas', 'biceps', 'avant_bras', 'lombaires', 'carre_des_lombes', 'coiffe_rotateurs', 'dentele_anterieur'];
+    for (const id of PROT_IDS) {
+      expect(ZONES.some((z) => z.id === id), `zone ${id} existe`).toBe(true);
+      expect(isProtectedZone(id), id).toBe(true);
     }
+    expect(ZONES.filter((z) => z.id.startsWith('triceps')).length).toBeGreaterThan(0);
+    for (const z of ZONES.filter((x) => x.id.startsWith('triceps'))) expect(isProtectedZone(z.id), z.id).toBe(true);
     expect(zoneCaps('quadriceps_droit_femoral').week).toBe(20);
     expect(zoneCaps('quadriceps_droit_femoral', { factor: 1.2 }).week).toBe(24);
   });
@@ -111,6 +116,7 @@ describe('Plafonds relevés : jamais au-delà de 20 / 10 pour les profils proté
     for (const [name, o] of GRID) {
       const input = mk(base(o));
       const r = generateProgram(input);
+      expect(r.ok, name).toBe(true);
       if (!r.ok) continue;
       expect(raisedCaps(buildCtx(input)), name).toBe(true);
       expectCapsHold(name, input, r.program);
@@ -132,6 +138,7 @@ describe('Plafonds relevés : jamais au-delà de 20 / 10 pour les profils proté
     for (const [name, o] of CASES) {
       const input = mk(base(o));
       const r = generateProgram(input);
+      expect(r.ok, name).toBe(true);
       if (!r.ok) continue;
       expect(raisedCaps(buildCtx(input)), name).toBe(false);
       expectCapsHold(name, input, r.program);
@@ -182,7 +189,8 @@ describe('Plafonds relevés : séances plus longues sans rien relâcher', () => 
       let tiny = 0;
       for (const profile of ['A0', 'D', 'F']) for (const level of ['intermediaire', 'avance'] as const) {
         const r = generateProgram(mk(base({ profile, level, days: 5 })));
-        if (!r.ok) continue;
+        expect(r.ok, `${profile} ${level}`).toBe(true);
+      if (!r.ok) continue;
         for (const s of r.program.sessions) {
           if ((s.estimatedMin ?? 0) < 0.85 * 60) short++;
           if ((s.estimatedMin ?? 0) <= 30) tiny++;
@@ -197,4 +205,49 @@ describe('Plafonds relevés : séances plus longues sans rien relâcher', () => 
     expect(on.short).toBeLessThanOrEqual(off.short);
     expect(on.tiny).toBeLessThanOrEqual(off.tiny);
   }, 280_000);
+});
+
+// ---- CAL-12 et plafonds relevés : rattrapage (swapForZone), création de séance, remplissage du temps ----
+import { CORRECTIF_COU } from '../../src/generator/config';
+import { toProgramDays } from '../../src/generator';
+import { weekCapsOk } from '../../src/generator/plaf';
+import { genOf, zoneCatchUp, type CatchUpProfile } from '../../src/zones/catchup';
+import type { SetLog } from '../../src/data/model';
+import { FICHES } from './generator-helpers';
+
+describe('Plafonds relevés : le rattrapage applique 24 ou 20 selon le profil', () => {
+  const mkEx = (muscle: string, sets: number) => ({ sets, musclesPrincipaux: [muscle], musclesSecondaires: [], schema: 'x', slot: 'poussee_2', ficheId: 'x', tags: [] }) as never;
+  it('22 séries principales de quadriceps : accepté pour un profil relevé (24), refusé pour un débutant (20) ; biceps (protégé) refusé dans les deux', () => {
+    const week = (m: string) => [{ exercises: [mkEx(m, 12)] }, { exercises: [mkEx(m, 10)] }];
+    const raised = ctxOf({ level: 'avance' });
+    const novice = ctxOf({ level: 'debutant' });
+    expect(weekCapsOk(week('quadriceps'), raised)).toBe(true);
+    expect(weekCapsOk(week('quadriceps'), novice)).toBe(false);
+    expect(weekCapsOk(week('biceps'), raised)).toBe(false);
+    expect(weekCapsOk(week('quadriceps'), undefined)).toBe(false);
+  });
+});
+
+describe('CAL-12 avec les plafonds relevés : jamais d exercice lourd d épaules / trapèzes dans la séance qui a le cou', () => {
+  const input = mk(base({ profile: 'F', level: 'avance', days: 5 }));
+  input.profile.neckScreen = 'non';
+  const r = generateProgram(input);
+  it('le programme de départ place le cou', () => { expect(r.ok).toBe(true); });
+  if (!r.ok) return;
+  const ctx = buildCtx(input);
+  const days = toProgramDays(r.program).map((d) => ({ ...d, exercises: d.exercises.map((e) => ({ ...e, alt: undefined })) }));
+  const neckIdx = days.findIndex((d) => d.exercises.some((e) => e.movementId === CORRECTIF_COU.ficheId));
+  it('une séance du bas du corps porte le cou', () => { expect(neckIdx).toBeGreaterThanOrEqual(0); });
+  const doneAll = (skip: (movementId: string) => boolean): SetLog[] =>
+    days.flatMap((d, i) => d.exercises.filter((e) => e.role !== 'cardio' && !skip(e.movementId)).flatMap((e) => Array.from({ length: e.sets }, (_, k) => ({
+      id: `s${i}${e.movementId}${k}`, sessionId: `s${i}`, movementId: e.movementId, variantId: 'v', exerciseIndex: 0, setIndex: k, targetRepsMin: 8, targetRepsMax: 12, reps: 10, loadKg: null, rir: 2, pain: false, comment: '', completedAt: '2026-11-03T10:00:00.000Z',
+    } as SetLog))));
+  const profile = (): CatchUpProfile => ({ ctx, pool: FICHES, repriseActive: false, symptomFrozen: false, painFrozen: () => false, log: null, sport: undefined } as unknown as CatchUpProfile);
+  it('rattrapage (échange compris) : la séance du jour avec le cou ne reçoit jamais d exercice lourd, quelles que soient les zones basses', () => {
+    for (const skipZone of [(id: string) => id.includes('pompe') || id.includes('developpe'), (id: string) => id.includes('squat') || id.includes('fente'), () => false]) {
+      const res = zoneCatchUp(doneAll(skipZone), { days, dayIndex: neckIdx, prevDays: days, durationMin: r.program.durationMin, weekKey: 'c00001' }, profile());
+      const gens = res.day.exercises.map((e) => genOf(e, ctx)).filter((e): e is NonNullable<typeof e> => e !== null);
+      expect(hasHeavyShoulderTrap({ exercises: gens }, ctx)).toBe(false);
+    }
+  });
 });

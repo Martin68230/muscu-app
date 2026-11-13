@@ -5,14 +5,14 @@
 // src/generator/zones-check.ts. Dernier recours (07/11/2026) : si une zone reste orange ou grise après les séries en plus, UN seul
 // échange d'exercice dans cette séance (swapForZone), avec le classement et les filtres du générateur (rankSlot), sans dose nouvelle.
 import type { CatchUpLogEntry, PlannedExercise, ProgramDay, SetLog } from '../data/model';
-import { CATCHUP, D_CLASS, doseLimitOf, FIXED_DOSE, ISOLATION_FICHE_PREFIXES, TIME, VOLUME } from '../generator/config';
+import { CATCHUP, CORRECTIF_COU, D_CLASS, doseLimitOf, FIXED_DOSE, ISOLATION_FICHE_PREFIXES, TIME, VOLUME } from '../generator/config';
 import type { Ctx } from '../generator/context';
 import { estimerDuree, type DurExercise, type DurSession } from '../generator/duration';
 import { isIsoSlot } from '../generator/isolation';
 import { makePlaf, splitCapsOk, weekCapsOk } from '../generator/plaf';
 import { variantClass } from '../generator/reps';
 import type { Fiche, GenExercise } from '../generator/types';
-import { checkZones, excludedZones, SLOTLESS_ZONES, zoneCapsOk } from '../generator/zones-check';
+import { checkZones, excludedZones, hasHeavyShoulderTrap, SLOTLESS_ZONES, zoneCapsOk } from '../generator/zones-check';
 import { MAIN_EXERCISE_SLOTS } from '../generator/config';
 import { buildExercise } from '../generator/dose';
 import { plannedOf } from '../generator';
@@ -254,6 +254,8 @@ function swapForZone(
       const tGen = gens(tDay);
       const after = weekAt(trial);
       if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after, ctx) || !zoneCapsOk(baseWeek, after, ctx)) continue;
+      // CAL-12 (relecteur 13/11/2026) : un échange ne met jamais un exercice lourd d'épaules / trapèzes (squat à la barre compris) dans une séance qui a le cou.
+      if (trial.some((x) => x.movementId === CORRECTIF_COU.ficheId && x.slot === 'correctif') && hasHeavyShoulderTrap({ exercises: tGen.map((g) => ({ ...g, alt: undefined })) }, ctx)) continue;
       if (durOf(tDay, tGen, ctx) > Math.max(budgetSec, durOf({ ...today, exercises }, gens({ ...today, exercises }), ctx))) continue;
       const chk = checkZones(after, ctx, profile.pool);
       const st = chk.status;
@@ -443,6 +445,8 @@ export function lastCycleOf(
   const last = cycles[cycles.length - 1];
   if (!last || (last.byTime && last.ids.size < CATCHUP.cycle.minSessions)) return null;
   const work = sets.filter((s) => !!s.completedAt && !s.isWarmup && !s.deletedAt && last.ids.has(s.sessionId));
+  // Relecteur 13/11/2026 : au plus UNE fois par cycle : dès qu'une série d'une séance hors du cycle clos est faite (séance abandonnée comprise), le cycle suivant a commencé.
+  if (sets.some((s) => !!s.completedAt && !s.isWarmup && !s.deletedAt && !last.ids.has(s.sessionId) && Date.parse(s.completedAt) > last.end)) return null;
   return {
     weekSets: work, firstOfWeek: true, weekKey: `c${String(cycles.length).padStart(5, '0')}`, count: last.ids.size,
     days: Math.max(1, Math.round((last.end - last.start) / DAY) + 1),

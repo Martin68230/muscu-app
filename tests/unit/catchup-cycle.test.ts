@@ -52,6 +52,11 @@ describe('lastCycleOf : un cycle = N séances faites, 14 jours au plus', () => {
     expect(r2!.weekKey).toBe('c00002');
     expect(r2!.count).toBe(2);
   });
+  it('au plus une fois par cycle : une série déjà faite dans le cycle suivant (séance abandonnée) = aucun rattrapage', () => {
+    const s = [0, 1, 3, 4, 6].map((d, i) => ses(i, d));
+    const abandoned = { ...setOf('s9'), completedAt: new Date(T0 + 8 * DAY).toISOString() };
+    expect(lastCycleOf(s, [...sets(['s0']), abandoned], 5, T0 + 9 * DAY)).toBeNull();
+  });
   it('sans séance faite ou N invalide : null', () => {
     expect(lastCycleOf([], [], 5, T0)).toBeNull();
     expect(lastCycleOf([ses(0, 0)], [], 0, T0 + DAY)).toBeNull();

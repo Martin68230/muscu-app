@@ -9,13 +9,13 @@
 // Les garde-fous (grossesse, reprise, douleur / gel, symptôme, séance manquée, débutant après un échec, case de sécurité, plafonds)
 // sont vérifiés par l'appelant (proposeProgression) AVANT cette décision, puis de nouveau au moment d'appliquer (applyAccepted).
 import type { PlannedExercise, ProgramDay, SetLog } from '../data/model';
-import { D_CLASS, D4_FICHE_DOSE, FIXED_DOSE, REPS_TABLE, TECHNICAL_CAP_FICHES, TECHNICAL_MAX_REPS, UNLIMITED } from '../generator/config';
+import { CORRECTIF_COU, D_CLASS, D4_FICHE_DOSE, FIXED_DOSE, REPS_TABLE, TECHNICAL_CAP_FICHES, TECHNICAL_MAX_REPS, UNLIMITED } from '../generator/config';
 import { isChargeable, type Ctx } from '../generator/context';
 import { plannedOf } from '../generator/index';
 import { makePlaf, splitCapsOk, weekCapsOk } from '../generator/plaf';
 import { doseRoleOf, repsGoalOf, variantClass } from '../generator/reps';
 import type { Fiche, FicheVariant, GenExercise, SlotKey } from '../generator/types';
-import { fillToTarget, zoneCapsOk } from '../generator/zones-check';
+import { fillToTarget, hasHeavyShoulderTrap, zoneCapsOk } from '../generator/zones-check';
 import type { DurExercise, DurSession } from '../generator/duration';
 import { durOf, genOf } from '../zones/catchup';
 import { INTENSITY } from './progression-config';
@@ -197,6 +197,8 @@ export function fillExerciseTime(d: ExerciseFillDeps): ProgramDay | null {
   const budget = (s: Sess) => (isToday(s) ? d.limitSec - cardio : 0);
   const sessionOk = (exs: GenExercise[]) =>
     splitCapsOk(exs, plaf) &&
+    // CAL-12 : jamais d'exercice lourd d'épaules / trapèzes ajouté dans une séance qui a le cou.
+    !(exs.some((e) => e.ficheId === CORRECTIF_COU.ficheId && e.slot === 'correctif') && hasHeavyShoulderTrap({ exercises: exs }, ctx)) &&
     exs.every((e) => {
       const o = orig.get(e.movementId);
       return !o || (lockedIds.has(e.movementId) ? e.sets === o.sets : e.sets <= o.sets + 1);

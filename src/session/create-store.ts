@@ -97,7 +97,7 @@ export function createHistory({ sessions, sets, programs, schemaOf }: HistoryInp
 /**
  * Séries pondérées par muscle sur les 7 derniers jours glissants (séances du programme ET séances créées, séries de travail faites) :
  * 1 pour un muscle principal, les secondaires ne comptent plus (13/11/2026, plafond hebdomadaire) ; « deltoides » = somme des deltoïdes
- * (au plus 1 par série). Rolling 7 jours : lecture prudente de « par semaine » (le plafond est de VOLUME.maxPerMuscleWeek).
+ * (au plus 1 par série). Rolling 7 jours : lecture prudente de « par semaine » (le plafond est de 20, ou 24 pour un profil aux plafonds relevés hors groupes protégés : weekCapFor, plaf.ts).
  */
 export function weekSetsOf(h: Pick<HistoryInput, 'sessions' | 'sets' | 'musclesOf'> & { now: Date }): Record<string, number> {
   const out: Record<string, number> = {};
