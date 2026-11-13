@@ -117,3 +117,6 @@ export const SCORE = { ecartKcal: 10, repetition: 6, repetitionSemaineDerniere: 
 /** Tolérance du recalage : au moins 0,1 kg/semaine et 25 % du rythme visé. */
 export const RECALAGE_TOL_MIN_KG = 0.1;
 export const RECALAGE_TOL_PCT = 0.25;
+
+/** Rythme de prise visé (% du poids par semaine) : borne basse de la règle C (0,25 à 0,5 %). PROVISOIRE (S). */
+export const PRISE_PCT_SEMAINE = 0.25;

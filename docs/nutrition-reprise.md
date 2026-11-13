@@ -35,3 +35,8 @@ Passage unique du 13/11/2026 : 4 points bloquants et 6 réserves, tous corrigés
 - Table Ciqual 2025 (Licence Ouverte 2.0, DOI 10.57745/RDMHWY) téléchargée HORS dépôt dans `../donnees-externes/ciqual-2025/` (4 XML, sommes MD5 vérifiées) : étape suivante `tools/build-aliments.mjs`.
 - Demande du 13/11 : courses optimisées (spec §7.6) à coder avec le générateur de plan (lot L5).
 - Reste : alertes §5.6 (rythme, saut, gel des déficits), recalage §5.5, jours de la semaine (`day-targets.ts`), recettes, plan, écrans, modèle de données v5 (en attente de feu vert pour toucher `src/data/model.ts`).
+
+## Mise à jour (13/11/2026, soir) : écran Nutrition en ligne après ce lot
+- En ligne avant ce lot : modules src/nutrition (calculs, plan, alertes), tables v5, Ciqual (271 ingrédients), outil recettes (15 recettes, 9 publiables). Déploiement #120 vert.
+- Ce lot (à pousser) : écran Nutrition (Bibliothèque, entrée en tête) : questionnaire de sécurité, objectif, besoins par jour selon le programme, pesée hebdomadaire, courbe et poids lissé, alertes, recalage ; src/nutrition/store.ts ; captures WebKit tests/screens/nutrition.spec.ts ; liste iPhone docs/nutrition-iphone.md.
+- Reste : écrans plan de repas (N10, N11), liste de courses (N12), export N15, profil alimentaire (allergènes, préférences, N5), compléments (N13), carte Accueil, 140 recettes de plus, validation nutritionniste (coefficient « moyen »).

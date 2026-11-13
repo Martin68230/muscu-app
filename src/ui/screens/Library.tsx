@@ -82,6 +82,13 @@ export function Library() {
   return (
     <div ref={root}>
       <h1>Bibliothèque</h1>
+      <a class="lib-nutrition" href="#/nutrition">
+        <span class="lib-text">
+          <span class="lib-name">Nutrition</span>
+          <span class="lib-muscles dim small">Besoins, pesée hebdomadaire et courbe de poids</span>
+        </span>
+        <span class="lib-chevron" aria-hidden="true">›</span>
+      </a>
       {error && <div class="notice" role="alert">{error}</div>}
       {!error && !fiches && <p class="dim" role="status">Chargement…</p>}
       {fiches && (

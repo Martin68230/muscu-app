@@ -26,6 +26,7 @@ import { repriseOf } from './session/missed-config';
 import { saveReprise } from './session/missed-store';
 import { CreateSessionScreen } from './ui/screens/CreateSession';
 import { NoteSport } from './ui/screens/MySport';
+import { NutritionScreen } from './ui/screens/Nutrition';
 import type { CreatedSession, CreateSessionRequest } from './generator';
 import { createdDay, metaOf, scheduleCreated, type ScheduledCreated } from './session/create-store';
 
@@ -35,6 +36,8 @@ const previewFromHash = (): boolean => location.hash === '#/seance';
 const createFromHash = (): boolean => location.hash === '#/creer';
 /** #/sport : écran « Noter une séance de sport » (Mon sport). */
 const sportFromHash = (): boolean => location.hash === '#/sport';
+/** #/nutrition : écran Nutrition (phase 7), ouvert depuis la Bibliothèque. */
+const nutritionFromHash = (): boolean => location.hash === '#/nutrition';
 
 interface Playing {
   controller: SessionController;
@@ -50,7 +53,7 @@ function ficheFromHash(): string | null {
 }
 
 function tabFromHash(): Tab {
-  if (ficheFromHash()) return 'bibliotheque';
+  if (ficheFromHash() || nutritionFromHash()) return 'bibliotheque';
   const h = location.hash.replace('#/', '') as Tab;
   return TAB_IDS.includes(h) ? h : 'accueil';
 }
@@ -63,6 +66,7 @@ export function App() {
   /** D28 : écran « Créer une séance » ouvert ; prefill = séance ajoutée au calendrier que l'on prépare. */
   const [create, setCreate] = useState<{ prefill: ScheduledCreated | null } | null>(createFromHash() ? { prefill: null } : null);
   const [sportNote, setSportNote] = useState(sportFromHash());
+  const [nutrition, setNutrition] = useState(nutritionFromHash());
   /** Séance en cours dans le lecteur (plein écran, sans barre d'onglets). */
   const [playing, setPlaying] = useState<Playing | null>(null);
   /** Parcours du profil : 'all' = les cartes à la suite ; sinon une seule carte (modification depuis Profil). */
@@ -78,6 +82,7 @@ export function App() {
       setPreview(previewFromHash());
       setCreate((c) => (createFromHash() ? c ?? { prefill: null } : null));
       setSportNote(sportFromHash());
+      setNutrition(nutritionFromHash());
     };
     addEventListener('hashchange', onHash);
     return () => removeEventListener('hashchange', onHash);
@@ -90,6 +95,7 @@ export function App() {
     setPreview(false);
     setCreate(null);
     setSportNote(false);
+    setNutrition(false);
   };
   const openSport = () => {
     setSportNote(true);
@@ -190,7 +196,7 @@ export function App() {
 
   return (
     <div class="shell">
-      <main class="screen" key={ficheId ? `fiche-${ficheId}` : sportNote ? 'sport' : create ? 'creer' : preview ? 'seance' : tab}>
+      <main class="screen" key={nutrition ? 'nutrition' : ficheId ? `fiche-${ficheId}` : sportNote ? 'sport' : create ? 'creer' : preview ? 'seance' : tab}>
         {sportNote && <NoteSport profile={profile} onBack={() => go('accueil')} onEditPlan={() => go('profil')} />}
         {tab === 'accueil' && !sportNote && create && (
           <CreateSessionScreen
@@ -216,7 +222,8 @@ export function App() {
         )}
         {tab === 'accueil' && !sportNote && preview && <SessionPreview profile={profile} onBegin={begin} />}
         {tab === 'calendrier' && !sportNote && <Calendar profile={profile} onPrepareCreated={(c) => openCreate(c)} onNoteSport={openSport} />}
-        {tab === 'bibliotheque' && !sportNote && !ficheId && <Library />}
+        {tab === 'bibliotheque' && !sportNote && !ficheId && nutrition && <NutritionScreen profile={profile} onBack={() => go('bibliotheque')} />}
+        {tab === 'bibliotheque' && !sportNote && !ficheId && !nutrition && <Library />}
         {tab === 'bibliotheque' && !sportNote && ficheId && <Fiche id={ficheId} pregnancy={profile.pregnancy} />}
         {tab === 'profil' && !sportNote && <Profile profile={profile} onChange={setProfile} onWiped={load} onEditStep={(s) => setWizard(s ?? 'all')} onNoteSport={openSport} />}
       </main>

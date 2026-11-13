@@ -595,3 +595,20 @@ ol.plain-list { counter-reset: ex; }
 /* Mon sport (saisie-sport-v1.md) : cases à cocher, zone tactile >= 44 px */
 .check-row { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 6px 0; cursor: pointer; }
 .check-row input { width: 24px; height: 24px; flex: none; accent-color: var(--accent); }
+
+/* Phase 7 : Nutrition (docs/nutrition-spec.md). Une colonne, zones tactiles >= 44 px, saisie 16 px. */
+.lib-nutrition { display: flex; align-items: center; gap: 12px; min-height: 64px; padding: 12px 16px; margin: 0 0 16px; border: 1px solid var(--accent); border-radius: 16px; background: var(--surface); color: var(--text); text-decoration: none; }
+.lib-nutrition:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.nut { display: block; }
+.nut-form .field, .nut .field { display: block; margin: 12px 0; font-weight: 600; }
+.nut-form .field input, .nut .field input { display: block; width: 100%; min-height: 48px; margin-top: 6px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 16px; box-sizing: border-box; }
+.nut-big { font-size: 2.25rem; font-weight: 800; margin: 4px 0; letter-spacing: -0.02em; }
+.nut-macros { list-style: none; display: flex; flex-wrap: wrap; gap: 8px 16px; padding: 0; margin: 8px 0; }
+.nut-week { list-style: none; margin: 0 0 8px; padding: 0; }
+.nut-week li { display: grid; grid-template-columns: 1fr auto; gap: 2px 12px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.nut-week li > .small { grid-column: 1 / -1; }
+.nut-week li:last-child { border-bottom: 0; }
+.nut-weights { list-style: none; margin: 0; padding: 0; }
+.nut-weights li { display: grid; grid-template-columns: 4.5rem 1fr auto; align-items: center; gap: 4px 8px; min-height: 48px; border-bottom: 1px solid var(--line); }
+.nut-weights li .btn-link { grid-column: 1 / -1; justify-content: flex-start; padding-left: 0; min-height: 44px; }
+.nut-chart { display: block; width: 100%; height: auto; color: var(--text); }
