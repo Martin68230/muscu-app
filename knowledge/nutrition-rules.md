@@ -115,11 +115,11 @@ Principe : l'app ne décide jamais d'un diagnostic ; elle bloque les calculs de 
 | Lipides plancher | 0,5 g/kg/j et 20 % de l'énergie | OK (0,5 g/kg) / PROVISOIRE (20 %) | nutritionniste |
 | Glucides musculation en déficit | 2-5 g/kg/j | OK | - |
 | Glucides par type de jour (3-12 g/kg) | voir B | PROVISOIRE | nutritionniste |
-| Mifflin-St Jeor (coefficients) | 10, 6,25, -5, +5/-161 | PROVISOIRE (relire l'article) | nutritionniste |
+| Mifflin-St Jeor (coefficients) | 10, 6,25, -5, +5/-161 | OK (résumé de l'article lu via Europe PMC, PMID 2305711 : formules par sexe identiques ; R² = 0,71 ; adultes 19-78 ans, mesure en calorimétrie indirecte) | - |
 | PAL (fourchettes FAO) | 1,40-2,39 | OK | - |
 | Mapping séances -> PAL | 1,40 / 1,55 / 1,70 / 1,85 | PROVISOIRE | nutritionniste |
-| Repli sans sexe/âge | PAL x 22 kcal/kg | PROVISOIRE | nutritionniste |
-| 7700 kcal/kg | approximation (fourchette 5000-7700) | PROVISOIRE | nutritionniste |
+| Repli sans sexe/âge | SUPPRIMÉ (Repères seulement, voir A) | sans objet | - |
+| 7700 kcal/kg | approximation de repère uniquement (32,2 MJ/kg ; surestime pour les personnes peu grasses ; plus l'énergie perdue est maigre, moins il faut de kcal/kg) ; ne jamais en tirer une promesse de perte | OK (Hall 2008, Int J Obes 32(3):573-576, PMID 17848938, résumé lu via Europe PMC) ; usage dans l'app : règle prudente | - |
 | Recalage adaptatif | >= 14 j, ±15 % max | PROVISOIRE | nutritionniste + relecteur |
 | Perte max | 1,0 %/sem | OK (plage) / PROVISOIRE (plafond d'app) | relecteur |
 | Prise max | 0,25-0,5 %/sem | PROVISOIRE | nutritionniste |
@@ -132,12 +132,31 @@ Principe : l'app ne décide jamais d'un diagnostic ; elle bloque les calculs de 
 | Caféine | 400 mg/j ; 200 mg/prise ; 200 mg/j grossesse/allaitement | OK (abstract) | relecteur |
 | Créatine | 3-5 g/j | PROVISOIRE | nutritionniste |
 | 14 allergènes UE | voir F | OK (détail fruits à coque PROVISOIRE) | - |
-| Hydratation | 2,5 L H / 2,0 L F | PROVISOIRE | nutritionniste |
+| Hydratation | 2,5 L H / 2,0 L F (apport adéquat en eau totale : boissons + aliments ; conditions tempérées, activité modérée ; valeurs par sexe seulement) | OK (EFSA 2010, EFSA J 8(3):1459, DOI 10.2903/j.efsa.2010.1459 ; valeurs lues dans le communiqué EFSA https://www.efsa.europa.eu/en/press/news/nda100326 ; le texte de l'avis (Wiley) est resté inaccessible : 403 ; la mention « eau totale » vient d'un résumé de recherche, à relire dans l'avis) | - |
 | B12 | AS 4 µg/j | OK | - |
 | Rendements de cuisson | - | NON SOURCÉ | nutritionniste |
 | Mapping Ciqual -> allergènes | filtre seul | NON SOURCÉ (fiabilité) | humain à chaque ingrédient |
 | Questions SCOFF (texte) | non reproduites | NON SOURCÉ (droit) | nutritionniste |
 | Exclusions E (toutes) | voir E | PROVISOIRE | nutritionniste + relecteur |
 
+## K. Paramètres du spec (pour le dev ; lot L0, 13/11/2026)
+Aucune de ces valeurs n'a de source primaire : ce sont des règles d'app prudentes (PROVISOIRE), à valider par `nutritionniste` puis `relecteur` si elles touchent la sécurité (marquées S). Une constante par ligne dans le code, avec renvoi à cette section.
+| Paramètre | Valeur | Statut | Justification |
+|---|---|---|---|
+| ALPHA_QUOTIDIEN | 0,1 | PROVISOIRE | EMA standard « trend weight » (~10 j) ; pesées quotidiennes |
+| ALPHA_HEBDO | 0,3 | PROVISOIRE | un point par semaine : réagit en ~3 semaines ; moins bruité qu'alpha 0,5 |
+| N_PESEES_MIN | 3 pesées sur 14 jours (recalage) ; pas de tendance affichée avant 3 points | PROVISOIRE (S) | cohérent avec A et D ; en dessous, « pas assez de données » |
+| N_SEMAINES_MIN | 3 semaines de pesées (>= 3 points) pour décider ; 2 semaines consécutives pour l'alerte de rythme | PROVISOIRE (S) | une pesée isolée ne décide jamais |
+| AJUSTEMENT_MAX | 150 kcal/j par semaine (jamais plus d'un ajustement par semaine) ; cumul limité à ±15 % du TDEE initial | PROVISOIRE (S) | borne la réaction au bruit ; 150-250 kcal/j déjà prévus en C |
+| AJUSTEMENT_JOUR_MAX | ±300 kcal d'écart par rapport à la moyenne du jour, jamais sous le plancher kcal | PROVISOIRE (S) | repris de B (variation par les glucides) |
+| COEF_JOUR (poids relatifs, normalisés pour une moyenne hebdomadaire exactement 1) | repos 0,92 ; léger 0,98 ; lourd/jambes 1,06 ; cardio long ou match 1,10 | PROVISOIRE | écarts modestes ; la fonction normalise, puis applique AJUSTEMENT_JOUR_MAX et les g/kg de B |
+| VAR_PROT | écart <= 10 % d'un jour à l'autre | PROVISOIRE | repris de B (protéines quasi constantes) |
+| ECHELLE_MIN / ECHELLE_MAX | 0,5 / 1,75 | PROVISOIRE | fixés par le spec (portion de base) |
+| TOL_MACRO | repas : kcal et protéines ±10 % de la cible du repas ; glucides et lipides ±15 % ; jour : kcal ±5 % | PROVISOIRE | rapproché de la règle des substitutions G (<= 10 %) ; quantités faciles arrondies à 5 g |
+| ECART_HASARD | pesée brute à plus de 1,5 kg de la tendance | PROVISOIRE | eau, sel, glycogène : 1-2 kg possibles (D) |
+| ALERTE_SAUT_KG | 2,0 kg d'une semaine à l'autre | PROVISOIRE (S) | aligné sur l'alerte poids brut > 2 kg/sem (J) ; message neutre « vérifie ta balance ou la saisie » |
+| Seuil de durée d'un jour lourd | séance prévue >= 75 min, ou jour jambes / grands groupes, ou 2 séances dans la journée | PROVISOIRE | règle d'app ; sert à choisir le type de jour de B |
+
 ## 7. À sourcer (restant)
-Texte complet ACSM/AND/DC 2016 et Burke 2011 (glucides) ; Slater 2019 et rythme de prise 0,25-0,5 %/sem (texte Iraki) ; texte EFSA caféine 2015 (relecture) ; rendements de cuisson (ANSES/Ciqual) ; EFSA eau 2010 ; recomposition corporelle ; position vitamine B12 en régime végétalien ; plafonds kcal et lissage (validation experte) ; recommandations de dépistage TCA à licence claire.
+Accès : PubMed et Wiley (EFSA) bloquent la lecture automatique ; Europe PMC fonctionne pour les résumés. Fait le 13/11/2026 : Mifflin 1990, Hall 2008 (7700 kcal/kg), EFSA eau (valeurs, via communiqué) passés en OK. Restent PROVISOIRE faute de texte lisible : ACSM/AND/DC 2016 (PMID 26891166 : le résumé ne donne aucun chiffre ; texte complet payant) et Burke 2011 ; mapping séances -> PAL (aucune source, règle d'app) ; plafonds de perte/prise, déficit, surplus +300, lissage (règles d'app).
+Texte complet ACSM/AND/DC 2016 et Burke 2011 (glucides) ; Slater 2019 et rythme de prise 0,25-0,5 %/sem (texte Iraki) ; texte EFSA caféine 2015 (relecture) ; rendements de cuisson (ANSES/Ciqual) ; texte de l'avis EFSA eau 2010 (mention « eau totale ») ; recomposition corporelle ; position vitamine B12 en régime végétalien ; plafonds kcal et lissage (validation experte) ; recommandations de dépistage TCA à licence claire.
