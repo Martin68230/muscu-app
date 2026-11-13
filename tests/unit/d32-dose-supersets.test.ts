@@ -33,6 +33,9 @@ const PROFIL_2 = input({ level: 'intermediaire', daysPerWeek: 4, sessionDuration
 const PROFIL_3 = input({ level: 'intermediaire', daysPerWeek: 3 }, eq(['halteres', 'elastique', 'chaise', 'poids_du_corps', 'tapis']), ['perte_gras', 'cardio'], { seanceCardio: true });
 // 06/11/2026 : profil 4 avec la case « Ancrage de porte » cochée (sans elle, le tirage à l'élastique ancré en haut d'une porte n'est plus proposé et la paire P1 ne se forme pas).
 const PROFIL_4 = input({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(['elastique', 'ancrage_porte', 'chaise', 'poids_du_corps', 'tapis']), ['sport']);
+// 13/11/2026 : la durée estimée compte les 2 côtés des variantes par côté (la montée sur marche de la séance B n'était comptée qu'une fois) ; à 45 min la séance B est pleine
+// avec ses exercices à un côté et n'a plus la place du tirage_2 : la propriété « paire P1 reformée après le placement final » se vérifie donc à 60 min (durée choisie respectée).
+const PROFIL_4_60 = { ...PROFIL_4, profile: { ...PROFIL_4.profile, sessionDurationMin: 60 } };
 const PROFIL_6 = input({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle' }, salle, ['muscle']);
 const gen = (i: GeneratorInput): GenProgram => {
   const r = generateProgram(i);
@@ -106,7 +109,7 @@ describe('D32-1 : limites de dose des fiches', () => {
 
 describe('D32-2 : paires retentées après le placement final', () => {
   it('profil 4 (volley, intermédiaire, maison) : la séance B reçoit sa paire P1 (tirage_2 ajouté après la 1re formation)', () => {
-    const p = gen(PROFIL_4);
+    const p = gen(PROFIL_4_60);
     const b = p.sessions.find((s) => s.label === 'B')!;
     expect(pairsOf(b)).toContain('B-P1');
     const pair = b.exercises.filter((e) => e.supersetGroup === 'B-P1');
@@ -132,7 +135,8 @@ describe('D32-2 : paires retentées après le placement final', () => {
     expect(pairsOf(gen(PROFIL_4).sessions.find((s) => s.label === 'A')!)).toEqual([]);
   });
   it('le temps gagné par la paire est compté dans la durée affichée', () => {
-    const b = gen(PROFIL_4).sessions.find((s) => s.label === 'B')!;
+    const b = gen(PROFIL_4_60).sessions.find((s) => s.label === 'B')!;
+    expect(pairsOf(b).length).toBeGreaterThan(0);
     const dur: DurSession = {
       label: b.label, days: 3, level: 'intermediaire', pregnant: false, exercises: b.exercises, e1Sec: b.warmup.generalSec, e2Count: b.warmup.mobility.length,
     };
