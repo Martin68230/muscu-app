@@ -26,9 +26,12 @@ function fail(msg) {
   process.exit(1);
 }
 
+const ENT = { '&apos;': "'", '&amp;': '&', '&quot;': '"', '&lt;': '<', '&gt;': '>' };
+const decode = (s) => s.replace(/&(apos|amp|quot|lt|gt);/g, (m) => ENT[m]);
+
 const tag = (line, name) => {
   const m = line.match(new RegExp(`<${name}>\\s*([^<]*?)\\s*</${name}>`));
-  return m ? m[1] : null;
+  return m ? decode(m[1]) : null;
 };
 
 /** « 12,5 » -> 12.5 ; « < 0,5 » -> 0 (borne haute inconnue : traité comme 0, marqué) ; « traces » -> 0 ; « - » ou vide -> null. */
