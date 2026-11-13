@@ -1,278 +1,4248 @@
 [
-  {"code":"9100","nom":"Riz blanc","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9119","nom":"Riz basmati","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9102","nom":"Riz complet","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9101","nom":"Riz étuvé","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9810","nom":"Pâtes sèches","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9870","nom":"Pâtes complètes","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9874","nom":"Pâtes sans gluten","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9821","nom":"Pâtes aux œufs","famille":"feculent","rayon":"feculents","allergenes":["gluten","oeufs"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten","vegetalien"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9610","nom":"Semoule de blé dur","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9690","nom":"Boulgour","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9681","nom":"Couscous (graine)","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9080","nom":"Blé précuit (type Ebly)","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9340","nom":"Quinoa","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9380","nom":"Sarrasin (graines)","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9321","nom":"Orge perlée","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9614","nom":"Polenta précuite","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"32140","nom":"Flocons d'avoine","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"4008","nom":"Pomme de terre","famille":"feculent","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":2500,"garde_manger":false,"perissable":true},
-  {"code":"4023","nom":"Pomme de terre nouvelle","famille":"feculent","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":true},
-  {"code":"4101","nom":"Patate douce","famille":"feculent","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":300},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"7007","nom":"Baguette de tradition","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":{"label":"baguette","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"7110","nom":"Pain complet","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"7100","nom":"Pain de campagne","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"7180","nom":"Pain pita","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":{"label":"pain","grammes":60},"conditionnement_g":6,"garde_manger":false,"perissable":true},
-  {"code":"7815","nom":"Tortilla de blé","famille":"feculent","rayon":"feculents","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":{"label":"tortilla","grammes":60},"conditionnement_g":8,"garde_manger":false,"perissable":true},
-  {"code":"7813","nom":"Tortilla de maïs","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":8,"garde_manger":false,"perissable":true},
-  {"code":"7352","nom":"Galette de riz soufflé complet","famille":"feculent","rayon":"feculents","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"galette","grammes":9},"conditionnement_g":130,"garde_manger":false,"perissable":false},
-  {"code":"9436","nom":"Farine de blé T55","famille":"feculent","rayon":"epicerie","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9435","nom":"Farine de blé T65","famille":"feculent","rayon":"epicerie","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9480","nom":"Farine d'épeautre","famille":"feculent","rayon":"epicerie","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"9540","nom":"Farine de sarrasin","famille":"feculent","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9520","nom":"Farine de riz","famille":"feculent","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"9580","nom":"Farine de pois chiche","famille":"feculent","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20585","nom":"Lentilles vertes sèches","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20586","nom":"Lentilles blondes sèches","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20535","nom":"Lentilles corail sèches","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20516","nom":"Pois chiches secs","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20501","nom":"Haricots blancs secs","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20525","nom":"Haricots rouges secs","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20515","nom":"Pois cassés secs","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20518","nom":"Fèves sèches","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20532","nom":"Pois chiches en conserve","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20524","nom":"Haricots rouges en conserve","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20511","nom":"Haricots blancs en conserve","famille":"proteine_vegetale","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20901","nom":"Graines de soja","famille":"proteine_vegetale","rayon":"epicerie","allergenes":["soja"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20904","nom":"Tofu nature","famille":"proteine_vegetale","rayon":"laitiers_oeufs","allergenes":["soja"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"20917","nom":"Tempeh","famille":"proteine_vegetale","rayon":"laitiers_oeufs","allergenes":["soja"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"36017","nom":"Filet de poulet","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36019","nom":"Haut de cuisse de poulet","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36024","nom":"Cuisse de poulet","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36022","nom":"Pilon de poulet","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36020","nom":"Poulet entier","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36304","nom":"Escalope de dinde","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36307","nom":"Cuisse de dinde","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"36206","nom":"Magret de canard","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"magret","grammes":350},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"34001","nom":"Lapin","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6250","nom":"Steak haché 5 % MG","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"steak","grammes":125},"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"6252","nom":"Steak haché 10 % MG","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"steak","grammes":125},"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"6254","nom":"Steak haché 15 % MG","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"steak","grammes":125},"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"6206","nom":"Rumsteck de bœuf","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6212","nom":"Bavette de bœuf","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6270","nom":"Paleron de bœuf","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6201","nom":"Steak de bœuf","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6202","nom":"Macreuse de bœuf","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6521","nom":"Escalope de veau","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6522","nom":"Noix de veau","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"6536","nom":"Steak haché de veau 15 % MG","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"steak","grammes":100},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"28204","nom":"Filet mignon de porc","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien","sans_porc","halal"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"28100","nom":"Côte de porc","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien","sans_porc","halal"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"28300","nom":"Rôti de porc","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien","sans_porc","halal"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"28302","nom":"Échine de porc","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien","sans_porc","halal"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"28475","nom":"Porc haché maigre 10 % MG","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien","sans_porc","halal"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"21502","nom":"Gigot d'agneau","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"21504","nom":"Épaule d'agneau","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26036","nom":"Saumon","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"pavé","grammes":125},"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"26043","nom":"Cabillaud","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"pavé","grammes":120},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26044","nom":"Merlu","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"pavé","grammes":120},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26134","nom":"Lieu noir","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"pavé","grammes":120},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26129","nom":"Colin (lieu jaune)","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"pavé","grammes":120},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26053","nom":"Thon","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"pavé","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"27009","nom":"Truite arc-en-ciel","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"truite","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26051","nom":"Maquereau","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26065","nom":"Sardine","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26011","nom":"Hareng","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26088","nom":"Dorade royale d'élevage","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26072","nom":"Bar (loup)","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26095","nom":"Merlan","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"27019","nom":"Tilapia","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26130","nom":"Julienne","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26048","nom":"Filet de merlu surgelé","famille":"proteine_animale","rayon":"surgeles","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"filet","grammes":120},"conditionnement_g":800,"garde_manger":false,"perissable":false},
-  {"code":"26047","nom":"Lieu noir surgelé","famille":"proteine_animale","rayon":"surgeles","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"filet","grammes":120},"conditionnement_g":800,"garde_manger":false,"perissable":false},
-  {"code":"10021","nom":"Crevettes","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["crustaces"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"10038","nom":"Crevettes surgelées","famille":"proteine_animale","rayon":"surgeles","allergenes":["crustaces"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"10014","nom":"Moules","famille":"proteine_animale","rayon":"viandes_poissons","allergenes":["mollusques"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"26039","nom":"Thon au naturel en conserve","famille":"proteine_animale","rayon":"epicerie","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"boîte","grammes":112},"conditionnement_g":140,"garde_manger":false,"perissable":false},
-  {"code":"26181","nom":"Thon albacore au naturel en conserve","famille":"proteine_animale","rayon":"epicerie","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"boîte","grammes":112},"conditionnement_g":140,"garde_manger":false,"perissable":false},
-  {"code":"26040","nom":"Sardines à l'huile d'olive en conserve","famille":"proteine_animale","rayon":"epicerie","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"boîte","grammes":95},"conditionnement_g":135,"garde_manger":false,"perissable":false},
-  {"code":"26119","nom":"Saumon en conserve","famille":"proteine_animale","rayon":"epicerie","allergenes":["poissons"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetarien","vegetalien"],"unite_achat":{"label":"boîte","grammes":105},"conditionnement_g":130,"garde_manger":false,"perissable":false},
-  {"code":"22000","nom":"Œufs","famille":"proteine_animale","rayon":"laitiers_oeufs","allergenes":["oeufs"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien"],"unite_achat":{"label":"œuf","grammes":55},"conditionnement_g":330,"garde_manger":false,"perissable":true},
-  {"code":"22001","nom":"Blanc d'œuf","famille":"proteine_animale","rayon":"laitiers_oeufs","allergenes":["oeufs"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien"],"unite_achat":{"label":"blanc","grammes":33},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"19041","nom":"Lait demi-écrémé UHT","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":true},
-  {"code":"19050","nom":"Lait écrémé UHT","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":true},
-  {"code":"19023","nom":"Lait entier UHT","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":true},
-  {"code":"19054","nom":"Lait écrémé en poudre","famille":"laitage","rayon":"epicerie","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"19593","nom":"Yaourt nature","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":{"label":"pot","grammes":125},"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"19594","nom":"Yaourt nature 0 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":{"label":"pot","grammes":125},"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"19644","nom":"Fromage blanc 0 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"19646","nom":"Fromage blanc 2-3 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"19711","nom":"Fromage blanc 7-8 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"19639","nom":"Faisselle 0 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":true},
-  {"code":"19663","nom":"Petit-suisse 0 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":{"label":"pot","grammes":60},"conditionnement_g":240,"garde_manger":false,"perissable":true},
-  {"code":"19585","nom":"Ricotta","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"19590","nom":"Mozzarella","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":{"label":"boule","grammes":125},"conditionnement_g":125,"garde_manger":false,"perissable":true},
-  {"code":"12115","nom":"Emmental","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"12118","nom":"Emmental râpé","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"12110","nom":"Comté","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"12120","nom":"Parmesan","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":100,"garde_manger":false,"perissable":true},
-  {"code":"12066","nom":"Feta","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"12805","nom":"Fromage de chèvre frais","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":150,"garde_manger":false,"perissable":true},
-  {"code":"12068","nom":"Fromage frais à tartiner nature","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":150,"garde_manger":false,"perissable":true},
-  {"code":"19410","nom":"Crème épaisse 30 % MG","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"19431","nom":"Crème légère épaisse","famille":"laitage","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"16400","nom":"Beurre doux","famille":"corps_gras","rayon":"laitiers_oeufs","allergenes":["lait"],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien","sans_lactose"],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"17270","nom":"Huile d'olive vierge extra","famille":"corps_gras","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":true,"perissable":false},
-  {"code":"17130","nom":"Huile de colza","famille":"corps_gras","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":true,"perissable":false},
-  {"code":"17440","nom":"Huile de tournesol","famille":"corps_gras","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":true,"perissable":false},
-  {"code":"17400","nom":"Huile de sésame","famille":"corps_gras","rayon":"epicerie","allergenes":["sesame"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":true,"perissable":false},
-  {"code":"17220","nom":"Huile de noix","famille":"corps_gras","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":true,"perissable":false},
-  {"code":"18041","nom":"Lait de coco","famille":"corps_gras","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"15203","nom":"Purée de sésame (tahin)","famille":"corps_gras","rayon":"epicerie","allergenes":["sesame"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":300,"garde_manger":false,"perissable":false},
-  {"code":"15202","nom":"Beurre de cacahuète","famille":"corps_gras","rayon":"epicerie","allergenes":["arachides"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":350,"garde_manger":false,"perissable":false},
-  {"code":"18900","nom":"Boisson au soja nature","famille":"autre","rayon":"epicerie","allergenes":["soja"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"18899","nom":"Boisson à l'avoine nature","famille":"autre","rayon":"epicerie","allergenes":["gluten"],"statut_allergenes":"a_verifier","regimes_incompatibles":["sans_gluten"],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"18107","nom":"Boisson à l'amande nature","famille":"autre","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"15000","nom":"Amandes","famille":"autre","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":false},
-  {"code":"15004","nom":"Noisettes","famille":"autre","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":false},
-  {"code":"15005","nom":"Noix","famille":"autre","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":false},
-  {"code":"15054","nom":"Noix de cajou","famille":"autre","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":false},
-  {"code":"15044","nom":"Pistaches","famille":"autre","rayon":"epicerie","allergenes":["fruits_a_coque"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":200,"garde_manger":false,"perissable":false},
-  {"code":"15001","nom":"Cacahuètes","famille":"autre","rayon":"epicerie","allergenes":["arachides"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"15010","nom":"Graines de sésame","famille":"autre","rayon":"epicerie","allergenes":["sesame"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"15011","nom":"Graines de tournesol","famille":"autre","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"15034","nom":"Graines de lin","famille":"autre","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"15047","nom":"Graines de chia","famille":"autre","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"15064","nom":"Graines de courge","famille":"autre","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"13039","nom":"Pomme","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13037","nom":"Poire","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13005","nom":"Banane","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":100},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13034","nom":"Orange","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":130},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13024","nom":"Clémentine","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":60},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13009","nom":"Citron","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":70},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13067","nom":"Citron vert","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":50},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13040","nom":"Pamplemousse","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":200},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13021","nom":"Kiwi","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":70},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13014","nom":"Fraises","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"barquette","grammes":250},"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"13015","nom":"Framboises","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"barquette","grammes":125},"conditionnement_g":125,"garde_manger":false,"perissable":true},
-  {"code":"13028","nom":"Myrtilles","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"barquette","grammes":125},"conditionnement_g":125,"garde_manger":false,"perissable":true},
-  {"code":"13029","nom":"Mûres","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"barquette","grammes":125},"conditionnement_g":125,"garde_manger":false,"perissable":true},
-  {"code":"13045","nom":"Raisin noir","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"13044","nom":"Raisin blanc","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"13043","nom":"Pêche","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13148","nom":"Nectarine","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13000","nom":"Abricot","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":45},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13100","nom":"Prune","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":40},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13027","nom":"Mirabelles","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"13008","nom":"Cerises","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"13012","nom":"Figue","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":50},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13026","nom":"Melon","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":600},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13036","nom":"Pastèque","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13002","nom":"Ananas","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":900},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13025","nom":"Mangue","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":300},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13004","nom":"Avocat","famille":"fruit","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":140},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"13011","nom":"Dattes","famille":"fruit","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false},
-  {"code":"13132","nom":"Myrtilles surgelées","famille":"fruit","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":300,"garde_manger":false,"perissable":false},
-  {"code":"13136","nom":"Framboises surgelées","famille":"fruit","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":300,"garde_manger":false,"perissable":false},
-  {"code":"13150","nom":"Mûres surgelées","famille":"fruit","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":300,"garde_manger":false,"perissable":false},
-  {"code":"20034","nom":"Oignon (jaune)","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":100},"conditionnement_g":1000,"garde_manger":false,"perissable":true},
-  {"code":"20238","nom":"Oignon rouge","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":100},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20097","nom":"Échalote","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":30},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"11000","nom":"Ail","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"tête","grammes":50},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20009","nom":"Carotte","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":true},
-  {"code":"20039","nom":"Poireau","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":200},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20020","nom":"Courgette","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20053","nom":"Aubergine","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":300},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20087","nom":"Poivron rouge","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":180},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20085","nom":"Poivron vert","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":180},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20168","nom":"Poivron jaune","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":180},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20276","nom":"Tomate","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":120},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20172","nom":"Tomates cerises","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"barquette","grammes":250},"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"20019","nom":"Concombre","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":350},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20031","nom":"Laitue","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20123","nom":"Batavia","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20171","nom":"Laitue romaine","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20099","nom":"Mâche","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"sachet","grammes":125},"conditionnement_g":125,"garde_manger":false,"perissable":true},
-  {"code":"20217","nom":"Roquette","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"sachet","grammes":100},"conditionnement_g":100,"garde_manger":false,"perissable":true},
-  {"code":"20059","nom":"Épinards","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"20270","nom":"Jeunes pousses d'épinard","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"sachet","grammes":125},"conditionnement_g":125,"garde_manger":false,"perissable":true},
-  {"code":"20016","nom":"Chou-fleur","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":600},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20057","nom":"Brocoli","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":400},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20069","nom":"Chou vert","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":900},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20014","nom":"Chou rouge","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":900},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20116","nom":"Chou blanc","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":900},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20058","nom":"Choux de Bruxelles","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"20346","nom":"Chou kale","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"sachet","grammes":200},"conditionnement_g":200,"garde_manger":false,"perissable":true},
-  {"code":"20167","nom":"Chou chinois (pé-tsaï)","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":600},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20056","nom":"Champignons de Paris","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"barquette","grammes":250},"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"20061","nom":"Haricots verts","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"20072","nom":"Petits pois frais","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"20173","nom":"Pois gourmands","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":true},
-  {"code":"20064","nom":"Navet","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20045","nom":"Radis","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"botte","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20091","nom":"Betterave rouge","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":150},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20055","nom":"Céleri-rave","famille":"legume","rayon":"fruits_legumes","allergenes":["celeri"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":600},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20023","nom":"Céleri branche","famille":"legume","rayon":"fruits_legumes","allergenes":["celeri"],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":500},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20028","nom":"Fenouil","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":250},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20026","nom":"Endive","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":100},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20044","nom":"Potiron","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20138","nom":"Courge butternut","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":900},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20132","nom":"Potimarron","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":900},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20181","nom":"Panais","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20279","nom":"Asperges vertes","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"botte","grammes":500},"conditionnement_g":500,"garde_manger":false,"perissable":true},
-  {"code":"20004","nom":"Blette","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20090","nom":"Scarole","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pièce","grammes":300},"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20196","nom":"Topinambour","famille":"legume","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"20070","nom":"Haricots verts surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20204","nom":"Brocolis surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20082","nom":"Chou-fleur surgelé","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20083","nom":"Épinards hachés surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20084","nom":"Petits pois surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20208","nom":"Carottes surgelées","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20233","nom":"Maïs doux surgelé","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20101","nom":"Mélange de légumes surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20266","nom":"Légumes pour ratatouille surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20230","nom":"Courgettes surgelées","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20228","nom":"Champignons de Paris surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20267","nom":"Jardinière de légumes surgelée","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20265","nom":"Julienne de légumes surgelée","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20235","nom":"Oignons surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20236","nom":"Poireaux surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20206","nom":"Choux de Bruxelles surgelés","famille":"legume","rayon":"surgeles","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"20048","nom":"Tomates pelées en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20169","nom":"Tomates concassées en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20260","nom":"Coulis de tomate","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20170","nom":"Purée de tomate","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":500,"garde_manger":false,"perissable":false},
-  {"code":"20268","nom":"Double concentré de tomate","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":140,"garde_manger":false,"perissable":false},
-  {"code":"20066","nom":"Maïs doux en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":285,"garde_manger":false,"perissable":false},
-  {"code":"20062","nom":"Haricots verts en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20036","nom":"Petits pois en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20011","nom":"Champignons de Paris en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"20007","nom":"Carottes en conserve","famille":"legume","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":400,"garde_manger":false,"perissable":false},
-  {"code":"11003","nom":"Ciboulette fraîche","famille":"assaisonnement","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"botte","grammes":20},"conditionnement_g":20,"garde_manger":false,"perissable":true},
-  {"code":"11014","nom":"Persil frais","famille":"assaisonnement","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"botte","grammes":50},"conditionnement_g":50,"garde_manger":false,"perissable":true},
-  {"code":"11033","nom":"Basilic frais","famille":"assaisonnement","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"pot","grammes":30},"conditionnement_g":30,"garde_manger":false,"perissable":true},
-  {"code":"11027","nom":"Menthe fraîche","famille":"assaisonnement","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"botte","grammes":30},"conditionnement_g":30,"garde_manger":false,"perissable":true},
-  {"code":"11070","nom":"Thym frais","famille":"assaisonnement","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"botte","grammes":20},"conditionnement_g":20,"garde_manger":false,"perissable":true},
-  {"code":"11074","nom":"Gingembre frais","famille":"assaisonnement","rayon":"fruits_legumes","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":null,"garde_manger":false,"perissable":true},
-  {"code":"11058","nom":"Sel","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":750,"garde_manger":true,"perissable":false},
-  {"code":"11015","nom":"Poivre noir","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":50,"garde_manger":true,"perissable":false},
-  {"code":"11049","nom":"Paprika","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11042","nom":"Cumin","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11089","nom":"Curcuma","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11025","nom":"Cannelle","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11006","nom":"Gingembre en poudre","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11088","nom":"Piment de Cayenne","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11060","nom":"Herbes de Provence","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":20,"garde_manger":true,"perissable":false},
-  {"code":"11035","nom":"Origan séché","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":20,"garde_manger":true,"perissable":false},
-  {"code":"11038","nom":"Thym séché","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":20,"garde_manger":true,"perissable":false},
-  {"code":"11032","nom":"Basilic séché","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":20,"garde_manger":true,"perissable":false},
-  {"code":"11053","nom":"Laurier","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":10,"garde_manger":true,"perissable":false},
-  {"code":"11024","nom":"Persil séché","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":20,"garde_manger":true,"perissable":false},
-  {"code":"11023","nom":"Ail en poudre","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":40,"garde_manger":true,"perissable":false},
-  {"code":"11048","nom":"Noix de muscade","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":30,"garde_manger":true,"perissable":false},
-  {"code":"11057","nom":"Gousse de vanille","famille":"assaisonnement","rayon":"assaisonnements","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":{"label":"gousse","grammes":3},"conditionnement_g":null,"garde_manger":true,"perissable":false},
-  {"code":"31016","nom":"Sucre blanc","famille":"assaisonnement","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":1000,"garde_manger":false,"perissable":false},
-  {"code":"31017","nom":"Sucre roux","famille":"assaisonnement","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":[],"unite_achat":null,"conditionnement_g":750,"garde_manger":false,"perissable":false},
-  {"code":"31008","nom":"Miel","famille":"assaisonnement","rayon":"epicerie","allergenes":[],"statut_allergenes":"a_verifier","regimes_incompatibles":["vegetalien"],"unite_achat":null,"conditionnement_g":250,"garde_manger":false,"perissable":false}
+  {
+    "code": "9100",
+    "nom": "Riz blanc",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9119",
+    "nom": "Riz basmati",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9102",
+    "nom": "Riz complet",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9101",
+    "nom": "Riz étuvé",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9810",
+    "nom": "Pâtes sèches",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9870",
+    "nom": "Pâtes complètes",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9874",
+    "nom": "Pâtes sans gluten",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9821",
+    "nom": "Pâtes aux œufs",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "oeufs"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9610",
+    "nom": "Semoule de blé dur",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9690",
+    "nom": "Boulgour",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9681",
+    "nom": "Couscous (graine)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9080",
+    "nom": "Blé précuit (type Ebly)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9340",
+    "nom": "Quinoa",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9380",
+    "nom": "Sarrasin (graines)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9321",
+    "nom": "Orge perlée",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9614",
+    "nom": "Polenta précuite",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "32140",
+    "nom": "Flocons d'avoine",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "4008",
+    "nom": "Pomme de terre",
+    "famille": "feculent",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 2500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "4023",
+    "nom": "Pomme de terre nouvelle",
+    "famille": "feculent",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "4101",
+    "nom": "Patate douce",
+    "famille": "feculent",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 300
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7007",
+    "nom": "Baguette de tradition",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": {
+      "label": "baguette",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7110",
+    "nom": "Pain complet",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7100",
+    "nom": "Pain de campagne",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7180",
+    "nom": "Pain pita",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": {
+      "label": "pain",
+      "grammes": 60
+    },
+    "conditionnement_g": 6,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7815",
+    "nom": "Tortilla de blé",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": {
+      "label": "tortilla",
+      "grammes": 60
+    },
+    "conditionnement_g": 8,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7813",
+    "nom": "Tortilla de maïs",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 8,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7352",
+    "nom": "Galette de riz soufflé complet",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "galette",
+      "grammes": 9
+    },
+    "conditionnement_g": 130,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9436",
+    "nom": "Farine de blé T55",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9435",
+    "nom": "Farine de blé T65",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9480",
+    "nom": "Farine d'épeautre",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9540",
+    "nom": "Farine de sarrasin",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9520",
+    "nom": "Farine de riz",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9580",
+    "nom": "Farine de pois chiche",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20585",
+    "nom": "Lentilles vertes sèches",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20586",
+    "nom": "Lentilles blondes sèches",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20535",
+    "nom": "Lentilles corail sèches",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20516",
+    "nom": "Pois chiches secs",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20501",
+    "nom": "Haricots blancs secs",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20525",
+    "nom": "Haricots rouges secs",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20515",
+    "nom": "Pois cassés secs",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20518",
+    "nom": "Fèves sèches",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20532",
+    "nom": "Pois chiches en conserve",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20524",
+    "nom": "Haricots rouges en conserve",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20511",
+    "nom": "Haricots blancs en conserve",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20901",
+    "nom": "Graines de soja",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [
+      "soja"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20904",
+    "nom": "Tofu nature",
+    "famille": "proteine_vegetale",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "soja"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20917",
+    "nom": "Tempeh",
+    "famille": "proteine_vegetale",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "soja"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36017",
+    "nom": "Filet de poulet",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36019",
+    "nom": "Haut de cuisse de poulet",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36024",
+    "nom": "Cuisse de poulet",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36022",
+    "nom": "Pilon de poulet",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36020",
+    "nom": "Poulet entier",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36304",
+    "nom": "Escalope de dinde",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36307",
+    "nom": "Cuisse de dinde",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "36206",
+    "nom": "Magret de canard",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "magret",
+      "grammes": 350
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "34001",
+    "nom": "Lapin",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6250",
+    "nom": "Steak haché 5 % MG",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "steak",
+      "grammes": 125
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6252",
+    "nom": "Steak haché 10 % MG",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "steak",
+      "grammes": 125
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6254",
+    "nom": "Steak haché 15 % MG",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "steak",
+      "grammes": 125
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6206",
+    "nom": "Rumsteck de bœuf",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6212",
+    "nom": "Bavette de bœuf",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6270",
+    "nom": "Paleron de bœuf",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6201",
+    "nom": "Steak de bœuf",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6202",
+    "nom": "Macreuse de bœuf",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6521",
+    "nom": "Escalope de veau",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6522",
+    "nom": "Noix de veau",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "6536",
+    "nom": "Steak haché de veau 15 % MG",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "steak",
+      "grammes": 100
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28204",
+    "nom": "Filet mignon de porc",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28100",
+    "nom": "Côte de porc",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28300",
+    "nom": "Rôti de porc",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28302",
+    "nom": "Échine de porc",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28475",
+    "nom": "Porc haché maigre 10 % MG",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "21502",
+    "nom": "Gigot d'agneau",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "21504",
+    "nom": "Épaule d'agneau",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26036",
+    "nom": "Saumon",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "pavé",
+      "grammes": 125
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26043",
+    "nom": "Cabillaud",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "pavé",
+      "grammes": 120
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26044",
+    "nom": "Merlu",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "pavé",
+      "grammes": 120
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26134",
+    "nom": "Lieu noir",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "pavé",
+      "grammes": 120
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26129",
+    "nom": "Colin (lieu jaune)",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "pavé",
+      "grammes": 120
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26053",
+    "nom": "Thon",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "pavé",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "27009",
+    "nom": "Truite arc-en-ciel",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "truite",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26051",
+    "nom": "Maquereau",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26065",
+    "nom": "Sardine",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26011",
+    "nom": "Hareng",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26088",
+    "nom": "Dorade royale d'élevage",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26072",
+    "nom": "Bar (loup)",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26095",
+    "nom": "Merlan",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "27019",
+    "nom": "Tilapia",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26130",
+    "nom": "Julienne",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26048",
+    "nom": "Filet de merlu surgelé",
+    "famille": "proteine_animale",
+    "rayon": "surgeles",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "filet",
+      "grammes": 120
+    },
+    "conditionnement_g": 800,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "26047",
+    "nom": "Lieu noir surgelé",
+    "famille": "proteine_animale",
+    "rayon": "surgeles",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "filet",
+      "grammes": 120
+    },
+    "conditionnement_g": 800,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "10021",
+    "nom": "Crevettes",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "crustaces"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "10038",
+    "nom": "Crevettes surgelées",
+    "famille": "proteine_animale",
+    "rayon": "surgeles",
+    "allergenes": [
+      "crustaces"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "10014",
+    "nom": "Moules",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "mollusques"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "26039",
+    "nom": "Thon au naturel en conserve",
+    "famille": "proteine_animale",
+    "rayon": "epicerie",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte",
+      "grammes": 112
+    },
+    "conditionnement_g": 140,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "26181",
+    "nom": "Thon albacore au naturel en conserve",
+    "famille": "proteine_animale",
+    "rayon": "epicerie",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte",
+      "grammes": 112
+    },
+    "conditionnement_g": 140,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "26040",
+    "nom": "Sardines à l'huile d'olive en conserve",
+    "famille": "proteine_animale",
+    "rayon": "epicerie",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte",
+      "grammes": 95
+    },
+    "conditionnement_g": 135,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "26119",
+    "nom": "Saumon en conserve",
+    "famille": "proteine_animale",
+    "rayon": "epicerie",
+    "allergenes": [
+      "poissons"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte",
+      "grammes": 105
+    },
+    "conditionnement_g": 130,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "22000",
+    "nom": "Œufs",
+    "famille": "proteine_animale",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "oeufs"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "œuf",
+      "grammes": 55
+    },
+    "conditionnement_g": 330,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "22001",
+    "nom": "Blanc d'œuf",
+    "famille": "proteine_animale",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "oeufs"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "blanc",
+      "grammes": 33
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19041",
+    "nom": "Lait demi-écrémé UHT",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19050",
+    "nom": "Lait écrémé UHT",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19023",
+    "nom": "Lait entier UHT",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19054",
+    "nom": "Lait écrémé en poudre",
+    "famille": "laitage",
+    "rayon": "epicerie",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "19593",
+    "nom": "Yaourt nature",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 125
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19594",
+    "nom": "Yaourt nature 0 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 125
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19644",
+    "nom": "Fromage blanc 0 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19646",
+    "nom": "Fromage blanc 2-3 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19711",
+    "nom": "Fromage blanc 7-8 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19639",
+    "nom": "Faisselle 0 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19663",
+    "nom": "Petit-suisse 0 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 60
+    },
+    "conditionnement_g": 240,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19590",
+    "nom": "Mozzarella",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "boule",
+      "grammes": 125
+    },
+    "conditionnement_g": 125,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12115",
+    "nom": "Emmental",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12118",
+    "nom": "Emmental râpé",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12110",
+    "nom": "Comté",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12120",
+    "nom": "Parmesan",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 100,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12066",
+    "nom": "Feta",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12805",
+    "nom": "Fromage de chèvre frais",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 150,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "12068",
+    "nom": "Fromage frais à tartiner nature",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 150,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19410",
+    "nom": "Crème épaisse 30 % MG",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "19431",
+    "nom": "Crème légère épaisse",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "16400",
+    "nom": "Beurre doux",
+    "famille": "corps_gras",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "17270",
+    "nom": "Huile d'olive vierge extra",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "17130",
+    "nom": "Huile de colza",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "17440",
+    "nom": "Huile de tournesol",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "17400",
+    "nom": "Huile de sésame",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [
+      "sesame"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "17220",
+    "nom": "Huile de noix",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "18041",
+    "nom": "Lait de coco",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15203",
+    "nom": "Purée de sésame (tahin)",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [
+      "sesame"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 300,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15202",
+    "nom": "Beurre de cacahuète",
+    "famille": "corps_gras",
+    "rayon": "epicerie",
+    "allergenes": [
+      "arachides"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 350,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "18900",
+    "nom": "Boisson au soja nature",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "soja"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "18899",
+    "nom": "Boisson à l'avoine nature",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "18107",
+    "nom": "Boisson à l'amande nature",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15000",
+    "nom": "Amandes",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15004",
+    "nom": "Noisettes",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15005",
+    "nom": "Noix",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15054",
+    "nom": "Noix de cajou",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15044",
+    "nom": "Pistaches",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "fruits_a_coque"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15001",
+    "nom": "Cacahuètes",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "arachides"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15010",
+    "nom": "Graines de sésame",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "sesame"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15011",
+    "nom": "Graines de tournesol",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15034",
+    "nom": "Graines de lin",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15047",
+    "nom": "Graines de chia",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "15064",
+    "nom": "Graines de courge",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "13039",
+    "nom": "Pomme",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13037",
+    "nom": "Poire",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13005",
+    "nom": "Banane",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 100
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13034",
+    "nom": "Orange",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 130
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13024",
+    "nom": "Clémentine",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 60
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13009",
+    "nom": "Citron",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 70
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13067",
+    "nom": "Citron vert",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 50
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13040",
+    "nom": "Pamplemousse",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 200
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13021",
+    "nom": "Kiwi",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 70
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13014",
+    "nom": "Fraises",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13015",
+    "nom": "Framboises",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 125
+    },
+    "conditionnement_g": 125,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13028",
+    "nom": "Myrtilles",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 125
+    },
+    "conditionnement_g": 125,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13029",
+    "nom": "Mûres",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 125
+    },
+    "conditionnement_g": 125,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13045",
+    "nom": "Raisin noir",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13044",
+    "nom": "Raisin blanc",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13043",
+    "nom": "Pêche",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13148",
+    "nom": "Nectarine",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13000",
+    "nom": "Abricot",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 45
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13100",
+    "nom": "Prune",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 40
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13027",
+    "nom": "Mirabelles",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13008",
+    "nom": "Cerises",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13012",
+    "nom": "Figue",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 50
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13026",
+    "nom": "Melon",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 600
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13036",
+    "nom": "Pastèque",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13002",
+    "nom": "Ananas",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 900
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13025",
+    "nom": "Mangue",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 300
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13004",
+    "nom": "Avocat",
+    "famille": "fruit",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 140
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13011",
+    "nom": "Dattes",
+    "famille": "fruit",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20034",
+    "nom": "Oignon (jaune)",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 100
+    },
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20238",
+    "nom": "Oignon rouge",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 100
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20097",
+    "nom": "Échalote",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 30
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11000",
+    "nom": "Ail",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "tête",
+      "grammes": 50
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20009",
+    "nom": "Carotte",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20039",
+    "nom": "Poireau",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 200
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20020",
+    "nom": "Courgette",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20053",
+    "nom": "Aubergine",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 300
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20087",
+    "nom": "Poivron rouge",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 180
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20085",
+    "nom": "Poivron vert",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 180
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20168",
+    "nom": "Poivron jaune",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 180
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20276",
+    "nom": "Tomate",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 120
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20172",
+    "nom": "Tomates cerises",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20019",
+    "nom": "Concombre",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 350
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20031",
+    "nom": "Laitue",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20123",
+    "nom": "Batavia",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20171",
+    "nom": "Laitue romaine",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20099",
+    "nom": "Mâche",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "sachet",
+      "grammes": 125
+    },
+    "conditionnement_g": 125,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20217",
+    "nom": "Roquette",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "sachet",
+      "grammes": 100
+    },
+    "conditionnement_g": 100,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20059",
+    "nom": "Épinards",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20270",
+    "nom": "Jeunes pousses d'épinard",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "sachet",
+      "grammes": 125
+    },
+    "conditionnement_g": 125,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20016",
+    "nom": "Chou-fleur",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 600
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20057",
+    "nom": "Brocoli",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 400
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20069",
+    "nom": "Chou vert",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 900
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20014",
+    "nom": "Chou rouge",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 900
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20116",
+    "nom": "Chou blanc",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 900
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20058",
+    "nom": "Choux de Bruxelles",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20346",
+    "nom": "Chou kale",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "sachet",
+      "grammes": 200
+    },
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20167",
+    "nom": "Chou chinois (pé-tsaï)",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 600
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20056",
+    "nom": "Champignons de Paris",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20061",
+    "nom": "Haricots verts",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20072",
+    "nom": "Petits pois frais",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20173",
+    "nom": "Pois gourmands",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20064",
+    "nom": "Navet",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20045",
+    "nom": "Radis",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "botte",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20091",
+    "nom": "Betterave rouge",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 150
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20055",
+    "nom": "Céleri-rave",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [
+      "celeri"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 600
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20023",
+    "nom": "Céleri branche",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [
+      "celeri"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 500
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20028",
+    "nom": "Fenouil",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 250
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20026",
+    "nom": "Endive",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 100
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20044",
+    "nom": "Potiron",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20138",
+    "nom": "Courge butternut",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 900
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20132",
+    "nom": "Potimarron",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 900
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20181",
+    "nom": "Panais",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20279",
+    "nom": "Asperges vertes",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "botte",
+      "grammes": 500
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20004",
+    "nom": "Blette",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20090",
+    "nom": "Scarole",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pièce",
+      "grammes": 300
+    },
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20196",
+    "nom": "Topinambour",
+    "famille": "legume",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "20070",
+    "nom": "Haricots verts surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20204",
+    "nom": "Brocolis surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20082",
+    "nom": "Chou-fleur surgelé",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20083",
+    "nom": "Épinards hachés surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20084",
+    "nom": "Petits pois surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20208",
+    "nom": "Carottes surgelées",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20233",
+    "nom": "Maïs doux surgelé",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20101",
+    "nom": "Mélange de légumes surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20266",
+    "nom": "Légumes pour ratatouille surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20230",
+    "nom": "Courgettes surgelées",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20228",
+    "nom": "Champignons de Paris surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20267",
+    "nom": "Jardinière de légumes surgelée",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20265",
+    "nom": "Julienne de légumes surgelée",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20235",
+    "nom": "Oignons surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20236",
+    "nom": "Poireaux surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20206",
+    "nom": "Choux de Bruxelles surgelés",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20048",
+    "nom": "Tomates pelées en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20169",
+    "nom": "Tomates concassées en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20260",
+    "nom": "Coulis de tomate",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20170",
+    "nom": "Purée de tomate",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20268",
+    "nom": "Double concentré de tomate",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 140,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20066",
+    "nom": "Maïs doux en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 285,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20062",
+    "nom": "Haricots verts en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20036",
+    "nom": "Petits pois en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20011",
+    "nom": "Champignons de Paris en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20007",
+    "nom": "Carottes en conserve",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11003",
+    "nom": "Ciboulette fraîche",
+    "famille": "assaisonnement",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "botte",
+      "grammes": 20
+    },
+    "conditionnement_g": 20,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11014",
+    "nom": "Persil frais",
+    "famille": "assaisonnement",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "botte",
+      "grammes": 50
+    },
+    "conditionnement_g": 50,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11033",
+    "nom": "Basilic frais",
+    "famille": "assaisonnement",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 30
+    },
+    "conditionnement_g": 30,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11027",
+    "nom": "Menthe fraîche",
+    "famille": "assaisonnement",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "botte",
+      "grammes": 30
+    },
+    "conditionnement_g": 30,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11070",
+    "nom": "Thym frais",
+    "famille": "assaisonnement",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "botte",
+      "grammes": 20
+    },
+    "conditionnement_g": 20,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11074",
+    "nom": "Gingembre frais",
+    "famille": "assaisonnement",
+    "rayon": "fruits_legumes",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": null,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "11058",
+    "nom": "Sel",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 750,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11015",
+    "nom": "Poivre noir",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 50,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11049",
+    "nom": "Paprika",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11042",
+    "nom": "Cumin",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11089",
+    "nom": "Curcuma",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11025",
+    "nom": "Cannelle",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11006",
+    "nom": "Gingembre en poudre",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11088",
+    "nom": "Piment de Cayenne",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11060",
+    "nom": "Herbes de Provence",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 20,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11035",
+    "nom": "Origan séché",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 20,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11038",
+    "nom": "Thym séché",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 20,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11032",
+    "nom": "Basilic séché",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 20,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11053",
+    "nom": "Laurier",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 10,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11024",
+    "nom": "Persil séché",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 20,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11023",
+    "nom": "Ail en poudre",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 40,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "11048",
+    "nom": "Noix de muscade",
+    "famille": "assaisonnement",
+    "rayon": "assaisonnements",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 30,
+    "garde_manger": true,
+    "perissable": false
+  },
+  {
+    "code": "31016",
+    "nom": "Sucre blanc",
+    "famille": "assaisonnement",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "31017",
+    "nom": "Sucre roux",
+    "famille": "assaisonnement",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 750,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "31008",
+    "nom": "Miel",
+    "famille": "assaisonnement",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetalien"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  }
 ]

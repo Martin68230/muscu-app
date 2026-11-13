@@ -17,7 +17,7 @@ const INGR = path.join(ROOT, 'knowledge', 'aliments', 'ingredients.json');
 const OUT = path.join(ROOT, 'public', 'data', 'aliments.json');
 
 // Constantes Ciqual retenues (const.xml) : g ou kcal pour 100 g.
-const CONST = { 328: 'kcal', 25003: 'prot', 25000: 'protJones', 31000: 'gluc', 32000: 'sucres', 40000: 'lip', 40302: 'ags', 34100: 'fibres', 10004: 'sel' };
+const CONST = { 328: 'kcal', 333: 'kcalJones', 25003: 'prot', 25000: 'protJones', 31000: 'gluc', 32000: 'sucres', 40000: 'lip', 40302: 'ags', 34100: 'fibres', 10004: 'sel' };
 const ALLERGENS = ['gluten', 'crustaces', 'oeufs', 'poissons', 'arachides', 'soja', 'lait', 'fruits_a_coque', 'celeri', 'moutarde', 'sesame', 'sulfites', 'lupin', 'mollusques'];
 const STATUTS = ['valide', 'a_verifier', 'inconnu'];
 
@@ -103,7 +103,8 @@ const out = [];
 for (const [code, it] of wanted) {
   const m = macros.get(code);
   const prot = m.prot ?? m.protJones;
-  for (const [label, v] of [['kcal', m.kcal], ['protéines', prot], ['glucides', m.gluc], ['lipides', m.lip]]) {
+  const kcal = m.kcal ?? m.kcalJones;
+  for (const [label, v] of [['kcal', kcal], ['protéines', prot], ['glucides', m.gluc], ['lipides', m.lip]]) {
     if (v === undefined) errors.push(`${code} (${names.get(code)}) : ${label} absent dans Ciqual`);
   }
   out.push({
@@ -120,7 +121,7 @@ for (const [code, it] of wanted) {
     gardeManger: !!it.garde_manger,
     perissable: !!it.perissable,
     // pour 100 g, cru ou tel que vendu (voir nomCiqual)
-    kcal: m.kcal, prot, gluc: m.gluc, lip: m.lip,
+    kcal, prot, gluc: m.gluc, lip: m.lip,
     fibres: m.fibres ?? null, sucres: m.sucres ?? null, ags: m.ags ?? null, sel: m.sel ?? null,
   });
 }
