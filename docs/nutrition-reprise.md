@@ -29,3 +29,9 @@ Passage unique du 13/11/2026 : 4 points bloquants et 6 réserves, tous corrigés
 - Alertes : gel des déficits aligné sur les règles E ; recalage borné à ± 15 % avec apport déclaré ; plafond de rythme selon l'IMC.
 - Règles : protéines en déficit 2,2-3,0 g/kg (borne 2,0 retirée), contradiction IMC 18,5-22 levée, caféine 200 mg si grossesse, valeurs non sourcées (poissons gras, 5 fruits et légumes, rendements, standardisation de la pesée) marquées NON SOURCÉES, halal et casher = préférences déclarées.
 - Non rouvert par manque d'accès : texte complet EUR-Lex, constantes Mifflin et valeur d'eau (à relire en L0). Le recalage du spec n'a pas été re-relu par un agent : à contrôler en L0.
+
+## État du code (13/11/2026, soir)
+- Codé et testé (30 tests, relu par le relecteur, corrections faites) : `src/nutrition/` allergens, config, weight-trend, needs, shopping ; tests `tests/unit/nutrition-*.test.ts`.
+- Table Ciqual 2025 (Licence Ouverte 2.0, DOI 10.57745/RDMHWY) téléchargée HORS dépôt dans `../donnees-externes/ciqual-2025/` (4 XML, sommes MD5 vérifiées) : étape suivante `tools/build-aliments.mjs`.
+- Demande du 13/11 : courses optimisées (spec §7.6) à coder avec le générateur de plan (lot L5).
+- Reste : alertes §5.6 (rythme, saut, gel des déficits), recalage §5.5, jours de la semaine (`day-targets.ts`), recettes, plan, écrans, modèle de données v5 (en attente de feu vert pour toucher `src/data/model.ts`).
