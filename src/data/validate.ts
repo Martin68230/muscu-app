@@ -137,6 +137,43 @@ export const SPECS: Record<TableName, Spec> = {
     startDate: 'string?',
     endDate: 'string?',
   },
+  nutritionProfiles: {
+    birthYear: 'number?',
+    sexForFormula: 'string?',
+    activityLevel: 'string?',
+    screening: 'object',
+    screeningResult: 'string?',
+    screenedAt: 'string?',
+    allergens: 'array',
+    allergenFree: 'array',
+    severeAllergy: 'boolean',
+    diet: 'array',
+    glutenStrict: 'boolean',
+    mealsPerDay: 'number',
+    mealTimes: 'array',
+    maxCookMin: 'number?',
+    appliances: 'array',
+    budget: 'string',
+    batchCooking: 'boolean',
+    optimizeShopping: 'boolean',
+    dislikedFoods: 'array',
+    likedFoods: 'array',
+    weighDay: 'number',
+    showTrendOnHome: 'boolean',
+  },
+  nutritionGoals: {
+    kind: 'string',
+    startDate: 'string',
+    startKg: 'number',
+    targetKg: 'number?',
+    targetDate: 'string?',
+    pace: 'string',
+    endedAt: 'string?',
+  },
+  weeklyCheckins: { weekStart: 'string', bodyWeightId: 'string?', adherence: 'string?', trendKgAfter: 'number?', kcalAdjust: 'number', note: 'string' },
+  mealPlans: { weekStart: 'string', generatorVersion: 'string', dayTargets: 'array', slots: 'array', inputsHash: 'string' },
+  shoppingStates: { weekStart: 'string', checked: 'array', pantry: 'array', custom: 'array' },
+  recipePrefs: { recipeId: 'string', state: 'string' },
   shares: { dataType: 'string', friendId: 'string?', enabled: 'boolean' },
   signalements: { ficheId: 'string', variantId: 'string?', choice: 'string', text: 'string' },
   sportSessions: {
@@ -174,6 +211,15 @@ const ENUMS: Partial<Record<TableName, Record<string, string[]>>> = {
     endReason: ['terminee', 'abandon', 'symptome', 'renonce', 'pas_bien'],
   },
   sportSessions: { sport: [...SPORT_KEYS], effort: [...SPORT_EFFORTS], painZone: [...INJURY_ZONES] },
+  nutritionProfiles: {
+    sexForFormula: ['homme', 'femme', 'non_precise'],
+    activityLevel: ['peu', 'actif', 'tres_actif'],
+    screeningResult: ['libre', 'prudent', 'reperes'],
+    budget: ['eco', 'normal'],
+  },
+  nutritionGoals: { kind: ['perte', 'maintien', 'prise'], pace: ['doux', 'standard', 'ferme'] },
+  weeklyCheckins: { adherence: ['oui', 'peu_pres', 'non'] },
+  recipePrefs: { state: ['favori', 'bloque'] },
   injuries: { zone: ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville', 'cuisse', 'aine'] },
 };
 
@@ -316,6 +362,15 @@ function deepErrors(table: TableName, r: Record<string, unknown>): string[] {
   if (table === 'profile' && r.sportPlan !== undefined && r.sportPlan !== null) out.push(...sportPlanErrors(r.sportPlan, where));
   if (table === 'profile' && r.catchUpLog !== undefined && r.catchUpLog !== null) out.push(...catchUpLogErrors(r.catchUpLog, where));
   if (table === 'bodyWeights' && !num(r.kg, 1, 1000)) out.push(`${where} : poids hors limites`);
+  if (table === 'nutritionProfiles') {
+    if (r.birthYear != null && !num(r.birthYear, 1900, 2100)) out.push(`${where} : année de naissance hors limites`);
+    if (!num(r.mealsPerDay, 1, 8)) out.push(`${where} : repas par jour hors limites`);
+    if (!num(r.weighDay, 0, 6)) out.push(`${where} : jour de pesée hors limites`);
+  }
+  if (table === 'nutritionGoals') {
+    if (!num(r.startKg, 1, 1000) || (r.targetKg != null && !num(r.targetKg, 1, 1000))) out.push(`${where} : poids hors limites`);
+  }
+  if (table === 'weeklyCheckins' && !num(r.kcalAdjust, -2000, 2000)) out.push(`${where} : ajustement hors limites`);
   if (table === 'profile' && r.heightCm != null && !num(r.heightCm, 30, 300)) out.push(`${where} : taille hors limites`);
   if (table === 'injuries' && typeof r.level === 'number' && !num(r.level, 0, 5)) out.push(`${where} : niveau hors limites`);
   return out;

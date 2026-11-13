@@ -11,12 +11,15 @@
 // Les tables ne stockent que des identifiants (mouvement, variante, aliment Ciqual), jamais
 // le contenu de la bibliothèque, qui reste un fichier statique de l'app.
 
-export const SCHEMA_VERSION = 4;
+export const SCHEMA_VERSION = 5;
 // 2 : table signalements (D9)
 // 3 : F1 + F3 — zones cuisse et aine, lieu, grossesse et fin de parcours dans le profil, champs d'étalonnage des séries
 //     et du programme. Les sauvegardes v1 et v2 restent importables (champs ajoutés = facultatifs à l'import).
 // 4 : « Mon sport » (knowledge/saisie-sport-v1.md) — profile.sportPlan (facultatif) et table locale sportSessions. Les sauvegardes v1 à v3 restent
 //     importables (table absente = vide). Les séances de sport ne sont JAMAIS des séances de musculation.
+// 5 : phase 7 « Nutrition » (docs/nutrition-spec.md §4) : six tables locales PRIVÉES (nutritionProfiles, nutritionGoals, weeklyCheckins,
+//     mealPlans, shoppingStates, recipePrefs). Migration additive : aucune donnée existante n'est touchée. Les sauvegardes v1 à v4 restent
+//     importables (table absente = vide). Jamais partagées ; exportées et supprimées avec les données.
 // (F5, sans changement de version : programme actif (empreinte, messages), séance en cours (curseur, repos, plan), zone de douleur des séries.
 //     tous facultatifs, donc aucune migration IndexedDB ni changement de SCHEMA_VERSION.)
 
@@ -532,6 +535,77 @@ export interface Supplement extends SyncFields {
   endDate: string | null;
 }
 
+export type SexForFormula = 'homme' | 'femme' | 'non_precise';
+export type NutritionAnswer = 'non' | 'oui' | 'refus' | null;
+
+/** Profil nutrition (docs/nutrition-spec.md §4) : donnée de santé, locale, jamais partagée, jamais envoyée à l'IA. */
+export interface NutritionProfile extends SyncFields {
+  birthYear: number | null;
+  sexForFormula: SexForFormula | null;
+  activityLevel: 'peu' | 'actif' | 'tres_actif' | null;
+  /** Réponses du dépistage N2 (grossesse, allaitement, post-partum, maladie, rapportAlimentation, medicament). */
+  screening: Record<string, NutritionAnswer>;
+  screeningResult: 'libre' | 'prudent' | 'reperes' | null;
+  screenedAt: string | null;
+  allergens: string[];
+  allergenFree: string[];
+  severeAllergy: boolean;
+  diet: string[];
+  glutenStrict: boolean;
+  mealsPerDay: number;
+  mealTimes: string[];
+  maxCookMin: number | null;
+  appliances: string[];
+  budget: 'eco' | 'normal';
+  batchCooking: boolean;
+  optimizeShopping: boolean;
+  dislikedFoods: string[];
+  likedFoods: string[];
+  /** 0 = lundi */
+  weighDay: number;
+  showTrendOnHome: boolean;
+}
+
+export interface NutritionGoal extends SyncFields {
+  kind: 'perte' | 'maintien' | 'prise';
+  startDate: string;
+  startKg: number;
+  targetKg: number | null;
+  targetDate: string | null;
+  pace: 'doux' | 'standard' | 'ferme';
+  endedAt: string | null;
+}
+
+export interface WeeklyCheckin extends SyncFields {
+  /** Lundi de la semaine, 'YYYY-MM-DD'. */
+  weekStart: string;
+  bodyWeightId: string | null;
+  adherence: 'oui' | 'peu_pres' | 'non' | null;
+  trendKgAfter: number | null;
+  kcalAdjust: number;
+  note: string;
+}
+
+export interface MealPlan extends SyncFields {
+  weekStart: string;
+  generatorVersion: string;
+  dayTargets: unknown[];
+  slots: unknown[];
+  inputsHash: string;
+}
+
+export interface ShoppingState extends SyncFields {
+  weekStart: string;
+  checked: string[];
+  pantry: string[];
+  custom: { name: string; qty: string }[];
+}
+
+export interface RecipePref extends SyncFields {
+  recipeId: string;
+  state: 'favori' | 'bloque';
+}
+
 export interface Share extends SyncFields {
   dataType: ShareDataType;
   /** null = réglage par défaut pour tous les amis ; sinon un ami précis (phase 6). */
@@ -566,6 +640,12 @@ export interface SyncedTables {
   shares: Share;
   signalements: Report;
   sportSessions: SportSession;
+  nutritionProfiles: NutritionProfile;
+  nutritionGoals: NutritionGoal;
+  weeklyCheckins: WeeklyCheckin;
+  mealPlans: MealPlan;
+  shoppingStates: ShoppingState;
+  recipePrefs: RecipePref;
 }
 
 export type TableName = keyof SyncedTables;
@@ -587,6 +667,22 @@ export const TABLES: TableName[] = [
   'shares',
   'signalements',
   'sportSessions',
+  'nutritionProfiles',
+  'nutritionGoals',
+  'weeklyCheckins',
+  'mealPlans',
+  'shoppingStates',
+  'recipePrefs',
+];
+
+/** Tables de la phase 7 : privées par défaut, jamais partagées (aucun ShareDataType ne les expose en v1). */
+export const NUTRITION_TABLES: TableName[] = [
+  'nutritionProfiles',
+  'nutritionGoals',
+  'weeklyCheckins',
+  'mealPlans',
+  'shoppingStates',
+  'recipePrefs',
 ];
 
 /**

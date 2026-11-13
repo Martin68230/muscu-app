@@ -4,7 +4,7 @@ import { TABLES } from './model';
 
 export const DB_NAME = 'muscu-app';
 /** Version IndexedDB : chaque montée ajoute une étape dans `upgrade`, jamais de modification d'une étape passée. */
-export const DB_VERSION = 4;
+export const DB_VERSION = 5;
 
 type Store<V, I extends Record<string, IDBValidKey> = Record<string, IDBValidKey>> = {
   key: string;
@@ -26,6 +26,12 @@ export interface MuscuDB extends DBSchema {
   shares: Store<SyncedTables['shares'], { updatedAt: string }>;
   signalements: Store<SyncedTables['signalements'], { updatedAt: string }>;
   sportSessions: Store<SyncedTables['sportSessions'], { updatedAt: string; startedAt: string }>;
+  nutritionProfiles: Store<SyncedTables['nutritionProfiles'], { updatedAt: string }>;
+  nutritionGoals: Store<SyncedTables['nutritionGoals'], { updatedAt: string }>;
+  weeklyCheckins: Store<SyncedTables['weeklyCheckins'], { updatedAt: string; weekStart: string }>;
+  mealPlans: Store<SyncedTables['mealPlans'], { updatedAt: string; weekStart: string }>;
+  shoppingStates: Store<SyncedTables['shoppingStates'], { updatedAt: string; weekStart: string }>;
+  recipePrefs: Store<SyncedTables['recipePrefs'], { updatedAt: string }>;
   device: { key: string; value: DeviceSettings };
 }
 
@@ -37,6 +43,9 @@ const EXTRA_INDEXES: Partial<Record<TableName, string[]>> = {
   bodyWeights: ['date'],
   meals: ['date'],
   sportSessions: ['startedAt'],
+  weeklyCheckins: ['weekStart'],
+  mealPlans: ['weekStart'],
+  shoppingStates: ['weekStart'],
 };
 
 let dbPromise: Promise<DB> | null = null;
