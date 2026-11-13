@@ -100,3 +100,20 @@ export const AJUSTEMENT_CUMUL_PCT = 0.15;
 /** Gel des déficits : perte du poids lissé supérieure à ces seuils (règle E). */
 export const GEL_PERTE_PCT_SEMAINE = 2;
 export const GEL_PERTE_PCT_MOIS = 5;
+
+// --- Valeurs du plan sorties du code (relecture du 13/11/2026). PROVISOIRE. ---
+/** Part de l'énergie du jour par repas selon le nombre de repas. */
+export const PART_REPAS = {
+  3: [0.25, 0.4, 0.35],
+  4: [0.22, 0.33, 0.12, 0.33],
+  5: [0.2, 0.1, 0.3, 0.1, 0.3],
+} as const;
+/** Tolérance d'énergie d'un jour du plan par rapport à sa cible (±5 %, règle K). */
+export const TOL_KCAL_JOUR = 0.05;
+/** Arrondi des grammes d'un ingrédient ajustable. */
+export const ARRONDI_GRAMMES = 5;
+/** Poids du score de choix d'une recette. */
+export const SCORE = { ecartKcal: 10, repetition: 6, repetitionSemaineDerniere: 3, memeProteine: 2, dejaDansPanier: 1.2, nouveauPerissable: 1.0, nouveauNonPerissable: 0.4, bruit: 0.5 } as const;
+/** Tolérance du recalage : au moins 0,1 kg/semaine et 25 % du rythme visé. */
+export const RECALAGE_TOL_MIN_KG = 0.1;
+export const RECALAGE_TOL_PCT = 0.25;

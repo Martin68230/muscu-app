@@ -149,7 +149,7 @@ Aucune de ces valeurs n'a de source primaire : ce sont des règles d'app prudent
 | N_SEMAINES_MIN | 3 semaines de pesées (>= 3 points) pour décider ; 2 semaines consécutives pour l'alerte de rythme | PROVISOIRE (S) | une pesée isolée ne décide jamais |
 | AJUSTEMENT_MAX | 150 kcal/j par semaine (jamais plus d'un ajustement par semaine) ; cumul limité à ±15 % du TDEE initial | PROVISOIRE (S) | borne la réaction au bruit ; 150-250 kcal/j déjà prévus en C |
 | AJUSTEMENT_JOUR_MAX | ±300 kcal d'écart par rapport à la moyenne du jour, jamais sous le plancher kcal | PROVISOIRE (S) | repris de B (variation par les glucides) |
-| COEF_JOUR (poids relatifs, normalisés pour une moyenne hebdomadaire exactement 1) | repos 0,92 ; léger 0,98 ; lourd/jambes 1,06 ; cardio long ou match 1,10 | PROVISOIRE | écarts modestes ; la fonction normalise, puis applique AJUSTEMENT_JOUR_MAX et les g/kg de B |
+| COEF_JOUR (poids relatifs, normalisés pour une moyenne hebdomadaire exactement 1) | repos 0,92 ; léger 0,98 ; moyen 1,02 (ajouté par le dev, À VALIDER par le nutritionniste) ; lourd/jambes 1,06 ; cardio long ou match 1,10 | PROVISOIRE | écarts modestes ; la fonction normalise, puis applique AJUSTEMENT_JOUR_MAX et les g/kg de B |
 | VAR_PROT | écart <= 10 % d'un jour à l'autre | PROVISOIRE | repris de B (protéines quasi constantes) |
 | ECHELLE_MIN / ECHELLE_MAX | 0,5 / 1,75 | PROVISOIRE | fixés par le spec (portion de base) |
 | TOL_MACRO | repas : kcal et protéines ±10 % de la cible du repas ; glucides et lipides ±15 % ; jour : kcal ±5 % | PROVISOIRE | rapproché de la règle des substitutions G (<= 10 %) ; quantités faciles arrondies à 5 g |

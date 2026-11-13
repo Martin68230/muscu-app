@@ -135,3 +135,18 @@ export function computeNeeds(input: NeedsInput): Needs | null {
   }
   return { tdee, resting, floor, target, deltaKcal: delta, floorBinding, noDeficitReason };
 }
+
+/**
+ * Cible finale après recalage : la SEULE fonction qui doit servir à afficher ou utiliser une cible ajustée.
+ * Applique, dans cet ordre : plancher du jour, déficit maximal (25 % ou 750 kcal, 10 % dès 65 ans), surplus maximal (+300 kcal),
+ * jamais de surplus pour un objectif de perte. Valeurs non finies : renvoie null (aucun chiffre).
+ */
+export function adjustedTarget(n: Needs, adjust: number, goal: GoalKind, prudent: boolean): number | null {
+  if (![n.tdee, n.floor, n.deltaKcal, adjust].every(Number.isFinite)) return null;
+  const maxDeficit = prudent ? n.tdee * DEFICIT_MAX_PCT_65 : Math.min(n.tdee * DEFICIT_MAX_PCT, DEFICIT_MAX_KCAL);
+  const lower = Math.max(n.floor, n.tdee - maxDeficit);
+  const upper = goal === 'perte' ? n.tdee : n.tdee + (prudent ? n.tdee * SURPLUS_PCT_PRUDENT : SURPLUS_MAX_KCAL);
+  const t = n.tdee + n.deltaKcal + adjust;
+  const clamped = Math.min(Math.max(lower, t), Math.max(lower, upper));
+  return Math.ceil(clamped);
+}

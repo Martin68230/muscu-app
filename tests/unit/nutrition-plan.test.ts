@@ -150,3 +150,56 @@ describe('plan de repas', () => {
     expect(list.find((i) => i.code === 'riz')?.neededGrams ?? 0).toBe(tot);
   });
 });
+
+import { adjustedTarget, computeNeeds } from '../../src/nutrition/needs';
+
+describe('relecture du 13/11/2026 : filtres et contrôles finaux', () => {
+  it('un régime non étiqueté sur la recette (halal, casher, clé inconnue) exclut la recette', () => {
+    expect(recipeAllowed(R[2], { ...base, diet: ['halal'] })).toBe(false);
+    expect(recipeAllowed(R[2], { ...base, diet: ['casher'] })).toBe(false);
+    expect(recipeAllowed(R[2], { ...base, diet: ['nimportequoi'] })).toBe(false);
+  });
+  it('« œ », espaces en bord et casse : « boeuf » exclut « bœuf »', () => {
+    const r = recipe('bourguignon', 'dejeuner-diner', [['poulet', 150, true], ['riz', 90, true]]);
+    r.ingredients[0].nom = 'Bœuf maigre';
+    expect(recipeAllowed(r, { ...base, allergenFree: ['boeuf'] })).toBe(false);
+    expect(recipeAllowed(r, { ...base, allergenFree: ['  BOEUF  '] })).toBe(false);
+    expect(recipeAllowed(r, { ...base, allergenFree: ['   '] })).toBe(true);
+  });
+  it('une intolérance (sans lactose) exige des allergènes validés ; le mode strict exige controle_relecteur', () => {
+    const douteuse = recipe('d', 'dejeuner-diner', [['poulet', 150, true], ['riz', 90, true]], { regimes: ['sans_lactose'], statutAllergenes: 'a_verifier' });
+    expect(recipeAllowed(douteuse, { ...base, diet: ['sans_lactose'] })).toBe(false);
+    const ok = recipe('o', 'dejeuner-diner', [['poulet', 150, true], ['riz', 90, true]], { statut: 'complete_nutri' });
+    expect(recipeAllowed(ok, base)).toBe(true);
+    expect(recipeAllowed(ok, { ...base, strictControle: true })).toBe(false);
+    expect(recipeAllowed({ ...ok, statut: 'controle_relecteur' }, { ...base, strictControle: true })).toBe(true);
+  });
+  it('contrôles finaux : jours incomplets ou sous le plancher signalés', () => {
+    const w = week(TYPES);
+    const seul = generateWeek(w, [R[2]], foods, base, 1, [], 1500);
+    expect(seul.days).toHaveLength(7);
+    for (const d of seul.days) expect(['incomplet', 'sous_plancher', 'ecart', 'ok']).toContain(d.status);
+    // sans petit-déjeuner disponible, chaque jour est « incomplet » et jamais présenté comme complet
+    expect(seul.days.every((d) => d.status === 'incomplet')).toBe(true);
+    const bas = generateWeek(w, R, foods, base, 1, [], 99999);
+    expect(bas.days.every((d) => d.status === 'incomplet' || d.status === 'sous_plancher')).toBe(true);
+  });
+  it('cible finale : jamais sous le plancher, ni au-delà du déficit ou du surplus maximaux, même après un ajustement cumulé', () => {
+    const n = computeNeeds({ screen: 'libre', body: { sex: 'homme', kg: 90, cm: 178, age: 30 }, sessionsPerWeek: 4, goal: 'perte', pace: 'ferme' })!;
+    for (const adj of [-5000, -375, -150, 0, 150, 5000]) {
+      const t = adjustedTarget(n, adj, 'perte', false)!;
+      expect(t).toBeGreaterThanOrEqual(n.floor - 1e-9);
+      expect(t).toBeGreaterThanOrEqual(n.tdee - Math.min(n.tdee * 0.25, 750) - 1);
+      expect(t).toBeLessThanOrEqual(n.tdee + 1);
+    }
+    const p = computeNeeds({ screen: 'libre', body: { sex: 'homme', kg: 70, cm: 178, age: 25 }, sessionsPerWeek: 4, goal: 'prise', pace: 'standard' })!;
+    expect(adjustedTarget(p, 9999, 'prise', false)!).toBeLessThanOrEqual(p.tdee + 300 + 1);
+    expect(adjustedTarget(p, NaN, 'prise', false)).toBeNull();
+    expect(adjustedTarget(n, 0, 'perte', true)!).toBeGreaterThanOrEqual(n.tdee - n.tdee * 0.1 - 1);
+  });
+  it('protéines en perte : aucun jour sous la base de 2,2 g/kg', () => {
+    const wk = weekTargets({ types: TYPES, avgKcal: 2400, floorKcal: 1500, kg: 80, goal: 'perte' })!;
+    for (const d of wk) expect(d.protG).toBeGreaterThanOrEqual(2.2 * 80 - 1e-9);
+    expect(weekTargets({ types: TYPES, avgKcal: 2400, floorKcal: NaN, kg: 80, goal: 'perte' })).toBeNull();
+  });
+});

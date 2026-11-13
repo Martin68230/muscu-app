@@ -63,7 +63,7 @@ export interface WeekInput {
 /** Répartit la semaine : poids relatifs normalisés, écart de jour borné, plancher respecté, moyenne conservée. */
 export function weekTargets(input: WeekInput): DayTarget[] | null {
   const { types, avgKcal, floorKcal, kg, goal } = input;
-  if (types.length !== 7 || !(avgKcal > 0) || !(kg > 0) || avgKcal < floorKcal - 1e-9) return null;
+  if (types.length !== 7 || !(avgKcal > 0) || !(kg > 0) || !Number.isFinite(floorKcal) || !Number.isFinite(avgKcal) || avgKcal < floorKcal - 1e-9) return null;
 
   // 1) poids relatifs normalisés pour une moyenne exactement 1
   const raw = types.map((t) => COEF_JOUR[t]);
@@ -85,6 +85,10 @@ export function weekTargets(input: WeekInput): DayTarget[] | null {
     for (const i of free) kcal[i] += diff / free.length;
   }
 
+  // Dernier garde-fou : la moyenne doit être conservée et aucun jour hors bornes ; sinon, aucun chiffre (échec sûr).
+  kcal = kcal.map((k) => Math.min(hi, Math.max(lo, k)));
+  if (Math.abs(kcal.reduce((s, x) => s + x, 0) - total) > 1 || kcal.some((k) => !Number.isFinite(k))) return null;
+
   // 3) protéines : base g/kg, +VAR_PROT sur le jour le plus lourd et le lendemain, compensé sur les autres jours (moyenne conservée)
   const protBase = PROT_GKG[goal] * kg;
   const order = types.map((t, i) => ({ i, c: COEF_JOUR[t] })).sort((a, b) => b.c - a.c || a.i - b.i);
@@ -94,8 +98,12 @@ export function weekTargets(input: WeekInput): DayTarget[] | null {
   if (up.length) {
     const gain = protBase * VAR_PROT;
     for (const i of up) prot[i] = protBase + gain;
-    const others = [0, 1, 2, 3, 4, 5, 6].filter((i) => !up.includes(i));
-    for (const i of others) prot[i] = protBase - (gain * up.length) / others.length;
+    // En perte, les autres jours restent à la base (jamais sous 2,2 g/kg) : la moyenne monte légèrement, dans la plage permise (<= 3,0).
+    // Sinon (maintien, prise : plage 1,6-2,2), la moyenne est conservée en abaissant un peu les autres jours.
+    if (goal !== 'perte') {
+      const others = [0, 1, 2, 3, 4, 5, 6].filter((i) => !up.includes(i));
+      for (const i of others) prot[i] = protBase - (gain * up.length) / others.length;
+    }
   }
 
   // 4) lipides stables, glucides = le reste

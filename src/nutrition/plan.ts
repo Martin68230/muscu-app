@@ -2,7 +2,7 @@
 // Filtres durs d'abord (allergènes, régime, aliments évités, temps, matériel), jamais assouplis ; puis score de proximité des macros,
 // de variété et de courses optimisées (§7.6). Échec sûr : si aucune recette ne convient, la case reste vide.
 
-import { ECHELLE_MAX, ECHELLE_MIN, NUTRITION_VERSION, TOL_KCAL_REPAS } from './config';
+import { ARRONDI_GRAMMES, ECHELLE_MAX, ECHELLE_MIN, NUTRITION_VERSION, PART_REPAS, SCORE, TOL_KCAL_JOUR, TOL_KCAL_REPAS } from './config';
 import type { DayTarget } from './day-targets';
 import type { AllergenKey } from './allergens';
 import type { GoalKind } from './needs';
@@ -22,6 +22,8 @@ export interface Recipe {
   regimes: string[];
   cout: 'eco' | 'normal' | 'plus';
   sourceProteines: string | null;
+  /** Statut de la fiche recette (brouillon, complete_nutri, controle_relecteur). */
+  statut?: string;
   allergenes: AllergenKey[];
   statutAllergenes: 'valide' | 'a_verifier' | 'inconnu';
   portion: { kcal: number; prot: number; gluc: number; lip: number };
@@ -49,6 +51,8 @@ export interface PlanPrefs {
   appliances: string[];
   mealsPerDay: 3 | 4 | 5;
   optimizeShopping: boolean;
+  /** Allergie grave ou cœliaque : seules les recettes `controle_relecteur` sont proposées (spec §8). */
+  strictControle?: boolean;
 }
 
 export interface PlanSlot {
@@ -63,21 +67,41 @@ export interface PlanSlot {
   lip: number;
 }
 
+export interface DayCheck {
+  day: number;
+  kcal: number;
+  targetKcal: number;
+  /** incomplet = au moins une case vide ; sous_plancher = énergie sous le plancher ; ecart = hors tolérance du jour ; ok sinon. */
+  status: 'ok' | 'incomplet' | 'sous_plancher' | 'ecart';
+}
+
 export interface WeekPlan {
   version: string;
   slots: PlanSlot[];
+  /** Contrôles finaux par jour (spec §7.1.5) : jamais ignorés par l'appelant. */
+  days: DayCheck[];
   /** Grammes crus après mise à l'échelle, prêts pour la liste de courses. */
   ingredients: PlannedIngredient[];
 }
 
-const norm = (s: string) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase();
+/** Minuscules, sans accents, « œ » et « æ » développés, ponctuation en espaces, espaces compactés. */
+export const norm = (s: string): string =>
+  s
+    .toLowerCase()
+    .replace(/œ/g, 'oe')
+    .replace(/æ/g, 'ae')
+    .normalize('NFD')
+    .replace(/[̀-ͯ]/g, '')
+    .replace(/[^a-z0-9]+/g, ' ')
+    .trim();
 
 /** Part de l'énergie du jour par repas selon le nombre de repas. */
-const SPLITS: Record<3 | 4 | 5, { repas: MealKind; share: number }[]> = {
-  3: [{ repas: 'petit-dej', share: 0.25 }, { repas: 'dejeuner-diner', share: 0.4 }, { repas: 'dejeuner-diner', share: 0.35 }],
-  4: [{ repas: 'petit-dej', share: 0.22 }, { repas: 'dejeuner-diner', share: 0.33 }, { repas: 'collation', share: 0.12 }, { repas: 'dejeuner-diner', share: 0.33 }],
-  5: [{ repas: 'petit-dej', share: 0.2 }, { repas: 'collation', share: 0.1 }, { repas: 'dejeuner-diner', share: 0.3 }, { repas: 'collation', share: 0.1 }, { repas: 'dejeuner-diner', share: 0.3 }],
+const KINDS: Record<3 | 4 | 5, MealKind[]> = {
+  3: ['petit-dej', 'dejeuner-diner', 'dejeuner-diner'],
+  4: ['petit-dej', 'dejeuner-diner', 'collation', 'dejeuner-diner'],
+  5: ['petit-dej', 'collation', 'dejeuner-diner', 'collation', 'dejeuner-diner'],
 };
+const splitOf = (n: 3 | 4 | 5): { repas: MealKind; share: number }[] => KINDS[n].map((repas, i) => ({ repas, share: PART_REPAS[n][i] }));
 
 function mulberry32(seed: number) {
   let a = seed >>> 0;
@@ -92,14 +116,16 @@ function mulberry32(seed: number) {
 
 /** Filtres durs. Dès qu'une exclusion d'allergène est active, seules les recettes aux allergènes `valide` passent. */
 export function recipeAllowed(r: Recipe, p: PlanPrefs): boolean {
-  const strict = p.allergens.length > 0 || p.allergenFree.length > 0;
+  // Strict dès qu'une allergie, un mot à exclure ou une intolérance (lactose, gluten) est déclaré : seules les recettes aux allergènes `valide`.
+  const strict = p.allergens.length > 0 || p.allergenFree.some((w) => norm(w)) || p.diet.includes('sans_lactose') || p.diet.includes('sans_gluten');
   if (r.statutAllergenes === 'inconnu') return false;
   if (strict && r.statutAllergenes !== 'valide') return false;
+  if (p.strictControle && r.statut !== 'controle_relecteur') return false;
   if (r.allergenes.some((a) => p.allergens.includes(a))) return false;
-  const text = norm([r.nom, ...r.ingredients.map((i) => i.nom)].join(' '));
-  if (p.allergenFree.some((w) => w.trim() && text.includes(norm(w)))) return false;
-  const labelled = ['vegetarien', 'vegetalien', 'sans_porc', 'sans_lactose', 'sans_gluten'];
-  if (p.diet.some((d) => labelled.includes(d) && !r.regimes.includes(d))) return false;
+  const text = ` ${norm([r.nom, ...r.ingredients.map((i) => i.nom)].join(' '))} `;
+  if (p.allergenFree.some((w) => norm(w) && text.includes(norm(w)))) return false; // sous-chaîne : en cas de doute, l'exclusion est large
+  // Échec sûr : tout régime demandé doit figurer sur la recette ; une clé non étiquetée (halal, casher, inconnue...) exclut la recette.
+  if (p.diet.some((d) => !r.regimes.includes(d))) return false;
   if (r.ingredients.some((i) => p.dislikedFoods.includes(i.code))) return false;
   if (p.maxCookMin != null && r.prepMin + r.cuissonMin > p.maxCookMin) return false;
   if (r.materiel.some((m) => m !== 'aucun' && !p.appliances.includes(m))) return false;
@@ -133,7 +159,7 @@ export function scaleRecipe(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, t
   const lines: Scaled['lines'] = [];
   for (const i of r.ingredients) {
     const f = foods.get(i.code)!;
-    const g = i.ajustable ? Math.round((i.grammes * scale) / 5) * 5 || 5 : i.grammes;
+    const g = i.ajustable ? Math.round((i.grammes * scale) / ARRONDI_GRAMMES) * ARRONDI_GRAMMES || ARRONDI_GRAMMES : i.grammes;
     kcal += (f.kcal * g) / 100; prot += (f.prot * g) / 100; gluc += (f.gluc * g) / 100; lip += (f.lip * g) / 100;
     lines.push({ code: i.code, nom: i.nom, grammes: g, rayon: i.rayon });
   }
@@ -147,10 +173,11 @@ export function generateWeek(
   prefs: PlanPrefs,
   seed: number,
   previousRecipeIds: readonly string[] = [],
+  floorKcal: number = 0,
 ): WeekPlan {
   const rnd = mulberry32(seed);
   const allowed = recipes.filter((r) => recipeAllowed(r, prefs));
-  const split = SPLITS[prefs.mealsPerDay];
+  const split = splitOf(prefs.mealsPerDay);
   const used = new Map<string, number>();
   const basket = new Set<string>();
   const slots: PlanSlot[] = [];
@@ -166,19 +193,19 @@ export function generateWeek(
         if (r.repas !== m.repas || usedToday.has(r.id)) continue;
         const s = scaleRecipe(r, foods, target);
         if (!s || Math.abs(s.kcal - target) / target > TOL_KCAL_REPAS) continue;
-        let score = -Math.abs(s.kcal - target) / target * 10;
+        let score = (-Math.abs(s.kcal - target) / target) * SCORE.ecartKcal;
         const times = used.get(r.id) ?? 0;
-        score -= times * 6; // jamais deux fois sans nécessité : pénalité forte, pas un filtre (la variété passe avant l'optimisation)
-        if (previousRecipeIds.includes(r.id)) score -= 3;
-        if (r.sourceProteines && proteinsToday.has(r.sourceProteines)) score -= 2;
+        score -= times * SCORE.repetition; // jamais deux fois sans nécessité : pénalité forte, pas un filtre (la variété passe avant l'optimisation)
+        if (previousRecipeIds.includes(r.id)) score -= SCORE.repetitionSemaineDerniere;
+        if (r.sourceProteines && proteinsToday.has(r.sourceProteines)) score -= SCORE.memeProteine;
         if (prefs.optimizeShopping) {
           for (const l of s.lines) {
             const f = foods.get(l.code);
             if (f?.gardeManger) continue;
-            if (basket.has(l.code)) score += 1.2; else score -= f?.perissable ? 1.0 : 0.4;
+            if (basket.has(l.code)) score += SCORE.dejaDansPanier; else score -= f?.perissable ? SCORE.nouveauPerissable : SCORE.nouveauNonPerissable;
           }
         }
-        score += rnd() * 0.5; // départage reproductible
+        score += rnd() * SCORE.bruit; // départage reproductible
         if (!best || score > best.score) best = { r, s, score };
       }
       if (!best) {
@@ -195,5 +222,21 @@ export function generateWeek(
       }
     });
   });
-  return { version: NUTRITION_VERSION, slots, ingredients };
+  // Contrôles finaux (spec §7.1.5) : allergènes re-vérifiés sur le résultat, énergie du jour, plancher.
+  for (const s of slots) {
+    if (!s.recipeId) continue;
+    const r = recipes.find((x) => x.id === s.recipeId);
+    if (!r || !recipeAllowed(r, prefs)) throw new Error(`Plan invalide : ${s.recipeId} ne respecte pas les filtres`);
+  }
+  const checks: DayCheck[] = days.map((d, day) => {
+    const mine = slots.filter((s) => s.day === day);
+    const kcal = mine.reduce((t, s) => t + s.kcal, 0);
+    const empty = mine.some((s) => !s.recipeId);
+    let status: DayCheck['status'] = 'ok';
+    if (empty) status = 'incomplet';
+    else if (kcal < floorKcal - 1e-9) status = 'sous_plancher';
+    else if (Math.abs(kcal - d.kcal) / d.kcal > TOL_KCAL_JOUR) status = 'ecart';
+    return { day, kcal, targetKcal: d.kcal, status };
+  });
+  return { version: NUTRITION_VERSION, slots, days: checks, ingredients };
 }

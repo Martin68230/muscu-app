@@ -3,7 +3,7 @@
 
 import {
   AJUSTEMENT_CUMUL_PCT, AJUSTEMENT_MAX_KCAL, GEL_PERTE_PCT_MOIS, GEL_PERTE_PCT_SEMAINE, IMC_REPERES, N_PESEES_MIN, PERTE_PCT_PLAFOND,
-  TAILLE_CM_MAX, TAILLE_CM_MIN,
+  RECALAGE_TOL_MIN_KG, RECALAGE_TOL_PCT, STABLE_KG_SEMAINE, TAILLE_CM_MAX, TAILLE_CM_MIN,
 } from './config';
 import { bmi, type GoalKind } from './needs';
 import type { TrendPoint } from './weight-trend';
@@ -29,8 +29,10 @@ export interface AlertInput {
 }
 
 /** Alertes à partir du poids lissé (une semaine = un point). Moins de 3 points : aucune alerte (une pesée isolée ne décide jamais). */
-export function evaluateAlerts({ trend, goal }: AlertInput): AlertKey[] {
+export function evaluateAlerts({ trend: rawTrend, goal }: AlertInput): AlertKey[] {
   const out = new Set<AlertKey>();
+  // Points triés, uniques par semaine, valeurs finies (un point invalide est ignoré, jamais interprété).
+  const trend = [...new Map(rawTrend.filter((p) => Number.isFinite(p.trend) && p.trend > 0 && Number.isFinite(Date.parse(p.weekStart))).map((p) => [p.weekStart, p])).values()].sort((a, b) => (a.weekStart < b.weekStart ? -1 : 1));
   if (trend.length < N_PESEES_MIN) return [];
   const n = trend.length;
   const w1 = pctChangePerWeek(trend[n - 2], trend[n - 1]);
@@ -72,16 +74,19 @@ export interface AdjustInput {
 /**
  * Nouvel ajustement de la cible, une fois par semaine : jamais plus de ± 150 kcal/j par semaine, cumul limité à ± 15 % du besoin initial.
  * Adhérence « non » ou inconnue, pas assez de données : AUCUN changement (on ne baisse jamais les calories parce que le plan n'a pas été suivi).
- * Le plancher est appliqué par l'appelant (cible = max(besoin + ajustement, plancher)).
+ * OBLIGATION de l'appelant : ne JAMAIS utiliser ce nombre seul ; la cible affichée est `adjustedTarget(needs, ajustement, objectif, prudent)` (needs.ts),
+ * qui applique le plancher, le déficit maximal et le surplus maximal.
  */
 export function nextAdjust(i: AdjustInput): number {
+  if (!Number.isFinite(i.currentAdjust)) return 0;
+  if (!Number.isFinite(i.tdeeInitial) || i.tdeeInitial <= 0) return i.currentAdjust;
   if (i.adherence !== 'oui' && i.adherence !== 'peu_pres') return i.currentAdjust;
   if (i.rateKgPerWeek == null || i.weeksOfData < N_PESEES_MIN) return i.currentAdjust;
-  const tol = Math.max(0.1, Math.abs(i.targetKgPerWeek) * 0.25);
+  const tol = Math.max(RECALAGE_TOL_MIN_KG, Math.abs(i.targetKgPerWeek) * RECALAGE_TOL_PCT);
   const gap = i.rateKgPerWeek - i.targetKgPerWeek; // > 0 : le poids monte plus (ou baisse moins) que visé
   let step = 0;
   if (Math.abs(gap) > tol) step = gap > 0 ? -AJUSTEMENT_MAX_KCAL : AJUSTEMENT_MAX_KCAL;
-  if (i.goal === 'maintien' && Math.abs(i.rateKgPerWeek) <= 0.15) step = 0;
+  if (i.goal === 'maintien' && Math.abs(i.rateKgPerWeek) <= STABLE_KG_SEMAINE) step = 0;
   // En perte, jamais de baisse supplémentaire si la perte réelle dépasse déjà le plafond (la cible monte plutôt) ; en prise, l'inverse.
   const cap = i.tdeeInitial * AJUSTEMENT_CUMUL_PCT;
   const next = i.currentAdjust + step;
