@@ -1,32 +1,143 @@
-# Nutrition : règles sourcées (21/10/2026). Statuts : OK / PROVISOIRE / NON SOURCÉ. À compléter et valider par `nutritionniste`.
+# Nutrition : règles sourcées (maj 13/11/2026). Statuts : OK / PROVISOIRE / NON SOURCÉ. À valider par `nutritionniste` puis `relecteur` (valeurs de sécurité).
+Légende : OK = lu à la source ou résumé fiable de la source ; PROVISOIRE = source identifiée mais texte non ouvert (site bloqué) ou règle prudente de l'app ; NON SOURCÉ = aucune source trouvée. Rien de PROVISOIRE / NON SOURCÉ ne se code en dur sans validation (voir section J).
 
 ## 1. Besoins énergétiques
-- **Formule** : Mifflin-St Jeor, la plus précise des 4 équations comparées (Harris-Benedict, Mifflin-St Jeor, Owen, OMS/FAO/UNU) pour estimer le métabolisme de repos à ±10 % chez l'adulte non obèse et obèse ; erreurs individuelles notables ; personnes âgées et minorités sous-représentées (revue systématique, https://www.qxmd.com/r/15883556 : OK, résumé). -> Afficher comme ESTIMATION, puis ajuster avec la courbe de poids réelle sur 2-3 semaines.
-- Facteur d'activité : à sourcer (NON SOURCÉ).
+- **Formule** : Mifflin-St Jeor, la plus précise des 4 équations comparées (revue systématique, https://www.qxmd.com/r/15883556) à ±10 % chez l'adulte non obèse et obèse ; erreurs individuelles notables : OK (résumé). Afficher comme ESTIMATION, puis recaler (section A).
+- Équation : RMR (kcal/j) = 10 x poids(kg) + 6,25 x taille(cm) - 5 x âge(ans) + 5 (homme) ou - 161 (femme). Mifflin et al., Am J Clin Nutr 1990;51:241-247, DOI 10.1093/ajcn/51.2.241 : PROVISOIRE (coefficients connus, article non rouvert ici ; à relire).
+- Facteurs d'activité : voir A.
 
 ## 2. Protéines
-- Population générale : ANSES, référence nutritionnelle 0,83 g/kg/jour (adulte en bonne santé) ; protéines = 10 à 20 % de l'énergie ; aucune limite supérieure de sécurité n'a pu être définie. https://www.anses.fr/fr/content/proteines-role-sources-et-apports-recommandes : OK.
-- Personnes qui s'entraînent : ISSN 2017 (Jäger et al., J Int Soc Sports Nutr) donne une fourchette plus haute pour les sportifs ; texte non ouvert ici (blocage du site) : valeur à relire à la source avant usage : PROVISOIRE.
-- Perte de gras chez des pratiquants de musculation : 2,2-3,0 g/kg/jour répartis sur 3-6 repas, au moins 0,40-0,55 g/kg par repas, un apport protéique 2-3 h avant et après l'entraînement (Ruiz-Castellano et al. 2021, Nutrients 13(9):3255, DOI 10.3390/nu13093255, revue narrative) : OK pour ce public précis ; ne pas appliquer à tout le monde.
+- Population générale : ANSES, 0,83 g/kg/jour (adulte en bonne santé) ; 10 à 20 % de l'énergie ; pas de limite supérieure de sécurité définie. https://www.anses.fr/fr/content/proteines-role-sources-et-apports-recommandes : OK.
+- **ISSN 2017** (Jäger et al., J Int Soc Sports Nutr 14:20, DOI 10.1186/s12970-017-0177-8, texte lu via PMC5477153) : OK. 1,4-2,0 g/kg/j suffisent pour la plupart des personnes qui s'entraînent ; 2,3-3,1 g/kg/j possibles en déficit chez les pratiquants de musculation pour garder la masse maigre ; dose par prise ~0,25 g/kg ou 20-40 g (plus pour les personnes âgées) ; répartition toutes les 3-4 h ; pré/post-entraînement équivalents ; 30-40 g de caséine avant le sommeil possibles ; régimes végétariens : apport plus faible en acides aminés essentiels, à compenser par le choix des aliments (soja moins riche en BCAA que le lait, blé nettement moins efficace que la caséine). Aucun seuil de sécurité chiffré dans le passage lu.
+- Perte de gras chez pratiquants de musculation : 2,2-3,0 g/kg/j sur 3-6 repas, 0,40-0,55 g/kg par repas (Ruiz-Castellano et al. 2021, Nutrients 13(9):3255, DOI 10.3390/nu13093255, revue narrative) : OK pour ce public ; ne pas appliquer à tout le monde.
 
 ## 3. Perte et prise de poids
-- Perte de gras (pratiquants de musculation) : 0,5-1,0 % du poids/semaine ; plus prudent quand la masse grasse est basse ; lipides >= 0,5 g/kg/jour (ou 20-30 % de l'énergie si possible) ; glucides 2-5 g/kg/jour selon l'entraînement ; pauses de régime à l'entretien d'environ 1-2 semaines possibles, bénéfices incertains (même source) : OK (revue narrative).
-- Prise de muscle : rythme et surplus à sourcer (NON SOURCÉ).
-- **Planchers de sécurité** (règles de l'app, NON SOURCÉES, prudentes) : jamais de plan sous le métabolisme de repos estimé sans avis professionnel ; jamais plus de 1 %/semaine de perte visée ; alerte si la perte réelle dépasse ce rythme 2 semaines de suite ; pas de jeûne prolongé ni de régime « détox ».
-- **Exclusions** : grossesse/allaitement, pathologie (diabète, rein…), antécédent de trouble alimentaire, mineurs -> pas de déficit calculé, message « parle à un professionnel ».
+- Perte de gras (pratiquants de musculation) : 0,5-1,0 % du poids/semaine, plus prudent quand la masse grasse est basse ; lipides >= 0,5 g/kg/j (ou 20-30 % de l'énergie) ; glucides 2-5 g/kg/j selon l'entraînement ; pauses à l'entretien de 1-2 semaines possibles, bénéfices incertains (même source) : OK (revue narrative).
+- Prise de muscle : voir B et C.
+- **Planchers de sécurité** : voir C (règles de l'app, mises à jour).
+- **Exclusions** : voir E.
 
 ## 4. Compléments (l'utilisateur peut les ajouter à son plan)
-- L'app ENREGISTRE ce que la personne prend (nom, dose, moment, macros éventuelles) et compte les macros dans la journée. Elle ne PRESCRIT pas de compléments : elle affiche des informations sourcées et des alertes.
-- Créatine monohydrate : 3-5 g/jour en entretien (ou charge 0,3 g/kg/jour pendant 5-7 jours) ; pas de preuve convaincante d'effet néfaste chez les personnes en bonne santé (ISSN 2017, Kreider et al., J Int Soc Sports Nutr ; lu via une synthèse du laboratoire d'un des auteurs : PROVISOIRE).
-- Caféine : EFSA, jusqu'à 200 mg en une prise et 400 mg/jour considérés sans risque pour l'adulte en bonne santé (via article de presse spécialisée : PROVISOIRE ; à confirmer sur l'avis EFSA 2015). Alerte si la somme de la journée dépasse 400 mg.
+- L'app ENREGISTRE ce que la personne prend (nom, dose, moment, macros éventuelles) et compte les macros. Elle ne PRESCRIT pas : informations sourcées et alertes seulement.
+- Créatine monohydrate : 3-5 g/jour en entretien (ou charge 0,3 g/kg/j pendant 5-7 jours) ; pas de preuve convaincante d'effet néfaste chez les personnes en bonne santé (ISSN 2017, Kreider et al., J Int Soc Sports Nutr, DOI 10.1186/s12970-017-0173-z ; lu via synthèse) : PROVISOIRE. Alerte d'information : maladie rénale -> avis médical (E).
+- **Caféine** : EFSA, avis scientifique 2015 (EFSA Journal 13(4):4102, DOI 10.2903/j.efsa.2015.4102, https://www.efsa.europa.eu/en/efsajournal/pub/4102 ; site bloqué, résumé de l'abstract et EUFIC https://eufic.org/en/whats-in-food/article/efsa-opinion-on-the-safety-of-caffeine) : adulte non enceinte, 400 mg/j et 200 mg en une prise (~3 mg/kg) sans souci de sécurité ; femme enceinte ou allaitante : 200 mg/j (le chiffre 400 mg pour l'allaitement figurait dans le projet, pas dans l'avis final). Statut : OK (abstract), relire le texte avant code. Alerte si somme de la journée > 400 mg ; > 200 mg en une prise ; message prudent après 15 h (avis : la caféine 3 h avant le coucher perturbe le sommeil : PROVISOIRE, valeur non relue).
 - Protéines en poudre : comptées comme un aliment (macros).
 - Autres compléments : aucune information affichée sans source ; jamais de dose conseillée.
 
 ## 5. Table des aliments
-- Ciqual (ANSES), Licence Ouverte / Open Licence (data.gouv.fr). La version 2020 de data.gouv est annulée et remplacée par une version actualisée sur recherche.data.gouv.fr (DOI 10.57745/RDMHWY) : utiliser cette dernière. https://www.data.gouv.fr/datasets/table-de-composition-nutritionnelle-des-aliments-ciqual-2020/informations : OK. Mention de la source obligatoire dans l'app.
+- Ciqual (ANSES), Licence Ouverte / Open Licence 2.0 (data.gouv.fr). Version 2020 de data.gouv annulée, remplacée par la version actualisée sur recherche.data.gouv.fr (DOI 10.57745/RDMHWY) : utiliser cette dernière. https://www.data.gouv.fr/datasets/table-de-composition-nutritionnelle-des-aliments-ciqual-2020/informations : OK. Mention de la source obligatoire dans l'app. Détail des conditions : G.
 
 ## 6. Plan de repas généré
-- Entrées : objectif, besoins estimés, préférences, allergies, régimes, nombre de repas, budget de temps de cuisine, compléments déclarés.
-- Sortie : plan de la journée/semaine (repas horodatés, 2-3 choix par repas, kcal et grammes), liste de courses, substitutions. Les recettes viennent d'une base de recettes de l'app (à constituer, NON SOURCÉ) ou de l'IA si activée, toujours recalculées avec Ciqual et bornées par les règles ci-dessus.
-## 7. À sourcer
-Facteurs d'activité ; ISSN protéines (texte complet) ; surplus en prise de muscle ; recomposition corporelle ; hydratation ; repas autour de l'entraînement (population générale) ; végétarien/végétalien (protéines, B12) ; avis EFSA caféine.
+- Entrées : objectif, besoins estimés, préférences, allergies, régimes, nombre de repas, temps de cuisine, compléments déclarés.
+- Sortie : plan jour/semaine (repas horodatés, 2-3 choix par repas, kcal et grammes), liste de courses, substitutions. Recettes issues de la base de l'app (G) ou de l'IA si activée, toujours recalculées avec Ciqual et bornées par les règles de ce fichier.
+
+## A. Besoins : facteurs d'activité et méthode adaptative
+- **Facteurs d'activité** (PAL, multiplicateurs du métabolisme de repos) : FAO/WHO/UNU 2004, Human energy requirements, Food and Nutrition Technical Report 1, https://www.fao.org/3/y5686e/y5686e00.htm : mode de vie sédentaire/léger 1,40-1,69 ; actif/modérément actif 1,70-1,99 ; vigoureux 2,00-2,39 ; >= 2,40 difficile à tenir longtemps : OK (tableau vu via recherche ; valeur limite 2,39 vs 2,40 à relire).
+- **Valeurs proposées à l'app** (points médians de ces classes, règle de l'app) : 0-1 séance/semaine 1,40 ; 2-3 séances 1,55 ; 4-5 séances 1,70 ; 6+ séances ou travail physique 1,85 ; plafond 2,00 sans validation. PROVISOIRE (choix des points médians par l'app ; la fourchette FAO est OK, le mapping séances -> PAL n'est pas sourcé). Les facteurs pour les métiers physiques ne s'ajoutent pas aux séances (risque de double compte).
+- **Calcul initial** : TDEE = Mifflin x PAL. Le profil n'a PAS sexe ni âge : à demander (sexe pour l'équation : deux valeurs de constante ; date de naissance, qui sert aussi à contrôler la majorité). Les deux sont optionnels pour l'utilisateur.
+- **Repli sans sexe ou âge** : ne pas inventer une moyenne. Démarrer à une estimation grossière (PAL x 22 kcal/kg ; règle d'app PROVISOIRE, non sourcée, à valider par nutritionniste) étiquetée « très approximative », sans objectif de déficit ; la méthode adaptative prend le relais dès que la courbe de poids le permet. Option : sexe « non précisé » -> moyenne des deux constantes (-78) ; PROVISOIRE.
+- **Recalage adaptatif** (règle de l'app, principe : bilan énergétique = apport - variation de stock) : TDEE observé = apport moyen déclaré - (variation du poids lissé en kg/j x 7700). 7700 kcal/kg est une approximation (règle de Wishnofsky) ; Hall (Int J Obes 2008, « What is the required energy deficit per unit weight loss? ») montre qu'elle surestime le déficit nécessaire à faible masse grasse, et que la valeur mesurée peut être plus basse (~4900 kcal/kg à 4 semaines dans CALERIE, PMC4035446) : valeur 7700 = PROVISOIRE, utilisée comme approximation avec fourchette 5000-7700 ; le modèle dynamique de Hall (Lancet 2011;378:826, https://pubmed.ncbi.nlm.nih.gov/21872751/) est OK comme référence mais non codé.
+- **Durée minimale et confiance** (règles d'app, PROVISOIRE) : au moins 14 jours de données avec >= 10 jours d'apport saisi et >= 3 pesées ; confiance « faible » à 14 j, « moyenne » à 21 j, « bonne » à 28 j et plus ; si le suivi d'apport est incomplet, ne pas recaler. Le TDEE recalé est limité à ±15 % du TDEE initial par recalage (garde-fou) ; au-delà : message « vérifie tes saisies ».
+
+## B. Adaptation aux séances de la semaine
+- **Principe** : la moyenne hebdomadaire des kcal reste égale à la cible ; on déplace les glucides (et un peu de lipides) selon la charge du jour. Les protéines restent quasi constantes (écart <= 10 % d'un jour à l'autre) : l'effet « cycling » sur le résultat à long terme est peu démontré, c'est surtout la moyenne hebdomadaire qui compte. Statut de ce principe : PROVISOIRE (pratique courante, pas de source forte lue ; à valider par nutritionniste).
+- **Glucides par type de jour** (ACSM/AND/DC, Thomas, Erdman, Burke, J Acad Nutr Diet 2016;116:501-528, DOI 10.1249/MSS.0000000000000852 ; Burke et al. 2011, J Sports Sci 29 S17-S27, DOI 10.1080/02640414.2011.585473) : activité légère / faible intensité ou technique : 3-5 g/kg/j ; modérée (~1 h/j) : 5-7 g/kg/j ; endurance 1-3 h/j : 6-10 g/kg/j ; extrême >4-5 h/j : 8-12 g/kg/j. Statut : PROVISOIRE (valeurs rappelées, texte non ouvert ; à confirmer). Pour la musculation seule en déficit : 2-5 g/kg/j (Ruiz-Castellano 2021, OK).
+- **Plage proposée** (règle d'app dérivée, PROVISOIRE) : repos 2-3 g/kg ; jour léger 3-4 g/kg ; jour lourd/jambes 4-6 g/kg ; cardio long ou match 5-7 g/kg (8 g/kg max sans validation). Les variations de kcal viennent des glucides (4 kcal/g) : écart maximal +-300 kcal par rapport à la moyenne du jour.
+- **Protéines** : 1,6-2,2 g/kg/j en entretien ou prise (ISSN 1,4-2,0 : OK ; borne haute 2,2 usage courant, PROVISOIRE) ; 2,2-3,0 g/kg/j en déficit chez pratiquants de musculation (Ruiz-Castellano 2,2-3,0 : OK ; ISSN 2,3-3,1 pour mémoire ; la borne basse 2,0 a été retirée, aucune source) ; répartition : 3-5 prises de 0,25-0,55 g/kg, 20-40 g minimum (OK) ; plafond de l'app 3,0 g/kg/j (PROVISOIRE : pas de limite supérieure de sécurité définie par l'ANSES, plafond prudent) ; réduire/avis médical en maladie rénale (E).
+- **Lipides** : plancher 0,5 g/kg/j et idéalement 20-30 % de l'énergie (Ruiz-Castellano 2021 : OK) ; le plancher ISSN/ACSM 20 % de l'énergie (ACSM 20-35 % : PROVISOIRE). Jamais sous 0,5 g/kg.
+- **Surplus en prise de muscle** : Iraki, Fitschen, Espinar, Helms, Sports 2019;7(7):154, DOI 10.3390/sports7070154 (PMC6680710) : surplus modeste ~10-20 % au-dessus de l'entretien, vers le bas de la fourchette pour les avancés ou si la prise de gras est importante : OK (via recherche, abstract/texte PMC résumé). Rythme : 0,25-0,5 % du poids/semaine (annoncé par une source secondaire, non vérifié au texte) : PROVISOIRE. Slater et al. 2019, Front Nutr 6:131, DOI 10.3389/fnut.2019.00131 (surplus nécessaire ou pas à l'hypertrophie) : référence identifiée, texte non lu : PROVISOIRE. Repères de l'app : débutant jusqu'à 0,5 %/sem ; intermédiaire 0,25-0,5 % ; avancé 0,25 % ; plafond surplus +300 kcal/j (voir C).
+- Suivi : si la prise dépasse le rythme visé deux semaines de suite, réduire le surplus de 100-150 kcal/j (règle d'app PROVISOIRE).
+
+## C. Rythme maximal de perte et de prise
+- **Perte** : visée 0,5-1,0 %/sem, plafond dur 1,0 %/sem (Ruiz-Castellano 2021 : OK) ; plus lent (0,5 %) si masse grasse basse ou IMC entre 22 et 25 ; IMC < 22 : aucun déficit chiffré (voir « IMC minimal ») (règle d'app).
+- **Prise** : plafond 0,5 %/sem (débutant), 0,25 %/sem (avancé) : PROVISOIRE (B).
+- **Déficit** plafonné à 25 % du TDEE ou 750 kcal/j, le plus petit des deux ; **surplus** plafonné à +300 kcal/j (ou +20 %, le plus petit) : règles d'app PROVISOIRE (rapprochées du 10-20 % d'Iraki 2019 pour le surplus).
+- **Plancher kcal absolu** : jamais sous 1500 kcal/j pour un homme ni 1200 kcal/j pour une femme, et jamais sous le métabolisme de repos estimé, jamais de plan à très basse énergie (< 800 kcal/j, qui exige un suivi médical). Valeurs prudentes courantes, non sourcées au texte : PROVISOIRE, règle de sécurité à faire valider par nutritionniste puis relecteur. Sexe inconnu : appliquer 1500.
+- **IMC minimal** : aucune proposition de perte si IMC < 18,5 (seuil OMS de maigreur : https://www.who.int/data/gho/data/themes/topics/topic-details/GHO/body-mass-index ; seuil OK, usage comme blocage = règle d'app) ; perte « prudente » seulement entre 18,5 et 22 si l'utilisateur a une raison sportive (message d'information, ni déficit chiffré). Aussi aucune perte quand IMC < 20 avec alerte comportementale (E).
+- **Quand ralentir** : perte réelle > 1 %/sem sur 2 semaines consécutives (poids lissé) -> relever les kcal de 150-250/j ; fatigue, sommeil dégradé, perte de force ou douleur : arrêter la phase (règle d'app PROVISOIRE).
+- **Pauses** : tout 8-12 semaines de déficit, pause à l'entretien 1-2 semaines proposée ; durée maximale d'un déficit continu 16 semaines (règle d'app PROVISOIRE ; pauses de 1-2 semaines : revue narrative, bénéfices incertains, OK).
+
+## D. Poids lissé et pesée
+- **Méthode** (règle d'app, algorithme standard de « trend weight ») : moyenne mobile exponentielle sur les pesées disponibles : T_n = T_(n-1) + alpha x (P_n - T_(n-1)), alpha = 0,1 pour pesées quotidiennes (~ fenêtre 10 j) ; alternative : régression linéaire sur 14 j (>= 4 pesées). Le tendance pour décision = régression 14-21 j. PROVISOIRE (méthode, paramètres à valider ; source de principe : Hall 2011 Lancet pour la dynamique du poids).
+- **Pesée hebdomadaire seule** : une pesée/semaine donne une tendance bruitée. Règle : lisser entre semaines avec alpha = 0,3 (T_s = T_(s-1) + 0,3 x (P_s - T_(s-1))) et ne décider qu'avec >= 3 semaines de pesées (>= 3 points) ; conseiller 2-3 pesées/semaine si possible. Aucune décision sur une pesée isolée. PROVISOIRE.
+- **Standardisation** : même jour, au réveil, après les toilettes, à jeun, mêmes vêtements, même balance : consigne de bon sens, NON SOURCÉ (mais sans risque ; à valider).
+- **Fluctuations normales** : eau, glycogène (1 g de glycogène est stocké avec environ 3 g d'eau), sel, cycle menstruel, contenu digestif : variations de 1-2 kg d'un jour à l'autre possibles, sans valeur de tendance. Statut : PROVISOIRE (valeurs usuelles, source de revue à ajouter ; le rapport glycogène-eau est dans la littérature classique, non relu ici).
+- **Seuils d'alerte** (règles d'app PROVISOIRE) : variation du poids lissé > 1 % par semaine pendant 2 semaines ; ou écart de poids brut > 2 kg en une semaine -> pas de conclusion, message neutre : « Ce chiffre peut venir de l'eau ou d'une pesée différente. Pèse-toi dans les mêmes conditions les prochains jours. Si ça continue ou si tu as un doute sur ta santé, parles-en à un professionnel. » ; perte > 2 %/sem ou plus de 5 % du poids en un mois sans déficit visé -> message vers un professionnel (E).
+
+## E. Exclusions et orientation (sécurité : validation obligatoire)
+Principe : l'app ne décide jamais d'un diagnostic ; elle bloque les calculs de déficit/surplus et renvoie vers un professionnel. Toutes les règles de cette section : PROVISOIRE (règles de prudence de l'app) sauf mention ; à valider nutritionniste + relecteur.
+- **Mineurs** : app réservée aux majeurs (>= 18 ans), confirmée par la date de naissance à l'inscription ; moins de 18 ans -> aucun accès au module nutrition (pas de calcul, pas de plan).
+- **Grossesse, allaitement, post-partum** : aucun déficit calculé ; pas de chiffre d'objectif de poids ; message : « parle à ton médecin ou à ta sage-femme » ; caféine : 200 mg/j max (EFSA, OK). Besoins énergétiques supplémentaires non calculés par l'app.
+- **Trouble des conduites alimentaires (antécédent ou soupçon)** : question de dépistage facultative et douce, jamais bloquante pour la saisie, mais bloquante pour déficit. Questionnaire SCOFF (Morgan, Reid, Lacey, BMJ 1999;319:1467-1468, https://pubmed.ncbi.nlm.nih.gov/10582927/ ; score >= 2 = cas probable) : le BMJ est protégé par droit d'auteur, licence non établie : NON SOURCÉ pour reproduction ; alternative : formuler des questions originales de l'app, inspirées du principe, sans reprendre le texte. Formulation douce proposée (à valider) : « Ces questions sont facultatives et restent privées. As-tu déjà eu l'impression de perdre le contrôle de ce que tu manges ? Le poids ou la nourriture occupent-ils une grande partie de tes pensées ? Te fais-tu vomir ou utilises-tu des laxatifs pour contrôler ton poids ? » Réponse positive ou refus -> pas de déficit, message d'orientation sans diagnostic ni étiquette.
+- **Diabète (type 1 ou 2), insuline, antidiabétiques** : pas de calcul de déficit ni d'indication de glucides pour les doses ; informations générales seulement ; avis médical.
+- **Maladie rénale** : pas de plan protéique élevé (plafond 0,83 g/kg ou valeur médicale), pas de créatine suggérée ; avis médical.
+- **Maladie hépatique, cardiaque, hypertension non contrôlée** : pas de déficit, informations générales ; avis médical.
+- **Allergie sévère / anaphylaxie** : calcul permis mais exclusion stricte de l'allergène (F) et avertissement renforcé ; l'app ne remplace pas la trousse ni l'avis allergologue.
+- **IMC < 18,5** : aucun déficit ; message d'orientation (seuil OMS, OK).
+- **Âge >= 65 ans** : déficit modéré seulement avec avis médical conseillé (risque de perte musculaire) ; protéines indicatives plus élevées (ISSN mentionne ~40 g par dose chez les âgés : OK) ; règle d'app PROVISOIRE, déficit plafonné à 10 % du TDEE.
+- **Médicaments** (corticoïdes, diurétiques, antidépresseurs, anticoagulants, thyroïde, etc.) : question facultative « prends-tu un traitement régulier ? » -> oui : informations générales seulement, pas de déficit, conseil de parler au médecin ou pharmacien (interaction alimentaire possible, par ex. vitamine K et anticoagulants : NON SOURCÉ ici).
+- **Comportements d'alerte** : perte réelle > 2 %/sem ; saut de repas répété (>= 3 jours sur 7 sans repas saisi alors que le suivi est actif) ; apport saisi < plancher C pendant 3 jours ; poids cible en dessous d'un IMC de 18,5 -> message neutre vers un professionnel, gel des déficits. PROVISOIRE.
+- Les réponses santé sont stockées en local, privées par défaut, jamais partagées (règle 7).
+
+## F. Allergènes et régimes
+- **14 allergènes à déclaration obligatoire UE** (règlement (UE) n°1169/2011, annexe II, texte FR lu sur EUR-Lex : https://eur-lex.europa.eu/legal-content/FR/TXT/?uri=CELEX:32011R1169) : OK. Libellés : 1 céréales contenant du gluten (blé, seigle, orge, avoine, épeautre, kamut et souches hybridées) ; 2 crustacés ; 3 œufs ; 4 poissons ; 5 arachides ; 6 soja ; 7 lait (y compris lactose) ; 8 fruits à coque (amandes, noisettes, noix, noix de cajou, pécan, Brésil, pistache, macadamia) ; 9 céleri ; 10 moutarde ; 11 graines de sésame ; 12 anhydride sulfureux et sulfites (> 10 mg/kg ou 10 mg/L) ; 13 lupin ; 14 mollusques. La liste des fruits à coque est lue partiellement dans l'extrait : vérifier le texte entier avant code (PROVISOIRE pour le détail du point 8).
+- **Intolérances et régimes proposés** : sans lactose ; sans gluten / maladie cœliaque (exclusion stricte, a besoin d'un avis médical) ; végétarien ; végétalien ; halal ; casher ; sans porc ; sans alcool ; sans poisson ; sans fruits à coque ; sans œufs. Les régimes religieux sont des préférences déclarées, jamais déduites. Statut : liste de l'app, pas de valeur à sourcer.
+- **Règle d'exclusion stricte** : tout ingrédient marqué avec un allergène déclaré est exclu ; « peut contenir des traces » et fabrication en atelier partagé : exclu par défaut pour allergie déclarée sévère/anaphylaxie ; l'utilisateur peut relâcher ce point pour les intolérances. Le plan ne propose jamais une recette dont un ingrédient a un statut « allergènes inconnus ».
+- **Avertissement obligatoire** (à l'écran du plan et de la liste de courses) : « Vérifie toujours l'étiquette des produits que tu achètes : les recettes de l'app ne remplacent pas l'étiquetage ni l'avis d'un médecin. »
+- **Mapping Ciqual -> allergènes** : Ciqual donne les groupes et sous-groupes d'aliments (par ex. « produits laitiers », « œufs », « poissons », « céréales ») mais ne garantit pas la présence d'allergènes des aliments transformés (ingrédients cachés, traces). Le mapping groupe -> allergène sert de PREMIER FILTRE seulement (ex. groupe « lait et produits laitiers » -> lait). Source : https://ciqual.anses.fr : OK pour la structure, la fiabilité allergène est NON SOURCÉE. Règle : chaque ingrédient de la base de recettes porte un champ `allergenes` renseigné à la main (humain ou IA, puis validation humaine) avec un statut `valide` / `a_verifier` / `inconnu`. Seuls les ingrédients `valide` entrent dans les plans filtrés par allergie.
+
+## G. Sources pour les recettes
+- **Ciqual** : Licence Ouverte 2.0 (Etalab, https://www.etalab.gouv.fr/licence-ouverte-open-licence/) : réutilisation libre, y compris commerciale, avec mention de la source et de la date de mise à jour : OK (conditions rappelées, texte de licence non rouvert ici : PROVISOIRE pour le libellé exact ; DOI 10.57745/RDMHWY). Mention : « Source : ANSES, Table de composition nutritionnelle des aliments Ciqual, Licence Ouverte 2.0 ».
+- **Open Food Facts** : base ODbL 1.0 (https://opendatacommons.org/licenses/odbl/1-0/ ; usage : https://world.openfoodfacts.org/terms-of-use) : exige attribution, partage à l'identique des bases dérivées, et la licence DbCL pour le contenu ; photos CC BY-SA. Statut : PROVISOIRE (conditions de mémoire). Conséquence : on n'intègre pas OFF dans la base de l'app (risque de partage à l'identique et photos) ; usage éventuel manuel et ponctuel pour un produit emballé, avec attribution.
+- **Recettes** : recommandé = recettes ÉCRITES ORIGINALES par l'app (listes d'ingrédients en grammes, étapes courtes réécrites) : une liste d'ingrédients et une méthode simple ne sont pas protégées en elles-mêmes, mais le texte rédigé l'est. Autres sources possibles : domaine public, CC0, Wikibooks FR (CC BY-SA 4.0 : attribution + partage à l'identique, à éviter pour garder la liberté de licence de l'app) : PROVISOIRE. **Interdit** : copier le texte, les photos, la présentation de sites de recettes ou d'autres apps.
+- **Règles de composition** : chaque recette = ingrédients Ciqual (code Ciqual) avec grammes ; macros et kcal RECALCULÉES depuis Ciqual (jamais saisies) ; portions pour 1 personne ; saison de l'ingrédient ; étapes courtes.
+- **Rendement à la cuisson** : utiliser les aliments Ciqual « cuit » quand ils existent plutôt que d'appliquer un facteur ; sinon facteurs de rendement (ex. riz, pâtes : poids multiplié environ par 2,2-3 ; viande rouge perd 20-30 %) : NON SOURCÉ ; à remplacer par les tables de rendement ANSES/Ciqual ou le guide de la restauration (à rechercher ; valeur non codable sans source).
+- **Taille cible** : 120-200 recettes, par lots de 15-20 (petit-déjeuner, déjeuner, dîner, collation, post-entraînement), progressive ; premier lot : 40.
+- **Étiquettes** : objectif (perte / entretien / prise), temps (< 15, 15-30, > 30 min), matériel (aucun, four, micro-ondes, mixeur), régime, allergènes (F), coût (€, €€, €€€ qualitatif, pas de prix), saison.
+- **Substitutions** : équivalences à macros proches calculées avec Ciqual (écart <= 10 % des protéines et des kcal à portion équivalente) ; table construite et recalculée par script à partir de Ciqual ; jamais d'équivalence hors sécurité (allergène, régime). Statut : règle d'app PROVISOIRE ; données Ciqual OK.
+
+## H. Liste de courses
+- Quantités en grammes ou unités ; regroupement des ingrédients identiques sur la semaine ; arrondi au conditionnement courant (ex. œufs par 6, lait par 1 L, conserves 400 g) ; regroupement par rayon (fruits et légumes, viandes/poissons, produits laitiers, féculents, épicerie, surgelés) ; aucun prix affiché ; case à cocher hors-ligne. Règles d'app : pas de source requise ; arrondis : PROVISOIRE (conditionnements à valider).
+
+## I. Hydratation, autour de l'entraînement, végétarien/végétalien
+- **Eau** : EFSA 2010, valeurs de référence pour l'eau : apport adéquat total (boissons + aliments) 2,5 L/j pour les hommes, 2,0 L/j pour les femmes (https://www.efsa.europa.eu/en/efsajournal/pub/1459) : PROVISOIRE (valeurs de mémoire, non vérifiées ici). Hydratation et exercice : boire selon la soif ; apport d'eau/glucides pendant des efforts > 60 min : ACSM (non lu) : NON SOURCÉ pour les chiffres de volume. Pas de conseil de surhydratation (hyponatrémie).
+- **Repas autour de l'entraînement** (population générale) : repas ou collation protéinée dans les 2-3 h avant et après la séance (Ruiz-Castellano 2021 : OK) ; ISSN 2017 : moment avant ou après équivalent (OK) ; glucides pré-séance 1-4 g/kg 1-4 h avant (ACSM/AND/DC 2016, Burke 2011) : PROVISOIRE ; séance à jeun possible, pas de charge supplémentaire.
+- **Végétarien / végétalien** : protéines : même objectif g/kg, en tenant compte d'une moindre qualité et digestibilité (ISSN 2017 : OK, voir 2) ; combiner céréales et légumineuses, soja, seitan, tofu ; augmenter la cible de 10 % : règle d'app PROVISOIRE. **Vitamine B12** : apport adéquat 4 µg/j chez l'adulte (EFSA 2015, EFSA Journal 13(7):4150, DOI 10.2903/j.efsa.2015.4150 ; 4,5 µg/j grossesse, 5 µg/j allaitement) : OK (via communiqué EFSA https://www.efsa.europa.eu/en/press/news/150709). Pas d'aliment végétal fiable en B12 : message d'information « parles-en à un professionnel, la supplémentation en B12 est habituelle en régime végétalien » (affirmation courante, source de position à ajouter : PROVISOIRE). Pas de dose conseillée, juste l'AS.
+
+## J. Valeurs codables
+| Constante | Valeur | Statut | À valider par |
+|---|---|---|---|
+| Protéines population générale | 0,83 g/kg/j (ANSES) | OK | - |
+| Protéines musculation entretien/prise | 1,4-2,0 g/kg/j (ISSN) | OK | - |
+| Protéines en déficit (musculation) | 2,2-3,0 g/kg/j (Ruiz-Castellano ; ISSN 2,3-3,1) | OK | - |
+| Plafond protéines app | 3,0 g/kg/j | PROVISOIRE | nutritionniste |
+| Dose par prise | 0,25 g/kg ou 20-40 g | OK | - |
+| Lipides plancher | 0,5 g/kg/j et 20 % de l'énergie | OK (0,5 g/kg) / PROVISOIRE (20 %) | nutritionniste |
+| Glucides musculation en déficit | 2-5 g/kg/j | OK | - |
+| Glucides par type de jour (3-12 g/kg) | voir B | PROVISOIRE | nutritionniste |
+| Mifflin-St Jeor (coefficients) | 10, 6,25, -5, +5/-161 | PROVISOIRE (relire l'article) | nutritionniste |
+| PAL (fourchettes FAO) | 1,40-2,39 | OK | - |
+| Mapping séances -> PAL | 1,40 / 1,55 / 1,70 / 1,85 | PROVISOIRE | nutritionniste |
+| Repli sans sexe/âge | PAL x 22 kcal/kg | PROVISOIRE | nutritionniste |
+| 7700 kcal/kg | approximation (fourchette 5000-7700) | PROVISOIRE | nutritionniste |
+| Recalage adaptatif | >= 14 j, ±15 % max | PROVISOIRE | nutritionniste + relecteur |
+| Perte max | 1,0 %/sem | OK (plage) / PROVISOIRE (plafond d'app) | relecteur |
+| Prise max | 0,25-0,5 %/sem | PROVISOIRE | nutritionniste |
+| Surplus | 10-20 % (Iraki) et <= +300 kcal/j | OK (10-20 %) / PROVISOIRE (+300) | nutritionniste |
+| Déficit max | 25 % du TDEE ou 750 kcal/j | PROVISOIRE | relecteur |
+| Plancher kcal | 1500 H / 1200 F / >= RMR | PROVISOIRE | nutritionniste + relecteur |
+| IMC min pour perte | 18,5 (OMS) | OK | relecteur |
+| Lissage poids | alpha 0,1 (quotidien), 0,3 (hebdo) | PROVISOIRE | nutritionniste |
+| Alerte poids | > 2 kg/sem brut ; > 1 %/sem lissé 2 sem | PROVISOIRE | nutritionniste |
+| Caféine | 400 mg/j ; 200 mg/prise ; 200 mg/j grossesse/allaitement | OK (abstract) | relecteur |
+| Créatine | 3-5 g/j | PROVISOIRE | nutritionniste |
+| 14 allergènes UE | voir F | OK (détail fruits à coque PROVISOIRE) | - |
+| Hydratation | 2,5 L H / 2,0 L F | PROVISOIRE | nutritionniste |
+| B12 | AS 4 µg/j | OK | - |
+| Rendements de cuisson | - | NON SOURCÉ | nutritionniste |
+| Mapping Ciqual -> allergènes | filtre seul | NON SOURCÉ (fiabilité) | humain à chaque ingrédient |
+| Questions SCOFF (texte) | non reproduites | NON SOURCÉ (droit) | nutritionniste |
+| Exclusions E (toutes) | voir E | PROVISOIRE | nutritionniste + relecteur |
+
+## 7. À sourcer (restant)
+Texte complet ACSM/AND/DC 2016 et Burke 2011 (glucides) ; Slater 2019 et rythme de prise 0,25-0,5 %/sem (texte Iraki) ; texte EFSA caféine 2015 (relecture) ; rendements de cuisson (ANSES/Ciqual) ; EFSA eau 2010 ; recomposition corporelle ; position vitamine B12 en régime végétalien ; plafonds kcal et lissage (validation experte) ; recommandations de dépistage TCA à licence claire.
