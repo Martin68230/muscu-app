@@ -253,7 +253,7 @@ function swapForZone(
       const tDay = { ...today, exercises: trial };
       const tGen = gens(tDay);
       const after = weekAt(trial);
-      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after) || !zoneCapsOk(baseWeek, after, ctx)) continue;
+      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after, ctx) || !zoneCapsOk(baseWeek, after, ctx)) continue;
       if (durOf(tDay, tGen, ctx) > Math.max(budgetSec, durOf({ ...today, exercises }, gens({ ...today, exercises }), ctx))) continue;
       const chk = checkZones(after, ctx, profile.pool);
       const st = chk.status;
@@ -370,7 +370,7 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
       const tGen = gens(tDay);
       const before = week.map((w, j) => (j === next.dayIndex ? { exercises: gens({ ...today, exercises }) } : w));
       const after = before.map((s, j) => (j === next.dayIndex ? { exercises: tGen } : s));
-      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after) || !zoneCapsOk(before, after, ctx)) continue;
+      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after, ctx) || !zoneCapsOk(before, after, ctx)) continue;
       const trialSec = durOf(tDay, tGen, ctx);
       if (trialSec > budgetSec || trialSec - baseSec > CATCHUP.maxExtraMin * 60) continue;
       exercises = trial;

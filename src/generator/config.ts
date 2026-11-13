@@ -1463,3 +1463,11 @@ export const CATCHUP = {
  */
 export const weekCountsSecondary = (muscle: string): boolean =>
   muscle === 'deltoides' || muscle.startsWith(VOLUME.deltoidPrefix) || muscle.startsWith('trapezes') || ['triceps', 'biceps', 'avant_bras', 'erecteurs_rachis'].includes(muscle);
+
+/**
+ * Plafonds relevés (décision de l'utilisateur du 13/11/2026, avis kiné ; NON SOURCÉ comme plafond) : 24 séries par semaine et par muscle
+ * principal (au lieu de 20), plafonds de zone x1,2 (20 -> 24, 10 -> 12), pour l'intermédiaire et l'avancé SANS blessure, hors santé,
+ * grossesse / post-partum, reprise, semaine allégée. Les six groupes protégés (épaules, trapèzes, triceps, biceps, avant-bras, érecteurs
+ * du rachis / lombaires) restent à 20 / 10. Le plafond par séance ne change pas. Annuler : RAISED_CAPS.enabled = false.
+ */
+export const RAISED_CAPS = { enabled: true, weekMuscle: 24, zoneFactor: 1.2 };

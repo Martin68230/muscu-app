@@ -12,7 +12,7 @@ import {
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
 import { isoEligible, isoSlotFitsType, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
-import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekCapsFracOk, weekMusclesOf, type Plaf } from './plaf';
+import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekCapFor, weekCapsFracOk, weekMusclesOf, weekVol, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
   blockCap, blocksForRank, cardioItem, cardioLevel, cardioRankOf, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, isHeavyLegsSession, legLoad,
@@ -155,7 +155,7 @@ type J3Fallback = (s: DurSession<GenExercise>, e: GenExercise, m: string) => Gen
  */
 type DeltFallback = (s: DurSession<GenExercise>, e: GenExercise, all: DurSession<GenExercise>[]) => GenExercise | null;
 
-function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback, deltFallback?: DeltFallback) {
+function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback, deltFallback?: DeltFallback, ctx?: Ctx) {
   const noyau = (s: DurSession<GenExercise>) => TYPE_NOYAU[typeOf(s.label)];
   for (let guard = 0; guard < 300; guard++) {
     let fixed = false;
@@ -178,7 +178,7 @@ function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback
       if (fixed) break;
     }
     if (fixed) continue;
-    const m = weekMusclesOf(sessions).find((x) => sessions.reduce((a, s) => a + sessionVol(s, x), 0) > VOLUME.maxPerMuscleWeek);
+    const m = weekMusclesOf(sessions).find((x) => sessions.reduce((a, s) => a + weekVol(s, x), 0) > weekCapFor(ctx, x));
     if (!m) return;
     // [kine 05/11/2026] Épaules (somme des trois chefs du deltoïde) au-delà de 20 : d'abord redescendre à 2 séries les accessoires qui les
     // chargent (séance la plus tardive d'abord), avant tout retrait d'exercice.
@@ -840,7 +840,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
     return null;
   };
-  enforcePlaf(durSessions, plafSlot, j3Fallback, deltFallback);
+  enforcePlaf(durSessions, plafSlot, j3Fallback, deltFallback, ctx);
   // Paires retentées après les plafonds (mêmes règles SUP-0 à SUP-10, canPair) : un repli ou un retrait a pu défaire une paire.
   if (ctx.gagnerDuTemps) durSessions.forEach((s, i) => { durSessions[i] = formAllPairs(s); });
   applyVolume(durSessions, (s) => budget.get(s.label) ?? dSec, ctx, msgs);
@@ -967,9 +967,11 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     budget: (s: DurSession<GenExercise>) => budget.get(s.label) ?? dSec,
     sessionOk: (exs: GenExercise[], mode: 'slot' | 'auto') => {
       const p = mode === 'slot' ? plafSlot : plafAuto;
+      // CAL-12 : aucun ajout (zones grises, remplissage du temps, correctifs) ne peut mettre un exercice lourd d'épaules / trapèzes dans une séance qui a le cou.
+      if (exs.some((e) => e.ficheId === CORRECTIF_COU.ficheId && e.slot === 'correctif') && hasHeavyShoulderTrap({ exercises: exs }, ctx)) return false;
       return isSplit ? splitCapsOk(exs, p) : sessionCapsOk({ exercises: exs }, p);
     },
-    weekOk: (ss: readonly DurSession<GenExercise>[]) => weekCapsOk([...ss]),
+    weekOk: (ss: readonly DurSession<GenExercise>[]) => weekCapsOk([...ss], ctx),
     alternatives: zoneAlternatives,
   };
   fillGreyZones(kept, zoneDeps);

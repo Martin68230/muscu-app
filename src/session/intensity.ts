@@ -204,7 +204,7 @@ export function fillExerciseTime(d: ExerciseFillDeps): ProgramDay | null {
   const work = sessions.map((s, j) => (j === d.dayIndex ? { ...s, [TODAY]: true } : { ...s }));
   fillToTarget(work, {
     ctx, pool, budget, target: budget,
-    sessionOk: (exs) => sessionOk(exs), weekOk: (ss) => weekCapsOk(ss as Sess[]),
+    sessionOk: (exs) => sessionOk(exs), weekOk: (ss) => weekCapsOk(ss as Sess[], ctx),
     alternatives: () => [],
   });
   const after = work[d.dayIndex];

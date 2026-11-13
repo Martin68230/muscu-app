@@ -4,7 +4,8 @@
 // Correction : d'abord changer d'exercice (même emplacement, même classement), puis ajouter des séries ; jamais au-delà des plafonds
 // V-PLAF / hebdomadaire (plaf.ts), des plafonds par zone (§3 : 20 / 10 par semaine, 6 par séance pour une petite zone), de la durée
 // choisie ni d'une protection (grossesse, reprise, semaine allégée, douleur : aucune série ajoutée sur une fiche qui touche une zone gênée).
-import { CORRECTIF, CORRECTIF_COU, HEAVY_TAGS_B1, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, VOLUME } from './config';
+import { CORRECTIF, CORRECTIF_COU, HEAVY_TAGS_B1, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, RAISED_CAPS, VOLUME } from './config';
+import { raisedCaps } from './plaf';
 import { isIsoSlot } from './isolation';
 import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
@@ -42,14 +43,14 @@ const MIN_COEF = 0.5;
 
 const zf = (ctx: Ctx, ficheId: string): ZoneFiche | undefined => ctx.fichesById.get(ficheId) as ZoneFiche | undefined;
 
-export function weekPoints(sessions: readonly { exercises: readonly GenExercise[] }[], ctx: Ctx): Record<ZoneId, number> {
+export function weekPoints(sessions: readonly { exercises: readonly GenExercise[] }[], ctx: Ctx, capMode = false): Record<ZoneId, number> {
   const fiches = new Map<string, ZoneFiche>();
   const sets = sessions.flatMap((s) => s.exercises.map((e) => {
     const f = zf(ctx, e.ficheId);
     if (f) fiches.set(f.id, f);
     return { ficheId: e.ficheId, sets: e.sets };
   }));
-  return pointsByZone(sets, fiches);
+  return pointsByZone(sets, fiches, capMode);
 }
 
 /** Zones exclues du contrôle : blessure déclarée (niveau >= 1), puis aucune fiche admissible (coefficient >= 0,5) dans le catalogue. */
@@ -227,10 +228,11 @@ export function addCorrectifs(
 /** Plafonds par zone (§3) : hebdomadaire par groupe (maximum des sous-zones) ; par séance pour les petites zones (6). Lecture relative :
  * un changement ne doit jamais faire passer un groupe au-dessus de son plafond, ni monter un groupe déjà au-dessus. */
 export function zoneCapsOk(before: readonly Pick<Sess, 'exercises'>[], after: readonly Pick<Sess, 'exercises'>[], ctx: Ctx): boolean {
-  const gb = capGroupPoints(weekPoints(before, ctx));
-  const ga = capGroupPoints(weekPoints(after, ctx));
+  const po = raisedCaps(ctx); // plafonds relevés : points de plafond sur les muscles principaux seulement (zones protégées : comptage complet)
+  const gb = capGroupPoints(weekPoints(before, ctx, po));
+  const ga = capGroupPoints(weekPoints(after, ctx, po));
   for (const [g, a] of ga) {
-    const cap = zoneCaps(a.zone).week;
+    const cap = zoneCaps(a.zone, raisedCaps(ctx) && { factor: RAISED_CAPS.zoneFactor }).week;
     if (a.points > cap && a.points > (gb.get(g)?.points ?? 0)) return false;
   }
   for (let i = 0; i < after.length; i++) {

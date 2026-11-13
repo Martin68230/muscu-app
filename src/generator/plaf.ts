@@ -6,7 +6,7 @@
 //   G3 : au plus 2 charnières par séance, la seconde sans charge (lecture restrictive de « charge légère ou poids du corps ») ;
 //   G4 : semaine allégée (ctx.lightWeek, point d'extension) et reprise (ctx.repriseActive) : 10.
 // Le plafond hebdomadaire de 20 (V-VOL, weekCapsOk) reste prioritaire. Valeurs : VOLUME (config.ts).
-import { CHARGEABLE_TAGS, FIXED_LOAD_TAGS, VOLUME, weekCountsSecondary } from './config';
+import { CHARGEABLE_TAGS, FIXED_LOAD_TAGS, RAISED_CAPS, VOLUME, weekCountsSecondary } from './config';
 import type { Ctx } from './context';
 import type { GenExercise } from './types';
 
@@ -102,8 +102,8 @@ export const weekMusclesOf = (s: { exercises: readonly Ex[] }[]): string[] => {
   return ms.some((m) => m.startsWith(VOLUME.deltoidPrefix)) ? [...ms, 'deltoides'] : ms;
 };
 
-export function weekCapsOk(ss: { exercises: readonly Ex[] }[]): boolean {
-  return weekMusclesOf(ss).every((m) => ss.reduce((a, s) => a + weekVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
+export function weekCapsOk(ss: { exercises: readonly Ex[] }[], ctx?: Parameters<typeof raisedCaps>[0]): boolean {
+  return weekMusclesOf(ss).every((m) => ss.reduce((a, s) => a + weekVol(s, m), 0) <= weekCapFor(ctx, m));
 }
 
 /**
@@ -113,3 +113,12 @@ export function weekCapsOk(ss: { exercises: readonly Ex[] }[]): boolean {
 export function weekCapsFracOk(ss: { exercises: readonly Ex[] }[]): boolean {
   return weekMusclesOf(ss).every((m) => ss.reduce((a, s) => a + sessionVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
 }
+
+/** Plafonds relevés (RAISED_CAPS) : intermédiaire / avancé sans blessure ni protection (santé, grossesse, reprise, semaine allégée). */
+export function raisedCaps(ctx: Pick<Ctx, 'level' | 'family' | 'pregnant' | 'repriseActive' | 'lightWeek' | 'zones'>): boolean {
+  return RAISED_CAPS.enabled && (ctx.level === 'intermediaire' || ctx.level === 'avance') && ctx.family !== 'sante' && !ctx.pregnant
+    && !ctx.repriseActive && !ctx.lightWeek && !ctx.zones.some((z) => !z.isG && z.level >= 1);
+}
+/** Plafond hebdomadaire d'un muscle : 24 si relevé et muscle non protégé, sinon 20. */
+export const weekCapFor = (ctx: Parameters<typeof raisedCaps>[0] | undefined, m: string): number =>
+  ctx && raisedCaps(ctx) && !weekCountsSecondary(m) ? RAISED_CAPS.weekMuscle : VOLUME.maxPerMuscleWeek;
