@@ -438,6 +438,22 @@ export const DOSE_LIMITS: Record<string, DoseLimit> = {
   'oiseau-halteres-assis': { noHeavyReps: true },
   'oiseau-banc-incline-halteres': { noHeavyReps: true },
   'extension-triceps-couche-deux-halteres': { noHeavyReps: true },
+  // Vague 2 lot 04 (kine 13/11/2026, CAL-9 levé sous conditions : intermédiaire minimum, dose légère, jamais jusqu'à l'échec ; NON SOURCÉ) : triceps en isolation
+  // = réserve >= 2, jamais la dose lourde, 2 séries au plus. Aucune dose nouvelle : ces limites ne font que BAISSER la dose.
+  'extension-triceps-elastique': { minRir: 2, noHeavyReps: true, maxSets: 2 },
+  'kickback-triceps-halteres': { minRir: 2, noHeavyReps: true, maxSets: 2 },
+  // Curl de poignet : correctif d'avant-bras seulement (CORRECTIF.ids), haltère très léger, jamais jusqu'à l'échec, jamais de progression (CORRECTIF.label, charge jamais augmentée).
+  'curl-poignet-halteres': { minRir: 2, noHeavyReps: true, maxSets: 2 },
+  // « Charge nettement plus légère qu'au curl normal » (fiche), curl concentration : isolation, jamais la dose lourde.
+  'curl-inverse-halteres': { minRir: 2, noHeavyReps: true },
+  'curl-concentration-halteres': { noHeavyReps: true },
+  // Descente lente : tendon du coude et épaule très sollicités (fiche) : réserve >= 2, jamais la dose lourde, 3 séries au plus.
+  'traction-negative-barre': { minRir: 2, noHeavyReps: true, maxSets: 3 },
+  // Oiseau et tirage au visage à l'élastique : une articulation, charge légère.
+  // Développé Arnold (relecteur 13/11/2026) : « haltères légers », rotation de l'épaule sous charge : réserve >= 2, jamais la dose lourde, 3 séries au plus.
+  'developpe-arnold-halteres': { minRir: 2, noHeavyReps: true, maxSets: 3 },
+  'oiseau-elastique': { noHeavyReps: true },
+  'tirage-visage-elastique-barre': { noHeavyReps: true },
 };
 /**
  * D32 : surfaces instables (bosu, ballon de gym, sangles de suspension, ballon lesté, roue) : réserve >= 2, jamais la réserve 1 de
@@ -497,6 +513,10 @@ export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
   // Vague 2 lot 03 (13/11/2026) : maintien sans charge, isolation, élastique, pas libre ou haltères légers : jamais exercice principal (un pilier de force ne doit pas devenir un superman, une presse des mains ou une montée sans charge).
   'superman-alterne', 'nage-au-sol', 'presse-des-mains', 'extension-hanche-debout-elastique', 'adduction-hanche-elastique-debout',
   'fente-laterale-glissee-serviette', 'montee-laterale-marche', 'fente-marchee-halteres',
+  // Vague 2 lot 04 (validé kine 13/11/2026) : isolations (oiseau, tirage au visage, curls, triceps), correctif d'avant-bras, descente lente (traction négative) et
+  // développé Arnold (rotation de l'épaule sous charge, haltères légers) : jamais exercice principal (un pilier de force ne doit pas devenir l'un d'eux). Choix prudent de `dev`.
+  'oiseau-elastique', 'tirage-visage-elastique-barre', 'curl-concentration-halteres', 'curl-inverse-halteres', 'curl-poignet-halteres',
+  'extension-triceps-elastique', 'kickback-triceps-halteres', 'developpe-arnold-halteres', 'traction-negative-barre',
 ];
 
 // ---------------------------------------------------------------------------------------------
@@ -596,6 +616,29 @@ export const TIME = {
  */
 export const UNILATERAL_MARKERS: readonly string[] = ['un bras', 'une jambe', 'unijambiste', 'bulgare', 'fente', 'copenhague', 'planche laterale', 'unipodal'];
 export const UNILATERAL_WORDS: readonly string[] = ['alterne'];
+/**
+ * Variantes dont la consigne de la fiche dit de faire toutes les répétitions (ou la durée) d'un côté, puis de l'autre (abduction,
+ * montée sur marche, rotation externe…) mais dont le nom ne contient aucun marqueur ci-dessus. Elles s'exécutent par côté (affichage
+ * « de chaque côté », lecteur gauche puis droite, retour 13/11/2026) SANS entrer dans les règles « unilatéral » du générateur
+ * (choix de variante, plancher de répétitions, réserve) : la dose et la sélection ne changent pas. Liste vérifiée par test.
+ */
+export const PER_SIDE_VARIANT_IDS: readonly string[] = [
+  'abduction-couchee-cote-base', 'abduction-couchee-cote-dos-mur', 'abduction-couchee-cote-mini-bande', 'abduction-debout-chaise',
+  'abduction-debout-mur', 'abduction-debout-mini-bande', 'abduction-poulie-debout', 'abduction-quatre-pattes-sol',
+  'abduction-quatre-pattes-mini-bande', 'adduction-couchee-cote-base', 'adduction-couchee-cote-chaise', 'adduction-hanche-elastique-debout-cheville',
+  'bucheron-ballon-lest-haut-bas', 'bucheron-ballon-lest-bas-haut', 'cheville-elastique-eversion', 'cheville-elastique-inversion',
+  'curl-ischios-elastique-chaise', 'curl-ischios-elastique-mur', 'equilibre-mouvement-mur', 'equilibre-mouvement-libre',
+  'equilibre-mouvement-ballon', 'extension-genou-chaise-sans-charge', 'extension-genou-chaise-elastique', 'extension-hanche-sans-materiel',
+  'extension-hanche-mini-bande', 'extension-hanche-debout-elastique-cheville', 'gainage-lateral-dynamique-genoux',
+  'gainage-lateral-dynamique-jambes-tendues', 'lancer-rotation-mur-pieds-fixes', 'lancer-rotation-mur-pivot', 'montee-gilet-lest-marche',
+  'montee-laterale-marche-rampe', 'montee-rapide-chaise-sans-charge', 'montee-sur-banc-poids-du-corps', 'montee-sur-marche-poids-du-corps',
+  'montee-sur-marche-halteres', 'montee-sur-box-haute', 'montee-sur-chaise', 'ouverture-livre-couche-cote', 'ouverture-livre-quatre-pattes',
+  'pallof-elastique-genoux', 'pallof-elastique-debout', 'pallof-elastique-pieds-serres', 'rotation-bucheron-sans-charge',
+  'rotation-bucheron-halteres', 'rotation-bucheron-elastique', 'rotation-externe-elastique-coude-colle', 'rotation-externe-halteres-couche',
+  'rotation-externe-poulie-debout', 'rowing-serviette-debout', 'rowing-serviette-assis', 'releve-tibial-mur-un-pied',
+  // Vague 2 lot 04 (consigne « termine un côté, puis change ») : exercices à un bras à la fois.
+  'curl-concentration-banc', 'curl-concentration-chaise', 'kickback-triceps-banc', 'kickback-triceps-chaise', 'curl-poignet-halteres-banc', 'curl-poignet-halteres-cuisse',
+];
 
 // ---------------------------------------------------------------------------------------------
 // Choix de la variante (V-ECHELON §6.3) — NON SOURCÉ
@@ -1046,14 +1089,22 @@ export const ISOLATION = {
   // exclue en plus toute fiche dont `deltoides_anterieurs` ou `triceps` est muscle principal (jamais un développé au-dessus de la tête) ;
   // aucune fiche admissible : emplacement vide, sans erreur. Attribut de fiche `isolation: oui` (E-11) : pas encore codé.
   slots: [
-    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'], ids: ['curl-barre', 'curl-incline-halteres', 'curl-halteres', 'curl-elastique'] },
+    { slot: 'iso_biceps', schema: 'tirage_h', muscle: 'biceps', zones: ['coude', 'poignet'], ids: ['curl-barre', 'curl-incline-halteres', 'curl-halteres', 'curl-elastique', 'curl-concentration-halteres', 'curl-inverse-halteres'] },
     { slot: 'iso_deltoide_lateral', schema: 'poussee_v', muscle: 'deltoides_lateraux', zones: ['epaule'], ids: ['elevation-laterale-assis-halteres', 'elevation-laterale'] },
+    // CAL-20 (13/11/2026, NON SOURCÉ) : deltoïde postérieur (oiseau, tirage au visage), même dose que les autres isolations (2 séries), mêmes plafonds.
+    {
+      slot: 'iso_deltoide_posterieur', schema: 'tirage_h', muscle: 'deltoides_posterieurs', zones: ['epaule'],
+      ids: ['oiseau-halteres', 'oiseau-banc-incline', 'oiseau-elastique', 'oiseau-un-bras-appuye', 'oiseau-machine-poulie', 'face-pull-elastique', 'tirage-visage-elastique-barre', 'tirage-visage-sangles'],
+    },
+    // CAL-9 levé sous conditions par le kiné (13/11/2026) : liste fermée aux 2 fiches validées ; niveau intermédiaire minimum (niveau_min des fiches : jamais un débutant),
+    // 2 séries (ISOLATION.setsPerExercise), jamais jusqu'à l'échec (DOSE_LIMITS), toute gêne au coude retire l'exercice (zones ci-dessous + cases des fiches).
+    { slot: 'iso_triceps', schema: 'poussee_h', muscle: 'triceps', zones: ['coude'], ids: ['extension-triceps-elastique', 'kickback-triceps-halteres'] },
     {
       slot: 'iso_mollets', schema: 'cheville_mollet', muscle: 'mollets', zones: ['cheville'],
       ids: ['releve-mollets', 'releve-mollets-assis', 'releve-mollets-halteres', 'marche-pointes-talons', 'releve-mollets-debout-barre', 'releve-mollets-machine'],
     },
   ] as readonly {
-    slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets'; schema: string; muscle: string; zones: readonly string[]; ids: readonly string[];
+    slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_deltoide_posterieur' | 'iso_triceps' | 'iso_mollets'; schema: string; muscle: string; zones: readonly string[]; ids: readonly string[];
   }[],
   /** PV3-ISO-6 : muscles principaux qui excluent une fiche de tout emplacement d'isolation. */
   excludedPrincipal: ['deltoides_anterieurs', 'triceps'] as readonly string[],
@@ -1088,7 +1139,7 @@ export const CORRECTIF = {
     tibiaux: ['releve-tibial-mur', 'marche-pointes-talons'],
     // 07/11/2026 : avant-bras (fiches de `coach`, cases de `kine`). Cou : placement automatique sous les conditions de `kine` (CORRECTIF_COU).
     cou: ['renfo-cou-isometrique'],
-    avant_bras: ['essorage-serviette', 'flexion-poignet-avant-bras', 'extension-poignet-avant-bras'],
+    avant_bras: ['essorage-serviette', 'flexion-poignet-avant-bras', 'extension-poignet-avant-bras', 'curl-poignet-halteres'],
   } as Readonly<Record<string, readonly string[]>>,
   maxSets: 2,
   maxPerSession: 2,

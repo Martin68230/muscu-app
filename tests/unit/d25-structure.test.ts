@@ -73,9 +73,10 @@ describe('T-D25-01 à 06 : répartition et calendrier (STR-REP-1, 2, 8)', () => 
           const slots = s.exercises.map((e) => e.slot).filter((x) => x !== 'correctif'); // emplacement correctif (06/11/2026) : hors règle de type
           const t = typeOf(s.label);
           if (t === 'HAUT') expect(slots.some((x) => x.startsWith('jambes') || x === 'charniere' || x === 'fonctionnel'), s.label).toBe(false);
-          if (t === 'BAS' || t === 'LEGS') expect(slots.some((x) => x.startsWith('poussee') || x.startsWith('tirage')), s.label).toBe(false);
-          if (t === 'PUSH') expect(slots.every((x) => x.startsWith('poussee')), s.label).toBe(true);
-          if (t === 'PULL') expect(slots.every((x) => x.startsWith('tirage') || x === 'tronc' || x === 'fonctionnel'), s.label).toBe(true);
+          if (t === 'BAS' || t === 'LEGS') expect(slots.some((x) => x.startsWith('poussee') || x.startsWith('tirage') || x === 'iso_biceps' || x === 'iso_triceps'), s.label).toBe(false);
+          // CAL-20 (13/11/2026) : isolation admise en PUSH / PULL / LEGS (isoEligible ouvert aux 5 et 6 jours, filtrée par isoSlotFitsType).
+          if (t === 'PUSH') expect(slots.every((x) => x.startsWith('poussee') || x.startsWith('iso_')), s.label).toBe(true);
+          if (t === 'PULL') expect(slots.every((x) => x.startsWith('tirage') || x.startsWith('iso_') || x === 'tronc' || x === 'fonctionnel'), s.label).toBe(true);
           for (const n of TYPE_NOYAU[t]) expect(slots, `${s.label} ${dur} min : ${n}`).toContain(n);
         }
       }

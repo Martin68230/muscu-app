@@ -4,7 +4,7 @@ import { zoneLevel } from '../data/injury-rules';
 import tagsJson from '../../knowledge/materiel-tags.json';
 import {
   CAL11, CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
-  MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, UNILATERAL_MARKERS, UNILATERAL_WORDS, type Family,
+  MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, PER_SIDE_VARIANT_IDS, UNILATERAL_MARKERS, UNILATERAL_WORDS, type Family,
 } from './config';
 import type { Fiche, FicheVariant, GeneratorInput, HistorySet } from './types';
 
@@ -98,6 +98,9 @@ export function isUnilateral(v: Pick<FicheVariant, 'id' | 'nom'>): boolean {
   const s = ` ${v.id} ${v.nom} `.toLowerCase().normalize('NFD').replace(/[̀-ͯ]/g, '').replace(/[-,;:()'’]/g, ' ');
   return UNILATERAL_MARKERS.some((m) => s.includes(m)) || UNILATERAL_WORDS.some((w) => s.includes(` ${w} `));
 }
+
+/** Se fait un côté à la fois (une série = gauche puis droite) : unilatéral au sens du générateur, ou variante de PER_SIDE_VARIANT_IDS. */
+export const isPerSideVariant = (v: Pick<FicheVariant, 'id' | 'nom'>): boolean => isUnilateral(v) || PER_SIDE_VARIANT_IDS.includes(v.id);
 
 function buildHistory(h: HistorySet[] | undefined): Map<string, HistoryInfo> {
   const out = new Map<string, HistoryInfo>();

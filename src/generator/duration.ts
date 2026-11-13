@@ -3,7 +3,7 @@
 import type { ExerciseRole, ExerciseUnit, Level, WarmupSet } from '../data/model';
 import {
   ACCESSORY_REMOVAL_ORDER_V2, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_ORDER, CORE_SAFE_FAMILIES, CORE_WHEEL_IDS, HEAVY_TAGS_B1, P3_LEG_ALLOWED_TAGS,
-  SUPERSET_FORBIDDEN_SCHEMAS, SUPERSET_MIN_REST_SEC, SUPERSET_SLOTS, TIME, WARMUP, type CoreFamily,
+  SUPERSET_FORBIDDEN_SCHEMAS, SUPERSET_MIN_REST_SEC, SUPERSET_SLOTS, PER_SIDE_VARIANT_IDS, TIME, WARMUP, type CoreFamily,
 } from './config';
 import { TYPE_NOYAU, typeOf } from './split';
 import type { SlotKey } from './types';
@@ -28,6 +28,8 @@ export interface DurExercise {
   /** D26 (SUP-0 à SUP-5) : inconnus = jamais apparié (lecture prudente). */
   schema?: string;
   ficheId?: string;
+  /** 13/11/2026 : variante jouée par côté (PER_SIDE_VARIANT_IDS) sans être « unilatérale » pour le générateur : deux fois le temps de travail par série. */
+  variantId?: string;
   tags?: string[];
   coreFamily?: CoreFamily | null;
   niveau?: Level;
@@ -50,16 +52,20 @@ export interface DurSession<E extends DurExercise = DurExercise> {
   e2Count: number;
 }
 
-/** t_exec d'une série : répétitions moyennes x 4 s (x 2 si unilatéral ou par côté) + 10 s si unilatéral ; à durée : maintien (x 2 si unilatéral). */
-export function tExec(e: Pick<DurExercise, 'unit' | 'holdSec' | 'repsMin' | 'repsMax' | 'unilateral'>): number {
-  if (e.unit === 'sec') return (e.holdSec ?? 0) * (e.unilateral ? TIME.unilateralFactor : 1);
+/** Variante jouée un côté puis l'autre (PER_SIDE_VARIANT_IDS) : une série = deux fois le temps de travail, sans le délai de changement de côté des unilatéraux. */
+const perSideOf = (e: Pick<DurExercise, 'variantId'>): boolean => !!e.variantId && PER_SIDE_VARIANT_IDS.includes(e.variantId);
+
+/** t_exec d'une série : répétitions moyennes x 4 s (x 2 si unilatéral, par côté ou variante par côté) + 10 s si unilatéral ; à durée : maintien (x 2 si unilatéral ou par côté). */
+export function tExec(e: Pick<DurExercise, 'unit' | 'holdSec' | 'repsMin' | 'repsMax' | 'unilateral' | 'variantId'>): number {
+  const sides = e.unilateral || perSideOf(e);
+  if (e.unit === 'sec') return (e.holdSec ?? 0) * (sides ? TIME.unilateralFactor : 1);
   const mean = (e.repsMin + e.repsMax) / 2;
-  const factor = e.unilateral || e.unit === 'reps_par_cote' ? TIME.unilateralFactor : 1;
+  const factor = sides || e.unit === 'reps_par_cote' ? TIME.unilateralFactor : 1;
   return mean * TIME.secPerRep * factor + (e.unilateral ? TIME.unilateralExtraSec : 0);
 }
 
-export function warmupSetSec(w: WarmupSet, unilateral: boolean): number {
-  return w.reps * TIME.secPerRep * (unilateral ? TIME.unilateralFactor : 1) + (unilateral ? TIME.unilateralExtraSec : 0) + WARMUP.e3RestSec;
+export function warmupSetSec(w: WarmupSet, unilateral: boolean, perSide = false): number {
+  return w.reps * TIME.secPerRep * (unilateral || perSide ? TIME.unilateralFactor : 1) + (unilateral ? TIME.unilateralExtraSec : 0) + WARMUP.e3RestSec;
 }
 
 /** Unités de la séance : exercices seuls et paires (dans l'ordre). */
@@ -83,7 +89,7 @@ export function units<E extends DurExercise>(s: DurSession<E>): E[][] {
 /** T = T_ech + exercices seuls + paires + transitions (secondes). */
 export function estimerDuree(s: DurSession): number {
   let t = s.e1Sec + s.e2Count * WARMUP.mobilitySecEach;
-  for (const e of s.exercises) for (const w of e.warmupSets) t += warmupSetSec(w, e.unilateral);
+  for (const e of s.exercises) for (const w of e.warmupSets) t += warmupSetSec(w, e.unilateral, perSideOf(e));
   const us = units(s);
   for (const u of us) {
     if (u.length === 1) {

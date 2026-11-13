@@ -4,7 +4,7 @@ nom: Flexion des bras en appui arrière (triceps)
 alias: [dips]
 schema: poussee_h
 type: force
-niveau_min: intermediaire
+niveau_min: debutant
 muscles_principaux: [triceps]
 muscles_secondaires: [pectoraux, deltoides_anterieurs]
 source_brouillon: []
@@ -15,8 +15,8 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| dips-banc-genoux-plies | Genoux pliés, pieds au sol | 1 | intermediaire | poids_du_corps, banc | Mains sur le bord d'un banc stable derrière toi, doigts vers l'avant, fesses décollées, genoux pliés à 90 degrés. |
-| dips-chaise-genoux-plies | Sur une chaise, genoux pliés | 1 | intermediaire | poids_du_corps, chaise | Même position avec les mains sur l'assise d'une chaise stable calée contre un mur. |
+| dips-banc-genoux-plies | Genoux pliés, pieds au sol | 1 | debutant | poids_du_corps, banc | Mains sur le bord d'un banc stable derrière toi, doigts vers l'avant, fesses décollées, genoux pliés à 90 degrés. |
+| dips-chaise-genoux-plies | Sur une chaise, genoux pliés | 1 | debutant | poids_du_corps, chaise | Même position avec les mains sur l'assise d'une chaise stable calée contre un mur. |
 | dips-banc-jambes-tendues | Jambes tendues, talons au sol | 2 | intermediaire | poids_du_corps, banc | Même position, jambes tendues devant toi, talons au sol. |
 | dips-banc-pieds-surleves | Jambes tendues, pieds surélevés | 3 | intermediaire | poids_du_corps, banc, box_ou_step | Jambes tendues, talons posés sur une box ou un step stable. |
 
@@ -48,7 +48,7 @@ statut: utilisable
 Voir program-logic.md et load-calibration.md. Aucune valeur propre à ce mouvement.
 
 ## Sécurité et contre-indications
-Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Durci le 12/11/2026 sur avis du kiné (décision de l'utilisateur) : épaule « retirer » dès le niveau 1 et niveau_min intermediaire (appui arrière, épaule en extension sous le poids du corps) ; choix prudent, tableaux NON SOURCÉ. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
+Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Durci le 12/11/2026 sur avis du kiné (décision de l'utilisateur) : épaule « retirer » dès le niveau 1 et niveau_min intermediaire (appui arrière, épaule en extension sous le poids du corps) ; choix prudent, tableaux NON SOURCÉ. **Niveau minimum rétabli à la demande de l'utilisateur le 13/11/2026** (débutant, échelon 1 genoux pliés au niveau débutant) ; l'épaule « retirer » dès la gêne de niveau 1 est conservée. Règles communes R1 à R10 et grossesse (G) : knowledge/regles-securite-communes.md. Rien ici n'est un diagnostic : l'app parle seulement de zone et de niveau de gêne. Tous les choix par zone et par niveau sont des choix prudents NON SOURCÉS (aucune étude ne teste « zone x niveau » ni ces adaptations exercice par exercice).
 
 **Contre-indications par zone** (profil blessures : 1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder. Plusieurs zones gênées : la plus prudente s'applique (retirer > adapter > garder) ; départage de deux variantes différentes : voir regles-securite-communes.md §0. Niveau 2 : aucune augmentation de charge ni de difficulté (R2). Niveau 3 : retirer (R3).
 

@@ -2,7 +2,7 @@
 import type { PlannedExercise } from '../../data/model';
 import { ficheOfId, type Fiche, type Variante } from '../../data/fiches';
 import { fmtKg } from '../../session/messages';
-import { isUnilateral } from '../../generator/context';
+import { isPerSideVariant } from '../../generator/context';
 import { isPerSide, perSideTarget } from '../../session/sides';
 
 export { fmtKg };
@@ -41,8 +41,9 @@ export function lineText(ex: PlannedExercise): string {
   if (ex.jump) return `${ex.sets} séries de ${ex.repsMax} ${ex.jump.soft ? 'répétitions, version sans saut' : 'sauts, réception douce'} · repos ${ex.restSec} s en marchant`;
   if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · ${ex.intensity === 'facile' ? 'effort facile' : 'effort modéré (5-6 sur 10)'}${ex.slowEndMin ? `, ${ex.slowEndMin} dernières min lentes` : ''}`;
   const t = ex.unit === 'sec' ? `${ex.holdSec ?? ex.repsMin} s` : ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
-  const unit = isPerSide(ex) ? ' de chaque côté' : '';
-  return `${ex.sets} × ${t}${unit} · repos ${durationText(ex.restSec)}`;
+  // Par côté : le nombre de séries et le côté sont dits en toutes lettres (« 3 séries × 12 répétitions de chaque côté (gauche puis droite) »).
+  if (isPerSide(ex)) return `${ex.sets} séries × ${t}${ex.unit === 'sec' ? '' : ' répétitions'} de chaque côté (gauche puis droite) · repos ${durationText(ex.restSec)}`;
+  return `${ex.sets} × ${t} · repos ${durationText(ex.restSec)}`;
 }
 
 export function parseNumber(text: string): number | null {
@@ -61,5 +62,5 @@ export const isLoadable = (v: Variante | undefined): boolean => !!v && v.tags.so
 export function withSides(all: Fiche[], ex: PlannedExercise): PlannedExercise {
   if (isPerSide(ex) || ex.role === 'cardio' || ex.jump) return ex;
   const v = variantOf(all, ex);
-  return v && isUnilateral(v) ? { ...ex, perSide: true } : ex;
+  return v && isPerSideVariant(v) ? { ...ex, perSide: true } : ex;
 }

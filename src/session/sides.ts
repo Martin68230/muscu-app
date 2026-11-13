@@ -16,7 +16,7 @@ export function perSideTarget(ex: Pick<PlannedExercise, 'unit' | 'repsMin' | 're
 }
 
 /** Phrase d'explication de la carte de série. */
-export const PER_SIDE_RULE = 'Une série = les deux côtés, gauche puis droite.';
+export const PER_SIDE_RULE = 'Une série = les deux côtés : gauche, puis droite.';
 
 /** Réserve demandée à CHAQUE série de travail (répétitions ou durée), sauf échauffement, cardio et séries de sauts. */
 export function needsRir(ex: Pick<PlannedExercise, 'role'> & { jump?: unknown }, isWarmup: boolean): boolean {

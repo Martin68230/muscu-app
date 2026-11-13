@@ -16,18 +16,20 @@ import { rotationStart } from './variety';
  */
 export function isoEligible(ctx: Ctx, split: GenProgram['split'], nDays: number): boolean {
   if (ctx.goalKey !== ISOLATION.goal || ctx.pregnant || !ctx.isoOpen) return false;
+  if (ctx.repriseActive || ctx.lightWeek) return false; // reprise douce et semaine allégée : aucune isolation (comme le remplissage PPL), les piliers ne changent pas
   if (nDays < ISOLATION.minDays) return false;
-  // D24 (CAL-1 / CAL-8, 07/11/2026) : séparations PUSH / PULL / LEGS admises (PV3-ISO-2) ; l'emplacement de chaque séance est filtré par isoSlotFitsType.
-  // Retiré (T-D25-02 : une séance PUSH / PULL / LEGS ne contient que des emplacements de son type) : pas d'isolation en PPL.
-  return split === 'corps_entier' || split === 'haut_bas';
+  // D24 (CAL-1 / CAL-8, 07/11/2026) : séparations PUSH / PULL / LEGS admises (PV3-ISO-2) ; l'emplacement de chaque séance est filtré par isoSlotFitsType
+  // (une séance PUSH / PULL / LEGS ne reçoit que l'isolation de son type, T-D25-02). CAL-20 (13/11/2026) : ouvert aux 5 et 6 jours (haut_bas_ppl, push_pull_legs),
+  // pour le même objectif (prise de muscle) et les mêmes plafonds qu'avant : aucune dose nouvelle.
+  return split === 'corps_entier' || split === 'haut_bas' || split === 'haut_bas_ppl' || split === 'push_pull_legs';
 }
 
 /** D24 : emplacement d'isolation admis selon le type de séance (CE : tous ; HAUT : biceps, latéraux ; BAS : mollets ; PUSH : latéraux ; PULL : biceps ; LEGS : mollets). */
-export function isoSlotFitsType(slot: 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_mollets', t: string): boolean {
+export function isoSlotFitsType(slot: IsoDef['slot'], t: string): boolean {
   if (t === 'CE') return true;
   if (slot === 'iso_mollets') return t === 'BAS' || t === 'LEGS';
-  if (slot === 'iso_biceps') return t === 'HAUT' || t === 'PULL';
-  return t === 'HAUT' || t === 'PUSH';
+  if (slot === 'iso_biceps' || slot === 'iso_deltoide_posterieur') return t === 'HAUT' || t === 'PULL';
+  return t === 'HAUT' || t === 'PUSH'; // iso_deltoide_lateral, iso_triceps
 }
 
 export type IsoDef = (typeof ISOLATION.slots)[number];
@@ -40,7 +42,8 @@ export type IsoDef = (typeof ISOLATION.slots)[number];
 export function isoFicheFits(f: Fiche, def: IsoDef): boolean {
   if (f.schema !== def.schema || !f.musclesPrincipaux.includes(def.muscle)) return false;
   if (!def.ids.includes(f.id)) return false;
-  return !f.musclesPrincipaux.some((m) => ISOLATION.excludedPrincipal.includes(m));
+  // iso_triceps (CAL-9 levé sous conditions) : le triceps est le muscle visé de son propre emplacement, pas une exclusion.
+  return !f.musclesPrincipaux.some((m) => m !== def.muscle && ISOLATION.excludedPrincipal.includes(m));
 }
 
 /**

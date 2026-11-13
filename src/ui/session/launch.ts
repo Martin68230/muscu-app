@@ -3,7 +3,7 @@ import { list, listAll, listTrusted } from '../../data/repo';
 import type { CatchUpLogEntry, EquipmentProfile, Injury, PlannedExercise, Profile, Program, ProgramDay, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
 import type { SportPlanEntry, SportSession } from '../../data/model';
 import type { Fiche } from '../../data/fiches';
-import { buildCtx, isChargeable, isUnilateral, type Ctx } from '../../generator/context';
+import { buildCtx, isChargeable, isPerSideVariant, type Ctx } from '../../generator/context';
 import type { Fiche as GenFiche, GeneratorInput } from '../../generator/types';
 import type { EngineContext } from '../../session/engine';
 import { buildEngineContext, gentlerAlternative, proposeProgression, type BodyweightProgression, type ProgressionInput } from '../../session/history';
@@ -212,7 +212,7 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
     mainMusclesOf: (ex) => fiches.find((f) => f.id === ex.movementId)?.musclesPrincipaux ?? null,
     perSideOf: (ex) => {
       const v = variants.get(ex.variantId);
-      return !!v && isUnilateral(v);
+      return !!v && isPerSideVariant(v);
     },
     zonesOfMovement,
     sessions,

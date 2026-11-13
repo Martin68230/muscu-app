@@ -5,9 +5,9 @@ import type { LightDay, Level, PlannedExercise, ProgramDay } from '../data/model
 import {
   ACCESSORY_REMOVAL_ORDER_V2, JUMPS, ACHAT_CANDIDATES, CARDIO_V2, LIGHT_DAY, ONE_DAY_BEGINNER_MAX_MIN, SPLIT_MIN_FORCE_EXERCISES, SPLIT_START_N_BY_DURATION,
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
-  OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
+  OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CAL11, CORRECTIF_COU, CARDIO_CAPS, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CAL11, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
@@ -53,7 +53,7 @@ const LABELS: Label[] = ['A', 'B', 'C'];
 /** V-ORDRE §4.1 : piliers, tirage_1, charnière, accessoires (indices croissants), tronc, fonctionnel. */
 const DISPLAY_ORDER: SlotKey[] = [
   'jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'poussee_2', 'tirage_2', 'jambes_2', 'poussee_3', 'tirage_3', 'jambes_3',
-  'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_mollets', 'tronc', 'fonctionnel', 'correctif',
+  'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_deltoide_posterieur', 'iso_triceps', 'iso_mollets', 'tronc', 'fonctionnel', 'correctif',
 ];
 /** Ordre de retrait pour respecter les plafonds de volume par séance (V-PLAF) : le moins prioritaire d'abord. */
 const PLAF_ORDER: SlotKey[] = [
@@ -862,15 +862,30 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   // STR-ISO-0 à 4 : isolation ajoutée en dernier, s'il reste du temps (T < D - 10 min, comme l'ajout §4.4), sous le plafond
   // d'emplacements (N de départ), 2 séries, 2 exercices d'isolation par séance au plus, un par groupe, 4 séries par groupe et par semaine.
   const isPpl = split === 'push_pull_legs' || split === 'haut_bas_ppl';
+  /** Exercice d'isolation du haut déjà placé hors emplacement `iso_*` (fiche d'isolation par préfixe, muscle principal biceps ou deltoïde latéral / postérieur). */
+  const isUpperIsolation = (e: GenExercise): boolean =>
+    ISOLATION_FICHE_PREFIXES.some((p) => e.ficheId.startsWith(p)) && e.musclesPrincipaux.some((m) => ['biceps', 'deltoides_lateraux', 'deltoides_posterieurs'].includes(m));
+  // Un objectif de cardio (rang 1 ou 2) garde la place d'un bloc de cardio (CARDIO.blockMinMin) : l'isolation ne la prend jamais.
+  const isoCardioReserveSec = cardioRank ? CARDIO.blockMinMin * 60 : 0;
   const addIsolation = (): void => {
     if (isoEligible(ctx, split, kept.length)) {
       const weekSets = new Map<string, number>();
       for (const def of ISOLATION.slots) weekSets.set(def.slot, kept.reduce((a, s) => a + isoSetsIn(s.exercises, def), 0));
+      // CAL-20 (13/11/2026, NON SOURCÉ) : l'ordre des emplacements du haut du corps (biceps, deltoïde latéral, deltoïde postérieur, triceps) tourne de 2 rangs
+      // à chaque séance du haut (HAUT, PUSH, PULL, corps entier) : deux séances HAUT d'une même semaine ne reçoivent pas la même isolation. Mollets : toujours en dernier.
+      const upperDefs = ISOLATION.slots.filter((d) => d.slot !== 'iso_mollets');
+      const calfDefs = ISOLATION.slots.filter((d) => d.slot === 'iso_mollets');
+      let upperIdx = 0;
+      const orderedBy = new Map<DurSession<GenExercise>, typeof upperDefs>();
       for (const s of kept) {
         let inSession = 0;
         const cap = isSplit ? dur.startNSplit : dur.startN;
         const budgetS = budget.get(s.label) ?? dSec;
-        for (const def of ISOLATION.slots) {
+        const isUpper = typeOf(s.label) !== 'BAS' && typeOf(s.label) !== 'LEGS';
+        const shift = isUpper ? (2 * upperIdx++) % upperDefs.length : 0;
+        const orderedDefs = [...upperDefs.map((_, i) => upperDefs[(i + shift) % upperDefs.length]), ...calfDefs];
+        orderedBy.set(s, orderedDefs);
+        for (const def of orderedDefs) {
           if (inSession >= ISOLATION.maxPerSession || s.exercises.length >= Math.min(cap, VOLUME.maxExercisesPerSession)) break;
           if (isoSetsIn(s.exercises, def) > 0 || (weekSets.get(def.slot) ?? 0) + ISOLATION.setsPerExercise > ISOLATION.maxSetsPerGroupWeek) continue;
           // Lecture de `dev` : biceps et deltoïdes latéraux dans une séance du haut (ou corps entier), mollets dans une séance du bas (ou corps entier).
@@ -886,11 +901,44 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
           if (!ex) continue;
           const trial = { ...s, exercises: [...s.exercises, ex] };
-          if (estimerDuree(trial) > budgetS || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
+          if (estimerDuree(trial) > budgetS - isoCardioReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
           if (!weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
           s.exercises = trial.exercises;
           inSession++;
           weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
+        }
+      }
+      // CAL-20 c (13/11/2026, NON SOURCÉ) : une séance HAUT / PUSH / PULL restée sans isolation (plafond d'emplacements atteint) échange son accessoire d'indice le plus
+      // élevé contre une isolation (2 séries au lieu de 3, même place) ; un superset défait laisse son partenaire seul, jamais sous plafond P-CAP, jamais si la durée, V-PLAF, le plafond
+      // hebdomadaire ou le plancher de volume d'un muscle (VOLUME.targetMuscle, tenu par la semaine avant l'échange) en pâtissent. Aucune dose nouvelle.
+      for (const s of kept) {
+        const t = typeOf(s.label);
+        if (cardioRank) continue; // le bloc de cardio secondaire est limité à 25 % de la musculation : une séance raccourcie par l'échange perdrait son bloc
+        if ((t !== 'HAUT' && t !== 'PUSH' && t !== 'PULL') || s.exercises.some((e) => isIsoSlot(e.slot) || isUpperIsolation(e))) continue;
+        const budgetS = budget.get(s.label) ?? dSec;
+        const victims = s.exercises.filter((e) => /^(poussee|tirage)_[34]$/.test(e.slot) && !e.capped).reverse();
+        const vol0 = new Map(musclesOf(kept).map((m) => [m, kept.reduce((a, x) => a + sessionVol(x, m), 0)]));
+        let done = false;
+        for (const def of (orderedBy.get(s) ?? []).filter((d) => isoSlotFitsType(d.slot, t))) {
+          if (done) break;
+          if ((weekSets.get(def.slot) ?? 0) + ISOLATION.setsPerExercise > ISOLATION.maxSetsPerGroupWeek) continue;
+          const weekUsed = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((e) => e.ficheId)));
+          const isoK = Math.min(kept.filter((x) => isoSlotFitsType(def.slot, typeOf(x.label))).length, Math.floor(ISOLATION.maxSetsPerGroupWeek / ISOLATION.setsPerExercise));
+          for (const v of victims) {
+            // Le partenaire d'un superset défait continue seul (la durée est recontrôlée sur l'essai).
+            const others = s.exercises.filter((e) => e !== v).map((e) => (v.supersetGroup && e.supersetGroup === v.supersetGroup ? { ...e, supersetGroup: null } : e));
+            const ex = isoExercise(def, ctx, pool, new Set(others.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
+            if (!ex) break;
+            const trial = { ...s, exercises: [...others, ex] };
+            if (estimerDuree(trial) > budgetS - isoCardioReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
+            const week2 = kept.map((x) => (x === s ? trial : x));
+            if (!weekCapsOk(week2)) continue;
+            if ([...vol0].some(([m, v0]) => v0 >= VOLUME.targetMuscle && week2.reduce((a, x) => a + sessionVol(x, m), 0) < VOLUME.targetMuscle)) continue;
+            s.exercises = trial.exercises;
+            weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
+            done = true;
+            break;
+          }
         }
       }
     }
@@ -1298,7 +1346,7 @@ export function generateProgram(input: GeneratorInput): GenerateResult {
   const r1 = generateWeek(input, 1);
   if (!r1.ok) return r1;
   const r2 = generateWeek(input, 2);
-  if (r2.ok) mergeRotation(r1.program, r2.program, buildCtx(input));
+  if (r2.ok) mergeRotation(r1.program, r2.program, buildCtx(input), input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1)));
   // PV3-VAR-6 point 4 : pénurie recalculée sur le programme fusionné (semaines 1 et 2 réellement affichées) ; un remplaçant « moins
   // d'épaules » peut répéter une fiche ou une famille de la semaine faute d'autre fiche : le plan est alors signalé honnêtement.
   r1.program.penurieVariete = [...varietyShortage(r1.program.sessions, new Set(r1.program.penurieVariete ?? []))].sort();
@@ -1435,7 +1483,7 @@ export function plannedOf(e: GenExercise): PlannedExercise {
     slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, ...((e.ficheId === CORRECTIF_COU.ficheId || e.cappedLabel === CAL11.stopMessage) && e.cappedLabel ? { cappedLabel: e.cappedLabel } : {}), adaptation: e.adaptation, substitut: e.substitut,
     ...(e.rotation ? { rotation: true } : {}),
     // Un seul côté à la fois (un bras, une jambe, alterné) : une série = gauche puis droite. `reps_par_cote` l'est déjà.
-    ...(e.unilateral && e.unit !== 'reps_par_cote' && e.role !== 'cardio' ? { perSide: true } : {}),
+    ...((e.unilateral || PER_SIDE_VARIANT_IDS.includes(e.variantId)) && e.unit !== 'reps_par_cote' && e.role !== 'cardio' ? { perSide: true } : {}),
   };
 }
 

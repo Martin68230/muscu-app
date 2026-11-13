@@ -20,9 +20,9 @@ statut: utilisable
 | ecarte-elastique-porte | Élastique ancré en haut d'une porte | 2 | intermediaire | elastique, ancrage_porte | Debout, dos à la porte, élastique ancré en haut selon sa notice ; une poignée dans chaque main, bras de chaque côté légèrement en avant, coudes souples. |
 
 ## Consignes
-1. Prends la position de la variante choisie, coudes légèrement fléchis, épaules basses.
+1. Prends la position de la variante choisie : debout avec l'élastique dans le dos (ou ancré en haut d'une porte), ou couché au sol avec les haltères ; coudes légèrement fléchis, épaules basses.
 2. Écarte les bras en arc de cercle, comme pour ouvrir un grand coffre, sans changer l'angle des coudes.
-3. Au sol : arrête-toi quand les coudes frôlent le sol ; debout : arrête-toi quand les mains sont à la hauteur de la poitrine.
+3. Debout (élastique dans le dos ou à la porte) : arrête-toi quand les mains sont à la hauteur de la poitrine. Couché au sol (haltères) : arrête-toi quand les coudes frôlent le sol.
 4. Ramène les bras devant la poitrine en serrant les pectoraux, sans claquer les haltères ni relâcher l'élastique.
 5. Garde le ventre serré et le dos à plat ou droit pendant toute la série.
 

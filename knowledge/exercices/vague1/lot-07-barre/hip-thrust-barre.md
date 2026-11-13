@@ -53,7 +53,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 |---|---|---|---|
 | Dos | adapter: amplitude:reduite | adapter: charge:legere | retirer |
 | Épaule | garder | adapter: charge:legere | retirer |
-| Coude | garder | garder | retirer: sans-zone:hip-thrust-barre-banc |
+| Coude | garder | garder | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
 | Genou | garder | adapter: amplitude:reduite | retirer |
 | Hanche | garder | adapter: amplitude:reduite | retirer |
@@ -64,6 +64,7 @@ Rédigé par `coach` le 2026-10-24, repris et corrigé par `kine` le 2026-10-24 
 
 **Notes**
 - general : La barre seule pèse souvent 20 kg (parfois moins) : c'est déjà une charge. Si elle est trop lourde pour garder le geste propre, passe à la version aux haltères (NON SOURCÉ ; question Q12 de docs/QUESTIONS.md). Ici la barre repose sur les hanches : une barre de 20 kg reste acceptable pour un débutant si le banc est calé.
+- coude-n3 : retirer simple, durci par le kiné le 13/11/2026 (une barre chargée tenue ou calée avec une douleur forte au coude : pas de variante conservée).
 - dos-n1 : monte moins haut, sans cambrer ; barre légère.
 - dos-n2 : barre légère, pas d'augmentation (R2).
 - epaule-n2 : barre légère (les bras tiennent la barre, le haut du dos est sur le banc).

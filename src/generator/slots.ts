@@ -13,7 +13,7 @@ export const PILLAR_SLOTS: readonly SlotKey[] = ['jambes_genou', 'poussee_1'];
 export const isCore = (s: SlotKey) => CORE_SLOTS.includes(s);
 /** Tous les emplacements (corps entier puis emplacements de volume D25), pour les parcours d'exercices. */
 export const ALL_SLOTS: readonly SlotKey[] = [
-  ...SLOT_ORDER, 'poussee_3', 'tirage_3', 'jambes_3', 'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_mollets',
+  ...SLOT_ORDER, 'poussee_3', 'tirage_3', 'jambes_3', 'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_deltoide_posterieur', 'iso_triceps', 'iso_mollets',
 ];
 
 interface SchemaReq {

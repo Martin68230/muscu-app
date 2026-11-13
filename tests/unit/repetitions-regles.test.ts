@@ -265,6 +265,8 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
       'extension-triceps-barre-ez-allonge', 'extension-triceps-couche-halteres', 'extension-triceps-sol-leger', 'oiseau-banc-incline', 'oiseau-halteres', 'oiseau-machine-poulie',
       'oiseau-un-bras-appuye', 'releve-mollets', 'releve-mollets-assis', 'releve-mollets-debout-barre', 'releve-mollets-halteres', 'releve-mollets-machine',
       'rotation-externe-epaule', 'rotation-externe-poulie', 'shrug-barre', 'tirage-bras-tendus-elastique', 'tirage-visage-sangles', 'tirage-w-allonge',
+      // vague 2 lot 04 (13/11/2026, relues : isolations d'une articulation, 1 ou 2 muscles principaux)
+      'curl-concentration-halteres', 'curl-inverse-halteres', 'curl-poignet-halteres', 'extension-triceps-elastique', 'oiseau-elastique', 'tirage-visage-elastique-barre',
     ];
     const hits = FICHES.filter((f) => ISOLATION_FICHE_PREFIXES.some((p) => f.id.startsWith(p)));
     expect(hits.map((f) => f.id).sort()).toEqual([...REVUES].sort());

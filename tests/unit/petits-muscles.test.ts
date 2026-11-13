@@ -7,7 +7,7 @@ import { hasHeavyShoulderTrap } from '../../src/generator/zones-check';
 import { buildCtx } from '../../src/generator/context';
 import { mk } from './generator-helpers';
 
-const FOREARM = ['essorage-serviette', 'flexion-poignet-avant-bras', 'extension-poignet-avant-bras'];
+const FOREARM = ['essorage-serviette', 'flexion-poignet-avant-bras', 'extension-poignet-avant-bras', 'curl-poignet-halteres'];
 describe('Petits muscles : avant-bras et cou', () => {
   it('avant-bras : seulement en correctif, 2 séries au plus, jamais en grossesse ; cou : voir plus bas', () => {
     let seen = 0;

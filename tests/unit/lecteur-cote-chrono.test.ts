@@ -43,7 +43,7 @@ describe('une série = les deux côtés', () => {
   it('textes : « de chaque côté » dans la consigne, l’aperçu et la durée', () => {
     const e = sided().exercises[0];
     expect(targetText(e)).toBe('6-8 répétitions de chaque côté · réserve 2');
-    expect(lineText(e)).toBe('2 × 6-8 de chaque côté · repos 1 min');
+    expect(lineText(e)).toBe('2 séries × 6-8 répétitions de chaque côté (gauche puis droite) · repos 1 min');
     expect(perSideTarget({ unit: 'sec', repsMin: 0, repsMax: 0, holdSec: 30 })).toBe('30 s de chaque côté');
     expect(targetText(ex({ variantId: 'x', unit: 'reps_par_cote', repsMin: 8, repsMax: 8 }))).toBe('8 répétitions de chaque côté');
   });

@@ -193,7 +193,8 @@ describe('D33 §8 : filtre « salle » (PV3-SALLE-1, T-D33-26a à d)', () => {
   it('pénurie : seuls élastique et mini-bande reviennent, pour le plan en pénurie seulement ; jamais bosu, sac, porte', () => {
     const base = byId('tirage-vertical-elastique-haut');
     const mkF = (id: string, schema: string, tags: string[]): Fiche => ({ ...base, id, schema, variantes: [{ ...base.variantes[0], id: `${id}-v`, tags }] });
-    const fiches = [...FICHES, mkF('zz-tv-elastique', 'tirage_v', ['elastique', 'tapis']), mkF('zz-tv-bosu', 'tirage_v', ['bosu']), mkF('zz-ph-elastique', 'poussee_h', ['elastique'])];
+    // Lot 04 (13/11/2026) : la barre de traction de la salle rend le tirage vertical non rare : ses 2 fiches sont retirées pour ce test de pénurie.
+    const fiches = [...FICHES.filter((f) => !['traction-negative-barre', 'tirage-vertical-elastique-barre-traction'].includes(f.id)), mkF('zz-tv-elastique', 'tirage_v', ['elastique', 'tapis']), mkF('zz-tv-bosu', 'tirage_v', ['bosu']), mkF('zz-ph-elastique', 'poussee_h', ['elastique'])];
     const c = buildCtx(access(salle({ fiches })));
     expect(sallePenurie('tirage_v', c)).toBe(true);
     expect(sallePenurie('poussee_h', c)).toBe(false);
@@ -232,10 +233,10 @@ describe('D33 : isolation, liste fermée (PV3-ISO-6, PV3-ISO-3, T-D33-20)', () =
   });
   it('haltères + chaise : élévation ; barre + disques : curl-barre ; haltères + banc incliné sans barre : curl incliné ; haltères seuls : biceps vide', () => {
     for (const e of iso(t20(['halteres']), 'iso_deltoide_lateral')) expect(['elevation-laterale-assis-halteres', 'elevation-laterale']).toContain(e.ficheId);
-    for (const e of iso(t20(['halteres', 'barre', 'disques']), 'iso_biceps')) expect(['curl-barre', 'curl-halteres']).toContain(e.ficheId);
-    for (const e of iso(t20(['halteres', 'banc_inclinable', 'banc']), 'iso_biceps')) expect(['curl-incline-halteres', 'curl-halteres']).toContain(e.ficheId);
+    for (const e of iso(t20(['halteres', 'barre', 'disques']), 'iso_biceps')) expect(['curl-barre', 'curl-halteres', 'curl-concentration-halteres', 'curl-inverse-halteres']).toContain(e.ficheId);
+    for (const e of iso(t20(['halteres', 'banc_inclinable', 'banc']), 'iso_biceps')) expect(['curl-incline-halteres', 'curl-halteres', 'curl-concentration-halteres', 'curl-inverse-halteres']).toContain(e.ficheId);
     // Lot 11 : curl aux haltères (curl-halteres) possible avec les haltères seuls.
-    for (const e of iso(t20(['halteres']), 'iso_biceps')) expect(e.ficheId).toBe('curl-halteres');
+    for (const e of iso(t20(['halteres']), 'iso_biceps')) expect(['curl-halteres', 'curl-concentration-halteres', 'curl-inverse-halteres']).toContain(e.ficheId);
     for (const s of t20(['halteres', 'barre', 'disques']).sessions) {
       const ids = s.exercises.map((e) => e.ficheId);
       expect(new Set(ids).size).toBe(ids.length);
