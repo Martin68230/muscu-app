@@ -4,11 +4,11 @@
 import type { CatchUpLogEntry } from '../data/model';
 import { list, update } from '../data/repo';
 import { CATCHUP } from '../generator/config';
-import { addDays } from '../session/missed';
+import { shiftKey } from './catchup';
 
 /** Journal mis à jour : les lignes de `weekKey` sont remplacées, celles de plus de 4 semaines sont retirées. Fonction pure. */
 export function mergeCatchUpLog(old: readonly CatchUpLogEntry[] | undefined, weekKey: string, entries: readonly CatchUpLogEntry[]): CatchUpLogEntry[] {
-  const oldest = addDays(weekKey, -7 * (CATCHUP.logWeeks - 1));
+  const oldest = shiftKey(weekKey, -(CATCHUP.logWeeks - 1));
   const kept = (old ?? []).filter((e) => e.week !== weekKey && e.week >= oldest && e.week < weekKey);
   return [...kept, ...entries.filter((e) => e.week === weekKey)].slice(-120);
 }

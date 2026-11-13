@@ -1444,6 +1444,11 @@ export const CATCHUP = {
   logWeeks: 4,
   stuckWeeks: 2,
   reviewWeeks: 4,
+  /**
+   * PAR CYCLE (13/11/2026, coach + kiné ; PROVISOIRE / NON SOURCÉ) : les « semaines » ci-dessus sont des CYCLES de N séances. Cycle clos après `maxDays` jours au plus ;
+   * moins de `minSessions` séances dans un cycle clos par le temps = jamais jugé ; plus de `maxDays` jours sans séance = rupture, aucun rattrapage.
+   */
+  cycle: { maxDays: 14, minSessions: 2 },
   /** RAT-6 : garde de l'échange (points). Aucune perte sous le seuil rouge ni sur ces zones ; au plus -1 point par zone et -2 au total. */
   swap: {
     maxLossPerZone: 1,

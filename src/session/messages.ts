@@ -57,10 +57,10 @@ export const PROGRESSION_TEXT = {
 export const ZONE_CATCHUP_TEXT = {
   line: (noms: readonly string[]): string =>
     `Cette semaine : une série en plus ${noms.length > 1 ? `à ${noms.length} exercices (${noms.join(', ')})` : `à ${noms[0]}`}, pour des zones qui ont eu peu de travail la semaine dernière.`,
-  swap: (de: string, vers: string): string => `Cette séance : ${vers} remplace ${de}, pour travailler une zone qui a eu peu de travail la semaine dernière. Commence doucement.`,
+  swap: (de: string, vers: string): string => `Cette séance : ${vers} remplace ${de}, pour travailler une zone qui a eu peu de travail ton dernier cycle. Commence doucement.`,
   /** RAT-3 (avis kine 13/11/2026) : une zone restée basse 2 semaines de suite, avec la cause ; ton sans reproche, aucun conseil médical. */
   stuck: (zone: string, cause: 'protection' | 'plafond' | 'materiel' | 'manquee' | 'sport'): string => {
-    const head = `La zone « ${zone} » est restée basse deux semaines.`;
+    const head = `La zone « ${zone} » est restée basse deux cycles de suite.`;
     const tail = {
       protection: 'Je n’ajoute rien pour l’instant.',
       plafond: 'Ton programme est déjà plein pour cette zone ou pour la durée choisie.',

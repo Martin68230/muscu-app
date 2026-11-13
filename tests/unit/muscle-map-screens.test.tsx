@@ -72,17 +72,17 @@ describe('branchements', () => {
     const noop = vi.fn();
     vi.spyOn(window, 'scrollTo').mockImplementation(() => undefined);
     render(<HomeView profile={{ displayName: 'A' } as Profile} status={{ kind: 'seance', next, resume: null, muscles }} onStart={noop} onEditStep={noop} onResume={noop} onOpenSession={noop} onCloseStale={noop} />);
-    expect(screen.getByRole('heading', { name: 'Muscles de ta semaine' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Muscles de ton cycle' })).toBeTruthy();
     fireEvent.click(screen.getByRole('button', { name: 'Voir par type de séance' }));
     expect(screen.getByRole('heading', { name: 'Muscles par type de séance' })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'Haut du corps (1 séance par semaine)' })).toBeTruthy();
-    expect(screen.getByRole('heading', { name: 'Bas du corps (1 séance par semaine)' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Haut du corps (1 séance par cycle)' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Bas du corps (1 séance par cycle)' })).toBeTruthy();
     fireEvent.click(screen.getAllByRole('button', { name: /Retour à l’accueil/ })[0]);
-    expect(screen.getByRole('heading', { name: 'Muscles de ta semaine' })).toBeTruthy();
+    expect(screen.getByRole('heading', { name: 'Muscles de ton cycle' })).toBeTruthy();
   });
   it('accueil sans programme (ou message de sécurité) : pas de carte', () => {
     const noop = vi.fn();
     render(<HomeView profile={{ displayName: 'A' } as Profile} status={{ kind: 'profil' }} onStart={noop} onEditStep={noop} onResume={noop} onOpenSession={noop} onCloseStale={noop} />);
-    expect(screen.queryByRole('heading', { name: 'Muscles de ta semaine' })).toBeNull();
+    expect(screen.queryByRole('heading', { name: 'Muscles de ton cycle' })).toBeNull();
   });
 });

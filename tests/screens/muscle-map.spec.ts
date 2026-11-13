@@ -64,7 +64,7 @@ test('Carte des muscles : semaine, cycle, séance, exercice, bilan, historique',
   await expect(page.getByRole('button', { name: 'Voir la séance' })).toBeVisible({ timeout: 20_000 });
 
   // 1. Semaine (Accueil) : appui sur les pectoraux (face), panneau sous la carte.
-  const week = page.locator('section.mm-card', { has: page.getByRole('heading', { name: 'Muscles de ta semaine' }) });
+  const week = page.locator('section.mm-card', { has: page.getByRole('heading', { name: 'Muscles de ton cycle' }) });
   await week.scrollIntoViewIfNeeded();
   expect((await hitScalePx(week)) * 410).toBeGreaterThan(290); // carte presque pleine largeur, même sur iPhone SE
   await tapMap(week, 80, 98);
