@@ -160,6 +160,7 @@ Aucune de ces valeurs n'a de source primaire : ce sont des règles d'app prudent
 | IMC_PERTE_LENTE | 25 : de 22 à 25, perte limitée au cran « doux » (0,5 %/sem) | PROVISOIRE (S) | règle C |
 | SURPLUS_PCT_PRUDENT | 5 % du besoin à 65 ans et plus | PROVISOIRE (S) | règle d'app prudente |
 | Constantes de besoins | PAL 1,40 / 1,55 / 1,70 / 1,85 ; filet 1500 H / 1200 F ; perte 0,5 / 0,75 / 1,0 %/sem ; déficit max 25 % ou 750 kcal (10 % à 65 ans) ; surplus 5 / 10 / 15 % max 300 kcal ; 7700 kcal/kg ; IMC 18,5 / 22 | PROVISOIRE (S) | codées dans src/nutrition/config.ts avec les mêmes statuts |
+| Constantes des jours | COEF_JOUR repos 0,92 / léger 0,98 / moyen 1,02 (ajouté par le dev, à valider) / lourd 1,06 / intense 1,10, normalisés ; écart de jour max 300 kcal ; protéines 2,2 (perte) ou 1,8 (maintien, prise) g/kg, +10 % sur 1 à 2 jours ; lipides >= 0,5 g/kg et 20 % de l'énergie ; glucides minimaux 2 / 3 / 3 / 4 / 5 g/kg | PROVISOIRE (S) | codées dans src/nutrition/config.ts, mêmes statuts |
 | Seuil de durée d'un jour lourd | séance prévue >= 75 min, ou jour jambes / grands groupes, ou 2 séances dans la journée | PROVISOIRE | règle d'app ; sert à choisir le type de jour de B |
 
 ## 7. À sourcer (restant)

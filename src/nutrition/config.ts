@@ -69,3 +69,22 @@ export const IMC_SANS_DEFICIT = 22;
 export const IMC_PERTE_LENTE = 25;
 /** Âge prudent : le surplus est limité à ce pourcentage du besoin. PROVISOIRE (S). */
 export const SURPLUS_PCT_PRUDENT = 0.05;
+
+// --- Besoins par jour selon les séances (nutrition-rules.md B et K). PROVISOIRE (S). ---
+/** Poids relatifs par type de jour (la fonction les normalise pour une moyenne hebdomadaire exactement égale à 1). « moyen » : 1,02, ajouté par le dev, à valider. */
+export const COEF_JOUR = { repos: 0.92, leger: 0.98, moyen: 1.02, lourd: 1.06, intense: 1.1 } as const;
+/** Écart maximal d'un jour par rapport à la moyenne, en kcal (K : AJUSTEMENT_JOUR_MAX). */
+export const AJUSTEMENT_JOUR_MAX_KCAL = 300;
+/** Séance prévue d'au moins ce nombre de minutes = jour lourd (K). */
+export const JOUR_LOURD_MIN = 75;
+/** Séances dont le type compte comme « jour lourd » (jambes, bas du corps, corps entier). */
+export const SESSION_TYPES_LOURDS: readonly string[] = ['BAS', 'LEGS', 'CE'];
+/** Protéines g/kg/jour par objectif (règle B : 1,6-2,2 entretien et prise ; 2,2-3,0 en déficit) : valeurs basses prudentes. */
+export const PROT_GKG = { perte: 2.2, maintien: 1.8, prise: 1.8 } as const;
+/** Variation des protéines : jusqu'à ce pourcentage du jour moyen, sur 1 à 2 jours par semaine seulement (décision du 13/11/2026). */
+export const VAR_PROT = 0.1;
+/** Lipides : plancher en g/kg (OK, Ruiz-Castellano 2021) et part minimale de l'énergie. */
+export const LIP_MIN_GKG = 0.5;
+export const LIP_MIN_PCT_ENERGIE = 0.2;
+/** Glucides minimaux en g/kg par type de jour (règle B, plage basse, PROVISOIRE) : en dessous, un signalement est renvoyé. */
+export const GLUC_MIN_GKG = { repos: 2, leger: 3, moyen: 3, lourd: 4, intense: 5 } as const;
