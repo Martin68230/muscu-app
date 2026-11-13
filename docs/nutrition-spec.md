@@ -362,3 +362,10 @@ Photos de plats, scan de codes-barres (Open Food Facts), journal de calories dé
 | Q9 | Plancher de calories **personnalisé** (objectif, poids, âge, sexe), pas un chiffre fixe ; filet de sécurité conservé (règles C). |
 | Q10 | Recettes originales (liste assez grande, 150 minimum) ; pas d'Open Food Facts ni de Wikibooks. |
 | Nouveau | Export des courses, repas et recettes pour des jours choisis, pour 2 personnes et pour une IA externe (N15, lot L6). |
+
+## Annexe : avertissements d'allergènes à afficher (relecture du 13/11/2026)
+- Chaque recette et chaque liste de courses : « Les allergènes affichés viennent de la composition générique des ingrédients. Les traces et la contamination croisée ne sont pas modélisées : vérifie toujours l'étiquette des produits. »
+- Les étiquettes « sans gluten » et « sans lactose » valent pour la composition générique, pas pour un produit industriel précis (pain, galettes de riz, conserves, boissons végétales).
+- La noix de coco n'est pas un fruit à coque dans le règlement UE 1169/2011, mais la classification diffère selon les pays : message d'information dans la fiche de l'ingrédient.
+- « Végétarien » : la feta contient de la présure animale, à mentionner dans sa fiche.
+- Six ingrédients restent « à vérifier » (pain complet, pita, coulis de tomate, pois chiches et lait de coco en conserve, galettes de riz) : les recettes qui les contiennent restent en brouillon et ne sont jamais proposées à une personne qui a coché une allergie.

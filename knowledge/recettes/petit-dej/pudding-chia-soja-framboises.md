@@ -12,7 +12,7 @@ source_glucides: "graines de chia"
 source_proteines: "boisson au soja"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "15047", grammes: 30, ajustable: true }
   - { code: "18900", grammes: 200, ajustable: true }

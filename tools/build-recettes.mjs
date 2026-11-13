@@ -143,6 +143,17 @@ for (const file of listFiles(DIR).sort()) {
   for (const r of f.regimes ?? []) if (incompat.has(r)) err(file, `régime « ${r} » déclaré mais un ingrédient est incompatible`);
   if ((f.regimes ?? []).includes('sans_lactose') && allergenes.has('lait')) err(file, 'sans_lactose mais contient du lait');
   if ((f.regimes ?? []).includes('sans_gluten') && allergenes.has('gluten')) err(file, 'sans_gluten mais contient du gluten');
+  // Régimes impliqués par les allergènes et les familles (en plus des régimes incompatibles étiquetés à la main).
+  const fam = new Set(lines.map((l) => l.famille));
+  const implied = new Set();
+  // Viandes : portées par regimesIncompatibles (étiquetage relu) ; poissons, crustacés et mollusques : par allergène. Les œufs et le lait restent compatibles avec « vegetarien ».
+  if (['poissons', 'crustaces', 'mollusques'].some((a) => allergenes.has(a))) { implied.add('vegetarien'); implied.add('vegetalien'); }
+  if (fam.has('proteine_animale') && !allergenes.has('oeufs') && !allergenes.has('lait')) { implied.add('vegetarien'); implied.add('vegetalien'); }
+  if (allergenes.has('oeufs')) implied.add('vegetalien');
+  if (allergenes.has('lait')) { implied.add('vegetalien'); implied.add('sans_lactose'); }
+  if (allergenes.has('gluten')) implied.add('sans_gluten');
+  for (const r of f.regimes ?? []) if (implied.has(r)) err(file, `régime « ${r} » déclaré mais impliqué incompatible par les allergènes ou la famille d'un ingrédient`);
+  if (f.statut !== 'brouillon' && statut !== 'valide') err(file, `statut « ${f.statut} » impossible : allergènes des ingrédients non tous validés (${statut})`);
   if ((f.regimes ?? []).includes('vegetalien') && !(f.regimes ?? []).includes('vegetarien')) err(file, 'végétalien implique végétarien');
   const [lo, hi] = KCAL_RANGE[f.repas] ?? [0, 5000];
   if (tot.kcal < lo || tot.kcal > hi) err(file, `énergie ${Math.round(tot.kcal)} kcal hors de [${lo}, ${hi}] pour ${f.repas}`);

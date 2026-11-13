@@ -12,7 +12,7 @@ source_glucides: "quinoa"
 source_proteines: "cabillaud"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "26043", grammes: 160, ajustable: true }
   - { code: "9340", grammes: 70, ajustable: true }

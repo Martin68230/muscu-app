@@ -12,7 +12,7 @@ source_glucides: "flocons d'avoine"
 source_proteines: "lait demi-écrémé"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "32140", grammes: 50, ajustable: true }
   - { code: "19041", grammes: 200, ajustable: true }

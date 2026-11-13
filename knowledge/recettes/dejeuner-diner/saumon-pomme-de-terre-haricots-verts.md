@@ -12,7 +12,7 @@ source_glucides: "pomme de terre"
 source_proteines: "saumon"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "26036", grammes: 140, ajustable: true }
   - { code: "4008", grammes: 250, ajustable: true }

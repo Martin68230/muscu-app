@@ -12,7 +12,7 @@ source_glucides: "riz blanc"
 source_proteines: "filet de poulet"
 portions_base: 1
 base_reutilisable: true
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "36017", grammes: 150, ajustable: true }
   - { code: "9100", grammes: 80, ajustable: true }

@@ -12,7 +12,7 @@ source_glucides: "flocons d'avoine"
 source_proteines: "fromage blanc"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "19644", grammes: 200, ajustable: true }
   - { code: "32140", grammes: 40, ajustable: true }

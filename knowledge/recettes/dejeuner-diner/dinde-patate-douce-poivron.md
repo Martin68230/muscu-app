@@ -12,7 +12,7 @@ source_glucides: "patate douce"
 source_proteines: "escalope de dinde"
 portions_base: 1
 base_reutilisable: true
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "36304", grammes: 150, ajustable: true }
   - { code: "4101", grammes: 250, ajustable: true }

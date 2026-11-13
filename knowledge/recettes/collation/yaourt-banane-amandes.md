@@ -12,7 +12,7 @@ source_glucides: "banane"
 source_proteines: "yaourt"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "19593", grammes: 125, ajustable: true }
   - { code: "13005", grammes: 80, ajustable: true }

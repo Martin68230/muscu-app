@@ -5,7 +5,7 @@
     "famille": "feculent",
     "rayon": "feculents",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -59,7 +59,7 @@
     "allergenes": [
       "gluten"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten"
     ],
@@ -191,7 +191,7 @@
     "famille": "feculent",
     "rayon": "feculents",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 500,
@@ -249,7 +249,7 @@
     "allergenes": [
       "gluten"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten"
     ],
@@ -264,7 +264,7 @@
     "famille": "feculent",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 2500,
@@ -290,7 +290,7 @@
     "famille": "feculent",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -545,7 +545,7 @@
     "famille": "proteine_vegetale",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 500,
@@ -707,7 +707,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -787,7 +787,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -854,7 +854,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1166,7 +1166,7 @@
     "allergenes": [
       "poissons"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1187,7 +1187,7 @@
     "allergenes": [
       "poissons"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1637,7 +1637,7 @@
     "allergenes": [
       "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien"
     ],
@@ -1677,7 +1677,7 @@
     "allergenes": [
       "lait"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien",
       "sans_lactose"
@@ -1749,7 +1749,7 @@
     "allergenes": [
       "lait"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien",
       "sans_lactose"
@@ -1791,7 +1791,7 @@
     "allergenes": [
       "lait"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien",
       "sans_lactose"
@@ -1977,7 +1977,7 @@
     "allergenes": [
       "lait"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien",
       "sans_lactose"
@@ -2083,7 +2083,7 @@
     "famille": "corps_gras",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 500,
@@ -2182,7 +2182,7 @@
     "allergenes": [
       "arachides"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 350,
@@ -2197,7 +2197,7 @@
     "allergenes": [
       "soja"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -2244,7 +2244,7 @@
     "allergenes": [
       "fruits_a_coque"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 200,
@@ -2373,7 +2373,7 @@
     "famille": "autre",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 250,
@@ -2399,7 +2399,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -2431,7 +2431,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -2479,7 +2479,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -2559,7 +2559,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "barquette",
@@ -2575,7 +2575,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "barquette",
@@ -2829,7 +2829,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -2877,7 +2877,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "tête",
@@ -2893,7 +2893,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -2922,7 +2922,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -2954,7 +2954,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -3002,7 +3002,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -3018,7 +3018,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "barquette",
@@ -3034,7 +3034,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -3143,7 +3143,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "sachet",
@@ -3175,7 +3175,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -3300,7 +3300,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 500,
@@ -3909,7 +3909,7 @@
     "famille": "assaisonnement",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "botte",
@@ -3957,7 +3957,7 @@
     "famille": "assaisonnement",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "botte",
@@ -4002,7 +4002,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 750,
@@ -4015,7 +4015,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 50,
@@ -4028,7 +4028,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 40,
@@ -4041,7 +4041,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 40,
@@ -4054,7 +4054,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 40,
@@ -4067,7 +4067,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 40,
@@ -4132,7 +4132,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 20,
@@ -4145,7 +4145,7 @@
     "famille": "assaisonnement",
     "rayon": "assaisonnements",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 20,
@@ -4236,7 +4236,7 @@
     "famille": "assaisonnement",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien"
     ],
