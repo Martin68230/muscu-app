@@ -58,6 +58,9 @@ describe.each(PROFILES)('rattrapage sur 4 semaines : %s', (_name, input, expectS
   const weekPlan = (w: number): ProgramDay[] => baseDays.map((d) => withProgramWeek(d, w));
   const legPoints = (d: ProgramDay) => LEGS.reduce((a, z) => a + (ptsOf([d])[z] ?? 0), 0);
   const legIdx = baseDays.map((d, i) => ({ i, p: legPoints(d) })).sort((a, b) => b.p - a.p)[0].i;
+  // 13/11/2026 (plafonds relevés) : les jambes sont réparties sur plusieurs séances ; « la séance de jambes sautée » = toutes les séances qui en portent au moins la moitié du maximum.
+  const maxLeg = legPoints(baseDays[legIdx]);
+  const legDays = baseDays.map((d, i) => ({ i, p: legPoints(d) })).filter((x) => x.p >= maxLeg / 2).map((x) => x.i);
   // Semaine 1 « construite » sans deltoïdes : les exercices qui travaillent les deltoïdes sont absents du programme prévu (défaut de répartition).
   const noShoulder = (days: ProgramDay[]): ProgramDay[] =>
     days.map((d) => ({ ...d, exercises: d.exercises.filter((e) => SHOULDER.every((z) => (zoneCoefs(byId.get(e.movementId)!).get(z) ?? 0) < 0.5)) }));
@@ -139,7 +142,7 @@ describe.each(PROFILES)('rattrapage sur 4 semaines : %s', (_name, input, expectS
       // Scénario de la semaine suivante.
       const planNext = after;
       plannedPrev = planNext;
-      const skip = w + 1 === 2 || w + 1 === 3 ? [legIdx] : [];
+      const skip = w + 1 === 2 || w + 1 === 3 ? legDays : [];
       doneWeek = doneOf(planNext, skip);
       void thresholdsOf;
     }

@@ -118,7 +118,7 @@ describe('CAL-20 c : couverture du haut du corps', () => {
         }
       }
       for (const [slot, n] of perGroup) expect(n, `${c.name} ${slot}`).toBeLessThanOrEqual(ISOLATION.maxSetsPerGroupWeek);
-      for (const w of [1, 2]) expect(weekCapsOk(p.sessions.map((s) => ({ exercises: wk(s, w) }))), `${c.name} semaine ${w}`).toBe(true);
+      for (const w of [1, 2]) expect(weekCapsOk(p.sessions.map((s) => ({ exercises: wk(s, w) })), buildCtx(mk({ profile: c.prof, days: c.days, level: 'intermediaire', goal: 'muscle', dur: 60, place: c.prof === 'F' ? 'salle' : 'maison', options: { gagnerDuTemps: true } }))), `${c.name} semaine ${w}`).toBe(true);
     }
     expect(VOLUME.maxPerMuscleWeek).toBe(20);
   });

@@ -76,7 +76,7 @@ test('Aperçu : séries de rattrapage des zones', async ({ page }, info) => {
   await page.reload();
   const notice = page.getByRole('status', { name: 'Rattrapage des zones' });
   await expect(notice).toBeVisible({ timeout: 20_000 });
-  await expect(notice).toContainText('Cette semaine : une série en plus');
+  await expect(notice).toContainText('Ce cycle : une série en plus');
   await notice.scrollIntoViewIfNeeded();
   await checkPhoneRules(page);
   await page.screenshot({ path: `screenshots/${info.project.name}/zones-rattrapage-apercu.png` });

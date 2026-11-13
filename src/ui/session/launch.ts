@@ -9,7 +9,8 @@ import type { EngineContext } from '../../session/engine';
 import { buildEngineContext, gentlerAlternative, proposeProgression, type BodyweightProgression, type ProgressionInput } from '../../session/history';
 import { loadGeneratorInput, programWeek, rotationFreeze, withProgramWeek } from '../../session/program';
 import { painFrozen } from '../../session/adaptation';
-import { lastWeekOf, zoneCatchUp, type CatchUpProfile, type CatchUpResult } from '../../zones/catchup';
+import { weekSetsOf } from '../../session/create-store';
+import { lastCycleOf, zoneCatchUp, type CatchUpProfile, type CatchUpResult } from '../../zones/catchup';
 import { SPORT } from '../../sport/sport-config';
 import { sportGate, sportLoad } from '../../sport/sport-load';
 import { CATCHUP, JUMPS } from '../../generator/config';
@@ -123,12 +124,14 @@ export function catchUpSportOf(data: PlayerData, ctx: Ctx, nowMs: number): Catch
 }
 
 /**
- * Rattrapage des zones (src/zones/catchup.ts) pour la séance `dayIndex` qui démarre : seulement à la première séance de la semaine du
- * programme, recalculé depuis l'historique (rien n'est stocké). `day` = copie du jour après les changements acceptés.
+ * Rattrapage des zones (src/zones/catchup.ts) pour la séance `dayIndex` qui démarre : seulement à la première séance d'un nouveau CYCLE (N séances
+ * faites du programme, 14 jours au plus ; demande du 13/11/2026), recalculé depuis l'historique (rien n'est stocké). `day` = copie du jour après les changements acceptés.
  */
 export function catchUpOf(data: PlayerData, program: Program, dayIndex: number, day: ProgramDay, repriseActive: boolean, nowMs: number): CatchUpResult | null {
   if (!data.input || repriseActive) return null;
-  const lw = lastWeekOf(program.startDate, data.sets, nowMs);
+  // Cycle = N séances de force de la semaine type (3 à 6) ; séances faites de CE programme seulement.
+  const n = program.days.filter((d) => d.exercises.some((e) => e.role !== 'cardio' && e.slot !== 'cardio')).length;
+  const lw = lastCycleOf(data.sessions.filter((s) => s.status === 'faite' && s.programId === program.id && !s.deletedAt), data.sets, n, nowMs);
   if (!lw || !lw.firstOfWeek) return null;
   const ctx = buildCtx(data.input);
   const limitMin = sessionLimitMin(data.input.profile.sessionDurationMin, program.durationMin);
@@ -139,7 +142,8 @@ export function catchUpOf(data: PlayerData, program: Program, dayIndex: number, 
   const prevDays = program.days.map((d) => withProgramWeek(d, prevWeek, freeze));
   const zonesOfMovement = (id: string): readonly string[] => Object.keys(data.fiches.find((f) => f.id === id)?.securite.zones ?? {});
   return zoneCatchUp(lw.weekSets, { days, dayIndex, prevDays, weekKey: lw.weekKey, durationMin: program.durationMin, ...(limitMin !== program.durationMin ? { limitMin } : {}) }, {
-    ctx, pool: data.input.fiches, repriseActive, symptomFrozen: data.frozen, log: data.catchUpLog ?? null, liftedPain: data.liftedPain, sport: catchUpSportOf(data, ctx, nowMs),
+    ctx, pool: data.input.fiches, repriseActive, symptomFrozen: data.frozen, log: data.catchUpLog ?? null,
+    recentWeek: weekSetsOf({ sessions: data.sessions, sets: data.sets, now: new Date(nowMs), musclesOf: (id) => { const f = data.fiches.find((x) => x.id === id); return f ? { principaux: f.musclesPrincipaux, secondaires: f.musclesSecondaires } : undefined; } }), liftedPain: data.liftedPain, sport: catchUpSportOf(data, ctx, nowMs),
     painFrozen: (ex) => painFrozen({ movementId: ex.movementId, zones: zonesOfMovement(ex.movementId), sets: data.sets, sessions: data.sessions, zonesOfMovement }),
   });
 }

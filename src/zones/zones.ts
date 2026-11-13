@@ -64,11 +64,13 @@ function zonesOfMuscle(muscle: string, f: ZoneFiche): ZoneCoef[] {
 }
 
 const coefCache = new Map<string, ReadonlyMap<ZoneId, number>>();
+const capCoefCache = new Map<string, ReadonlyMap<ZoneId, number>>();
 
 /** Points par zone pour UNE série de travail de la fiche (principal 1, secondaire 0,5, multipliés par les coefficients). */
-export function zoneCoefs(f: ZoneFiche): ReadonlyMap<ZoneId, number> {
+export function zoneCoefs(f: ZoneFiche, principalOnly = false): ReadonlyMap<ZoneId, number> {
   const key = `${f.id}|${f.type ?? ''}|${f.schema}|${f.musclesPrincipaux.join(',')}|${f.musclesSecondaires.join(',')}`;
-  const hit = coefCache.get(key);
+  const cache = principalOnly ? capCoefCache : coefCache;
+  const hit = cache.get(key);
   if (hit) return hit;
   const out = new Map<ZoneId, number>();
   if (f.type === undefined || COUNTED_TYPES.has(f.type)) {
@@ -76,19 +78,19 @@ export function zoneCoefs(f: ZoneFiche): ReadonlyMap<ZoneId, number> {
       for (const { zone, coef } of zonesOfMuscle(muscle, f)) if (coef > 0) out.set(zone, (out.get(zone) ?? 0) + w * coef);
     };
     for (const m of f.musclesPrincipaux) add(m, POINTS.principal);
-    for (const m of f.musclesSecondaires) add(m, POINTS.secondaire);
+    if (!principalOnly) for (const m of f.musclesSecondaires) add(m, POINTS.secondaire);
     // Règles sans muscle (R-COU) : la zone reçoit au moins coef x 1, sans double compte si un muscle la remplit déjà.
     for (const r of RULES) {
       if (r.muscle || !ruleMatches(r, f)) continue;
       for (const { zone, coef } of r.zones!) out.set(zone, Math.max(out.get(zone) ?? 0, coef * POINTS.principal));
     }
   }
-  coefCache.set(key, out);
+  cache.set(key, out);
   return out;
 }
 
 /** Points par zone (toutes les zones présentes, 0 compris), arrondis au centième. Fiche inconnue : ignorée. */
-export function pointsByZone(sets: readonly ZoneSet[], fiches: ReadonlyMap<string, ZoneFiche> | readonly ZoneFiche[]): Record<ZoneId, number> {
+export function pointsByZone(sets: readonly ZoneSet[], fiches: ReadonlyMap<string, ZoneFiche> | readonly ZoneFiche[], capMode = false): Record<ZoneId, number> {
   const byId = 'get' in fiches ? (fiches as ReadonlyMap<string, ZoneFiche>) : new Map((fiches as readonly ZoneFiche[]).map((f) => [f.id, f]));
   const pts: Record<ZoneId, number> = Object.fromEntries(ZONES.map((z) => [z.id, 0]));
   for (const s of sets) {
@@ -96,7 +98,12 @@ export function pointsByZone(sets: readonly ZoneSet[], fiches: ReadonlyMap<strin
     const f = byId.get(s.ficheId);
     if (!f) continue;
     const n = (s.sets ?? 1) * (s.side ? 0.5 : 1);
+    // capMode (plafonds relevés, 13/11/2026) : muscles principaux seulement, sauf zones protégées (comptage complet).
     for (const [z, c] of zoneCoefs(f)) pts[z] = (pts[z] ?? 0) + n * c;
+    if (capMode) {
+      const po = zoneCoefs(f, true);
+      for (const zz of Object.keys(pts)) if (!isProtectedZone(zz)) pts[zz] = (pts[zz] ?? 0) - n * (zoneCoefs(f).get(zz as ZoneId) ?? 0) + n * (po.get(zz as ZoneId) ?? 0);
+    }
   }
   for (const z of Object.keys(pts)) pts[z] = Math.round(pts[z] * 100) / 100;
   return pts;
@@ -137,9 +144,13 @@ const PARENT: Record<ZoneId, string> = {
 export const capGroupOf = (zone: ZoneId): string => PARENT[zone] ?? zone;
 
 /** Plafonds d'une zone (§3, NON SOURCÉ) : par semaine 20 / 10, par séance 10 / 6 (grandes zones : V-PLAF du générateur fait foi). */
-export function zoneCaps(zone: ZoneId): { week: number; session: number } {
+/** Zones protégées (13/11/2026, kiné) : jamais de plafond relevé (épaules, trapèzes, triceps, biceps, avant-bras, lombaires, carré des lombes). */
+export const isProtectedZone = (z: string) => /^(epaules|trapezes|triceps)/.test(z) || ['biceps', 'avant_bras', 'lombaires', 'carre_des_lombes', 'coiffe_rotateurs', 'dentele_anterieur'].includes(z);
+/** `raised` : plafond hebdomadaire x `factor` (RAISED_CAPS) pour les zones non protégées ; le plafond par séance ne change jamais. */
+export function zoneCaps(zone: ZoneId, raised: { factor: number } | false = false): { week: number; session: number } {
   const t = SEUILS[ZONE_BY_ID.get(zone)?.seuil ?? 'G'];
-  return { week: t.plafond_semaine, session: t.plafond_seance_standard };
+  const week = raised && !isProtectedZone(zone) ? Math.round(t.plafond_semaine * raised.factor) : t.plafond_semaine;
+  return { week, session: t.plafond_seance_standard };
 }
 
 /** Points de chaque groupe de plafond (maximum des sous-zones, jamais la somme). */

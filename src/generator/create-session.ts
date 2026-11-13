@@ -9,13 +9,13 @@ import { SPORT, SPORT_GATE_TEXT } from '../sport/sport-config';
 import { sportGate, sportLoad, type SportGate } from '../sport/sport-load';
 import { D30_TEXT } from '../session/messages';
 import {
-  CREER_SEANCE, IMPACT_EXCLUDED_ZONES, itemNom, JUMPS, VOLUME, type CreateBlock, type CreateEntry, type CreateIntensity, type CreateZone,
+  CREER_SEANCE, IMPACT_EXCLUDED_ZONES, itemNom, JUMPS, type CreateBlock, type CreateEntry, type CreateIntensity, type CreateZone,
 } from './config';
 import { buildCtx, carriesLoad, isUnilateral, levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
 import { estimerDuree, formAllPairs, type DurSession } from './duration';
 import { createSessionCheck, plioBlockMin, variantSafe, type CreateState } from './impact';
-import { frac, makePlaf, sessionCapsOk, sessionVol, weekMusclesOf, weekVol } from './plaf';
+import { frac, makePlaf, sessionCapsOk, sessionVol, weekMusclesOf, weekVol, weekCapFor } from './plaf';
 import { allowedVariants, caseFor, resolveFiche, USABLE_STATUTS, warmupVariant, type Candidate } from './safety';
 import { rankSlot, type SessionState } from './slots';
 import { GROUP_OF, RACQUET_PREVENTION, SHOULDER_IDS, SHOULDER_PREVENTION, SPORT_LISTS, UPPER_PUSH_IDS, UPPER_PUSH_SCHEMAS, type SportEntry } from './sport-lists';
@@ -558,7 +558,7 @@ export function createSession(input0: GeneratorInput, request: CreateSessionRequ
       break;
     }
     // 3. Plafond hebdomadaire (20 par muscle) avec les séances du programme déjà faites : on retire des séries, jamais sous 2 par exercice.
-    const weekBad = weekMusclesOf([{ exercises: exs }]).find((m) => (weekSets[m] ?? 0) + weekVol({ exercises: exs }, m) > VOLUME.maxPerMuscleWeek);
+    const weekBad = weekMusclesOf([{ exercises: exs }]).find((m) => (weekSets[m] ?? 0) + weekVol({ exercises: exs }, m) > weekCapFor(ctx, m));
     if (weekBad) {
       if (shrink(items.filter((i) => frac(i.ex, weekBad) > 0), false)) continue;
       return refuse('plafond-hebdomadaire', T.weekCap, warnings, (['haut', 'tronc', 'jambes', 'corps_entier'] as CreateZone[]).filter((z) => z !== zone));

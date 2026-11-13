@@ -90,6 +90,9 @@ describe('RAT-2 : journal local, pas deux semaines de suite sur le même exercic
     expect(errs.filter((e) => /catchUpLog/.test(e)), JSON.stringify(errs)).toEqual([]);
     expect(bad({ week: '2026-11-09', zone: 'ischios', movementId: 'x', secret: 'oui' })).toBe(true);
     expect(bad({ week: 'hier', zone: 'ischios', movementId: null })).toBe(true);
+    // Clé de cycle (13/11/2026) : acceptée ; mal formée : refusée.
+    expect(bad({ week: 'c00007', zone: 'ischios', movementId: null, cause: 'plafond' })).toBe(false);
+    expect(bad({ week: 'c7', zone: 'ischios', movementId: null })).toBe(true);
     expect(bad({ week: '2026-11-09', zone: 'ischios', movementId: null, cause: 'douleur au genou' })).toBe(true);
   });
 });

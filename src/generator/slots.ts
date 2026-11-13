@@ -3,6 +3,7 @@ import { CORE_NOT_CORE_IDS, ISOLATION, MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICH
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import { templateOf } from './split';
+import { isHeavyShoulderTrapExercise } from './zones-check';
 import type { Fiche, SlotKey, Tier } from './types';
 
 export const SLOT_ORDER: readonly SlotKey[] = [
@@ -227,6 +228,8 @@ export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx
       const s = schemas.get(c.fiche.schema);
       if (!s || used.has(c.fiche.id)) continue;
       if (isTwinOfUsed(c.fiche, used, ctx)) continue; // lot cohérence 5 a : jamais le même exercice deux fois sous deux noms
+      // Cou réservé (13/11/2026, CAL-12 inchangé) : dans la séance du bas du corps réservée au cou, aucune fiche lourde d’épaules / trapèzes (squat à la barre compris).
+      if (ctx.neckSafeLabels?.has(st.label) && isHeavyShoulderTrapExercise({ ficheId: c.fiche.id, tags: c.variant.tags, schema: c.fiche.schema }, ctx)) continue;
       if (MAIN_EXERCISE_SLOTS.includes(slot) && PILLAR_EXCLUDED_FICHES.includes(c.fiche.id)) continue; // lancers : jamais exercice principal
       if (slot === 'tronc' && CORE_NOT_CORE_IDS.includes(c.fiche.id)) continue; // D26 : copenhague-court hors famille core (inventaire, kiné)
       // STR-ISO-0 : le repli de jambes_3 / jambes_4 vers cheville_mollet compte comme isolation « mollets » : interdit au débutant avant l'exception.

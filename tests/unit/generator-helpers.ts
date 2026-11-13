@@ -3,6 +3,9 @@
 import { readFileSync } from 'node:fs';
 import type { InjuryZone, Level } from '../../src/data/model';
 import type { Fiche, GeneratorInput, GenProgram, HistorySet } from '../../src/generator/types';
+import { weekCountsSecondary } from '../../src/generator/config';
+import { buildCtx } from '../../src/generator/context';
+import { raisedCaps, sessionVol, weekCapFor, weekVol } from '../../src/generator/plaf';
 
 export const FICHES: Fiche[] = JSON.parse(readFileSync('public/data/fiches.json', 'utf8')).fiches;
 const TAGS: { id: string; groupe: string }[] = JSON.parse(readFileSync('knowledge/materiel-tags.json', 'utf8')).tags;
@@ -67,3 +70,15 @@ export function mk(o: MkOpts = {}): GeneratorInput {
 export const allEx = (p: GenProgram) => p.sessions.flatMap((s) => s.exercises);
 export const byId = (id: string) => FICHES.find((f) => f.id === id)!;
 export const msgIds = (p: { messages: { id: string }[] }) => p.messages.map((m) => m.id);
+
+// ---- Plafonds relevés (13/11/2026, avis kiné ; NON SOURCÉ comme plafonds) ----
+/** Plafond hebdomadaire attendu d'un muscle pour ce profil : 24 (principal seul) pour l'intermédiaire / avancé sans protection, sinon 20 ; six groupes protégés : toujours 20. */
+export const weekCapOf = (input: GeneratorInput, m: string): number => weekCapFor(buildCtx(input), m);
+/**
+ * Mesure du plafond hebdomadaire d'un muscle, selon le profil : séries où le muscle est principal pour un profil relevé (muscle non protégé),
+ * sinon séries fractionnaires (principal 1, secondaire 0,5) comme avant, y compris pour les six groupes protégés.
+ */
+export function weekMeasure(input: GeneratorInput, sessions: readonly { exercises: readonly { sets: number; musclesPrincipaux: string[]; musclesSecondaires: string[] }[] }[], m: string): number {
+  const relevé = raisedCaps(buildCtx(input)) && !weekCountsSecondary(m);
+  return sessions.reduce((a, s) => a + (relevé ? weekVol(s as never, m) : sessionVol(s as never, m)), 0);
+}

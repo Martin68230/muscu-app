@@ -5,14 +5,14 @@
 // src/generator/zones-check.ts. Dernier recours (07/11/2026) : si une zone reste orange ou grise après les séries en plus, UN seul
 // échange d'exercice dans cette séance (swapForZone), avec le classement et les filtres du générateur (rankSlot), sans dose nouvelle.
 import type { CatchUpLogEntry, PlannedExercise, ProgramDay, SetLog } from '../data/model';
-import { CATCHUP, D_CLASS, doseLimitOf, FIXED_DOSE, ISOLATION_FICHE_PREFIXES, TIME, VOLUME } from '../generator/config';
+import { CATCHUP, CORRECTIF_COU, D_CLASS, doseLimitOf, FIXED_DOSE, ISOLATION_FICHE_PREFIXES, TIME, VOLUME, weekCountsSecondary } from '../generator/config';
 import type { Ctx } from '../generator/context';
 import { estimerDuree, type DurExercise, type DurSession } from '../generator/duration';
 import { isIsoSlot } from '../generator/isolation';
-import { makePlaf, splitCapsOk, weekCapsOk } from '../generator/plaf';
+import { makePlaf, splitCapsOk, weekCapFor, weekCapsOk } from '../generator/plaf';
 import { variantClass } from '../generator/reps';
 import type { Fiche, GenExercise } from '../generator/types';
-import { checkZones, excludedZones, SLOTLESS_ZONES, zoneCapsOk } from '../generator/zones-check';
+import { checkZones, excludedZones, hasHeavyShoulderTrap, SLOTLESS_ZONES, zoneCapsOk } from '../generator/zones-check';
 import { MAIN_EXERCISE_SLOTS } from '../generator/config';
 import { buildExercise } from '../generator/dose';
 import { plannedOf } from '../generator';
@@ -42,6 +42,11 @@ export interface CatchUpProfile {
   log?: readonly CatchUpLogEntry[] | null;
   /** Douleur de niveau >= 1 LEVÉE (blessure supprimée ou désactivée) depuis moins de 7 jours, ou lecture impossible : aucun rattrapage (avis kine 13/11/2026). */
   liftedPain?: boolean;
+  /**
+   * Séries réelles des 7 derniers jours glissants par muscle (create-store.ts weekSetsOf, séances du programme et créées) : une série de rattrapage n'est jamais ajoutée
+   * si elle ferait dépasser le plafond hebdomadaire (weekCapFor) d'un muscle de l'exercice (relecteur 13/11/2026 : deux cycles courts dans la même semaine). Absent = non contrôlé.
+   */
+  recentWeek?: Readonly<Record<string, number>>;
   /**
    * RAT-7 : charge du sport à l'ouverture de la séance. Absent = aucun sport déclaré ni noté. `gate: null` = information illisible ou
    * ambiguë : aucun rattrapage. `hasPain` : gêne ou malaise noté, renvoi vers un professionnel. `shoulderSport` : un sport d'épaule est déclaré.
@@ -253,7 +258,9 @@ function swapForZone(
       const tDay = { ...today, exercises: trial };
       const tGen = gens(tDay);
       const after = weekAt(trial);
-      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after) || !zoneCapsOk(baseWeek, after, ctx)) continue;
+      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after, ctx) || !zoneCapsOk(baseWeek, after, ctx)) continue;
+      // CAL-12 (relecteur 13/11/2026) : un échange ne met jamais un exercice lourd d'épaules / trapèzes (squat à la barre compris) dans une séance qui a le cou.
+      if (trial.some((x) => x.movementId === CORRECTIF_COU.ficheId && x.slot === 'correctif') && hasHeavyShoulderTrap({ exercises: tGen.map((g) => ({ ...g, alt: undefined })) }, ctx)) continue;
       if (durOf(tDay, tGen, ctx) > Math.max(budgetSec, durOf({ ...today, exercises }, gens({ ...today, exercises }), ctx))) continue;
       const chk = checkZones(after, ctx, profile.pool);
       const st = chk.status;
@@ -294,10 +301,10 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
   const weeksLow = (zone: ZoneId): number => {
     if (!wk || !profile.log) return 1;
     let n = 1;
-    while (n < CATCHUP.logWeeks && logOf(addDays(wk, -7 * n), zone)) n++;
+    while (n < CATCHUP.logWeeks && logOf(shiftKey(wk, -n), zone)) n++;
     return n;
   };
-  const prevAdded = new Set((profile.log ?? []).filter((l) => !!wk && l.week === addDays(wk, -7) && l.movementId).map((l) => l.movementId as string));
+  const prevAdded = new Set((profile.log ?? []).filter((l) => !!wk && l.week === shiftKey(wk, -1) && l.movementId).map((l) => l.movementId as string));
   const assumed = !profile.log; // sans journal : la semaine précédente est supposée rattrapée
   const lowRaw = ZONES.filter((z) => !excluded[z.id] && !SLOTLESS_ZONES.includes(z.id))
     .map((z) => {
@@ -342,7 +349,9 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
   let shoulderLeft: number = CATCHUP.shoulderMaxZones;
   const isShoulder = (z: ZoneId) => CATCHUP.shoulderZones.includes(z);
   // RAT-1, RAT-4 : zones rattrapables (pas de protection, pas une séance manquée, plus d'un point de retard).
-  const eligible = lowRaw.filter((z) => !CATCHUP.noZones.includes(z.zone) && !z.missed && z.shortfall > CATCHUP.minShortfall);
+  // Avis kiné 13/11/2026 : jamais la même zone rattrapée deux cycles de suite (pas de rattrapage chronique).
+  const givenLast = new Set((profile.log ?? []).filter((l) => !!wk && l.week === shiftKey(wk, -1) && l.movementId).map((l) => l.zone));
+  const eligible = lowRaw.filter((z) => !CATCHUP.noZones.includes(z.zone) && !z.missed && z.shortfall > CATCHUP.minShortfall && !givenLast.has(z.zone));
 
   for (const { zone } of eligible) {
     if (zonesLeft < 1 || setsLeft < 1) break;
@@ -365,12 +374,18 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
       if (isShoulder(zone) && !lightShoulderIso(ex, ctx)) continue;
       if (sportRefuses(fiches.get(ex.movementId), profile)) { sportStop = true; continue; }
       if (ex.sets + 1 > maxSetsOf(ex, ctx)) continue;
+      // Plafond des 7 derniers jours glissants (volume réel déjà fait) : un muscle de l'exercice au plafond = aucune série en plus.
+      if (profile.recentWeek) {
+        const fx = fiches.get(ex.movementId);
+        const ms = fx ? [...fx.musclesPrincipaux, ...fx.musclesSecondaires.filter((m) => weekCountsSecondary(m))] : [];
+        if (ms.some((m) => (profile.recentWeek![m] ?? 0) + 1 > weekCapFor(ctx, m))) continue;
+      }
       const trial = exercises.map((x, j) => (j === i ? { ...x, sets: x.sets + 1 } : x));
       const tDay = { ...today, exercises: trial };
       const tGen = gens(tDay);
       const before = week.map((w, j) => (j === next.dayIndex ? { exercises: gens({ ...today, exercises }) } : w));
       const after = before.map((s, j) => (j === next.dayIndex ? { exercises: tGen } : s));
-      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after) || !zoneCapsOk(before, after, ctx)) continue;
+      if (!splitCapsOk(tGen, plaf) || !weekCapsOk(after, ctx) || !zoneCapsOk(before, after, ctx)) continue;
       const trialSec = durOf(tDay, tGen, ctx);
       if (trialSec > budgetSec || trialSec - baseSec > CATCHUP.maxExtraMin * 60) continue;
       exercises = trial;
@@ -400,7 +415,57 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
 }
 
 /**
- * Semaine du programme (7 jours depuis `startDate`) : séries de la semaine écoulée, et vrai si aucune série n'a encore été faite cette
+ * Clé de période du journal : une date (semaine, anciens appels et tests) ou « c00007 » (numéro de cycle). `shiftKey(k, -1)` = la période précédente.
+ */
+export function shiftKey(key: string, by: number): string {
+  const m = /^c(\d{5})$/.exec(key);
+  return m ? `c${String(Math.max(0, Number(m[1]) + by)).padStart(5, '0')}` : addDays(key, 7 * by);
+}
+
+/**
+ * PAR CYCLE (demande de l'utilisateur du 13/11/2026, avis coach + kiné ; valeurs NON SOURCÉES / PROVISOIRES, config CATCHUP.cycle) : un cycle = N séances
+ * faites du programme (N = séances de force de la semaine type, 3 à 6), clos par la N-ième séance OU 14 jours après sa première séance. Le rattrapage se calcule à
+ * la première séance du cycle suivant sur les séries du cycle clos. Jamais de rattrapage : cycle clos par le temps avec moins de 2 séances, ou plus de 14 jours
+ * sans séance (rupture : on repart à zéro, reprise progressive). Une séance manquée = un jour du programme absent du cycle : 0 compensation (RAT-4, inchangé).
+ * Le plafond de 20 / 24 séries reste une règle de dose par 7 jours (inchangé). Fonction pure : `sessions` = séances faites du programme (id, date de début).
+ */
+export function lastCycleOf(
+  sessions: readonly { id: string; startedAt: string | null; plannedDate: string }[], sets: readonly SetLog[], n: number, nowMs: number,
+): { weekSets: SetLog[]; firstOfWeek: boolean; weekKey: string; days: number; count: number } | null {
+  if (n < 1) return null;
+  const DAY = 86_400_000;
+  const at = (s: { startedAt: string | null; plannedDate: string }) => Date.parse(s.startedAt ?? s.plannedDate);
+  const done = sessions.filter((s) => Number.isFinite(at(s))).sort((a, b) => at(a) - at(b));
+  if (!done.length) return null;
+  if (nowMs - at(done[done.length - 1]) > CATCHUP.cycle.maxDays * DAY) return null; // rupture : on repart à zéro
+  const cycles: { ids: Set<string>; start: number; end: number; byTime: boolean }[] = [];
+  let cur: (typeof cycles)[number] | null = null;
+  for (const s of done) {
+    if (cur && (cur.ids.size >= n || at(s) - cur.start > CATCHUP.cycle.maxDays * DAY)) { cur.byTime = cur.ids.size < n; cycles.push(cur); cur = null; }
+    if (!cur) cur = { ids: new Set(), start: at(s), end: at(s), byTime: false };
+    cur.ids.add(s.id);
+    cur.end = at(s);
+  }
+  // Le dernier bloc est clos s'il a N séances ou si 14 jours se sont écoulés depuis sa première séance ; sinon le cycle est en cours : pas de rattrapage.
+  if (cur) {
+    const closed = cur.ids.size >= n || nowMs - cur.start > CATCHUP.cycle.maxDays * DAY;
+    if (!closed) return null;
+    cur.byTime = cur.ids.size < n;
+    cycles.push(cur);
+  }
+  const last = cycles[cycles.length - 1];
+  if (!last || (last.byTime && last.ids.size < CATCHUP.cycle.minSessions)) return null;
+  const work = sets.filter((s) => !!s.completedAt && !s.isWarmup && !s.deletedAt && last.ids.has(s.sessionId));
+  // Relecteur 13/11/2026 : au plus UNE fois par cycle : dès qu'une série d'une séance hors du cycle clos est faite (séance abandonnée comprise), le cycle suivant a commencé.
+  if (sets.some((s) => !!s.completedAt && !s.isWarmup && !s.deletedAt && !last.ids.has(s.sessionId) && Date.parse(s.completedAt) > last.end)) return null;
+  return {
+    weekSets: work, firstOfWeek: true, weekKey: `c${String(cycles.length).padStart(5, '0')}`, count: last.ids.size,
+    days: Math.max(1, Math.round((last.end - last.start) / DAY) + 1),
+  };
+}
+
+/**
+ * (Ancien calcul par semaine, gardé pour les tests et les appels sans séances.) Semaine du programme (7 jours depuis `startDate`) : séries de la semaine écoulée, et vrai si aucune série n'a encore été faite cette
  * semaine (première séance). null pendant la première semaine du programme.
  */
 export function lastWeekOf(startDate: string | null | undefined, sets: readonly SetLog[], nowMs: number): { weekSets: SetLog[]; firstOfWeek: boolean; weekKey: string } | null {

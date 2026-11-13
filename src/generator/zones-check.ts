@@ -4,7 +4,8 @@
 // Correction : d'abord changer d'exercice (même emplacement, même classement), puis ajouter des séries ; jamais au-delà des plafonds
 // V-PLAF / hebdomadaire (plaf.ts), des plafonds par zone (§3 : 20 / 10 par semaine, 6 par séance pour une petite zone), de la durée
 // choisie ni d'une protection (grossesse, reprise, semaine allégée, douleur : aucune série ajoutée sur une fiche qui touche une zone gênée).
-import { CORRECTIF, CORRECTIF_COU, HEAVY_TAGS_B1, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, VOLUME } from './config';
+import { CORRECTIF, CORRECTIF_COU, HEAVY_TAGS_B1, doseLimitOf, FIXED_DOSE, MAIN_EXERCISE_SLOTS, RAISED_CAPS, VOLUME, weekCountsSecondary } from './config';
+import { raisedCaps } from './plaf';
 import { isIsoSlot } from './isolation';
 import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
@@ -42,14 +43,14 @@ const MIN_COEF = 0.5;
 
 const zf = (ctx: Ctx, ficheId: string): ZoneFiche | undefined => ctx.fichesById.get(ficheId) as ZoneFiche | undefined;
 
-export function weekPoints(sessions: readonly { exercises: readonly GenExercise[] }[], ctx: Ctx): Record<ZoneId, number> {
+export function weekPoints(sessions: readonly { exercises: readonly GenExercise[] }[], ctx: Ctx, capMode = false): Record<ZoneId, number> {
   const fiches = new Map<string, ZoneFiche>();
   const sets = sessions.flatMap((s) => s.exercises.map((e) => {
     const f = zf(ctx, e.ficheId);
     if (f) fiches.set(f.id, f);
     return { ficheId: e.ficheId, sets: e.sets };
   }));
-  return pointsByZone(sets, fiches);
+  return pointsByZone(sets, fiches, capMode);
 }
 
 /** Zones exclues du contrôle : blessure déclarée (niveau >= 1), puis aucune fiche admissible (coefficient >= 0,5) dans le catalogue. */
@@ -188,7 +189,7 @@ export function correctifExercise(c: Candidate, ctx: Ctx): GenExercise {
  */
 export function addCorrectifs(
   sessions: Sess[], d: FillDeps,
-  opts: { orange?: boolean; canUse?: (s: Sess) => boolean } = {},
+  opts: { orange?: boolean; canUse?: (s: Sess) => boolean; only?: readonly ZoneId[] } = {},
 ): void {
   const { ctx, pool } = d;
   if (ctx.repriseActive || ctx.lightWeek) return;
@@ -198,7 +199,10 @@ export function addCorrectifs(
   // Lot cohérence 3 b : en remplissage du temps, aussi les petites zones orange (les moins travaillées d'abord).
   const zc0 = checkZones(sessions, ctx, pool);
   const ratio = (z: ZoneId) => zc0.points[z] / Math.max(1e-9, thresholdsOf(z, ctx.goalKey).rouge);
-  const zones = opts.orange ? [...SLOTLESS_ZONES].sort((a, b) => ratio(a) - ratio(b)) : SLOTLESS_ZONES;
+  const byRatio = opts.orange ? [...SLOTLESS_ZONES].sort((a, b) => ratio(a) - ratio(b)) : [...SLOTLESS_ZONES];
+  // Cou : seule la séance réservée (plafonds relevés, ctx.neckSafeLabels) peut le recevoir ; il passe donc avant les autres petites zones, qui prendraient sa place.
+  const ordered = ctx.neckSafeLabels ? [...byRatio.filter((z) => z === 'cou'), ...byRatio.filter((z) => z !== 'cou')] : byRatio;
+  const zones = opts.only ? ordered.filter((z) => opts.only!.includes(z)) : ordered;
   for (const z of zones) {
     const st = checkZones(sessions, ctx, pool).status[z];
     if ((st !== 'gris' && !(opts.orange && st === 'orange')) || excludedZones(ctx, pool)[z]) continue;
@@ -227,10 +231,11 @@ export function addCorrectifs(
 /** Plafonds par zone (§3) : hebdomadaire par groupe (maximum des sous-zones) ; par séance pour les petites zones (6). Lecture relative :
  * un changement ne doit jamais faire passer un groupe au-dessus de son plafond, ni monter un groupe déjà au-dessus. */
 export function zoneCapsOk(before: readonly Pick<Sess, 'exercises'>[], after: readonly Pick<Sess, 'exercises'>[], ctx: Ctx): boolean {
-  const gb = capGroupPoints(weekPoints(before, ctx));
-  const ga = capGroupPoints(weekPoints(after, ctx));
+  const po = raisedCaps(ctx); // plafonds relevés : points de plafond sur les muscles principaux seulement (zones protégées : comptage complet)
+  const gb = capGroupPoints(weekPoints(before, ctx, po));
+  const ga = capGroupPoints(weekPoints(after, ctx, po));
   for (const [g, a] of ga) {
-    const cap = zoneCaps(a.zone).week;
+    const cap = zoneCaps(a.zone, raisedCaps(ctx) && { factor: RAISED_CAPS.zoneFactor }).week;
     if (a.points > cap && a.points > (gb.get(g)?.points ?? 0)) return false;
   }
   for (let i = 0; i < after.length; i++) {
@@ -322,6 +327,34 @@ function addOneSet(work: Sess[], z: ZoneId, d: FillDeps, canUse: (s: Sess) => bo
   return false;
 }
 
+/**
+ * Plafonds relevés (13/11/2026) : temps restant d'une séance sous sa cible, rempli par UNE série de plus sur un exercice déjà placé (jamais un
+ * exercice protégé en premier : épaules, trapèzes, triceps, biceps, avant-bras, érecteurs ; puis le moins chargé en séries), sous les mêmes
+ * garde-fous que addOneSet (dose, V-PLAF « auto », plafond hebdomadaire 24 / 20 selon le muscle, plafonds de zone). Profils relevés seulement.
+ */
+function addTimeSet(work: Sess[], d: FillDeps, under: (s: Sess) => boolean): boolean {
+  const cands: { i: number; e: GenExercise }[] = [];
+  work.forEach((s, i) => under(s) && s.exercises.forEach((e) => {
+    if (e.role === 'cardio' || e.slot === 'correctif' || e.slot === 'tronc' || e.slot === 'fonctionnel') return;
+    cands.push({ i, e });
+  }));
+  const prot = (e: GenExercise) => (e.musclesPrincipaux.some(weekCountsSecondary) ? 1 : 0);
+  cands.sort((a, b) => prot(a.e) - prot(b.e) || a.e.sets - b.e.sets);
+  for (const { i, e } of cands) {
+    const s = work[i];
+    if (e.capped || FIXED_DOSE[e.ficheId] || isIsoSlot(e.slot) || touchesSensitive(e, d.ctx) || !e.rirAsked || e.unit !== 'reps') continue;
+    if (e.sets >= Math.min(VOLUME.maxSetsPerExercise, doseLimitOf(e.ficheId, e.variantId, e.tags).maxSets ?? Infinity, e.setsCap ?? Infinity)) continue;
+    const exs = s.exercises.map((x) => (x === e ? { ...x, sets: x.sets + 1 } : x));
+    const trial = { ...s, exercises: exs };
+    const all = work.map((x) => (x === s ? trial : x));
+    if (estimerDuree(trial) > d.budget(s)) continue;
+    if (!d.sessionOk(exs, 'auto') || !d.weekOk(all) || !zoneCapsOk(work, all, d.ctx)) continue;
+    work[i] = trial;
+    return true;
+  }
+  return false;
+}
+
 /** Séries ajoutées jusqu'à sortir la zone du gris ; rien n'est gardé si la zone reste grise ou si le nombre de zones grises ne baisse pas. */
 function tryAddSets(sessions: Sess[], z: ZoneId, d: FillDeps): boolean {
   if (!canAddSets(d.ctx)) return false;
@@ -380,6 +413,14 @@ export function fillToTarget(
         break;
       }
       if (!progressed) break;
+    }
+  }
+  // a2) Plafonds relevés : le temps restant est rempli par des séries de plus (jamais sur un exercice protégé tant qu'un autre peut en recevoir).
+  if (canAddSets(ctx) && raisedCaps(ctx)) {
+    for (let guard = 0; guard < 200 && sessions.some(under); guard++) {
+      const work = sessions.map((x) => ({ ...x }));
+      if (!addTimeSet(work, d, under)) break;
+      sessions.forEach((x, i) => { x.exercises = work[i].exercises; });
     }
   }
   // b) Exercice fonctionnel (emplacement `fonctionnel` du type de séance, mêmes règles que le placement), puis correctifs des petites zones.

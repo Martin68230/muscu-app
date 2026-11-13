@@ -1444,6 +1444,11 @@ export const CATCHUP = {
   logWeeks: 4,
   stuckWeeks: 2,
   reviewWeeks: 4,
+  /**
+   * PAR CYCLE (13/11/2026, coach + kiné ; PROVISOIRE / NON SOURCÉ) : les « semaines » ci-dessus sont des CYCLES de N séances. Cycle clos après `maxDays` jours au plus ;
+   * moins de `minSessions` séances dans un cycle clos par le temps = jamais jugé ; plus de `maxDays` jours sans séance = rupture, aucun rattrapage.
+   */
+  cycle: { maxDays: 14, minSessions: 2 },
   /** RAT-6 : garde de l'échange (points). Aucune perte sous le seuil rouge ni sur ces zones ; au plus -1 point par zone et -2 au total. */
   swap: {
     maxLossPerZone: 1,
@@ -1463,3 +1468,11 @@ export const CATCHUP = {
  */
 export const weekCountsSecondary = (muscle: string): boolean =>
   muscle === 'deltoides' || muscle.startsWith(VOLUME.deltoidPrefix) || muscle.startsWith('trapezes') || ['triceps', 'biceps', 'avant_bras', 'erecteurs_rachis'].includes(muscle);
+
+/**
+ * Plafonds relevés (décision de l'utilisateur du 13/11/2026, avis kiné ; NON SOURCÉ comme plafond) : 24 séries par semaine et par muscle
+ * principal (au lieu de 20), plafonds de zone x1,2 (20 -> 24, 10 -> 12), pour l'intermédiaire et l'avancé SANS blessure, hors santé,
+ * grossesse / post-partum, reprise, semaine allégée. Les six groupes protégés (épaules, trapèzes, triceps, biceps, avant-bras, érecteurs
+ * du rachis / lombaires) restent à 20 / 10. Le plafond par séance ne change pas. Annuler : RAISED_CAPS.enabled = false.
+ */
+export const RAISED_CAPS = { enabled: true, weekMuscle: 24, zoneFactor: 1.2 };

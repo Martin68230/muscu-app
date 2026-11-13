@@ -66,6 +66,8 @@ export interface Ctx {
   exterieur: boolean;
   /** Dépistage du cou répondu « Non, rien » (seule réponse qui autorise l'exercice de cou). */
   neckScreenOk: boolean;
+  /** Plafonds relevés (13/11/2026) : séance du bas du corps réservée au cou ; le classement des emplacements y écarte les fiches lourdes d’épaules / trapèzes (CAL-12). */
+  neckSafeLabels?: ReadonlySet<string>;
   /** Sports déclarés. */
   sports: string[];
   /** STR-ISO-0 / 1 : isolation possible pour ce profil (intermédiaire, avancé, ou débutant après l'exception). */
