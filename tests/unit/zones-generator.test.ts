@@ -8,8 +8,9 @@ import { describe, expect, it } from 'vitest';
 import { generateProgram, zoneReport } from '../../src/generator';
 import { buildCtx } from '../../src/generator/context';
 import { estimerDuree } from '../../src/generator/duration';
-import { makePlaf, sessionCapsOk, splitCapsOk, weekCapsOk } from '../../src/generator/plaf';
-import { fillGreyZones, checkZones, SLOTLESS_ZONES } from '../../src/generator/zones-check';
+import { makePlaf, raisedCaps, sessionCapsOk, splitCapsOk, weekCapsOk } from '../../src/generator/plaf';
+import { RAISED_CAPS } from '../../src/generator/config';
+import { fillGreyZones, checkZones, SLOTLESS_ZONES, weekPoints } from '../../src/generator/zones-check';
 import type { GeneratorInput } from '../../src/generator/types';
 import { capGroupPoints, zoneCaps, zoneName, zonesOfInjury } from '../../src/zones/zones';
 import { FICHES, mk } from './generator-helpers';
@@ -40,7 +41,9 @@ const PROFILS: [string, GeneratorInput, string[]][] = [
   ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq(HE), 'perte_gras', 'cardio'), ['trapezes_bas', 'coiffe_rotateurs', 'carre_des_lombes', 'abducteurs', 'mollets_soleaire', 'tibiaux', 'peroniers']],
   ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(E), 'sport'), ['epaules_cote', 'fessiers_moyen', 'coiffe_rotateurs', 'carre_des_lombes', 'tibiaux']],
   ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef', 'tibiaux', 'biceps', 'avant_bras', 'mollets_soleaire']],
-  ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut', 'coiffe_rotateurs', 'abducteurs']],
+  ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut', 'coiffe_rotateurs', 'abducteurs', 'carre_des_lombes']],
+  // 13/11/2026 (plafonds relevés) : profil 6 : l'isolation PPL passe avant le contrôle des zones (elle prend une place par séance : 8 exercices au plus) ;
+  // le carré des lombes (planche latérale, correctif) peut rester gris, cité dans le message : place, jamais un plafond relâché.
 ];
 
 function capsHold(input: GeneratorInput) {
@@ -50,7 +53,7 @@ function capsHold(input: GeneratorInput) {
   const ctx = buildCtx(input);
   const plaf = makePlaf(ctx, 'slot');
   const split = p.sessions.some((s) => s.type !== 'CE');
-  expect(weekCapsOk(p.sessions)).toBe(true);
+  expect(weekCapsOk(p.sessions, ctx)).toBe(true);
   for (const s of p.sessions) expect(split ? splitCapsOk(s.exercises, plaf) : sessionCapsOk(s, plaf)).toBe(true);
   return p;
 }
@@ -63,7 +66,11 @@ describe('zones : contrôle du générateur sur les 6 profils du rapport', () =>
       expect(rep.greyFixable.filter((z) => !allowed.includes(z))).toEqual([]);
       expect(rep.greySlotless.every((z) => SLOTLESS_ZONES.includes(z))).toBe(true);
       for (const s of p.sessions) expect(s.overBudget).toBe(false);
-      for (const [g, v] of capGroupPoints(rep.points)) expect(v.points, g).toBeLessThanOrEqual(zoneCaps(v.zone).week);
+      // 13/11/2026 : profil relevé (intermédiaire / avancé sans protection) : points sur les muscles principaux seulement (groupes protégés : comptage complet) et plafond x1,2.
+      const ctx = buildCtx(input);
+      const raised = raisedCaps(ctx);
+      const pts = raised ? weekPoints(p.sessions, ctx, true) : rep.points;
+      for (const [g, v] of capGroupPoints(pts)) expect(v.points, g).toBeLessThanOrEqual(zoneCaps(v.zone, raised && { factor: RAISED_CAPS.zoneFactor }).week);
       // Messages : zones grises restantes et zones orange, sans sigle ni identifiant brut.
       const ids = p.messages.map((m) => m.id);
       expect(ids.includes('V-MSG-ZONES-GRIS')).toBe(rep.greyFixable.length > 0);

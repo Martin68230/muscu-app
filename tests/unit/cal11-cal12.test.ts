@@ -2,7 +2,7 @@
 // Règles : knowledge/calibrage-kaggle.md §5 et §6 (validées par `kine` le 12/11/2026).
 import { afterEach, describe, expect, it } from 'vitest';
 import { generateProgram } from '../../src/generator';
-import { CAL11 } from '../../src/generator/config';
+import { CAL11, RAISED_CAPS } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import { isHeavyShoulderTrapExercise } from '../../src/generator/zones-check';
 import { zoneCoefs, type ZoneFiche } from '../../src/zones/zones';
@@ -27,6 +27,17 @@ const withCal11 = <T,>(on: boolean, f: () => T): T => {
   try { return f(); } finally { (CAL11 as { enabled: boolean }).enabled = before; }
 };
 afterEach(() => { (CAL11 as { enabled: boolean }).enabled = true; });
+/**
+ * 13/11/2026 (plafonds relevés) : avec les plafonds relevés les séances PUSH reçoivent déjà leurs deux emplacements de correctifs (petites zones, prioritaires) ;
+ * le plafond de 2 isolations / correctifs par séance ne laisse alors plus de place à CAL-11, qui n'est de toute façon pas un plafond de sécurité mais un complément.
+ * Les tests de PRÉSENCE des ajouts CAL-11 se font donc avec les plafonds actuels (RAISED_CAPS.enabled = false : le cas des profils protégés) ; les invariants
+ * (dose, plafonds, cou) sont vérifiés dans les deux modes (voir 'invariants avec les plafonds relevés').
+ */
+const withRaised = <T,>(on: boolean, f: () => T): T => {
+  const before = RAISED_CAPS.enabled;
+  (RAISED_CAPS as { enabled: boolean }).enabled = on;
+  try { return f(); } finally { (RAISED_CAPS as { enabled: boolean }).enabled = before; }
+};
 
 describe('CAL-12 : critère « lourd » pour le cou', () => {
   it('lourd : charge externe, élastique, poids du corps en poussée ou tirage, gainage, squat à la barre', () => {
@@ -69,8 +80,8 @@ describe('CAL-12 : critère « lourd » pour le cou', () => {
 });
 
 describe('CAL-11 : compléments PUSH / HAUT', () => {
-  const on = gen(BASE);
-  const off = withCal11(false, () => gen(BASE));
+  const on = withRaised(false, () => gen(BASE));
+  const off = withRaised(false, () => withCal11(false, () => gen(BASE)));
 
   it('PUSH : exercice(s) ajouté(s) en fin de séance, 2 séries, au plus 2 exercices et 4 séries, dose fixe avec signes d’arrêt', () => {
     const a = added(on);
@@ -143,7 +154,7 @@ describe('CAL-11 : compléments PUSH / HAUT', () => {
     const input = mk(pain());
     input.profile.neckScreen = 'non';
     input.injuries = [{ zone, level: 1, active, deletedAt: null, ...(updatedAt ? { updatedAt } : {}) }];
-    return (generateProgram(input) as any).program;
+    return withRaised(false, () => (generateProgram(input) as any).program);
   };
   it('douleur sur la zone liée dans les 7 derniers jours, même passée : aucun ajout ; sans date lisible : prudence', () => {
     for (const d of ['2026-11-08T10:00:00.000Z', undefined]) {

@@ -11,7 +11,7 @@ import { chooseLightDays, conflicts, planWeek, scheduleDays, TYPE_NOYAU, typeOf 
 import type { GeneratorInput, GenExercise, GenProgram } from '../../src/generator/types';
 import { NEUTRAL_CONTEXT, pairsForSession, type EngineContext } from '../../src/session/engine';
 import { programWeek, veilleMuscles, withProgramWeek } from '../../src/session/program';
-import { mk, msgIds } from './generator-helpers';
+import { mk, msgIds, weekCapOf, weekMeasure } from './generator-helpers';
 import { day as mkDay, ex as mkEx } from './session-helpers';
 
 // ----- Profils exacts (§6.1) -----
@@ -155,8 +155,11 @@ describe('T-D25-07 à 11 : plafonds, volume, durée, ordre de coupe (V-PLAF, STR
   });
 
   it('T-D25-08 / 09 (fiches réelles) : aucun muscle au-dessus de 20 séries par semaine ; PS-2 : V-MSG-VOL ; PS-4 : pectoraux >= 9', () => {
-    for (const p of [prog(PS[3]()), prog(PS[4]()), prog(PS[6]()), prog(PS[7]())])
-      for (const m of muscles(p)) expect(weekVol(p, m), `${p.split} ${m}`).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
+    // 13/11/2026 : 24 séries (principal seul) pour l'intermédiaire / avancé sans protection, 20 sinon et pour les six groupes protégés.
+    for (const i of [PS[3](), PS[4](), PS[6](), PS[7]()]) {
+      const p = prog(i);
+      for (const m of muscles(p)) expect(weekMeasure(i, p.sessions, m), `${p.split} ${m}`).toBeLessThanOrEqual(weekCapOf(i, m));
+    }
     expect(msgIds(prog(PS[2]()))).toContain('V-MSG-VOL');
     expect(weekVol(prog(PS[4]()), 'pectoraux')).toBeGreaterThanOrEqual(9);
   });
@@ -184,8 +187,9 @@ describe('T-D25-07 à 11 : plafonds, volume, durée, ordre de coupe (V-PLAF, STR
   });
 
   it('T-D25-24 : 3 jours à 75 min : aucun muscle au-dessus de 20 ; un emplacement retiré pour le plafond n\'est jamais rajouté', () => {
-    const p = prog(PS[20]());
-    for (const m of muscles(p)) expect(weekVol(p, m), m).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
+    const i = PS[20]();
+    const p = prog(i);
+    for (const m of muscles(p)) expect(weekMeasure(i, p.sessions, m), m).toBeLessThanOrEqual(weekCapOf(i, m));
     expect(p.sessions.every((s) => s.estimatedSec <= 75 * 60)).toBe(true);
   });
 });

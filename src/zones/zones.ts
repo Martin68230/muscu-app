@@ -145,7 +145,7 @@ export const capGroupOf = (zone: ZoneId): string => PARENT[zone] ?? zone;
 
 /** Plafonds d'une zone (§3, NON SOURCÉ) : par semaine 20 / 10, par séance 10 / 6 (grandes zones : V-PLAF du générateur fait foi). */
 /** Zones protégées (13/11/2026, kiné) : jamais de plafond relevé (épaules, trapèzes, triceps, biceps, avant-bras, lombaires, carré des lombes). */
-const isProtectedZone = (z: string) => /^(epaules|trapezes|triceps)/.test(z) || ['biceps', 'avant_bras', 'lombaires', 'carre_des_lombes'].includes(z);
+export const isProtectedZone = (z: string) => /^(epaules|trapezes|triceps)/.test(z) || ['biceps', 'avant_bras', 'lombaires', 'carre_des_lombes'].includes(z);
 /** `raised` : plafond hebdomadaire x `factor` (RAISED_CAPS) pour les zones non protégées ; le plafond par séance ne change jamais. */
 export function zoneCaps(zone: ZoneId, raised: { factor: number } | false = false): { week: number; session: number } {
   const t = SEUILS[ZONE_BY_ID.get(zone)?.seuil ?? 'G'];

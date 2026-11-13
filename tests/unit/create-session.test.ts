@@ -6,7 +6,7 @@ import { CREER_SEANCE, JUMPS, PENDING_RULES, VOLUME } from '../../src/generator/
 import { availableTags } from '../../src/generator/context';
 import { frac, weekMusclesOf, sessionVol, weekVol } from '../../src/generator/plaf';
 import type { GeneratorInput } from '../../src/generator/types';
-import { FICHES, mk, type MkOpts } from './generator-helpers';
+import { FICHES, mk, weekCapOf, type MkOpts } from './generator-helpers';
 
 const NOW = '2026-11-12T10:00:00.000Z';
 const ago = (hours: number): string => new Date(Date.parse(NOW) - hours * 3600 * 1000).toISOString();
@@ -303,17 +303,18 @@ describe('Cas 7 : 45 à 55 min -> blocs complets, contacts jamais au-dessus du p
     expect(s.contacts).toBeGreaterThan(JUMPS.startContacts.intermediaire - 1);
     expect(s.contacts).toBeLessThanOrEqual(JUMPS.capContacts.intermediaire);
   });
-  it('plafond hebdomadaire de 20 séries par muscle : des séries sont retirées ; impossible même à 2 séries : refus avec le texte de la règle', () => {
+  it('plafond hebdomadaire (24 séries principales par muscle pour ce profil intermédiaire sans protection, 20 sinon) : des séries sont retirées ; impossible même à 2 séries : refus avec le texte de la règle', () => {
     const input = home();
     const r = req({ durationMin: 50, sport: null, intensity: 'soutenue' });
     const full = ok(input, r);
     const qFull = weekVol({ exercises: full.exercises }, 'quadriceps');
-    const part = ok(input, r, { weekSets: { quadriceps: VOLUME.maxPerMuscleWeek - 4, fessiers: 0 } });
+    const cap = weekCapOf(input, 'quadriceps');
+    const part = ok(input, r, { weekSets: { quadriceps: cap - 4, fessiers: 0 } });
     const qPart = weekVol({ exercises: part.exercises }, 'quadriceps');
     expect(qPart).toBeLessThanOrEqual(4);
     expect(qPart).toBeLessThan(qFull);
-    for (const m of weekMusclesOf([{ exercises: part.exercises }])) expect((m === 'quadriceps' ? VOLUME.maxPerMuscleWeek - 4 : 0) + weekVol({ exercises: part.exercises }, m)).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
-    const refused = createSession(input, r, { weekSets: { quadriceps: 20, fessiers: 20, ischios: 20, mollets: 20 } });
+    for (const m of weekMusclesOf([{ exercises: part.exercises }])) expect((m === 'quadriceps' ? cap - 4 : 0) + weekVol({ exercises: part.exercises }, m)).toBeLessThanOrEqual(weekCapOf(input, m));
+    const refused = createSession(input, r, { weekSets: { quadriceps: cap, fessiers: cap, ischios: cap, mollets: cap } });
     expect(refused.ok).toBe(false);
     if (!refused.ok) {
       expect(refused.code).toBe('plafond-hebdomadaire');

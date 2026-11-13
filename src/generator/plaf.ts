@@ -115,10 +115,12 @@ export function weekCapsFracOk(ss: { exercises: readonly Ex[] }[]): boolean {
 }
 
 /** Plafonds relevés (RAISED_CAPS) : intermédiaire / avancé sans blessure ni protection (santé, grossesse, reprise, semaine allégée). */
-export function raisedCaps(ctx: Pick<Ctx, 'level' | 'family' | 'pregnant' | 'repriseActive' | 'lightWeek' | 'zones'>): boolean {
-  return RAISED_CAPS.enabled && (ctx.level === 'intermediaire' || ctx.level === 'avance') && ctx.family !== 'sante' && !ctx.pregnant
-    && !ctx.repriseActive && !ctx.lightWeek && !ctx.zones.some((z) => !z.isG && z.level >= 1);
+export function raisedCaps(ctx: Pick<Ctx, 'level' | 'family' | 'pregnant' | 'postPartum' | 'repriseActive' | 'lightWeek' | 'zones' | 'recentPainZones'>): boolean {
+  return RAISED_CAPS.enabled && (ctx.level === 'intermediaire' || ctx.level === 'avance') && ctx.family !== 'sante' && !ctx.pregnant && !ctx.postPartum
+    && !ctx.repriseActive && !ctx.lightWeek && !ctx.zones.some((z) => !z.isG && z.level >= 1) && ctx.recentPainZones.size === 0;
 }
 /** Plafond hebdomadaire d'un muscle : 24 si relevé et muscle non protégé, sinon 20. */
 export const weekCapFor = (ctx: Parameters<typeof raisedCaps>[0] | undefined, m: string): number =>
-  ctx && raisedCaps(ctx) && !weekCountsSecondary(m) ? RAISED_CAPS.weekMuscle : VOLUME.maxPerMuscleWeek;
+  ctx && raisedCaps(ctx) && !weekCountsSecondary(m) && !EXTRA_PROTECTED_MUSCLES.includes(m) ? RAISED_CAPS.weekMuscle : VOLUME.maxPerMuscleWeek;
+/** Relecteur 13/11/2026 : muscles dont la zone est protégée (trapèzes moyens, carré des lombes) : jamais relevés, sans changer le comptage de weekVol. */
+const EXTRA_PROTECTED_MUSCLES: readonly string[] = ['rhomboides', 'carre_des_lombes'];

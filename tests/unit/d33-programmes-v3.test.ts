@@ -8,7 +8,7 @@ import { isoFicheFits } from '../../src/generator/isolation';
 import { basePlaf, frac, hingesOk, makePlaf, sessionVol } from '../../src/generator/plaf';
 import { allowedVariants, sallePenurie } from '../../src/generator/safety';
 import type { Fiche, GenExercise } from '../../src/generator/types';
-import { FICHES, byId, mk, msgIds, type MkOpts } from './generator-helpers';
+import { FICHES, byId, mk, msgIds, weekCapOf, weekMeasure, type MkOpts } from './generator-helpers';
 
 const prog = (i: GeneratorInput): GenProgram => {
   const r = generateProgram(i);
@@ -62,7 +62,8 @@ describe('D33 §5 : plafond de séries par muscle et par séance (PV3-PLAF-1, G1
       const p = prog(i);
       for (const m of muscleKeys(p)) {
         for (const s of p.sessions) expect(sessionVol(s, m)).toBeLessThanOrEqual(cap);
-        expect(p.sessions.reduce((a, s) => a + sessionVol(s, m), 0)).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
+        // 13/11/2026 : 24 (principal seul) pour P2 / P6 hors groupes protégés ; débutants P1 / P5 et groupes protégés : 20.
+        expect(weekMeasure(i, p.sessions, m)).toBeLessThanOrEqual(weekCapOf(i, m));
       }
       for (const s of p.sessions) expect(hingesOk(s.exercises)).toBe(true);
     }
@@ -84,7 +85,7 @@ describe('D33 §5 : plafond de séries par muscle et par séance (PV3-PLAF-1, G1
   it('PV3-PLAF-2 / T-D33-21 : 4 jours : ischios et fessiers <= 20 par semaine (2e charnière seulement si le total hebdomadaire le permet)', () => {
     for (const i of [P2(), salle({ level: 'intermediaire', days: 4, dur: 60, goal: 'muscle' }), mk({ days: 4 })]) {
       const p = prog(i);
-      for (const m of ['ischios', 'fessiers']) expect(p.sessions.reduce((a, s) => a + sessionVol(s, m), 0)).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
+      for (const m of ['ischios', 'fessiers']) expect(weekMeasure(i, p.sessions, m)).toBeLessThanOrEqual(weekCapOf(i, m));
     }
   });
 

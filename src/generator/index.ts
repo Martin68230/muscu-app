@@ -12,7 +12,7 @@ import {
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
 import { isoEligible, isoSlotFitsType, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
-import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekCapFor, weekCapsFracOk, weekMusclesOf, weekVol, type Plaf } from './plaf';
+import { frac, makePlaf, musclesOf, raisedCaps, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekCapsFracOk, weekMusclesOf, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
   blockCap, blocksForRank, cardioItem, cardioLevel, cardioRankOf, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, isHeavyLegsSession, legLoad,
@@ -36,7 +36,7 @@ import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from '
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
 import { addCal11 } from './cal11';
-import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap } from './zones-check';
+import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
 export { zoneName, ZONES } from '../zones/zones';
@@ -155,7 +155,10 @@ type J3Fallback = (s: DurSession<GenExercise>, e: GenExercise, m: string) => Gen
  */
 type DeltFallback = (s: DurSession<GenExercise>, e: GenExercise, all: DurSession<GenExercise>[]) => GenExercise | null;
 
-function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback, deltFallback?: DeltFallback, ctx?: Ctx) {
+/** Plafonds relevés : temps laissé libre aux correctifs (petites zones) quand l'isolation PPL passe avant le contrôle des zones. */
+const RAISED_ISO_RESERVE_SEC = 6 * 60;
+
+function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback?: J3Fallback, deltFallback?: DeltFallback) {
   const noyau = (s: DurSession<GenExercise>) => TYPE_NOYAU[typeOf(s.label)];
   for (let guard = 0; guard < 300; guard++) {
     let fixed = false;
@@ -178,7 +181,7 @@ function enforcePlaf(sessions: DurSession<GenExercise>[], plaf: Plaf, j3Fallback
       if (fixed) break;
     }
     if (fixed) continue;
-    const m = weekMusclesOf(sessions).find((x) => sessions.reduce((a, s) => a + weekVol(s, x), 0) > weekCapFor(ctx, x));
+    const m = weekMusclesOf(sessions).find((x) => sessions.reduce((a, s) => a + sessionVol(s, x), 0) > VOLUME.maxPerMuscleWeek);
     if (!m) return;
     // [kine 05/11/2026] Épaules (somme des trois chefs du deltoïde) au-delà de 20 : d'abord redescendre à 2 séries les accessoires qui les
     // chargent (séance la plus tardive d'abord), avant tout retrait d'exercice.
@@ -546,6 +549,13 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
     return res.fills;
   };
+  // Cou (13/11/2026) : avec les plafonds relevés, une séance du bas du corps (LEGS ou BAS) est réservée à l’avance au cou quand il est autorisé ;
+  // le classement y écarte les fiches lourdes d’épaules / trapèzes (CAL-12 reste strict), puis le correctif est placé.
+  if (neckAllowed(ctx) && raisedCaps(ctx)) {
+    // LEGS d’abord (le squat y est en 2e emplacement), sinon BAS (le squat y est le pilier).
+    const lowerLabel = labels.find((l) => typeOf(l) === 'LEGS') ?? labels.find((l) => typeOf(l) === 'BAS');
+    if (lowerLabel) ctx.neckSafeLabels = new Set([lowerLabel]);
+  }
   const fills = fillWeek(ctx, true);
   const healthy = ctx.zones.length > 0;
   const ctxNH = buildCtx(input, { zones: [], pregnant: false });
@@ -840,7 +850,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
     return null;
   };
-  enforcePlaf(durSessions, plafSlot, j3Fallback, deltFallback, ctx);
+  enforcePlaf(durSessions, plafSlot, j3Fallback, deltFallback);
   // Paires retentées après les plafonds (mêmes règles SUP-0 à SUP-10, canPair) : un repli ou un retrait a pu défaire une paire.
   if (ctx.gagnerDuTemps) durSessions.forEach((s, i) => { durSessions[i] = formAllPairs(s); });
   applyVolume(durSessions, (s) => budget.get(s.label) ?? dSec, ctx, msgs);
@@ -867,7 +877,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     ISOLATION_FICHE_PREFIXES.some((p) => e.ficheId.startsWith(p)) && e.musclesPrincipaux.some((m) => ['biceps', 'deltoides_lateraux', 'deltoides_posterieurs'].includes(m));
   // Un objectif de cardio (rang 1 ou 2) garde la place d'un bloc de cardio (CARDIO.blockMinMin) : l'isolation ne la prend jamais.
   const isoCardioReserveSec = cardioRank ? CARDIO.blockMinMin * 60 : 0;
-  const addIsolation = (): void => {
+  const addIsolation = (extraReserveSec = 0): void => {
     if (isoEligible(ctx, split, kept.length)) {
       const weekSets = new Map<string, number>();
       for (const def of ISOLATION.slots) weekSets.set(def.slot, kept.reduce((a, s) => a + isoSetsIn(s.exercises, def), 0));
@@ -901,8 +911,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
           if (!ex) continue;
           const trial = { ...s, exercises: [...s.exercises, ex] };
-          if (estimerDuree(trial) > budgetS - isoCardioReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
+          if (estimerDuree(trial) > budgetS - isoCardioReserveSec - extraReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
           if (!weekCapsFracOk(kept.map((x) => (x === s ? trial : x)))) continue;
+          // Plafonds relevés : l'isolation respecte aussi les plafonds de zone (les six groupes protégés restent à 20 / 10).
+          if (raisedCaps(ctx) && !zoneCapsOk(kept, kept.map((x) => (x === s ? trial : x)), ctx)) continue;
           s.exercises = trial.exercises;
           inSession++;
           weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
@@ -974,6 +986,11 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     weekOk: (ss: readonly DurSession<GenExercise>[]) => weekCapsOk([...ss], ctx),
     alternatives: zoneAlternatives,
   };
+  // Plafonds relevés (13/11/2026) : les zones grises disposent d’un plafond plus haut et prendraient tout le temps ; en PPL l’isolation passe donc d’abord,
+  // en gardant 6 min libres pour les correctifs des petites zones (idempotent : l’appel suivant ne fait que compléter).
+  if (isPpl && raisedCaps(ctx)) addIsolation(RAISED_ISO_RESERVE_SEC);
+  // Cou : placé tout de suite dans la séance réservée (le remplissage des zones prendrait sa place et son temps) ; l'appel suivant de addCorrectifs ne le double jamais.
+  if (ctx.neckSafeLabels) addCorrectifs(kept, zoneDeps, { only: ['cou'] });
   fillGreyZones(kept, zoneDeps);
   // Emplacement correctif (06/11/2026) : petites zones restées grises, 1 à 2 exercices légers en fin de séance (zones-check.ts).
   addCorrectifs(kept, zoneDeps);

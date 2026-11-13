@@ -2,7 +2,7 @@
 // Non-régression : au moins 5 exercices par séance PPL, plafonds V-PLAF (12) / hebdomadaire (20) / isolations (<= 2) respectés.
 import { describe, expect, it } from 'vitest';
 import { generateProgram } from '../../src/generator';
-import { mk } from './generator-helpers';
+import { mk, weekCapOf, weekMeasure } from './generator-helpers';
 
 const CASES: [string, Parameters<typeof mk>[0]][] = [
   ['maison élastique (B)', { profile: 'B', days: 5, level: 'avance', goal: 'muscle', dur: 60 }],
@@ -33,7 +33,9 @@ describe('D24 : séances PPL remplies jusqu’à la durée choisie, sous les pla
       // PULL et LEGS : 5 exercices au moins. PUSH : 4 au moins ; un 5e exercice franchirait le plafond hebdomadaire de 20 séries de deltoïdes
       // (HAUT + PUSH les chargent déjà à 19,5 ; toute fiche de poussée ou d’élévation latérale ajoute des séries de deltoïdes), plafond non modifié (D24).
       for (const s of ppl) expect(s.exercises.length).toBeGreaterThanOrEqual(s.type === 'PUSH' ? 4 : 5);
-      for (const v of Object.values(week)) expect(v).toBeLessThanOrEqual(20);
+      // 13/11/2026 : 24 séries (principal seul) hors six groupes protégés pour ces profils relevés ; groupes protégés : 20 fractionnaires.
+      const input = mk(o);
+      for (const m of Object.keys(week)) expect(weekMeasure(input, p.sessions, m), m).toBeLessThanOrEqual(weekCapOf(input, m));
     });
   }
   it('débutant : aucune isolation PPL ajoutée (inchangé)', () => {

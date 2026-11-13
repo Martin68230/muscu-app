@@ -295,7 +295,7 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
             if (['jambes_genou', 'poussee_1', 'tirage_1', 'charniere'].includes(e.slot) && variantClass(byId(e.ficheId), byId(e.ficheId).variantes.find((v) => v.id === e.variantId)!) === null)
               expect(e.sets, `${level} ${goal} ${e.ficheId}`).toBeLessThanOrEqual(3);
           expect(p.sessions.reduce((a, s) => a + sessionVol(s, 'deltoides'), 0), `${level} ${goal} ${profile}`).toBeLessThanOrEqual(20);
-          expect(weekCapsOk(p.sessions)).toBe(true);
+          expect(weekCapsOk(p.sessions, buildCtx(mk({ goal, level, profile, days: 5, dur: null, place: profile === 'F' ? 'salle' : 'maison' })))).toBe(true);
         }
   });
 });
