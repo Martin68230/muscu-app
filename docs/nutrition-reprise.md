@@ -14,7 +14,8 @@ Coefficients et formules de calcul, glucides (ACSM / Burke), lissage du poids, 7
 Préférences Q1-Q10 tranchées, plancher de calories personnalisé, recettes originales, export pour 2 personnes et IA externe (N15). Reste à confirmer : Q4 (poids visible sur l'Accueil, pris à la lettre) et les seuils de la section E des règles (validation nutritionniste, lot L0).
 
 ## Prochaine action exacte
-1. Contrôle `relecteur` ciblé (sécurité seulement) sur les deux ajouts du 13/11 : plancher personnalisé (règles C) et export N15 (aucune donnée de santé sortante). Puis lot L0.
+1. FAIT : contrôle `relecteur` ciblé (plancher personnalisé, export N15) : 4 bloquants et 6 réserves, corrigés en une boucle le 13/11 (règle unique du plancher, sexe / âge / taille manquants = Repères seulement, contrôles de la personne 2, modèle d'IA masqué IA coupée, tests d'export étendus). Pas de nouveau passage (CLAUDE.md) ; les corrections sont à re-valider par `nutritionniste` en L0.
+2. Lot L0 (ci-dessous).
 2. Lot L0 : lever les PROVISOIRE (relire les sources bloquées), `tools/build-aliments.mjs` (Ciqual, version actualisée DOI 10.57745/RDMHWY), table des 14 allergènes, `SCHEMA_VERSION 5`, `src/nutrition/config.ts`.
 3. Puis L1 (profil, dépistage, besoins) ; L4 (recettes) peut démarrer en parallèle dès L0, il ne touche pas au code de l'app.
 
