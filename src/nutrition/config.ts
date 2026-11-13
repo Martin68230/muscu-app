@@ -88,3 +88,7 @@ export const LIP_MIN_GKG = 0.5;
 export const LIP_MIN_PCT_ENERGIE = 0.2;
 /** Glucides minimaux en g/kg par type de jour (règle B, plage basse, PROVISOIRE) : en dessous, un signalement est renvoyé. */
 export const GLUC_MIN_GKG = { repos: 2, leger: 3, moyen: 3, lourd: 4, intense: 5 } as const;
+
+// --- Plan de repas (nutrition-rules.md K, TOL_MACRO). PROVISOIRE. ---
+/** Écart d'énergie toléré par repas entre la portion mise à l'échelle et la cible du repas (±10 %). */
+export const TOL_KCAL_REPAS = 0.1;
