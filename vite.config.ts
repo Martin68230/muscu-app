@@ -85,7 +85,7 @@ export default defineConfig({
     include: ['tests/unit/**/*.test.{ts,tsx}'],
     setupFiles: ['tests/unit/setup.ts'],
     maxWorkers: 6, // trop de fichiers en parallèle affamaient les tests à horloge réelle sur une machine chargée
-    testTimeout: 40000, // machines chargées : les tests du générateur dépassaient 5 s sans être faux
+    testTimeout: 300000, // générateur lent sur le runner GitHub (tests en grille : 70 à 330 s depuis le lot 4), un test bloqué reste borné
     retry: 2, // tests à horloge réelle (écran de séance) : un échec isolé sous charge ne bloque pas le déploiement ; un vrai bug échoue 3 fois
   },
 });
