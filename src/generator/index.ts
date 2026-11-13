@@ -12,7 +12,7 @@ import {
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
 import { isoEligible, isoSlotFitsType, isoExercise, isoSetsIn, isIsoSlot } from './isolation';
-import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekMusclesOf, type Plaf } from './plaf';
+import { frac, makePlaf, musclesOf, sessionCapsOk, sessionVol, splitCapsOk, weekCapsOk, weekCapsFracOk, weekMusclesOf, type Plaf } from './plaf';
 import { coreGoalOf, coreTargetSessions, isHeavyExercise, troncFicheFits } from './core';
 import {
   blockCap, blocksForRank, cardioItem, cardioLevel, cardioRankOf, cardioRoleOf, chooseCardio, chooseCardioDays, dedicatedMinutes, isHeavyLegsSession, legLoad,
@@ -274,7 +274,7 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
           const trial = { ...s, exercises: s.exercises.map((x) => (x === e ? { ...x, sets: x.sets + 1 } : x)) };
           const all = sessions.map((x) => (x === s ? trial : x));
           const capsOk = typeOf(s.label) === 'CE' ? sessionCapsOk(trial, plaf) : splitCapsOk(trial.exercises, plaf);
-          if (estimerDuree(trial) <= budget(s) && capsOk && weekCapsOk(all)) {
+          if (estimerDuree(trial) <= budget(s) && capsOk && weekCapsFracOk(all)) {
             s.exercises = trial.exercises;
             done = true;
             break;
@@ -283,13 +283,13 @@ function applyVolume(sessions: DurSession<GenExercise>[], budget: (s: DurSession
           // (qui ne les sollicite qu'en secondaire), on prend la place sur un accessoire où l'épaule est principale (jamais sous 2 séries).
           if (m !== 'deltoides' && estimerDuree(trial) <= budget(s) && capsOk) {
             const over = (ss: typeof all) => ss.reduce((a, x) => a + sessionVol(x, 'deltoides'), 0) > VOLUME.maxPerMuscleWeek;
-            const others = (ss: typeof all) => weekCapsOk(ss.map((x) => ({ exercises: x.exercises.map((y) => ({ ...y, musclesPrincipaux: y.musclesPrincipaux.filter((q) => !q.startsWith(VOLUME.deltoidPrefix)), musclesSecondaires: y.musclesSecondaires.filter((q) => !q.startsWith(VOLUME.deltoidPrefix)) })) })));
+            const others = (ss: typeof all) => weekCapsFracOk(ss.map((x) => ({ exercises: x.exercises.map((y) => ({ ...y, musclesPrincipaux: y.musclesPrincipaux.filter((q) => !q.startsWith(VOLUME.deltoidPrefix)), musclesSecondaires: y.musclesSecondaires.filter((q) => !q.startsWith(VOLUME.deltoidPrefix)) })) })));
             if (over(all) && others(all)) {
               const donorSession = [...all].reverse().find((x) => x.exercises.some((y) => y !== e && !MAIN_EXERCISE_SLOTS.includes(y.slot) && frac(y, 'deltoides') === 1 && frac(y, m) === 0 && y.sets > VOLUME.minSets));
               const donor = donorSession?.exercises.find((y) => y !== e && !MAIN_EXERCISE_SLOTS.includes(y.slot) && frac(y, 'deltoides') === 1 && frac(y, m) === 0 && y.sets > VOLUME.minSets);
               if (donorSession && donor) {
                 const lowered = all.map((x) => (x === donorSession ? { ...x, exercises: x.exercises.map((y) => (y === donor ? { ...y, sets: y.sets - 1 } : y)) } : x));
-                if (weekCapsOk(lowered)) {
+                if (weekCapsFracOk(lowered)) {
                   sessions.forEach((x, k) => { x.exercises = lowered[k].exercises; });
                   done = true;
                   break;
@@ -902,7 +902,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           if (!ex) continue;
           const trial = { ...s, exercises: [...s.exercises, ex] };
           if (estimerDuree(trial) > budgetS - isoCardioReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
-          if (!weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
+          if (!weekCapsFracOk(kept.map((x) => (x === s ? trial : x)))) continue;
           s.exercises = trial.exercises;
           inSession++;
           weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
@@ -932,7 +932,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
             const trial = { ...s, exercises: [...others, ex] };
             if (estimerDuree(trial) > budgetS - isoCardioReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
             const week2 = kept.map((x) => (x === s ? trial : x));
-            if (!weekCapsOk(week2)) continue;
+            if (!weekCapsFracOk(week2)) continue;
             if ([...vol0].some(([m, v0]) => v0 >= VOLUME.targetMuscle && week2.reduce((a, x) => a + sessionVol(x, m), 0) < VOLUME.targetMuscle)) continue;
             s.exercises = trial.exercises;
             weekSets.set(def.slot, (weekSets.get(def.slot) ?? 0) + ex.sets);
@@ -996,7 +996,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           const ex = buildExercise(r.cand, sl, r.tier, ctx);
           ex.warmupSets = e3Sets(ex, ctx);
           const trial = { ...s, exercises: [...s.exercises, ex] };
-          if (estimerDuree(trial) > (budget.get(s.label) ?? dSec) || !splitCapsOk(trial.exercises, plafAuto) || !weekCapsOk(kept.map((x) => (x === s ? trial : x)))) continue;
+          if (estimerDuree(trial) > (budget.get(s.label) ?? dSec) || !splitCapsOk(trial.exercises, plafAuto) || !weekCapsFracOk(kept.map((x) => (x === s ? trial : x)))) continue;
           s.exercises = trial.exercises;
           added = true;
           break;

@@ -4,7 +4,7 @@ import { describe, expect, it } from 'vitest';
 import { createSession, type CreateContext, type CreatedSession, type CreateSessionRequest } from '../../src/generator';
 import { CREER_SEANCE, JUMPS, PENDING_RULES, VOLUME } from '../../src/generator/config';
 import { availableTags } from '../../src/generator/context';
-import { frac, weekMusclesOf, sessionVol } from '../../src/generator/plaf';
+import { frac, weekMusclesOf, sessionVol, weekVol } from '../../src/generator/plaf';
 import type { GeneratorInput } from '../../src/generator/types';
 import { FICHES, mk, type MkOpts } from './generator-helpers';
 
@@ -307,12 +307,12 @@ describe('Cas 7 : 45 à 55 min -> blocs complets, contacts jamais au-dessus du p
     const input = home();
     const r = req({ durationMin: 50, sport: null, intensity: 'soutenue' });
     const full = ok(input, r);
-    const qFull = sessionVol({ exercises: full.exercises }, 'quadriceps');
-    const part = ok(input, r, { weekSets: { quadriceps: VOLUME.maxPerMuscleWeek - 6, fessiers: 0 } });
-    const qPart = sessionVol({ exercises: part.exercises }, 'quadriceps');
-    expect(qPart).toBeLessThanOrEqual(6);
+    const qFull = weekVol({ exercises: full.exercises }, 'quadriceps');
+    const part = ok(input, r, { weekSets: { quadriceps: VOLUME.maxPerMuscleWeek - 4, fessiers: 0 } });
+    const qPart = weekVol({ exercises: part.exercises }, 'quadriceps');
+    expect(qPart).toBeLessThanOrEqual(4);
     expect(qPart).toBeLessThan(qFull);
-    for (const m of weekMusclesOf([{ exercises: part.exercises }])) expect((m === 'quadriceps' ? VOLUME.maxPerMuscleWeek - 6 : 0) + sessionVol({ exercises: part.exercises }, m)).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
+    for (const m of weekMusclesOf([{ exercises: part.exercises }])) expect((m === 'quadriceps' ? VOLUME.maxPerMuscleWeek - 4 : 0) + weekVol({ exercises: part.exercises }, m)).toBeLessThanOrEqual(VOLUME.maxPerMuscleWeek);
     const refused = createSession(input, r, { weekSets: { quadriceps: 20, fessiers: 20, ischios: 20, mollets: 20 } });
     expect(refused.ok).toBe(false);
     if (!refused.ok) {

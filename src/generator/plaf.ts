@@ -6,7 +6,7 @@
 //   G3 : au plus 2 charnières par séance, la seconde sans charge (lecture restrictive de « charge légère ou poids du corps ») ;
 //   G4 : semaine allégée (ctx.lightWeek, point d'extension) et reprise (ctx.repriseActive) : 10.
 // Le plafond hebdomadaire de 20 (V-VOL, weekCapsOk) reste prioritaire. Valeurs : VOLUME (config.ts).
-import { CHARGEABLE_TAGS, FIXED_LOAD_TAGS, VOLUME } from './config';
+import { CHARGEABLE_TAGS, FIXED_LOAD_TAGS, VOLUME, weekCountsSecondary } from './config';
 import type { Ctx } from './context';
 import type { GenExercise } from './types';
 
@@ -19,6 +19,13 @@ export const frac = (e: Pick<GenExercise, 'musclesPrincipaux' | 'musclesSecondai
   return 0;
 };
 export const sessionVol = (s: { exercises: readonly Ex[] }, m: string) => s.exercises.reduce((a, e) => a + e.sets * frac(e, m), 0);
+/**
+ * Volume pour le PLAFOND HEBDOMADAIRE (décision de l'utilisateur du 13/11/2026) : seules les séries où le muscle est PRINCIPAL comptent (sauf épaules, trapèzes, triceps : weekCountsSecondary).
+ * Un muscle secondaire (pectoraux dans une élévation latérale, triceps dans un développé) ne consomme pas le plafond de 20 de la semaine.
+ * Le plafond par séance (V-PLAF) reste fractionnaire (sessionVol).
+ */
+export const weekVol = (s: { exercises: readonly Ex[] }, m: string) =>
+  weekCountsSecondary(m) ? sessionVol(s, m) : s.exercises.reduce((a, e) => a + (frac(e, m) === 1 ? e.sets : 0), 0);
 export const musclesOf = (s: { exercises: readonly Ex[] }[]) =>
   [...new Set(s.flatMap((x) => x.exercises.flatMap((e) => [...e.musclesPrincipaux, ...e.musclesSecondaires])))].sort();
 const workSets = (s: { exercises: readonly Ex[] }) => s.exercises.reduce((a, e) => a + e.sets, 0);
@@ -96,5 +103,13 @@ export const weekMusclesOf = (s: { exercises: readonly Ex[] }[]): string[] => {
 };
 
 export function weekCapsOk(ss: { exercises: readonly Ex[] }[]): boolean {
+  return weekMusclesOf(ss).every((m) => ss.reduce((a, s) => a + weekVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
+}
+
+/**
+ * Ancien contrôle hebdomadaire (secondaires à 0,5), gardé UNIQUEMENT pour la montée en volume du programme de base (V-VOL « +1 série »,
+ * isolation) : sans lui, la musculation de base prendrait tout le temps et plus rien ne resterait pour remplir les zones grises (13/11/2026).
+ */
+export function weekCapsFracOk(ss: { exercises: readonly Ex[] }[]): boolean {
   return weekMusclesOf(ss).every((m) => ss.reduce((a, s) => a + sessionVol(s, m), 0) <= VOLUME.maxPerMuscleWeek);
 }

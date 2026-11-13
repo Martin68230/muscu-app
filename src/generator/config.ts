@@ -1456,3 +1456,10 @@ export const CATCHUP = {
   /** Un exercice au-dessus de la tête n'est jamais un rattrapage d'épaule. */
   overheadSchemas: ['poussee_v'] as readonly string[],
 } as const;
+
+/**
+ * Plafond hebdomadaire (13/11/2026, avis coach + kiné) : les séries où le muscle est SECONDAIRE ne comptent plus, SAUF pour les épaules
+ * (somme des trois chefs), les trapèzes et les triceps (coude sensible), qui gardent le comptage fractionnaire (secondaire = 0,5).
+ */
+export const weekCountsSecondary = (muscle: string): boolean =>
+  muscle === 'deltoides' || muscle.startsWith(VOLUME.deltoidPrefix) || muscle.startsWith('trapezes') || muscle === 'triceps';

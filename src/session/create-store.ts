@@ -9,7 +9,7 @@ import { create, list, softDelete, listTrusted } from '../data/repo';
 import { jumpPlanned, plannedOf } from '../generator';
 import type { CreateContext, CreateHistoryItem, CreatedSession, CreateSessionRequest } from '../generator';
 import type { CreateZone } from '../generator/config';
-import { VOLUME } from '../generator/config';
+import { VOLUME, weekCountsSecondary } from '../generator/config';
 import type { WarmupItem } from '../generator/types';
 import { dateKey } from './calendar';
 
@@ -96,7 +96,7 @@ export function createHistory({ sessions, sets, programs, schemaOf }: HistoryInp
 
 /**
  * Séries pondérées par muscle sur les 7 derniers jours glissants (séances du programme ET séances créées, séries de travail faites) :
- * 1 pour un muscle principal, VOLUME.secondaryWeight pour un secondaire, comme frac() de plaf.ts ; « deltoides » = somme des deltoïdes
+ * 1 pour un muscle principal, les secondaires ne comptent plus (13/11/2026, plafond hebdomadaire) ; « deltoides » = somme des deltoïdes
  * (au plus 1 par série). Rolling 7 jours : lecture prudente de « par semaine » (le plafond est de VOLUME.maxPerMuscleWeek).
  */
 export function weekSetsOf(h: Pick<HistoryInput, 'sessions' | 'sets' | 'musclesOf'> & { now: Date }): Record<string, number> {
@@ -111,8 +111,9 @@ export function weekSetsOf(h: Pick<HistoryInput, 'sessions' | 'sets' | 'musclesO
     const m = h.musclesOf(x.movementId);
     if (!m) continue;
     let delto = 0;
-    for (const [list, w] of [[m.principaux, 1], [m.secondaires, VOLUME.secondaryWeight]] as const) {
+    for (const [list, w] of [[m.principaux, 1], [m.secondaires, VOLUME.secondaryWeight]] as const) { // 13/11/2026 : secondaires comptés seulement pour épaules, trapèzes, triceps
       for (const name of list) {
+        if (w < 1 && !weekCountsSecondary(name)) continue;
         out[name] = (out[name] ?? 0) + w;
         if (name.startsWith(VOLUME.deltoidPrefix)) delto = Math.max(delto, w);
       }

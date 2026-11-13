@@ -51,7 +51,7 @@ const FORCE = (e: GenExercise) => e.role === 'pilier' || e.role === 'autre';
 const frac = (e: GenExercise, m: string) =>
   e.musclesPrincipaux.some((x) => (m === 'deltoides' ? x.startsWith('deltoides_') : x === m)) ? 1 : e.musclesSecondaires.some((x) => (m === 'deltoides' ? x.startsWith('deltoides_') : x === m)) ? 0.5 : 0;
 const muscles = (p: GenProgram) => [...new Set(p.sessions.flatMap((s) => s.exercises.flatMap((e) => [...e.musclesPrincipaux, ...e.musclesSecondaires])))];
-const weekVol = (p: GenProgram, m: string) => p.sessions.reduce((a, s) => a + s.exercises.reduce((b, e) => b + e.sets * frac(e, m), 0), 0);
+const weekVol = (p: GenProgram, m: string) => p.sessions.reduce((a, s) => a + s.exercises.reduce((b, e) => b + (frac(e, m) === 1 ? e.sets : 0), 0), 0);
 const sessVol = (exs: GenExercise[], m: string) => exs.reduce((b, e) => b + e.sets * frac(e, m), 0);
 const circGap = (a: number, b: number) => Math.min(Math.abs(a - b), 7 - Math.abs(a - b));
 
