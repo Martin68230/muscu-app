@@ -31,3 +31,30 @@ export const ECHELLE_MAX = 1.75;
 
 /** Numéro de version du générateur de plan (invalide un plan périmé). */
 export const NUTRITION_VERSION = 'N0.1';
+
+// --- Besoins et plancher (nutrition-rules.md A et C). PROVISOIRE (S) : relecteur obligatoire avant mise en ligne. ---
+/** Facteurs d'activité par nombre de séances de musculation par semaine (points médians FAO/WHO/UNU 2004). */
+export const PAL_BY_SESSIONS: ReadonlyArray<{ maxSessions: number; pal: number }> = [
+  { maxSessions: 1, pal: 1.4 },
+  { maxSessions: 3, pal: 1.55 },
+  { maxSessions: 5, pal: 1.7 },
+  { maxSessions: 99, pal: 1.85 },
+];
+/** Filet de sécurité du plancher (kcal/j) : jamais seul, toujours en plus du métabolisme de repos. */
+export const FILET_KCAL = { homme: 1500, femme: 1200 } as const;
+/** Rythme de perte visé (% du poids par semaine) selon le cran du curseur ; plafond dur 1,0. */
+export const PERTE_PCT_SEMAINE = { doux: 0.5, standard: 0.75, ferme: 1.0 } as const;
+export const PERTE_PCT_PLAFOND = 1.0;
+/** Déficit plafonné : le plus petit de 25 % du besoin et 750 kcal/j ; 10 % du besoin à partir de 65 ans. */
+export const DEFICIT_MAX_PCT = 0.25;
+export const DEFICIT_MAX_KCAL = 750;
+export const DEFICIT_MAX_PCT_65 = 0.1;
+export const AGE_PRUDENT = 65;
+/** Surplus de prise : pourcentage du besoin selon le cran, plafonné à +300 kcal/j. */
+export const SURPLUS_PCT = { doux: 0.05, standard: 0.1, ferme: 0.15 } as const;
+export const SURPLUS_MAX_KCAL = 300;
+/** Approximation de l'énergie d'un kg de poids (Wishnofsky), fourchette 5000-7700 : jamais une promesse. */
+export const KCAL_PAR_KG = 7700;
+/** IMC : sous 18,5 aucun calcul (Repères seulement) ; sous 22 aucun déficit chiffré. */
+export const IMC_REPERES = 18.5;
+export const IMC_SANS_DEFICIT = 22;
