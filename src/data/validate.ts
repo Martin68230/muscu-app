@@ -1,4 +1,4 @@
-import type { TableName } from './model';
+import { INJURY_ZONES, SPORT_EFFORTS, SPORT_FEELINGS, SPORT_KEYS, SPORT_SIGNS, type TableName } from './model';
 
 // Validation des fichiers importés (export JSON, et plus tard réponse d'une IA) :
 // on refuse tout enregistrement dont un champ attendu manque ou a le mauvais type.
@@ -38,6 +38,8 @@ export const SPECS: Record<TableName, Spec> = {
     salleAccess: 'boolean?',
     exterieur: 'boolean?',
     neckScreen: 'string?',
+    sportPlan: 'array?',
+    catchUpLog: 'array?',
   },
   equipment: {
     preset: 'string',
@@ -137,16 +139,31 @@ export const SPECS: Record<TableName, Spec> = {
   },
   shares: { dataType: 'string', friendId: 'string?', enabled: 'boolean' },
   signalements: { ficheId: 'string', variantId: 'string?', choice: 'string', text: 'string' },
+  sportSessions: {
+    sport: 'string',
+    name: 'string?',
+    startedAt: 'string',
+    durationMin: 'number',
+    effort: 'string',
+    match: 'boolean?',
+    jumps: 'boolean?',
+    overhead: 'boolean?',
+    feelings: 'array',
+    painZone: 'string?',
+    signs: 'array?',
+    note: 'string?',
+  },
 };
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
-  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur', 'neckScreen'],
+  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur', 'neckScreen', 'sportPlan', 'catchUpLog'],
   programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays', 'cardioOption'],
   sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'calibDrops', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee', 'created', 'imported'],
   sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec', 'felt'],
   injuries: ['afterShock'],
   equipment: ['dumbbellKind', 'platesKg', 'other'],
+  sportSessions: ['name', 'match', 'jumps', 'overhead', 'painZone', 'signs', 'note'],
 };
 
 /** Valeurs permises des champs qui pilotent la sécurité (un import ne doit pas en introduire d'inconnues). */
@@ -156,6 +173,7 @@ const ENUMS: Partial<Record<TableName, Record<string, string[]>>> = {
     status: ['prevue', 'en_cours', 'faite', 'reportee', 'sautee'],
     endReason: ['terminee', 'abandon', 'symptome', 'renonce', 'pas_bien'],
   },
+  sportSessions: { sport: [...SPORT_KEYS], effort: [...SPORT_EFFORTS], painZone: [...INJURY_ZONES] },
   injuries: { zone: ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville', 'cuisse', 'aine'] },
 };
 
@@ -294,6 +312,9 @@ function deepErrors(table: TableName, r: Record<string, unknown>): string[] {
     }
     if (r.rir != null && !num(r.rir, -1, 10)) out.push(`${where} : « rir » hors limites`);
   }
+  if (table === 'sportSessions') out.push(...sportSessionErrors(r, where));
+  if (table === 'profile' && r.sportPlan !== undefined && r.sportPlan !== null) out.push(...sportPlanErrors(r.sportPlan, where));
+  if (table === 'profile' && r.catchUpLog !== undefined && r.catchUpLog !== null) out.push(...catchUpLogErrors(r.catchUpLog, where));
   if (table === 'bodyWeights' && !num(r.kg, 1, 1000)) out.push(`${where} : poids hors limites`);
   if (table === 'profile' && r.heightCm != null && !num(r.heightCm, 30, 300)) out.push(`${where} : taille hors limites`);
   if (table === 'injuries' && typeof r.level === 'number' && !num(r.level, 0, 5)) out.push(`${where} : niveau hors limites`);
@@ -305,6 +326,55 @@ export function sanitizeRow(table: TableName, row: Record<string, unknown>): Rec
   const known = new Set([...Object.keys(SYNC), ...Object.keys(SPECS[table])]);
   const out: Record<string, unknown> = {};
   for (const k of Object.keys(row)) if (known.has(k)) out[k] = row[k];
+  return out;
+}
+
+/** Séance de sport (saisie-sport-v1.md §1.4) : durée 5 à 240, date lisible entre 2000 et 2100, listes fermées, textes bornés. */
+function sportSessionErrors(r: Record<string, unknown>, where: string): string[] {
+  const out: string[] = [];
+  const bad = (f: string) => out.push(`${where} : champ « ${f} » invalide`);
+  if (!num(r.durationMin, 5, 240)) bad('durationMin');
+  const t = typeof r.startedAt === 'string' ? Date.parse(r.startedAt) : NaN;
+  if (!Number.isFinite(t) || t < Date.UTC(2000, 0, 1) || t > Date.UTC(2100, 0, 1)) bad('startedAt');
+  const closed = (v: unknown, allowed: readonly string[], max: number) => v === undefined || (Array.isArray(v) && v.length <= max && v.every((x) => typeof x === 'string' && allowed.includes(x)) && new Set(v).size === v.length);
+  if (!closed(r.feelings, SPORT_FEELINGS, SPORT_FEELINGS.length) || r.feelings === undefined) bad('feelings');
+  if (!closed(r.signs, SPORT_SIGNS, SPORT_SIGNS.length)) bad('signs');
+  if (r.name != null && (typeof r.name !== 'string' || r.name.length > 40)) bad('name');
+  if (r.note != null && (typeof r.note !== 'string' || r.note.length > 200)) bad('note');
+  return out;
+}
+
+/** Journal du rattrapage : 120 lignes au plus, champs connus seulement, date AAAA-MM-JJ, zone et exercice courts (aucun texte libre). */
+function catchUpLogErrors(log: unknown, where: string): string[] {
+  const bad = (f: string) => [`${where} : champ « catchUpLog${f} » invalide`];
+  if (!Array.isArray(log) || log.length > 120) return bad('');
+  const known = ['week', 'zone', 'movementId', 'cause'];
+  const causes = ['protection', 'plafond', 'materiel', 'manquee', 'sport'];
+  const id = (x: unknown) => typeof x === 'string' && /^[a-z0-9_-]{1,80}$/.test(x);
+  const out: string[] = [];
+  log.forEach((e, i) => {
+    if (!isObj(e) || Object.keys(e).some((k) => !known.includes(k)) || !isDay(e.week) || !id(e.zone)) return void out.push(...bad(`[${i}]`));
+    if (e.movementId != null && !id(e.movementId)) out.push(...bad(`[${i}].movementId`));
+    if (e.cause != null && !causes.includes(String(e.cause))) out.push(...bad(`[${i}].cause`));
+  });
+  return out;
+}
+
+/** Sports déclarés : 3 au plus, entrées connues seulement (aucun champ inconnu), nombres et jours bornés. */
+function sportPlanErrors(plan: unknown, where: string): string[] {
+  const bad = (f: string) => [`${where} : champ « sportPlan${f} » invalide`];
+  if (!Array.isArray(plan) || plan.length > 3) return bad('');
+  const known = ['sport', 'name', 'perWeek', 'weekdays', 'matchWeekday', 'jumps', 'overhead', 'habitualEffort'];
+  const out: string[] = [];
+  plan.forEach((e, i) => {
+    if (!isObj(e) || Object.keys(e).some((k) => !known.includes(k)) || !SPORT_KEYS.includes(e.sport as never)) return void out.push(...bad(`[${i}]`));
+    if (e.name != null && (typeof e.name !== 'string' || e.name.length > 40)) out.push(...bad(`[${i}].name`));
+    if (e.perWeek != null && !(Number.isInteger(e.perWeek) && num(e.perWeek, 0, 7))) out.push(...bad(`[${i}].perWeek`));
+    if (e.weekdays != null && !(Array.isArray(e.weekdays) && e.weekdays.length <= 7 && e.weekdays.every((d) => Number.isInteger(d) && num(d, 0, 6)) && new Set(e.weekdays).size === e.weekdays.length)) out.push(...bad(`[${i}].weekdays`));
+    if (e.matchWeekday != null && !(Number.isInteger(e.matchWeekday) && num(e.matchWeekday, 0, 6))) out.push(...bad(`[${i}].matchWeekday`));
+    for (const f of ['jumps', 'overhead']) if (e[f] != null && typeof e[f] !== 'boolean') out.push(...bad(`[${i}].${f}`));
+    if (e.habitualEffort != null && e.habitualEffort !== 'tres_dur') out.push(...bad(`[${i}].habitualEffort`));
+  });
   return out;
 }
 

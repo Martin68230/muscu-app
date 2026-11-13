@@ -48,3 +48,14 @@ Une case = un test. « Source » = le document où la fonctionnalité est décri
 | Historique : filtres, détail, comparaison, courbe ; boutons Accepter / Plus tard du bilan | idem |
 | Illustrations du lot 13, traction à un bras, message de substitut du profil 5 (poussée au mur) | idem |
 | « Gagner du temps » : supersets visibles si le profil le permet (pas pour les débutants ni la grossesse) | knowledge/core-et-supersets.md |
+
+## F. Mon sport et rattrapage (ajouté le 13/11/2026)
+| Test | Source |
+|---|---|
+| Profil, « Mon sport » : déclarer un sport (volley, foot…), la fréquence, les jours habituels, le jour de match ; case « Mes séances sont souvent très dures » | knowledge/saisie-sport-v1.md §1, §8 |
+| « Noter une séance de sport » (Accueil, Calendrier) : clavier numérique de la durée, sélecteur de date, 3 intensités, cases gêne / malaise ; le bouton « Enregistrer » ne masque pas la fin du formulaire | idem |
+| Après un match noté : « Créer une séance » jambes refusée (< 24 h), sauts refusés sous 48 h ; la veille d'un match : jambes adoucies | idem §7 |
+| 4 jours de sport habituels par semaine : le programme n'a plus de séance de jambes | idem §8 |
+| Rattrapage : aucune série ajoutée après une séance manquée ; message « zone basse » après 2 semaines ; aucun rattrapage 7 jours après avoir levé une douleur | knowledge/zones-musculaires.md §7 |
+| Grossesse : on peut noter une séance de sport, le texte dit « enregistrée, pas recommandée » | knowledge/saisie-sport-v1.md §7 |
+| 11 nouvelles fiches (lot 3) : illustrations lisibles à 375 px, claires et sombres (nage au sol : 3 images) | knowledge/exercices/vague2/lot-03 |

@@ -4,7 +4,7 @@ import { TABLES } from './model';
 
 export const DB_NAME = 'muscu-app';
 /** Version IndexedDB : chaque montée ajoute une étape dans `upgrade`, jamais de modification d'une étape passée. */
-export const DB_VERSION = 3;
+export const DB_VERSION = 4;
 
 type Store<V, I extends Record<string, IDBValidKey> = Record<string, IDBValidKey>> = {
   key: string;
@@ -25,6 +25,7 @@ export interface MuscuDB extends DBSchema {
   supplements: Store<SyncedTables['supplements'], { updatedAt: string }>;
   shares: Store<SyncedTables['shares'], { updatedAt: string }>;
   signalements: Store<SyncedTables['signalements'], { updatedAt: string }>;
+  sportSessions: Store<SyncedTables['sportSessions'], { updatedAt: string; startedAt: string }>;
   device: { key: string; value: DeviceSettings };
 }
 
@@ -35,6 +36,7 @@ const EXTRA_INDEXES: Partial<Record<TableName, string[]>> = {
   sets: ['sessionId'],
   bodyWeights: ['date'],
   meals: ['date'],
+  sportSessions: ['startedAt'],
 };
 
 let dbPromise: Promise<DB> | null = null;

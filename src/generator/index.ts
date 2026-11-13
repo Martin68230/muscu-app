@@ -3,7 +3,7 @@
 // ni hasard ; les départages suivent l'ordre des ids (V-CLASSE clé 7).
 import type { LightDay, Level, PlannedExercise, ProgramDay } from '../data/model';
 import {
-  ACCESSORY_REMOVAL_ORDER_V2, ACHAT_CANDIDATES, CARDIO_V2, LIGHT_DAY, ONE_DAY_BEGINNER_MAX_MIN, SPLIT_MIN_FORCE_EXERCISES, SPLIT_START_N_BY_DURATION,
+  ACCESSORY_REMOVAL_ORDER_V2, JUMPS, ACHAT_CANDIDATES, CARDIO_V2, LIGHT_DAY, ONE_DAY_BEGINNER_MAX_MIN, SPLIT_MIN_FORCE_EXERCISES, SPLIT_START_N_BY_DURATION,
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
@@ -25,6 +25,9 @@ import { ajusterDuree, estimerDuree, formAllPairs, pairRestSec, units, type DurS
 import { cardioMsg, dedupe, GG_LABEL, GOAL_LABEL, msg } from './messages';
 import { resolveFiche, USABLE_STATUTS } from './safety';
 import { ALL_SLOTS, fillSession, fillSlot, rankSlot, slotDef, tierRank, type SlotFill } from './slots';
+import { adaptWeekToSport, canHost, noForceDays, type SportAdapt } from './sport-plan';
+import { SPORT } from '../sport/sport-config';
+import { weekLoadMap } from '../sport/week-map';
 import { chooseLightDays, planWeek, sessionTitle, TYPE_NOYAU, TYPE_SLOTS, typeOf, UPPER_TYPES } from './split';
 import type {
   CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, JumpBlock, JumpItem, SlotKey, Tier,
@@ -372,7 +375,14 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const msgs: GenMessage[] = [];
   const p = input.profile;
   const want = p.daysPerWeek;
-  const blocked = p.blockedWeekdays ?? [];
+  // « Mon sport » (étape 2, saisie-sport-v1.md §8) : la carte de la semaine retire de la force le jour de match (et la veille d'un match pour
+  // un débutant) ; le placement lit ensuite la carte (jambes, épaule). Sans sport déclaré, ou interrupteur éteint : rien ne change.
+  const sportMap = SPORT.enabled && p.sportPlan?.length ? weekLoadMap(p.sportPlan, ctx.level, JUMPS.startContacts[ctx.level]) : null;
+  const sportNoForce = sportMap ? noForceDays(sportMap, ctx.level) : [];
+  const blocked = [...new Set([...(p.blockedWeekdays ?? []), ...sportNoForce])].sort((a, b) => a - b);
+  const sportAllowed = sportMap ? (label: string, day: number) => canHost(typeOf(label), sportMap[day]) : undefined;
+  let sportAdapt: SportAdapt | null = null;
+  let sportMoved = false;
   // B4 (cardio-regles.md §3.2) : cardio principal = 2 séances de musculation (3 à 6 jours) + cardio, de 2 à 6 jours (STR-REP-7 : inchangé).
   const cardioRole: CardioRole = cardioRoleOf(input.goals);
   const cardioRank = cardioRankOf(input.goals);
@@ -390,20 +400,41 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     if (dc.reduced) msgs.push(msg.jours(dc.days));
     days = dc.days;
     labels = LABELS.slice(0, days.length);
+    if (sportMap) {
+      sportAdapt = adaptWeekToSport(labels, days, sportMap);
+      labels = sportAdapt.labels as Label[];
+      days = sportAdapt.days;
+    }
   } else {
     // D25 (STR-REP-2, 6, 8, 11, 14 c) : répartition par N, calendrier par muscle principal, repli N -> 1 (jamais « aucun programme »).
-    const plan = planWeek(want, blocked, {
+    const splitInput = {
       level: ctx.level, levelAbsent: !p.level, goalFamily: ctx.goalFamily, pregnant: ctx.pregnant,
       zones2: ctx.zones.filter((z) => !z.isG && z.level >= 2).map((z) => z.key),
-    });
+    };
+    const plan = planWeek(want, blocked, splitInput);
     if (!plan) return { ok: false, code: 'JOURS2', messages: [msg.jours2(null)] };
-    if (plan.reduced) msgs.push(msg.jours(plan.days));
-    labels = plan.labels;
-    days = plan.days;
+    // Placement d'abord sous les contraintes du sport (jambes seulement un jour libre de charge, pas de poussée un jour d'épaule) ; si la semaine
+    // voulue ne tient pas ainsi, on place comme avant puis on convertit ou retire les séances que le sport interdit.
+    let placed = plan;
+    if (sportMap && sportAllowed) {
+      const free = planWeek(want, blocked, splitInput, sportAllowed);
+      if (free && !free.reduced && free.labels.length === plan.labels.length) {
+        placed = free;
+        sportMoved = free.days.join() !== plan.days.join() || free.labels.join() !== plan.labels.join();
+      }
+      else {
+        sportAdapt = adaptWeekToSport(plan.labels, plan.days, sportMap);
+        placed = { ...plan, labels: sportAdapt.labels, days: sportAdapt.days };
+      }
+    }
+    if (placed.reduced) msgs.push(msg.jours(placed.days));
+    labels = placed.labels as Label[];
+    days = placed.days;
     lightWanted = plan.light;
     lightReason = plan.reason;
     forceWanted = plan.wanted;
   }
+  if ((sportAdapt && (sportAdapt.converted || sportAdapt.dropped)) || sportMoved) msgs.push(msg.sportPlace(!!sportAdapt?.noLegs));
   const nDays = labels.length;
   const isSplit = labels.some((l) => typeOf(l) !== 'CE');
   const hasType = (t: string) => labels.some((l) => typeOf(l) === t);
@@ -439,10 +470,12 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const ded: DedicatedPlan = principal
     ? { kind: null, days: [], replacedLight: [], easyDays: [], option: null }
     : planDedicated({
-        ctx, mainGoal: ctx.goalKey, want, forceDays: days, heavyDays, lightDays: lightReason === 'zone' ? [] : baseLight, blocked,
+        ctx, mainGoal: ctx.goalKey, want, forceDays: days, heavyDays, lightDays: lightReason === 'zone' ? [] : baseLight,
+        // Sport : pas de cardio dédié un jour de sport « soutenue » ou plus, ni dans les 24 h après un « très dur » (§8.2 point 5).
+        blocked: sportMap ? [...new Set([...blocked, ...sportMap.filter((d) => d.cardioBlocked).map((d) => d.weekday)])] : blocked,
         setting: input.options?.seanceCardio,
         // 3.2ter C5 : séance de sport d'un sport « à sauts » : de préférence un jour où les sauts sont permis (5.1 (5)).
-        prefer: ctx.goalKey === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx) ? (d) => jumpDayAllowed(d, heavyDays, ctx.level) : undefined,
+        prefer: ctx.goalKey === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx) ? (d) => jumpDayAllowed(d, heavyDays, ctx.level) && !sportMap?.[d]?.jumpLock : undefined,
       });
 
   const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1));
@@ -1069,7 +1102,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     const modChoice = chooseCardio(ctx);
     const easyWalk = chooseCardio(ctx, true);
     const mins = dedicatedDuration(ded.kind, ctx.level, ctx.pregnant, dur.targetMin);
-    const wantsJumps = ded.kind === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx);
+    const wantsJumps = ded.kind === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx) && !ded.days.some((d) => sportMap?.[d]?.jumpLock); // §8.6 : jamais un saut contre le verrou du sport
     const jumpDay = wantsJumps ? ded.days.find((d) => !ded.easyDays.includes(d) && jumpDayAllowed(d, heavyDays, ctx.level)) ?? null : null;
     const choices = jumpDay !== null ? jumpChoices(ctx) : [];
     ded.days.forEach((d, i) => {

@@ -63,8 +63,9 @@ function expectFixed(e: GenExercise, opts: { pregnantBeginner?: boolean } = {}) 
 }
 
 describe('N4 / Q23 : dose fixe des lancers et du gainage dynamique', () => {
+  const LOT3_IDS = ['crunch-au-sol', 'releve-bassin-jambes-pliees', 'gainage-lateral-dynamique', 'presse-des-mains', 'superman-alterne', 'nage-au-sol'];
   it('config : les 8 fiches citées ont une dose fixe identique aux fiches (plus la montée rapide sur chaise, D28 lot 2, plafonds kiné 2 x 6 par jambe)', () => {
-    expect(Object.keys(FIXED_DOSE).sort()).toEqual([...IDS, 'montee-rapide-chaise'].sort());
+    expect(Object.keys(FIXED_DOSE).sort()).toEqual([...IDS, 'montee-rapide-chaise', ...LOT3_IDS].sort()); // LOT3_IDS : dose fixe ajoutée pour le lot 3 (13/11/2026), core dynamique de schéma gainage et presse des mains
     for (const id of IDS) {
       const d = FIXED_DOSE[id];
       expect({ unit: d.unit, reps: d.reps, sets: d.sets, restSec: d.restSec }, id).toEqual(EXPECTED[id]);

@@ -379,6 +379,15 @@ export const FIXED_DOSE: Record<string, FixedDoseRow> = {
   'planche-cercles-ballon': PLANCHE_CERCLES_DOSE,
   // Step-up explosif (lot 02, validé kine 12/11/2026, NON SOURCÉ) : 6 répétitions par jambe, 2 séries, sans charge. Plafond que la fiche ne peut pas coder : valable dans le programme ET dans Créer une séance.
   'montee-rapide-chaise': { unit: 'reps_par_cote', reps: [6, 6], sets: 2, restSec: 90 },
+  // Vague 2 lot 03 (validé kine 13/11/2026, NON SOURCÉ) : core dynamique de schéma `gainage` (aucun schéma dédié, core-et-supersets.md CF4) : sans cette ligne la ligne TEMPS `gainage` le doserait en maintien de 20 à 30 s. Même plafond que le gainage dynamique : 2 séries, 6 à 8 répétitions lentes, sans charge.
+  'crunch-au-sol': GAINAGE_DYNAMIQUE_DOSE,
+  'releve-bassin-jambes-pliees': GAINAGE_DYNAMIQUE_DOSE,
+  'gainage-lateral-dynamique': { ...GAINAGE_DYNAMIQUE_DOSE, unit: 'reps_par_cote' },
+  // Presse des mains (isométrique, effort modéré et constant, jamais maximal) : sans cette ligne V-DOSE la doserait en 8 à 15 répétitions à réserve 2-3, à 3 séries. 2 séries de 6 à 8 pressions, sans réserve demandée ni progression. NON SOURCÉ.
+  'presse-des-mains': GAINAGE_DYNAMIQUE_DOSE,
+  // Superman alterné et nage au sol (lot 03, relecteur 13/11/2026) : 2 séries de 6 à 8 répétitions lentes, sans charge (NON SOURCÉ, comme les autres du lot).
+  'superman-alterne': GAINAGE_DYNAMIQUE_DOSE,
+  'nage-au-sol': GAINAGE_DYNAMIQUE_DOSE,
 };
 
 // ---------------------------------------------------------------------------------------------
@@ -420,6 +429,8 @@ export const DOSE_LIMITS: Record<string, DoseLimit> = {
   'pompe-equilibre-mur': { minRir: 2, maxSets: 2 },
   // Fiche montee-sur-marche, variante haltères : « seulement sur la première ou la deuxième marche, haltères légers » : jamais 4-6.
   'montee-sur-marche-halteres': { noHeavyReps: true },
+  // Vague 2 lot 03 : fente marchée « haltères légers » (fiche : jamais au-dessus des épaules) : jamais la dose lourde.
+  'fente-marchee-halteres': { noHeavyReps: true },
   // Vague 2 lot 02 (relecteur 12/11/2026) : le plafond de 2 séries du step-up rapide vaut aussi pour la progression en séance (FIXED_DOSE ne la limite pas).
   'montee-rapide-chaise': { maxSets: 2 },
   // Variantes nommées « haltères légers » dans leur fiche : jamais la dose lourde (lecture restrictive).
@@ -483,6 +494,9 @@ export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
   'montee-rapide-chaise',
   // Vague 2 lot 02 (relecteur 12/11/2026) : good morning à l'élastique léger, jamais exercice principal (dose de pilier lourd contraire à la fiche).
   'good-morning-elastique',
+  // Vague 2 lot 03 (13/11/2026) : maintien sans charge, isolation, élastique, pas libre ou haltères légers : jamais exercice principal (un pilier de force ne doit pas devenir un superman, une presse des mains ou une montée sans charge).
+  'superman-alterne', 'nage-au-sol', 'presse-des-mains', 'extension-hanche-debout-elastique', 'adduction-hanche-elastique-debout',
+  'fente-laterale-glissee-serviette', 'montee-laterale-marche', 'fente-marchee-halteres',
 ];
 
 // ---------------------------------------------------------------------------------------------
@@ -623,16 +637,16 @@ export const CORE_SAFE_FAMILIES: readonly CoreFamily[] = ['gainage', 'anti_rotat
 /** Inventaire (kiné, 2e passage) : hors famille core (travail de hanche) ; exclue de l'emplacement `tronc` par id. */
 export const CORE_NOT_CORE_IDS: readonly string[] = ['copenhague-court'];
 /** Inventaire : CF5 qui ne compte PAS dans le plancher (schéma charnière, hors GG5) ; jamais en superset. */
-export const CORE_OUT_OF_FLOOR_IDS: readonly string[] = ['extension-dorsale-ballon'];
+export const CORE_OUT_OF_FLOOR_IDS: readonly string[] = ['extension-dorsale-ballon', 'superman-alterne', 'nage-au-sol'];
 /** Roue abdominale et roulé au ballon (CF1 dynamique) : débutant, dos dès le niveau 1, grossesse, charge lourde, P3. */
 export const CORE_WHEEL_IDS: readonly string[] = ['roue-abdos', 'rollout-ballon'];
 /** CF1 dynamiques ou instables retirées au dos niveau 2 (CORE-SEC-3, R7 ; planche-ballon / planche-bosu : à confirmer par `kine`). */
-export const CORE_CF1_DYNAMIC_IDS: readonly string[] = ['planche-cercles-ballon', 'genoux-poitrine-ballon', 'planche-ballon', 'planche-bosu'];
+export const CORE_CF1_DYNAMIC_IDS: readonly string[] = ['planche-cercles-ballon', 'genoux-poitrine-ballon', 'planche-ballon', 'planche-bosu', 'gainage-lateral-dynamique'];
 /**
  * CORE-ORD-4 : CF1 à répétitions (dose fixe dynamique) exclues après une charge lourde. Lecture restrictive de `dev`
  * (la règle ne permet que le maintien <= 30 s en CF1 et les répétitions V-TEMPS en CF2) : docs/D26-bilan.md.
  */
-export const CORE_HEAVY_EXCLUDED_IDS: readonly string[] = [...CORE_WHEEL_IDS, 'genoux-poitrine-ballon', 'planche-cercles-ballon'];
+export const CORE_HEAVY_EXCLUDED_IDS: readonly string[] = [...CORE_WHEEL_IDS, 'genoux-poitrine-ballon', 'planche-cercles-ballon', 'gainage-lateral-dynamique'];
 /** §11 point 2 (kiné) : rotation russe chargée et lancer rotatif rapide « non proposés par défaut » : jamais placés par le générateur. */
 export const CORE_NOT_DEFAULT_IDS: readonly string[] = ['rotation-russe', 'lancer-rotation-mur'];
 /** CORE-FREQ-1/2 : plancher hebdomadaire (séances avec core, séries de core). NON SOURCÉ (question Q3 ouverte). */
@@ -1192,7 +1206,7 @@ export const CREER_SEANCE = {
   /** §1 : objectif de la séance -> objectif de dose (repetitions-regles.md) : forme = santé, détente et sport = sport. */
   objectiveGoal: { forme: 'sante', detente: 'sport', sport: 'sport' } as Record<string, string>,
   /** §1 : sports dont la case « avec des sauts » est pré-cochée (sports.md règle 4) ; foot et raquette : cochable, jamais d'office (D31 n° 2). */
-  jumpSports: ['volley', 'danse'] as readonly string[],
+  jumpSports: ['volley', 'danse', 'basket', 'hand'] as readonly string[],
   /** §3 CAL-1 : exercices de force selon la durée choisie (plus grand seuil <= durée) ; 7 au plus ; le bloc de sauts en compte 1. NON SOURCÉ. */
   strengthCount: [[20, 2], [30, 3], [45, 5], [60, 6]] as readonly (readonly [number, number])[],
   maxStrength: 7,
@@ -1352,3 +1366,42 @@ export const CREER_SEANCE = {
   /** Gabarits des emplacements (A : squat / gainage, B : anti-rotation, C : rotation). */
   trunkLabels: ['A', 'B', 'C', 'A'] as readonly string[],
 };
+
+// ---------------------------------------------------------------------------------------------
+// Rattrapage des zones sur plusieurs semaines (knowledge/zones-musculaires.md §7, avis kine du 13/11/2026 qui l'emporte sur le tableau 7.4)
+// PROVISOIRE / NON SOURCÉ. Le rattrapage ne fait qu'AJOUTER peu et ne relève jamais une dose, un plafond (11 / 12, 20, durée) ni une charge.
+// ---------------------------------------------------------------------------------------------
+export const CATCHUP = {
+  status: 'PROVISOIRE_NON_SOURCE',
+  source: 'knowledge/zones-musculaires.md §7 (avis kine 13/11/2026)',
+  /** RAT-1 : par semaine, 2 zones et +2 séries au plus (un échange compte 1), +6 min au plus. */
+  maxZones: 2,
+  maxExtraSets: 2,
+  maxExtraMin: 6,
+  /** RAT-1 : épaule (deltoïdes) = 1 zone et +1 série, sur un exercice d'isolation léger déjà au programme, jamais au-dessus de la tête. */
+  shoulderZones: ['epaules_avant', 'epaules_cote', 'epaules_arriere'] as readonly string[],
+  shoulderMaxZones: 1,
+  /** RAT-1 : zones de protection, aucun rattrapage (ni série, ni échange) ; aucune série non plus sur un exercice qui les charge. */
+  noZones: ['coiffe_rotateurs', 'dentele_anterieur', 'lombaires', 'carre_des_lombes'] as readonly string[],
+  /** RAT-1 : une zone qui n'a plus que 1 point de retard (sous le seuil rouge) n'est pas rattrapée. */
+  minShortfall: 1,
+  /** Douleur levée : le rattrapage reste coupé 7 jours après (avis kine 13/11/2026). */
+  painAfterDays: 7,
+  /** RAT-2 : sans journal (nouvel appareil, import) la semaine précédente est supposée rattrapée : 1 zone et +1 série. */
+  assumed: { maxZones: 1, maxExtraSets: 1 },
+  /** RAT-2 / RAT-3 / RAT-5 : journal local de 4 semaines au plus ; message après 2 semaines basses, revue du programme après 4. */
+  logWeeks: 4,
+  stuckWeeks: 2,
+  reviewWeeks: 4,
+  /** RAT-6 : garde de l'échange (points). Aucune perte sous le seuil rouge ni sur ces zones ; au plus -1 point par zone et -2 au total. */
+  swap: {
+    maxLossPerZone: 1,
+    maxLossTotal: 2,
+    noLossZones: ['quadriceps_vastes', 'quadriceps_droit_femoral', 'fessiers_grand', 'fessiers_moyen', 'ischios', 'mollets_gastrocnemien', 'mollets_soleaire'] as readonly string[],
+  },
+  /** RAT-7 : zones chargées par les jambes ou par l'épaule (lecture de la charge du sport). */
+  legZones: ['quadriceps_vastes', 'quadriceps_droit_femoral', 'fessiers_grand', 'fessiers_moyen', 'ischios', 'mollets_gastrocnemien', 'mollets_soleaire', 'abducteurs', 'adducteurs', 'flechisseurs_hanche', 'tibiaux', 'peroniers'] as readonly string[],
+  shoulderLoadZones: ['epaules_avant', 'epaules_cote', 'epaules_arriere', 'coiffe_rotateurs', 'dentele_anterieur', 'pectoraux_haut', 'pectoraux_milieu_bas', 'triceps_long_chef', 'triceps_lateral_medial'] as readonly string[],
+  /** Un exercice au-dessus de la tête n'est jamais un rattrapage d'épaule. */
+  overheadSchemas: ['poussee_v'] as readonly string[],
+} as const;

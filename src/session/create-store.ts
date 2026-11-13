@@ -82,7 +82,8 @@ export function createHistory({ sessions, sets, programs, schemaOf }: HistoryInp
       const heavyLegs = readable ? m!.heavyLegs! : true;
       const impact = readable ? m!.impact! : true;
       const contacts = readable ? m!.contacts! : 0;
-      out.push({ endIso: end, heavyLegs, jumps: impact, contacts, impact, pain: pain || !readable });
+      const sport = typeof (m?.request as { sport?: unknown } | undefined)?.sport === 'string' ? ((m!.request as { sport: string }).sport) : null;
+      out.push({ endIso: end, heavyLegs, jumps: impact, contacts, impact, pain: pain || !readable, sport });
       continue;
     }
     const day = s.plan ?? (s.programDayIndex !== null ? programs.find((p) => p.id === s.programId)?.days[s.programDayIndex] : undefined);
@@ -155,9 +156,11 @@ export function createContextOf(h: HistoryInput & { activeProgram: Pick<Program,
 }
 
 export async function loadCreateContext(schemaOf: (id: string) => string | undefined, now: Date = new Date(), musclesOf?: HistoryInput['musclesOf']): Promise<CreateContext> {
-  const [sessions, sets, programs] = await Promise.all([listTrusted('sessions'), listTrusted('sets'), list('programs')]);
+  // Les séances de sport ne sont PAS des séances de musculation : listTrusted ne les lit pas ; elles ne passent que par `sport` (charge).
+  const [sessions, sets, programs, sportSessions, profiles] = await Promise.all([listTrusted('sessions'), listTrusted('sets'), list('programs'), list('sportSessions'), list('profile')]);
   const activeProgram = programs.find((p) => p.active && !p.deletedAt) ?? null;
-  return createContextOf({ sessions, sets, programs, schemaOf, musclesOf, activeProgram, now });
+  const ctx = createContextOf({ sessions, sets, programs, schemaOf, musclesOf, activeProgram, now });
+  return { ...ctx, sport: { sessions: sportSessions, plan: profiles[0]?.sportPlan ?? [] } };
 }
 
 // ----- Calendrier -----

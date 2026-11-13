@@ -80,3 +80,62 @@ Remplace le critère actuel de `hasHeavyShoulderTrap` (exercice chargé : tag de
 
 ## 7. Suite
 Rien n'est codé par ce fichier. Les règles « oui » ci-dessus (CAL-1, CAL-3 test de non-régression, CAL-8, CAL-7 isolations déjà autorisées) restent dans les plafonds existants ; tout le reste attend `kine` (bras, coude, épaule, genou) puis, si une dose change, `relecteur` en un seul passage de lot.
+
+## 8. CAL-13 à CAL-19 : la semaine entière, générateur contre base Kaggle par programme (13/11/2026)
+**Statut : NON SOURCÉ** (PROVISOIRE quand le plafond cité est sourcé : V-PLAF 11/12 par séance, 20 par semaine, seuils de zones). Source interne : docs/D24-kaggle-programmes.md (2 331 programmes, semaine 1, 3 à 6 jours ; salle, bodybuilding, séries comptées sur le muscle principal seulement, aucun résultat ni blessure : **rien ne dit qu'une dose de la base est efficace ou sûre**).
+**Mesure** (test jetable, supprimé après usage ; `generateProgram`, semaine 1, objectif muscle, durée choisie 60 min ; profils B élastique, D haltères + élastique + barre de traction, E maison complète, F salle ; intermédiaire et avancé ; 3, 4 et 5 jours = 24 programmes ; même résultat à 90 min ; **6 jours non mesuré**). Séries = séries de travail dont le groupe est muscle principal de l'exercice (même lecture que la base), cardio et mobilité exclus. Limite : un squat ou une fente compte à la fois pour les quadriceps et les fessiers (deux principaux) alors que la base compte un seul muscle : **quadriceps et fessiers du générateur sont gonflés**. Les points de zones (fractionnaires) restent à 20 au plus par zone dans les cas lus.
+
+### CAL-13 Séries hebdomadaires par grand groupe (médiane des 8 profils / niveaux par nombre de jours ; entre parenthèses, médiane Kaggle)
+| Groupe | 3 j | 4 j | 5 j | Écart principal |
+|---|---|---|---|---|
+| Pectoraux | 10 (6) | 10 (8) | 12 (10) | +2 à +4 : dans la cible 10 sourcée (ACSM / Schoenfeld) |
+| Dos | 18 (6) | 18 (9) | 18 (12) | **+6 à +12 : 1,5 à 3 fois la base** (grand dorsal, trapèzes moyens, rhomboïdes cumulés) ; sous le plafond 20 |
+| Épaules (deltoïdes principaux) | 8 (6) | 8 (6) | 8 (9) | égal ; de 3 à 12 selon le profil (B élastique : 3 à 5) |
+| Biceps | 4 (4) | 3 (6) | 3 (6) | **0 dans 10 profils sur 24** (D et F surtout) ; plutôt moins que la base |
+| Triceps | 3 (4) | 5 (6) | 3 (7) | de 2 à 10 selon le profil ; plutôt moins que la base |
+| Quadriceps | 9 (7) | 10 (9) | 9 (9) | égal (6 à 12) |
+| Ischios | 5 (3) | 9 (4) | 9 (5) | +2 à +5 |
+| Fessiers | 17 (3) | 14 (4) | 14 (4) | **+10 à +14, en partie un artefact** de comptage (squat / fente = 2 principaux) |
+| Mollets | 2 (3) | 4 (4) | 4 (4) | 0 à 3 jours en élastique, sinon égal |
+| Abdominaux | 10 (6) | 12 (5) | 12 (6) | +4 à +7 (ajouts de tronc, CAL-10 : prévu) |
+| **Total de la semaine (somme des groupes)** | **65-67 (48)** | **75-84 (61)** | **80-86 (70)** | **+20 à +35 % ; séances de 20 à 24 séries** (corps entier à 3 j : 20 à 23 ; base 12-20, médiane 16, CAL-3) |
+
+**Règle CAL-13 (cible, NON SOURCÉ ; PROVISOIRE pour les bornes)** : en prise de muscle, intermédiaire et avancé, **gros groupes (pectoraux, dos, quadriceps, ischios) : 10 à 16 séries directes par semaine, plafond dur 20 (V-VOL) ; épaules, bras : 6 à 12 ; mollets : 3 à 6 ; abdominaux : au plus 12 (CORE-DOSE-3)**. La base (6 à 12 pour les gros groupes) est plus basse que notre plancher sourcé (10) : **ne jamais descendre vers la base** ; elle sert seulement à repérer qu'un groupe dépasse 1,5 fois sa médiane (ici : dos, fessiers, abdominaux, ischios) pour que `coach` décide. Débutant, santé, grossesse : inchangés (plafond 10 par séance).
+**À coder maintenant ?** **Non** pour toute réduction ou ajout de dose (le dos à 18 et les séances de 23 séries touchent la dose : `coach` d'abord, `relecteur` en un passage ensuite). **Oui** seulement : un test de non-régression de mesure (aucun changement de comportement) qui échoue si un groupe dépasse 20 ou une séance 24.
+**À valider** : `coach` (le dos à 18 est-il voulu ? comptage des fessiers), `kine` (séances de 8 exercices en corps entier à 3 jours : fatigue, récupération 48 h).
+
+### CAL-14 Fréquence hebdomadaire des gros groupes
+| Mesure | Générateur (24 programmes) | Base |
+|---|---|---|
+| Pectoraux, dos, quadriceps | 3 séances à 3 j, 2 à 4 et 5 j : **jamais moins de 2 dès 3 jours (déjà le cas)** | 2 dès 3 jours |
+| Épaules | 1 à 3 selon le profil (B élastique à 3 j : 1) | 2 |
+| Biceps, triceps | 0 à 2 | 1 à 2 |
+| Ischios | 1 à 3 (D à 4 j : 1) | 1 à 2 |
+| Fessiers | 2 à 3 | 1 |
+**Règle CAL-14** : conserver `>= 2 fois par semaine` pour pectoraux, dos, quadriceps dès 3 jours (ACSM 2026 : chaque grand groupe >= 2 fois, PROVISOIRE ; la fréquence ne change pas l'hypertrophie à volume égal, donc **aucune fréquence plus haute ne se justifie**). Ischios, épaules : viser 2 sans l'exiger.
+**À coder maintenant ?** **Oui** pour un test de non-régression sur les gros groupes (aucun changement de comportement). **Non** pour les épaules à 1 en élastique à 3 jours (ajout de dose, décision de l'utilisateur du 12/11 : ne pas toucher aux deltoïdes). **À valider** : rien de nouveau.
+
+### CAL-15 Composition de la semaine
+| Jours | Générateur | Base (semaine 1, programmes classés) | Écart |
+|---|---|---|---|
+| 3 | corps entier x3 | corps entier 27 %, jambes + poussée + tirage 14 %, autres mélanges 50 % | concorde avec la signature la plus fréquente |
+| 4 | haut / bas / haut / bas | 2 haut + 2 jambes 19 %, haut / bas 22 % | concorde |
+| 5 | haut, bas, PUSH, PULL, LEGS (`haut_bas_ppl`) | haut + 2 jambes + poussée + tirage 15 %, PPL 24 % | proche ; PUSH / PULL / LEGS plus courts (5 à 6 exercices, 12 à 15 séries) que HAUT / BAS (7 à 8, 17 à 21) |
+| 6 | non mesuré | 2 x PPL 44 % | à mesurer avant toute règle |
+**Règle CAL-15** : garder nos splits (structure-programmes.md §2) ; la base ne les contredit pas et son signal est faible (50 à 63 % de « mélanges », étiquettes grossières). Pas de split par muscle (« jour pecs ») : rare dans la base (0 à 17 %). **À coder maintenant ?** Non. **À valider** : rien.
+
+### CAL-16 Ordre : polyarticulaire d'abord
+Générateur : premier exercice de rôle `pilier` dans 88 séances sur 96 (92 %) ; les 8 autres (PULL à 5 jours) commencent par un tirage vertical de rôle `autre`, donc polyarticulaire quand même. Premier schéma : squat 32, fente 24, poussée horizontale 16, poussée verticale 16, tirage vertical 8. Base : 71 à 86 % des séances. **Règle CAL-16** : déjà codée (STR-SEA-1 / 2) ; rien à changer. **À coder maintenant ?** Non (un test « première ligne = polyarticulaire » est possible sans changer le code). **À valider** : rien.
+
+### CAL-17 Volume d'une semaine à l'autre : garder NOTRE progression
+Base : volume stable (±10 %) dans 83 à 88 % des programmes sur 4 semaines, décharge dans environ 1 sur 20 (progression par la charge). **Règle CAL-17** : **ne pas copier** ; garder D34 (rotation des accessoires à séries et répétitions égales), la progression de charge et la semaine allégée sourcées (program-logic.md). **À coder maintenant ?** Non. **À valider** : rien.
+
+### CAL-18 Cardio et mobilité
+Base : au moins une ligne de cardio dans 37 % (2 j) à 64 % (6 j) des programmes, mobilité 2 à 5 % (mots-clés, étirements hors programme). **Règle CAL-18** : garder nos règles (cardio : objectif et plafonds 3.2bis, OMS ; mobilité : échauffement et fin de séance) ; la base ne sert pas de cible. **À coder maintenant ?** Non. **À valider** : rien.
+
+### CAL-19 Biceps, mollets, épaules en profils pauvres (suite de CAL-8, CAL-9, CAL-11)
+Écart mesuré : biceps à 0 série principale dans 10 profils sur 24 (D et F à 4-5 jours surtout), mollets à 0 en corps entier à 3 jours, épaules (principal) à 3 en élastique. Hypothèse **non vérifiée** : la limite de deux isolations (PV3-ISO) et la durée prennent les places avant les biceps. **Règle CAL-19** : si un diagnostic confirme que l'isolation biceps / mollets est autorisée mais jamais placée, la faire passer avant une seconde isolation d'un groupe déjà à 6 séries ou plus, **sans franchir 11 par séance, 20 par semaine ni 2 isolations**. Triceps : toujours exclu (kiné 12/11/2026, CAL-9). Épaules : décision du 12/11 maintenue.
+**À coder maintenant ?** **Oui** seulement après le diagnostic et si l'ajout reste sous les plafonds (même emplacement d'isolation que PV3-ISO-2 / CAL-8) ; sinon non. **À valider** : `kine` (curl : niveau >= 1 au coude retire la fiche), `relecteur` une fois si une dose change.
+
+### Résumé
+Trois plus gros écarts : (1) volume total +20 à +35 % et séances de 20 à 24 séries contre 15 à 17 dans la base ; (2) dos, ischios, abdominaux (et fessiers, en partie artefact) de 1,5 à 3 fois la médiane ; (3) biceps absents dans 10 profils sur 24, épaules et triceps très variables selon le profil. Concordances : fréquence des gros groupes, ordre polyarticulaire, composition à 3, 4 et 5 jours, stabilité d'une semaine à l'autre. À coder : seulement des tests de non-régression (CAL-13, 14, 16) et, après diagnostic, la place d'une isolation biceps / mollets sous les plafonds (CAL-19). À valider : `coach` (dos à 18, séances de 23 séries, comptage des fessiers), `kine` (séances de 8 exercices à 3 jours, curl), `relecteur` une fois si une dose change. Rien n'est codé par cette section.

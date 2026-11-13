@@ -1105,4 +1105,72 @@ export const EXERCICES = [
     a: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 90] }, armF: { a: [88, 88] }, props: (J) => [['db', J.haN, 0], ['db', J.haF, 0]] }),
     b: supine({ p: [-5, 11], legN: { to: [58, A], bend: 'u' }, legF: { to: [52, A], bend: 'u' }, armN: { a: [90, 200] }, armF: { a: [88, 198] }, props: (J) => [['db', J.haN, 0], ['db', J.haF, 0], ['arrow', [-40, 100], [-86, 70]]] }),
   },
+  // ================= D23 vague 2 lot 3 =================
+  {
+    id: 'crunch-au-sol', titre: 'Crunch au sol, vue de profil : couché sur le dos, genoux pliés, pieds à plat, bras croisés sur la poitrine ; seules les épaules se soulèvent, le bas du dos reste au sol',
+    labels: ['Couché, bras croisés sur la poitrine', 'Épaules soulevées, bas du dos au sol'],
+    a: supine({ p: [-5, 11], t: 180, h: 180, armN: { to: [-48, 24], bend: 'u' }, armF: { to: [-52, 24], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' } }),
+    b: supine({ p: [-5, 11], t: 158, h: 150, armN: { to: [-44, 40], bend: 'u' }, armF: { to: [-48, 40], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, props: [['arrow', [-70, 70], [-52, 100]]] }),
+  },
+  {
+    id: 'releve-bassin-jambes-pliees', titre: 'Relevé de bassin, jambes pliées en l’air, vue de profil : cuisses à la verticale, genoux à angle droit, mains à plat au sol ; le bassin décolle de quelques centimètres',
+    labels: ['Cuisses à la verticale, mains au sol', 'Bassin soulevé de quelques cm'],
+    a: supine({ p: [-5, 11], t: 180, h: 180, armN: { to: [-30, 8], bend: 'u' }, armF: { to: [-34, 8], bend: 'u' }, legN: { a: [90, 0] }, legF: { a: [90, 0] } }),
+    b: supine({ p: [-8, 26], t: 190, h: 180, armN: { to: [-30, 8], bend: 'u' }, armF: { to: [-34, 8], bend: 'u' }, legN: { a: [96, 6] }, legF: { a: [96, 6] }, props: [['arrow', [34, 50], [34, 84]]] }),
+  },
+  {
+    id: 'superman-alterne', titre: 'Superman alterné, vue de profil : couché sur le ventre, un bras tendu devant et la jambe opposée tendue se lèvent de quelques centimètres, regard vers le sol',
+    labels: ['Sur le ventre, bras tendus devant', 'Bras et jambe opposés levés'],
+    a: prone({ p: [-12, 11], armN: { a: [0, 0] }, armF: { a: [0, 0] } }),
+    b: prone({ p: [-12, 11], armN: { a: [14, 14] }, armF: { a: [0, 0] }, legF: { a: [172, 172], foot: 180 }, props: [['arrow', [70, 40], [70, 66]], ['arrow', [-110, 40], [-110, 66]]] }),
+  },
+  {
+    id: 'nage-au-sol', titre: 'Nage au sol, vue de profil : couché sur le ventre, battements lents de bras et jambes opposés qui se lèvent de quelques centimètres, regard vers le sol',
+    labels: ['Sur le ventre, bras devant', 'Bras et jambe opposés levés', 'On alterne doucement'],
+    a: prone({ p: [-12, 11], armN: { a: [0, 0] }, armF: { a: [0, 0] } }),
+    b: prone({ p: [-12, 11], armN: { a: [14, 14] }, armF: { a: [0, 0] }, legF: { a: [172, 172], foot: 180 }, props: [['arrow', [70, 40], [70, 66]]] }),
+    c: prone({ p: [-12, 11], armN: { a: [0, 0] }, armF: { a: [14, 14] }, legN: { a: [172, 172], foot: 180 }, props: [['arrow', [-110, 40], [-110, 66]]] }),
+  },
+  {
+    id: 'gainage-lateral-dynamique', titre: 'Gainage latéral dynamique, vue de face : appui sur l’avant-bras, corps aligné, puis le bassin descend vers le sol et remonte sans à-coup',
+    view: 'front', labels: ['Corps aligné, appui sur l’avant-bras', 'Le bassin descend, puis remonte'],
+    a: { p: [1, 30], t: 168, h: 165, tl: 68, sw: 12, hw: 8, armN: { a: [-90, 0] }, armF: { to: [-2, 44], bend: 'u' }, legN: { to: [106, 9], bend: 'u' }, legF: { to: [102, 9], bend: 'u' }, back: [['mat', -170, 170]] },
+    b: { p: [1, 16], t: 157, h: 160, tl: 68, sw: 12, hw: 8, armN: { a: [-90, 0] }, armF: { to: [-2, 30], bend: 'u' }, legN: { to: [106, 9], bend: 'u' }, legF: { to: [102, 9], bend: 'u' }, back: [['mat', -170, 170]], props: [['arrow', [4, 110], [4, 70]]] },
+  },
+  {
+    id: 'presse-des-mains', titre: 'Presse des mains, vue de face : debout, paumes jointes devant la poitrine, coudes plus bas que les poignets, les paumes s’appuient l’une contre l’autre sans bouger',
+    view: 'front', labels: ['Paumes jointes devant la poitrine', 'Les paumes s’appuient l’une sur l’autre'],
+    a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armN: { to: [3, 150], bend: 'd' }, armF: { to: [-3, 150], bend: 'd' } },
+    b: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armN: { to: [3, 150], bend: 'd' }, armF: { to: [-3, 150], bend: 'd' }, props: [['arrow', [-40, 150], [-12, 150]], ['arrow', [40, 150], [12, 150]]] },
+  },
+  {
+    id: 'fente-laterale-glissee-serviette', titre: 'Fente latérale glissée, vue de face : une main sur une chaise, serviette sous le pied qui glisse sur le côté, l’autre jambe se plie, buste droit',
+    view: 'front', labels: ['Pieds joints, serviette sous un pied', 'Le pied glisse, l’autre genou plie'],
+    a: { p: [0, 112], legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3]], props: [['towel', [[6, 5], [24, 5]]]] },
+    b: { p: [-14, 90], legN: { to: [80, A], bend: 'f' }, legF: { to: [-24, A], bend: 'b' }, armF: { to: [-62, 124], bend: 'b' }, armN: { to: [6, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3]], props: [['towel', [[68, 5], [92, 5]]], ['arrow', [50, 40], [96, 40]]] },
+  },
+  {
+    id: 'adduction-hanche-elastique-debout', titre: 'Adduction de la hanche debout avec un élastique ancré bas à la cheville, vue de face : une main sur la chaise, la jambe part de côté puis revient devant l’autre, sans pencher le buste',
+    view: 'front', labels: ['Jambe écartée, élastique tendu', 'La jambe revient devant l’autre'],
+    a: { p: [0, 112], legN: { to: [44, 16], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3], ['wall', 124, 14], ['anchor', 122, 20]], props: (J) => [['band', [J.anN, [122, 20]]]] },
+    b: { p: [0, 112], legN: { to: [-4, 22], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-52, 124], bend: 'b' }, armN: { to: [20, 118], bend: 'f' }, back: [['rect', -80, 0, 8, 122, 2], ['rect', -80, 114, 40, 10, 3], ['wall', 124, 14], ['anchor', 122, 20]], props: (J) => [['band', [J.anN, [122, 20]]], ['arrow', [86, 60], [34, 60]]] },
+  },
+  {
+    id: 'extension-hanche-debout-elastique', titre: 'Extension de la hanche debout avec un élastique ancré bas à la cheville, vue de profil : face à la porte, mains sur le dossier d’une chaise, la jambe part un peu en arrière, buste droit',
+    labels: ['Face à la porte, mains sur le dossier', 'Jambe poussée un peu en arrière'],
+    a: { p: [30, 104], legN: { to: [36, A], bend: 'f' }, legF: { to: [24, A], bend: 'f' }, armN: { to: [62, 108], bend: 'd' }, armF: { to: [60, 106], bend: 'd' }, back: [['rect', 58, 0, 8, 106, 2], ['rect', 58, 98, 34, 10, 3], ['wall', 150, 14], ['anchor', 148, 20]], props: (J) => [['band', [J.anN, [148, 20]]]] },
+    b: { p: [30, 104], t: 88, legN: { to: [-10, 22], bend: 'f', foot: -40 }, legF: { to: [24, A], bend: 'f' }, armN: { to: [62, 108], bend: 'd' }, armF: { to: [60, 106], bend: 'd' }, back: [['rect', 58, 0, 8, 106, 2], ['rect', 58, 98, 34, 10, 3], ['wall', 150, 14], ['anchor', 148, 20]], props: (J) => [['band', [J.anN, [148, 20]]], ['arrow', [10, 60], [-26, 60]]] },
+  },
+  {
+    id: 'montee-laterale-marche', titre: 'Montée latérale sur la première marche, vue de face : une main sur la rampe, un pied monte sur la marche, puis les deux pieds sont posés dessus, sans charge dans les mains',
+    view: 'front', labels: ['Un pied sur la marche, main sur la rampe', 'Debout sur la marche, stable'],
+    a: { p: [8, 108], legN: { to: [44, 26], bend: 'f' }, legF: { to: [-14, A], bend: 'b' }, armF: { to: [-24, 114], bend: 'b' }, armN: { to: [20, 114], bend: 'f' }, back: [['step', 20, 100, 18], ['lin', [[-70, 100], [90, 150]], 5]] },
+    b: { p: [44, 130], legN: { to: [58, 26], bend: 'f' }, legF: { to: [30, 26], bend: 'b' }, armF: { to: [20, 128], bend: 'b' }, armN: { to: [64, 134], bend: 'f' }, back: [['step', 20, 100, 18], ['lin', [[-70, 100], [90, 150]], 5]], props: [['arrow', [-20, 60], [10, 60]]] },
+  },
+  {
+    id: 'fente-marchee-halteres', titre: 'Fente marchée avec un haltère léger dans chaque main, vue de profil : un pas en avant, les deux genoux fléchis, buste droit, puis on se redresse',
+    labels: ['Debout, haltères légers le long du corps', 'Grand pas, les deux genoux fléchis'],
+    a: { p: [0, 112], armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, props: (J) => [['db', J.haN], ['db', J.haF]] },
+    b: { p: [24, 80], armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, legN: { to: [58, A], bend: 'f' }, legF: { to: [-50, 22], bend: 'd', foot: -60 }, props: [(J) => [['db', J.haN], ['db', J.haF]], ['arrow', [70, 190], [112, 190]]] },
+  },
 ];

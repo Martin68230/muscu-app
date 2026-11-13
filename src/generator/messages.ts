@@ -155,6 +155,9 @@ export const msg = {
   objCardio: () => m('V-MSG-OBJ', "Repère OMS : 150 à 300 min d'activité modérée par semaine."),
   objSport: () => m('V-MSG-OBJ', 'Les programmes par sport arrivent dans une prochaine version.'),
   /** D31 (cardio-regles.md §3.2ter B (c), `kine`) : séance de sport incluse. */
+  /** Étape 2 « Mon sport » (§8.5) : message constant, aucun mot de culpabilité. */
+  sportPlace: (noLegs: boolean) =>
+    m('V-MSG-SPORT-PLACE', noLegs ? 'Ton sport sollicite déjà tes jambes : cette semaine, je programme le haut du corps. Ton sport prend de la place, j’ai décalé et allégé tes séances.' : 'Ton sport prend de la place, j’ai décalé ou allégé certaines séances.'),
   sportMatch: () => m('V-MSG-SPORT-MATCH', 'Évite de faire ta séance de cardio la veille d’un match, et le lendemain d’un match en cas de courbatures.'),
   /** D33 (programmes-v3.md §6, PV3-CAR-3) : texte de `coach`, confirmé par `kine`. */
   /** 07/11/2026 : la personne a une corde mais elle n'est pas proposée : la raison, et la marche à la place. */

@@ -20,6 +20,7 @@ const ZONES: CreateZone[] = ['jambes', 'haut', 'tronc', 'corps_entier'];
 type Sport = NonNullable<CreateSessionRequest['sport']>;
 const SPORTS: { id: Sport | null; label: string }[] = [
   { id: null, label: 'Aucun' }, { id: 'foot', label: 'Foot' }, { id: 'danse', label: 'Danse' }, { id: 'volley', label: 'Volley' }, { id: 'raquette', label: 'Raquette' },
+  { id: 'basket', label: 'Basket' }, { id: 'hand', label: 'Hand' }, { id: 'autre', label: 'Autre' },
 ];
 const DURATIONS = [20, 30, 45, 60, 75];
 const INTENSITIES: { id: CreateIntensity; label: string }[] = [
@@ -51,7 +52,7 @@ export const CREATE_TEXT = {
 } as const;
 
 /** Ids des avertissements toujours visibles (consigne d'arrêt et avis) ; les autres vont dans le volet de précautions. */
-const VISIBLE_WARNING_IDS = ['arret-sauts', 'avis'];
+const VISIBLE_WARNING_IDS = ['arret-sauts', 'avis', 'sport-consulter', 'prevention-raquette', 'sport-epaule', 'sport-estimation', 'sport-epaule-gene', 'sport-gene-inconnue'];
 
 /** Heure locale de midi du jour choisi, en ISO : la séance ajoutée au calendrier est composée pour ce jour-là. */
 const noonIso = (key: string): string => {
@@ -99,7 +100,8 @@ function Chips<T extends string | number | null>({ legend, items, value, onPick 
 function SessionResult({ s }: { s: CreatedSession }) {
   const visible = s.warnings.filter((w) => VISIBLE_WARNING_IDS.includes(w.id));
   const folded = s.warnings.filter((w) => !VISIBLE_WARNING_IDS.includes(w.id));
-  const avis = visible.filter((w) => w.id === 'avis');
+  const avis = visible.filter((w) => w.id === 'avis' || w.id === 'sport-estimation');
+  const urgent = visible.filter((w) => w.id === 'sport-consulter' || w.id === 'prevention-raquette' || w.id === 'sport-epaule' || w.id === 'sport-epaule-gene' || w.id === 'sport-gene-inconnue');
   return (
     <>
       <div class="card" aria-label="Ta séance">
@@ -114,7 +116,7 @@ function SessionResult({ s }: { s: CreatedSession }) {
         <h2>Échauffement · {s.warmup.minutes} min</h2>
         <ul class="plain-list">
           {s.warmup.general && <li>{s.warmup.general.nom} · {durationText(s.warmup.generalSec || s.warmup.general.sec)}</li>}
-          {s.warmup.mobility.map((m) => <li key={m.variantId}>{m.nom} · {durationText(m.sec)}</li>)}
+          {s.warmup.mobility.map((m) => <li key={m.variantId}>{m.nom} · {durationText(m.sec)}{s.prevention.includes(m.ficheId) ? ' · prévention' : ''}</li>)}
         </ul>
       </div>
       {s.jumps && (
@@ -148,6 +150,7 @@ function SessionResult({ s }: { s: CreatedSession }) {
           {s.cooldown.items.map((m) => <li key={m.variantId}>{m.nom} · {durationText(m.sec)}</li>)}
         </ul>
       </div>
+      {urgent.map((w) => <p key={w.id} class={w.id === 'sport-consulter' ? 'notice' : 'info-line'} role={w.id === 'sport-consulter' ? 'status' : undefined}>{w.text}</p>)}
       {folded.length > 0 && (
         <Precautions title={`Précautions (${folded.length})`} label="Précautions de la séance">
           {folded.map((w) => <p key={w.id}>{w.text}</p>)}

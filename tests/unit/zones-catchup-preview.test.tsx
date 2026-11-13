@@ -6,6 +6,7 @@ import type { Program, SetLog } from '../../src/data/model';
 import { generateProgram, toProgramDays } from '../../src/generator';
 import type { NextSession } from '../../src/session/program';
 import { PreviewView } from '../../src/ui/screens/Preview';
+import { ZONE_CATCHUP_TEXT } from '../../src/session/messages';
 import { catchUpOf, type PlayerData } from '../../src/ui/session/launch';
 import { FICHES, mk } from './generator-helpers';
 import { day, ex } from './session-helpers';
@@ -20,6 +21,13 @@ describe('aperçu : rattrapage des zones', () => {
     const fiches = [{ id: d.exercises[0].movementId, nom: 'Pompes', variantes: [] }] as never;
     render(<PreviewView program={program} next={next} fiches={fiches} onBegin={() => undefined} catchUp={[{ movementId: d.exercises[0].movementId, zone: 'pectoraux_haut' }]} />);
     expect(screen.getByText('Cette semaine : une série en plus à Pompes, pour des zones qui ont eu peu de travail la semaine dernière.')).toBeTruthy();
+  });
+  it('RAT-3 : une zone restée basse deux semaines est dite avec sa cause, sans reproche', () => {
+    const notes = [ZONE_CATCHUP_TEXT.stuck('épaules (côté)', 'sport'), ZONE_CATCHUP_TEXT.review(['ischios'])];
+    render(<PreviewView program={program} next={next} fiches={[]} onBegin={() => undefined} catchUpNotes={notes} />);
+    expect(screen.getByText('La zone « épaules (côté) » est restée basse deux semaines. Ton sport prend de la place : je n’ajoute rien pour l’instant.')).toBeTruthy();
+    expect(screen.getByLabelText('Zones restées basses')).toBeTruthy();
+    for (const c of ['protection', 'plafond', 'materiel', 'manquee', 'sport'] as const) expect(ZONE_CATCHUP_TEXT.stuck('ischios', c)).not.toMatch(/FIFA|OSTRC|faute|paresse|tu dois|médic/i);
   });
   it('rien sans rattrapage', () => {
     render(<PreviewView program={program} next={next} fiches={[]} onBegin={() => undefined} />);
@@ -37,10 +45,19 @@ describe('catchUpOf : première séance de la semaine seulement, jamais en repri
   const data = (sets: SetLog[]) => ({ input, sets, sessions: [], injuries: [], fiches: FICHES, frozen: false }) as unknown as PlayerData;
   const done = (iso: string) => ({ id: 'x', sessionId: 's', movementId: program.days[0].exercises[0].movementId, reps: 10, pain: false, completedAt: iso } as SetLog);
 
-  it('semaine 2 sans séance faite : séries en plus calculées', () => {
+  it('semaine 2 sans séance faite : séance manquée = aucune série en plus (RAT-4), journal prêt avec la cause', () => {
     const cu = catchUpOf(data([]), program, 0, program.days[0], false, now);
     expect(cu).not.toBeNull();
-    expect(cu!.added.length).toBeGreaterThan(0);
+    expect(cu!.added).toEqual([]);
+    expect(cu!.swapped).toBeUndefined();
+    expect(cu!.weekKey).toBe('2026-11-09');
+    expect(cu!.log.some((l) => l.cause === 'manquee')).toBe(true);
+  });
+  it('semaine 1 faite comme prévu : défaut de répartition rattrapé (sans journal : 1 série et 1 zone au plus)', () => {
+    const planned = program.days.flatMap((d, i) => d.exercises.filter((e) => e.role !== 'cardio').flatMap((e) => Array.from({ length: e.sets }, (_, k) => ({ id: `s${i}${e.movementId}${k}`, sessionId: `s${i}`, movementId: e.movementId, reps: 10, pain: false, completedAt: new Date(2026, 10, 3, 10).toISOString() } as SetLog))));
+    const cu = catchUpOf(data(planned), program, 0, program.days[0], false, now);
+    expect(cu).not.toBeNull();
+    expect(cu!.added.length).toBeLessThanOrEqual(1);
   });
   it('une séance déjà faite cette semaine : rien (une seule séance de rattrapage)', () => {
     expect(catchUpOf(data([done(new Date(2026, 10, 9, 10).toISOString())]), program, 0, program.days[0], false, now)).toBeNull();

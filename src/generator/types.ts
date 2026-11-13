@@ -1,7 +1,7 @@
 // Types du générateur v1 (knowledge/generateur-v1.md). Entrées = profil, matériel, blessures, objectifs, fiches,
 // historique ; sortie = programme ou « pas de programme ». Aucune valeur sportive ici.
 import type {
-  EquipmentProfile, ExerciseRole, ExerciseUnit, Injury, Level, PlannedExercise, PregnancyStatus, TrainingPlace, WarmupSet,
+  EquipmentProfile, ExerciseRole, ExerciseUnit, Injury, Level, PlannedExercise, PregnancyStatus, SportPlanEntry, TrainingPlace, WarmupSet,
 } from '../data/model';
 import type { CoreFamily, Family, GG, SessionType } from './config';
 
@@ -75,6 +75,8 @@ export interface GeneratorInput {
     neckScreen?: 'non' | 'oui' | 'refus';
     /** Sports déclarés (clés de SPORT_FAMILIES) ; leur fréquence n'est pas connue (lecture prudente : 2 fois par semaine ou plus). */
     sports?: string[];
+    /** « Mon sport » (étape 2) : sports déclarés, jours habituels, jour de match. Absent ou vide = le programme ignore le sport. */
+    sportPlan?: SportPlanEntry[];
   };
   equipment: Pick<EquipmentProfile, 'preset' | 'tags' | 'disabledImplicit' | 'dumbbellWeightsKg' | 'kettlebellWeightsKg'> & {
     platesKg?: number[];
@@ -128,6 +130,8 @@ export type MessageId =
   | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE'
   // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).
   | 'T8' | 'V-MSG-SPORT-MATCH' | 'T9'
+  // « Mon sport » étape 2 : séances décalées, allégées ou retirées à cause du sport.
+  | 'V-MSG-SPORT-PLACE'
   // D33 (programmes-v3.md §6, PV3-CAR-3) : séance de cardio incluse par défaut en perte de gras.
   | 'V-MSG-CARDIO-DEFAUT'
   | 'V-MSG-CORDE';

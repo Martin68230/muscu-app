@@ -10,6 +10,8 @@ import { filterEntries, frMonthKey, monthOptions, typeOptions } from '../../sess
 import { PastSummary } from './PastSummary';
 import { shiftedDays } from '../../session/missed';
 import { removeScheduled, scheduledOf, type ScheduledCreated } from '../../session/create-store';
+import type { SportSession } from '../../data/model';
+import { EFFORT_LABEL, SPORT_SHORT, SPORT_TEXT } from '../../sport/sport-config';
 
 const DOW = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const PAGE = 10;
@@ -47,11 +49,14 @@ export interface CalendarViewProps {
   scheduled?: ScheduledCreated[];
   onPrepareCreated?: (c: ScheduledCreated) => void;
   onRemoveCreated?: (id: string) => void;
+  /** Mon sport : séances de sport notées (affichées à part, « Sport », jamais comptées avec la musculation) et accès à la saisie. */
+  sportSessions?: SportSession[];
+  onNoteSport?: () => void;
   onOpen: (sessionId: string) => void;
 }
 
 /** Calendrier du mois + historique (sans accès à la base : testable). */
-export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], scheduled = [], onPrepareCreated, onRemoveCreated, onOpen }: CalendarViewProps) {
+export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], scheduled = [], onPrepareCreated, onRemoveCreated, sportSessions = [], onNoteSport, onOpen }: CalendarViewProps) {
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
@@ -82,6 +87,8 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   const shifted = new Set([...shiftedKeys, ...scheduled.map((c) => c.dateKey)]);
   const createdOn = selected ? scheduled.filter((c) => c.dateKey === selected) : [];
   const monthPrefix = `${year}-${String(month + 1).padStart(2, '0')}`;
+  // Les séances de sport s'affichent à part : elles ne comptent ni dans le résumé du mois ni dans les jours prévus.
+  const sportInMonth = sportSessions.filter((s) => dateKey(new Date(s.startedAt)).startsWith(monthPrefix)).sort((a, b) => (a.startedAt < b.startedAt ? 1 : -1));
   const plannedInMonth = new Set([...planned, ...shifted].filter((k) => k.startsWith(monthPrefix)));
   const pm = (key: string) => (plannedInMonth.has(key) ? plannedMark(key, planned, own, todayKey, shifted) : null);
 
@@ -133,6 +140,19 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
         </ul>
       </div>
       <p class="month-line" role="status">{monthLine(sum.done, sum.planned)}</p>
+      {(sportSessions.length > 0 || onNoteSport) && (
+        <section class="card" aria-label={SPORT_TEXT.calendarTitle}>
+          <h2>{SPORT_TEXT.calendarTitle}</h2>
+          {sportInMonth.length === 0 ? <p class="dim">{SPORT_TEXT.none}</p> : (
+            <ul class="plain-list">
+              {sportInMonth.map((s) => (
+                <li key={s.id}><span class="cap-first">{frDate(dateKey(new Date(s.startedAt)))}</span> · {s.sport === 'autre' && s.name ? s.name : SPORT_SHORT[s.sport]} · {s.durationMin} min · {EFFORT_LABEL[s.effort]}</li>
+              ))}
+            </ul>
+          )}
+          {onNoteSport && <button type="button" class="btn" onClick={onNoteSport}>{SPORT_TEXT.noteButton}</button>}
+        </section>
+      )}
 
       {selected && dayEntries.length === 0 && createdOn.length > 0 && (
         <section class="card" aria-label={`Séance créée du ${frDate(selected)}`}>
@@ -215,15 +235,17 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   );
 }
 
-export function Calendar({ profile, onPrepareCreated }: { profile: Profile; onPrepareCreated?: (c: ScheduledCreated) => void }) {
+export function Calendar({ profile, onPrepareCreated, onNoteSport }: { profile: Profile; onPrepareCreated?: (c: ScheduledCreated) => void; onNoteSport?: () => void }) {
   const [entries, setEntries] = useState<HistoryEntry[] | null>(null);
   const [openId, setOpenId] = useState<string | null>(null);
   const [scheduled, setScheduled] = useState<ScheduledCreated[]>([]);
+  const [sport, setSport] = useState<SportSession[]>([]);
   const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null; shifted: string[] }>({ weekdays: [], startKey: null, shifted: [] });
   const load = async () => {
     try {
       const [all, sets] = await Promise.all([list('sessions'), list('sets')]);
       const sessions = all.filter((s) => !s.imported);
+      setSport(await list('sportSessions').catch(() => []));
       setEntries(buildEntries(all, sets));
       setScheduled(scheduledOf(sessions, dateKey(new Date())));
       const prog = await getActiveProgram();
@@ -264,6 +286,8 @@ export function Calendar({ profile, onPrepareCreated }: { profile: Profile; onPr
       programStartKey={plan.startKey}
       shiftedKeys={plan.shifted}
       scheduled={scheduled}
+      sportSessions={sport}
+      onNoteSport={onNoteSport}
       onPrepareCreated={onPrepareCreated}
       onRemoveCreated={(id) => void removeScheduled(id).then(load)}
       onOpen={setOpenId}

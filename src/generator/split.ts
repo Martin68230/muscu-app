@@ -115,12 +115,13 @@ function longestRun(days: number[]): number {
  * (lecture de `dev` : « l'écart » de la règle est celui des séances qui partagent un muscle ; en corps entier c'est l'écart de V-JOURS),
  * puis ordre lexicographique. null si aucune combinaison ne passe.
  */
-export function scheduleDays(blocked: number[], labels: string[], beginner: boolean): number[] | null {
+export function scheduleDays(blocked: number[], labels: string[], beginner: boolean, allowed?: (label: string, day: number) => boolean): number[] | null {
   const free = [0, 1, 2, 3, 4, 5, 6].filter((d) => !blocked.includes(d));
   const k = labels.length;
   if (k > free.length || k > 7 - MIN_DAYS_WITHOUT_FORCE) return null;
   let best: { days: number[]; score: number } | null = null;
   for (const c of combos(free, k)) {
+    if (allowed && !labels.every((l, i) => allowed(l, c[i]))) continue;
     let score = 7;
     let ok = true;
     for (let i = 0; i < k && ok; i++) {
@@ -160,13 +161,13 @@ export interface ScheduledSplit {
   wanted: number;
 }
 /** Répartition + calendrier, avec repli N -> N - 1 -> … -> 1 (STR-REP-8 ; à 1 séance, STR-REP-1 ; jamais « aucun programme », E-14). */
-export function planWeek(n: number, blocked: number[], s: SplitInput): ScheduledSplit | null {
+export function planWeek(n: number, blocked: number[], s: SplitInput, allowed?: (label: string, day: number) => boolean): ScheduledSplit | null {
   const first = chooseSplit(n, s);
   const beginner = s.level === 'debutant';
   for (let k = first.labels.length; k >= 1; k--) {
     const plan = k === first.labels.length ? first : chooseSplit(k, s);
     const labels = plan.labels.slice(0, k);
-    const days = scheduleDays(blocked, labels, beginner);
+    const days = scheduleDays(blocked, labels, beginner, allowed);
     if (days) return { labels, days, light: first.light, reason: first.reason, reduced: k < first.labels.length, wanted: first.labels.length };
   }
   return null;

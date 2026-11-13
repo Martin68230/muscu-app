@@ -11,10 +11,12 @@
 // Les tables ne stockent que des identifiants (mouvement, variante, aliment Ciqual), jamais
 // le contenu de la bibliothèque, qui reste un fichier statique de l'app.
 
-export const SCHEMA_VERSION = 3;
+export const SCHEMA_VERSION = 4;
 // 2 : table signalements (D9)
 // 3 : F1 + F3 — zones cuisse et aine, lieu, grossesse et fin de parcours dans le profil, champs d'étalonnage des séries
 //     et du programme. Les sauvegardes v1 et v2 restent importables (champs ajoutés = facultatifs à l'import).
+// 4 : « Mon sport » (knowledge/saisie-sport-v1.md) — profile.sportPlan (facultatif) et table locale sportSessions. Les sauvegardes v1 à v3 restent
+//     importables (table absente = vide). Les séances de sport ne sont JAMAIS des séances de musculation.
 // (F5, sans changement de version : programme actif (empreinte, messages), séance en cours (curseur, repos, plan), zone de douleur des séries.
 //     tous facultatifs, donc aucune migration IndexedDB ni changement de SCHEMA_VERSION.)
 
@@ -94,6 +96,84 @@ export interface Profile extends SyncFields {
    * 'non' = « Non, rien » (seule réponse qui autorise un exercice de cou) ; 'oui' ou 'refus' ou absent = aucun exercice de cou.
    */
   neckScreen?: 'non' | 'oui' | 'refus';
+  /**
+   * « Mon sport » (saisie-sport-v1.md §1.1, §1.2) : sports déclarés (3 au plus), fréquence, jours habituels, jour de match. Local, exporté,
+   * supprimé avec les données, JAMAIS partagé. Absent = aucun sport déclaré. Sans lien avec `sports` (qui pilote le générateur de programmes).
+   */
+  sportPlan?: SportPlanEntry[];
+  /**
+   * Petit journal local du rattrapage des zones (zones-musculaires.md §7, RAT-2 / RAT-3 / RAT-5) : 4 semaines au plus, aucune donnée de santé,
+   * seulement une zone de la carte, un exercice et une cause. Ne sert jamais à calculer une quantité. Exporté, supprimé avec les données.
+   * Absent = pas de journal (la semaine précédente est supposée rattrapée).
+   */
+  catchUpLog?: CatchUpLogEntry[];
+}
+
+/** Une zone basse d'une semaine du programme (`week` = date AAAA-MM-JJ du début de la semaine où le rattrapage s'applique). */
+export interface CatchUpLogEntry {
+  week: string;
+  zone: string;
+  /** Exercice qui a reçu la série (ou l'exercice entré par l'échange), null si rien n'a été ajouté. */
+  movementId: string | null;
+  /** Cause quand rien n'a été ajouté. */
+  cause?: 'protection' | 'plafond' | 'materiel' | 'manquee' | 'sport';
+}
+
+/** Sports de la liste fermée ; `autre` = nom libre (SportPlanEntry.name). */
+export type SportKey = 'foot' | 'danse' | 'volley' | 'raquette' | 'basket' | 'hand' | 'autre';
+export const SPORT_KEYS: readonly SportKey[] = ['foot', 'danse', 'volley', 'raquette', 'basket', 'hand', 'autre'];
+/** Intensité ressentie en 3 niveaux (test de la parole) : choix obligatoire, jamais préremplie. */
+export type SportEffort = 'facile' | 'soutenue' | 'tres_dur';
+export const SPORT_EFFORTS: readonly SportEffort[] = ['facile', 'soutenue', 'tres_dur'];
+export type SportFeeling = 'jambes_lourdes' | 'epaule_fatiguee' | 'courbatures' | 'gene_douleur' | 'malaise_vertige';
+export const SPORT_FEELINGS: readonly SportFeeling[] = ['jambes_lourdes', 'epaule_fatiguee', 'courbatures', 'gene_douleur', 'malaise_vertige'];
+/** Signes qui accompagnent une gêne et déclenchent le renvoi vers un professionnel (saisie-sport-v1.md §7 (a)). */
+export type SportSign = 'gonflement' | 'nuit' | 'perte_force' | 'engourdissement';
+export const SPORT_SIGNS: readonly SportSign[] = ['gonflement', 'nuit', 'perte_force', 'engourdissement'];
+export const INJURY_ZONES: readonly InjuryZone[] = ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville', 'cuisse', 'aine'];
+
+export interface SportPlanEntry {
+  sport: SportKey;
+  /** `autre` seulement : nom libre, 40 caractères au plus, jamais envoyé ni partagé. */
+  name?: string;
+  /** Séances par semaine (0 à 7) ; absent = 1. */
+  perWeek?: number;
+  /** Jours habituels, 0 = lundi ... 6 = dimanche. */
+  weekdays?: number[];
+  /** Jour de match (0 à 6). */
+  matchWeekday?: number | null;
+  /** Foot et raquette : « avec des sauts » (compte les contacts). */
+  jumps?: boolean;
+  /** `autre` : « bras au-dessus de la tête » (compte l'épaule). */
+  overhead?: boolean;
+  /**
+   * S2-F (avis kine 13/11/2026) : intensité HABITUELLE déclarée. Seule « tres_dur » (plus restrictif) est acceptée ; « facile » est refusé
+   * (il assouplirait un refus de sécurité sur une déclaration non vérifiable). Absent = « soutenue » 60 min.
+   */
+  habitualEffort?: 'tres_dur';
+}
+
+/**
+ * Séance de sport notée (saisie-sport-v1.md §1.3, §7). Table locale, privée, jamais une WorkoutSession : ni série, ni progression, ni
+ * dernière fois, ni plafond de séries, ni régularité des séances de force. Sert seulement à la charge (src/sport/sport-load.ts).
+ */
+export interface SportSession extends SyncFields {
+  sport: SportKey;
+  name?: string | null;
+  /** Début (ISO). La fin = début + durée. */
+  startedAt: string;
+  /** 5 à 240 minutes. */
+  durationMin: number;
+  effort: SportEffort;
+  /** Match ou compétition (intensité « très dur » par défaut à la saisie). */
+  match?: boolean;
+  jumps?: boolean;
+  overhead?: boolean;
+  feelings: SportFeeling[];
+  painZone?: InjuryZone | null;
+  signs?: SportSign[];
+  /** 200 caractères au plus. */
+  note?: string;
 }
 
 /** SM-D4 : état de reprise après une absence (un seul objet, sur le profil). */
@@ -485,6 +565,7 @@ export interface SyncedTables {
   supplements: Supplement;
   shares: Share;
   signalements: Report;
+  sportSessions: SportSession;
 }
 
 export type TableName = keyof SyncedTables;
@@ -505,6 +586,7 @@ export const TABLES: TableName[] = [
   'supplements',
   'shares',
   'signalements',
+  'sportSessions',
 ];
 
 /**

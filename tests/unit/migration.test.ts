@@ -7,7 +7,8 @@ import { create, list } from '../../src/data/repo';
 import { SCHEMA_VERSION, TABLES } from '../../src/data/model';
 import { validateRow } from '../../src/data/validate';
 
-const V1_TABLES = TABLES.filter((t) => t !== 'signalements');
+const V1_TABLES = TABLES.filter((t) => t !== 'signalements' && t !== 'sportSessions');
+const V3_TABLES = TABLES.filter((t) => t !== 'sportSessions');
 
 const base = (id: string) => ({
   id, ownerId: 'u1', createdAt: '2026-10-01T10:00:00.000Z', updatedAt: '2026-10-01T10:00:00.000Z', rev: 1, deletedAt: null, syncedAt: null,
@@ -18,10 +19,10 @@ const oldProfile = {
 };
 
 /** Fabrique une base telle que l'ancienne version de l'app l'aurait créée. */
-async function makeOldDb(version: 1 | 2) {
+async function makeOldDb(version: 1 | 2 | 3) {
   const db = await openDB(DB_NAME, version, {
     upgrade(d) {
-      for (const name of version === 1 ? V1_TABLES : TABLES) {
+      for (const name of version === 1 ? V1_TABLES : V3_TABLES) {
         const s = d.createObjectStore(name, { keyPath: 'id' });
         s.createIndex('updatedAt', 'updatedAt');
         if (name === 'sessions') s.createIndex('plannedDate', 'plannedDate');
@@ -41,7 +42,7 @@ describe('migration IndexedDB', () => {
   it('base neuve : toutes les tables, les index et la version courante', async () => {
     const db = await getDB();
     expect(db.version).toBe(DB_VERSION);
-    expect(DB_VERSION).toBe(3);
+    expect(DB_VERSION).toBe(4);
     for (const t of TABLES) expect(db.objectStoreNames.contains(t)).toBe(true);
     expect(db.objectStoreNames.contains('device')).toBe(true);
     const tx = db.transaction(['sessions', 'sets', 'bodyWeights', 'meals'], 'readonly');
@@ -51,11 +52,22 @@ describe('migration IndexedDB', () => {
     expect([...tx.objectStore('meals').indexNames]).toContain('date');
   });
 
-  it('v1 -> v3 : crée signalements, garde les données, complète le profil', async () => {
+  it('v3 -> v4 : crée sportSessions sans toucher aux données', async () => {
+    await makeOldDb(3);
+    const db = await getDB();
+    expect(db.version).toBe(4);
+    expect(db.objectStoreNames.contains('sportSessions')).toBe(true);
+    expect([...db.transaction('sportSessions').store.indexNames]).toContain('startedAt');
+    expect((await list('profile'))[0].displayName).toBe('Ancien');
+    expect(await list('sportSessions')).toEqual([]);
+  });
+
+  it('v1 -> v4 : crée signalements et sportSessions, garde les données, complète le profil', async () => {
     await makeOldDb(1);
     const db = await getDB();
-    expect(db.version).toBe(3);
+    expect(db.version).toBe(4);
     expect(db.objectStoreNames.contains('signalements')).toBe(true);
+    expect(db.objectStoreNames.contains('sportSessions')).toBe(true);
     const [p] = await list('profile');
     expect(p.displayName).toBe('Ancien');
     expect(p.daysPerWeek).toBe(3);
@@ -107,11 +119,12 @@ describe('anciennes sauvegardes et nouveaux champs', () => {
     expect((await list('profile'))[0].displayName).toBe('Ancien');
   });
 
-  it('un export courant contient la version 3 et les nouveaux champs', async () => {
+  it('un export courant contient la version 4 et les nouveaux champs', async () => {
     await ensureLocalUser();
     const out = await exportData();
-    expect(SCHEMA_VERSION).toBe(3);
-    expect(out.schemaVersion).toBe(3);
+    expect(SCHEMA_VERSION).toBe(4);
+    expect(out.schemaVersion).toBe(4);
+    expect(out.data.sportSessions).toEqual([]);
     expect(out.data.profile[0]).toHaveProperty('place', null);
     expect(out.data.profile[0]).toHaveProperty('pregnancy', null);
     const again = await importData(JSON.parse(JSON.stringify(out)));

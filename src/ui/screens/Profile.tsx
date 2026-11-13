@@ -7,6 +7,7 @@ import { Injuries } from './Injuries';
 import { ImportCsv } from './ImportCsv';
 import { Equipment } from './Equipment';
 import { Credits } from './Credits';
+import { MySportCard } from './MySport';
 import {
   DURATIONS, NIVEAUX, PLACES, PREGNANCY_CHOICES, WEEKDAYS, getGoals, goalsSummary, labelOf, type ProfileStep,
 } from '../../data/profile-setup';
@@ -47,12 +48,14 @@ async function saveFile(name: string, text: string): Promise<void> {
   setTimeout(() => URL.revokeObjectURL(url), 1000);
 }
 
-export function Profile({ profile, onChange, onWiped, onEditStep }: {
+export function Profile({ profile, onChange, onWiped, onEditStep, onNoteSport }: {
   profile: ProfileRow;
   onChange: (p: ProfileRow) => void;
   onWiped: () => void;
   /** Ouvre une carte du parcours (undefined = tout le parcours). */
   onEditStep: (step?: ProfileStep) => void;
+  /** Mon sport : ouvre « Noter une séance de sport ». */
+  onNoteSport?: () => void;
 }) {
   const [goal, setGoal] = useState<MainGoalKey | null>(null);
   const [others, setOthers] = useState<MainGoalKey[]>([]);
@@ -200,6 +203,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep }: {
           onToggle={async (on) => onChange(await update('profile', profile.id, { exterieur: on }))}
         />
       </div>
+
+      <MySportCard profile={profile} onChange={onChange} onNote={() => onNoteSport?.()} />
 
       {CORRECTIF_COU.enabled && <h2>{D30_TEXT.neckTitle}</h2>}
       {CORRECTIF_COU.enabled && <>

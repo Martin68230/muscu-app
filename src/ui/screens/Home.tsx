@@ -103,6 +103,8 @@ export interface HomeViewProps {
   onOpenHistory?: () => void;
   /** D28 : ouvre l'écran « Créer une séance ». */
   onCreateSession?: () => void;
+  /** Mon sport : ouvre « Noter une séance de sport ». */
+  onNoteSport?: () => void;
   /** Réponses à la carte « séance manquée ». */
   missedActions?: MissedActions;
   onAckSecurity?: () => Promise<void>;
@@ -170,7 +172,7 @@ export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity 
 }
 
 /** Contenu de l'accueil (sans accès à la base : testable). */
-export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, onCreateSession, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
+export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, onCreateSession, onNoteSport, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
   const hello = profile.displayName ? `Salut ${profile.displayName}` : 'Salut';
   const complete = isProfileComplete(profile);
   const [hidden, setHidden] = useState(false);
@@ -257,6 +259,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
         </MuscleMapCard>
       )}
       {complete && onCreateSession && !security && <button type="button" class="btn" onClick={onCreateSession}>Créer une séance</button>}
+      {onNoteSport && !security && <button type="button" class="btn" onClick={onNoteSport}>Noter une séance de sport</button>}
       {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
       <div class="thumb-zone">
         {!complete && <button type="button" class="btn btn-primary" onClick={onStart}>Créer mon programme</button>}
@@ -268,7 +271,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
   );
 }
 
-export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory, onCreateSession }: {
+export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory, onCreateSession, onNoteSport }: {
   profile: Profile;
   onStart: () => void;
   onEditStep: (step: ProfileStep) => void;
@@ -276,6 +279,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
   onOpenSession: () => void;
   onOpenHistory?: () => void;
   onCreateSession?: () => void;
+  onNoteSport?: () => void;
 }) {
   const [reg, setReg] = useState<Regularity | null>(null);
   const [status, setStatus] = useState<Status>({ kind: 'loading' });
@@ -384,6 +388,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       regularity={reg}
       onOpenHistory={onOpenHistory}
       onCreateSession={onCreateSession}
+      onNoteSport={onNoteSport}
       missedActions={missedActions}
       onAckSecurity={acknowledgeSecurity}
       onChanged={() => {

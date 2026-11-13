@@ -58,6 +58,21 @@ export const ZONE_CATCHUP_TEXT = {
   line: (noms: readonly string[]): string =>
     `Cette semaine : une série en plus ${noms.length > 1 ? `à ${noms.length} exercices (${noms.join(', ')})` : `à ${noms[0]}`}, pour des zones qui ont eu peu de travail la semaine dernière.`,
   swap: (de: string, vers: string): string => `Cette séance : ${vers} remplace ${de}, pour travailler une zone qui a eu peu de travail la semaine dernière. Commence doucement.`,
+  /** RAT-3 (avis kine 13/11/2026) : une zone restée basse 2 semaines de suite, avec la cause ; ton sans reproche, aucun conseil médical. */
+  stuck: (zone: string, cause: 'protection' | 'plafond' | 'materiel' | 'manquee' | 'sport'): string => {
+    const head = `La zone « ${zone} » est restée basse deux semaines.`;
+    const tail = {
+      protection: 'Je n’ajoute rien pour l’instant.',
+      plafond: 'Ton programme est déjà plein pour cette zone ou pour la durée choisie.',
+      materiel: 'Aucun exercice avec ton matériel ne la travaille dans ta première séance.',
+      manquee: 'Une séance n’a pas eu lieu : rien n’est rattrapé, le programme continue tel quel.',
+      sport: 'Ton sport prend de la place : je n’ajoute rien pour l’instant.',
+    }[cause];
+    return `${head} ${tail}`;
+  },
+  /** RAT-5 : 4 semaines basses, jamais de volume automatique. */
+  review: (zones: readonly string[]): string =>
+    `${zones.length > 1 ? 'Ces zones sont basses' : 'Cette zone est basse'} depuis quatre semaines (${zones.join(', ')}). Tu peux refaire ton programme en la mettant en avant.`,
 };
 
 export const ADAPT_TEXT = {

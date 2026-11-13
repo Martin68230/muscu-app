@@ -344,7 +344,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 /* Bibliothèque et fiche d'exercice (F4) */
 .chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
 .chip {
-  min-height: 44px; padding: 8px 16px; border-radius: 22px; border: 1px solid var(--line); background: var(--surface-2);
+  min-height: 44px; min-width: 44px; padding: 8px 16px; border-radius: 22px; border: 1px solid var(--line); background: var(--surface-2);
   color: var(--text); font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
 }
 .chip[aria-pressed='true'] { background: var(--accent); color: var(--accent-text); border-color: transparent; }
@@ -591,3 +591,7 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 ol.plain-list { counter-reset: ex; }
 .plain-list li { padding: 8px 0; border-bottom: 1px solid var(--line); overflow-wrap: anywhere; }
 .plain-list li:last-child { border-bottom: 0; }
+
+/* Mon sport (saisie-sport-v1.md) : cases à cocher, zone tactile >= 44 px */
+.check-row { display: flex; align-items: center; gap: 12px; min-height: 48px; padding: 6px 0; cursor: pointer; }
+.check-row input { width: 24px; height: 24px; flex: none; accent-color: var(--accent); }

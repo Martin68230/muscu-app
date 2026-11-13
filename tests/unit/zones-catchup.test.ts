@@ -5,13 +5,15 @@ import { generateProgram, toProgramDays } from '../../src/generator';
 import { UNLIMITED } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import type { GeneratorInput } from '../../src/generator/types';
-import { doneZoneSets, lastWeekOf, zoneCatchUp, type CatchUpProfile } from '../../src/zones/catchup';
-import { capGroupPoints, pointsByZone, zoneCaps } from '../../src/zones/zones';
+import { doneZoneSets, lastWeekOf, swapPointsOk, zoneCatchUp, type CatchUpProfile } from '../../src/zones/catchup';
+import { capGroupPoints, pointsByZone, thresholdsOf, zoneCaps } from '../../src/zones/zones';
 import { FICHES, mk } from './generator-helpers';
 
+/** Semaine écoulée sans séance prévue : une zone basse est un défaut de répartition (pas une séance manquée, RAT-4). */
+const NO_PLAN: ProgramDay[] = [];
 const ctxOf = (input: GeneratorInput) => buildCtx(input);
 const prof = (input: GeneratorInput, o: Partial<CatchUpProfile> = {}): CatchUpProfile => ({
-  ctx: ctxOf(input), pool: FICHES, repriseActive: false, symptomFrozen: false, painFrozen: () => false, ...o,
+  ctx: ctxOf(input), pool: FICHES, repriseActive: false, symptomFrozen: false, painFrozen: () => false, log: [], ...o,
 });
 function weekOf(input: GeneratorInput, room = false) {
   const r = generateProgram(input);
@@ -39,7 +41,7 @@ describe('zoneCatchUp : fonction pure', () => {
   it('séances toutes manquées : zones grises, séries en plus sur la séance du jour, +1 au plus par exercice, plafonds tenus', () => {
     const { days, durationMin } = weekOf(INTER, true);
     const p = prof(INTER);
-    const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, p);
+    const r = zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin }, p);
     expect(r.blocked).toBeNull();
     expect(r.low.length).toBeGreaterThan(0);
     expect(r.low.every((z) => z.status === 'gris')).toBe(true);
@@ -56,7 +58,7 @@ describe('zoneCatchUp : fonction pure', () => {
     // Durée affichée recalculée (multiple de 5 min, jamais plus basse, dans la durée choisie).
     expect(r.day.estimatedMin! % 5).toBe(0);
     expect(r.day.estimatedMin!).toBeGreaterThanOrEqual(days[0].estimatedMin!);
-    const short = zoneCatchUp([], { days: days.map((d, i) => (i ? d : { ...d, estimatedMin: 5 })), dayIndex: 0, durationMin }, p);
+    const short = zoneCatchUp([], { prevDays: NO_PLAN, days: days.map((d, i) => (i ? d : { ...d, estimatedMin: 5 })), dayIndex: 0, durationMin }, p);
     expect(short.day.estimatedMin!).toBeGreaterThan(5);
     // Les autres séances ne changent pas ; plafond de 20 par zone et par semaine.
     // (lecture relative, comme zones-check.ts : un groupe déjà au-dessus ne monte pas).
@@ -81,11 +83,11 @@ describe('zoneCatchUp : fonction pure', () => {
 
   it('gel douleur : aucun ajout sur un exercice gelé ; symptôme : aucun ajout', () => {
     const { days, durationMin } = weekOf(INTER, true);
-    const free = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER));
+    const free = zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin }, prof(INTER));
     const frozenId = free.added[0].movementId;
-    const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER, { painFrozen: (e) => e.movementId === frozenId }));
+    const r = zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin }, prof(INTER, { painFrozen: (e) => e.movementId === frozenId }));
     expect(r.added.map((a) => a.movementId)).not.toContain(frozenId);
-    const s = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER, { symptomFrozen: true }));
+    const s = zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin }, prof(INTER, { symptomFrozen: true }));
     expect(s.added).toEqual([]);
     expect(s.blocked).toBe('symptome');
   });
@@ -99,7 +101,7 @@ describe('zoneCatchUp : fonction pure', () => {
     ];
     for (const [input, o, why] of cases) {
       const { days, durationMin } = weekOf(input);
-      const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(input, o));
+      const r = zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin }, prof(input, o));
       expect(r.added, why).toEqual([]);
       expect(r.blocked).toBe(why);
     }
@@ -107,16 +109,16 @@ describe('zoneCatchUp : fonction pure', () => {
 
   it('durée choisie : aucun ajout sans marge ; dose fixe, isolation, charge bloquée, superset, série acceptée : jamais', () => {
     const { days } = weekOf(INTER);
-    expect(zoneCatchUp([], { days, dayIndex: 0, durationMin: 1 }, prof(INTER)).added).toEqual([]);
-    expect(zoneCatchUp([], { days, dayIndex: 0 }, prof(INTER)).added).toEqual([]);
+    expect(zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin: 1 }, prof(INTER)).added).toEqual([]);
+    expect(zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0 }, prof(INTER)).added).toEqual([]);
     const locked = days.map((d, i) => (i ? d : { ...d, exercises: d.exercises.map((e, j) => ({ ...e, ...(j % 2 ? { capped: true } : { adaptApplied: 'serie' as const }) })) }));
-    expect(zoneCatchUp([], { days: locked, dayIndex: 0, durationMin: 600 }, prof(INTER)).added).toEqual([]);
+    expect(zoneCatchUp([], { prevDays: NO_PLAN, days: locked, dayIndex: 0, durationMin: 600 }, prof(INTER)).added).toEqual([]);
   });
 
   it('plafond de séries par exercice : un exercice déjà à son maximum ne reçoit rien', () => {
     const { days } = weekOf(INTER);
     const full = days.map((d, i) => (i ? d : { ...d, exercises: d.exercises.map((e) => ({ ...e, sets: 4 })) }));
-    expect(zoneCatchUp([], { days: full, dayIndex: 0, durationMin: 600 }, prof(INTER)).added).toEqual([]);
+    expect(zoneCatchUp([], { prevDays: NO_PLAN, days: full, dayIndex: 0, durationMin: 600 }, prof(INTER)).added).toEqual([]);
   });
 });
 
@@ -168,12 +170,12 @@ describe('zoneCatchUp : échange d’exercice (dernier recours)', () => {
   };
   const run = (input: GeneratorInput, o: Partial<CatchUpProfile> = {}, dm?: number) => {
     const { days, durationMin } = full(input);
-    return { days, r: zoneCatchUp([], { days, dayIndex: 0, durationMin: dm ?? durationMin }, prof(input, o)) };
+    return { days, r: zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin: dm ?? durationMin }, prof(input, o)) };
   };
 
   it('+1 série possible : pas d’échange', () => {
     const { days, durationMin } = weekOf(INTER, true);
-    const r = zoneCatchUp([], { days, dayIndex: 0, durationMin }, prof(INTER));
+    const r = zoneCatchUp([], { prevDays: NO_PLAN, days, dayIndex: 0, durationMin }, prof(INTER));
     expect(r.added.length).toBeGreaterThan(0);
     expect(r.swapped).toBeUndefined();
   });
@@ -197,14 +199,30 @@ describe('zoneCatchUp : échange d’exercice (dernier recours)', () => {
       expect(days.flatMap((d) => d.exercises.map((e) => e.movementId))).not.toContain(r.swapped!.to);
       expect(r.low.map((z) => z.zone)).toContain(r.swapped!.zone);
     }
-    expect(swapped).toBeGreaterThan(0);
+    // RAT-6 (avis kine 13/11/2026) : un échange qui coûte plus d'un point à une zone est refusé ; l'échange est donc rare, jamais obligatoire.
+    expect(swapped).toBeGreaterThanOrEqual(0);
   });
 
   const D4 = mk({ level: 'intermediaire', days: 4, dur: 75, goal: 'muscle', profile: 'F', place: 'salle' });
   const D4X = (o: Partial<Parameters<typeof mk>[0]>) => mk({ level: 'intermediaire', days: 4, dur: 75, goal: 'muscle', profile: 'F', place: 'salle', ...o });
 
-  it('référence : ce profil échange bien un exercice (les refus ci-dessous ne sont donc pas vides)', () => {
-    expect(run(D4).r.swapped).toBeDefined();
+  it('RAT-6 : garde de l’échange par points (aucune perte sous le seuil rouge ni sur les jambes, -1 au plus, -2 au total, gain >= pertes)', () => {
+    const rouge = thresholdsOf('biceps', 'muscle').rouge;
+    const base = { biceps: rouge + 2, epaules_cote: rouge, fessiers_grand: rouge + 3, quadriceps_vastes: rouge + 3, triceps_long_chef: rouge - 2, pectoraux_haut: 0 } as Record<string, number>;
+    const ok = (after: Record<string, number>, no: string[] = []) => swapPointsOk(base, { ...base, ...after }, 'pectoraux_haut', 'muscle', new Set(no));
+    expect(ok({ pectoraux_haut: 3, biceps: rouge + 1 })).toBe(true); // -1 au-dessus du rouge
+    expect(ok({ pectoraux_haut: 3, biceps: rouge + 0.5 })).toBe(false); // -1,5 : plus d'un point par zone
+    expect(ok({ pectoraux_haut: 3, triceps_long_chef: rouge - 2.5 })).toBe(false); // sous le seuil rouge : aucune perte
+    expect(ok({ pectoraux_haut: 3, epaules_cote: rouge - 1 })).toBe(false); // ne doit pas passer sous le rouge
+    expect(ok({ pectoraux_haut: 3, quadriceps_vastes: rouge + 2 }, ['quadriceps_vastes'])).toBe(false); // zone sans perte
+    expect(ok({ pectoraux_haut: 3, fessiers_grand: rouge + 2 }, ['fessiers_grand'])).toBe(false);
+    expect(ok({ pectoraux_haut: 3, biceps: rouge + 1, epaules_cote: rouge - 1 })).toBe(false);
+    expect(ok({ pectoraux_haut: 2, biceps: rouge + 1, fessiers_grand: rouge + 2 })).toBe(true); // 2 zones à -1 : total 2
+    expect(ok({ pectoraux_haut: 3, biceps: rouge + 1, fessiers_grand: rouge + 2, quadriceps_vastes: rouge + 2 })).toBe(false); // 3 points perdus (3 zones à -1)
+    expect(ok({ pectoraux_haut: 0.5, biceps: rouge + 1 })).toBe(false); // gain < pertes
+    expect(ok({ pectoraux_haut: 0, biceps: rouge + 2 })).toBe(false); // aucun gain
+    const three = { pectoraux_haut: 5, biceps: rouge + 1, fessiers_grand: rouge + 2, quadriceps_vastes: rouge + 2 };
+    expect(swapPointsOk(base, { ...base, ...three }, 'pectoraux_haut', 'muscle', new Set())).toBe(false); // 3 points perdus au total
   });
 
   it('refusé : grossesse / post-partum, symptôme, épaule niveau 2, débutant, reprise', () => {

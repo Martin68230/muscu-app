@@ -253,14 +253,14 @@ describe('Cas 6 : chaise non stable -> alternatives mur / sol, aucun exercice su
     for (const e of s.exercises) expect(e.tags).not.toContain('chaise');
   });
   it('chaise stable, 50 min : bulgare, force explosive (montée sur chaise, 2 séries, 6 par jambe), jamais en soutenue', () => {
-    const r = req({ durationMin: 50 });
+    const r = req({ durationMin: 50, sport: null, jumps: true });
     const s = ok(home(), r);
     const up = s.exercises.find((e) => e.block === 'explosive');
     expect(up?.variantId).toBe('montee-rapide-chaise-sans-charge');
     expect(up?.sets).toBeLessThanOrEqual(2);
     expect(up?.repsMax).toBe(6);
     expect(up?.tempo).toContain('aucun décollage');
-    expect(ok(home(), req({ durationMin: 50, intensity: 'soutenue' })).exercises.some((e) => e.block === 'explosive')).toBe(false);
+    expect(ok(home(), req({ durationMin: 50, intensity: 'soutenue', sport: null, jumps: true })).exercises.some((e) => e.block === 'explosive')).toBe(false);
     // Genou gêné niveau 1 : la montée sur chaise est retirée (et les sauts aussi).
     expect(ok(home({ injuries: [['genou', 1]] }), r).exercises.some((e) => e.block === 'explosive')).toBe(false);
   });
@@ -268,7 +268,7 @@ describe('Cas 6 : chaise non stable -> alternatives mur / sol, aucun exercice su
     for (const id of ['montee-rapide-chaise', 'good-morning-elastique', 'balances-de-jambe', 'extension-triceps-sol-leger']) {
       expect(FICHES.find((x) => x.id === id), id).toBeDefined();
     }
-    const up = ok(home(), req({ durationMin: 50 })).exercises.find((e) => e.block === 'explosive');
+    const up = ok(home(), req({ durationMin: 50, sport: null, jumps: true })).exercises.find((e) => e.block === 'explosive');
     expect(up?.ficheId).toBe('montee-rapide-chaise');
     expect(up?.sets).toBe(2);
     expect(up?.repsMax).toBe(6);
@@ -279,7 +279,7 @@ describe('Cas 6 : chaise non stable -> alternatives mur / sol, aucun exercice su
 describe('Cas 7 : 45 à 55 min -> blocs complets, contacts jamais au-dessus du plafond, 6 exercices de force au plus', () => {
   it('50 min modérée : échauffement 7 min, 3 exercices de sauts, contacts <= départ 60, retour au calme 5 min, plafonds 11 / 12 et 19 séries', () => {
     const input = home();
-    const r = req({ durationMin: 50 });
+    const r = req({ durationMin: 50, sport: null, jumps: true });
     const s = ok(input, r);
     invariants(input, r, s);
     expect(s.warmup.minutes).toBe(7);
@@ -296,7 +296,7 @@ describe('Cas 7 : 45 à 55 min -> blocs complets, contacts jamais au-dessus du p
   });
   it('soutenue avec une séance de sauts sans douleur il y a 7 jours (60 contacts) : 65 contacts (+5), sous le plafond 100', () => {
     const input = home();
-    const r = req({ durationMin: 50, intensity: 'soutenue' });
+    const r = req({ durationMin: 50, intensity: 'soutenue', sport: null, jumps: true });
     const s = ok(input, r, { sessions: [{ endIso: ago(7 * 24), jumps: true, impact: true, contacts: 60 }] });
     invariants(input, r, s);
     expect(s.contacts).toBeLessThanOrEqual(65);

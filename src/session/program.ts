@@ -35,6 +35,9 @@ const sortedStrs = (a: readonly string[] | undefined): string[] => [...(a ?? [])
 const recentPainList = (input: GeneratorInput): string[] =>
   [...recentPain((input.injuries ?? []).map((i) => ({ ...i, deletedAt: i.deletedAt ?? null })), input.options?.nowIso)].sort();
 
+const sportSig = (plan: NonNullable<GeneratorInput['profile']['sportPlan']>): string[] =>
+  plan.map((e) => [e.sport, e.perWeek ?? '', sortedNums(e.weekdays).join(''), e.matchWeekday ?? '', e.jumps ? 1 : 0, e.overhead ? 1 : 0, e.habitualEffort ?? ''].join(':')).sort();
+
 function canonical(input: GeneratorInput, fichesSig: string): unknown {
   const p = input.profile;
   const eq = input.equipment;
@@ -45,6 +48,8 @@ function canonical(input: GeneratorInput, fichesSig: string): unknown {
       p.level ?? null, p.daysPerWeek ?? null, sortedNums(p.blockedWeekdays), p.sessionDurationMin ?? null, p.place ?? null, p.pregnancy ?? null,
       !!p.salleAccess, !!p.exterieur, p.neckScreen ?? null, sortedStrs(p.sports),
     ],
+    // « Mon sport » : seulement si un sport est déclaré (les programmes existants ne sont pas régénérés pour rien).
+    ...(p.sportPlan?.length ? { sport: sportSig(p.sportPlan) } : {}),
     equipment: [eq.preset, sortedStrs(eq.tags), sortedStrs(eq.disabledImplicit), sortedNums(eq.dumbbellWeightsKg), sortedNums(eq.kettlebellWeightsKg), sortedNums(eq.platesKg)],
     // CAL-11 : zones à douleur récente (7 jours, même passée) ; vide dans la plupart des cas, l'empreinte ne change alors que si l'ensemble change.
     ...(recentPainList(input).length ? { recentPain: recentPainList(input) } : {}),
@@ -107,6 +112,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
       exterieur: !!profile.exterieur,
       neckScreen: profile.neckScreen,
       sports: profile.sports ?? [],
+      ...(profile.sportPlan?.length ? { sportPlan: profile.sportPlan } : {}),
     },
     equipment: {
       preset: equipment.preset,

@@ -1,6 +1,7 @@
 // Données du lecteur de séance : lues une fois au démarrage ou à la reprise (aucun réseau pendant la séance).
-import { list, listTrusted } from '../../data/repo';
-import type { EquipmentProfile, Injury, PlannedExercise, Profile, Program, ProgramDay, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
+import { list, listAll, listTrusted } from '../../data/repo';
+import type { CatchUpLogEntry, EquipmentProfile, Injury, PlannedExercise, Profile, Program, ProgramDay, ProgressionEvent, SetLog, WorkoutSession } from '../../data/model';
+import type { SportPlanEntry, SportSession } from '../../data/model';
 import type { Fiche } from '../../data/fiches';
 import { buildCtx, isChargeable, isUnilateral, type Ctx } from '../../generator/context';
 import type { Fiche as GenFiche, GeneratorInput } from '../../generator/types';
@@ -8,7 +9,10 @@ import type { EngineContext } from '../../session/engine';
 import { buildEngineContext, gentlerAlternative, proposeProgression, type BodyweightProgression, type ProgressionInput } from '../../session/history';
 import { loadGeneratorInput, programWeek, rotationFreeze, withProgramWeek } from '../../session/program';
 import { painFrozen } from '../../session/adaptation';
-import { lastWeekOf, zoneCatchUp, type CatchUpResult } from '../../zones/catchup';
+import { lastWeekOf, zoneCatchUp, type CatchUpProfile, type CatchUpResult } from '../../zones/catchup';
+import { SPORT } from '../../sport/sport-config';
+import { sportGate, sportLoad } from '../../sport/sport-load';
+import { CATCHUP, JUMPS } from '../../generator/config';
 import { pendingArrival, startRepsFor, symptomFrozen } from '../../session/progression';
 import { echelonInfoFor, progVariants } from '../../session/progression-store';
 import { repriseOf } from '../../session/missed-config';
@@ -45,6 +49,14 @@ export interface PlayerData {
   bodyweightOf(ex: PlannedExercise): BodyweightProgression | undefined;
   /** V-PROG-E8 : reprise douce active (seance-manquee-v1.md SM-13) : aucune proposition de montée. */
   repriseActive: boolean;
+  /** « Mon sport » : séances notées et sports déclarés (absent = aucun) ; sert au rattrapage (RAT-7), jamais à la progression. */
+  sport?: { sessions: SportSession[]; plan: SportPlanEntry[] };
+  /** Lecture de « Mon sport » impossible : aucun rattrapage (prudence), jamais « rien à lire ». */
+  sportError?: boolean;
+  /** Douleur de niveau >= 1 levée depuis moins de 7 jours (ou lecture impossible). */
+  liftedPain?: boolean;
+  /** RAT-2 / RAT-3 : journal local du rattrapage (profile.catchUpLog) ; absent = pas de journal. */
+  catchUpLog?: CatchUpLogEntry[];
   /** adaptation-regles.md : niveau, zones, version plus dure, plafond de séries. `nextTime` (bilan) : la séance manquée ne compte plus. */
   adaptOf?(ex: PlannedExercise, nextTime?: boolean): AdaptInput;
 }
@@ -80,6 +92,37 @@ export function applyEnvOf(data: PlayerData, repriseActive: boolean = data.repri
 }
 
 /**
+ * RAT-7 : charge du sport à l'ouverture de la séance. Aucun sport déclaré ni noté : undefined (rien à lire). Calcul impossible : `gate: null`
+ * (information illisible : aucun rattrapage). Ne sert qu'à REFUSER un ajout.
+ */
+/** Douleur de niveau >= 1 levée (supprimée ou désactivée) depuis moins de 7 jours : le rattrapage reste coupé (avis kine 13/11/2026). */
+export function liftedPainRecent(injuries: readonly Pick<Injury, 'level' | 'active' | 'deletedAt' | 'updatedAt'>[], nowMs: number): boolean {
+  return injuries.some((i) => {
+    if (i.level < 1 || (i.active && !i.deletedAt)) return false;
+    const t = Date.parse(i.deletedAt ?? i.updatedAt);
+    return !Number.isFinite(t) || nowMs - t < CATCHUP.painAfterDays * 86400000;
+  });
+}
+
+export function catchUpSportOf(data: PlayerData, ctx: Ctx, nowMs: number): CatchUpProfile['sport'] {
+  if (data.sportError) return { gate: null };
+  const sp = data.sport;
+  if (!sp || (!sp.plan.length && !sp.sessions.length)) return undefined;
+  // Sport déclaré sans aucun jour ni match et aucune séance notée : information ambiguë, valeur la plus lourde (aucun rattrapage).
+  if (!sp.sessions.length && sp.plan.every((e) => !(e.weekdays?.length) && e.matchWeekday == null)) return { gate: null };
+  try {
+    const load = sportLoad(sp.sessions, sp.plan, new Date(nowMs));
+    const gate = sportGate(load, ctx.level, JUMPS.startContacts[ctx.level]);
+    return {
+      gate, hasPain: load.tempPainZones.length > 0 || load.unknownPainRecent || load.malaiseToday || !!load.consult,
+      shoulderSport: sp.plan.some((e) => SPORT.shoulderFamilies.includes(e.sport)),
+    };
+  } catch {
+    return { gate: null };
+  }
+}
+
+/**
  * Rattrapage des zones (src/zones/catchup.ts) pour la séance `dayIndex` qui démarre : seulement à la première séance de la semaine du
  * programme, recalculé depuis l'historique (rien n'est stocké). `day` = copie du jour après les changements acceptés.
  */
@@ -92,9 +135,11 @@ export function catchUpOf(data: PlayerData, program: Program, dayIndex: number, 
   const week = programWeek(program, nowMs);
   const freeze = rotationFreeze(data.sets, data.injuries, nowMs);
   const days = program.days.map((d, i) => (i === dayIndex ? day : withProgramWeek(d, week, freeze)));
+  const prevWeek = Math.max(1, week - 1);
+  const prevDays = program.days.map((d) => withProgramWeek(d, prevWeek, freeze));
   const zonesOfMovement = (id: string): readonly string[] => Object.keys(data.fiches.find((f) => f.id === id)?.securite.zones ?? {});
-  return zoneCatchUp(lw.weekSets, { days, dayIndex, durationMin: program.durationMin, ...(limitMin !== program.durationMin ? { limitMin } : {}) }, {
-    ctx, pool: data.input.fiches, repriseActive, symptomFrozen: data.frozen,
+  return zoneCatchUp(lw.weekSets, { days, dayIndex, prevDays, weekKey: lw.weekKey, durationMin: program.durationMin, ...(limitMin !== program.durationMin ? { limitMin } : {}) }, {
+    ctx, pool: data.input.fiches, repriseActive, symptomFrozen: data.frozen, log: data.catchUpLog ?? null, liftedPain: data.liftedPain, sport: catchUpSportOf(data, ctx, nowMs),
     painFrozen: (ex) => painFrozen({ movementId: ex.movementId, zones: zonesOfMovement(ex.movementId), sets: data.sets, sessions: data.sessions, zonesOfMovement }),
   });
 }
@@ -124,6 +169,12 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
   const [sets, equipments, injuries, sessions, profiles, programs] = await Promise.all([
     listTrusted('sets'), list('equipment'), list('injuries'), listTrusted('sessions'), list('profile'), list('programs'),
   ]);
+  let sportError = false;
+  const sportSessions = await list('sportSessions').catch(() => { sportError = true; return [] as SportSession[]; });
+  let liftedPain = false;
+  try { liftedPain = liftedPainRecent(await listAll('injuries'), Date.now()); } catch { liftedPain = true; }
+  const myProfile = profiles.find((p) => p.id === profile.id) ?? profile;
+  const sportPlan = myProfile.sportPlan ?? [];
   const zonesOfMovement = (id: string): readonly string[] => Object.keys(fiches.find((f) => f.id === id)?.securite.zones ?? {});
   // §6 / §8 [kine] : une séance prévue manquée (ou renoncée) depuis la dernière séance faite : aucune montée à la séance de retour.
   const active = programs.filter((p) => p.active && !p.deletedAt)[0];
@@ -144,7 +195,10 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
   fiches.forEach((f) => f.variantes.forEach((v) => variants.set(v.id, v)));
   const loaded = await loadGeneratorInput(asGenFiches(fiches)).catch(() => null);
   const gctx: Ctx | null = loaded ? buildCtx(loaded.input) : null;
-  const frozen = symptomFrozen(sessions);
+  // « Mon sport » (étape 1, signalé par le dev) : une gêne notée SANS zone arrête la progression pendant 2 jours (valeur la plus lourde).
+  let sportPain = false;
+  try { sportPain = sportLoad(sportSessions, sportPlan, new Date()).unknownPainRecent; } catch { sportPain = true; }
+  const frozen = symptomFrozen(sessions) || sportPain;
   const info = gctx ? (ex: PlannedExercise) => echelonInfoFor(ex, { ctx: gctx, sets, sessions, events, excludeSessionId }) : undefined;
   const ctx = buildEngineContext({
     sets,
@@ -186,6 +240,10 @@ export async function loadPlayerData(fiches: Fiche[], profile: Profile, excludeS
     sessions,
     events,
     frozen,
+    sport: { sessions: sportSessions, plan: sportPlan },
+    sportError,
+    liftedPain,
+    catchUpLog: myProfile.catchUpLog,
     input: loaded?.input ?? null,
     repriseActive: repriseOf(profiles.find((p) => p.id === profile.id) ?? profile).actif,
     startReps: (ex) => {

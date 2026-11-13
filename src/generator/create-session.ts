@@ -4,7 +4,9 @@
 // (buildExercise), ses plafonds (plaf.ts : 11 / 12 par muscle, 20 par semaine), ses supersets D26 (formAllPairs), sa durée (estimerDuree),
 // les verrous de 6ter (createSessionCheck), les contacts (JUMPS) et les blocs de sauts (plioBlockMin). Toutes les valeurs sont dans
 // config.ts (CREER_SEANCE, avec leurs statuts) ; ce fichier ne contient aucune dose.
-import type { Level } from '../data/model';
+import type { InjuryZone, Level, SportKey, SportPlanEntry, SportSession } from '../data/model';
+import { SPORT, SPORT_GATE_TEXT } from '../sport/sport-config';
+import { sportGate, sportLoad, type SportGate } from '../sport/sport-load';
 import { D30_TEXT } from '../session/messages';
 import {
   CREER_SEANCE, IMPACT_EXCLUDED_ZONES, itemNom, JUMPS, VOLUME, type CreateBlock, type CreateEntry, type CreateIntensity, type CreateZone,
@@ -16,6 +18,7 @@ import { createSessionCheck, plioBlockMin, variantSafe, type CreateState } from 
 import { frac, makePlaf, sessionCapsOk, sessionVol, weekMusclesOf } from './plaf';
 import { allowedVariants, caseFor, resolveFiche, USABLE_STATUTS, warmupVariant, type Candidate } from './safety';
 import { rankSlot, type SessionState } from './slots';
+import { GROUP_OF, RACQUET_PREVENTION, SHOULDER_IDS, SHOULDER_PREVENTION, SPORT_LISTS, UPPER_PUSH_IDS, UPPER_PUSH_SCHEMAS, type SportEntry } from './sport-lists';
 import type { Fiche, FicheVariant, GeneratorInput, GenExercise, JumpBlock, JumpItem, SlotKey, WarmupItem } from './types';
 import { generalWarmup, mobilityWarmup } from './warmup';
 
@@ -25,7 +28,7 @@ const DAY_MS = 24 * H_MS;
 // ----- Entrées -----
 export interface CreateSessionRequest {
   zone: CreateZone;
-  sport?: 'foot' | 'danse' | 'volley' | 'raquette' | null;
+  sport?: SportKey | null;
   /** §1 : objectif de la séance ; « détente » active les sauts (jambes ou corps entier). Absent : l'objectif du profil. */
   objective?: 'forme' | 'detente' | 'sport';
   /** §1 : case « avec des sauts » ; absent = pré-cochée pour volley et danse et pour l'objectif détente, décochée sinon (D31 n° 2). */
@@ -51,6 +54,8 @@ export interface CreateHistoryItem {
   pain?: boolean;
   /** Séance avec impact (sauts ou course). */
   impact?: boolean;
+  /** Sport demandé pour cette séance créée (compte la prévention des raquettes : 2 fois par semaine au plus). */
+  sport?: string | null;
 }
 export interface CreateContext {
   sessions?: readonly CreateHistoryItem[];
@@ -65,6 +70,11 @@ export interface CreateContext {
   stopSignRecent?: boolean;
   /** SUP-10 : muscles principaux de la séance de la veille ; absent ou null = inconnu (aucune paire). */
   veilleMuscles?: readonly string[] | null;
+  /**
+   * « Mon sport » : séances de sport notées et sports déclarés. La charge est calculée à la date de la demande (sportLoad) : elle ne fait que
+   * REFUSER, ALLÉGER ou DÉCALER (jambes, sauts, épaule, gêne), jamais relever une dose. Absent = aucun sport connu.
+   */
+  sport?: { sessions: readonly SportSession[]; plan: readonly SportPlanEntry[] };
 }
 
 // ----- Sortie -----
@@ -101,6 +111,8 @@ export interface CreatedSession {
   heavyLegs: boolean;
   /** Séance avec impact (sauts réels). */
   impact: boolean;
+  /** Ids des fiches de prévention du sport ajoutées à l'échauffement (vide hors sport). */
+  prevention: string[];
   /** « Séance ponctuelle : elle s'ajoute à ton programme, elle ne le remplace pas. » */
   header: string;
   warnings: CreateMessage[];
@@ -111,6 +123,11 @@ export type CreateSessionResult =
 
 // ----- Outils -----
 const T = CREER_SEANCE.text;
+/** Raison affichée d'un verrou des sauts venu du sport (« Pas de sauts aujourd'hui : … »). */
+const SPORT_LOCK_TEXT: Record<NonNullable<SportGate['jumpLock']>, string> = {
+  'sport-sauts-48h': SPORT_GATE_TEXT.jumpsSport48, 'sport-contacts': SPORT_GATE_TEXT.jumpsContacts, 'sport-jambes-24h': SPORT_GATE_TEXT.jumpsLight, 'sport-match': SPORT_GATE_TEXT.jumpsMatch,
+};
+const SENSITIVE_IDS: ReadonlySet<string> = new Set(Object.values(SPORT_LISTS).flatMap((l) => [...l.legs, ...l.upper]).filter((x) => x.shoulderSensitive).map((x) => x.id));
 const LEG_SCHEMAS = ['squat', 'fente', 'charniere', 'cheville_mollet', 'hanche_laterale'];
 const isLegFiche = (f: Pick<Fiche, 'schema'>): boolean => LEG_SCHEMAS.includes(f.schema);
 
@@ -255,7 +272,7 @@ const roundUp5 = (min: number): number => Math.ceil(min / 5) * 5;
  * createSession : une séance ponctuelle (jamais le programme). Renvoie la séance composée (échauffement, sauts, force, retour au calme,
  * avertissements) ou un refus avec message. Aucune séance n'est « forcée » : si un verrou tombe, elle est composée sans saut ou refusée.
  */
-export function createSession(input: GeneratorInput, request: CreateSessionRequest, context: CreateContext = {}): CreateSessionResult {
+export function createSession(input0: GeneratorInput, request: CreateSessionRequest, context: CreateContext = {}): CreateSessionResult {
   const C = CREER_SEANCE;
   const warnings: CreateMessage[] = [];
   const warn = (id: string, text: string) => warnings.push({ id, text });
@@ -265,6 +282,16 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
   const zone = request.zone;
   const legs = zone === 'jambes' || zone === 'corps_entier';
   const goalKey = request.objective ? C.objectiveGoal[request.objective] : undefined;
+  // « Mon sport » : charge à la date de la demande ; une gêne notée devient un niveau 1 temporaire (3 si renvoi vers un professionnel) sans toucher au profil.
+  const load = context.sport ? sportLoad(context.sport.sessions, context.sport.plan, new Date(nowMs)) : null;
+  const sportInjuries: NonNullable<GeneratorInput['injuries']> = [];
+  if (load) {
+    const lv: Partial<Record<InjuryZone, number>> = {};
+    for (const z of load.tempPainZones) lv[z] = 1;
+    for (const z of load.consult?.zones ?? []) lv[z] = 3;
+    for (const [zone, level] of Object.entries(lv)) sportInjuries.push({ zone: zone as InjuryZone, level: level as 1 | 3, active: true, deletedAt: null, updatedAt: request.todayIso });
+  }
+  const input: GeneratorInput = sportInjuries.length ? { ...input0, injuries: [...(input0.injuries ?? []), ...sportInjuries] } : input0;
   const ctx = buildCtx({
     ...input,
     ...(goalKey ? { goals: [{ goalKey, rank: 1 }] } : {}),
@@ -272,22 +299,35 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
   });
   const sessions = [...(context.sessions ?? [])].map((s) => ({ ...s, t: Date.parse(s.endIso) })).filter((s) => Number.isFinite(s.t));
 
+  const gate: SportGate | null = load ? sportGate(load, ctx.level, JUMPS.startContacts[ctx.level]) : null;
+  const sportKey = request.sport ?? null;
+  const group = sportKey ? GROUP_OF[sportKey] : undefined;
+  const pause = !!context.pauseOver2Weeks || (!!sportKey && !!load?.pauseOver14);
+
   // ----- Refus (§4) -----
+  if (gate?.dayLocked) return refuse('sport-malaise', SPORT_GATE_TEXT.malaiseDay, warnings);
   if (legs && ctx.pregnant) return refuse('grossesse', T.pregnancy, warnings, ['haut', 'tronc']);
   const heavyEnds = sessions.filter((s) => s.heavyLegs).map((s) => s.t);
   const lastHeavyEndMs = heavyEnds.length ? Math.max(...heavyEnds) : null;
   const hoursHeavy = lastHeavyEndMs === null ? Infinity : (nowMs - lastHeavyEndMs) / H_MS;
   if (legs && hoursHeavy < C.spacing.refuseHours) return refuse('jambes-trop-proches', T.tooClose, warnings, ['haut', 'tronc']);
-  const softened = legs && hoursHeavy < C.spacing.softenHours;
+  if (legs && gate?.legs === 'refuse') return refuse('sport-jambes-trop-proches', SPORT_GATE_TEXT.legsRefuse, warnings, ['haut', 'tronc']);
+  const softenedByLegs = legs && hoursHeavy < C.spacing.softenHours;
+  const softened = softenedByLegs || (legs && gate?.legs === 'soften');
   const intensity: CreateIntensity = softened ? 'douce' : request.intensity;
-  if (softened) warn('adoucie', T.softened);
+  if (softenedByLegs) warn('adoucie', T.softened);
+  else if (softened) warn('adoucie', gate?.matchTomorrow ? SPORT_GATE_TEXT.matchTomorrow : SPORT_GATE_TEXT.legsSoften);
   else if (legs && hoursHeavy < C.spacing.warnHours) warn('moins-de-72h', T.warn72);
+  else if (legs && gate?.legs === 'warn') warn('moins-de-72h', SPORT_GATE_TEXT.legsWarn);
+  if (gate?.consult) warn('sport-consulter', SPORT_GATE_TEXT.consult);
+  if (load && (load.events.length || gate?.consult)) warn('sport-estimation', SPORT_GATE_TEXT.estimate);
+  if (sportKey === 'autre') warn('sport-autre', SPORT_GATE_TEXT.autre);
   if (legs && context.heavyLegsTomorrow) warn('jambes-demain', T.tomorrowLegs);
   const chairStable = !!request.chairStable;
   if (!chairStable && legs) warn('chaise', T.unstableChair);
 
   // ----- Sauts : demandés ? permis ? (§3, §4, createSessionCheck) -----
-  const jumpsWanted = request.jumps ?? (!!request.sport && C.jumpSports.includes(request.sport) || request.objective === 'detente');
+  const jumpsWanted = sportKey === 'autre' ? false : request.jumps ?? (!!request.sport && C.jumpSports.includes(request.sport) || request.objective === 'detente');
   let jumpsOn = jumpsWanted && legs;
   if (jumpsWanted && !legs) warn('sauts-hors-jambes', T.detenteNoLegs);
   const jumpsOff = (code: string) => {
@@ -300,17 +340,22 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
     const st: CreateState = {
       level: ctx.level, pregnant: ctx.pregnant, zones: ctx.zones, interruptedToday: !!context.interruptedToday,
       lastHeavyEndMs, lastJumpEndMs: lastJump?.t ?? null, impactEndsMs: sessions.filter((s) => s.impact || s.jumps).map((s) => s.t),
-      heavyTomorrow: !!context.heavyLegsTomorrow, pauseOver2Weeks: !!context.pauseOver2Weeks, nowMs,
+      heavyTomorrow: !!context.heavyLegsTomorrow, pauseOver2Weeks: pause, nowMs,
     };
     const check = createSessionCheck({ jumps: true, run: false, legsStrength: true }, st);
     const painZone = [...ctx.recentPainZones].some((z) => IMPACT_EXCLUDED_ZONES.includes(z));
     const lock = check.locks[0]
       ?? (softened ? 'adoucie' : painZone ? 'douleur-recente' : ctx.repriseActive ? 'reprise' : recentJump?.pain ? 'douleur-sauts-recents' : context.stopSignRecent ? 'signe-arret' : null);
+    const sportLock = gate?.unknownPain ? SPORT_GATE_TEXT.jumpsUnknownPain : gate?.jumpLock ? SPORT_LOCK_TEXT[gate.jumpLock] : group === 'sauts' && intensity === 'soutenue' ? SPORT_GATE_TEXT.jumpsSoutenue : null;
     if (lock) jumpsOff(lock);
-    else {
+    else if (sportLock) {
+      jumpsOn = false;
+      warn('sauts-off', `${T.jumpsOff}${sportLock}.`);
+    } else {
+      if (gate?.jumpWarn) warn('sport-sauts-72h', SPORT_GATE_TEXT.jumps72);
       if (check.warnings.includes('jambes-lourdes')) warn('jambes-lourdes', T.heavyLegs);
       if (check.warnings.includes('moins-de-72h')) warn('sauts-moins-de-72h', T.warn72);
-      if (check.warnings.includes('reprise') || context.pauseOver2Weeks) warn('reprise', 'Reprise après une pause : les contacts repartent du niveau de départ.');
+      if (check.warnings.includes('reprise') || pause) warn('reprise', 'Reprise après une pause : les contacts repartent du niveau de départ.');
     }
   }
 
@@ -340,9 +385,10 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
       if (picked.length >= need) break;
       const f = jumpFiche(p.ficheId);
       if (!f || levelIdx(C.plioMinLevel) > ctx.levelI || !USABLE_STATUTS.includes(f.statut) || !variantSafe(f, ctx, p.variantId)) continue;
-      picked.push({ ficheId: p.ficheId, variantId: p.variantId, softVariantId: p.softVariantId && variantSafe(f, ctx, p.softVariantId) ? p.softVariantId : null, reps: p.reps, series: C.jumpStartSeries[picked.length] ?? 2 });
+      if (group === 'sauts' && pause && p.ficheId === 'rebonds-chevilles') continue; // reprise : pas de rebonds (kine 13/11/2026)
+      picked.push({ ficheId: p.ficheId, variantId: p.variantId, softVariantId: p.softVariantId && variantSafe(f, ctx, p.softVariantId) ? p.softVariantId : null, reps: p.reps, series: group === 'sauts' ? Math.min(2, C.jumpStartSeries[picked.length] ?? 2) : C.jumpStartSeries[picked.length] ?? 2 });
     }
-    const budget = contactBudget(ctx.level, intensity, recentJump, !!context.pauseOver2Weeks) - JUMPS.warmupBounces;
+    const budget = contactBudget(ctx.level, intensity, recentJump, pause) - JUMPS.warmupBounces;
     const trimTo = (b: number) => {
       while (picked.length && picked.reduce((a, x) => a + x.series * x.reps, 0) > b) {
         const last = picked[picked.length - 1];
@@ -360,17 +406,49 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
   const items: Item[] = [];
   const used = new Set<string>(softBlock ? [C.beginnerSoft.ficheId] : []);
   const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1));
-  const nForce = strengthCount(D, !!plio || !!softBlock);
+  // Sauts retirés à cause du sport : la place du bloc de sauts n'est PAS rendue à de la force (la charge ne fait que retirer, jamais ajouter).
+  const sportRestricts = !!gate && (gate.legs === 'soften' || !!gate.jumpLock || gate.unknownPain || (group === 'sauts' && intensity === 'soutenue'));
+  const nForce = strengthCount(D, !!plio || !!softBlock || (jumpsWanted && legs && sportRestricts));
   const mk = (cand: Candidate, slot: SlotKey, tier: GenExercise['tier'], extra: { block: CreatedExercise['block']; prio: number; ord: number; entry?: CreateEntry; slow?: boolean }) => {
     const fl = afterJumpsFlag();
     const ex = applyDose(buildExercise(cand, slot, tier, ctx), ctx, fl, { entry: extra.entry, slow: extra.slow });
     items.push({ ex: { ...ex, block: extra.block, ...(extra.entry?.tempo ? { tempo: extra.entry.tempo } : {}) }, prio: extra.prio, ord: extra.ord });
     used.add(cand.fiche.id);
   };
+  // Sport connu : listes fermées de sport (saisie-sport-v1.md §4 et §7), en priorité ; les blocs habituels complètent ensuite. Jamais pendant la grossesse.
+  const sportList = group && !ctx.pregnant ? SPORT_LISTS[group] : null;
+  const shoulderState = gate?.shoulder ?? 'free';
+  /** Haut du corps le jour d'un sport qui charge l'épaule : ni poussée verticale, dips, lancer, ni exercice d'épaule fragile (§7 (a), (c)). */
+  // Gêne d'épaule de niveau >= 1 (profil OU gêne notée au sport, 2 jours) : rotation externe seule, ni au-dessus de la tête ni appui chargé (§7 (d)).
+  const shoulderInjured = ctx.zones.some((z) => !z.isG && z.key === 'epaule' && z.level >= 1);
+  if (shoulderInjured && zone !== 'jambes' && sportKey && SPORT.shoulderFamilies.includes(sportKey)) warn('sport-epaule-gene', SPORT_GATE_TEXT.shoulderPain);
+  if (gate?.unknownPain) warn('sport-gene-inconnue', SPORT_GATE_TEXT.unknownPain);
+  const upperOk = (c: Candidate): boolean => {
+    if (shoulderInjured && (SENSITIVE_IDS.has(c.fiche.id) || UPPER_PUSH_IDS.includes(c.fiche.id))) return false;
+    if (!gate?.noUpperPush) return true;
+    if (UPPER_PUSH_SCHEMAS.includes(c.fiche.schema) || UPPER_PUSH_IDS.includes(c.fiche.id)) return false;
+    if (shoulderState !== 'free' && SENSITIVE_IDS.has(c.fiche.id)) return false;
+    if (shoulderState === 'none' && SHOULDER_IDS.includes(c.fiche.id)) return false;
+    return true;
+  };
   if (zone === 'jambes') {
     const lists = ctx.level === 'debutant' ? 'debutant' : 'autres';
     const seen: Record<string, number> = {};
     let prio = 0;
+    if (sportList) {
+      const quota = Math.max(1, Math.ceil(nForce / 2));
+      const fl0 = afterJumpsFlag();
+      sportList.legs.forEach((entry, idx) => {
+        if (items.length >= quota || used.has(entry.id)) return;
+        if (entry.startOnly && (plio || softBlock || softened || gate?.matchTomorrow)) return;
+        const cand = candidateFor(entry, ctx, fl0);
+        if (!cand) return;
+        const posterior = cand.fiche.schema === 'charniere';
+        const kk = (seen[posterior ? 'posterior' : 'slow'] = (seen[posterior ? 'posterior' : 'slow'] ?? 0) + 1) - 1;
+        const slot: SlotKey = posterior ? (kk === 0 ? 'charniere' : 'jambes_4') : kk === 0 ? 'jambes_2' : 'jambes_4';
+        mk(cand, slot, 'a', { block: posterior ? 'posterior' : 'slow', prio: 0, ord: -20 + idx, entry, slow: true });
+      });
+    }
     for (const block of C.legs.priority) {
       if (items.length >= nForce) break;
       prio++;
@@ -396,7 +474,12 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
       const state: SessionState = { label, placedSchema: st.placedSchema };
       const fl = afterJumpsFlag();
       const ranked = rankSlot(slotKey, state, used, ctx, pool);
-      const pick = ranked.find((r) => variantRuleOk(r.cand.fiche, r.cand.variant, ctx, fl) && !(fl.softened && r.cand.fiche.id === 'nordique-ischios'));
+      const okPick = (r: (typeof ranked)[number]): boolean => variantRuleOk(r.cand.fiche, r.cand.variant, ctx, fl) && !(fl.softened && r.cand.fiche.id === 'nordique-ischios') && upperOk(r.cand);
+      const upperEntry = (id: string): SportEntry | undefined => sportList?.upper.find((x) => x.id === id);
+      const sportPick = sportList && slotKey !== 'jambes_genou' && slotKey !== 'charniere'
+        ? ranked.find((r) => { const en = upperEntry(r.cand.fiche.id); return !!en && !(shoulderInjured && !!sportKey && SPORT.shoulderFamilies.includes(sportKey) && en.id !== 'rotation-externe-epaule') && levelIdx(en.minLevel) <= ctx.levelI && en.variants.includes(r.cand.variant.id) && okPick(r); })
+        : undefined;
+      const pick = sportPick ?? ranked.find(okPick);
       if (!pick) return;
       st.placedSchema[slotKey] = pick.cand.fiche.schema;
       mk(pick.cand, slotKey, pick.tier, { block: 'general', prio: i, ord: i });
@@ -500,6 +583,8 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
   }
   if (totalSec() > limitSec()) return refuse('duree-trop-courte', T.tooShort, warnings);
 
+  if (gate?.noUpperPush && zone !== 'jambes' && zone !== 'tronc') warn('sport-epaule', SPORT_GATE_TEXT.shoulderDay);
+
   // ----- Assemblage : échauffement, sauts, force, retour au calme -----
   const final = arranged();
   const finalPlio = plio as PlioItem[] | null;
@@ -528,6 +613,26 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
     const it = wItem(id, ctx, 45);
     if (it && !mobility.some((m) => m.ficheId === it.ficheId)) mobility.push(it);
   }
+  // Prévention du sport (échauffement, 2 exercices, 3 dès 45 min) : jamais en grossesse, jamais pour « autre », raquette seulement avec son texte et 2 fois par semaine au plus.
+  const prevention: string[] = [];
+  if (group && sportKey && sportKey !== 'autre' && !ctx.pregnant) {
+    const racquetDone = (context.sessions ?? []).filter((s) => s.sport === 'raquette' && nowMs - Date.parse(s.endIso) < 7 * DAY_MS).length;
+    if (!(sportKey === 'raquette' && racquetDone >= RACQUET_PREVENTION.maxPerWeek)) {
+      const shoulderId = SHOULDER_PREVENTION[sportKey];
+      const ids = [...(shoulderId && zone !== 'jambes' ? [shoulderId] : []), ...SPORT_LISTS[group].prevention];
+      const want = D >= C.cooldownLongFromMin ? 3 : 2;
+      for (const id of ids) {
+        if (prevention.length >= want) break;
+        if (SHOULDER_IDS.includes(id) && (shoulderState === 'none' || zone === 'jambes')) continue;
+        if (mobility.some((m) => m.ficheId === id)) continue;
+        const it = wItem(id, ctx, 45);
+        if (!it || !offChair(it)) continue;
+        mobility.push(it);
+        prevention.push(id);
+      }
+      if (prevention.length && sportKey === 'raquette') warn('prevention-raquette', SPORT_GATE_TEXT.racquetPrevention);
+    }
+  }
   const general0 = generalWarmup(ctx);
   const general = offChair(general0) ? general0 : null;
   const generalSec = Math.max(0, warmupMin * 60 - mobility.reduce((a, m) => a + m.sec, 0));
@@ -543,7 +648,7 @@ export function createSession(input: GeneratorInput, request: CreateSessionReque
     warmup: { general: general ? { ...general, sec: Math.min(general.sec, generalSec) || general.sec } : null, generalSec, mobility, minutes: warmupMin, bounces: contacts ? JUMPS.warmupBounces : 0 },
     jumps, exercises: final, cooldown: { items: cooldownItems, minutes: cooldownMin }, contacts,
     totalSets: totalSets(), estimatedSec: sec, estimatedMin: Math.min(D, roundUp5(sec / 60)),
-    heavyLegs, impact: contacts > 0, header: T.header, warnings,
+    heavyLegs, impact: contacts > 0, prevention, header: T.header, warnings,
   };
   return { ok: true, session, warnings };
 }

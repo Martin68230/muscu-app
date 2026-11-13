@@ -466,10 +466,10 @@ describe('T-D26-14 à 21, 24 à 27 : sécurité (dos, grossesse, CORE-ORD-4), P3
     for (const id of Object.keys(paths)) expect(ids).not.toContain(id);
   });
 
-  it('famille_core posée sur les 24 fiches de l’inventaire (copenhague-court sans famille)', () => {
+  it('famille_core posée sur les 29 fiches de l’inventaire (24 + 5 du lot 03, 13/11/2026) (copenhague-court sans famille)', () => {
     const inv = readFileSync('knowledge/famille-core-inventaire.md', 'utf8');
     const withFamily = FICHES.filter((f) => f.familleCore);
-    expect(withFamily.length).toBe(24);
+    expect(withFamily.length).toBe(29);
     expect(FICHES.find((f) => f.id === 'copenhague-court')?.familleCore).toBeUndefined();
     for (const f of withFamily) expect(inv).toContain(`| ${f.id} |`);
   });

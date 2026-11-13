@@ -33,6 +33,11 @@ Valeurs de `famille_core` : `gainage` (CF1), `anti_rotation` (CF2), `rotation` (
 | lancer-rotation-mur | rotation | intermediaire | CF3 | lancer rotatif rapide (non proposé par défaut selon le kiné) | non |
 | crunch-bicyclette | rotation | debutant | CF4 | flexion et rotation dynamiques ; **niveau_min `debutant`, statut `verifie`, en contradiction avec CORE-SEC-1** | **tranché : CF4 (flexion), avec les restrictions de CF3 en plus** (la plus restrictive prévaut). Retirée pour le débutant (donc `niveau_min` à relever à `intermediaire`, à faire par `dev`), en grossesse et post-partum, dès le dos niveau 1, et dans toute séance à charge lourde (CORE-ORD-4). Flexion et rotation rapides combinées : choix de prudence, NON SOURCÉ |
 | extension-dorsale-ballon | charniere | intermediaire | CF5 | extension du tronc sur ballon, muscle principal érecteurs | **tranché : CF5, mais ne compte PAS dans le plancher de core** (schéma `charniere`, hors GG5). Elle suit les restrictions de CF5 : dos niveau 1 courte et lente sans lest, niveau 2 et 3 retirée ; retirée en grossesse et post-partum ; jamais en superset ; jamais après une charge lourde (CORE-ORD-4) |
+| crunch-au-sol | gainage | debutant | CF4 | flexion courte du tronc au sol (vague 2 lot 03, validé kine 13/11/2026) ; schéma `gainage` faute de schéma dédié | non : flexion, donc jamais pour le débutant, la grossesse ni le post-partum ; dos niveau 1 courte et sans charge, niveau 2 retiré (CORE_DOS) ; dose fixe 2 x 6 à 8 lentes (FIXED_DOSE) |
+| releve-bassin-jambes-pliees | gainage | intermediaire | CF4 | enroulé du bassin jambes pliées en l'air (lot 03, validé kine 13/11/2026) ; schéma `gainage` faute de schéma dédié | non : mêmes restrictions que crunch-au-sol ; dose fixe 2 x 6 à 8 lentes |
+| superman-alterne | charniere | debutant | CF5 | extension au sol, bras et jambe opposés (lot 03) | non : CF5 hors plancher (schéma `charniere`), jamais en superset, retiré dès le dos niveau 2, jamais exercice principal |
+| nage-au-sol | charniere | intermediaire | CF5 | extension au sol, battements lents (lot 03) | non : mêmes restrictions que superman-alterne |
+| gainage-lateral-dynamique | gainage | intermediaire | CF1 | appui latéral avec descente de la hanche (lot 03, validé kine 13/11/2026) | non : CF1 dynamique (retirée au dos niveau 2 comme planche-cercles-ballon, exclue après une charge lourde), dose fixe 2 x 6 à 8 par côté ; grossesse : retirée par la fiche |
 
 Total : 25 fiches relevées, dont 5 étaient « à trancher » et l'ont été par le kiné (2e passage, colonne de droite) : **24 fiches ont une famille** (10 CF1, 7 CF2, 5 CF3, 1 CF4, 1 CF5) et **1 (copenhague-court) est hors famille core**. Parmi les 24, extension-dorsale-ballon (CF5) ne compte pas dans le plancher.
 
@@ -44,6 +49,9 @@ Total : 25 fiches relevées, dont 5 étaient « à trancher » et l'ont été pa
 
 ## Décision du kiné, 2e passage (30/10/2026)
 Les 5 fiches « à trancher » le sont (voir colonne de droite). `rotation-bucheron`, `bucheron-ballon-lest` et `crunch-bicyclette` : relever `niveau_min` à `intermediaire` (à faire par `dev`, aucune fiche modifiée ici) ; CORE-SEC-1 reste strict (aucune rotation pour un débutant), l'exclusion par famille restant en filet de sécurité. Assouplir pour la rotation au poids du corps n'est pas retenu : aucune source.
+
+## Ajout du 13/11/2026 (vague 2 lot 03)
+Cinq fiches ajoutées (crunch-au-sol, releve-bassin-jambes-pliees, superman-alterne, nage-au-sol, gainage-lateral-dynamique) : **29 fiches ont maintenant une famille** (11 CF1, 7 CF2, 5 CF3, 3 CF4, 3 CF5). Les trous CF4 et CF5 ci-dessous sont partiellement comblés.
 
 ## Trous constatés
 - **CF4 (flexion du tronc) : une seule fiche** (crunch-bicyclette, tranchée CF4 avec restrictions de CF3) (pas de relevé de buste court, pas de relevé de jambes, pas de flexion latérale dynamique).

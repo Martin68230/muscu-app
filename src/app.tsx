@@ -15,6 +15,7 @@ import { loadFiches, type Fiche as FicheData } from './data/fiches';
 import { SessionController } from './session/store';
 import { SessionPreview } from './ui/screens/Preview';
 import { SessionPlayer } from './ui/screens/Player';
+import { recordCatchUpLog } from './zones/catchup-log';
 import { applyEnvOf, catchUpOf, loadPlayerData, type PlayerData } from './ui/session/launch';
 import { applyAccepted } from './session/adapt-accept';
 import { recordAdaptResult } from './session/progression-store';
@@ -24,6 +25,7 @@ import { programWeek, rotationFreeze, withProgramWeek } from './session/program'
 import { repriseOf } from './session/missed-config';
 import { saveReprise } from './session/missed-store';
 import { CreateSessionScreen } from './ui/screens/CreateSession';
+import { NoteSport } from './ui/screens/MySport';
 import type { CreatedSession, CreateSessionRequest } from './generator';
 import { createdDay, metaOf, scheduleCreated, type ScheduledCreated } from './session/create-store';
 
@@ -31,6 +33,8 @@ import { createdDay, metaOf, scheduleCreated, type ScheduledCreated } from './se
 const previewFromHash = (): boolean => location.hash === '#/seance';
 /** #/creer : écran « Créer une séance » (D28). */
 const createFromHash = (): boolean => location.hash === '#/creer';
+/** #/sport : écran « Noter une séance de sport » (Mon sport). */
+const sportFromHash = (): boolean => location.hash === '#/sport';
 
 interface Playing {
   controller: SessionController;
@@ -58,6 +62,7 @@ export function App() {
   const [preview, setPreview] = useState(previewFromHash());
   /** D28 : écran « Créer une séance » ouvert ; prefill = séance ajoutée au calendrier que l'on prépare. */
   const [create, setCreate] = useState<{ prefill: ScheduledCreated | null } | null>(createFromHash() ? { prefill: null } : null);
+  const [sportNote, setSportNote] = useState(sportFromHash());
   /** Séance en cours dans le lecteur (plein écran, sans barre d'onglets). */
   const [playing, setPlaying] = useState<Playing | null>(null);
   /** Parcours du profil : 'all' = les cartes à la suite ; sinon une seule carte (modification depuis Profil). */
@@ -72,6 +77,7 @@ export function App() {
       setFicheId(ficheFromHash());
       setPreview(previewFromHash());
       setCreate((c) => (createFromHash() ? c ?? { prefill: null } : null));
+      setSportNote(sportFromHash());
     };
     addEventListener('hashchange', onHash);
     return () => removeEventListener('hashchange', onHash);
@@ -83,6 +89,11 @@ export function App() {
     setFicheId(null);
     setPreview(false);
     setCreate(null);
+    setSportNote(false);
+  };
+  const openSport = () => {
+    setSportNote(true);
+    location.hash = '#/sport';
   };
   const openCreate = (prefill: ScheduledCreated | null = null) => {
     setTab('accueil');
@@ -102,6 +113,8 @@ export function App() {
     const accepted = applyAccepted(weekDay, applyEnvOf(data, !!plan?.state.actif, { program, dayIndex, nowMs: Date.now() }));
     // Niveau 2, étape 3 : séries de rattrapage des zones peu travaillées la semaine écoulée (première séance de la semaine, recalculé).
     const catchUp = catchUpOf(data, program, dayIndex, accepted.day, !!plan?.state.actif, Date.now());
+    // RAT-2 / RAT-3 : petit journal local (zones basses de la semaine, exercice rattrapé, cause) ; jamais une donnée de santé.
+    if (catchUp?.weekKey) await recordCatchUpLog(catchUp.weekKey, catchUp.log);
     const controller = await SessionController.start(program, dayIndex, data.ctx, undefined, { day: plan?.state.actif ? plan.day : catchUp?.day ?? accepted.day });
     await recordAdaptResult(accepted).catch(() => undefined);
     if (plan) await saveReprise(() => plan.state);
@@ -136,6 +149,7 @@ export function App() {
     location.hash = '#/accueil';
     setPreview(false);
     setCreate(null);
+    setSportNote(false);
   };
 
   if (!profile) return null;
@@ -176,8 +190,9 @@ export function App() {
 
   return (
     <div class="shell">
-      <main class="screen" key={ficheId ? `fiche-${ficheId}` : create ? 'creer' : preview ? 'seance' : tab}>
-        {tab === 'accueil' && create && (
+      <main class="screen" key={ficheId ? `fiche-${ficheId}` : sportNote ? 'sport' : create ? 'creer' : preview ? 'seance' : tab}>
+        {sportNote && <NoteSport profile={profile} onBack={() => go('accueil')} onEditPlan={() => go('profil')} />}
+        {tab === 'accueil' && !sportNote && create && (
           <CreateSessionScreen
             profile={profile}
             prefill={create.prefill}
@@ -187,7 +202,7 @@ export function App() {
             onSchedule={scheduleCreatedDay}
           />
         )}
-        {tab === 'accueil' && !preview && !create && (
+        {tab === 'accueil' && !sportNote && !preview && !create && (
           <Home
             profile={profile}
             onStart={() => setWizard('all')}
@@ -196,13 +211,14 @@ export function App() {
             onOpenSession={() => (location.hash = '#/seance')}
             onOpenHistory={() => go('calendrier')}
             onCreateSession={() => openCreate()}
+            onNoteSport={openSport}
           />
         )}
-        {tab === 'accueil' && preview && <SessionPreview profile={profile} onBegin={begin} />}
-        {tab === 'calendrier' && <Calendar profile={profile} onPrepareCreated={(c) => openCreate(c)} />}
-        {tab === 'bibliotheque' && !ficheId && <Library />}
-        {tab === 'bibliotheque' && ficheId && <Fiche id={ficheId} pregnancy={profile.pregnancy} />}
-        {tab === 'profil' && <Profile profile={profile} onChange={setProfile} onWiped={load} onEditStep={(s) => setWizard(s ?? 'all')} />}
+        {tab === 'accueil' && !sportNote && preview && <SessionPreview profile={profile} onBegin={begin} />}
+        {tab === 'calendrier' && !sportNote && <Calendar profile={profile} onPrepareCreated={(c) => openCreate(c)} onNoteSport={openSport} />}
+        {tab === 'bibliotheque' && !sportNote && !ficheId && <Library />}
+        {tab === 'bibliotheque' && !sportNote && ficheId && <Fiche id={ficheId} pregnancy={profile.pregnancy} />}
+        {tab === 'profil' && !sportNote && <Profile profile={profile} onChange={setProfile} onWiped={load} onEditStep={(s) => setWizard(s ?? 'all')} onNoteSport={openSport} />}
       </main>
       <TabBar current={tab} onSelect={go} />
     </div>

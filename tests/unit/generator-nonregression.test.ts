@@ -111,6 +111,7 @@ import { mk, type MkOpts } from './generator-helpers';
 // extension-genou-elastique, extension-hanche-quatre-pattes, haussement-epaules-halteres) : 378 cas sur 662 changent ; vérifié qu'en retirant ces 7 fiches les 662 empreintes
 // redeviennent identiques à l'ancienne référence (seul effet : les nouvelles fiches). Six sont exclues des piliers (PILLAR_EXCLUDED_FICHES).
 // Référence régénérée le 13/11/2026 pour la vague 2 lot 02 (4 fiches : montee-rapide-chaise, good-morning-elastique, balances-de-jambe, extension-triceps-sol-leger) : 30 cas sur 662 changent ; vérifié qu'en retirant ces 4 fiches les 662 empreintes redeviennent identiques à l'ancienne référence. Seule montee-rapide-chaise est placée (jambes_2, 2 x 6 par jambe, FIXED_DOSE) ; exclue des piliers.
+// Référence régénérée le 13/11/2026 pour la vague 2 lot 03 (11 fiches : crunch-au-sol, releve-bassin-jambes-pliees, superman-alterne, nage-au-sol, gainage-lateral-dynamique, presse-des-mains, fente-laterale-glissee-serviette, adduction-hanche-elastique-debout, extension-hanche-debout-elastique, montee-laterale-marche, fente-marchee-halteres) : 123 cas sur 662 changent ; vérifié qu'en retirant ces 11 fiches les 662 empreintes redeviennent identiques à l'ancienne référence. Huit sont exclues des piliers (PILLAR_EXCLUDED_FICHES).
 const FILE = 'tests/fixtures/generator-baseline.json';
 
 function grid(): { key: string; o: MkOpts; goals?: { goalKey: string; rank: number }[] }[] {
