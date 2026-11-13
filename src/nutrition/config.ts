@@ -92,3 +92,11 @@ export const GLUC_MIN_GKG = { repos: 2, leger: 3, moyen: 3, lourd: 4, intense: 5
 // --- Plan de repas (nutrition-rules.md K, TOL_MACRO). PROVISOIRE. ---
 /** Écart d'énergie toléré par repas entre la portion mise à l'échelle et la cible du repas (±10 %). */
 export const TOL_KCAL_REPAS = 0.1;
+
+// --- Alertes et recalage (nutrition-rules.md C, D, E, K). PROVISOIRE (S). ---
+/** Ajustement hebdomadaire maximal de la cible (kcal/j) et cumul maximal (part du besoin initial). */
+export const AJUSTEMENT_MAX_KCAL = 150;
+export const AJUSTEMENT_CUMUL_PCT = 0.15;
+/** Gel des déficits : perte du poids lissé supérieure à ces seuils (règle E). */
+export const GEL_PERTE_PCT_SEMAINE = 2;
+export const GEL_PERTE_PCT_MOIS = 5;
