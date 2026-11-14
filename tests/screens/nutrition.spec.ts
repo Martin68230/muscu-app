@@ -142,6 +142,7 @@ test('Nutrition : une donnée manquante est nommée, on la complète et les chif
 });
 
 test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et allergie', async ({ page }, info) => {
+  test.setTimeout(120_000); // deux générations de la semaine et une vingtaine de clics : plus long que les autres scénarios
   const theme = info.project.name.endsWith('clair') ? 'light' : 'dark';
   await page.addInitScript((t) => {
     try {
@@ -196,7 +197,7 @@ test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et 
   await expect(page.getByRole('heading', { name: 'Mes courses de la semaine' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Régénérer ma semaine' }).click();
   await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
-  const allergenLines = await page.locator('.nut-meals p').allInnerTexts();
+  const allergenLines = await page.locator('.nut-meals p').evaluateAll((els) => els.map((e) => e.textContent ?? ''));
   for (const l of allergenLines) if (l.startsWith('Allergènes')) expect(l).not.toMatch(/Lait/);
   await expect(await problems(page)).toEqual([]);
   await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-09-semaine-sans-lait.png`, fullPage: true });
