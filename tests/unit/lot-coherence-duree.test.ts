@@ -46,7 +46,7 @@ describe('Point 3 : durée des séances', () => {
               const i = input({ days, level, dur, tags, goals });
               const p = prog(i);
               const plaf = makePlaf(buildCtx(i), 'slot');
-              expect(weekCapsOk(p.sessions)).toBe(true);
+              expect(weekCapsOk(p.sessions, buildCtx(i))).toBe(true);
               for (const s of p.sessions) {
                 expect(s.exercises.length).toBeGreaterThan(0);
                 if (!s.overBudget) expect(totalSec(s)).toBeLessThanOrEqual((dur ?? 75) * 60);
