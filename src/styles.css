@@ -656,3 +656,10 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .set-dots .dot { width: 14px; height: 14px; }
 .dot-now { border-color: var(--accent); background: transparent; box-shadow: 0 0 0 2px var(--accent) inset; }
 .mm-note { background: var(--surface-2); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 12px; font-size: 0.9375rem; }
+
+/* Bibliothèque : recherche et filtres collés en haut pendant le défilement de la liste. */
+.lib-filters { position: sticky; top: 0; z-index: 5; background: var(--bg); padding: 6px 0 4px; margin: 0 -2px; }
+.lib-filters .chips { margin-top: 8px; }
+/* Retour visuel à l'appui (sans animation : pas de mouvement à réduire). */
+.btn:active, .chip:active, .zone-btn:active, .segmented button:active { filter: brightness(0.9); }
+.lib-row:active { background: var(--surface-2); }
