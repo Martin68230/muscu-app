@@ -1173,6 +1173,35 @@ export const CORRECTIF_COU = {
 };
 
 /**
+ * Progression du cou par paliers (kiné + relecteur 14/11/2026, knowledge/calibrage-kaggle.md « 14/11/2026 progression du cou » ; NON SOURCÉ / PROVISOIRE).
+ * Le palier 1 est la dose de CORRECTIF_COU. Direction AVANT seulement à tous les paliers (directions latérales / arrière : second lot, relecteur B1).
+ * Plafonds : 8 s par maintien, 2 séries, 3 maintiens par série, 48 s cumulées, 6 min par séance. Débutant : plafonné au palier 3 (relecteur B2).
+ * Montée : 3 séances de suite faites sans symptôme ni douleur ET 14 jours depuis la dernière montée ET « encore X s possible » >= maintien + 5 s à la dernière séance
+ * (déclaratif, jamais une cible). Retour au palier 1 : symptôme / douleur sur le cou, plus de 21 jours sans cou, ou gêne cou / épaule / dos (niveau >= 1).
+ * Annuler : enabled = false (palier 1 partout).
+ */
+export const NECK_PROGRESSION = {
+  enabled: true,
+  stages: [
+    { sets: 1, holds: 2, holdSec: 3 },
+    { sets: 1, holds: 3, holdSec: 5 },
+    { sets: 2, holds: 3, holdSec: 5 },
+    { sets: 2, holds: 3, holdSec: 8 },
+  ] as readonly { sets: number; holds: number; holdSec: number }[],
+  beginnerMaxStage: 3,
+  maxHoldSec: 8,
+  maxCumulSec: 48,
+  maxSessionSec: 6 * 60,
+  cleanSessionsToRise: 3,
+  riseMinDays: 14,
+  resetAfterDays: 21,
+  felt: { extraSecNeeded: 5 },
+  zonesFromLevel1: ['cou', 'epaule', 'dos'] as readonly string[],
+  pressureText: 'Pression légère : tu peux parler, jamais au maximum.',
+  riseText: 'Prochain palier après 3 séances sans gêne et 14 jours. Le plafond est volontairement prudent, même si tu peux tenir plus longtemps.',
+};
+
+/**
  * CAL-11 (knowledge/calibrage-kaggle.md §5, kiné 12/11/2026 ; dose NON SOURCÉ) : compléments en PUSH / HAUT quand les deltoïdes sont au plafond.
  * Dose fixe (2 séries, jamais de montée de charge), au plus 2 exercices et 4 séries par séance, une zone par exercice. Triceps EXCLU (CAL-9 refusé).
  */

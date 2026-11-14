@@ -15,6 +15,9 @@ import type { Fiche, GenExercise, GenProgram, GenSession, SlotKey } from './type
 import { familyOf, stepOf } from './variety';
 import { e3Sets } from './warmup';
 
+/** CAL-21 (14/11/2026, NON SOURCÉ) : une séance de la semaine paire peut durer au plus 60 s de plus que la plus longue des deux semaines générées (estimation approximative). */
+export const ROTATION_DURATION_TOLERANCE_SEC = 60;
+
 const sameDose = (a: GenExercise, b: GenExercise) =>
   a.sets === b.sets && a.repsMin === b.repsMin && a.repsMax === b.repsMax && a.unit === b.unit && a.holdSec === b.holdSec;
 
@@ -46,8 +49,8 @@ function jeu2Groups(comp: GenExercise[], s2: GenSession): (string | null)[] {
  * séance. Les séries sont celles de la fiche du jeu 1 (pas de dose nouvelle : les limites de la fiche, DOSE_LIMITS et setsCap, ne sont jamais dépassées).
  * valid() (V-PLAF, 20 séries, plancher de volume, durée, aucune répétition nouvelle) décide ensuite.
  */
-function sameDoseAlternatives(s1: GenSession, e: GenExercise, ctx: Ctx, pool: readonly Fiche[], weekIds: ReadonlySet<string>): GenExercise[] {
-  if (!/^(poussee|tirage|jambes)_[234]$/.test(e.slot)) return [];
+function sameDoseAlternatives(s1: GenSession, e: GenExercise, ctx: Ctx, pool: readonly Fiche[], weekIds: ReadonlySet<string>, allowWeek = false): GenExercise[] {
+  if (!/^((poussee|tirage|jambes)_[234]|fonctionnel)$/.test(e.slot)) return [];
   const out: GenExercise[] = [];
   const others = s1.exercises.filter((x) => x !== e);
   const used = new Set(others.map((x) => x.ficheId));
@@ -57,7 +60,7 @@ function sameDoseAlternatives(s1: GenSession, e: GenExercise, ctx: Ctx, pool: re
   const adapted0 = e.adaptations.length > 0 || e.replaces !== null;
   for (const r of rankSlot(e.slot, { label: s1.label, placedSchema: placed }, used, ctx, pool as Fiche[])) {
     const f = r.cand.fiche;
-    if (f.id === e.ficheId || weekIds.has(f.id) || r.tier !== e.tier || r.cand.capped || families.has(familyOf(f))) continue;
+    if (f.id === e.ficheId || (weekIds.has(f.id) && !allowWeek) || r.tier !== e.tier || r.cand.capped || families.has(familyOf(f))) continue;
     if (r.cand.adapted && !adapted0) continue;
     const alt = buildExercise(r.cand, e.slot, r.tier, ctx);
     if (alt.capped || alt.repsMin !== e.repsMin || alt.repsMax !== e.repsMax || alt.unit !== e.unit || alt.holdSec !== e.holdSec) continue;
@@ -70,7 +73,7 @@ function sameDoseAlternatives(s1: GenSession, e: GenExercise, ctx: Ctx, pool: re
     if (s1.exercises.some((x) => x.ficheId === CORRECTIF_COU.ficheId) && hasHeavyShoulderTrap(trial, ctx)) continue;
     alt.warmupSets = e3Sets(alt, ctx);
     out.push(alt);
-    if (out.length >= 4) break;
+    if (out.length >= 8) break;
   }
   return out;
 }
@@ -90,7 +93,9 @@ export function mergeRotation(p1: GenProgram, p2: GenProgram, ctx: Ctx, pool: re
       if (e.capped) continue; // PV3-VAR-5 (d) : accessoire sous plafond P-CAP : fixe
       const e2 = s2.exercises.find((x) => x.slot === e.slot);
       const first = e2 && e2.ficheId !== e.ficheId && !e2.capped && sameDose(e, e2) ? [e2] : [];
-      const list = [...first, ...(pool.length ? sameDoseAlternatives(s1, e, ctx, pool, weekIds1) : [])];
+      const fresh = pool.length ? sameDoseAlternatives(s1, e, ctx, pool, weekIds1) : [];
+      const reuse = pool.length ? sameDoseAlternatives(s1, e, ctx, pool, weekIds1, true).filter((x) => !fresh.some((y) => y.ficheId === x.ficheId)) : [];
+      const list = [...first, ...fresh, ...reuse];
       if (list.length) { alts.set(e, list[0]); more.set(e, list.slice(1)); }
     }
   }
@@ -111,7 +116,7 @@ export function mergeRotation(p1: GenProgram, p2: GenProgram, ctx: Ctx, pool: re
       const comp = jeu2Of(s1, alts);
       if (new Set(comp.map((e) => e.ficheId)).size !== comp.length) return false; // jamais deux fois la même fiche dans une séance
       if (capsOk(s1, s1.exercises) && !capsOk(s1, comp)) return false;
-      if (s2 && s1.estimatedSec + dur(s1, comp) - dur(s1, s1.exercises) > Math.max(s1.estimatedSec, s2.estimatedSec)) return false;
+      if (s2 && s1.estimatedSec + dur(s1, comp) - dur(s1, s1.exercises) > Math.max(s1.estimatedSec, s2.estimatedSec) + ROTATION_DURATION_TOLERANCE_SEC) return false;
     }
     const w2 = p1.sessions.map((s) => ({ exercises: jeu2Of(s, alts) }));
     // PV3-VAR-2 : le mélange des deux jeux ne crée aucune répétition de fiche dans la semaine que ni le jeu 1 ni le jeu 2 généré n'avaient.

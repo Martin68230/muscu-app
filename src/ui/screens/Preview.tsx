@@ -8,6 +8,7 @@ import type { CatchUpAdd, CatchUpSwap } from '../../zones/catchup';
 import { applyAccepted, type AdaptCancel, type AdaptChange } from '../../session/adapt-accept';
 import { SwitchRow } from '../SwitchRow';
 import { ensureActiveProgram, getNextSession, loadGeneratorInput, programWeek, rotationFreeze, withProgramWeek, type NextSession } from '../../session/program';
+import { dayWithNeckStage } from '../../session/neck-stage';
 import { pairsForSession } from '../../session/engine';
 import { update } from '../../data/repo';
 import { WEEKDAY_NAMES } from '../../generator/messages';
@@ -303,7 +304,7 @@ export function SessionPreview({ profile, onBegin }: { profile: Profile; onBegin
     if (!next0) return setEmpty(true);
     // D34 (PV3-VAR-4, 5 d) : séance de la semaine en cours (jeu 1 ou jeu 2, gel après une douleur), AVANT la reprise douce.
     const [fzSets, fzInjuries] = await Promise.all([listTrusted('sets'), list('injuries')]);
-    const next: NextSession = { ...next0, day: withProgramWeek(next0.day, programWeek(res.program, Date.now()), rotationFreeze(fzSets, fzInjuries, Date.now())) };
+    const next: NextSession = { ...next0, day: await dayWithNeckStage(withProgramWeek(next0.day, programWeek(res.program, Date.now()), rotationFreeze(fzSets, fzInjuries, Date.now())), Date.now()) };
     // Reprise douce : calcul de R-DEM pour l'affichage seulement (rien n'est enregistré avant « Commencer »).
     let reprise: { texts: string[]; day: ProgramDay | null; active: boolean } = { texts: [], day: null, active: false };
     let me: Profile = profile;
