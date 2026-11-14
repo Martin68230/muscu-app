@@ -6,7 +6,7 @@ objectifs: [maintien, prise]
 duree_prep_min: 5
 duree_cuisson_min: 0
 materiel: [aucun]
-regimes: [vegetarien, vegetalien, sans_porc, sans_lactose, sans_gluten]
+regimes: [vegetarien, vegetalien, sans_porc]
 cout: eco
 source_glucides: "galettes de riz soufflé"
 source_proteines: "beurre de cacahuète"

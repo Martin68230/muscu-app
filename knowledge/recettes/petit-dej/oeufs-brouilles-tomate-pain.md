@@ -6,7 +6,7 @@ objectifs: [maintien, prise]
 duree_prep_min: 5
 duree_cuisson_min: 5
 materiel: [plaques]
-regimes: [vegetarien, sans_porc, sans_lactose]
+regimes: [vegetarien, sans_porc]
 cout: eco
 source_glucides: "pain complet"
 source_proteines: "œufs"

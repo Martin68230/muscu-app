@@ -156,6 +156,8 @@ for (const file of listFiles(DIR).sort()) {
   if (allergenes.has('gluten')) implied.add('sans_gluten');
   for (const r of f.regimes ?? []) if (implied.has(r)) err(file, `régime « ${r} » déclaré mais impliqué incompatible par les allergènes ou la famille d'un ingrédient`);
   if (f.statut !== 'brouillon' && statut !== 'valide') err(file, `statut « ${f.statut} » impossible : allergènes des ingrédients non tous validés (${statut})`);
+  // Un régime « sans lactose » ou « sans gluten » ne s'affiche que si TOUS les ingrédients ont un étiquetage valide (relecture du 14/11/2026).
+  for (const r of ['sans_lactose', 'sans_gluten']) if ((f.regimes ?? []).includes(r) && statut !== 'valide') err(file, `régime « ${r} » déclaré alors que des allergènes d'ingrédients ne sont pas tous validés (${statut})`);
   if ((f.regimes ?? []).includes('vegetalien') && !(f.regimes ?? []).includes('vegetarien')) err(file, 'végétalien implique végétarien');
   const [lo, hi] = KCAL_RANGE[f.repas] ?? [0, 5000];
   if (tot.kcal < lo || tot.kcal > hi) err(file, `énergie ${Math.round(tot.kcal)} kcal hors de [${lo}, ${hi}] pour ${f.repas}`);

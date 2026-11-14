@@ -370,7 +370,7 @@
       "label": "pain",
       "grammes": 60
     },
-    "conditionnement_g": 6,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -390,7 +390,7 @@
       "label": "tortilla",
       "grammes": 60
     },
-    "conditionnement_g": 8,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -3801,13 +3801,16 @@
   },
   {
     "code": "20260",
-    "nom": "Coulis de tomate",
+    "nom": "Sauce tomate nature (coulis)",
     "famille": "legume",
     "rayon": "epicerie",
     "allergenes": [],
     "statut_allergenes": "a_verifier",
     "regimes_incompatibles": [],
-    "unite_achat": null,
+    "unite_achat": {
+      "label": "brique",
+      "grammes": 500
+    },
     "conditionnement_g": 500,
     "garde_manger": false,
     "perissable": false
@@ -3915,7 +3918,7 @@
       "label": "botte",
       "grammes": 20
     },
-    "conditionnement_g": 20,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -3947,7 +3950,7 @@
       "label": "pot",
       "grammes": 30
     },
-    "conditionnement_g": 30,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -3963,7 +3966,7 @@
       "label": "botte",
       "grammes": 30
     },
-    "conditionnement_g": 30,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -3979,7 +3982,7 @@
       "label": "botte",
       "grammes": 20
     },
-    "conditionnement_g": 20,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -4242,6 +4245,380 @@
     ],
     "unite_achat": null,
     "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "7111",
+    "nom": "Pain de mie complet",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "soja",
+      "sesame",
+      "lait",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 500
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7200",
+    "nom": "Pain de mie blanc",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "soja",
+      "sesame",
+      "lait",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 500
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "7402",
+    "nom": "Pain grillé complet (tranches)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "soja",
+      "lait",
+      "sesame",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "7340",
+    "nom": "Biscottes complètes",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "soja",
+      "lait",
+      "sesame",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 300
+    },
+    "conditionnement_g": 300,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11107",
+    "nom": "Sauce tomate cuisinée (oignons)",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "sulfites",
+      "moutarde",
+      "gluten"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 400
+    },
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "31113",
+    "nom": "Barre de céréales aux fruits",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten",
+      "arachides",
+      "fruits_a_coque",
+      "soja",
+      "lait",
+      "oeufs",
+      "sulfites",
+      "sesame"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte de 6 barres",
+      "grammes": 150
+    },
+    "conditionnement_g": 150,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "31106",
+    "nom": "Barre de céréales au chocolat",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten",
+      "arachides",
+      "fruits_a_coque",
+      "soja",
+      "lait",
+      "oeufs",
+      "sulfites",
+      "sesame"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte de 6 barres",
+      "grammes": 150
+    },
+    "conditionnement_g": 150,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "31114",
+    "nom": "Barre de céréales amandes ou noisettes",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten",
+      "arachides",
+      "fruits_a_coque",
+      "soja",
+      "lait",
+      "oeufs",
+      "sulfites",
+      "sesame"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "boîte de 6 barres",
+      "grammes": 150
+    },
+    "conditionnement_g": 150,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "28906",
+    "nom": "Jambon blanc",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "lait",
+      "soja",
+      "celeri",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc"
+    ],
+    "unite_achat": {
+      "label": "paquet de 4 tranches",
+      "grammes": 160
+    },
+    "conditionnement_g": 160,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28964",
+    "nom": "Blanc de dinde en tranches",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "lait",
+      "soja",
+      "celeri",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "paquet de 4 tranches",
+      "grammes": 160
+    },
+    "conditionnement_g": 160,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "13187",
+    "nom": "Compote sans sucres ajoutés",
+    "famille": "fruit",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 100
+    },
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20587",
+    "nom": "Lentilles cuites (boîte)",
+    "famille": "proteine_vegetale",
+    "rayon": "epicerie",
+    "allergenes": [],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "boîte",
+      "grammes": 265
+    },
+    "conditionnement_g": 265,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "25621",
+    "nom": "Houmous",
+    "famille": "proteine_vegetale",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "sesame"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 200
+    },
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "32138",
+    "nom": "Muesli floconneux aux fruits",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "fruits_a_coque",
+      "arachides",
+      "soja",
+      "lait",
+      "sesame",
+      "sulfites"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 500
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "9104",
+    "nom": "Riz blanc cuit (sachet micro-ondes)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "sachet",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "4022",
+    "nom": "Flocons de purée de pomme de terre",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "lait",
+      "sulfites"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 500
+    },
+    "conditionnement_g": 500,
     "garde_manger": false,
     "perissable": false
   }

@@ -6,7 +6,7 @@ objectifs: [maintien, prise]
 duree_prep_min: 10
 duree_cuisson_min: 20
 materiel: [plaques]
-regimes: [sans_porc, sans_lactose]
+regimes: [sans_porc]
 cout: normal
 source_glucides: "pâtes"
 source_proteines: "steak haché 5 % MG"
