@@ -6,7 +6,7 @@ import { list } from '../../data/repo';
 import { evaluateAlerts, nextAdjust, targetAllowed, type AlertKey } from '../../nutrition/alerts';
 import type { DaySession, DayType } from '../../nutrition/day-targets';
 import { N_PESEES_MIN, PERTE_PCT_SEMAINE, PRISE_PCT_SEMAINE, POIDS_KG_MAX, POIDS_KG_MIN } from '../../nutrition/config';
-import { finalNeeds, type FinalNeeds } from '../../nutrition/final-needs';
+import { ageFromBirthYear, finalNeeds, type FinalNeeds } from '../../nutrition/final-needs';
 import { bmi, screenNutrition, type GoalKind, type Pace, type ScreeningAnswers, type Sex } from '../../nutrition/needs';
 import { addWeighIn, getActiveGoal, getNutritionProfile, listCheckins, listWeighIns, removeWeighIn, saveGoal, saveNutritionProfile, setCheckinAdjust } from '../../nutrition/store';
 import { interpretTrend, rateKgPerWeek, smoothWeights, weekStartOf, type TrendPoint, type TrendState } from '../../nutrition/weight-trend';
@@ -155,12 +155,11 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
 
 /** Données du corps pour les calculs (âge à partir de l'année de naissance, dernier poids). */
 function bodyOf(np: NutritionProfile, heightCm: number | null, weights: Data['weights']) {
-  const year = new Date().getFullYear();
   return {
     sex: np.sexForFormula as Sex,
     kg: weights.length ? weights[weights.length - 1].kg : null,
     cm: heightCm,
-    age: np.birthYear ? year - np.birthYear : null,
+    age: np.birthYear ? ageFromBirthYear(np.birthYear) : null,
   };
 }
 
@@ -171,7 +170,16 @@ function Setup({ profile, data, onDone, onCancel }: { profile: Profile; data: Da
   const [year, setYear] = useState(np?.birthYear ? String(np.birthYear) : '');
   const [cm, setCm] = useState((data.heightCm ?? profile.heightCm) ? String(data.heightCm ?? profile.heightCm) : '');
   const [kg, setKg] = useState(lastKg ? String(lastKg) : '');
-  const [ans, setAns] = useState<Record<string, NutritionAnswer>>({ ...(np?.screening as Record<string, NutritionAnswer>) });
+  // Les réponses réservées aux femmes ne sont jamais préremplies si le sexe enregistré n'était pas « femme ».
+  const [ans, setAns] = useState<Record<string, NutritionAnswer>>(() => {
+    const s = { ...(np?.screening as Record<string, NutritionAnswer>) };
+    if (np?.sexForFormula !== 'femme') for (const k of ['grossesse', 'allaitement', 'postPartum']) delete s[k];
+    return s;
+  });
+  const chooseSex = (v: Sex) => {
+    if (v === 'femme' && sex !== 'femme') setAns((a) => { const n = { ...a }; for (const k of ['grossesse', 'allaitement', 'postPartum']) delete n[k]; return n; });
+    setSex(v);
+  };
   const [kind, setKind] = useState<GoalKind>(data.goal?.kind ?? 'maintien');
   const [pace, setPace] = useState<Pace>(data.goal?.pace ?? 'standard');
   const [target, setTarget] = useState(data.goal?.targetKg ? String(data.goal.targetKg) : '');
@@ -204,7 +212,7 @@ function Setup({ profile, data, onDone, onCancel }: { profile: Profile; data: Da
     const full: Record<string, NutritionAnswer> = { grossesse: 'non', allaitement: 'non', postPartum: 'non', ...ans };
     if (!female) { full.grossesse = 'non'; full.allaitement = 'non'; full.postPartum = 'non'; }
     const answers = { ...(full as unknown as ScreeningAnswers) };
-    const result = screenNutrition(answers, { sex, kg: kgN, cm: cmN, age: new Date().getFullYear() - yearN });
+    const result = screenNutrition(answers, { sex, kg: kgN, cm: cmN, age: ageFromBirthYear(yearN) });
     await saveNutritionProfile({ birthYear: yearN, sexForFormula: sex, screening: full, screeningResult: result, screenedAt: new Date().toISOString() });
     // La taille vit dans le profil (une seule source) ; le poids dans le suivi existant.
     const { update } = await import('../../data/repo');
@@ -225,7 +233,7 @@ function Setup({ profile, data, onDone, onCancel }: { profile: Profile; data: Da
 
       <fieldset class="create-group">
         <legend>Pour le calcul, je suis</legend>
-        <Radios<Exclude<Sex, null>> name="sexe" value={sex} onChange={setSex} options={[['homme', 'Un homme'], ['femme', 'Une femme'], ['non_precise', 'Je préfère ne pas préciser']]} />
+        <Radios<Exclude<Sex, null>> name="sexe" value={sex} onChange={chooseSex} options={[['homme', 'Un homme'], ['femme', 'Une femme'], ['non_precise', 'Je préfère ne pas préciser']]} />
         {sex === 'non_precise' && <p class="dim small">Sans cette information, l’app ne peut donner que des repères généraux, pas de chiffres.</p>}
       </fieldset>
       <label class="field">Année de naissance
@@ -284,7 +292,7 @@ export function finalFor(profile: Profile, data: Data) {
 }
 
 function Needs({ profile, data, onEdit }: { profile: Profile; data: Data; onEdit: () => void }) {
-  const { goal, gel, result } = finalFor(profile, data);
+  const { gel, result } = finalFor(profile, data);
   if (result.status === 'reperes') {
     return (
       <>
@@ -304,16 +312,16 @@ function Needs({ profile, data, onEdit }: { profile: Profile; data: Data; onEdit
       </>
     );
   }
-  return <NeedsView data={data} fin={result} goal={goal} gel={gel} onEdit={onEdit} />;
+  return <NeedsView data={data} fin={result} gel={gel} onEdit={onEdit} />;
 }
 
-function NeedsView({ data, fin, goal, gel, onEdit }: { data: Data; fin: FinalNeeds; goal: NutritionGoal | null; gel: boolean; onEdit: () => void }) {
-  const kind = goal?.kind ?? 'maintien';
+function NeedsView({ data, fin, gel, onEdit }: { data: Data; fin: FinalNeeds; gel: boolean; onEdit: () => void }) {
+  const kind = fin.goal; // objectif réellement appliqué (le gel ou l'IMC peuvent le ramener au maintien)
   const goalText = kind === 'perte' ? 'Perdre du gras' : kind === 'prise' ? 'Prendre du muscle' : 'Garder mon poids';
   const hasProgram = data.days.some((d) => d.length);
   const today = (new Date().getDay() + 6) % 7;
   const td = fin.week?.[today];
-  const pace = fin.targetKgPerWeek;
+  const pace = fin.effectiveKgPerWeek;
   return (
     <>
       <section class="card">
@@ -329,7 +337,7 @@ function NeedsView({ data, fin, goal, gel, onEdit }: { data: Data; fin: FinalNee
             </ul>
           </>
         ) : <p class="dim small">Pas de répartition par jour possible avec ces valeurs : voir la moyenne ci-dessous.</p>}
-        <p class="small">Eau : environ <strong>{fmt(fin.waterL, 1)} L</strong> par jour au total (boissons et aliments), davantage s’il fait chaud ou si tu t’entraînes beaucoup. Repère général (EFSA).</p>
+        <p class="small">Eau : repère général pour un adulte, environ <strong>{fmt(fin.waterL, 1)} L</strong> par jour au total, boissons et aliments compris (apport adéquat EFSA). Bois selon ta soif, plus s’il fait chaud ou si tu t’entraînes beaucoup. {NOT_MEDICAL}</p>
       </section>
       <section class="card">
         <h2>Ma journée moyenne</h2>
@@ -340,9 +348,10 @@ function NeedsView({ data, fin, goal, gel, onEdit }: { data: Data; fin: FinalNee
           <li><strong>{fmt(fin.glucG)} g</strong> glucides</li>
           <li><strong>{fmt(fin.lipG)} g</strong> lipides</li>
         </ul>
-        {kind === 'maintien' ? <p class="small">Rythme de poids visé : stable.</p> : <p class="small">Rythme de poids visé : <strong>{fmt(Math.abs(pace), 2)} kg par semaine</strong> {pace < 0 ? 'de perte' : 'de prise'}, sous le plafond de prudence de l’app.</p>}
+        {kind === 'maintien' || Math.abs(pace) < 0.005 ? <p class="small">Rythme de poids visé : stable.</p> : <p class="small">Rythme de poids visé : <strong>environ {fmt(Math.abs(pace), 2)} kg par semaine</strong> {pace < 0 ? 'de perte' : 'de prise'}, sous le plafond de prudence de l’app.</p>}
         {gel && <p class="notice">Ton poids baisse très vite : l’app ne propose plus de déficit. Parle à un médecin ou à un diététicien avant de continuer. {NOT_MEDICAL}</p>}
-        {fin.needs.floorBinding && <p class="dim small">Ta cible est limitée par le plancher de sécurité de l’app.</p>}
+        {fin.needs.floorBinding && <p class="dim small">Le plancher de sécurité de l’app a réduit, voire annulé, le déficit.</p>}
+        {fin.kcal > fin.needs.tdee + 1 && <p class="dim small">Ta cible est relevée au plancher de sécurité de l’app, un peu au-dessus de ton besoin estimé.</p>}
         {fin.needs.noDeficitReason === 'imc' && <p class="dim small">Avec ton IMC, l’app ne propose pas de déficit chiffré.</p>}
         {fin.screen === 'prudent' && <p class="dim small">À partir de 65 ans, les changements sont plus doux : demande l’avis d’un médecin. {NOT_MEDICAL}</p>}
         <details class="nut-details">

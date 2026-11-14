@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 import type { DaySession } from '../../src/nutrition/day-targets';
-import { explainReperes, finalNeeds, type FinalInput, type FinalNeeds } from '../../src/nutrition/final-needs';
+import { ageFromBirthYear, explainReperes, finalNeeds, type FinalInput, type FinalNeeds } from '../../src/nutrition/final-needs';
 import { adjustedTarget, type Body, type ScreeningAnswers } from '../../src/nutrition/needs';
 import { generateWeek, type FoodMacros, type PlanPrefs, type Recipe } from '../../src/nutrition/plan';
 import { buildShoppingList } from '../../src/nutrition/shopping';
@@ -53,6 +53,36 @@ describe('cible finale unique', () => {
     // homme léger et peu actif : besoin proche du filet de 1500 kcal
     const f = ok({ ...base, body: { sex: 'homme', kg: 62, cm: 172, age: 60 }, sessionsPerWeek: 0 });
     expect(f.kcal).toBeLessThanOrEqual(Math.ceil(f.needs.tdee));
+  });
+});
+
+describe('relecture du 14/11/2026', () => {
+  it('l\u2019âge est prudent : un mineur né en fin d\u2019année n\u2019est jamais compté adulte', () => {
+    expect(ageFromBirthYear(2008, new Date('2026-11-14'))).toBe(17);
+    expect(ageFromBirthYear(1992, new Date('2026-11-14'))).toBe(33);
+  });
+  it('aucun rythme de perte promis quand aucun déficit n\u2019est appliqué (IMC < 22, gel)', () => {
+    const imc = ok({ ...base, body: { sex: 'homme', kg: 65, cm: 180, age: 25 } });
+    expect(imc.needs.deltaKcal).toBe(0);
+    expect(imc.targetKgPerWeek).toBe(0);
+    expect(imc.effectiveKgPerWeek).toBeCloseTo(0, 2);
+    const gel = ok({ ...base, gel: true });
+    expect(gel.goal).toBe('maintien');
+    expect(gel.effectiveKgPerWeek).toBeCloseTo(0, 2);
+  });
+  it('le rythme réel vient de la cible finale (perte : négatif)', () => {
+    const f = ok(base);
+    expect(f.effectiveKgPerWeek).toBeLessThan(0);
+    expect(f.effectiveKgPerWeek).toBeCloseTo(((f.kcal - f.needs.tdee) * 7) / 7700, 6);
+  });
+  it('maintien et prise : le plancher reste prioritaire, 65 ans : déficit <= 10 %, ajustement positif en perte', () => {
+    const petit = ok({ ...base, goal: 'maintien', body: { sex: 'homme', kg: 58, cm: 172, age: 62 }, sessionsPerWeek: 0 });
+    expect(petit.kcal).toBeGreaterThanOrEqual(petit.needs.floor);
+    const age = ok({ ...base, body: { sex: 'homme', kg: 95, cm: 175, age: 70 }, goal: 'perte', pace: 'ferme' });
+    expect(age.needs.tdee - age.kcal).toBeLessThanOrEqual(age.needs.tdee * 0.1 + 1);
+    const plus = ok({ ...base, adjust: 150 });
+    expect(plus.kcal).toBeGreaterThan(ok(base).kcal);
+    expect(plus.kcal).toBeLessThanOrEqual(plus.needs.tdee + 1);
   });
 });
 

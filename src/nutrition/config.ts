@@ -123,3 +123,19 @@ export const PRISE_PCT_SEMAINE = 0.25;
 
 /** Eau totale (boissons et aliments) en litres par jour : repère EFSA pour l'adulte (rules : OK via communiqué, texte à relire). Hors surcroît d'entraînement. */
 export const EAU_TOTALE_L = { homme: 2.5, femme: 2.0 } as const;
+
+// --- Plan hebdomadaire et repas optionnels (spec, annexe du 14/11/2026). PROVISOIRE. ---
+/** Part de l'énergie du jour des repas optionnels (nominale) ; le total optionnel est plafonné. */
+export const PART_OPTIONNEL = { petitDej: 0.2, gouter: 0.1, encas: 0.08 } as const;
+export const PART_OPTIONNEL_MAX = 0.4;
+/** Les deux repas principaux se partagent le reste : déjeuner / dîner. */
+export const PART_DEJEUNER = 0.55;
+/** En-cas : jusqu'à ce nombre par jour, et pièces d'une recette de lot mangées par prise. */
+export const ENCAS_MAX_PAR_JOUR = 2;
+export const PIECES_MAX_PAR_PRISE = 3;
+/** Tolérance d'énergie d'un repas optionnel (pièces entières) par rapport à sa part nominale. */
+export const TOL_KCAL_OPTIONNEL = 0.35;
+/** Bonus de score pour une recette de lot déjà choisie sur le même créneau (préparation en lot). */
+export const BONUS_LOT = 3;
+/** Repli : si aucune recette ne tient dans la tolérance du repas, la plus proche (écart <= 60 %) est choisie plutôt qu'une case vide ; le jour est alors signalé « écart ». */
+export const TOL_KCAL_REPLI = 0.6;

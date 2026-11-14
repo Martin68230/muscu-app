@@ -22,6 +22,9 @@ export interface Recipe {
   regimes: string[];
   cout: 'eco' | 'normal' | 'plus';
   sourceProteines: string | null;
+  /** Recette préparée en lot (barres, muffins) : les ingrédients sont ceux d'UNE pièce. */
+  lot?: boolean;
+  piece?: string | null;
   /** Statut de la fiche recette (brouillon, complete_nutri, controle_relecteur). */
   statut?: string;
   allergenes: AllergenKey[];
