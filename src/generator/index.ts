@@ -36,6 +36,7 @@ import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from '
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
 import { addCal11 } from './cal11';
+import { addComplements } from './complements';
 import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
@@ -1044,6 +1045,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   fillToTarget(kept, { ...zoneDeps, target: (s) => Math.min(dur.targetMin * 60, budget.get(s.label) ?? dSec), functional: functionalAlternatives });
   // CAL-11 (kiné 12/11/2026) : compléments de fin de séance PUSH / HAUT sous tous les plafonds (aucune série de deltoïdes en plus).
   addCal11(kept, zoneDeps, typeOf);
+  // Plafonds relevés (13/11/2026) : compléments PUSH / PULL / LEGS sur des muscles non protégés (complements.ts).
+  addComplements(kept, zoneDeps, typeOf);
   // Cou (`kine`, 07/11/2026) : l'isolation, le remplissage PPL et le remplissage du temps passent après le correctif ; si l'un d'eux a ajouté un exercice lourd
   // d'épaules / trapèzes dans une séance qui a déjà le cou, le cou en est retiré (jamais ailleurs).
   for (const s of kept) {

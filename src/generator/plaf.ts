@@ -123,4 +123,6 @@ export function raisedCaps(ctx: Pick<Ctx, 'level' | 'family' | 'pregnant' | 'pos
 export const weekCapFor = (ctx: Parameters<typeof raisedCaps>[0] | undefined, m: string): number =>
   ctx && raisedCaps(ctx) && !weekCountsSecondary(m) && !EXTRA_PROTECTED_MUSCLES.includes(m) ? RAISED_CAPS.weekMuscle : VOLUME.maxPerMuscleWeek;
 /** Relecteur 13/11/2026 : muscles dont la zone est protégée (trapèzes moyens, carré des lombes, coiffe des rotateurs, dentelé antérieur : épaules, avis kiné) : jamais relevés, sans changer le comptage de weekVol. */
+/** Muscle d'un groupe protégé (20 / 10, comptage 0,5). */
+export const isProtectedMuscle = (m: string): boolean => weekCountsSecondary(m) || EXTRA_PROTECTED_MUSCLES.includes(m);
 const EXTRA_PROTECTED_MUSCLES: readonly string[] = ['rhomboides', 'carre_des_lombes', 'coiffe_des_rotateurs', 'dentele_anterieur'];
