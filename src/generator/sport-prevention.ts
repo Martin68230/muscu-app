@@ -48,6 +48,7 @@ export function addSportPrevention(sessions: Sess[], d: FillDeps, o: PreventionO
   if (ctx.level === 'debutant' || ctx.pregnant || ctx.postPartum || ctx.repriseActive || ctx.lightWeek) return out;
   const sports = o.entries.filter((e) => GROUP[e.sport]);
   if (!sports.length) return out;
+  let raquetteCount = 0;
   for (const s of sessions) {
     const type = o.typeOf(s.label);
     const day = o.dayOf(s.label);
@@ -61,11 +62,14 @@ export function addSportPrevention(sessions: Sess[], d: FillDeps, o: PreventionO
         // Basket : épaule seulement si « bras au-dessus de la tête » est coché.
         if (entry.sport === 'basket' && item.kind === 'shoulder' && !entry.overhead) continue;
         // Jour chargé : épaule libre, jambes sans refus ; copenhague : jamais dans les 48 h autour d'un match.
-        if (item.kind === 'shoulder' && dl.shoulder !== 'free' && !(dl.shoulder === 'light' && item.id === 'rotation-externe-epaule')) continue;
+        // Épaule : seulement un jour libre (relecteur 14/11/2026 : un jour « léger » n'a pas de version sans résistance, rien n'est placé).
+        if (item.kind === 'shoulder' && dl.shoulder !== 'free') continue;
         if ((item.kind === 'lower' || item.nordique) && dl.legs !== 'ok' && dl.legs !== 'warn') continue;
         if (item.nordique && dl.nordiqueLock) continue;
         const weekIds = new Set(sessions.flatMap((x) => x.exercises.map((e) => e.ficheId)));
         if (weekIds.has(item.id)) continue;
+        // Raquettes : 2 exercices par semaine au plus (saisie-sport-v1.md §7 (h), §8.3).
+        if (entry.sport === 'raquette' && raquetteCount >= 2) continue;
         // Un seul exercice par catégorie dans la séance.
         if (s.exercises.some((e) => (e.slot === 'prevention_sport' || e.cappedLabel === CAL11.stopMessage) && PREVENTION_LISTS[GROUP[entry.sport]].find((x) => x.id === e.ficheId)?.kind === item.kind)) continue;
         if (s.exercises.filter((e) => isIsoSlot(e.slot)).length + s.exercises.filter((e) => e.slot === 'prevention_sport').length + placed >= ISOLATION.maxPerSession + 1) continue;
@@ -91,7 +95,7 @@ export function addSportPrevention(sessions: Sess[], d: FillDeps, o: PreventionO
         if (!d.sessionOk(trial.exercises, 'auto') || !d.weekOk(all) || !zoneCapsOk(sessions, all, ctx)) continue;
         s.exercises = trial.exercises;
         placed++;
-        if (entry.sport === 'raquette') out.raquette = true;
+        if (entry.sport === 'raquette') { out.raquette = true; raquetteCount++; }
       }
     }
   }
