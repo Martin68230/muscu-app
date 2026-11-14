@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { importFiles, type ImportReport } from './importer';
 import { countImages, deleteAllImages } from './store';
-import { GV_TABLE } from './gv-table';
+import { UNIQUE_IDS } from './match';
 
 export const IMPORT_WARNING = 'Importe seulement des images dont tu as le droit d’usage. Elles restent sur ce téléphone et ne sont jamais envoyées nulle part.';
 
@@ -30,9 +30,9 @@ export function ImagesImport() {
   return (
     <section class="card img-import" aria-labelledby="img-import-t">
       <h2 id="img-import-t">Images de mes exercices</h2>
-      <p class="small">Tu peux ajouter les GIF de ta propre copie du jeu d’images Gym visual (ZIP ou dossier). Seuls les exercices dont la correspondance est sûre en reçoivent une ({GV_TABLE.length} images possibles) ; les autres gardent l’écran actuel. La consigne écrite prime toujours sur l’image.</p>
+      <p class="small">Tu peux ajouter les GIF de ta propre copie du jeu d’images Gym visual (ZIP ou dossier). Seuls les exercices dont la correspondance est sûre en reçoivent une ({UNIQUE_IDS.length} images possibles) ; les autres gardent l’écran actuel. La consigne écrite prime toujours sur l’image.</p>
       <p class="small"><strong>{IMPORT_WARNING}</strong></p>
-      <p class="dim small">{count} image{count > 1 ? 's' : ''} importée{count > 1 ? 's' : ''} sur {GV_TABLE.length}.</p>
+      <p class="dim small">{count} image{count > 1 ? 's' : ''} importée{count > 1 ? 's' : ''} sur {UNIQUE_IDS.length}.</p>
       <input ref={zipIn} type="file" accept=".zip,application/zip" hidden onChange={(e) => go((e.currentTarget as HTMLInputElement).files)} />
       <input ref={dirIn} type="file" accept="image/gif" multiple hidden onChange={(e) => go((e.currentTarget as HTMLInputElement).files)} />
       <button type="button" class="btn" disabled={busy} onClick={() => zipIn.current?.click()}>Choisir le ZIP</button>

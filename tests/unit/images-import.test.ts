@@ -27,14 +27,19 @@ walk(DIR);
 
 describe('table D22', () => {
   it('à jour par rapport au TSV validé', () => { expect(readFileSync('src/images/gv-table.ts', 'utf8')).toBe(build()); });
-  it('fiches et variantes visées existent ; un GIF n’est attribué qu’à une seule fiche', () => {
+  it('fiches et variantes visées existent ; un GIF n’est attribué qu’à une seule fiche (plusieurs variantes de CETTE fiche permises)', () => {
     expect(GV_TABLE.length).toBeGreaterThan(20);
-    expect(new Set(GV_TABLE.map((e) => e.id)).size).toBe(GV_TABLE.length);
-    expect(new Set(GV_TABLE.map((e) => e.gif)).size).toBe(GV_TABLE.length);
+    expect(new Set(GV_TABLE.map((e) => `${e.fiche}|${e.variante}|${e.id}`)).size).toBe(GV_TABLE.length);
+    const parGif = new Map<string, Set<string>>(); const parId = new Map<string, string>();
+    for (const e of GV_TABLE) { (parGif.get(e.gif) ?? parGif.set(e.gif, new Set()).get(e.gif)!).add(e.id); expect(parId.get(e.id) ?? e.gif).toBe(e.gif); parId.set(e.id, e.gif); expect(['sûr', 'proche']).toContain(e.niveau); }
+    for (const s of parGif.values()) expect(s.size).toBe(1);
+    const fichesParGif = new Map<string, Set<string>>();
+    for (const e of GV_TABLE) (fichesParGif.get(e.id) ?? fichesParGif.set(e.id, new Set()).get(e.id)!).add(e.fiche);
+    for (const [, f] of fichesParGif) expect(f.size).toBe(1);
     for (const e of GV_TABLE) { expect(idsFiches.has(e.fiche)).toBe(true); expect(e.variante).not.toBe(''); expect(idsVar.has(`${e.fiche}/${e.variante}`)).toBe(true); }
   });
   it('variante exacte seulement', () => {
-    expect(candidates('pompe', 'pompe-mur').map((e) => e.id)).toEqual(['0659']);
+    expect(candidates('pompe', 'pompe-mur').map((e) => e.id)).toContain('0659');
     expect(candidates('pompe', 'pompe-standard')).toEqual([]);
     expect(candidates('pompe', null)).toEqual([]);
     expect(entryForFileName('Dossier/GIFs/0659-LEH9jxP.gif')?.id).toBe('0659');
@@ -58,9 +63,10 @@ function makeZip(files: { name: string; data: Uint8Array; deflate?: boolean }[])
 }
 const file = (data: Uint8Array, name: string) => new File([data as BlobPart], name);
 
+const D = GV_TABLE.filter((e, i, a) => a.findIndex((x) => x.id === e.id) === i); // un exemple par GIF
 describe('import local', () => {
   it('ZIP (deflate + stocké) : ne garde que les noms de la table, rejette un faux GIF, reprise, suppression', async () => {
-    const [a, b, c] = GV_TABLE;
+    const [a, b, c] = D;
     const zip = makeZip([
       { name: `images/${a.gif}`, data: GIF, deflate: true },
       { name: b.gif, data: GIF },
@@ -81,16 +87,16 @@ describe('import local', () => {
   });
   it('ZIP piégé : taille déclarée fausse, flux de 10 Mo refusé sans tout charger', async () => {
     const big = new Uint8Array(10 * 1024 * 1024); big.set(GIF);
-    const zip = makeZip([{ name: GV_TABLE[5].gif, data: big, deflate: true }]);
+    const zip = makeZip([{ name: D[5].gif, data: big, deflate: true }]);
     // falsifie la taille déclarée (entête local + index) à 100 octets
-    const dv = new DataView(zip.buffer); const n = GV_TABLE[5].gif.length; dv.setUint32(22, 100, true);
+    const dv = new DataView(zip.buffer); const n = D[5].gif.length; dv.setUint32(22, 100, true);
     const cdStart = zip.length - 22 - (46 + n); dv.setUint32(cdStart + 24, 100, true);
     const r = await importFiles([file(zip, 'bomb.zip')]);
     expect(r.stored).toEqual([]); expect(r.errors[0].why).toMatch(/trop grosse/);
   });
   it('fichiers isolés et ZIP invalide', async () => {
-    const r = await importFiles([file(GIF, GV_TABLE[3].gif), file(new Uint8Array(100), 'faux.zip')]);
-    expect(r.stored).toEqual([GV_TABLE[3].id]); expect(r.errors.length).toBe(1);
+    const r = await importFiles([file(GIF, D[3].gif), file(new Uint8Array(100), 'faux.zip')]);
+    expect(r.stored).toEqual([D[3].id]); expect(r.errors.length).toBe(1);
     await deleteAllImages();
   });
 });

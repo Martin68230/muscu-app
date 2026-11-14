@@ -55,8 +55,8 @@ export function FicheImages({ fiche, compact = false, variantId = null }: { fich
   if (imported) {
     return (
       <figure class={`fiche-figure${compact ? ' compact' : ''}`}>
-        <div class="fiche-imgs"><img class="fiche-img" src={imported} alt={`Image importée de l’exercice : ${fiche.nom}`} /></div>
-        <figcaption class="dim small">Image importée par toi. En cas de doute, suis la consigne écrite.</figcaption>
+        <div class="fiche-imgs"><img class="fiche-img" src={imported.url} alt={`Image importée de l’exercice : ${fiche.nom}`} /></div>
+        <figcaption class="dim small">{imported.niveau === 'proche' ? 'Image importée par toi, d’un exercice proche (autre matériel) : suis la consigne écrite.' : 'Image importée par toi. En cas de doute, suis la consigne écrite.'}</figcaption>
       </figure>
     );
   }

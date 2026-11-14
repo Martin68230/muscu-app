@@ -1,22 +1,27 @@
-// D22 : génère src/images/gv-table.ts (TEXTE seulement : identifiants et noms de fichiers, aucune image) à partir de
-// knowledge/exercices/CORRESPONDANCE-GYMVISUAL.tsv. Seules les lignes « validé » (revue du coach) sont gardées.
-// Usage : node tools/gen-gv-table.mjs   (--check : échoue si le fichier n'est pas à jour)
-import { readFileSync, writeFileSync } from 'node:fs';
+// D22 : génère src/images/gv-table.ts (TEXTE seulement : identifiants et noms de fichiers, aucune image).
+// Sources : knowledge/exercices/CORRESPONDANCE-GYMVISUAL.tsv (lignes « validé » = sûr, revue du coach) et
+// CORRESPONDANCE-VARIANTES-coach.tsv (élargissement : niveau sûr / proche, par variante). Fiche sans ligne = pas d'image.
+// Usage : node tools/gen-gv-table.mjs   (le test vérifie que le fichier est à jour)
+import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '..');
 // La table n'a pas de variante pour la traction ; les notes du coach disent supination / pronation.
 export const VARIANTE_FORCEE = { '1326': 'traction-barre-supination', '0652': 'traction-barre-pronation' };
+const lire = (f) => readFileSync(resolve(root, 'knowledge/exercices', f), 'utf8').replace(/\r/g, '').split('\n').filter(Boolean).map((l) => l.split('\t'));
 export function build() {
-  const rows = readFileSync(resolve(root, 'knowledge/exercices/CORRESPONDANCE-GYMVISUAL.tsv'), 'utf8').replace(/\r/g, '').split('\n').filter(Boolean).map((l) => l.split('\t'));
-  const [h, ...r] = rows; const c = (n) => h.indexOf(n);
-  const out = r.filter((x) => x[c('statut')] === 'validé').map((x) => ({ id: x[c('hasan_id')], gif: x[c('gif')], fiche: x[c('notre_id')], variante: VARIANTE_FORCEE[x[c('hasan_id')]] ?? x[c('notre_variante')] }))
-    .sort((a, b) => a.id.localeCompare(b.id));
-  const lignes = out.map((o) => `  { id: '${o.id}', gif: '${o.gif}', fiche: '${o.fiche}', variante: '${o.variante}' },`);
-  return `// GÉNÉRÉ par tools/gen-gv-table.mjs : ne pas modifier à la main. Texte seulement (aucune image dans le dépôt).\n// Seules les correspondances « validé » (revue du coach) figurent ici : le reste n'a pas d'image.\nexport interface GvEntry { id: string; gif: string; fiche: string; variante: string }\nexport const GV_TABLE: GvEntry[] = [\n${lignes.join('\n')}\n];\n`;
+  const [h, ...r] = lire('CORRESPONDANCE-GYMVISUAL.tsv'); const c = (n) => h.indexOf(n);
+  const gifs = new Map(r.map((x) => [x[c('hasan_id')], x[c('gif')]]));
+  const out = r.filter((x) => x[c('statut')] === 'validé').map((x) => ({ id: x[c('hasan_id')], fiche: x[c('notre_id')], variante: VARIANTE_FORCEE[x[c('hasan_id')]] ?? x[c('notre_variante')], niveau: 'sûr' }));
+  if (existsSync(resolve(root, 'knowledge/exercices/CORRESPONDANCE-VARIANTES-coach.tsv'))) {
+    const [, ...v] = lire('CORRESPONDANCE-VARIANTES-coach.tsv');
+    for (const x of v) for (const id of x[2].split(',').map((s) => s.trim()).filter(Boolean)) out.push({ id, fiche: x[0], variante: x[1], niveau: x[3] === 'proche' ? 'proche' : 'sûr' });
+  }
+  // dédoublonnage (fiche, variante, id) : le niveau « sûr » l'emporte ; ordre : sûr avant proche
+  const m = new Map();
+  for (const o of out) { const k = `${o.fiche}|${o.variante}|${o.id}`; if (!m.has(k) || (o.niveau === 'sûr' && m.get(k).niveau !== 'sûr')) m.set(k, o); }
+  const all = [...m.values()].sort((a, b) => a.fiche.localeCompare(b.fiche) || a.variante.localeCompare(b.variante) || (a.niveau === b.niveau ? a.id.localeCompare(b.id) : a.niveau === 'sûr' ? -1 : 1));
+  const lignes = all.map((o) => `  { id: '${o.id}', gif: '${gifs.get(o.id)}', fiche: '${o.fiche}', variante: '${o.variante}', niveau: '${o.niveau}' },`);
+  return `// GÉNÉRÉ par tools/gen-gv-table.mjs : ne pas modifier à la main. Texte seulement (aucune image dans le dépôt).\n// « sûr » = même mouvement, même matériel ; « proche » = même geste, autre matériel (revue du coach). Le reste n'a pas d'image.\nexport interface GvEntry { id: string; gif: string; fiche: string; variante: string; niveau: 'sûr' | 'proche' }\nexport const GV_TABLE: GvEntry[] = [\n${lignes.join('\n')}\n];\n`;
 }
-const f = resolve(root, 'src/images/gv-table.ts');
-if (process.argv[1] === fileURLToPath(import.meta.url)) {
-  if (process.argv.includes('--check')) { if (readFileSync(f, 'utf8') !== build()) { console.error('gv-table.ts périmé : node tools/gen-gv-table.mjs'); process.exit(1); } }
-  else writeFileSync(f, build());
-}
+if (process.argv[1] === fileURLToPath(import.meta.url)) writeFileSync(resolve(root, 'src/images/gv-table.ts'), build());

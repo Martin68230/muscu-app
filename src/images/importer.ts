@@ -2,7 +2,7 @@
 // Aucune requête réseau dans ce module (testé). Les GIF sont gardés tels quels (l'animation compte) : pas de conversion.
 import { listZip, readZipEntry } from './zip';
 import { entryForFileName } from './match';
-import { GV_TABLE } from './gv-table';
+import { UNIQUE_IDS } from './match';
 import { listImageIds, putImage, notify, clearUrlCache } from './store';
 
 export const MAX_GIF_BYTES = 8 * 1024 * 1024;
@@ -62,7 +62,7 @@ export async function importFiles(files: File[], progress: Progress = () => {}):
   }
   progress(todo.length, todo.length, '');
   const got = new Set([...have, ...rep.stored]);
-  rep.missing = GV_TABLE.map((e) => e.id).filter((id) => !got.has(id));
+  rep.missing = UNIQUE_IDS.filter((id) => !got.has(id));
   clearUrlCache(); notify();
   return rep;
 }

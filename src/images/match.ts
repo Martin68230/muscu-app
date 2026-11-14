@@ -9,3 +9,4 @@ const BY_NAME = new Map(GV_TABLE.map((e) => [e.gif.toLowerCase(), e]));
 export function entryForFileName(path: string): GvEntry | undefined {
   return BY_NAME.get((path.split(/[\/]/).pop() ?? '').toLowerCase());
 }
+export const UNIQUE_IDS = [...new Set(GV_TABLE.map((e) => e.id))];
