@@ -238,6 +238,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       {status.kind !== 'reprise' && !security && !missed && (
         <div class={status.kind === 'seance' ? 'card card-hero' : 'card'}>
           <h2>Séance du jour</h2>
+          {status.kind === 'seance' && <p class={status.next.scheduledToday ? 'today-chip today-chip-on' : 'today-chip'}>{status.next.scheduledToday ? 'Prévue aujourd’hui' : 'Prochaine séance, quand tu veux'}</p>}
           {status.kind === 'loading' && <p class="dim" role="status">Préparation de ta séance…</p>}
           {status.kind === 'profil' && <p class="dim">Réponds à quelques questions (moins d'une minute) pour préparer ton programme.</p>}
           {status.kind === 'erreur' && <p role="alert">{status.text}</p>}

@@ -212,7 +212,10 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
         </div>
       )}
       {entries.length === 0 ? (
-        <div class="card"><p class="dim">Tes séances apparaîtront ici dès la première. Pas de pression : à ton rythme.</p></div>
+        <div class="card">
+          <p class="dim">Tes séances apparaîtront ici dès la première. Pas de pression : à ton rythme.</p>
+          <a class="btn btn-primary" href="#/accueil">Voir ma prochaine séance</a>
+        </div>
       ) : (
         <>
           <ul class="hist-list" aria-label="Séances passées">

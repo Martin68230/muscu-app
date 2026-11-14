@@ -663,3 +663,5 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 /* Retour visuel à l'appui (sans animation : pas de mouvement à réduire). */
 .btn:active, .chip:active, .zone-btn:active, .segmented button:active { filter: brightness(0.9); }
 .lib-row:active { background: var(--surface-2); }
+.today-chip { display: inline-block; margin: 0 0 6px; padding: 4px 12px; border-radius: 14px; background: var(--surface-2); font-size: 0.875rem; font-weight: 700; color: var(--text-dim); }
+.today-chip-on { background: var(--accent); color: var(--accent-text); }

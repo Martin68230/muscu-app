@@ -63,6 +63,7 @@ export function ProgressView({ items, weeks, names, sets, sessions, onBack }: {
       </a>
       <h2>Mes exercices</h2>
       {items.length === 0 && <p class="dim">Il faut au moins deux séances avec un même exercice pour voir une évolution.</p>}
+      {items.length === 0 && <a class="btn btn-primary" href="#/accueil">Voir ma prochaine séance</a>}
       {items.map((p) => {
         const delta = p.last - p.first;
         return (

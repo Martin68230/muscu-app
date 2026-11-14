@@ -6,6 +6,7 @@ import type { InjuryZone, PlannedExercise, Profile } from '../../data/model';
 import { list, listTrusted } from '../../data/repo';
 import { ZONE_LABEL } from '../../data/labels';
 import type { SetInput } from '../../session/engine';
+import { curveSeries } from '../../session/history-view';
 import { gentlerAlternative, lastTime, lastTimeEchelon, painCheck, proposeProgression, withoutCreatedSets } from '../../session/history';
 import {
   C4_STOP_SIGNS, C4_STOP_TEXT, C4_TITLE, C4_URGENT_SIGNS, DROP_LIMIT_TEXT, ECHELON_TEXT, G6_SIGNS, G6_STOP_TEXT, G6_TITLE, G6_URGENT_TEXT, loadLessText, loadMoreText,
@@ -238,6 +239,13 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     () => (ex ? (bodyweight && variant ? lastTimeEchelon(progSets, ex.movementId, variant.echelon, ctl.sessionId) : lastTime(progSets, ex.variantId, ctl.sessionId)) : null),
     [ex?.variantId],
   );
+  // Record personnel (meilleure charge d'une séance propre, sans douleur : curveSeries) rappelé sous « Dernière fois » ; pas de chiffre pendant la grossesse / le post-partum.
+  const recordLine = useMemo(() => {
+    if (!ex || data.pregnant || ex.role === 'cardio') return null;
+    const { metric, points } = curveSeries(ex.movementId, progSets, data.sessions);
+    if (metric !== 'charge' || points.length < 2) return null;
+    return `Ton record : ${fmtKg(Math.max(...points.map((p) => p.value)))} kg`;
+  }, [ex?.movementId]);
   const prog = useMemo(
     () =>
       ex
@@ -626,7 +634,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
         {ex.cappedLabel && (ex.movementId === NECK_FICHE_ID || ex.cappedLabel.startsWith('Arrête tout de suite si tu ressens une douleur vive')) && <p class="small prog-line" role="note">{ex.cappedLabel}</p>}
         {sided && !v.isWarmupSet && <p class="side-rule">{PER_SIDE_RULE}</p>}
         <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}</p>
-        {lastLine && !v.isWarmupSet && <p class="dim small">{lastLine}</p>}
+        {lastLine && !v.isWarmupSet && <p class="dim small">{lastLine}{recordLine ? ` · ${recordLine}` : ''}</p>}
         {progLine && !v.isWarmupSet && <p class="small prog-line">{progLine}</p>}
 
         <div class="stepper-pair">
