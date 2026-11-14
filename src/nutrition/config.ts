@@ -120,3 +120,6 @@ export const RECALAGE_TOL_PCT = 0.25;
 
 /** Rythme de prise visé (% du poids par semaine) : borne basse de la règle C (0,25 à 0,5 %). PROVISOIRE (S). */
 export const PRISE_PCT_SEMAINE = 0.25;
+
+/** Eau totale (boissons et aliments) en litres par jour : repère EFSA pour l'adulte (rules : OK via communiqué, texte à relire). Hors surcroît d'entraînement. */
+export const EAU_TOTALE_L = { homme: 2.5, femme: 2.0 } as const;

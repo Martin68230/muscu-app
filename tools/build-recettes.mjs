@@ -113,7 +113,9 @@ for (const file of listFiles(DIR).sort()) {
   if (!Array.isArray(f.regimes) || f.regimes.some((x) => !REGIMES.includes(x))) err(file, 'régime invalide');
   if (!COUTS.includes(f.cout)) err(file, 'coût invalide');
   if (!STATUTS.includes(f.statut)) err(file, 'statut invalide');
-  if (f.portions_base !== 1) err(file, 'portions_base doit valoir 1 (une portion)');
+  if (f.portions_base !== 1) err(file, 'portions_base doit valoir 1 (une portion ou une pièce)');
+  if (f.lot !== undefined && typeof f.lot !== 'boolean') err(file, 'lot doit être true ou false');
+  if (f.lot === true && (typeof f.piece !== 'string' || !f.piece.trim())) err(file, 'une recette en lot doit nommer sa pièce (piece: "barre")');
   if (p.steps.length < 3 || p.steps.length > 8) err(file, `3 à 8 étapes attendues (${p.steps.length})`);
   if (!Array.isArray(f.ingredients) || f.ingredients.length < 2) { err(file, 'ingrédients manquants'); continue; }
 
@@ -165,7 +167,7 @@ for (const file of listFiles(DIR).sort()) {
   recipes.push({
     id: f.id, nom: f.nom, repas: f.repas, objectifs: f.objectifs, prepMin: f.duree_prep_min, cuissonMin: f.duree_cuisson_min,
     materiel: f.materiel, regimes: f.regimes, cout: f.cout, sourceGlucides: f.source_glucides ?? null, sourceProteines: f.source_proteines ?? null,
-    baseReutilisable: !!f.base_reutilisable, statut: f.statut,
+    baseReutilisable: !!f.base_reutilisable, lot: f.lot === true, piece: f.lot === true ? f.piece : null, statut: f.statut,
     allergenes: [...allergenes].sort(), statutAllergenes: statut,
     portion: { kcal: Math.round(tot.kcal), prot: r1(tot.prot), gluc: r1(tot.gluc), lip: r1(tot.lip), fibres: r1(tot.fibres) },
     ingredients: lines, etapes: p.steps,

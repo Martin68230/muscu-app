@@ -60,6 +60,11 @@ test('Nutrition : questionnaire, besoins, pesée et courbe', async ({ page }, in
   await expect(page.getByRole('heading', { name: 'Ma journée moyenne' })).toBeVisible();
   await expect(page.getByText(/kcal/).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Ma semaine' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: /Aujourd’hui/ })).toBeVisible();
+  await expect(page.getByText(/Eau : environ/)).toBeVisible();
+  await expect(page.getByText(/Rythme de poids visé/)).toBeVisible();
+  await page.getByText('Comment c’est calculé').click();
+  await expect(page.getByText(/Cible finale après plancher et plafonds/)).toBeVisible();
   await expect(await problems(page)).toEqual([]);
   await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-03-besoins.png`, fullPage: true });
 
@@ -96,8 +101,39 @@ test('Nutrition : une réponse « oui » donne des repères seulement, sans chif
   await page.getByRole('group', { name: /traitement médicamenteux/ }).getByLabel('Non', { exact: true }).check();
   await page.getByLabel('Perdre du gras').check();
   await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
-  await expect(page.getByText(/Repères seulement/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Pourquoi je n’affiche pas de chiffres' })).toBeVisible();
+  await expect(page.getByText(/Tu as répondu « oui » pour une maladie suivie/)).toBeVisible();
+  await expect(page.getByText(/À voir avec un professionnel/)).toBeVisible();
   await expect(page.getByText(/kcal/)).toHaveCount(0);
   await expect(await problems(page)).toEqual([]);
   await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-05-reperes.png`, fullPage: true });
+});
+
+test('Nutrition : une donnée manquante est nommée, on la complète et les chiffres apparaissent', async ({ page }, info) => {
+  await page.goto('./');
+  await page.getByText("J'ai 18 ans ou plus.").click();
+  await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
+  await page.getByRole('button', { name: 'Commencer' }).click();
+  await page.getByRole('button', { name: 'Bibliothèque', exact: true }).click();
+  await page.getByRole('link', { name: /Nutrition/ }).first().click();
+  // Sexe « ne pas préciser » : l'app ne peut pas calculer et le dit.
+  await page.getByLabel('Je préfère ne pas préciser').check();
+  await page.getByLabel('Année de naissance').fill('1992');
+  await page.getByLabel('Taille (cm)').fill('178');
+  await page.getByLabel('Poids actuel (kg)').fill('80');
+  await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Pourquoi je n’affiche pas de chiffres' })).toBeVisible();
+  await expect(page.getByText(/Le sexe n’est pas indiqué/)).toBeVisible();
+  await expect(page.getByText(/À compléter/).first()).toBeVisible();
+  await expect(await problems(page)).toEqual([]);
+  await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-06-raisons.png`, fullPage: true });
+  // On complète : les chiffres apparaissent.
+  await page.getByRole('button', { name: 'Compléter mes informations' }).click();
+  await page.getByLabel('Un homme').check();
+  for (const q of ['maladie suivie', 'perdre le contrôle', 'traitement médicamenteux']) {
+    await page.getByRole('group', { name: new RegExp(q) }).getByLabel('Non', { exact: true }).check();
+  }
+  await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Ma journée moyenne' })).toBeVisible();
+  await expect(page.getByText(/kcal/).first()).toBeVisible();
 });

@@ -616,3 +616,8 @@ ol.plain-list { counter-reset: ex; }
 .nut-entry-text { flex: 1; display: flex; flex-direction: column; min-width: 0; }
 .nut-entry-name { font-weight: 700; font-size: 1.0625rem; }
 .nut-entry-chevron { font-size: 1.5rem; color: var(--accent); }
+
+.nut-reasons { margin: 8px 0 0; padding-left: 20px; }
+.nut-reasons li { margin: 0 0 10px; }
+.nut-today { background: var(--surface-2); border-radius: 12px; padding-left: 8px; padding-right: 8px; }
+.nut-details summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }

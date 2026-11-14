@@ -4,9 +4,10 @@ import { useEffect, useState } from 'preact/hooks';
 import type { NutritionAnswer, NutritionGoal, NutritionProfile, Profile, WeeklyCheckin } from '../../data/model';
 import { list } from '../../data/repo';
 import { evaluateAlerts, nextAdjust, targetAllowed, type AlertKey } from '../../nutrition/alerts';
-import { dayTypeOf, weekTargets, type DaySession, type DayType } from '../../nutrition/day-targets';
-import { LIP_MIN_GKG, LIP_MIN_PCT_ENERGIE, N_PESEES_MIN, PERTE_PCT_SEMAINE, PRISE_PCT_SEMAINE, PROT_GKG, POIDS_KG_MAX, POIDS_KG_MIN } from '../../nutrition/config';
-import { adjustedTarget, bmi, computeNeeds, screenNutrition, type GoalKind, type Needs, type Pace, type ScreenResult, type ScreeningAnswers, type Sex } from '../../nutrition/needs';
+import type { DaySession, DayType } from '../../nutrition/day-targets';
+import { N_PESEES_MIN, PERTE_PCT_SEMAINE, PRISE_PCT_SEMAINE, POIDS_KG_MAX, POIDS_KG_MIN } from '../../nutrition/config';
+import { finalNeeds, type FinalNeeds } from '../../nutrition/final-needs';
+import { bmi, screenNutrition, type GoalKind, type Pace, type ScreeningAnswers, type Sex } from '../../nutrition/needs';
 import { addWeighIn, getActiveGoal, getNutritionProfile, listCheckins, listWeighIns, removeWeighIn, saveGoal, saveNutritionProfile, setCheckinAdjust } from '../../nutrition/store';
 import { interpretTrend, rateKgPerWeek, smoothWeights, weekStartOf, type TrendPoint, type TrendState } from '../../nutrition/weight-trend';
 import { dateKey } from '../../session/calendar';
@@ -181,6 +182,14 @@ function Setup({ profile, data, onDone, onCancel }: { profile: Profile; data: Da
   const questions = QUESTIONS.filter((q) => !q.femaleOnly || female);
 
   const submit = async () => {
+    try {
+      await submitInner();
+    } catch (e) {
+      setBusy(false);
+      setErr(`Impossible d’enregistrer pour le moment (${e instanceof Error ? e.message : 'erreur inconnue'}). Réessaie ; tes données restent sur ton téléphone.`);
+    }
+  };
+  const submitInner = async () => {
     setErr('');
     const num = (s: string) => Number(s.replace(',', '.'));
     const kgN = num(kg), cmN = num(cm), yearN = num(year);
@@ -259,64 +268,95 @@ function Setup({ profile, data, onDone, onCancel }: { profile: Profile; data: Da
   );
 }
 
-function Needs({ profile, data, onEdit }: { profile: Profile; data: Data; onEdit: () => void }) {
+/**
+ * UNE SEULE source de vérité : src/nutrition/final-needs.ts. L'écran « Mes besoins », le plan de repas et la liste de courses lisent ce résultat
+ * (calories, macros, jours de la semaine), jamais un calcul refait ailleurs.
+ */
+export function finalFor(profile: Profile, data: Data) {
   const np = data.np!;
   const body = bodyOf(np, data.heightCm, data.weights);
-  const answers = answersOf(np, profile);
-  const screen: ScreenResult = screenNutrition(answers, body);
   const goal = data.goal;
-  if (screen === 'reperes' || !goal || body.kg == null) {
+  const kind: GoalKind = goal?.kind ?? 'maintien';
+  const gel = kind === 'perte' && evaluateAlerts({ trend: smoothWeights(data.weights), goal: 'perte' }).includes('gel_deficit');
+  const adjust = data.checkins.length ? data.checkins[data.checkins.length - 1].kcalAdjust : 0;
+  const result = finalNeeds({ answers: answersOf(np, profile), body, sessionsPerWeek: profile.daysPerWeek ?? 3, goal: kind, pace: goal?.pace ?? 'standard', adjust, gel, days: data.days });
+  return { body, goal, gel, result };
+}
+
+function Needs({ profile, data, onEdit }: { profile: Profile; data: Data; onEdit: () => void }) {
+  const { goal, gel, result } = finalFor(profile, data);
+  if (result.status === 'reperes') {
     return (
       <>
-        <div class="notice">
-          <p><strong>Repères seulement.</strong> Pour ta sécurité, l’app ne calcule pas d’objectif chiffré de calories avec les informations données. Parle à un médecin, une sage-femme ou un diététicien. {NOT_MEDICAL}</p>
-        </div>
-        <button type="button" class="btn" onClick={onEdit}>Refaire le questionnaire</button>
+        <section class="card">
+          <h2>Pourquoi je n’affiche pas de chiffres</h2>
+          <p class="small">Pour ta sécurité, l’app ne donne pas de calories ni de macros tant que ces points ne sont pas réglés. {NOT_MEDICAL}</p>
+          <ul class="nut-reasons">
+            {result.reasons.map((r) => (
+              <li key={r.code + r.text}>
+                <strong>{r.fixable ? 'À compléter : ' : 'À voir avec un professionnel : '}</strong>
+                {r.text}
+              </li>
+            ))}
+          </ul>
+        </section>
+        <button type="button" class="btn btn-primary" onClick={onEdit}>{result.reasons.some((r) => r.fixable) ? 'Compléter mes informations' : 'Refaire le questionnaire'}</button>
       </>
     );
   }
-  // Gel des déficits (règle E) : plus aucune cible de perte tant que le dépistage n'est pas refait.
-  const gel = goal.kind === 'perte' && evaluateAlerts({ trend: smoothWeights(data.weights), goal: 'perte' }).includes('gel_deficit');
-  const kind: GoalKind = gel ? 'maintien' : goal.kind;
-  const needs = computeNeeds({ screen, body, sessionsPerWeek: profile.daysPerWeek ?? 3, goal: kind, pace: goal.pace });
-  if (!needs) return <p class="notice">Informations incomplètes : refais le questionnaire.</p>;
-  const adjust = data.checkins.length ? data.checkins[data.checkins.length - 1].kcalAdjust : 0;
-  const target = adjustedTarget(needs, gel ? 0 : adjust, kind, screen === 'prudent');
-  if (target == null) return <p class="notice">Impossible de calculer : refais le questionnaire.</p>;
-  return <NeedsView data={data} needs={needs} target={target} kg={body.kg} goal={goal} screen={screen} gel={gel} onEdit={onEdit} />;
+  return <NeedsView data={data} fin={result} goal={goal} gel={gel} onEdit={onEdit} />;
 }
 
-function NeedsView({ data, needs, target, kg, goal, screen, gel, onEdit }: { data: Data; needs: Needs; target: number; kg: number; goal: NutritionGoal; screen: ScreenResult; gel: boolean; onEdit: () => void }) {
-  const types: DayType[] = data.days.map((s) => dayTypeOf(s));
-  const week = weekTargets({ types, avgKcal: target, floorKcal: Math.min(needs.floor, target), kg, goal: gel ? 'maintien' : goal.kind });
-  const prot = PROT_GKG[gel ? 'maintien' : goal.kind] * kg;
-  const lip = Math.max(LIP_MIN_GKG * kg, (LIP_MIN_PCT_ENERGIE * target) / 9);
-  const gluc = Math.max(0, (target - 4 * prot - 9 * lip) / 4);
-  const goalText = goal.kind === 'perte' ? 'Perdre du gras' : goal.kind === 'prise' ? 'Prendre du muscle' : 'Garder mon poids';
+function NeedsView({ data, fin, goal, gel, onEdit }: { data: Data; fin: FinalNeeds; goal: NutritionGoal | null; gel: boolean; onEdit: () => void }) {
+  const kind = goal?.kind ?? 'maintien';
+  const goalText = kind === 'perte' ? 'Perdre du gras' : kind === 'prise' ? 'Prendre du muscle' : 'Garder mon poids';
   const hasProgram = data.days.some((d) => d.length);
+  const today = (new Date().getDay() + 6) % 7;
+  const td = fin.week?.[today];
+  const pace = fin.targetKgPerWeek;
   return (
     <>
       <section class="card">
+        <h2>Aujourd’hui ({WEEKDAY_LABEL[today].toLowerCase()})</h2>
+        {td ? (
+          <>
+            <p class="nut-big">{fmt(td.kcal)} kcal</p>
+            <p class="dim small">{TYPE_LABEL[td.type]}</p>
+            <ul class="nut-macros">
+              <li><strong>{fmt(td.protG)} g</strong> protéines</li>
+              <li><strong>{fmt(td.glucG)} g</strong> glucides</li>
+              <li><strong>{fmt(td.lipG)} g</strong> lipides</li>
+            </ul>
+          </>
+        ) : <p class="dim small">Pas de répartition par jour possible avec ces valeurs : voir la moyenne ci-dessous.</p>}
+        <p class="small">Eau : environ <strong>{fmt(fin.waterL, 1)} L</strong> par jour au total (boissons et aliments), davantage s’il fait chaud ou si tu t’entraînes beaucoup. Repère général (EFSA).</p>
+      </section>
+      <section class="card">
         <h2>Ma journée moyenne</h2>
-        <p class="nut-big">{fmt(target)} kcal</p>
+        <p class="nut-big">{fmt(fin.kcal)} kcal</p>
         <p class="dim small">{goalText}. Estimation, recalée avec ta courbe de poids.</p>
         <ul class="nut-macros">
-          <li><strong>{fmt(prot)} g</strong> protéines</li>
-          <li><strong>{fmt(gluc)} g</strong> glucides</li>
-          <li><strong>{fmt(lip)} g</strong> lipides</li>
+          <li><strong>{fmt(fin.protG)} g</strong> protéines</li>
+          <li><strong>{fmt(fin.glucG)} g</strong> glucides</li>
+          <li><strong>{fmt(fin.lipG)} g</strong> lipides</li>
         </ul>
-        {gel && <p class="notice">Ton poids baisse très vite : l’app ne propose plus de déficit. Parle à un médecin ou à un diététicien avant de continuer. Ce n’est pas un avis médical.</p>}
-        {needs.floorBinding && <p class="dim small">Ta cible est limitée par le plancher de sécurité de l’app.</p>}
-        {needs.noDeficitReason === 'imc' && <p class="dim small">Avec ton IMC, l’app ne propose pas de déficit chiffré.</p>}
-        {screen === 'prudent' && <p class="dim small">À partir de 65 ans, les changements sont plus doux : demande l’avis d’un médecin. {NOT_MEDICAL}</p>}
+        {kind === 'maintien' ? <p class="small">Rythme de poids visé : stable.</p> : <p class="small">Rythme de poids visé : <strong>{fmt(Math.abs(pace), 2)} kg par semaine</strong> {pace < 0 ? 'de perte' : 'de prise'}, sous le plafond de prudence de l’app.</p>}
+        {gel && <p class="notice">Ton poids baisse très vite : l’app ne propose plus de déficit. Parle à un médecin ou à un diététicien avant de continuer. {NOT_MEDICAL}</p>}
+        {fin.needs.floorBinding && <p class="dim small">Ta cible est limitée par le plancher de sécurité de l’app.</p>}
+        {fin.needs.noDeficitReason === 'imc' && <p class="dim small">Avec ton IMC, l’app ne propose pas de déficit chiffré.</p>}
+        {fin.screen === 'prudent' && <p class="dim small">À partir de 65 ans, les changements sont plus doux : demande l’avis d’un médecin. {NOT_MEDICAL}</p>}
+        <details class="nut-details">
+          <summary>Comment c’est calculé</summary>
+          <p class="small">Besoin estimé (formule de Mifflin-St Jeor × activité) : <strong>{fmt(fin.needs.tdee)} kcal</strong>. Métabolisme de repos : {fmt(fin.needs.resting)} kcal. Plancher de sécurité : {fmt(fin.needs.floor)} kcal. Écart appliqué : {fmt(fin.needs.deltaKcal)} kcal. Cible finale après plancher et plafonds : <strong>{fmt(fin.kcal)} kcal</strong>. C’est la même valeur pour tes repas et ta liste de courses.</p>
+        </details>
       </section>
       <section class="card">
         <h2>Ma semaine</h2>
         {!hasProgram && <p class="dim small">Pas de programme actif : tous les jours sont comptés comme du repos. Crée ton programme depuis l’Accueil pour adapter les jours.</p>}
-        {week ? (
+        {fin.week ? (
           <ul class="nut-week">
-            {week.map((d, i) => (
-              <li key={i}>
+            {fin.week.map((d, i) => (
+              <li key={i} class={i === today ? 'nut-today' : ''}>
                 <span class="nut-day"><strong>{WEEKDAY_LABEL[i]}</strong> <span class="dim small">{TYPE_LABEL[d.type]}</span></span>
                 <span>{fmt(d.kcal)} kcal</span>
                 <span class="dim small">P {fmt(d.protG)} · G {fmt(d.glucG)} · L {fmt(d.lipG)}</span>
@@ -366,12 +406,10 @@ function Weight({ profile, data, onChanged }: { profile: Profile; data: Data; on
     const out: string[] = [];
     if (goal && rate2 && cur) {
       // Recalage hebdomadaire borné ; la cible affichée passe ensuite par adjustedTarget (plancher, déficit et surplus maximaux).
-      const bodyNow = bodyOf(np, after.heightCm, after.weights);
-      const answers = answersOf(np, profile);
-      const sc = screenNutrition(answers, bodyNow);
-      const n = sc === 'reperes' ? null : computeNeeds({ screen: sc, body: bodyNow, sessionsPerWeek: profile.daysPerWeek ?? 3, goal: goal.kind, pace: goal.pace });
-      if (n) {
-        const tgt = goal.kind === 'perte' ? -(bodyNow.kg! * PERTE_PCT_SEMAINE[goal.pace]) / 100 : goal.kind === 'prise' ? (bodyNow.kg! * PRISE_PCT_SEMAINE) / 100 : 0;
+      const fin = finalFor(profile, after);
+      const n = fin.result.status === 'ok' ? fin.result.needs : null;
+      if (n && fin.result.status === 'ok') {
+        const tgt = fin.result.targetKgPerWeek;
         const al = evaluateAlerts({ trend: t2, goal: goal.kind });
         let adj = nextAdjust({ currentAdjust: cur.kcalAdjust, tdeeInitial: n.tdee, goal: goal.kind, rateKgPerWeek: rate2.kgPerWeek, targetKgPerWeek: tgt, adherence: adh, weeksOfData: t2.length });
         // Perte trop rapide ou gel : la cible monte, jamais l'inverse.

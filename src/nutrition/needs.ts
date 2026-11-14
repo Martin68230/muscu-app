@@ -144,7 +144,9 @@ export function computeNeeds(input: NeedsInput): Needs | null {
 export function adjustedTarget(n: Needs, adjust: number, goal: GoalKind, prudent: boolean): number | null {
   if (![n.tdee, n.floor, n.deltaKcal, adjust].every(Number.isFinite)) return null;
   const maxDeficit = prudent ? n.tdee * DEFICIT_MAX_PCT_65 : Math.min(n.tdee * DEFICIT_MAX_PCT, DEFICIT_MAX_KCAL);
-  const lower = Math.max(n.floor, n.tdee - maxDeficit);
+  // Le plancher ne peut jamais pousser la cible au-dessus du besoin : pour une perte, au plus le maintien.
+  const lowerRaw = Math.max(n.floor, n.tdee - maxDeficit);
+  const lower = goal === 'perte' ? Math.min(lowerRaw, n.tdee) : lowerRaw;
   const upper = goal === 'perte' ? n.tdee : n.tdee + (prudent ? n.tdee * SURPLUS_PCT_PRUDENT : SURPLUS_MAX_KCAL);
   const t = n.tdee + n.deltaKcal + adjust;
   const clamped = Math.min(Math.max(lower, t), Math.max(lower, upper));
