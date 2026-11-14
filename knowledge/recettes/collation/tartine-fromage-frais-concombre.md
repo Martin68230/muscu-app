@@ -12,7 +12,7 @@ source_glucides: "pain complet"
 source_proteines: "fromage frais"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "7110", grammes: 40, ajustable: true }
   - { code: "12068", grammes: 30, ajustable: false }

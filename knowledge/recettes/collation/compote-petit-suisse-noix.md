@@ -12,7 +12,7 @@ source_glucides: "compote"
 source_proteines: "petit-suisse"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "13187", grammes: 100, ajustable: false }
   - { code: "19663", grammes: 120, ajustable: true }

@@ -6,13 +6,13 @@ objectifs: [maintien, prise]
 duree_prep_min: 5
 duree_cuisson_min: 0
 materiel: [aucun]
-regimes: [vegetarien, vegetalien, sans_porc]
+regimes: [vegetarien, sans_porc]
 cout: plus
 source_glucides: "pain complet"
 source_proteines: "graines de courge"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "7110", grammes: 70, ajustable: true }
   - { code: "13004", grammes: 80, ajustable: false }

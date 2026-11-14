@@ -12,7 +12,7 @@ source_glucides: "tortilla de blé"
 source_proteines: "poulet"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "7815", grammes: 120, ajustable: true }
   - { code: "36017", grammes: 120, ajustable: true }

@@ -12,7 +12,7 @@ source_glucides: "galettes de riz soufflé"
 source_proteines: "beurre de cacahuète"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "7352", grammes: 20, ajustable: true }
   - { code: "15202", grammes: 15, ajustable: true }

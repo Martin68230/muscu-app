@@ -12,7 +12,7 @@ source_glucides: "riz"
 source_proteines: "merlu"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "26048", grammes: 150, ajustable: true }
   - { code: "9104", grammes: 250, ajustable: true }

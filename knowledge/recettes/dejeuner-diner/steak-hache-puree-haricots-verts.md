@@ -12,7 +12,7 @@ source_glucides: "pomme de terre"
 source_proteines: "bœuf"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "6252", grammes: 125, ajustable: true }
   - { code: "4022", grammes: 40, ajustable: true }

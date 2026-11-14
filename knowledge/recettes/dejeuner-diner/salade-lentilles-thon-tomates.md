@@ -12,7 +12,7 @@ source_glucides: "lentilles"
 source_proteines: "thon"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "20587", grammes: 200, ajustable: true }
   - { code: "26039", grammes: 112, ajustable: true }

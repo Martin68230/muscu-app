@@ -12,7 +12,7 @@ source_glucides: "pain de mie complet"
 source_proteines: "fromage frais"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "7111", grammes: 80, ajustable: true }
   - { code: "12068", grammes: 40, ajustable: false }

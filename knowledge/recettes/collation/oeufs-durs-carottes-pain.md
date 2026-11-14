@@ -12,7 +12,7 @@ source_glucides: "pain complet"
 source_proteines: "œufs"
 portions_base: 1
 base_reutilisable: true
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "22000", grammes: 100, ajustable: true }
   - { code: "20009", grammes: 80, ajustable: false }

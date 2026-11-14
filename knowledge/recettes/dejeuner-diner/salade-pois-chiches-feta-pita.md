@@ -12,7 +12,7 @@ source_glucides: "pain pita"
 source_proteines: "pois chiches en conserve"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "20532", grammes: 150, ajustable: true }
   - { code: "20276", grammes: 150, ajustable: false }

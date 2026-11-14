@@ -12,7 +12,7 @@ source_glucides: "pâtes"
 source_proteines: "steak haché 5 % MG"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "9810", grammes: 90, ajustable: true }
   - { code: "6250", grammes: 130, ajustable: true }

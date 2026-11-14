@@ -12,7 +12,7 @@ source_glucides: "riz"
 source_proteines: "bœuf"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "9104", grammes: 250, ajustable: true }
   - { code: "6252", grammes: 125, ajustable: true }
