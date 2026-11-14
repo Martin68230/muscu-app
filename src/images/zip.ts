@@ -13,7 +13,7 @@ export async function listZip(file: Blob): Promise<ZipEntry[]> {
   if (e < 0) throw new Error('Ce fichier n’est pas un ZIP lisible.');
   const count = u16(tail, e + 10), cdSize = u32(tail, e + 12), cdOff = u32(tail, e + 16);
   if (count === 0xffff || cdSize === 0xffffffff || cdOff === 0xffffffff) throw new Error('ZIP trop gros (ZIP64) : importe plutôt le dossier d’images.');
-  if (cdOff + cdSize > file.size) throw new Error('ZIP abîmé (index hors du fichier).');
+  if (cdOff + cdSize > file.size || cdSize > 8 * 1024 * 1024) throw new Error('ZIP abîmé (index hors du fichier).');
   const cd = new DataView(await file.slice(cdOff, cdOff + cdSize).arrayBuffer());
   const dec = new TextDecoder();
   const out: ZipEntry[] = [];
@@ -33,12 +33,24 @@ export async function readZipEntry(file: Blob, entry: ZipEntry, maxBytes: number
   const head = new DataView(await file.slice(entry.offset, entry.offset + 30).arrayBuffer());
   if (head.byteLength < 30 || u32(head, 0) !== 0x04034b50) throw new Error('entrée abîmée');
   const start = entry.offset + 30 + u16(head, 26) + u16(head, 28);
+  if (entry.compressedSize > maxBytes) throw new Error('image trop grosse');
   const raw = file.slice(start, start + entry.compressedSize);
   if (entry.method === 0) return new Uint8Array(await raw.arrayBuffer());
   if (entry.method !== 8) throw new Error('compression non gérée');
   if (typeof DecompressionStream === 'undefined') throw new Error('Ce navigateur ne sait pas décompresser un ZIP : importe le dossier d’images.');
-  const stream = raw.stream().pipeThrough(new DecompressionStream('deflate-raw'));
-  const buf = new Uint8Array(await new Response(stream).arrayBuffer());
-  if (buf.byteLength > maxBytes) throw new Error('image trop grosse');
+  // Flux lu par morceaux, annulé dès que la taille réelle dépasse la limite (la taille déclarée peut être fausse).
+  const reader = raw.stream().pipeThrough(new DecompressionStream('deflate-raw')).getReader();
+  const chunks: Uint8Array[] = [];
+  let total = 0;
+  for (;;) {
+    const { done, value } = await reader.read();
+    if (done) break;
+    total += value.byteLength;
+    if (total > maxBytes) { await reader.cancel(); throw new Error('image trop grosse'); }
+    chunks.push(value);
+  }
+  const buf = new Uint8Array(total);
+  let o = 0;
+  for (const c of chunks) { buf.set(c, o); o += c.byteLength; }
   return buf;
 }

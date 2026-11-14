@@ -79,6 +79,15 @@ describe('import local', () => {
     await deleteAllImages();
     expect(await countImages()).toBe(0);
   });
+  it('ZIP piégé : taille déclarée fausse, flux de 10 Mo refusé sans tout charger', async () => {
+    const big = new Uint8Array(10 * 1024 * 1024); big.set(GIF);
+    const zip = makeZip([{ name: GV_TABLE[5].gif, data: big, deflate: true }]);
+    // falsifie la taille déclarée (entête local + index) à 100 octets
+    const dv = new DataView(zip.buffer); const n = GV_TABLE[5].gif.length; dv.setUint32(22, 100, true);
+    const cdStart = zip.length - 22 - (46 + n); dv.setUint32(cdStart + 24, 100, true);
+    const r = await importFiles([file(zip, 'bomb.zip')]);
+    expect(r.stored).toEqual([]); expect(r.errors[0].why).toMatch(/trop grosse/);
+  });
   it('fichiers isolés et ZIP invalide', async () => {
     const r = await importFiles([file(GIF, GV_TABLE[3].gif), file(new Uint8Array(100), 'faux.zip')]);
     expect(r.stored).toEqual([GV_TABLE[3].id]); expect(r.errors.length).toBe(1);
