@@ -13,13 +13,14 @@ import { countImages, deleteAllImages, getImage } from '../../src/images/store';
 import { build } from '../../tools/gen-gv-table.mjs';
 
 const DIR = 'knowledge/exercices';
+const schemaDe = new Map<string, string>();
 const idsFiches = new Set<string>(); const idsVar = new Set<string>();
 const walk = (d: string): void => {
   for (const e of readdirSync(d, { withFileTypes: true })) {
     const p = `${d}/${e.name}`;
     if (e.isDirectory()) { if (!/ecartees/.test(p)) walk(p); continue; }
     if (!e.name.endsWith('.md')) continue;
-    const t = readFileSync(p, 'utf8'); const m = /^id:\s*(\S+)/m.exec(t); if (m) idsFiches.add(m[1]);
+    const t = readFileSync(p, 'utf8'); const m = /^id:\s*(\S+)/m.exec(t); if (m) { idsFiches.add(m[1]); schemaDe.set(m[1], /^schema:s*(S+)/m.exec(t)?.[1] ?? ''); }
     for (const l of t.split('\n')) { const c = l.split('|').map((x: string) => x.trim()); if (c.length >= 7 && /^[a-z0-9-]+$/.test(c[1]) && /^[0-9]+$/.test(c[3])) idsVar.add(`${m?.[1]}/${c[1]}`); }
   }
 };
@@ -27,7 +28,7 @@ walk(DIR);
 
 describe('table D22', () => {
   it('à jour par rapport au TSV validé', () => { expect(readFileSync('src/images/gv-table.ts', 'utf8')).toBe(build()); });
-  it('fiches et variantes visées existent ; un GIF n’est attribué qu’à une seule fiche (plusieurs variantes de CETTE fiche permises)', () => {
+  it('fiches et variantes visées existent ; un GIF ne sert que des fiches de même schéma', () => {
     expect(GV_TABLE.length).toBeGreaterThan(20);
     expect(new Set(GV_TABLE.map((e) => `${e.fiche}|${e.variante}|${e.id}`)).size).toBe(GV_TABLE.length);
     const parGif = new Map<string, Set<string>>(); const parId = new Map<string, string>();
@@ -35,8 +36,15 @@ describe('table D22', () => {
     for (const s of parGif.values()) expect(s.size).toBe(1);
     const fichesParGif = new Map<string, Set<string>>();
     for (const e of GV_TABLE) (fichesParGif.get(e.id) ?? fichesParGif.set(e.id, new Set()).get(e.id)!).add(e.fiche);
-    for (const [, f] of fichesParGif) expect(f.size).toBe(1);
+    // un GIF peut servir plusieurs fiches (même geste, matériel ou charge différents) seulement dans une même famille de schéma
+    for (const [, f] of fichesParGif) expect(new Set([...f].map((x) => schemaDe.get(x))).size).toBe(1);
     for (const e of GV_TABLE) { expect(idsFiches.has(e.fiche)).toBe(true); expect(e.variante).not.toBe(''); expect(idsVar.has(`${e.fiche}/${e.variante}`)).toBe(true); }
+  });
+  it('une variante classée « sans image » par le coach n’a aucune image', () => {
+    const lignes = readFileSync('knowledge/exercices/SANS-IMAGE-coach.tsv', 'utf8').replace(//g, '').split('
+').filter(Boolean).slice(1).map((l: string) => l.split('	'));
+    expect(lignes.length).toBeGreaterThan(100);
+    for (const [f, v, raison] of lignes) { expect(['pas_dans_le_jeu', 'ambigu']).toContain(raison); expect(GV_TABLE.some((e) => e.fiche === f && e.variante === v)).toBe(false); }
   });
   it('variante exacte seulement', () => {
     expect(candidates('pompe', 'pompe-mur').map((e) => e.id)).toContain('0659');

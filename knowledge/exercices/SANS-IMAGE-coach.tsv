@@ -1,0 +1,310 @@
+fiche_id	variante_id	raison	detail
+abduction-couchee-cote	abduction-couchee-cote-base	ambigu	0710 side hip abduction : posture couchée non confirmée par le nom
+abduction-couchee-cote	abduction-couchee-cote-dos-mur	pas_dans_le_jeu	aucun exercice contre un mur
+abduction-couchee-cote	abduction-couchee-cote-mini-bande	pas_dans_le_jeu	pas de levée de jambe couchée avec mini-bande
+abduction-hanche-debout	abduction-debout-chaise	ambigu	1427 straight leg outer hip abductor : posture non précisée
+abduction-hanche-debout	abduction-debout-mur	ambigu	1427 straight leg outer hip abductor : posture non précisée
+abduction-hanche-debout	abduction-debout-mini-bande	pas_dans_le_jeu	pas d abduction debout à la bande
+abduction-hanche-poulie	abduction-poulie-debout	pas_dans_le_jeu	seuls extension et adduction à la poulie existent
+abduction-quatre-pattes	abduction-quatre-pattes-sol	pas_dans_le_jeu	pas de fire hydrant dans le jeu
+abduction-quatre-pattes	abduction-quatre-pattes-mini-bande	pas_dans_le_jeu	pas de fire hydrant dans le jeu
+accroupi-profond-tenu	accroupi-profond-chaise	ambigu	3132 potty squat with support : geste et appui non confirmés par le nom
+accroupi-profond-tenu	accroupi-profond-libre	ambigu	3119 potty squat : geste non confirmé par le nom
+adduction-serrage-genoux	adduction-serrage-serviette	pas_dans_le_jeu	aucun serrage de genoux couché
+adduction-serrage-genoux	adduction-serrage-ballon	pas_dans_le_jeu	aucun serrage de genoux couché
+adduction-serrage-genoux	adduction-serrage-pont	pas_dans_le_jeu	aucun serrage de genoux en pont
+alternance-marche-course	alternance-marche-course-debut-dehors	ambigu	0685 run : l image montre la course seule, pas l alternance
+alternance-marche-course	alternance-marche-course-milieu-dehors	ambigu	0685 run : l image montre la course seule, pas l alternance
+alternance-marche-course	alternance-marche-course-fin-dehors	ambigu	0685 run : l image montre la course seule, pas l alternance
+assis-debout-mains-cuisses	assis-debout-mains-cuisses-chaise	pas_dans_le_jeu	aucun assis-debout dans le jeu
+assis-debout-mains-cuisses	assis-debout-une-main-cuisse	pas_dans_le_jeu	aucun assis-debout dans le jeu
+balances-de-jambe	balances-de-jambe-mur	pas_dans_le_jeu	aucun balancé de jambe dans le jeu
+bird-dog	bird-dog-sol	pas_dans_le_jeu	pas de bird dog
+bird-dog-jambe-seule	bird-dog-jambe-seule-sol	pas_dans_le_jeu	pas de bird dog
+bird-dog-jambe-seule	bird-dog-bras-seul-sol	pas_dans_le_jeu	pas de bird dog
+bird-dog-pause	bird-dog-pause-sol	pas_dans_le_jeu	pas de bird dog
+bird-dog-pause	bird-dog-coude-genou	pas_dans_le_jeu	pas de bird dog
+bonjour-poids-du-corps	bonjour-bras-croises	pas_dans_le_jeu	seul le good morning à la barre existe (technique, pas pour débutant)
+boxe-dans-le-vide	boxe-vide-lente	pas_dans_le_jeu	seul un crochet gauche existe (2271), pas de coups droits
+boxe-dans-le-vide	boxe-vide-combinaisons	pas_dans_le_jeu	seul un crochet gauche existe (2271)
+bucheron-ballon-lest	bucheron-ballon-lest-haut-bas	pas_dans_le_jeu	seul un woodchop à la poulie (0862), geste et matériel différents
+bucheron-ballon-lest	bucheron-ballon-lest-bas-haut	pas_dans_le_jeu	seul un woodchop à la poulie (0862), geste et matériel différents
+cercles-de-bras	cercles-bras-petits	pas_dans_le_jeu	aucun cercle de bras
+cercles-de-bras	cercles-bras-grands	pas_dans_le_jeu	aucun cercle de bras
+cercles-de-cheville	cercles-cheville-couche	ambigu	1368 ankle circles : posture non précisée, couché non confirmé
+cercles-de-cheville	cercles-cheville-assis	ambigu	1368 ankle circles : posture non précisée, assis non confirmé
+cercles-de-cheville	cercles-cheville-debout	ambigu	1368 ankle circles : posture non précisée, debout non confirmé
+chaise-murale	chaise-murale-haute	pas_dans_le_jeu	aucun maintien dos au mur (0624 march sit est un autre geste)
+chaise-murale	chaise-murale-cuisses-horizontales	pas_dans_le_jeu	aucun maintien dos au mur
+charniere-dos-au-mur	charniere-mur-fesses	pas_dans_le_jeu	aucune charnière dos au mur
+chat-vache	chat-vache-sol	pas_dans_le_jeu	pas de chat-vache
+cheville-elastique	cheville-elastique-eversion	pas_dans_le_jeu	aucun renforcement de cheville à la bande
+cheville-elastique	cheville-elastique-inversion	pas_dans_le_jeu	aucun renforcement de cheville à la bande
+clam-coquille	clam-pieds-joints	pas_dans_le_jeu	pas de coquille ; 0984 est une rotation interne, autre geste
+clam-coquille	clam-mini-bande	pas_dans_le_jeu	pas de coquille ; 0984 est une rotation interne, autre geste
+copenhague-court	copenhague-genou-chaise	ambigu	1775 side plank hip adduction : variante Copenhague non confirmée, exercice à risque
+copenhague-court	copenhague-pied-chaise	ambigu	1775 side plank hip adduction : variante Copenhague non confirmée, exercice à risque
+cou-lateral-arriere-main	cou-lateral-main	ambigu	0716 side push neck stretch est un étirement, notre exercice est un isométrique
+cou-lateral-arriere-main	cou-arriere-main	pas_dans_le_jeu	aucun exercice du cou à la main
+course-sur-place	course-sur-place-intervalles	ambigu	3656 short stride run : course sur place non confirmée par le nom
+crunch-bicyclette	crunch-bicyclette-pieds-au-sol	ambigu	0262 cross body crunch / 0635 oblique crunches : pieds au sol non confirmés
+curl-ischios-ballon	curl-ischios-ballon-deux-jambes	pas_dans_le_jeu	aucun curl des ischios sur ballon à deux jambes (1417 est un autre geste)
+curl-ischios-ballon	curl-ischios-ballon-une-jambe	pas_dans_le_jeu	aucun curl des ischios sur ballon à une jambe
+curl-ischios-serviette	curl-ischios-serviette-pont	ambigu	0730 single leg platform slide : geste non confirmé par le nom
+curl-ischios-serviette	curl-ischios-serviette-une-jambe	ambigu	0730 single leg platform slide : geste non confirmé par le nom
+dead-bug	dead-bug-haltere	pas_dans_le_jeu	pas de dead bug avec haltère
+dead-bug-jambes-seules	dead-bug-talon-au-sol	ambigu	0276 dead bug inclut les bras ; notre variante est jambes seules
+dead-bug-jambes-seules	dead-bug-jambes-seules-sol	ambigu	0276 dead bug inclut les bras ; notre variante est jambes seules
+descente-une-jambe-chaise	descente-une-jambe-chaise-appui	ambigu	pistol squat (1476, 1759) : technique, pas de chaise, contredit la consigne
+descente-une-jambe-chaise	descente-une-jambe-chaise-libre	ambigu	pistol squat (1476, 1759) : technique, pas de chaise, contredit la consigne
+developpe-arnold-halteres	developpe-arnold-chaise	ambigu	2137 dumbbell arnold press : posture assise non confirmée par le nom
+developpe-arnold-halteres	developpe-arnold-banc	ambigu	2137 dumbbell arnold press : posture assise non confirmée par le nom
+developpe-elastique-dos	developpe-elastique-dos-debout	pas_dans_le_jeu	seul le développé à l élastique couché ou assis existe
+developpe-epaules-assis-dossier-incline	developpe-epaules-banc-sans-dossier	ambigu	0290 bench seated press : présence du dossier non précisée
+developpe-epaules-elastique	developpe-epaules-elastique-un-bras	ambigu	0997 est à deux bras ; notre variante est à un bras
+developpe-epaules-sac-a-dos	developpe-epaules-sac-a-dos-debout	pas_dans_le_jeu	aucun développé avec sac à dos
+developpe-militaire-barre	developpe-militaire-barre-debout	pas_dans_le_jeu	pas de développé militaire barre debout simple (variantes prise large ou serrée seulement)
+developpe-sol-elastique	developpe-sol-elastique-alterne	pas_dans_le_jeu	aucun développé alterné à la bande couché
+ecarte-sol-elastique	ecarte-elastique-dos	pas_dans_le_jeu	aucun écarté pectoral à l élastique
+ecarte-sol-elastique	ecarte-sol-halteres	pas_dans_le_jeu	aucun écarté haltères au sol
+ecarte-sol-elastique	ecarte-elastique-porte	ambigu	0227 cable standing fly : hauteur de poulie non précisée
+ecartement-elastique	ecartement-elastique-debout	ambigu	0993 band reverse fly : debout ou penché non précisé
+ecartement-serviette	ecartement-serviette-debout	pas_dans_le_jeu	aucun écartement de serviette
+elevation-laterale	elevation-laterale-chaise-elastique	pas_dans_le_jeu	aucune élévation latérale à la bande
+elevation-laterale	elevation-laterale-debout-elastique	pas_dans_le_jeu	aucune élévation latérale à la bande
+equilibre-sur-une-jambe-en-mouvement	equilibre-mouvement-mur	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-sur-une-jambe-en-mouvement	equilibre-mouvement-libre	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-sur-une-jambe-en-mouvement	equilibre-mouvement-ballon	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-unipodal	equilibre-unipodal-mur	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-unipodal	equilibre-unipodal-libre	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-unipodal	equilibre-unipodal-serviette	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-unipodal	equilibre-unipodal-jambe-libre	pas_dans_le_jeu	aucun exercice d équilibre unipodal
+equilibre-unipodal-bosu	equilibre-bosu-mur	pas_dans_le_jeu	aucun équilibre sur bosu
+equilibre-unipodal-bosu	equilibre-bosu-libre	pas_dans_le_jeu	aucun équilibre sur bosu
+essorage-serviette	essorage-serviette-roulee	pas_dans_le_jeu	aucun essorage de serviette
+essorage-serviette	serrage-pull-roule	pas_dans_le_jeu	aucun serrage de chiffon (0854 est lesté, autre geste)
+etirement-fessiers-figure-4	figure-4-allonge	pas_dans_le_jeu	aucun étirement en 4 allongé
+etirement-flechisseurs-hanche	etirement-flechisseurs-debout	pas_dans_le_jeu	aucun étirement de fléchisseur de hanche
+etirement-flechisseurs-hanche	etirement-flechisseurs-genou-sol	pas_dans_le_jeu	aucun étirement de fléchisseur de hanche
+etirement-flechisseurs-hanche	etirement-flechisseurs-genou-sol-chaise	pas_dans_le_jeu	aucun étirement de fléchisseur de hanche
+etirement-ischios-serviette	etirement-ischios-assis	ambigu	1511 hamstring stretch : posture non précisée
+etirement-mollets-mur	etirement-mollets-genou-plie	ambigu	1407 calf push stretch : genou plié non confirmé
+etirement-mollets-mur	etirement-mollets-marche	pas_dans_le_jeu	aucun étirement de mollet sur marche
+etirement-pectoraux-mur	etirement-pectoraux-bras-bas	pas_dans_le_jeu	aucun étirement de pectoraux au mur
+etirement-pectoraux-mur	etirement-pectoraux-bras-epaule	pas_dans_le_jeu	aucun étirement de pectoraux au mur
+etirement-quadriceps	etirement-quadriceps-debout	ambigu	3533 quads : geste non précisé par le nom
+extension-genou-elastique	extension-genou-chaise-sans-charge	pas_dans_le_jeu	seule la machine d extension existe
+extension-hanche-quatre-pattes	extension-hanche-sans-materiel	pas_dans_le_jeu	pas de donkey kick
+extension-hanche-quatre-pattes	extension-hanche-mini-bande	pas_dans_le_jeu	pas de donkey kick
+extension-poignet-avant-bras	extension-poignet-sans-materiel	pas_dans_le_jeu	aucune extension de poignet sans matériel
+extension-thoracique	extension-thoracique-chaise	pas_dans_le_jeu	aucune extension thoracique sur chaise
+extension-thoracique	extension-thoracique-serviette	pas_dans_le_jeu	aucune extension thoracique sur serviette
+extension-thoracique	extension-thoracique-rouleau	ambigu	2208 roller back stretch : geste non précisé par le nom
+extension-triceps-barre-ez-allonge	extension-triceps-barre-ez-sol	pas_dans_le_jeu	pas d extension triceps barre EZ à plat
+extension-triceps-couche-halteres	extension-triceps-couche-un-haltere	ambigu	aucune extension à deux mains avec un seul haltère identifiée
+face-pull-elastique	face-pull-elastique-porte	ambigu	0203 rear delt row with rope : geste proche mais pas nommé face pull
+face-pull-elastique	face-pull-poulie-corde	ambigu	0203 rear delt row with rope : geste proche mais pas nommé face pull
+fente-arriere	fente-arriere-mur	ambigu	0381 tient des haltères ; notre variante a une main au mur
+fente-basse-rotation	fente-basse-rotation-appui	ambigu	mains sur marche : seul world greatest stretch (mains au sol) s'en approche
+fente-laterale	fente-laterale-courte	pas_dans_le_jeu	aucun équivalent dans le jeu
+fente-laterale	fente-laterale-complete	ambigu	seule la fente latérale à la barre existe (1410), charge sur le dos différente
+fente-laterale	fente-laterale-haltere	ambigu	seule la fente latérale à la barre existe (1410), différente du gobelet
+fente-laterale-glissee-serviette	fente-laterale-glissee-serviette-appuyee	pas_dans_le_jeu	aucun équivalent dans le jeu
+flexion-poignet-avant-bras	curl-poignet-sans-materiel	pas_dans_le_jeu	aucun équivalent dans le jeu
+gainage-creux	gainage-creux-genoux-plies	pas_dans_le_jeu	aucun équivalent dans le jeu
+gainage-creux	gainage-creux-jambes-tendues	pas_dans_le_jeu	aucun équivalent dans le jeu
+gainage-lateral-dynamique	gainage-lateral-dynamique-genoux	ambigu	side bridge statique seulement, pas de montées de hanche
+gainage-lateral-dynamique	gainage-lateral-dynamique-jambes-tendues	ambigu	side bridge statique seulement, pas de montées de hanche
+genoux-poitrine-ballon	genoux-poitrine-ballon-pike	ambigu	seul exercise ball pike push up (1296) : pompe, pas roulement du ballon
+glissement-mur-epaules	glissement-mur-dos	pas_dans_le_jeu	aucun équivalent dans le jeu
+glissement-mur-epaules	glissement-sol-dos	pas_dans_le_jeu	aucun équivalent dans le jeu
+good-morning-elastique	good-morning-elastique-pieds	ambigu	band straight leg deadlift (1010) : mains basses, notre consigne mains aux clavicules
+hip-thrust-banc	hip-thrust-banc-poids-du-corps	pas_dans_le_jeu	aucun équivalent dans le jeu
+hip-thrust-banc	hip-thrust-banc-halteres	pas_dans_le_jeu	aucun équivalent dans le jeu
+hip-thrust-banc	hip-thrust-banc-une-jambe	pas_dans_le_jeu	aucun équivalent dans le jeu
+hip-thrust-barre	hip-thrust-barre-banc	pas_dans_le_jeu	aucun équivalent dans le jeu
+hip-thrust-chaise	hip-thrust-chaise-deux-jambes	pas_dans_le_jeu	aucun équivalent dans le jeu
+hip-thrust-chaise	hip-thrust-chaise-une-jambe	pas_dans_le_jeu	aucun équivalent dans le jeu
+hip-thrust-chaise	hip-thrust-chaise-une-jambe-elastique	ambigu	band hip lift (1408) : posture et appui non vérifiables
+inclinaison-douce-cou	inclinaison-cou-assise	ambigu	neck side stretch (1403) : l'image peut montrer une main qui tire la tête
+inclinaison-douce-cou	inclinaison-cou-debout	ambigu	neck side stretch (1403) : l'image peut montrer une main qui tire la tête
+isometrique-cou	isometrique-cou-mains	pas_dans_le_jeu	aucun équivalent dans le jeu
+isometrique-cou	isometrique-cou-mur-serviette	pas_dans_le_jeu	aucun équivalent dans le jeu
+jumping-jacks	jumping-jacks-sans-saut	pas_dans_le_jeu	aucun équivalent dans le jeu
+lancer-bas-haut-mur	lancer-bas-haut-mur-pieds-a-plat	pas_dans_le_jeu	aucun équivalent dans le jeu
+lancer-poitrine-mur	lancer-poitrine-mur-sans-rattraper	ambigu	chest pass (1302) : rebond rattrapé probable, contredit « sans rattraper »
+lancer-rotation-mur	lancer-rotation-mur-pieds-fixes	pas_dans_le_jeu	aucun équivalent dans le jeu
+lancer-rotation-mur	lancer-rotation-mur-pivot	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-de-l-ours	ours-maintien-genoux-decolles	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-du-crabe	crabe-maintien-bassin-haut	ambigu	rear decline bridge (0668) : appui exact non vérifiable
+marche-gilet-lest	marche-gilet-lest-plat	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-laterale-elastique	marche-laterale-elastique-cuisses	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-laterale-elastique	marche-laterale-elastique-chevilles	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-laterale-poids-du-corps	marche-laterale-corps-genoux-souples	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-laterale-poids-du-corps	marche-laterale-corps-demi-squat	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-pointes-talons	marche-talons	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-pointes-talons	marche-pointes	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-pointes-talons	marche-pointes-talons-enchainees	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-rapide-intervalles	marche-rapide-continue	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-rapide-intervalles	marche-rapide-alternee	pas_dans_le_jeu	aucun équivalent dans le jeu
+marche-sac-a-dos	marche-sac-a-dos-plat	pas_dans_le_jeu	aucun équivalent dans le jeu
+mobilite-cheville-au-mur	cheville-mur-debout	pas_dans_le_jeu	aucun équivalent dans le jeu
+mobilite-cheville-au-mur	cheville-mur-genou-au-sol	pas_dans_le_jeu	aucun équivalent dans le jeu
+mobilite-hanches-90-90	hanches-90-90-assis	pas_dans_le_jeu	aucun équivalent dans le jeu
+mobilite-hanches-90-90	hanches-90-90-bascule	pas_dans_le_jeu	aucun équivalent dans le jeu
+mobilite-poignets	mobilite-poignets-appui-sol	pas_dans_le_jeu	aucun équivalent dans le jeu
+montee-gilet-lest	montee-gilet-lest-marche	pas_dans_le_jeu	aucun équivalent dans le jeu
+montee-laterale-marche	montee-laterale-marche-rampe	pas_dans_le_jeu	aucun équivalent dans le jeu
+montee-rapide-chaise	montee-rapide-chaise-sans-charge	ambigu	seuls des step-ups chargés ; notre consigne interdit toute charge
+montee-sur-marche	montee-sur-marche-poids-du-corps	ambigu	step-up avec haltères sur banc, plus haut que la première marche
+montee-sur-marche	montee-sur-box-haute	ambigu	seuls des step-ups chargés ; notre consigne interdit les haltères
+montee-sur-marche	montee-sur-chaise	ambigu	seuls des step-ups chargés ; notre consigne interdit les haltères
+montees-genoux-sur-place	montees-genoux-marche	pas_dans_le_jeu	aucun équivalent dans le jeu
+montees-genoux-sur-place	montees-genoux-course	pas_dans_le_jeu	aucun équivalent dans le jeu
+mountain-climbers	mountain-climbers-chaise	ambigu	image au sol, plus difficile que mains sur chaise ; contredit l'installation
+nage-au-sol	nage-au-sol-lente	ambigu	swimmer kicks (3433) : battements de jambes seuls, pas bras opposés
+nordique-ischios	nordique-ischios-court	pas_dans_le_jeu	aucun équivalent dans le jeu
+nordique-ischios	nordique-ischios-poussee	pas_dans_le_jeu	aucun équivalent dans le jeu
+nordique-ischios	nordique-ischios-sans-mains	pas_dans_le_jeu	aucun équivalent dans le jeu
+oiseau-elastique	oiseau-elastique-assis	ambigu	band reverse fly (0993) : ancrage et posture assise non vérifiables
+oiseau-halteres	oiseau-sans-charge-assis	ambigu	rear fly (0378) : posture assise non vérifiable
+oiseau-halteres	oiseau-halteres-assis	ambigu	rear fly (0378) : posture assise non vérifiable
+ouverture-hanche-quatre-pattes	ouverture-hanche-genou-leve	ambigu	side hip abduction (0710) : probablement couché, pas à quatre pattes
+ouverture-hanche-quatre-pattes	ouverture-hanche-cercle	ambigu	side hip abduction (0710) : probablement couché, pas à quatre pattes
+ouverture-livre-thoracique	ouverture-livre-couche-cote	pas_dans_le_jeu	aucun équivalent dans le jeu
+ouverture-livre-thoracique	ouverture-livre-quatre-pattes	pas_dans_le_jeu	aucun équivalent dans le jeu
+pas-chasses-lateraux	pas-chasses-lents	pas_dans_le_jeu	aucun équivalent dans le jeu
+pas-chasses-lateraux	pas-chasses-rapides	pas_dans_le_jeu	aucun équivalent dans le jeu
+passage-de-bras-serviette	passage-bras-prise-large	pas_dans_le_jeu	aucun équivalent dans le jeu
+passage-de-bras-serviette	passage-bras-prise-etroite	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche	planche-genoux	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche	planche-avant-bras	ambigu	seule weighted front plank (2135) : disque sur le dos
+planche-ballon	planche-ballon-avant-bras	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-ballon	planche-ballon-tibias	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-bosu	planche-bosu-genoux	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-bosu	planche-bosu-pieds	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-bras-jambe-leves	planche-bras-leve-avant-bras	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-bras-jambe-leves	planche-jambe-levee-avant-bras	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-bras-jambe-leves	planche-bras-jambe-opposes	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-cercles-ballon	planche-cercles-ballon-petits	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-cercles-ballon	planche-cercles-ballon-grands	pas_dans_le_jeu	aucun équivalent dans le jeu
+planche-laterale	planche-laterale-genoux	ambigu	side bridge sur pieds seulement ; pas de version sur genou
+planche-laterale-jambe-levee	planche-laterale-jambe-levee-main	ambigu	side bridge avec abduction (1774) probablement sur avant-bras, pas sur main
+planche-touche-epaule	planche-touche-epaule-pieds	ambigu	seule la version sur genoux (3239)
+planche-touche-epaule	planche-touche-epaule-pieds-serres	ambigu	seule la version sur genoux (3239)
+pompe-bosu	pompe-bosu-genoux	ambigu	bosu 1307 et 0653 : orientation du dôme et appui genoux non vérifiables
+pompe-bosu	pompe-bosu-pieds	ambigu	bosu 1307 et 0653 : orientation du dôme non vérifiable
+pompe-ecartee	pompe-ecartee-sol	ambigu	pas de pompe large ; push-up standard a les mains à largeur d'épaules
+pompe-equilibre-mur	pompe-equilibre-mur-pieds	ambigu	handstand push-up (0471) différent, geste technique
+pompe-equilibre-mur	pompe-equilibre-mur-ventre	ambigu	handstand push-up (0471) proche mais technique : doute = rien
+pompe-mains-ballon	pompe-mains-ballon-mur	pas_dans_le_jeu	aucun équivalent dans le jeu
+pompe-piquee	pompe-piquee-mains-marche	pas_dans_le_jeu	aucun équivalent dans le jeu
+pompe-piquee	pompe-piquee-sol	pas_dans_le_jeu	aucun équivalent dans le jeu
+pompe-piquee-pieds-sureleves	pompe-piquee-pieds-marche	pas_dans_le_jeu	aucun équivalent dans le jeu
+pompe-piquee-pieds-sureleves	pompe-piquee-pieds-chaise	pas_dans_le_jeu	aucun équivalent dans le jeu
+pompe-plus	pompe-plus-mur	ambigu	push-up plus (3145) : appui sol ou mur non vérifiable
+pompe-plus	pompe-plus-genoux	ambigu	push-up plus (3145) probablement sur les pieds
+pompe-un-bras	pompe-un-bras-chaise	ambigu	single arm push-up (0725) au sol, pas sur chaise
+pont-fessier-ballon	pont-fessier-ballon-haut-du-dos	ambigu	aucun pont sur ballon ; glute bridge au sol seulement
+pont-fessier-ballon	pont-fessier-ballon-talons	ambigu	aucun pont talons sur ballon ; kick hamstring curl (1417) différent
+pont-fessier-ballon	pont-fessier-ballon-talons-une-jambe	ambigu	aucun pont talons sur ballon ; kick hamstring curl (1417) différent
+pont-fessier-une-jambe	pont-fessier-une-jambe-chaise	ambigu	single leg bridge (3645) au sol, pied sur chaise non montré
+porte-ballon-lest	porte-ballon-lest-poitrine	pas_dans_le_jeu	aucun équivalent dans le jeu
+porte-ballon-lest	porte-ballon-lest-bras-tendus	pas_dans_le_jeu	aucun équivalent dans le jeu
+porte-sac-a-dos-devant	porte-sac-a-dos-serre	pas_dans_le_jeu	aucun équivalent dans le jeu
+porte-sac-berceau	porte-sac-berceau-chaise	pas_dans_le_jeu	aucun équivalent dans le jeu
+porte-sac-berceau	porte-sac-berceau-sol	pas_dans_le_jeu	aucun équivalent dans le jeu
+porte-un-haltere-epaule	porte-epaule-halteres	ambigu	aucun porté sur l'épaule
+porte-un-haltere-epaule	porte-epaule-kettlebell	ambigu	aucun porté sur l'épaule ; kettlebell clean seulement
+porte-valise	porte-valise-haltere	pas_dans_le_jeu	aucun équivalent dans le jeu
+porte-valise	porte-valise-bidon-sac	pas_dans_le_jeu	aucun équivalent dans le jeu
+poussee-verticale-mur	poussee-verticale-mur-front	pas_dans_le_jeu	aucun équivalent dans le jeu
+poussee-verticale-mur	poussee-verticale-mur-haute	pas_dans_le_jeu	aucun équivalent dans le jeu
+presse-des-mains	presse-des-mains-debout	pas_dans_le_jeu	aucun équivalent dans le jeu
+pullover-haltere-au-sol	pullover-banc-haltere	ambigu	Le jeu montre probablement le pullover en travers du banc, que notre consigne exclut
+rebonds-chevilles	rebonds-deux-pieds	pas_dans_le_jeu	Aucun rebond sur les chevilles dans le jeu
+reception-saut-stabilisee	reception-saut-pas-stabilise	pas_dans_le_jeu	Aucune reception de saut stabilisee
+reception-saut-stabilisee	reception-saut-petit-saut	pas_dans_le_jeu	Aucune reception de saut stabilisee
+releve-bassin-marche	releve-bassin-pas-chaise	ambigu	Pont avec marche au sol (3561) mais pieds sur chaise chez nous
+releve-tibial-mur	releve-tibial-assis	pas_dans_le_jeu	Pas de releve du tibial anterieur (seulement smith toe raise)
+releve-tibial-mur	releve-tibial-mur-deux-pieds	pas_dans_le_jeu	Pas de releve du tibial anterieur
+releve-tibial-mur	releve-tibial-mur-un-pied	pas_dans_le_jeu	Pas de releve du tibial anterieur
+renfo-cou-isometrique	renfo-cou-simple	pas_dans_le_jeu	Aucun renfo du cou, seulement des etirements
+renfo-cou-isometrique	renfo-cou-mains	pas_dans_le_jeu	Aucun renfo du cou
+retraction-cervicale	retraction-cervicale-assise	pas_dans_le_jeu	Pas de retraction cervicale
+retraction-cervicale	retraction-cervicale-mur	pas_dans_le_jeu	Pas de retraction cervicale
+retraction-cervicale	retraction-cervicale-couchee	pas_dans_le_jeu	Pas de retraction cervicale
+retraction-omoplates	retraction-omoplates-debout	pas_dans_le_jeu	Pas de serrage d'omoplates isole
+retraction-omoplates	retraction-omoplates-assise	pas_dans_le_jeu	Pas de serrage d'omoplates isole
+retraction-omoplates	retraction-omoplates-mur	pas_dans_le_jeu	Pas de serrage d'omoplates isole
+rollout-ballon	rollout-ballon-court	pas_dans_le_jeu	Pas de roule de ballon
+rollout-ballon	rollout-ballon-long	pas_dans_le_jeu	Pas de roule de ballon
+rotation-bucheron	rotation-bucheron-sans-charge	pas_dans_le_jeu	Pas de bucheron (wood chop) dans le jeu
+rotation-bucheron	rotation-bucheron-halteres	pas_dans_le_jeu	Pas de bucheron dans le jeu
+rotation-bucheron	rotation-bucheron-elastique	pas_dans_le_jeu	Pas de bucheron dans le jeu
+rotation-douce-cou	rotation-cou-assise	pas_dans_le_jeu	Pas de rotation du cou
+rotation-douce-cou	rotation-cou-debout	pas_dans_le_jeu	Pas de rotation du cou
+rotation-isometrique-cou	rotation-isometrique-main	pas_dans_le_jeu	Aucun renfo du cou
+rotation-thoracique-assise	rotation-thoracique-chaise	pas_dans_le_jeu	Seulement des rotations chargees (barre, poulie)
+rotation-thoracique-assise	rotation-thoracique-debout	pas_dans_le_jeu	Seulement des rotations chargees (barre)
+roue-abdos	roue-abdos-mur-genoux	ambigu	Le jeu ne montre pas le mur de butee ; amplitude non verifiable
+rowing-elastique	rowing-elastique-penche	ambigu	Seul candidat 0988 est a un bras ; nous deux bras
+rowing-elastique	rowing-elastique-porte	pas_dans_le_jeu	Pas de rowing elastique a deux bras ancre a hauteur de poitrine
+rowing-serviette-resistee	rowing-serviette-debout	ambigu	3165 est un autre geste (serviette sur poignee) ; nous une main resiste
+rowing-serviette-resistee	rowing-serviette-assis	ambigu	Pas de rowing a la serviette resistee
+saut-fendu-alterne	saut-fendu-sur-place	ambigu	3582 lunge with jump : alternance ou non indeterminee
+saut-fendu-alterne	saut-fendu-alterne-jambes	ambigu	3582 lunge with jump : alternance ou non indeterminee
+saut-lateral-patineur	saut-lateral-pas-glisse	pas_dans_le_jeu	Pas de pas lateral sans saut
+saut-lateral-patineur	saut-lateral-un-saut	ambigu	3361 est enchaine ; notre un saut avec arret
+saut-lateral-pieds-joints	saut-lateral-joints-un-saut	pas_dans_le_jeu	Pas de saut lateral pieds joints
+saut-lateral-pieds-joints	saut-lateral-joints-aller-retour	pas_dans_le_jeu	Pas de saut lateral pieds joints
+saut-longueur-pieds-joints	saut-longueur-sur-place	ambigu	1472 forward jump : un seul saut stabilise non verifiable
+saut-vertical	saut-vertical-squat-bras-croises	ambigu	Bras croises et squat profond non verifiables sur 0513/0514
+souleve-de-terre-roumain-barre	souleve-de-terre-jambes-tendues-barre	ambigu	0116 jambes tendues contredit genoux a peine plies ; exercice a risque
+souleve-de-terre-sac	sdt-sac-chaise	ambigu	Aucun souleve avec sac ; prise differente des barres et halteres
+souleve-de-terre-sac	sdt-sac-sol	ambigu	Aucun souleve avec sac ; prise differente des barres et halteres
+squat-arriere-barre	squat-arriere-barre-confort	ambigu	0043 est profond, chez nous parallele ; ne pas contredire la consigne
+squat-arriere-barre	squat-arriere-barre-pause	pas_dans_le_jeu	Pas de squat avec arret en bas
+squat-assis-debout	squat-assis-debout-chaise	pas_dans_le_jeu	Pas de squat assis-debout poids du corps
+squat-assis-debout	squat-assis-debout-marche	pas_dans_le_jeu	Pas de squat assis-debout poids du corps
+squat-avant-barre	squat-avant-barre-bras-croises	ambigu	Prise du 0042 non verifiable (probablement doigts)
+squat-ballon-lest	squat-ballon-lest-poitrine	pas_dans_le_jeu	Pas de squat avec ballon lestee
+squat-ballon-lest	squat-ballon-lest-bras-tendus	pas_dans_le_jeu	Pas de squat avec ballon lestee
+squat-bulgare	squat-bulgare-chaise	ambigu	Bulgare possible sous 0410/0099 single leg split squat, a verifier a l'ecran
+squat-bulgare	squat-bulgare-marche	ambigu	Bulgare possible sous 0410/0099 single leg split squat, a verifier a l'ecran
+squat-bulgare	squat-bulgare-halteres	ambigu	Bulgare possible sous 0410 single leg split squat, a verifier a l'ecran
+squat-fendu	squat-fendu-halteres	ambigu	0410 pourrait etre un bulgare (pied arriere sureleve) : conflit
+squat-gilet-lest	squat-gilet-lest-chaise	pas_dans_le_jeu	Pas de squat gilet avec chaise
+squat-gilet-lest	squat-gilet-lest-pause	pas_dans_le_jeu	Pas de squat avec arret en bas
+squat-lancer-mur	squat-lancer-mur-pieds-a-plat	pas_dans_le_jeu	Pas de lancer de ballon au mur
+squat-mur-ballon	squat-mur-ballon-sans-charge	pas_dans_le_jeu	Pas de squat dos au ballon contre mur
+squat-mur-ballon	squat-mur-ballon-halteres	pas_dans_le_jeu	Pas de squat dos au ballon contre mur
+squat-petit-saut	squat-petit-saut-douce	pas_dans_le_jeu	Pas de squat montee rapide sans saut
+squat-poids-du-corps	squat-poids-du-corps-libre	pas_dans_le_jeu	Aucun squat poids du corps simple dans le jeu
+squat-sac-berceau	squat-sac-berceau-chaise	pas_dans_le_jeu	Pas de squat avec sac
+squat-sac-berceau	squat-sac-berceau-sol	pas_dans_le_jeu	Pas de squat avec sac
+squat-sumo	squat-sumo-poids-du-corps	pas_dans_le_jeu	Seul sumo squat dans le jeu est a la Smith
+squat-sumo	squat-sumo-haltere	pas_dans_le_jeu	Pas de squat sumo haltere
+squat-sumo	squat-sumo-kettlebell	pas_dans_le_jeu	Pas de squat sumo kettlebell
+superman-alterne	superman-alterne-bras-jambe	pas_dans_le_jeu	Pas de superman alterne
+tirage-sac-sur-sol	tirage-sac-sol-lisse	pas_dans_le_jeu	Pas de tirage de sac sur le sol
+tirage-vertical-allonge-ventre	tirage-ventre-front-pose	pas_dans_le_jeu	Pas de tirage vertical au sol sur le ventre
+tirage-vertical-allonge-ventre	tirage-ventre-serviette	pas_dans_le_jeu	Pas de tirage vertical au sol sur le ventre
+tirage-vertical-allonge-ventre	tirage-ventre-poitrine-levee	pas_dans_le_jeu	Pas de tirage vertical au sol sur le ventre
+tirage-vertical-serviette	tirage-serviette-debout	pas_dans_le_jeu	Pas de tirage a la serviette
+tirage-vertical-serviette	tirage-serviette-assis	pas_dans_le_jeu	Pas de tirage a la serviette
+tirage-vertical-serviette	tirage-serviette-une-main	pas_dans_le_jeu	Pas de tirage a la serviette
+tirage-vertical-un-bras-elastique	tirage-un-bras-elastique-debout	ambigu	Jeu ancre ; notre elastique tenu sans ancrage
+tirage-vertical-un-bras-elastique	tirage-un-bras-elastique-assis	ambigu	Jeu ancre ; notre elastique tenu sans ancrage
+tirage-visage-elastique-barre	tirage-visage-elastique-barre-assis	pas_dans_le_jeu	Pas de tirage au visage (face pull)
+tirage-visage-elastique-barre	tirage-visage-elastique-barre-debout	pas_dans_le_jeu	Pas de tirage au visage
+tirage-visage-sangles	tirage-visage-sangles-debout	pas_dans_le_jeu	Pas de tirage au visage aux sangles
+tirage-visage-sangles	tirage-visage-sangles-incline	pas_dans_le_jeu	Pas de tirage au visage aux sangles
+tirage-w-allonge	tirage-w-sol	pas_dans_le_jeu	Pas de tirage en W allonge
+tirage-w-allonge	tirage-w-halteres-legers	pas_dans_le_jeu	Pas de tirage en W allonge
+traction-negative-barre	traction-negative-chaise	pas_dans_le_jeu	Pas de traction negative
+traction-negative-barre	traction-negative-box	pas_dans_le_jeu	Pas de traction negative
+traction-un-bras	traction-un-bras-aide-main-libre	ambigu	0638 un bras sans aide et 0970 deux bras contredisent la consigne
+traction-un-bras	traction-un-bras-elastique	ambigu	0638 un bras sans aide et 0970 deux bras contredisent la consigne
+ytw-sol	ytw-sol-sans-charge	pas_dans_le_jeu	Seuls Y et T inclines sur banc, pas au sol
+ytw-sol	ytw-sol-halteres	pas_dans_le_jeu	Seuls Y et T inclines sur banc, pas au sol

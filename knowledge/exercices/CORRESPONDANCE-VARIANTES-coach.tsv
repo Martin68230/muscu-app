@@ -1,0 +1,231 @@
+fiche_id	variante_id	hasan_ids	niveau	motif
+abduction-hanche-machine	abduction-machine-assis	0597	sûr	machine assise d abduction, même exécution
+adduction-couchee-cote	adduction-couchee-cote-base	3667	proche	adduction couchée sur le côté ; position de la jambe du dessus non vérifiée
+adduction-couchee-cote	adduction-couchee-cote-chaise	3667	proche	même geste ; pied du dessus au sol dans l image, sur la chaise chez nous
+adduction-hanche-elastique-debout	adduction-hanche-elastique-debout-cheville	0168	proche	même geste debout, poulie avec sangle de cheville au lieu de l élastique
+corde-a-sauter	corde-intervalles	2612	sûr	corde à sauter, même matériel et geste
+course-continue-lente	course-continue-lente-dehors	0685	proche	course à pied ; allure lente non visible dans l image
+crunch-au-sol	crunch-au-sol-pieds-poses	0274	proche	crunch au sol ; position des bras non vérifiée
+crunch-bicyclette	crunch-bicyclette-pedalage	0003	proche	air bike = pédalage couché ; nom différent
+curl-barre	curl-barre-ez	0447	sûr	curl barre EZ (déjà validé)
+curl-barre	curl-barre-droite	0031	sûr	curl barre droite (déjà validé)
+curl-concentration-halteres	curl-concentration-banc	0297	sûr	curl concentration assis, coude contre la cuisse
+curl-concentration-halteres	curl-concentration-chaise	0297	proche	même geste ; assise banc dans l image, chaise chez nous
+curl-elastique	curl-elastique-debout	0968	proche	curl debout à l élastique ; les bras alternent dans l image
+curl-elastique	curl-elastique-assis	3123	sûr	curl assis à l élastique
+curl-halteres	curl-halteres-debout	0416	sûr	curl debout haltères, paumes vers le haut
+curl-halteres	curl-halteres-marteau	0313	sûr	curl marteau haltères
+curl-halteres	curl-halteres-assis	0391	sûr	curl assis haltères
+curl-incline-halteres	curl-incline-halteres-supination	0318,0315	sûr	curl incliné haltères (déjà validé)
+curl-incline-halteres	curl-incline-halteres-marteau	0320	sûr	curl incliné prise marteau (le TSV rattachait 0320 à la supination)
+curl-inverse-halteres	curl-inverse-halteres-debout	0429	sûr	curl inversé debout haltères
+curl-inverse-halteres	curl-inverse-halteres-assis	0429	proche	même geste ; debout dans l image, assis chez nous
+curl-ischios-elastique	curl-ischios-elastique-chaise	0795	proche	curl ischios debout sans élastique ; une jambe, geste identique
+curl-ischios-elastique	curl-ischios-elastique-mur	0795	proche	curl ischios debout sans élastique ; une jambe, geste identique
+curl-poignet-halteres	curl-poignet-halteres-banc	0367	sûr	curl de poignet une main, avant-bras sur le banc
+curl-poignet-halteres	curl-poignet-halteres-cuisse	0401	proche	curl de poignet assis paume vers le haut ; appui sur la cuisse non vérifié
+dead-bug	dead-bug-poids-du-corps	0276	sûr	dead bug (déjà validé)
+developpe-au-sol-halteres	developpe-sol-deux-halteres	0289	proche	développé haltères sur banc ; amplitude plus longue qu au sol
+developpe-au-sol-halteres	developpe-sol-un-haltere	0343	proche	développé un bras couché (banc) ; amplitude plus longue qu au sol
+developpe-couche-barre	developpe-couche-barre-sol	0025	proche	développé couché barre sur banc ; au sol chez nous (amplitude limitée)
+developpe-couche-barre	developpe-couche-barre-banc	0025	sûr	développé couché barre sur banc
+developpe-couche-halteres	developpe-couche-halteres-prise-neutre	0289,0352	sûr	développé haltères ; 0352 = prise neutre, 0289 déjà validé
+developpe-couche-halteres	developpe-couche-halteres-classique	0289	sûr	développé couché haltères, prise classique
+developpe-couche-halteres	developpe-couche-halteres-un-bras	0343	proche	développé un bras couché ; banc non précisé
+developpe-couche-prise-serree-barre	developpe-couche-prise-serree-barre-ez	2432	sûr	développé couché prise serrée barre EZ
+developpe-couche-prise-serree-barre	developpe-couche-prise-serree-barre-droite	0030	sûr	prise serrée barre droite (déjà validé)
+developpe-elastique-dos	developpe-elastique-dos-banc	1254	sûr	développé couché à la bande (le TSV le disait sans variante)
+developpe-epaules-assis-dossier-incline	developpe-epaules-dossier-droit	0405	sûr	développé épaules assis haltères (déjà validé)
+developpe-epaules-elastique	developpe-epaules-elastique-debout	0997	sûr	développé épaules élastique debout (déjà validé)
+developpe-epaules-elastique	developpe-epaules-elastique-assis	3122	sûr	développé épaules élastique assis
+developpe-epaules-elastique-alterne	developpe-alterne-elastique-assis	0388	proche	même geste alterné assis ; haltères au lieu de l élastique
+developpe-epaules-elastique-alterne	developpe-alterne-elastique-debout	0414	proche	même geste alterné debout ; haltères au lieu de l élastique
+developpe-epaules-halteres	developpe-epaules-assis-chaise	0405	proche	développé assis haltères ; dossier du banc dans l image, chaise chez nous
+developpe-epaules-halteres	developpe-epaules-debout	0426	sûr	développé épaules debout haltères (déjà validé)
+developpe-epaules-halteres	developpe-epaules-un-bras	0361	proche	développé un bras haltère ; posture debout non confirmée par le nom
+developpe-incline-barre	developpe-incline-barre-pente-douce	0047	proche	développé incliné barre ; angle non précisé
+developpe-incline-halteres	developpe-incline-halteres-pente-douce	0314	proche	développé incliné haltères ; angle non précisé
+developpe-incline-halteres	developpe-incline-halteres-pente-moyenne	0314	proche	développé incliné haltères ; angle non précisé
+developpe-militaire-barre	developpe-militaire-barre-assis	0091	sûr	développé barre assis
+developpe-sol-elastique	developpe-sol-elastique-deux-bras	1254	proche	développé à la bande couché sur banc ; au sol chez nous
+dips-banc-triceps	dips-banc-genoux-plies	0129,0814	sûr	bench dip genoux pliés (déjà validé)
+dips-banc-triceps	dips-chaise-genoux-plies	0129	proche	même geste ; banc dans l image, chaise chez nous
+dips-banc-triceps	dips-banc-jambes-tendues	0814	proche	triceps dip ; jambes tendues déduites du nom, non vérifiées
+dips-banc-triceps	dips-banc-pieds-surleves	0813	proche	triceps dip entre deux bancs ; second banc au lieu d une box
+ecarte-couche-halteres	ecarte-couche-halteres-banc	0308	sûr	écarté haltères banc plat (déjà validé)
+ecarte-couche-halteres	ecarte-incline-halteres	0319	sûr	écarté incliné haltères
+elevation-laterale	elevation-laterale-chaise-halteres	0396	sûr	élévation latérale assis haltères (déjà validé)
+elevation-laterale	elevation-laterale-debout-halteres	0334	sûr	élévation latérale debout haltères
+elevation-laterale-assis-halteres	elevation-laterale-assis-chaise	0396	sûr	élévation latérale assis haltères (déjà validé)
+elevation-laterale-assis-halteres	elevation-laterale-assis-banc	0396	proche	même geste ; assise banc non précisée
+etirement-fessiers-figure-4	figure-4-chaise	1424	proche	étirement fessiers assis ; position en 4 non confirmée par le nom
+etirement-ischios-serviette	etirement-ischios-allonge	1582	proche	étirement ischios couché avec sangle ; corde au lieu de la serviette
+etirement-mollets-mur	etirement-mollets-jambe-tendue	1377	sûr	étirement mollet mains au mur
+etirement-quadriceps	etirement-quadriceps-cote	0613	sûr	étirement quadriceps couché sur le côté
+extension-dorsale-ballon	extension-dorsale-ballon-bras-croises	1314	sûr	extension du dos sur ballon (déjà validé)
+extension-dorsale-ballon	extension-dorsale-ballon-mains-tete	1334	sûr	extension du dos sur ballon, mains derrière la tête
+extension-genou-elastique	extension-genou-chaise-elastique	3007	sûr	extension du genou assis à l élastique
+extension-hanche-debout-elastique	extension-hanche-debout-elastique-cheville	0228	proche	même geste debout, poulie avec sangle au lieu de l élastique
+extension-poignet-avant-bras	extension-poignet-avant-bras	0994	sûr	extension de poignet à la bande
+extension-triceps-assis-halteres	extension-triceps-assis-chaise	2188,2189	sûr	extension triceps assis haltères (déjà validé)
+extension-triceps-assis-halteres	extension-triceps-assis-banc	2188	proche	même geste ; assise banc non précisée
+extension-triceps-barre-ez-allonge	extension-triceps-barre-ez-banc	0060	proche	barre droite au lieu de la barre EZ ; même geste couché
+extension-triceps-couche-halteres	extension-triceps-couche-deux-halteres	0351	sûr	extension triceps couché haltères
+extension-triceps-elastique	extension-triceps-elastique-ancre-haut	0201	proche	pushdown à la poulie au lieu de l élastique
+extension-triceps-elastique	extension-triceps-elastique-pied	0423	proche	extension un bras debout haltère au lieu de l élastique
+extension-triceps-sol-leger	extension-triceps-sol-halteres	0351	proche	extension couché sur banc ; au sol chez nous
+fente-arriere	fente-arriere-poids-du-corps	0381	proche	fente arrière avec haltères dans l image
+fente-arriere	fente-arriere-halteres	0381	sûr	fente arrière haltères
+fente-avant	fente-avant-poids-du-corps	3470	sûr	fente avant poids du corps
+fente-avant	fente-avant-halteres	0336	proche	fente aux haltères ; le nom ne précise pas si les jambes alternent
+fente-avant	fente-marchee	1460	sûr	walking lunge poids du corps
+fente-basse-rotation	fente-basse-rotation-sol	1604	proche	world greatest stretch : fente basse avec rotation ; ajoute un appui main au sol et une extension de hanche
+fente-gilet-lest	fente-gilet-lest-mur	2368	proche	squat fendu poids du corps ; sans gilet ni appui au mur
+fente-gilet-lest	fente-gilet-lest-libre	2368	proche	squat fendu poids du corps ; sans gilet
+fente-gilet-lest	fente-gilet-lest-lente	2368	proche	squat fendu poids du corps ; sans gilet, tempo non montré
+fente-marchee-halteres	fente-marchee-poids-du-corps	1460	sûr	walking lunge poids du corps
+fente-marchee-halteres	fente-marchee-halteres-legers	0336	proche	fente aux haltères ; marche non garantie par le nom
+flexion-poignet-avant-bras	flexion-poignet-avant-bras	1016	sûr	band wrist curl
+genoux-poitrine-ballon	genoux-poitrine-ballon-genoux	0650	sûr	pull-in sur ballon (déjà validé)
+good-morning-barre	good-morning-barre-debout	0044	sûr	barbell good morning (déjà validé)
+grenouille-hanches	grenouille-mains	2571	proche	rocking frog stretch ; appui possible sur avant-bras et genoux plus écartés
+grenouille-hanches	grenouille-avant-bras	2571	proche	rocking frog stretch ; même position avec balancement
+haussement-epaules-halteres	haussement-elastique	1018	sûr	band shrug
+haussement-epaules-halteres	haussement-halteres	0406	sûr	dumbbell shrug
+jumping-jacks	jumping-jacks-saut	3224	sûr	jack jump = écartés sautés
+kickback-triceps-halteres	kickback-triceps-banc	0333	sûr	dumbbell kickback (un genou et une main sur banc)
+kickback-triceps-halteres	kickback-triceps-chaise	0333	proche	même geste ; appui sur un banc au lieu d'une chaise
+lancer-poitrine-mur	lancer-poitrine-mur-rattrape	1302	proche	medicine ball chest pass ; mur ou partenaire non précisé
+marche-de-l-ours	ours-pas-lents	3360	proche	bear crawl ; rythme probablement plus rapide que nos pas lents
+marche-du-fermier	fermier-halteres	2133	sûr	farmers walk haltères
+marche-du-fermier	fermier-bidons-sacs	2133	proche	farmers walk ; haltères au lieu de bidons ou sacs
+mobilite-poignets	mobilite-poignets-cercles	1428	sûr	wrist circles
+montee-sur-banc	montee-sur-banc-poids-du-corps	0431	proche	step-up ; haltères tenus, sans main vers un support
+montee-sur-marche	montee-sur-marche-halteres	0431	sûr	dumbbell step-up (déjà validé)
+mountain-climbers	mountain-climbers-lent	0630	proche	mountain climber au sol ; rythme non précisé
+mountain-climbers	mountain-climbers-rapide	0630	proche	mountain climber au sol ; rythme non précisé
+oiseau-banc-incline	oiseau-banc-incline-sans-charge	0326	proche	même geste avec haltères ; notre variante est sans charge
+oiseau-banc-incline	oiseau-banc-incline-halteres	0326	sûr	dumbbell incline rear lateral raise
+oiseau-elastique	oiseau-elastique-debout	0993	proche	band reverse fly ; ancrage de l'élastique possiblement différent
+oiseau-halteres	oiseau-halteres-banc-incline	0326	sûr	dumbbell incline rear lateral raise
+oiseau-machine-poulie	oiseau-machine	0602	sûr	lever seated reverse fly = pec deck inversé
+oiseau-machine-poulie	oiseau-poulies-croisees	0225	sûr	cable standing cross-over high reverse fly
+oiseau-un-bras-appuye	oiseau-un-bras-sans-charge	0359	proche	même geste avec haltère ; notre variante est sans charge
+oiseau-un-bras-appuye	oiseau-un-bras-bidon	0359	proche	même geste avec haltère au lieu d'un bidon
+oiseau-un-bras-appuye	oiseau-un-bras-haltere	0359	sûr	dumbbell one arm reverse fly avec appui
+pallof-elastique	pallof-elastique-genoux	0979	proche	band pallof press ; posture (genoux ou debout) non précisée
+pallof-elastique	pallof-elastique-debout	0979	proche	band pallof press ; posture (genoux ou debout) non précisée
+pallof-elastique	pallof-elastique-pieds-serres	0979	proche	band pallof press ; écart des pieds non précisé
+planche-laterale	planche-laterale-pieds	0705	proche	side bridge ; appui avant-bras probable
+planche-laterale-jambe-levee	planche-laterale-jambe-levee-avant-bras	1774	proche	side bridge avec abduction de hanche ; jambe du dessus levée
+planche-touche-epaule	planche-touche-epaule-genoux	3239	sûr	kneeling plank tap shoulder
+pompe	pompe-mur	0659	sûr	push-up (wall) (déjà validé)
+pompe	pompe-chaise	3785	proche	pompe inclinée sur une box ; box au lieu d'une chaise
+pompe	pompe-genoux	3211	sûr	kneeling push-up (déjà validé)
+pompe	pompe-sol	0662	sûr	push-up classique
+pompe	pompe-pieds-sureleves	0279	proche	decline push-up ; banc possible au lieu d'une chaise
+pompe-archer	pompe-archer-sol	3294	sûr	archer push-up (déjà validé)
+pompe-declinee-banc	pompe-declinee-chaise	0279	proche	decline push-up ; banc possible au lieu d'une chaise
+pompe-declinee-banc	pompe-declinee-banc-pieds	0279	sûr	decline push-up pieds sur banc
+pompe-diamant	pompe-diamant-sol	0283	sûr	diamond push-up
+pompe-gilet-lest	pompe-gilet-lest-sol	0662	proche	pompe classique ; sans gilet
+pompe-gilet-lest	pompe-gilet-lest-pieds-chaise	0279	proche	decline push-up ; sans gilet, banc possible
+pompe-pieds-ballon	pompe-pieds-ballon-tibias	0655,0656	proche	push-up sur ballon ; position exacte des pieds ou tibias non précisée
+pompe-pieds-ballon	pompe-pieds-ballon-pieds	0655,0656	proche	push-up sur ballon ; position exacte des pieds ou tibias non précisée
+pompe-plus	pompe-plus-sol	3145	proche	push-up plus ; appui (sol ou mur) non précisé par le nom
+pompe-un-bras	pompe-un-bras-sol	0725	proche	single arm push-up ; écart des pieds non précisé
+pont-fessier	pont-fessier-sol	3013	sûr	low glute bridge on floor
+pont-fessier	pont-fessier-haltere	1409	proche	pont au sol avec barre ; haltère dans notre variante
+pont-fessier-gilet-lest	pont-gilet-lest-sol	3013	proche	pont au sol ; sans gilet
+pont-fessier-gilet-lest	pont-gilet-lest-pause	3013	proche	pont au sol ; sans gilet, arrêt non montré
+pont-fessier-gilet-lest	pont-gilet-lest-une-jambe	3645	proche	pont une jambe, jambe libre tendue ; sans gilet
+pont-fessier-une-jambe	pont-fessier-une-jambe-sol	3645	proche	pont une jambe ; jambe libre tendue au lieu du genou ramené
+porte-serveur	porte-serveur-halteres	3548	sûr	dumbbell single arm overhead carry
+porte-serveur	porte-serveur-bidon	3548	proche	même porté avec haltère au lieu d'un bidon
+pullover-haltere-au-sol	pullover-sol-haltere	0375	proche	Meme geste ; le jeu montre probablement un banc, nous le sol
+rebonds-chevilles	rebonds-chevilles-pointe	1373	sûr	Montee sur la pointe des pieds au poids du corps
+releve-bassin-jambes-pliees	releve-bassin-jambes-pliees-base	0484,0872	proche	Releve de bassin genoux flechis ; installation non verifiable par le nom
+releve-bassin-marche	releve-bassin-pas-alternes	3561	proche	Pont fessier avec marche ; chez nous seulement un talon decolle
+releve-mollets	releve-mollets-mur	1373	sûr	Montee sur pointes debout poids du corps (main au mur non montree)
+releve-mollets	releve-mollets-marche	1490	sûr	Montee sur pointes sur escalier, talons dans le vide
+releve-mollets	releve-mollets-elastique	1369	sûr	Elastique sous les deux pieds
+releve-mollets	releve-mollets-une-jambe	1387	proche	Une jambe, au sol ou bord de marche selon le jeu
+releve-mollets-assis	releve-mollets-assis-chaise	1379	proche	Meme geste assis ; le jeu montre des haltères, nous sans charge
+releve-mollets-assis	releve-mollets-assis-haltere	1379	sûr	Releve de mollets assis avec haltere sur les cuisses
+releve-mollets-assis	releve-mollets-assis-une-jambe	0400	proche	Une jambe assis ; le jeu montre un haltere, nous sans charge
+releve-mollets-debout-barre	releve-mollets-debout-barre-sol	1372	sûr	Deja valide
+releve-mollets-halteres	releve-mollets-halteres-sol	0417	sûr	Montee sur pointes debout avec halteres
+releve-mollets-halteres	releve-mollets-halteres-marche	1490	proche	Meme geste sur marche ; le jeu sans haltere
+releve-mollets-halteres	releve-mollets-halteres-une-jambe	0409	sûr	Une jambe avec haltere
+releve-mollets-machine	releve-mollets-machine-debout	0605	sûr	Machine a mollets debout
+releve-mollets-machine	releve-mollets-machine-assis	0594	sûr	Machine a mollets assise
+rotation-assise-ballon-lest	rotation-assise-ballon-lest-pieds-sol	0846	proche	Rotation assise lestee ; lest du jeu non precise par le nom
+rotation-assise-ballon-lest	rotation-assise-ballon-lest-pieds-leves	0845	proche	Pieds leves ; lest du jeu non precise par le nom
+rotation-externe-epaule	rotation-externe-elastique-coude-colle	0235	proche	Rotation externe debout coude au flanc ; le jeu a la poulie, nous elastique
+rotation-externe-epaule	rotation-externe-halteres-couche	0863	proche	Rotation externe allongee avec haltere ; position (sur le cote) a verifier
+rotation-externe-poulie	rotation-externe-poulie-debout	0235	sûr	Rotation externe debout a la poulie
+rotation-russe	rotation-russe-pieds-au-sol	0687	sûr	Rotation russe au poids du corps ; position des pieds a verifier a l'ecran
+rotation-russe	rotation-russe-pieds-leves	0845	proche	Pieds leves ; le jeu ajoute une charge
+rotation-russe	rotation-russe-halteres	0845	proche	Pieds leves lestee ; type de charge du jeu non precise
+roue-abdos	roue-abdos-genoux	0857	proche	Roulee a genoux ; amplitude du jeu non verifiable par le nom
+roue-abdos	roue-abdos-debout	0796	sûr	Roue abdominale debout
+rowing-barre-ez	rowing-barre-ez-appuye	0049	proche	Rowing poitrine appuyee ; barre droite au lieu de barre EZ
+rowing-barre-ez	rowing-barre-ez-libre	1344	sûr	Rowing barre EZ prise supination
+rowing-barre-penche	rowing-barre-penche-appuye	0049	sûr	Deja valide
+rowing-barre-penche	rowing-barre-penche-libre	0027	sûr	Deja valide
+rowing-buste-penche-halteres	rowing-penche-paumes-arriere	0293	sûr	Deja valide
+rowing-buste-penche-halteres	rowing-penche-paumes-face	0293	proche	Meme rowing ; prise des mains non verifiable par le nom
+rowing-elastique	rowing-elastique-assis	3144	sûr	Rowing assis a l'elastique
+rowing-elastique	rowing-elastique-un-bras	0988	proche	Un bras a l'elastique ; ancrage bas dans le jeu
+rowing-pendlay-barre	rowing-pendlay-barre-sol	3017	sûr	Deja valide
+rowing-poitrine-appuyee-banc	rowing-poitrine-appuyee-banc-prise-neutre	0327	proche	Rowing halteres banc incline ; prise non verifiable par le nom
+rowing-poitrine-appuyee-banc	rowing-poitrine-appuyee-banc-prise-pronation	0327	proche	Rowing halteres banc incline ; prise non verifiable par le nom
+rowing-sac-a-dos	rowing-sac-a-dos-penche	0027	proche	Rowing penche a deux mains ; barre au lieu d'un sac
+rowing-sac-de-sable	rowing-sac-un-bras-chaise	0541,0292	proche	Rowing un bras ; kettlebell ou haltere au lieu du sac
+rowing-sac-de-sable	rowing-sac-penche	0027	proche	Rowing penche a deux mains ; barre au lieu d'un sac
+rowing-unilateral-haltere	rowing-un-bras-chaise	0292	proche	Rowing un bras haltere ; appui de la main libre non verifiable
+rowing-unilateral-haltere	rowing-un-bras-banc	0292	proche	Rowing un bras haltere ; appui de la main libre non verifiable
+saut-lateral-patineur	saut-lateral-enchaine	3361	sûr	Sauts lateraux enchaines (skater hops)
+saut-longueur-pieds-joints	saut-longueur-enchaine	1472	proche	Saut vers l'avant ; enchainement non verifiable par le nom
+saut-vertical	saut-vertical-demi-squat	0514	proche	Squat saute ; profondeur du jeu possiblement plus grande
+shrug-barre	shrug-barre-rack	0095	sûr	Deja valide
+shrug-barre	shrug-barre-sol	0095	proche	Meme haussement ; depart du sol non montre
+souleve-de-terre-barre	souleve-de-terre-barre-rack	0074	sûr	Rack pull depuis les supports du rack
+souleve-de-terre-barre	souleve-de-terre-barre-sol	0032	sûr	Souleve de terre depuis le sol
+souleve-de-terre-roumain-barre	souleve-de-terre-roumain-barre-rack	0085	sûr	Deja valide
+souleve-de-terre-roumain-barre	souleve-de-terre-roumain-barre-sol	0085	proche	Meme charniere ; depart du sol non montre
+souleve-de-terre-roumain-halteres	sdt-roumain-deux-halteres	1459	sûr	Deja valide
+souleve-de-terre-roumain-halteres	sdt-roumain-un-haltere	1459	proche	Le jeu utilise deux halteres, nous un seul a deux mains
+souleve-de-terre-roumain-unijambiste	sdt-unijambiste-mur	1757	proche	Meme geste avec haltere, sans mur
+souleve-de-terre-roumain-unijambiste	sdt-unijambiste-poids-du-corps	1757	proche	Meme geste ; le jeu montre un haltere
+souleve-de-terre-roumain-unijambiste	sdt-unijambiste-haltere	1757	sûr	Souleve de terre unijambiste avec haltere
+souleve-de-terre-sumo-barre	souleve-de-terre-sumo-barre-sol	0117	sûr	Deja valide
+squat-arriere-barre	squat-arriere-barre-complet	0043	sûr	Squat profond a la barre
+squat-avant-barre	squat-avant-barre-prise-doigts	0029	sûr	Squat avant prise clean (doigts), coudes hauts
+squat-barre-repere-banc	squat-barre-repere-banc-vide	0026	sûr	Squat a la barre avec banc comme repere
+squat-barre-repere-banc	squat-barre-repere-box	0026	proche	Meme squat avec repere ; banc au lieu d'une box
+squat-barre-repere-banc	squat-barre-repere-banc-charge	0026	sûr	Squat a la barre avec banc comme repere
+squat-bosu	squat-bosu-mur	1705	proche	Meme squat sur bosu ; sans mur dans le jeu
+squat-bosu	squat-bosu-libre	1705	sûr	Squat sur bosu
+squat-fendu	squat-fendu-mur	2368	proche	Meme squat fendu ; main au mur non montree
+squat-fendu	squat-fendu-poids-du-corps	2368	sûr	Squat fendu poids du corps
+squat-gilet-lest	squat-gilet-lest-libre	0852	proche	Squat lestee ; type de lest du jeu non precise
+squat-gobelet	squat-gobelet-haltere	1760	sûr	Squat gobelet haltere
+squat-gobelet	squat-gobelet-kettlebell	0534	sûr	Squat gobelet kettlebell
+squat-gobelet-banc	squat-banc-sans-charge	0291	proche	Squat au banc ; le jeu montre des halteres
+squat-gobelet-banc	squat-banc-halteres-cote	0291	sûr	Squat au banc avec halteres
+squat-gobelet-banc	squat-banc-gobelet	1760	proche	Position gobelet ; sans banc dans le jeu
+squat-petit-saut	squat-petit-saut-saut	0514	proche	Squat saute ; hauteur du saut du jeu possiblement plus grande
+tirage-bras-tendus-elastique	tirage-bras-tendus-elastique-debout	0238	proche	Tirage bras tendus ; poulie au lieu d'un elastique
+tirage-vertical-elastique-barre-traction	tirage-vertical-elastique-barre-genoux	0974	proche	Tirage vertical elastique ; position (debout) a verifier
+tirage-vertical-elastique-barre-traction	tirage-vertical-elastique-barre-assis	0974	proche	Meme geste ; le jeu pas assis necessairement
+tirage-vertical-elastique-barre-traction	tirage-vertical-elastique-barre-un-bras	0983	proche	Tirage un bras a genoux ; ancrage du jeu non precise
+tirage-vertical-elastique-haut	tirage-vertical-elastique-genoux	0974	proche	Tirage vertical elastique ancre en haut
+tirage-vertical-elastique-haut	tirage-vertical-elastique-assis	0974	proche	Meme geste ; position assise non verifiable
+tirage-vertical-elastique-haut	tirage-vertical-elastique-un-bras	0983	proche	Tirage un bras a genoux
+traction-barre	traction-barre-scapulaire	0688	sûr	Traction scapulaire
+traction-barre	traction-barre-assistee-elastique	0970	sûr	Traction assistee par elastique
+traction-barre	traction-barre-supination	1326	sûr	Deja valide
+traction-barre	traction-barre-pronation	0652	sûr	Deja valide
+traction-gilet-lest	traction-gilet-lest-supination	1326	proche	Meme traction ; sans lest dans le jeu
+traction-gilet-lest	traction-gilet-lest-pronation	0841	proche	Traction lestee ; type de lest du jeu non precise

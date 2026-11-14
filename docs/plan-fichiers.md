@@ -26,3 +26,5 @@
 
 ## Commandes utiles
 `npm run fiches` · `npx vitest run <fichier>` · `npm run check:fiches` · `npm run check:securite` · `npm test` · `npm run build`. Avant un push : rejeu dans un clone propre (CLAUDE.md, section C).
+
+- D22 (import local d'images) : `src/images/` (zip, store IndexedDB `muscu-images`, importer, gv-table généré), `tools/gen-gv-table.mjs`, `tools/hasan-candidats.mjs` + `hasan-lib.mjs`, `knowledge/exercices/CORRESPONDANCE-VARIANTES-coach.tsv` + `SANS-IMAGE-coach.tsv`, docs `import-gymvisual.md`, `import-gymvisual-couverture.md`, `import-images-iphone.md`.
