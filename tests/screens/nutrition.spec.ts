@@ -180,7 +180,7 @@ test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et 
   await page.getByRole('button', { name: 'Générer ma semaine' }).click();
   await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Mes courses de la semaine' })).toBeVisible();
-  await expect(page.getByText(/Vérifie toujours les étiquettes/).first()).toBeVisible();
+  await expect(page.getByText(/Vérifie toujours l’étiquette des produits/).first()).toBeVisible();
   // Courses cochables
   const first = page.locator('.nut-shop input[type="checkbox"]').first();
   await first.check();
