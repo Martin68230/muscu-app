@@ -111,6 +111,21 @@ describe('import local', () => {
   });
 });
 
+describe('entrée du convertisseur (fiches créées depuis le jeu)', () => {
+  const auto = JSON.parse(readFileSync('knowledge/exercices/CORRESPONDANCE-FICHES-HASAN.json', 'utf8')) as { hasan_id: string; fiche: string; variante: string; niveau?: string }[];
+  const gifs = new Set(readFileSync('knowledge/exercices/CORRESPONDANCE-GYMVISUAL.tsv', 'utf8').split(String.fromCharCode(10)).slice(1).map((l: string) => l.split(String.fromCharCode(9))[0]));
+  it('format : hasan_id du jeu, fiche et variante existantes, niveau sûr ou proche, présent dans la table générée', () => {
+    expect(Array.isArray(auto)).toBe(true);
+    for (const x of auto) {
+      expect(gifs.has(String(x.hasan_id))).toBe(true);
+      expect(idsFiches.has(x.fiche)).toBe(true);
+      expect(idsVar.has(`${x.fiche}/${x.variante}`)).toBe(true);
+      expect(['sûr', 'proche', undefined]).toContain(x.niveau);
+      expect(GV_TABLE.some((e) => e.id === String(x.hasan_id) && e.fiche === x.fiche && e.variante === x.variante)).toBe(true);
+    }
+  });
+});
+
 describe('durcissement (relecture)', () => {
   it('zip slip : le chemin de l’entrée ne sert jamais, seul le nom de base compte', async () => {
     const a = D[0], b = D[1];

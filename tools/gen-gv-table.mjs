@@ -1,6 +1,7 @@
 // D22 : génère src/images/gv-table.ts (TEXTE seulement : identifiants et noms de fichiers, aucune image).
 // Sources : knowledge/exercices/CORRESPONDANCE-GYMVISUAL.tsv (lignes « validé » = sûr, revue du coach) et
 // CORRESPONDANCE-VARIANTES-coach.tsv (élargissement : niveau sûr / proche, par variante). Fiche sans ligne = pas d'image.
+// + CORRESPONDANCE-FICHES-HASAN.json (entrée simple pour le convertisseur : [{ hasan_id, fiche, variante, niveau? }]).
 // Usage : node tools/gen-gv-table.mjs   (le test vérifie que le fichier est à jour)
 import { existsSync, readFileSync, writeFileSync } from 'node:fs';
 import { dirname, resolve } from 'node:path';
@@ -22,6 +23,9 @@ export function build() {
     for (let i = out.length - 1; i >= 0; i--) if (traites.has(out[i].id)) out.splice(i, 1);
     for (const x of v) for (const id of x[2].split(',').map((s) => s.trim()).filter(Boolean)) out.push({ id, fiche: x[0], variante: x[1], niveau: x[3] === 'proche' ? 'proche' : 'sûr' });
   }
+  // Fiches créées à partir du jeu (convertisseur hasan-vers-fiches.mjs) : correspondance par identifiant exact, sans rapprochement flou.
+  const auto = resolve(root, 'knowledge/exercices/CORRESPONDANCE-FICHES-HASAN.json');
+  if (existsSync(auto)) for (const x of JSON.parse(readFileSync(auto, 'utf8'))) out.push({ id: String(x.hasan_id), fiche: x.fiche, variante: x.variante, niveau: x.niveau === 'proche' ? 'proche' : 'sûr' });
   // dédoublonnage (fiche, variante, id) : le niveau « sûr » l'emporte ; ordre : sûr avant proche
   const m = new Map();
   for (const o of out) { const k = `${o.fiche}|${o.variante}|${o.id}`; if (!m.has(k) || (o.niveau === 'sûr' && m.get(k).niveau !== 'sûr')) m.set(k, o); }
