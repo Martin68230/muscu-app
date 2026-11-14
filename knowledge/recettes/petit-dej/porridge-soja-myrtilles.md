@@ -12,7 +12,7 @@ source_glucides: "flocons d'avoine"
 source_proteines: "boisson au soja"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "32140", grammes: 50, ajustable: true }
   - { code: "18900", grammes: 200, ajustable: true }

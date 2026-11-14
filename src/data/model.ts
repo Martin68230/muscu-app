@@ -564,6 +564,8 @@ export interface NutritionProfile extends SyncFields {
   /** 0 = lundi */
   weighDay: number;
   showTrendOnHome: boolean;
+  /** Repas optionnels (petit-déjeuner, goûter, en-cas par jour) et lots : champ facultatif (ancienne sauvegarde = valeurs par défaut). */
+  mealConfig?: Record<string, unknown>;
 }
 
 export interface NutritionGoal extends SyncFields {
@@ -592,6 +594,10 @@ export interface MealPlan extends SyncFields {
   dayTargets: unknown[];
   slots: unknown[];
   inputsHash: string;
+  /** Plan complet de la semaine (créneaux, lots, contrôles, ingrédients) : facultatif. */
+  result?: Record<string, unknown>;
+  /** Graine du tirage : « régénérer » en choisit une autre. */
+  seed?: number;
 }
 
 export interface ShoppingState extends SyncFields {

@@ -12,7 +12,7 @@ source_glucides: "patate douce"
 source_proteines: "œufs"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "4101", grammes: 150, ajustable: true }
   - { code: "22000", grammes: 120, ajustable: true }

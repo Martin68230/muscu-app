@@ -12,7 +12,7 @@ source_glucides: "tomates cerises"
 source_proteines: "œufs"
 portions_base: 1
 base_reutilisable: true
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "22000", grammes: 120, ajustable: true }
   - { code: "20172", grammes: 100, ajustable: false }

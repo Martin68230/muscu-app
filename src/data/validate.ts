@@ -160,6 +160,7 @@ export const SPECS: Record<TableName, Spec> = {
     likedFoods: 'array',
     weighDay: 'number',
     showTrendOnHome: 'boolean',
+    mealConfig: 'object',
   },
   nutritionGoals: {
     kind: 'string',
@@ -171,7 +172,7 @@ export const SPECS: Record<TableName, Spec> = {
     endedAt: 'string?',
   },
   weeklyCheckins: { weekStart: 'string', bodyWeightId: 'string?', adherence: 'string?', trendKgAfter: 'number?', kcalAdjust: 'number', note: 'string' },
-  mealPlans: { weekStart: 'string', generatorVersion: 'string', dayTargets: 'array', slots: 'array', inputsHash: 'string' },
+  mealPlans: { weekStart: 'string', generatorVersion: 'string', dayTargets: 'array', slots: 'array', inputsHash: 'string', result: 'object', seed: 'number' },
   shoppingStates: { weekStart: 'string', checked: 'array', pantry: 'array', custom: 'array' },
   recipePrefs: { recipeId: 'string', state: 'string' },
   shares: { dataType: 'string', friendId: 'string?', enabled: 'boolean' },
@@ -201,6 +202,8 @@ const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
   injuries: ['afterShock'],
   equipment: ['dumbbellKind', 'platesKg', 'other'],
   sportSessions: ['name', 'match', 'jumps', 'overhead', 'painZone', 'signs', 'note'],
+  nutritionProfiles: ['mealConfig'],
+  mealPlans: ['result', 'seed'],
 };
 
 /** Valeurs permises des champs qui pilotent la sécurité (un import ne doit pas en introduire d'inconnues). */

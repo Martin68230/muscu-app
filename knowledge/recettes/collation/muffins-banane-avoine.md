@@ -14,7 +14,7 @@ portions_base: 1
 lot: true
 piece: "muffin"
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "32140", grammes: 20, ajustable: true }
   - { code: "13005", grammes: 40, ajustable: false }

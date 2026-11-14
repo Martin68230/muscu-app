@@ -12,7 +12,7 @@ source_glucides: "myrtilles"
 source_proteines: "fromage blanc 0 %"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "19644", grammes: 150, ajustable: true }
   - { code: "13028", grammes: 60, ajustable: false }

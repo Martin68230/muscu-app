@@ -85,3 +85,30 @@ export async function setCheckinAdjust(weekStart: string, kcalAdjust: number, tr
   const cur = (await list('weeklyCheckins')).find((c) => c.weekStart === weekStart);
   if (cur) await update('weeklyCheckins', cur.id, { kcalAdjust, trendKgAfter });
 }
+
+// ---- Réglage des repas, plan de la semaine, liste de courses cochable (tables locales privées) ----
+import type { MealPlan, ShoppingState } from '../data/model';
+
+export async function getMealPlan(weekStart: string): Promise<MealPlan | null> {
+  return (await list('mealPlans')).find((p) => p.weekStart === weekStart) ?? null;
+}
+
+export async function saveMealPlan(weekStart: string, version: string, dayTargets: unknown[], result: Record<string, unknown>, seed: number): Promise<MealPlan> {
+  const cur = await getMealPlan(weekStart);
+  const slots = Array.isArray(result.slots) ? (result.slots as unknown[]) : [];
+  const data = { weekStart, generatorVersion: version, dayTargets, slots, inputsHash: String(seed), result, seed };
+  return cur ? update('mealPlans', cur.id, data) : create('mealPlans', data);
+}
+
+export async function getShoppingState(weekStart: string): Promise<ShoppingState | null> {
+  return (await list('shoppingStates')).find((s) => s.weekStart === weekStart) ?? null;
+}
+
+/** Coche ou décoche un article (clé = code ingrédient) ; l'état est local, la liste elle-même est recalculée à chaque ouverture. */
+export async function setChecked(weekStart: string, key: string, on: boolean): Promise<void> {
+  const cur = await getShoppingState(weekStart);
+  const set = new Set(cur?.checked ?? []);
+  if (on) set.add(key); else set.delete(key);
+  if (cur) await update('shoppingStates', cur.id, { checked: [...set] });
+  else await create('shoppingStates', { weekStart, checked: [...set], pantry: [], custom: [] });
+}

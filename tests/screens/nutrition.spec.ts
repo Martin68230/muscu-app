@@ -61,7 +61,7 @@ test('Nutrition : questionnaire, besoins, pesée et courbe', async ({ page }, in
   await expect(page.getByText(/kcal/).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Ma semaine' })).toBeVisible();
   await expect(page.getByRole('heading', { name: /Aujourd’hui/ })).toBeVisible();
-  await expect(page.getByText(/Eau : environ/)).toBeVisible();
+  await expect(page.getByText(/Eau : repère général/)).toBeVisible();
   await expect(page.getByText(/Rythme de poids visé/)).toBeVisible();
   await page.getByText('Comment c’est calculé').click();
   await expect(page.getByText(/Cible finale après plancher et plafonds/)).toBeVisible();
@@ -121,6 +121,9 @@ test('Nutrition : une donnée manquante est nommée, on la complète et les chif
   await page.getByLabel('Année de naissance').fill('1992');
   await page.getByLabel('Taille (cm)').fill('178');
   await page.getByLabel('Poids actuel (kg)').fill('80');
+  for (const q of ['maladie suivie', 'perdre le contrôle', 'traitement médicamenteux']) {
+    await page.getByRole('group', { name: new RegExp(q) }).getByLabel('Non', { exact: true }).check();
+  }
   await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Pourquoi je n’affiche pas de chiffres' })).toBeVisible();
   await expect(page.getByText(/Le sexe n’est pas indiqué/)).toBeVisible();
@@ -136,4 +139,61 @@ test('Nutrition : une donnée manquante est nommée, on la complète et les chif
   await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Ma journée moyenne' })).toBeVisible();
   await expect(page.getByText(/kcal/).first()).toBeVisible();
+});
+
+test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et allergie', async ({ page }, info) => {
+  const theme = info.project.name.endsWith('clair') ? 'light' : 'dark';
+  await page.addInitScript((t) => {
+    try {
+      localStorage.setItem('muscu.theme', t);
+    } catch {
+      /* ignoré */
+    }
+  }, theme);
+  await page.goto('./');
+  await page.getByText("J'ai 18 ans ou plus.").click();
+  await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
+  await page.getByRole('button', { name: 'Commencer' }).click();
+  await page.getByRole('button', { name: 'Bibliothèque', exact: true }).click();
+  await page.getByRole('link', { name: /Nutrition/ }).first().click();
+  await page.getByLabel('Un homme').check();
+  await page.getByLabel('Année de naissance').fill('1992');
+  await page.getByLabel('Taille (cm)').fill('178');
+  await page.getByLabel('Poids actuel (kg)').fill('80');
+  for (const q of ['maladie suivie', 'perdre le contrôle', 'traitement médicamenteux']) {
+    await page.getByRole('group', { name: new RegExp(q) }).getByLabel('Non', { exact: true }).check();
+  }
+  await page.getByLabel('Garder mon poids').check();
+  await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Ma journée moyenne' })).toBeVisible();
+
+  await page.getByRole('button', { name: 'Semaine', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Ma semaine de repas' })).toBeVisible();
+  // Réglages : goûter et un en-cas par jour
+  await page.getByText('Repas, allergies et préférences').click();
+  for (const d of ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']) {
+    await page.getByRole('group', { name: 'Jours du goûter' }).getByRole('button', { name: d, exact: true }).click();
+    await page.getByRole('group', { name: 'En-cas par jour' }).getByRole('button', { name: new RegExp(`^${d} : 0 en-cas`) }).click();
+  }
+  await expect(await problems(page)).toEqual([]);
+  await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-07-reglages-repas.png`, fullPage: true });
+  await page.getByRole('button', { name: 'Générer ma semaine' }).click();
+  await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Mes courses de la semaine' })).toBeVisible();
+  await expect(page.getByText(/Vérifie toujours les étiquettes/).first()).toBeVisible();
+  // Courses cochables
+  const first = page.locator('.nut-shop input[type="checkbox"]').first();
+  await first.check();
+  await expect(first).toBeChecked();
+  await expect(await problems(page)).toEqual([]);
+  await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-08-semaine.png`, fullPage: true });
+
+  // Allergie au lait : plus aucune recette avec du lait dans la semaine
+  await page.getByRole('group', { name: 'Allergènes à exclure' }).getByRole('button', { name: 'Lait', exact: true }).click();
+  await page.getByRole('button', { name: 'Régénérer ma semaine' }).click();
+  await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
+  const allergenLines = await page.locator('.nut-meals p').allInnerTexts();
+  for (const l of allergenLines) if (l.startsWith('Allergènes')) expect(l).not.toMatch(/Lait/);
+  await expect(await problems(page)).toEqual([]);
+  await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-09-semaine-sans-lait.png`, fullPage: true });
 });

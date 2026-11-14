@@ -14,7 +14,7 @@ portions_base: 1
 lot: true
 piece: "barre"
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "32140", grammes: 25, ajustable: true }
   - { code: "15202", grammes: 10, ajustable: false }

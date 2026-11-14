@@ -2013,7 +2013,7 @@
     "allergenes": [
       "lait"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetalien",
       "sans_lactose"
@@ -2347,7 +2347,7 @@
     "famille": "autre",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 250,
@@ -2386,7 +2386,7 @@
     "famille": "autre",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 250,
@@ -2800,7 +2800,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -2816,7 +2816,7 @@
     "famille": "fruit",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 250,

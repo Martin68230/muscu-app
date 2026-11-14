@@ -12,7 +12,7 @@ source_glucides: "pomme"
 source_proteines: "beurre de cacahuète"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "13039", grammes: 150, ajustable: true }
   - { code: "15202", grammes: 15, ajustable: true }

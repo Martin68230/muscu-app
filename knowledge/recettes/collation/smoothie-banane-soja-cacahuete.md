@@ -12,7 +12,7 @@ source_glucides: "banane"
 source_proteines: "boisson au soja"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "13005", grammes: 100, ajustable: true }
   - { code: "18900", grammes: 200, ajustable: true }

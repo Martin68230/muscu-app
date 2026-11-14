@@ -11,6 +11,7 @@ import { bmi, screenNutrition, type GoalKind, type Pace, type ScreeningAnswers, 
 import { addWeighIn, getActiveGoal, getNutritionProfile, listCheckins, listWeighIns, removeWeighIn, saveGoal, saveNutritionProfile, setCheckinAdjust } from '../../nutrition/store';
 import { interpretTrend, rateKgPerWeek, smoothWeights, weekStartOf, type TrendPoint, type TrendState } from '../../nutrition/weight-trend';
 import { dateKey } from '../../session/calendar';
+import { WeekTab } from './NutritionWeek';
 
 const NOT_MEDICAL = 'Ce n’est pas un avis médical.';
 
@@ -120,7 +121,7 @@ function answersOf(np: NutritionProfile | null, profile: Profile): ScreeningAnsw
 
 export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack: () => void }) {
   const [data, setData] = useState<Data | null>(null);
-  const [tab, setTab] = useState<'besoins' | 'poids'>('besoins');
+  const [tab, setTab] = useState<'besoins' | 'semaine' | 'poids'>('besoins');
   const [editing, setEditing] = useState(false);
   const reload = () => loadData().then(setData);
   useEffect(() => void reload(), []);
@@ -140,10 +141,13 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
         <>
           <div class="chips" role="group" aria-label="Section">
             <button type="button" class="chip" aria-pressed={tab === 'besoins'} onClick={() => setTab('besoins')}>Mes besoins</button>
+            <button type="button" class="chip" aria-pressed={tab === 'semaine'} onClick={() => setTab('semaine')}>Semaine</button>
             <button type="button" class="chip" aria-pressed={tab === 'poids'} onClick={() => setTab('poids')}>Poids et courbe</button>
           </div>
           {tab === 'besoins' ? (
             <Needs profile={profile} data={data} onEdit={() => setEditing(true)} />
+          ) : tab === 'semaine' ? (
+            <WeekTab np={np!} fin={finalFor(profile, data).result} />
           ) : (
             <Weight profile={profile} data={data} onChanged={reload} />
           )}

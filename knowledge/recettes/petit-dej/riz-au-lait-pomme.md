@@ -12,7 +12,7 @@ source_glucides: "riz blanc"
 source_proteines: "lait demi-écrémé"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "9100", grammes: 50, ajustable: true }
   - { code: "19041", grammes: 250, ajustable: true }

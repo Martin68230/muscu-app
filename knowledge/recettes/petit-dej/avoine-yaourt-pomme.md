@@ -12,7 +12,7 @@ source_glucides: "flocons d'avoine"
 source_proteines: "yaourt nature"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "32140", grammes: 40, ajustable: true }
   - { code: "19593", grammes: 125, ajustable: true }

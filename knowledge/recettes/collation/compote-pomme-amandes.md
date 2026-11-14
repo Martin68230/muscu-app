@@ -12,7 +12,7 @@ source_glucides: "pomme"
 source_proteines: "amandes"
 portions_base: 1
 base_reutilisable: false
-statut: brouillon
+statut: controle_relecteur
 ingredients:
   - { code: "13039", grammes: 200, ajustable: true }
   - { code: "15000", grammes: 15, ajustable: false }

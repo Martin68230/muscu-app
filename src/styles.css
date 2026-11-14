@@ -621,3 +621,14 @@ ol.plain-list { counter-reset: ex; }
 .nut-reasons li { margin: 0 0 10px; }
 .nut-today { background: var(--surface-2); border-radius: 12px; padding-left: 8px; padding-right: 8px; }
 .nut-details summary { min-height: 44px; display: flex; align-items: center; cursor: pointer; font-weight: 600; }
+
+.nut-day-chip { min-width: 44px; justify-content: center; }
+.nut-plan-day { margin: 0 0 16px; }
+.nut-plan-day h3 { font-size: 1rem; margin: 12px 0 6px; }
+.nut-meals, .nut-shop { list-style: none; margin: 0; padding: 0; }
+.nut-meals > li { border-bottom: 1px solid var(--line); }
+.nut-meals > li:last-child { border-bottom: 0; }
+.nut-meals summary { padding: 8px 0; }
+.nut-shop .check-row { align-items: flex-start; padding: 8px 0; }
+.nut-shop .check-row input { margin-top: 2px; }
+details.card.nut-details > summary { font-size: 1.0625rem; }

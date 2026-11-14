@@ -25,6 +25,7 @@ export interface Recipe {
   /** Recette préparée en lot (barres, muffins) : les ingrédients sont ceux d'UNE pièce. */
   lot?: boolean;
   piece?: string | null;
+  etapes?: string[];
   /** Statut de la fiche recette (brouillon, complete_nutri, controle_relecteur). */
   statut?: string;
   allergenes: AllergenKey[];
