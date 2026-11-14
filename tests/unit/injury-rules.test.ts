@@ -92,7 +92,9 @@ describe('fiches réelles du lot 04', () => {
     for (const id of [...DOUX, 'retraction-omoplates']) expect(fm(id).doux_pour).toEqual(['cou']);
     expect(fm('isometrique-cou').doux_pour).toBeUndefined();
   });
-  it('les 4 fiches dédiées existent', () => {
-    for (const id of NECK_DEDICATED_IDS) expect(fm(id).id).toBe(id);
+  it('les fiches dédiées existent (4 du lot cou, 2 isométries du lot 5 de la vague 2)', () => {
+    const lot5 = ['cou-lateral-arriere-main', 'rotation-isometrique-cou'];
+    for (const id of NECK_DEDICATED_IDS) expect(readFrontmatter((lot5.includes(id) ? 'knowledge/exercices/vague2/lot-05/' : dir) + id + '.md').id).toBe(id);
+    expect(NECK_DEDICATED_IDS.length).toBe(6);
   });
 });

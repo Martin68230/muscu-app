@@ -503,6 +503,12 @@ export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_
  * Vague 2 lot 01 (12/11/2026) : fiches d'isolation (une articulation) ou de maintien statique sans charge : jamais exercice principal, un pilier de force
  * (4-6 répétitions, charge) ne doit pas devenir un écarté, un curl, une extension ou un maintien au mur. Possibles aux emplacements secondaires.
  */
+/**
+ * Fiches du catalogue (bibliothèque, choix à la main) jamais placées automatiquement : lot 5 (13/11/2026) : tirage de sac sur le sol (sac non pesé, charge variable,
+ * dose NON SOURCÉE : placement automatique seulement quand le coach aura sourcé la charge). Annuler : retirer l'id.
+ */
+export const MANUAL_ONLY_FICHES: readonly string[] = ['tirage-sac-sur-sol'];
+
 export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
   'lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur',
   'ecarte-sol-elastique', 'curl-ischios-elastique', 'extension-genou-elastique', 'extension-hanche-quatre-pattes', 'haussement-epaules-halteres', 'chaise-murale',
@@ -678,7 +684,8 @@ export const CORE_FAMILY_FROM_SCHEMA: Record<string, CoreFamily> = { gainage: 'g
 /** Familles « sûres » (CF1, CF2) : débutant, grossesse/post-partum, dos niveau 2, séance à charge lourde, P3. */
 export const CORE_SAFE_FAMILIES: readonly CoreFamily[] = ['gainage', 'anti_rotation'];
 /** Inventaire (kiné, 2e passage) : hors famille core (travail de hanche) ; exclue de l'emplacement `tronc` par id. */
-export const CORE_NOT_CORE_IDS: readonly string[] = ['copenhague-court'];
+// Lot 5 (13/11/2026) : marche de l'ours et pont du crabe (appui sur les mains, exercices fonctionnels) : jamais dans l'emplacement tronc.
+export const CORE_NOT_CORE_IDS: readonly string[] = ['copenhague-court', 'marche-de-l-ours', 'marche-du-crabe'];
 /** Inventaire : CF5 qui ne compte PAS dans le plancher (schéma charnière, hors GG5) ; jamais en superset. */
 export const CORE_OUT_OF_FLOOR_IDS: readonly string[] = ['extension-dorsale-ballon', 'superman-alterne', 'nage-au-sol'];
 /** Roue abdominale et roulé au ballon (CF1 dynamique) : débutant, dos dès le niveau 1, grossesse, charge lourde, P3. */
@@ -1394,8 +1401,8 @@ export const CREER_SEANCE = {
   plio: [
     { ficheId: 'squat-petit-saut', variantId: 'squat-petit-saut-saut', softVariantId: 'squat-petit-saut-douce', reps: 6 },
     { ficheId: 'saut-longueur-pieds-joints', variantId: 'saut-longueur-sur-place', softVariantId: null, reps: 5 },
-    { ficheId: 'saut-lateral-pieds-joints', variantId: 'saut-lateral-joints-un-saut', softVariantId: null, reps: 5 }, // lot 5 (13/11/2026) : « Créer une séance » seulement
     { ficheId: 'rebonds-chevilles', variantId: 'rebonds-deux-pieds', softVariantId: 'rebonds-chevilles-pointe', reps: 8 },
+    { ficheId: 'saut-lateral-pieds-joints', variantId: 'saut-lateral-joints-un-saut', softVariantId: null, reps: 5 }, // lot 5 (13/11/2026) : « Créer une séance » seulement
   ] as readonly { ficheId: string; variantId: string; softVariantId: string | null; reps: number }[],
   plioMinLevel: 'intermediaire' as Level,
   /** Débutant : la montée sur la pointe des pieds seulement (0 contact), 2 séries de 10. */
