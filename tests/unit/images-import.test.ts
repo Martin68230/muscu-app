@@ -41,8 +41,7 @@ describe('table D22', () => {
     for (const e of GV_TABLE) { expect(idsFiches.has(e.fiche)).toBe(true); expect(e.variante).not.toBe(''); expect(idsVar.has(`${e.fiche}/${e.variante}`)).toBe(true); }
   });
   it('une variante classée « sans image » par le coach n’a aucune image', () => {
-    const lignes = readFileSync('knowledge/exercices/SANS-IMAGE-coach.tsv', 'utf8').replace(//g, '').split('
-').filter(Boolean).slice(1).map((l: string) => l.split('	'));
+    const lignes = readFileSync('knowledge/exercices/SANS-IMAGE-coach.tsv', 'utf8').replace(/\r/g, '').split('\n').filter(Boolean).slice(1).map((l: string) => l.split('\t'));
     expect(lignes.length).toBeGreaterThan(100);
     for (const [f, v, raison] of lignes) { expect(['pas_dans_le_jeu', 'ambigu']).toContain(raison); expect(GV_TABLE.some((e) => e.fiche === f && e.variante === v)).toBe(false); }
   });
