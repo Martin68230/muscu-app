@@ -54,6 +54,13 @@ export function ProgressView({ items, weeks, names, sets, sessions, onBack }: {
         {any ? <WeeklyBars weeks={weeks} /> : <p class="dim">Aucune série pour l’instant. Ta première séance remplira ce graphique.</p>}
         <p class="dim small">Séries de travail terminées, sans douleur, sur les 8 dernières semaines.</p>
       </section>
+      <a class="lib-nutrition" href="#/nutrition">
+        <span class="nut-entry-text">
+          <span class="nut-entry-name">Courbe de poids</span>
+          <span class="dim small">Poids lissé, dans Nutrition (si tu as noté ton poids)</span>
+        </span>
+        <span class="nut-entry-chevron" aria-hidden="true">›</span>
+      </a>
       <h2>Mes exercices</h2>
       {items.length === 0 && <p class="dim">Il faut au moins deux séances avec un même exercice pour voir une évolution.</p>}
       {items.map((p) => {

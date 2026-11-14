@@ -21,3 +21,13 @@ Propositions suivantes (par utilité) : 1) poids lissé dans l'écran Progressio
 - « Ma progression » : barres lisibles, retour à l'accueil, aucun défilement horizontal ; après 2 séances avec un même exercice : record et « Voir la courbe ».
 - Bibliothèque : filtres sur 2 lignes, tape facile.
 - Rien d'autre n'a changé dans la séance en cours.
+
+## Lots 2 à 4 (14/11/2026, branche claude/design-lot2)
+- Lecteur : segments d'avancement (un par exercice) sous l'en-tête, pastilles des séries de l'exercice sous « Série n sur N ».
+- Carte des zones : l'accueil garde la carte du cycle (« c'est cette carte qui dit si une zone est couverte ») ; la vue « par type de séance » et l'aperçu de séance portent la mention « cette séance, cette semaine : une zone grise n'est pas forcément un oubli ».
+- Bibliothèque : champ de recherche collé en haut pendant le défilement, bouton « Tout afficher » quand rien n'est trouvé ; retour visuel à l'appui sur boutons et pastilles. Calendrier : inchangé (lisible aux captures), seul le retour à l'appui s'applique.
+- Fonction : graphiques de charges / volume et records existent déjà (Ma progression), le poids lissé existe dans Nutrition ; ajout d'un lien « Courbe de poids » dans Ma progression. Le rappel de la séance du jour n'est pas construit : une notification iPhone demande un serveur de notifications (hors règle gratuit / local) ; l'accueil montre déjà la séance du jour.
+### À vérifier sur l'iPhone
+- Séance : segments et pastilles lisibles, rien ne déborde à 375 px, minuteur de repos inchangé.
+- Accueil > « Voir par type de séance » : la mention est claire ; aperçu de séance : texte d'aide sous le titre de la carte.
+- Bibliothèque : la recherche reste visible en faisant défiler, le clavier n'est pas gêné ; « Tout afficher » après une recherche sans résultat.
