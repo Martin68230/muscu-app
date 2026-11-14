@@ -55,7 +55,7 @@ export async function importFiles(files: File[], progress: Progress = () => {}):
     } catch (e) {
       const msg = (e as { name?: string; message?: string });
       rep.errors.push({ name: j.name, why: msg.name === 'QuotaExceededError' ? 'Plus de place sur ce téléphone.' : msg.message ?? 'erreur' });
-      if (msg.name === 'QuotaExceededError') break;
+      if (msg.name === 'QuotaExceededError') { rep.errors.push({ name: 'stockage', why: `Import interrompu : ${rep.stored.length} image${rep.stored.length > 1 ? 's' : ''} enregistrée${rep.stored.length > 1 ? 's' : ''} sur ${todo.length}. Libère de la place puis choisis de nouveau le même fichier.` }); break; }
     }
     done++;
     await tick();

@@ -4,7 +4,10 @@ import { readFileSync, readdirSync, statSync } from 'node:fs';
 // @ts-ignore
 import { deflateRawSync } from 'node:zlib';
 import 'fake-indexeddb/auto';
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it, vi } from 'vitest';
+import { getDB } from '../../src/data/db';
+import { wipeAllData } from '../../src/data/backup';
+import { MAX_ENTRIES } from '../../src/images/zip';
 import { GV_TABLE } from '../../src/images/gv-table';
 import { candidates, entryForFileName } from '../../src/images/match';
 import { importFiles } from '../../src/images/importer';
@@ -105,6 +108,43 @@ describe('import local', () => {
     const r = await importFiles([file(GIF, D[3].gif), file(new Uint8Array(100), 'faux.zip')]);
     expect(r.stored).toEqual([D[3].id]); expect(r.errors.length).toBe(1);
     await deleteAllImages();
+  });
+});
+
+describe('durcissement (relecture)', () => {
+  it('zip slip : le chemin de l’entrée ne sert jamais, seul le nom de base compte', async () => {
+    const a = D[0], b = D[1];
+    const zip = makeZip([{ name: '../../' + a.gif, data: GIF }, { name: '/etc/' + b.gif, data: GIF }, { name: '..\evil.gif', data: GIF }]);
+    const r = await importFiles([file(zip, 'slip.zip')]);
+    expect(r.stored.sort()).toEqual([a.id, b.id].sort());
+    expect(r.errors).toEqual([]);
+    await deleteAllImages();
+  });
+  it('nombre d’entrées excessif : refus clair', async () => {
+    const zip = makeZip([{ name: D[0].gif, data: GIF }]);
+    new DataView(zip.buffer).setUint16(zip.length - 22 + 10, MAX_ENTRIES + 1, true);
+    const r = await importFiles([file(zip, 'trop.zip')]);
+    expect(r.stored).toEqual([]); expect(r.errors[0].why).toMatch(/plus de 20000/);
+  });
+  it('quota : écriture refusée en cours d’import, message de reprise, base muscu-app intacte', async () => {
+    const db = await getDB();
+    await (db as unknown as { put: (s: string, v: unknown) => Promise<unknown> }).put('device', { key: 'sonde-d22' });
+    const zip = makeZip([{ name: D[0].gif, data: GIF }, { name: D[1].gif, data: GIF }, { name: D[2].gif, data: GIF }]);
+    const proto = (globalThis as unknown as { IDBObjectStore: { prototype: { put: (...a: unknown[]) => unknown } } }).IDBObjectStore.prototype;
+    const orig = proto.put; let n = 0;
+    const spy = vi.spyOn(proto, 'put').mockImplementation(function (this: unknown, ...a: unknown[]) { if (++n === 2) throw new DOMException('quota', 'QuotaExceededError'); return orig.apply(this, a); });
+    const r = await importFiles([file(zip, 'q.zip')]);
+    spy.mockRestore();
+    expect(r.stored.length).toBe(1);
+    expect(r.errors.some((e) => /Import interrompu : 1 image enregistrée sur 3/.test(e.why))).toBe(true);
+    expect(await (db as unknown as { get: (s: string, k: string) => Promise<unknown> }).get('device', 'sonde-d22')).toBeTruthy();
+    await deleteAllImages();
+  });
+  it('wipeAllData supprime aussi la base des images', async () => {
+    await importFiles([file(GIF, D[0].gif)]);
+    expect(await countImages()).toBe(1);
+    await wipeAllData();
+    expect(await countImages()).toBe(0);
   });
 });
 

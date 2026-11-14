@@ -21,3 +21,9 @@ Profil > « Images de mes exercices » : avertissement (« importe seulement des
 
 ## Limites iPhone connues
 Mémoire Safari (une entrée à la fois, ≤ 8 Mo), stockage Safari purgeable si l'appli n'est pas ouverte longtemps (ré-importer), « Ajouter à l'écran d'accueil » conserve les données séparément de Safari : importer dans l'app installée.
+
+## Sécurité du ZIP, quota, suppression (relecture du 14/11)
+- Plafonds : 20 000 entrées et 8 Mo d'index au maximum (message clair au-delà) ; image décompressée ≤ 8 Mo, flux annulé au-delà.
+- Les noms d'entrée ne servent jamais de chemin : seul le nom de base est comparé à la table (zip slip sans effet, testé).
+- Quota : `navigator.storage.estimate` est INDICATIF ; une écriture refusée (`QuotaExceededError`) arrête l'import avec un message et la base `muscu-app` reste intacte (testé).
+- `wipeAllData` supprime aussi la base `muscu-images` (testé). **À re-vérifier à la phase 6 (synchronisation Supabase)** : les images ne doivent jamais entrer dans la synchronisation ni dans les exports partagés.

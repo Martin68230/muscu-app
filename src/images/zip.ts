@@ -2,6 +2,8 @@
 // Un ZIP de 295 Mo n'est jamais chargé en entier. Méthodes 0 (stocké) et 8 (deflate, via DecompressionStream natif). Pas de ZIP64.
 export interface ZipEntry { name: string; method: number; compressedSize: number; size: number; offset: number }
 
+export const MAX_ENTRIES = 20_000;
+export const MAX_DIRECTORY_BYTES = 8 * 1024 * 1024;
 const u16 = (v: DataView, o: number) => v.getUint16(o, true);
 const u32 = (v: DataView, o: number) => v.getUint32(o, true);
 
@@ -13,7 +15,9 @@ export async function listZip(file: Blob): Promise<ZipEntry[]> {
   if (e < 0) throw new Error('Ce fichier n’est pas un ZIP lisible.');
   const count = u16(tail, e + 10), cdSize = u32(tail, e + 12), cdOff = u32(tail, e + 16);
   if (count === 0xffff || cdSize === 0xffffffff || cdOff === 0xffffffff) throw new Error('ZIP trop gros (ZIP64) : importe plutôt le dossier d’images.');
-  if (cdOff + cdSize > file.size || cdSize > 8 * 1024 * 1024) throw new Error('ZIP abîmé (index hors du fichier).');
+  if (count > MAX_ENTRIES) throw new Error(`ZIP refusé : plus de ${MAX_ENTRIES} fichiers (le jeu complet en compte environ 1 300).`);
+  if (cdSize > MAX_DIRECTORY_BYTES) throw new Error('ZIP refusé : index trop volumineux.');
+  if (cdOff + cdSize > file.size) throw new Error('ZIP abîmé (index hors du fichier).');
   const cd = new DataView(await file.slice(cdOff, cdOff + cdSize).arrayBuffer());
   const dec = new TextDecoder();
   const out: ZipEntry[] = [];
