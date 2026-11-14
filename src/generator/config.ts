@@ -643,6 +643,7 @@ export const PER_SIDE_VARIANT_IDS: readonly string[] = [
   'rotation-bucheron-halteres', 'rotation-bucheron-elastique', 'rotation-externe-elastique-coude-colle', 'rotation-externe-halteres-couche',
   'rotation-externe-poulie-debout', 'rowing-serviette-debout', 'rowing-serviette-assis', 'releve-tibial-mur-un-pied',
   // Vague 2 lot 04 (consigne « termine un côté, puis change ») : exercices à un bras à la fois.
+  'coquille-sans-materiel', 'coquille-mini-bande', 'coquille-mini-bande-pause', // lot 6 : coquille de hanche, un côté puis l'autre
   'curl-concentration-banc', 'curl-concentration-chaise', 'kickback-triceps-banc', 'kickback-triceps-chaise', 'curl-poignet-halteres-banc', 'curl-poignet-halteres-cuisse',
 ];
 
