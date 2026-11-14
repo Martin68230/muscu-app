@@ -27,6 +27,12 @@ const RANK = { valide: 0, a_verifier: 1, inconnu: 2 };
 // Bornes d'énergie par portion (kcal) : garde-fou contre une erreur de grammes, pas une règle nutritionnelle.
 const KCAL_RANGE = { 'petit-dej': [200, 900], 'dejeuner-diner': [250, 1100], collation: [60, 500] };
 
+// Mots-clés canoniques des sources de protéines et de féculents : le plan fait tourner ces clés, des variantes d'écriture ne doivent jamais les séparer.
+const strip = (s) => String(s ?? '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase().replace(/œ/g, 'oe');
+const PROT_KEYS = [['hache', 'boeuf'], ['boeuf', 'boeuf'], ['steak', 'boeuf'], ['veau', 'veau'], ['poulet', 'poulet'], ['dinde', 'dinde'], ['jambon', 'jambon'], ['lardon', 'lardons'], ['saucisse', 'saucisse'], ['volaille', 'saucisse'], ['porc', 'porc'], ['agneau', 'agneau'], ['thon', 'thon'], ['saumon', 'poisson'], ['merlu', 'poisson'], ['cabillaud', 'poisson'], ['poisson', 'poisson'], ['oeuf', 'oeufs'], ['pois chiche', 'legumineuses'], ['lentille', 'legumineuses'], ['legumineuse', 'legumineuses'], ['tofu', 'tofu'], ['yaourt', 'laitage'], ['fromage', 'laitage'], ['lait', 'laitage']];
+const FEC_KEYS = [['pate', 'pates'], ['riz', 'riz'], ['semoule', 'semoule'], ['pomme de terre', 'pommes_de_terre'], ['pommes_de_terre', 'pommes_de_terre'], ['puree', 'pommes_de_terre'], ['wrap', 'wrap'], ['tortilla', 'wrap'], ['pain', 'pain'], ['pita', 'pain'], ['baguette', 'pain'], ['biscotte', 'pain'], ['flocon', 'flocons'], ['avoine', 'flocons'], ['quinoa', 'quinoa'], ['lentille', 'legumineuses'], ['pois chiche', 'legumineuses']];
+const canon = (raw, keys) => { const s = strip(raw); if (!s) return null; for (const [k, v] of keys) if (s.includes(k)) return v; return s.replace(/\s+/g, '_'); };
+
 const errors = [];
 const err = (file, msg) => errors.push(`${path.relative(ROOT, file)} : ${msg}`);
 
@@ -168,7 +174,7 @@ for (const file of listFiles(DIR).sort()) {
   const r1 = (x) => Math.round(x * 10) / 10;
   recipes.push({
     id: f.id, nom: f.nom, repas: f.repas, objectifs: f.objectifs, prepMin: f.duree_prep_min, cuissonMin: f.duree_cuisson_min,
-    materiel: f.materiel, regimes: f.regimes, cout: f.cout, sourceGlucides: f.source_glucides ?? null, sourceProteines: f.source_proteines ?? null,
+    materiel: f.materiel, regimes: f.regimes, cout: f.cout, sourceGlucides: canon(f.source_glucides, FEC_KEYS), sourceProteines: canon(f.source_proteines, PROT_KEYS),
     baseReutilisable: !!f.base_reutilisable, lot: f.lot === true, piece: f.lot === true ? f.piece : null, statut: f.statut,
     allergenes: [...allergenes].sort(), statutAllergenes: statut,
     portion: { kcal: Math.round(tot.kcal), prot: r1(tot.prot), gluc: r1(tot.gluc), lip: r1(tot.lip), fibres: r1(tot.fibres) },
