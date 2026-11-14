@@ -48,11 +48,11 @@ async function setup(page: Page, info: { project: { name: string } }, problems: 
 
 test('audit design', async ({ page }, info) => {
   test.skip(!['se-sombre', 'max-clair'].includes(info.project.name));
-  test.setTimeout(240_000);
+  test.setTimeout(800_000);
   await setup(page, info, []);
   const tag = process.env.SHOT ?? 'avant';
   const primary = page.locator('.player-foot .btn-primary');
-  for (let i = 0; i < 150; i++) {
+  for (let i = 0; i < 500; i++) {
     const label = await primary.first().textContent({ timeout: 1500 }).catch(() => null);
     if (label?.includes('Retour')) break;
     if (label) await tapPrimary(page).catch(() => undefined);
