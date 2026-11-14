@@ -19,12 +19,18 @@ export function neckStageFrom(i: {
   if (!NP.enabled) return 1;
   // Gêne au cou, à l'épaule ou au dos (niveau >= 1) : palier 1 (relecteur : la montée exige ces zones à 0).
   if (i.injuries.some((x) => !x.deletedAt && x.active && x.level >= 1 && NP.zonesFromLevel1.includes(x.zone))) return 1;
-  const cap = i.level === 'debutant' ? NP.beginnerMaxStage : NP.stages.length;
-  const neckSessions = i.sessions
-    .filter((s) => !s.deletedAt && (s.status === 'faite' || s.endReason === 'symptome' || s.endReason === 'abandon') && s.plan?.exercises.some(isNeck))
-    .map((s) => ({ s, t: Date.parse(s.endedAt ?? s.startedAt ?? s.plannedDate) }))
-    .filter((x) => Number.isFinite(x.t))
-    .sort((a, b) => a.t - b.t);
+  // Niveau inconnu ou débutant : plafond du débutant (jamais P4 sans niveau connu).
+  const cap = i.level === 'intermediaire' || i.level === 'avance' ? NP.stages.length : NP.beginnerMaxStage;
+  // Gêne levée : tout l'historique du cou jusqu'à la fin de la gêne est oublié (retour à P1, nouvelle montée normale).
+  const GENE_ENDED_STATES = i.injuries.filter((x) => !x.deletedAt && NP.zonesFromLevel1.includes(x.zone) && (x.level >= 1 || !x.active));
+  const geneEnd = Math.max(-Infinity, ...GENE_ENDED_STATES.map((x) => Date.parse(x.updatedAt)).filter((t) => Number.isFinite(t)));
+  const RESET_REASONS = ['symptome', 'abandon', 'pas_bien', 'renonce'];
+  const candidates = i.sessions
+    .filter((s) => !s.deletedAt && (s.status === 'faite' || RESET_REASONS.includes(s.endReason ?? '')) && s.plan?.exercises.some(isNeck))
+    .map((s) => ({ s, t: Date.parse(s.endedAt ?? s.startedAt ?? s.decidedAt ?? s.plannedDate) }));
+  // Date illisible : lecture prudente, palier 1. Date dans le futur (horloge ou fuseau décalés, > 1 jour) : séance ignorée.
+  if (candidates.some((x) => !Number.isFinite(x.t))) return 1;
+  const neckSessions = candidates.filter((x) => x.t <= i.nowMs + DAY_MS && x.t > geneEnd).sort((a, b) => a.t - b.t);
   let stage = 1;
   let streak = 0;
   let lastRise = -Infinity; // début du palier en cours : première séance propre du palier, ou dernière montée
@@ -36,7 +42,8 @@ export function neckStageFrom(i: {
     const idx = plan.findIndex(isNeck);
     const neckSets = i.sets.filter((x) => x.sessionId === s.id && x.movementId === NECK_FICHE_ID && !x.deletedAt && !x.isWarmup);
     const hasPain = neckSets.some((x) => x.pain);
-    const clean = s.status === 'faite' && s.endReason !== 'symptome' && s.endReason !== 'abandon' && !hasPain && !neckMustBeRemoved({ endReason: s.endReason, painExercises: s.painExercises, exercises: plan }) && neckSets.length > 0;
+    const doneSets = new Set(neckSets.filter((x) => !!x.completedAt).map((x) => x.setIndex)).size;
+    const clean = s.status === 'faite' && !RESET_REASONS.includes(s.endReason ?? '') && doneSets >= plan[idx].sets && !hasPain && !neckMustBeRemoved({ endReason: s.endReason, painExercises: s.painExercises, exercises: plan }) && neckSets.length > 0;
     if (!clean) { stage = 1; streak = 0; lastRise = -Infinity; continue; }
     if (lastRise === -Infinity) lastRise = t;
     streak++;
@@ -58,7 +65,9 @@ export function applyNeckStage(day: ProgramDay, stage: number): ProgramDay {
   const st = NP.stages[Math.min(Math.max(stage, 1), NP.stages.length) - 1];
   const holdSec = Math.min(st.holdSec, NP.maxHoldSec);
   const sets = st.sets;
-  const holds = Math.min(st.holds, Math.floor(NP.maxCumulSec / (sets * holdSec)));
+  let holds = Math.min(st.holds, Math.floor(NP.maxCumulSec / (sets * holdSec)));
+  // Durée estimée (maintiens + 5 s de transition + 60 s de repos entre séries) : jamais plus de 6 min.
+  while (holds > 1 && sets * (holds * (holdSec + 5) + 60) > NP.maxSessionSec) holds--;
   const note = `Palier ${stage} sur ${NP.stages.length} : ${sets} série${sets > 1 ? 's' : ''} de ${holds} maintiens de ${holdSec} s, direction avant. ${NP.pressureText} ${NP.riseText}`;
   return {
     ...day,

@@ -19,7 +19,7 @@ const sess = (dayOffset: number, o: { status?: string; endReason?: string | null
   };
 };
 const run = (rows: ReturnType<typeof sess>[], o: { level?: string; injuries?: any[]; nowOffset?: number } = {}) =>
-  neckStageFrom({ sessions: rows.map((r) => r.session), sets: rows.flatMap((r) => r.sets), injuries: o.injuries ?? [], level: o.level ?? 'intermediaire', nowMs: T0 + (o.nowOffset ?? 0) * DAY });
+  neckStageFrom({ sessions: rows.map((r) => r.session), sets: rows.flatMap((r) => r.sets), injuries: o.injuries ?? [], level: 'level' in o ? o.level : 'intermediaire', nowMs: T0 + (o.nowOffset ?? 0) * DAY });
 
 describe('Cou : paliers', () => {
   it('sans historique : palier 1 (dose actuelle inchangée)', () => {
@@ -61,6 +61,32 @@ describe('Cou : paliers', () => {
     for (let i = 0; i < 12; i++) rows.push(sess(i * 7, { hold: NP.stages[Math.min(i < 3 ? 0 : i < 6 ? 1 : i < 9 ? 2 : 3, 3)].holdSec }));
     expect(run(rows, { level: 'debutant', nowOffset: 12 * 7 - 6 })).toBeLessThanOrEqual(NP.beginnerMaxStage);
     expect(run(rows, { level: 'intermediaire', nowOffset: 12 * 7 - 6 })).toBe(4);
+  });
+});
+
+describe('Cou : relecture du code (14/11/2026)', () => {
+  const full = () => [sess(0), sess(7), sess(14)];
+  it('gêne levée : retour à P1 puis nouvelle montée normale, pas de palier retrouvé d un coup', () => {
+    const ended = { zone: 'epaule', level: 0, active: false, deletedAt: null, updatedAt: new Date(T0 + 15 * DAY).toISOString() };
+    expect(run(full(), { nowOffset: 16, injuries: [ended] })).toBe(1);
+    expect(run([...full(), sess(20), sess(27), sess(34)], { nowOffset: 35, injuries: [ended] })).toBe(2);
+  });
+  it('niveau inconnu (null) : plafonné comme un débutant, jamais P4', () => {
+    const rows: ReturnType<typeof sess>[] = [];
+    for (let i = 0; i < 14; i++) rows.push(sess(i * 7, { hold: NP.stages[Math.min(Math.floor(i / 3), 3)].holdSec }));
+    expect(run(rows, { level: null as any, nowOffset: 14 * 7 - 6 })).toBeLessThanOrEqual(NP.beginnerMaxStage);
+  });
+  it('pas_bien / renonce ramènent au P1 comme symptôme / abandon', () => {
+    for (const r of ['pas_bien', 'renonce']) expect(run([...full(), sess(21, { endReason: r, status: 'sautee' })], { nowOffset: 22 })).toBe(1);
+  });
+  it('date dans le futur : séance ignorée ; date illisible : P1 prudent', () => {
+    expect(run([...full(), sess(400)], { nowOffset: 15 })).toBe(2);
+    const bad = sess(0); bad.session.endedAt = 'pas une date'; bad.session.startedAt = null; bad.session.plannedDate = 'x';
+    expect(run([bad, sess(7), sess(14), sess(21)], { nowOffset: 22 })).toBe(1);
+  });
+  it('séance non propre si toutes les séries de cou prévues ne sont pas faites', () => {
+    const half = (o: number) => { const r = sess(o); r.session.plan.exercises[1] = { ...neckEx, sets: 2, holdSec: 3 }; return r; };
+    expect(run([half(0), half(7), half(14)], { nowOffset: 15 })).toBe(1);
   });
 });
 
