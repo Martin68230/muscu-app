@@ -173,3 +173,73 @@ describe('relecture du 14/11/2026 : cibles invalides, grammes, sous-plancher', (
     expect(generateWeekPlan(week(), [rr], foods, { ...base, strictControle: true }, cfg(), 1, [], 1500).slots.every((s) => !s.recipeId)).toBe(true);
   });
 });
+
+describe('variété des repas principaux (demande du 14/11/2026)', () => {
+  const mk = (id: string, prot: string, fec: string, extra: Partial<Recipe> = {}) =>
+    recipe(id, 'dejeuner-diner', [['poulet', 150, true], ['riz', 90, true], ['brocoli', 150, false]], { sourceProteines: prot, sourceGlucides: fec, ...extra });
+  const POOL: Recipe[] = [
+    mk('poulet-pates', 'poulet', 'pates'), mk('poulet-riz', 'poulet', 'riz'), mk('dinde-riz', 'dinde', 'riz'), mk('dinde-semoule', 'dinde', 'semoule'),
+    mk('boeuf-pates', 'boeuf', 'pates'), mk('boeuf-pdt', 'boeuf', 'pommes_de_terre'), mk('poisson-riz', 'poisson', 'riz'),
+    mk('oeufs-pain', 'oeufs', 'pain'), mk('thon-semoule', 'thon', 'semoule'), mk('jambon-pdt', 'jambon', 'pommes_de_terre'),
+  ];
+  const mainsOf = (p: ReturnType<typeof generateWeekPlan>) => p.slots.filter((s) => s.kind === 'dejeuner' || s.kind === 'diner');
+  const cfg0 = cfg({ petitDej: Array(7).fill(false) });
+
+  it('une même recette au plus 2 fois dans la semaine quand le choix le permet, jamais deux fois le même jour', () => {
+    for (let seed = 1; seed <= 20; seed++) {
+      const p = generateWeekPlan(week(1900), POOL, foods, base, cfg0, seed, [], 1500);
+      const count = new Map<string, number>();
+      for (const s of mainsOf(p)) if (s.recipeId) count.set(s.recipeId, (count.get(s.recipeId) ?? 0) + 1);
+      for (const [id, n] of count) expect(n, `${id} graine ${seed}`).toBeLessThanOrEqual(2);
+      for (let d = 0; d < 7; d++) {
+        const ids = mainsOf(p).filter((s) => s.day === d).map((s) => s.recipeId);
+        expect(new Set(ids).size).toBe(ids.length);
+      }
+    }
+  });
+
+  it('protéine et féculent tournent : peu de jours avec la même protéine au déjeuner et au dîner', () => {
+    let same = 0, days = 0, consecutive = 0, pairs = 0;
+    for (let seed = 1; seed <= 15; seed++) {
+      const p = generateWeekPlan(week(1900), POOL, foods, base, cfg0, seed, [], 1500);
+      const prot = (id: string | null) => POOL.find((r) => r.id === id)?.sourceProteines;
+      let prevLunch: string | null | undefined;
+      for (let d = 0; d < 7; d++) {
+        const l = mainsOf(p).find((s) => s.day === d && s.kind === 'dejeuner');
+        const di = mainsOf(p).find((s) => s.day === d && s.kind === 'diner');
+        if (prot(l?.recipeId ?? null) === prot(di?.recipeId ?? null)) same++;
+        if (prevLunch && prevLunch === prot(l?.recipeId ?? null)) consecutive++;
+        prevLunch = prot(l?.recipeId ?? null);
+        days++; pairs++;
+      }
+    }
+    expect(same / days).toBeLessThan(0.15);
+    expect(consecutive / pairs).toBeLessThan(0.25);
+  });
+
+  it('au moins 4 protéines différentes sur la semaine avec un choix suffisant', () => {
+    for (let seed = 1; seed <= 10; seed++) {
+      const p = generateWeekPlan(week(1900), POOL, foods, base, cfg0, seed, [], 1500);
+      const prots = new Set(mainsOf(p).map((s) => POOL.find((r) => r.id === s.recipeId)?.sourceProteines));
+      expect(prots.size, `graine ${seed}`).toBeGreaterThanOrEqual(4);
+    }
+  });
+
+  it('trop peu de recettes : le plafond est relâché, aucune case vide tant qu’une recette autorisée existe', () => {
+    const p = generateWeekPlan(week(1900), POOL.slice(0, 3), foods, base, cfg0, 1, [], 1500);
+    expect(mainsOf(p).every((s) => s.recipeId)).toBe(true);
+  });
+
+  it('végétarien : jamais de recette sans l’étiquette végétarienne ; sans porc : jamais de jambon', () => {
+    const veg: Recipe[] = [...POOL.map((r) => ({ ...r })), mk('curry-legumes', 'legumineuses', 'riz', { regimes: ['vegetarien'] }), mk('omelette-pdt', 'oeufs', 'pommes_de_terre', { regimes: ['vegetarien'] })];
+    for (let seed = 1; seed <= 10; seed++) {
+      const p = generateWeekPlan(week(1900), veg, foods, { ...base, diet: ['vegetarien'] }, cfg0, seed, [], 1500);
+      for (const s of mainsOf(p)) if (s.recipeId) expect(veg.find((r) => r.id === s.recipeId)!.regimes).toContain('vegetarien');
+    }
+    const sp: Recipe[] = POOL.map((r) => (r.id === 'jambon-pdt' ? r : { ...r, regimes: ['sans_porc'] }));
+    for (let seed = 1; seed <= 10; seed++) {
+      const p = generateWeekPlan(week(1900), sp, foods, { ...base, diet: ['sans_porc'] }, cfg0, seed, [], 1500);
+      expect(mainsOf(p).some((s) => s.recipeId === 'jambon-pdt')).toBe(false);
+    }
+  });
+});

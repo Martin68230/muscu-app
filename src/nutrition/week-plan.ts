@@ -4,7 +4,7 @@
 
 import {
   ARRONDI_GRAMMES, BONUS_LOT, ENCAS_MAX_PAR_JOUR, NUTRITION_VERSION, PART_DEJEUNER, PART_OPTIONNEL, PART_OPTIONNEL_MAX, PIECES_MAX_PAR_PRISE,
-  SCORE, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_REPAS, TOL_KCAL_REPLI,
+  MAX_FOIS_RECETTE_SEMAINE, SCORE, SCORE_VARIETE, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_REPAS, TOL_KCAL_REPLI,
 } from './config';
 import type { DayTarget } from './day-targets';
 import { recipeAllowed, scaleRecipe, type DayCheck, type FoodMacros, type PlanPrefs, type Recipe } from './plan';
@@ -160,6 +160,11 @@ export function generateWeekPlan(
   const pf = { ...prefs, mealsPerDay: 3 as const };
   const allowed = recipes.filter((r) => recipeAllowed(r, pf));
   const usedMain = new Map<string, number>();
+  // Rotation : usage de chaque protéine et féculent dans la semaine, et ceux de la veille.
+  const protWeek = new Map<string, number>();
+  const fecWeek = new Map<string, number>();
+  let protYesterday = new Set<string>();
+  let fecYesterday = new Set<string>();
   const basket = new Set<string>();
   const slots: WeekSlot[] = [];
   const lines: { slot: WeekSlot; lines: Pick['lines'] }[] = [];
@@ -200,6 +205,8 @@ export function generateWeekPlan(
   days.forEach((d, day) => {
     const optional = optionalShares(day, cfg);
     const usedToday = new Set<string>();
+    const protToday = new Set<string>();
+    const fecToday = new Set<string>();
     const done: WeekSlot[] = [];
     const push = (kind: SlotKind, index: number, pk: Pick | null) => {
       const s: WeekSlot = pk
@@ -209,6 +216,10 @@ export function generateWeekPlan(
       done.push(s);
       if (pk) {
         usedToday.add(pk.r.id);
+        if (kind === 'dejeuner' || kind === 'diner') {
+          if (pk.r.sourceProteines) { protToday.add(pk.r.sourceProteines); protWeek.set(pk.r.sourceProteines, (protWeek.get(pk.r.sourceProteines) ?? 0) + 1); }
+          if (pk.r.sourceGlucides) { fecToday.add(pk.r.sourceGlucides); fecWeek.set(pk.r.sourceGlucides, (fecWeek.get(pk.r.sourceGlucides) ?? 0) + 1); }
+        }
         if (!pk.r.lot) { usedMain.set(pk.r.id, (usedMain.get(pk.r.id) ?? 0) + 1); lines.push({ slot: s, lines: pk.lines }); for (const l of pk.lines) basket.add(l.code); }
         else for (const i of pk.r.ingredients) basket.add(i.code);
       }
@@ -243,13 +254,23 @@ export function generateWeekPlan(
       const target = rest * (kind === 'dejeuner' ? PART_DEJEUNER : 1 - PART_DEJEUNER);
       let best: { pk: Pick; score: number } | null = null;
       if (target > 0) {
-        // Première passe dans la tolérance du repas ; sinon repli sur la recette la plus proche (le jour sera signalé « écart »), jamais une case vide.
-        for (const tol of [TOL_KCAL_REPAS, TOL_KCAL_REPLI]) {
+        // Ordre des essais : dans la tolérance du repas ET sous le plafond de répétition, puis dans la tolérance sans le plafond, puis repli sur la
+        // recette la plus proche (le jour sera signalé « écart »). Jamais une case vide si une recette autorisée existe.
+        const passes: { tol: number; cap: boolean }[] = [
+          { tol: TOL_KCAL_REPAS, cap: true }, { tol: TOL_KCAL_REPAS, cap: false }, { tol: TOL_KCAL_REPLI, cap: true }, { tol: TOL_KCAL_REPLI, cap: false },
+        ];
+        for (const { tol, cap } of passes) {
           for (const r of allowed) {
             if (r.repas !== 'dejeuner-diner' || usedToday.has(r.id)) continue;
+            if (cap && (usedMain.get(r.id) ?? 0) >= MAX_FOIS_RECETTE_SEMAINE) continue;
             const pk = pickFor(r, foods, target, tol);
             if (!pk) continue;
-            const score = -pk.err * SCORE.ecartKcal - (usedMain.get(r.id) ?? 0) * SCORE.repetition - (previousRecipeIds.includes(r.id) ? SCORE.repetitionSemaineDerniere : 0) + basketScore(pk) + rnd() * SCORE.bruit;
+            const p = r.sourceProteines ?? '';
+            const g = r.sourceGlucides ?? '';
+            let rot = 0;
+            if (p) rot += (protYesterday.has(p) ? SCORE_VARIETE.memeSourceVeille : 0) + (protToday.has(p) ? SCORE_VARIETE.memeSourceMemeJour : 0) + (protWeek.get(p) ?? 0) * SCORE_VARIETE.parUsageSemaine;
+            if (g) rot += (fecYesterday.has(g) ? SCORE_VARIETE.memeSourceVeille : 0) + (fecToday.has(g) ? SCORE_VARIETE.memeSourceMemeJour : 0) + (fecWeek.get(g) ?? 0) * SCORE_VARIETE.parUsageSemaine;
+            const score = -pk.err * SCORE.ecartKcal - (usedMain.get(r.id) ?? 0) * SCORE.repetition - rot - (previousRecipeIds.includes(r.id) ? SCORE.repetitionSemaineDerniere : 0) + basketScore(pk) + rnd() * SCORE.bruit;
             if (!best || score > best.score) best = { pk, score };
           }
           if (best) break;
@@ -257,6 +278,8 @@ export function generateWeekPlan(
       }
       push(kind, 0, best?.pk ?? null);
     }
+    protYesterday = protToday;
+    fecYesterday = fecToday;
   });
 
   // Lots : pièces nécessaires = somme des prises ; fabriquées = max(nécessaire, réglage). Courses = pièces du lot x ingrédients d'une pièce.

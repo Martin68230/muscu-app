@@ -22,6 +22,7 @@ export interface Recipe {
   regimes: string[];
   cout: 'eco' | 'normal' | 'plus';
   sourceProteines: string | null;
+  sourceGlucides?: string | null;
   /** Recette préparée en lot (barres, muffins) : les ingrédients sont ceux d'UNE pièce. */
   lot?: boolean;
   piece?: string | null;

@@ -139,3 +139,9 @@ export const TOL_KCAL_OPTIONNEL = 0.35;
 export const BONUS_LOT = 3;
 /** Repli : si aucune recette ne tient dans la tolérance du repas, la plus proche (écart <= 60 %) est choisie plutôt qu'une case vide ; le jour est alors signalé « écart ». */
 export const TOL_KCAL_REPLI = 0.6;
+
+// --- Variété des repas principaux (demande du 14/11/2026). PROVISOIRE. ---
+/** Une même recette de repas principal au plus ce nombre de fois dans la semaine (relâché seulement si aucune autre recette ne convient). */
+export const MAX_FOIS_RECETTE_SEMAINE = 2;
+/** Pénalités de rotation : même protéine ou même féculent que la veille ou la veille du jour ; usage déjà fait dans la semaine (par prise). */
+export const SCORE_VARIETE = { memeSourceVeille: 2.5, memeSourceMemeJour: 4, parUsageSemaine: 0.7 } as const;

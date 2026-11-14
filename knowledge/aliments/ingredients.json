@@ -4650,5 +4650,232 @@
     "conditionnement_g": 500,
     "garde_manger": false,
     "perissable": false
+  },
+  {
+    "code": "28963",
+    "nom": "Blanc de poulet en tranches",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "lait",
+      "soja",
+      "celeri",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "paquet de 4 tranches",
+      "grammes": 160
+    },
+    "conditionnement_g": 160,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "28501",
+    "nom": "Lardons nature",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "lait",
+      "soja",
+      "celeri",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "barquette",
+      "grammes": 200
+    },
+    "conditionnement_g": 200,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "30131",
+    "nom": "Saucisse de volaille type knack",
+    "famille": "proteine_animale",
+    "rayon": "viandes_poissons",
+    "allergenes": [
+      "gluten",
+      "lait",
+      "soja",
+      "celeri",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "saucisse",
+      "grammes": 50
+    },
+    "conditionnement_g": 300,
+    "garde_manger": false,
+    "perissable": true
+  },
+  {
+    "code": "4014",
+    "nom": "Pomme de terre vapeur (sachet sous vide)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [],
+    "unite_achat": {
+      "label": "sachet",
+      "grammes": 500
+    },
+    "conditionnement_g": 500,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "20274",
+    "nom": "Poêlée de légumes méditerranéenne surgelée",
+    "famille": "legume",
+    "rayon": "surgeles",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": null,
+    "conditionnement_g": 1000,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11114",
+    "nom": "Sauce bolognaise du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "vegetarien",
+      "vegetalien",
+      "sans_porc",
+      "halal",
+      "sans_gluten",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 400
+    },
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11192",
+    "nom": "Sauce crème et champignons du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "lait",
+      "gluten",
+      "celeri",
+      "soja",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 380
+    },
+    "conditionnement_g": 380,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11132",
+    "nom": "Sauce curry du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 380
+    },
+    "conditionnement_g": 380,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11207",
+    "nom": "Sauce tomate aux petits légumes du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "moutarde",
+      "sulfites"
+    ],
+    "statut_allergenes": "a_verifier",
+    "regimes_incompatibles": [
+      "sans_gluten"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 400
+    },
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
   }
 ]
