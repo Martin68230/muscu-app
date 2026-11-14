@@ -25,6 +25,7 @@ import { VideoButton, type VideoRef } from '../VideoButton';
 import { MuscleMapCard } from '../MuscleMapCard';
 import { statusesForExercise } from '../../zones/map-data';
 import { Precautions } from '../Precautions';
+import { useImportedImage } from '../../images/ImportedImage';
 
 export const MEDICAL_REMINDER = 'Cette appli n’est pas un avis médical. Arrête-toi en cas de douleur.';
 
@@ -46,10 +47,19 @@ export function displayImages(f: FicheData) {
   return f.images.filter((i) => i.type === 'illustration').slice(0, 1);
 }
 
-export function FicheImages({ fiche, compact = false }: { fiche: FicheData; compact?: boolean }) {
+export function FicheImages({ fiche, compact = false, variantId = null }: { fiche: FicheData; compact?: boolean; variantId?: string | null }) {
+  const imported = useImportedImage(fiche.id, variantId);
   const imgs = displayImages(fiche);
   const [broken, setBroken] = useState<string[]>([]);
   const shown = imgs.filter((i) => !broken.includes(i.src)).slice(0, compact ? 1 : 2);
+  if (imported) {
+    return (
+      <figure class={`fiche-figure${compact ? ' compact' : ''}`}>
+        <div class="fiche-imgs"><img class="fiche-img" src={imported} alt={`Image importée de l’exercice : ${fiche.nom}`} /></div>
+        <figcaption class="dim small">Image importée par toi. En cas de doute, suis la consigne écrite.</figcaption>
+      </figure>
+    );
+  }
   if (shown.length === 0) return null;
   const legende = shown.find((i) => i.legende)?.legende;
   return (
@@ -130,7 +140,7 @@ export function FicheView({ fiche, all, equipment, injuries, pregnancy }: FicheV
         {SCHEMA_LABEL[fiche.schema] ?? 'Exercice'} · à partir du niveau {levelText(fiche.niveauMin)}
       </p>
 
-      <FicheImages fiche={fiche} />
+      <FicheImages fiche={fiche} variantId={choice.best?.id ?? null} />
 
       <section class="card" aria-labelledby="f-muscles">
         <h2 id="f-muscles">Muscles travaillés</h2>

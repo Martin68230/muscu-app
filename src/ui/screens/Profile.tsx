@@ -5,6 +5,7 @@ import { MAX_IMPORT_BYTES } from '../../data/validate';
 import { exportData, importData, wipeAllData } from '../../data/backup';
 import { Injuries } from './Injuries';
 import { ImportCsv } from './ImportCsv';
+import { ImagesImport } from '../../images/ImagesImport';
 import { Equipment } from './Equipment';
 import { Credits } from './Credits';
 import { MySportCard } from './MySport';
@@ -249,6 +250,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep, onNoteSport }:
       </button>
 
       <ImportCsv />
+
+      <ImagesImport />
 
       <Equipment key={'eq' + (message ?? profile.id)} />
 

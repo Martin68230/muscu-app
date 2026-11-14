@@ -613,7 +613,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
         <div class={holdEx && (holdUi.timer !== null || holdValue !== null) ? 'ex-head ex-head-small' : 'ex-head'}>
           {fiche && !(holdEx && (holdUi.timer !== null || holdValue !== null)) && (
             <button type="button" class="img-btn" aria-label="Agrandir l’image" onClick={() => setZoom(true)}>
-              <FicheImages fiche={fiche} compact />
+              <FicheImages fiche={fiche} compact variantId={ex?.variantId ?? null} />
             </button>
           )}
           <div class="ex-info">
@@ -718,7 +718,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
 
       {zoom && fiche && (
         <Sheet title={exName(all, ex)} label="Image de l’exercice" onClose={() => setZoom(false)}>
-          <FicheImages fiche={fiche} />
+          <FicheImages fiche={fiche} variantId={ex?.variantId ?? null} />
           <button type="button" class="btn btn-primary" onClick={() => setZoom(false)}>Fermer</button>
         </Sheet>
       )}

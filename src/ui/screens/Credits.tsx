@@ -54,6 +54,11 @@ export function Credits({ onBack }: { onBack: () => void }) {
       ))}
 
       <section class="card credit">
+        <h2>Images importées par toi</h2>
+        <p>Les GIF du jeu Gym visual (liste d’exercices hasaneyldrm) ne sont pas dans l’app. Si tu importes ta propre copie, elle reste sur ton téléphone, n’est ni envoyée ni redistribuée, et appartient à Gym visual.</p>
+      </section>
+
+      <section class="card credit">
         <h2>Vidéos</h2>
         <p>{credits.videos}</p>
       </section>

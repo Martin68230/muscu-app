@@ -1,3 +1,4 @@
+import { deleteAllImages } from '../images/store';
 import { closeDB, DB_NAME, getDB } from './db';
 import { getDevice, listAll, mergeRows } from './repo';
 import { SCHEMA_VERSION, TABLES, type Row, type TableName } from './model';
@@ -71,6 +72,7 @@ export async function importData(input: unknown): Promise<ImportResult> {
 
 /** Efface toutes les données de l'appareil (bouton « supprimer mes données », après confirmation). */
 export async function wipeAllData(): Promise<void> {
+  await deleteAllImages().catch(() => undefined);
   await getDB();
   await closeDB();
   await new Promise<void>((resolve, reject) => {
