@@ -507,7 +507,7 @@ export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_
  * Fiches du catalogue (bibliothèque, choix à la main) jamais placées automatiquement : lot 5 (13/11/2026) : tirage de sac sur le sol (sac non pesé, charge variable,
  * dose NON SOURCÉE : placement automatique seulement quand le coach aura sourcé la charge). Annuler : retirer l'id.
  */
-export const MANUAL_ONLY_FICHES: readonly string[] = ['tirage-sac-sur-sol', 'elevation-frontale-halteres'];
+export const MANUAL_ONLY_FICHES: readonly string[] = ['tirage-sac-sur-sol', 'elevation-frontale-halteres', 'souleve-de-terre-halteres'];
 
 export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
   'lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur',
