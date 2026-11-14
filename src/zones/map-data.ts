@@ -12,7 +12,7 @@ export type PointsMap = Record<ZoneId, number>;
 /** Statuts et points (points de la période affichée : séance, semaine, groupe de séances). */
 export interface ZoneMap { statuses: StatusMap; points: PointsMap }
 /** Ce qu'il faut d'un exercice prévu : la fiche et le nombre de séries de travail. */
-export interface MapExercise { movementId: string; sets: number; role?: string }
+export interface MapExercise { movementId: string; sets: number; role?: string; capped?: boolean }
 export interface MapDay { exercises: readonly MapExercise[]; sessionType?: string }
 /** Série enregistrée (SetLog) : seuls ces champs servent ; échauffement, série non faite ou supprimée = 0 point. */
 export interface MapLog { sessionId?: string; movementId: string; completedAt: string | null; isWarmup?: boolean; side?: 'gauche' | 'droite' | null; deletedAt?: string | null }
@@ -22,7 +22,7 @@ const allGris = (): StatusMap => Object.fromEntries(ZONES.map((z) => [z.id, 'gri
 
 /** Séries prévues (hors cardio). */
 export const setsOfExercises = (exs: readonly MapExercise[]): ZoneSet[] =>
-  exs.filter((e) => e.role !== 'cardio').map((e) => ({ ficheId: e.movementId, sets: e.sets }));
+  exs.filter((e) => e.role !== 'cardio').map((e) => ({ ficheId: e.movementId, sets: e.sets, ...(e.capped ? { capped: true } : {}) }));
 
 /** Séries faites d'une séance (ou de toutes si `sessionId` est absent) : une ligne = une série, un seul côté = une demi-série. */
 export const setsOfLogs = (logs: readonly MapLog[], sessionId?: string): ZoneSet[] =>
@@ -31,9 +31,24 @@ export const setsOfLogs = (logs: readonly MapLog[], sessionId?: string): ZoneSet
     .map((s) => ({ ficheId: s.movementId, sets: 1, side: s.side ?? null }));
 
 /** Statuts depuis des points ; `fraction` < 1 = une seule séance (points ramenés à la semaine pour l'échelle). */
-export function statusesFromPoints(points: Readonly<PointsMap>, objectif: string | null | undefined): StatusMap {
+export function statusesFromPoints(points: Readonly<PointsMap>, objectif: string | null | undefined, covered?: ReadonlySet<ZoneId>): StatusMap {
   const out = allGris();
-  for (const z of ZONES) out[z.id] = zoneStatus(points[z.id] ?? 0, z.id, objectif);
+  for (const z of ZONES) {
+    const st = zoneStatus(points[z.id] ?? 0, z.id, objectif);
+    // « Couverte » (14/11/2026, affichage seulement) : une zone travaillée par un exercice à dose fixe plafonnée (le cou : 1 série de 2 maintiens de 3 s) ne reste pas grise ; aucune série n'est ajoutée pour autant.
+    out[z.id] = st === 'gris' && covered?.has(z.id) && (points[z.id] ?? 0) > 0 ? 'orange' : st;
+  }
+  return out;
+}
+
+/** Zones travaillées (coefficient >= 0,5) par un exercice à dose fixe plafonnée parmi `sets` (voir ZoneSet.capped). */
+export function coveredZones(sets: readonly ZoneSet[], fiches: Fiches): Set<ZoneId> {
+  const byId = 'get' in fiches ? (fiches as ReadonlyMap<string, ZoneFiche>) : new Map((fiches as readonly ZoneFiche[]).map((f) => [f.id, f]));
+  const out = new Set<ZoneId>();
+  for (const s of sets) {
+    const f = s.capped && !s.warmup && (s.sets ?? 1) > 0 ? byId.get(s.ficheId) : undefined;
+    if (f) for (const [z, c] of zoneCoefs(f)) if (c >= 0.5) out.add(z);
+  }
   return out;
 }
 
@@ -64,7 +79,7 @@ function mergeByFiche(sets: readonly ZoneSet[]): ZoneSet[] {
  * Statuts par RÔLE des exercices (vues séance et cycle) : `exercises` = un élément par exercice. Rouge : au moins 2 exercices en principal,
  * ou 1 en principal et au moins 2 autres en secondaire ; jamais en principal : orange au plus ; au-dessus du seuil gris (points non mis à l’échelle).
  */
-export function roleStatuses(exercises: readonly ZoneSet[], fiches: Fiches, points: Readonly<PointsMap>, objectif?: string | null): StatusMap {
+export function roleStatuses(exercises: readonly ZoneSet[], fiches: Fiches, points: Readonly<PointsMap>, objectif?: string | null, covered?: ReadonlySet<ZoneId>): StatusMap {
   const byId = 'get' in fiches ? (fiches as ReadonlyMap<string, ZoneFiche>) : new Map((fiches as readonly ZoneFiche[]).map((f) => [f.id, f]));
   const principal: Record<string, number> = {};
   const second: Record<string, number> = {};
@@ -80,7 +95,7 @@ export function roleStatuses(exercises: readonly ZoneSet[], fiches: Fiches, poin
   for (const z of ZONES) {
     const p = principal[z.id] ?? 0;
     const s = second[z.id] ?? 0;
-    if ((points[z.id] ?? 0) < thresholdsOf(z.id, objectif).gris) continue;
+    if ((points[z.id] ?? 0) < thresholdsOf(z.id, objectif).gris && !(covered?.has(z.id) && (points[z.id] ?? 0) > 0)) continue;
     out[z.id] = p >= 2 || (p >= 1 && s >= 2) ? 'rouge' : 'orange';
   }
   return out;
@@ -89,13 +104,14 @@ export function roleStatuses(exercises: readonly ZoneSet[], fiches: Fiches, poin
 /** Vue « séance » (prévue ou faite) : points de la séance (sans mise à l’échelle), couleur selon le rôle des exercices. */
 export function sessionMap(sets: readonly ZoneSet[], fiches: Fiches, objectif?: string | null): ZoneMap {
   const points = pointsByZone(sets, fiches);
-  return { points, statuses: roleStatuses(mergeByFiche(sets), fiches, points, objectif) };
+  return { points, statuses: roleStatuses(mergeByFiche(sets), fiches, points, objectif, coveredZones(sets, fiches)) };
 }
 
 /** Vue « semaine » : toutes les séances prévues d'une semaine (le cardio ne compte pas). */
 export function weekMap(days: readonly MapDay[], fiches: Fiches, objectif?: string | null): ZoneMap {
-  const points = pointsByZone(days.flatMap((d) => setsOfExercises(d.exercises)), fiches);
-  return { points, statuses: statusesFromPoints(points, objectif) };
+  const sets = days.flatMap((d) => setsOfExercises(d.exercises));
+  const points = pointsByZone(sets, fiches);
+  return { points, statuses: statusesFromPoints(points, objectif, coveredZones(sets, fiches)) };
 }
 
 /** Groupes de la vue « cycle » : haut / bas, poussée / tirage / jambes (d'après le type de séance du générateur). */
@@ -105,8 +121,9 @@ const CYCLE_ORDER = ['haut', 'bas', 'poussee', 'tirage', 'jambes', 'corps_entier
 
 /** Un groupe de séances : points cumulés, couleur selon le rôle des exercices de toutes les séances du groupe. */
 function groupMap(days: readonly MapDay[], fiches: Fiches, objectif?: string | null): ZoneMap {
-  const points = pointsByZone(days.flatMap((d) => setsOfExercises(d.exercises)), fiches);
-  return { points, statuses: roleStatuses(days.flatMap((d) => mergeByFiche(setsOfExercises(d.exercises))), fiches, points, objectif) };
+  const sets = days.flatMap((d) => setsOfExercises(d.exercises));
+  const points = pointsByZone(sets, fiches);
+  return { points, statuses: roleStatuses(days.flatMap((d) => mergeByFiche(setsOfExercises(d.exercises))), fiches, points, objectif, coveredZones(sets, fiches)) };
 }
 
 /** Vue « cycle » : une carte par groupe de séances de la semaine type (dans l'ordre haut, bas, poussée, tirage, jambes, corps entier). */

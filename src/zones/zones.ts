@@ -33,6 +33,8 @@ export interface ZoneFiche {
  */
 export interface ZoneSet {
   ficheId: string;
+  /** Dose fixe plafonnée par une règle de sécurité (cou, correctifs, prévention) : sert à l'AFFICHAGE seulement (zone « couverte »). */
+  capped?: boolean;
   sets?: number;
   warmup?: boolean;
   side?: 'gauche' | 'droite' | null;

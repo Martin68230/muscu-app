@@ -27,6 +27,14 @@ const noLoad = (tags: readonly string[]) => lightTags(tags) && !tags.some((t) =>
 const ischios: Row = { key: 'ischios', fiche: (f) => /^curl-ischios/.test(f.id) && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'ischios', variantOk: noLoad, sets: 2 };
 const fessiers: Row = { key: 'fessiers', fiche: (f) => /^(pont-fessier|hip-thrust)/.test(f.id) && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'fessiers', variantOk: noLoad, sets: 2 };
 
+function legsRows(): Row[] {
+  return [
+    { key: 'mollets', fiche: isMollets, sets: 3 },
+    { key: 'adducteurs', fiche: (f) => (CORRECTIF.ids.adducteurs ?? []).includes(f.id), sets: 2 },
+    { key: 'abducteurs', fiche: (f) => (CORRECTIF.ids.abducteurs ?? []).includes(f.id), sets: 2 },
+  ];
+}
+
 const ROWS: Record<string, readonly Row[]> = {
   PUSH: [
     { key: 'pectoraux', fiche: (f) => /^ecarte/.test(f.id) && f.schema === 'poussee_h' && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'pectoraux', sets: 2 },
@@ -44,10 +52,9 @@ const ROWS: Record<string, readonly Row[]> = {
     { key: 'mollets', fiche: isMollets, variantOk: lightTags, sets: 3 },
     fessiers, ischios,
   ],
-  LEGS: [
-    { key: 'mollets', fiche: isMollets, sets: 3 },
-    { key: 'abducteurs', fiche: (f) => (CORRECTIF.ids.abducteurs ?? []).includes(f.id), sets: 2 },
-  ],
+  LEGS: legsRows(),
+  // Retour d'un utilisateur (14/11/2026) : la séance du bas du corps (programme haut / bas) reçoit aussi mollets, adducteurs et abducteurs en fin de séance.
+  BAS: legsRows(),
 };
 
 function candidates(row: Row, d: FillDeps, type: string): Candidate[] {
