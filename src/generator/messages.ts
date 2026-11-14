@@ -158,6 +158,8 @@ export const msg = {
   /** Étape 2 « Mon sport » (§8.5) : message constant, aucun mot de culpabilité. */
   sportPlace: (noLegs: boolean) =>
     m('V-MSG-SPORT-PLACE', noLegs ? 'Ton sport sollicite déjà tes jambes : cette semaine, je programme le haut du corps. Ton sport prend de la place, j’ai décalé et allégé tes séances.' : 'Ton sport prend de la place, j’ai décalé ou allégé certaines séances.'),
+  /** « Mon sport » A1 (saisie-sport-v1.md §9, point 7) : texte de `coach`, sans culpabilité. */
+  sportA1: () => m('V-MSG-SPORT-A1', 'Ton sport sollicite déjà tes jambes : cette séance les ménage ; le reste du corps travaille normalement.'),
   /** « Mon sport » A2 (saisie-sport-v1.md §9, §7 (h)) : texte obligatoire de la prévention pour les raquettes. */
   sportRaquette: () => m('V-MSG-SPORT-PREV', 'Prévention inspirée d’autres sports, non démontrée pour le tennis, le badminton, le padel ou le squash.'),
   sportMatch: () => m('V-MSG-SPORT-MATCH', 'Évite de faire ta séance de cardio la veille d’un match, et le lendemain d’un match en cas de courbatures.'),

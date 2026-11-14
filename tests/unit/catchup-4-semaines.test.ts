@@ -44,7 +44,7 @@ const PROFILES: [string, GeneratorInput, boolean, CatchUpProfile['sport']][] = [
   // 13/11/2026 (lot 4, CAL-20) : avec les 12 nouvelles fiches et les isolations du haut, la maison complète trouve toujours une série à ajouter : le scénario ne force plus d'échange
   // (propriété testée ailleurs : une série en plus est préférée à l'échange, RAT-1). La preuve RAT-6 dans le flux complet est portée par la salle à 45 min (2 échanges mesurés, 4 semaines).
   ['maison complète', mk({ level: 'intermediaire', days: 4, dur: 60, goal: 'muscle', profile: 'E', place: 'maison' }), false, undefined],
-  ['salle', mk({ level: 'intermediaire', days: 4, dur: 45, goal: 'muscle', profile: 'F', place: 'salle' }), true, undefined],
+  ['salle', mk({ level: 'intermediaire', days: 4, dur: 45, goal: 'muscle', profile: 'F', place: 'salle' }), false, undefined], // lot 6 (14/11/2026) : poulie, traction assistée et trapèzes en secondaire : la salle à 45 min ne force plus d'échange (échange testé dans catchup-rat et zones-catchup),
   ['salle avec sport (match samedi, séance dimanche)', mk({ level: 'intermediaire', days: 4, dur: 60, goal: 'muscle', profile: 'F', place: 'salle' }), false, SPORT_MONDAY],
 ];
 const SPORT_ZONES = [...CATCHUP.legZones, ...CATCHUP.shoulderLoadZones];

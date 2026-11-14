@@ -1288,4 +1288,77 @@ export const EXERCICES = [
     a: { p: [0, 106], legN: { to: [8, A], bend: 'f' }, legF: { to: [-8, A], bend: 'b' }, armN: { a: [-70, -50] }, armF: { a: [-110, -130] } },
     b: { p: [0, 124], legN: { to: [8, 26], bend: 'f' }, legF: { to: [-8, 26], bend: 'b' }, armN: { a: [-50, -30] }, armF: { a: [-130, -150] }, props: [['arrow', [-40, 40], [40, 40]]] },
   },
+  // ---- Lot 06 (vague 2) ----
+  {
+    id: 'coquille-hanche', titre: 'Coquille, vue de dessus : couché sur le côté, hanches et genoux pliés, pieds joints, le genou du dessus qui s\'ouvre',
+    view: 'top', labels: ['Hanches et genoux pliés, pieds joints', 'Genou du dessus ouvert, pieds joints'],
+    a: { p: [-40, 120], t: 180, tl: 68, hl: 20, h: 180, sw: 6, hw: 6, legN: { to: [36, 122], bend: 'f' }, legF: { to: [36, 122], bend: 'b' }, armN: { a: [90, 90] }, armF: { a: [92, 92] }, back: [['rect', -140, 30, 300, 190, 0]] },
+    b: { p: [-40, 120], t: 180, tl: 68, hl: 20, h: 180, sw: 6, hw: 6, legN: { to: [36, 122], bend: 'f' }, legF: { to: [28, 124], bend: 'b' }, armN: { a: [90, 90] }, armF: { a: [92, 92] }, back: [['rect', -140, 30, 300, 190, 0]], props: [['arrow', [20, 185], [20, 210]]] },
+  },
+  {
+    id: 'elevation-frontale-halteres', titre: 'Élévation frontale avec deux haltères légers, vue de profil : bras le long du corps, puis bras tendus devant jusqu\'à l\'horizontale',
+    labels: ['Bras le long du corps', 'Bras tendus devant, à l\'horizontale'],
+    a: { p: [0, 112], armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, props: (J) => [['db', J.haN], ['db', J.haF]] },
+    b: { p: [0, 112], armN: { a: [3, 3] }, armF: { a: [-3, -3] }, props: (J) => [['db', J.haN, 90], ['db', J.haF, 90], ['arrow', [120, 150], [120, 195]]] },
+  },
+  {
+    id: 'etirement-epaule-bras-croise', titre: 'Étirement de l\'arrière de l\'épaule, vue de face : un bras tendu devant la poitrine, l\'autre main le tire doucement contre soi',
+    view: 'front', labels: ['Debout, bras le long du corps', 'Bras tendu en travers, tiré par l\'autre main'],
+    a: { p: [0, 112], armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' } },
+    b: { p: [0, 112], armF: { a: [0, 0] }, armN: { to: [14, 168], bend: 'd' }, legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' } },
+  },
+  {
+    id: 'fente-croisee', titre: 'Fente croisée en arrière, vue de face : une jambe passe derrière l\'autre, en diagonale, puis on se redresse ; mains aux hanches',
+    view: 'front', labels: ['Debout, mains aux hanches', 'Une jambe passe derrière, genoux fléchis'],
+    a: { p: [0, 112], armN: { to: [26, 110], bend: 'f' }, armF: { to: [-26, 110], bend: 'b' }, legN: { to: [14, A], bend: 'f' }, legF: { to: [-14, A], bend: 'b' } },
+    b: { p: [0, 86], armN: { to: [26, 84], bend: 'f' }, armF: { to: [-26, 84], bend: 'b' }, legN: { to: [14, A], bend: 'f' }, legF: { to: [34, 16], bend: 'd', foot: -30 }, props: [['arrow', [-70, 70], [-70, 40]]] },
+  },
+  {
+    id: 'pallof-pas-lateraux', titre: 'Tenue anti-rotation avec pas de côté, vue de dessus : bras tendus devant la poitrine, élastique tiré de côté, petits pas qui s\'éloignent de l\'ancrage, buste immobile',
+    view: 'top', labels: ['Bras tendus, élastique de côté', 'Pas de côté, buste qui ne tourne pas'],
+    a: { p: [0, 60], t: 90, tl: 40, hl: 0, sw: 22, hw: 10, face: 90, armN: { to: [4, 186], bend: 'f' }, armF: { to: [-2, 186], bend: 'b' }, hide: ['legN', 'legF'], back: [['wall', 118, 14], ['anchor', 120, 124]], props: [(J) => [['band', [J.haN, [120, 124]]]]] },
+    b: { p: [-40, 60], t: 90, tl: 40, hl: 0, sw: 22, hw: 10, face: 90, armN: { to: [-36, 186], bend: 'f' }, armF: { to: [-42, 186], bend: 'b' }, hide: ['legN', 'legF'], back: [['wall', 118, 14], ['anchor', 120, 124]], props: [(J) => [['band', [J.haN, [120, 124]]]], ['arrow', [-10, 20], [-60, 20]]] },
+  },
+  {
+    id: 'planche-glissee-serviette', titre: 'Planche glissée (la scie), vue de profil : avant-bras sur un tapis, pieds sur une serviette, le corps glisse un peu d\'avant en arrière en restant aligné',
+    labels: ['Corps aligné, pieds sur la serviette', 'Petit glissement, ventre serré'],
+    a: { p: [-6, 34], t: 14, h: 10, armN: { to: [100, 8], bend: 'd' }, armF: { to: [96, 8], bend: 'd' }, legN: { to: [-106, 22], bend: 'd', foot: -60 }, legF: { to: [-102, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 130]], props: [['towel', [[-120, 4], [-88, 4]]]] },
+    b: { p: [16, 34], t: 14, h: 10, armN: { to: [100, 8], bend: 'd' }, armF: { to: [96, 8], bend: 'd' }, legN: { to: [-84, 22], bend: 'd', foot: -60 }, legF: { to: [-80, 22], bend: 'd', foot: -60 }, back: [['mat', -140, 130]], props: [['towel', [[-98, 4], [-66, 4]]], ['arrow', [-40, 100], [0, 100]]] },
+  },
+  {
+    id: 'porte-haltere-bras-leve', titre: 'Marche avec un haltère léger bras levé : un haltère tenu au-dessus de la tête, bras tendu, poignet droit, l\'autre bras le long du corps',
+    labels: ['Haltère au-dessus de l\'épaule', 'Marche lente, buste droit'],
+    a: { p: [0, 110], armN: { a: [89, 91] }, armF: { a: [-85, -80] }, props: (J) => [['db', [J.haN[0], J.haN[1] + 14]]] },
+    b: stride({ armN: { a: [89, 91] }, armF: { a: [-70, -40] }, props: [(J) => [['db', [J.haN[0], J.haN[1] + 14]]], ...walkFwd] }),
+  },
+  {
+    id: 'posture-enfant-bras-avances', titre: 'Posture de l\'enfant, bras avancés : à genoux, fesses vers les talons, bras tendus devant sur le sol, front vers le sol',
+    labels: ['À genoux, buste droit', 'Fesses sur les talons, bras avancés'],
+    a: { p: [-20, 62], t: 90, h: 90, armN: { a: [-95, -93] }, armF: { a: [-85, -87] }, legN: { a: [-90, 180], foot: 180 }, legF: { a: [-90, 180], foot: 180 }, back: [['mat', -140, 130]] },
+    b: { p: [-75, 28], t: 10, h: -15, armN: { to: [56, 7], bend: 'u' }, armF: { to: [52, 7], bend: 'u' }, legN: { a: [-20, 180], foot: 180 }, legF: { a: [-20, 180], foot: 180 }, back: [['mat', -140, 130]], props: [['arrow', [-60, 90], [-90, 70]]] },
+  },
+  {
+    id: 'pull-through-elastique', titre: 'Tirage entre les jambes à l\'élastique (charnière de hanche), vue de profil : dos à l\'ancrage, bassin en arrière dos plat, puis on se redresse en poussant le bassin vers l\'avant',
+    labels: ['Bassin en arrière, dos plat', 'Debout, bassin poussé vers l\'avant'],
+    a: { p: [-30, 94], t: 40, h: 48, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [-6, 78], bend: 'd' }, armF: { to: [-10, 78], bend: 'd' }, back: [['wall', -112, -14], ['anchor', -116, 40]], props: (J) => [['band', [J.haN, [-116, 40]]]] },
+    b: { p: [0, 112], t: 90, armN: { to: [22, 100], bend: 'd' }, armF: { to: [18, 100], bend: 'd' }, back: [['wall', -112, -14], ['anchor', -116, 40]], props: (J) => [['band', [J.haN, [-116, 40]]], ['arrow', [60, 90], [90, 90]]] },
+  },
+  {
+    id: 'souleve-de-terre-halteres', titre: 'Soulevé de terre aux haltères : pieds largeur de hanches, bassin en arrière, dos plat, haltères le long des jambes ; on se redresse en poussant le sol',
+    labels: ['Bassin en arrière, dos plat, haltères aux tibias', 'Debout, haltères le long des cuisses'],
+    a: { p: [-52, 52], t: 40, h: 48, legN: { to: [-10, A], bend: 'f' }, legF: { to: [-16, A], bend: 'f' }, armN: { a: [-90, -90] }, armF: { a: [-88, -88] }, props: (J) => [['db', J.haN], ['db', J.haF]] },
+    b: { p: [0, 112], t: 90, armN: { a: [-92, -90] }, armF: { a: [-90, -88] }, props: (J) => [['db', J.haN], ['db', J.haF], ['arrow', [78, 70], [78, 130]]] },
+  },
+  {
+    id: 'tirage-vertical-poulie', titre: 'Tirage vertical à la poulie haute, vue de profil : assis, cuisses calées sous le boudin, bras tendus vers le haut, puis coudes vers le bas, poignée à hauteur de la poitrine',
+    labels: ['Cuisses calées, bras tendus en haut', 'Coudes vers le bas, poignée à la poitrine'],
+    a: { p: [-48, 58], t: 84, h: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [-2, 238], bend: 'f' }, armF: { to: [-8, 236], bend: 'f' }, back: [['chair', -75, 46, 1], ['rect', 50, 0, 12, 262, 3], ['rect', 26, 246, 42, 10, 3], ['rect', -8, 66, 34, 12, 4]], props: (J) => [['band', [J.haN, [34, 246]]]] },
+    b: { p: [-48, 58], t: 76, h: 80, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [8, 132], bend: 'd' }, armF: { to: [4, 130], bend: 'd' }, back: [['chair', -75, 46, 1], ['rect', 50, 0, 12, 262, 3], ['rect', 26, 246, 42, 10, 3], ['rect', -8, 66, 34, 12, 4]], props: (J) => [['band', [J.haN, [34, 246]]], ['arrow', [86, 190], [86, 140]]] },
+  },
+  {
+    id: 'traction-assistee-machine', titre: 'Traction assistée à la machine, vue de profil : genoux sur le support, mains aux poignées en haut, on tire jusqu\'à ce que le menton passe les poignées, le support aide à monter',
+    labels: ['Genoux sur le support, bras tendus', 'Menton au niveau des poignées'],
+    a: { p: [0, 130], t: 90, h: 90, armN: { to: [22, 256], bend: 'f' }, armF: { to: [18, 256], bend: 'b' }, legN: { a: [-90, 180], foot: 180 }, legF: { a: [-90, 180], foot: 180 }, back: [['rect', 36, 0, 10, 262, 2], ['lin', [[16, 258], [40, 258]], 6], ['rect', -64, 66, 80, 8, 3], ['rect', -30, 0, 10, 66, 2]] },
+    b: { p: [0, 158], t: 90, h: 90, armN: { to: [22, 256], bend: 'd' }, armF: { to: [18, 256], bend: 'd' }, legN: { a: [-90, 180], foot: 180 }, legF: { a: [-90, 180], foot: 180 }, back: [['rect', 36, 0, 10, 262, 2], ['lin', [[16, 258], [40, 258]], 6], ['rect', -64, 94, 80, 8, 3], ['rect', -30, 0, 10, 94, 2]], props: [['arrow', [80, 120], [80, 170]]] },
+  },
 ];

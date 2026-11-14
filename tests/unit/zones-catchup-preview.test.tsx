@@ -51,7 +51,8 @@ describe('catchUpOf : première séance de chaque nouveau cycle seulement (N sé
     const cu = catchUpOf(data([]), program, 0, program.days[0], false, now);
     expect(cu).not.toBeNull();
     expect(cu!.added).toEqual([]);
-    expect(cu!.swapped).toBeUndefined();
+    // Un échange ne vise jamais une zone « manquée » ; une zone que le programme prévoit trop peu (ex. trapèzes bas avec une traction assistée) reste rattrapable.
+    if (cu!.swapped) expect(cu!.log.some((l) => l.zone === cu!.swapped!.zone && l.cause === 'manquee')).toBe(false);
     expect(cu!.weekKey).toBe('c00001');
     expect(cu!.log.some((l) => l.cause === 'manquee')).toBe(true);
   });

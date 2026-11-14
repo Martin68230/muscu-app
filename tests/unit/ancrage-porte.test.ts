@@ -10,7 +10,7 @@ const GOALS = ['muscle', 'force', 'fonctionnel', 'perte_de_poids'];
 
 describe('ancrage_porte', () => {
   it('toute variante à ancrage garde `elastique`, aucune ne porte plus `porte`', () => {
-    expect(ANCRAGE.length).toBe(15); // lot 4 (13/11/2026) : + extension-triceps-elastique-ancre-haut ; 11 + ecarte-elastique-porte (D23 vague 2 lot 1, 12/11/2026) + adduction-hanche-elastique-debout-cheville et extension-hanche-debout-elastique-cheville (lot 3, 13/11/2026) ; elles gardent bien `elastique`
+    expect(ANCRAGE.length).toBe(19); // lot 6 (14/11/2026) : + 4 variantes à ancrage (pull-through, pallof) ; lot 4 (13/11/2026) : + extension-triceps-elastique-ancre-haut ; 11 + ecarte-elastique-porte (D23 vague 2 lot 1, 12/11/2026) + adduction-hanche-elastique-debout-cheville et extension-hanche-debout-elastique-cheville (lot 3, 13/11/2026) ; elles gardent bien `elastique`
     for (const { v } of ANCRAGE) expect(v.tags).toContain('elastique');
     expect(FICHES.flatMap((f) => f.variantes).filter((v) => v.tags.includes('porte'))).toHaveLength(0);
   });

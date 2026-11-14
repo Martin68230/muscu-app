@@ -134,7 +134,9 @@ describe('S2-B : placement des séances de force du programme', () => {
     const sans = gen(base);
     const p = gen(withSport(base, plan));
     expect(sans.sessions.some((s) => LEG_TYPES.includes(s.type))).toBe(true);
-    expect(p.sessions.some((s) => LEG_TYPES.includes(s.type))).toBe(false);
+    // A1 (13/11/2026) : aucune séance BAS / LEGS ; au plus UNE séance corps entier à jambes légères (voir tests/unit/sport-a1.test.ts).
+    expect(p.sessions.filter((s) => s.type === 'BAS' || s.type === 'LEGS')).toHaveLength(0);
+    expect(p.sessions.filter((s) => s.type === 'CE').length).toBeLessThanOrEqual(1);
     expect(p.sessions.length).toBeLessThanOrEqual(sans.sessions.length);
     expect(p.messages.map((x) => x.id)).toContain('V-MSG-SPORT-PLACE');
     expect(new Set(p.sessions.map((s) => s.weekday)).size).toBe(p.sessions.length);

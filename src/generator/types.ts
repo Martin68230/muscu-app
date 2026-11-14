@@ -129,7 +129,7 @@ export type MessageId =
   // D25 (structure-programmes.md) : 1 jour (STR-REP-1), jours légers (STR-REP-6), grossesse (STR-REP-11), séance unique courte.
   | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE'
   // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).
-  | 'T8' | 'V-MSG-SPORT-MATCH' | 'V-MSG-SPORT-PREV' | 'T9'
+  | 'T8' | 'V-MSG-SPORT-MATCH' | 'V-MSG-SPORT-PREV' | 'V-MSG-SPORT-A1' | 'T9'
   // « Mon sport » étape 2 : séances décalées, allégées ou retirées à cause du sport.
   | 'V-MSG-SPORT-PLACE'
   // D33 (programmes-v3.md §6, PV3-CAR-3) : séance de cardio incluse par défaut en perte de gras.
