@@ -229,7 +229,7 @@ export interface CurvePoint {
 export const CURVE_MIN_POINTS = 2;
 
 /** Séance qui compte pour la courbe : terminée normalement (ni symptôme, ni abandon), non supprimée. */
-const countsForCurve = (s: WorkoutSession): boolean => !s.deletedAt && s.status === 'faite' && s.endReason !== 'symptome' && s.endReason !== 'abandon';
+export const countsForCurve = (s: WorkoutSession): boolean => !s.deletedAt && s.status === 'faite' && s.endReason !== 'symptome' && s.endReason !== 'abandon';
 
 /**
  * Meilleure charge (sinon meilleures répétitions, sinon meilleure durée tenue) de chaque séance, par fiche, de la plus ancienne à la plus récente.

@@ -342,10 +342,10 @@ dialog::backdrop { background: rgba(0, 0, 0, 0.6); }
 .screen-wizard > .thumb-zone { margin-top: auto; }
 
 /* Bibliothèque et fiche d'exercice (F4) */
-.chips { display: flex; flex-wrap: wrap; gap: 8px; margin: 12px 0 4px; }
+.chips { display: flex; flex-wrap: wrap; gap: 6px; margin: 12px 0 4px; }
 .chip {
-  min-height: 44px; min-width: 44px; padding: 8px 16px; border-radius: 22px; border: 1px solid var(--line); background: var(--surface-2);
-  color: var(--text); font: inherit; font-size: 1rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
+  min-height: 44px; min-width: 44px; padding: 8px 12px; border-radius: 22px; border: 1px solid var(--line); background: var(--surface-2);
+  color: var(--text); font: inherit; font-size: 0.9375rem; font-weight: 600; cursor: pointer; touch-action: manipulation;
 }
 .chip[aria-pressed='true'] { background: var(--accent); color: var(--accent-text); border-color: transparent; }
 .chip:focus-visible, .lib-row:focus-visible, .fiche-link:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
@@ -632,3 +632,17 @@ ol.plain-list { counter-reset: ex; }
 .nut-shop .check-row { align-items: flex-start; padding: 8px 0; }
 .nut-shop .check-row input { margin-top: 2px; }
 details.card.nut-details > summary { font-size: 1.0625rem; }
+
+/* Progression : barres des séries par semaine, lignes de record. */
+.bar { fill: var(--surface-2); stroke: var(--line); }
+.bar-now { fill: var(--accent); stroke: none; }
+.prog-line { margin-bottom: 4px; }
+
+/* Accueil : carte de séance mise en avant, régularité en pastilles, deux boutons côte à côte. */
+.card-hero { border-color: var(--accent); border-width: 2px; }
+.card-hero .home-session-name { font-size: 1.5rem; font-weight: 800; margin-bottom: 4px; }
+.week-dots { display: flex; gap: 8px; margin: 0 0 12px; }
+.dot { width: 18px; height: 18px; border-radius: 50%; border: 2px solid var(--line); background: transparent; }
+.dot-done { background: var(--accent); border-color: var(--accent); }
+.btn-pair { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.btn-pair .btn { height: 100%; line-height: 1.2; padding-left: 8px; padding-right: 8px; font-size: 0.9375rem; }
