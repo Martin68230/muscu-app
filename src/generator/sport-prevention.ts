@@ -39,6 +39,8 @@ export interface PreventionOpts {
   map: readonly DayLoad[];
   dayOf: (label: string) => number | undefined;
   typeOf: (label: string) => string;
+  /** A1 : séance corps entier à jambes légères (copenhague-court jamais ce jour-là, avis kiné 13/11/2026). */
+  lightLegsLabel?: string | null;
 }
 
 /** Ajoute la prévention du sport aux séances (en place). Renvoie vrai si un exercice de raquette a été placé (texte §7 (h) à afficher). */
@@ -65,7 +67,7 @@ export function addSportPrevention(sessions: Sess[], d: FillDeps, o: PreventionO
         // Épaule : seulement un jour libre (relecteur 14/11/2026 : un jour « léger » n'a pas de version sans résistance, rien n'est placé).
         if (item.kind === 'shoulder' && dl.shoulder !== 'free') continue;
         if ((item.kind === 'lower' || item.nordique) && dl.legs !== 'ok' && dl.legs !== 'warn') continue;
-        if (item.nordique && dl.nordiqueLock) continue;
+        if (item.nordique && (dl.nordiqueLock || s.label === o.lightLegsLabel)) continue;
         const weekIds = new Set(sessions.flatMap((x) => x.exercises.map((e) => e.ficheId)));
         if (weekIds.has(item.id)) continue;
         // Raquettes : 2 exercices par semaine au plus (saisie-sport-v1.md §7 (h), §8.3).

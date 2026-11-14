@@ -25,7 +25,7 @@ import { ajusterDuree, estimerDuree, formAllPairs, pairRestSec, units, type DurS
 import { cardioMsg, dedupe, GG_LABEL, GOAL_LABEL, msg } from './messages';
 import { resolveFiche, USABLE_STATUTS } from './safety';
 import { ALL_SLOTS, fillSession, fillSlot, rankSlot, slotDef, tierRank, type SlotFill } from './slots';
-import { adaptWeekToSport, canHost, noForceDays, type SportAdapt } from './sport-plan';
+import { adaptWeekToSport, canHost, noForceDays, placeA1, type SportAdapt } from './sport-plan';
 import { SPORT } from '../sport/sport-config';
 import { weekLoadMap } from '../sport/week-map';
 import { chooseLightDays, planWeek, sessionTitle, TYPE_NOYAU, TYPE_SLOTS, typeOf, UPPER_TYPES } from './split';
@@ -38,6 +38,7 @@ import { mergeRotation } from './rotation';
 import { addCal11 } from './cal11';
 import { addComplements } from './complements';
 import { addSportPrevention } from './sport-prevention';
+import { a1Allowed, lightenLegs } from './sport-legs-light';
 import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
@@ -387,6 +388,9 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const blocked = [...new Set([...(p.blockedWeekdays ?? []), ...sportNoForce])].sort((a, b) => a - b);
   const sportAllowed = sportMap ? (label: string, day: number) => canHost(typeOf(label), sportMap[day]) : undefined;
   let sportAdapt: SportAdapt | null = null;
+  // A1 : une séance corps entier à jambes légères quand le sport occupe exactement 3 jours (sport-legs-light.ts).
+  const a1Ok = !!sportMap && a1Allowed(ctx);
+  let a1Placed: string | null = null;
   let sportMoved = false;
   // B4 (cardio-regles.md §3.2) : cardio principal = 2 séances de musculation (3 à 6 jours) + cardio, de 2 à 6 jours (STR-REP-7 : inchangé).
   const cardioRole: CardioRole = cardioRoleOf(input.goals);
@@ -406,7 +410,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     days = dc.days;
     labels = LABELS.slice(0, days.length);
     if (sportMap) {
-      sportAdapt = adaptWeekToSport(labels, days, sportMap);
+      sportAdapt = adaptWeekToSport(labels, days, sportMap, a1Ok);
       labels = sportAdapt.labels as Label[];
       days = sportAdapt.days;
     }
@@ -428,9 +432,14 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
         sportMoved = free.days.join() !== plan.days.join() || free.labels.join() !== plan.labels.join();
       }
       else {
-        sportAdapt = adaptWeekToSport(plan.labels, plan.days, sportMap);
+        sportAdapt = adaptWeekToSport(plan.labels, plan.days, sportMap, a1Ok);
         placed = { ...plan, labels: sportAdapt.labels, days: sportAdapt.days };
       }
+    }
+    // A1 : semaine sans jambes (3 jours de sport) : le créneau adouci le plus éloigné reçoit la séance corps entier à jambes légères.
+    if (a1Ok && !sportAdapt?.a1Label) {
+      const a1 = placeA1(placed.labels, placed.days, sportMap!, true);
+      if (a1) { placed = { ...placed, labels: a1.labels, days: a1.days }; a1Placed = a1.a1Label; sportMoved = true; }
     }
     if (placed.reduced) msgs.push(msg.jours(placed.days));
     labels = placed.labels as Label[];
@@ -1044,9 +1053,19 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
   }
   fillToTarget(kept, { ...zoneDeps, target: (s) => Math.min(dur.targetMin * 60, budget.get(s.label) ?? dSec), functional: functionalAlternatives });
+  // « Mon sport » A1 (saisie-sport-v1.md §9) : la séance corps entier du créneau « jambes légères » passe ses jambes en mode léger (bilatéral, sans charge, 2 séries) ;
+  // les séries de jambes retirées ne sont jamais reportées ailleurs.
+  const a1Label = sportAdapt?.a1Label ?? a1Placed;
+  if (a1Label) {
+    const a1Sess = kept.find((s) => s.label === a1Label);
+    if (a1Sess) {
+      lightenLegs(a1Sess, zoneDeps.pool, ctx);
+      msgs.push(msg.sportA1());
+    }
+  }
   // « Mon sport » A2 (13/11/2026) : prévention du sport en exercices (1 à 2 par séance, 2 séries, dose fixe) ; le sport ne fait qu'ajouter une prévention sous les plafonds.
   if (sportMap && p.sportPlan?.length) {
-    const prev = addSportPrevention(kept, zoneDeps, { entries: p.sportPlan, map: sportMap, dayOf, typeOf });
+    const prev = addSportPrevention(kept, zoneDeps, { entries: p.sportPlan, map: sportMap, dayOf, typeOf, lightLegsLabel: a1Label });
     if (prev.raquette) msgs.push(msg.sportRaquette());
   }
   // CAL-11 (kiné 12/11/2026) : compléments de fin de séance PUSH / HAUT sous tous les plafonds (aucune série de deltoïdes en plus).
