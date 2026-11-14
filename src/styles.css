@@ -655,3 +655,4 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .set-dots { display: flex; gap: 8px; margin: 4px 0 8px; }
 .set-dots .dot { width: 14px; height: 14px; }
 .dot-now { border-color: var(--accent); background: transparent; box-shadow: 0 0 0 2px var(--accent) inset; }
+.mm-note { background: var(--surface-2); border-left: 4px solid var(--accent); border-radius: 8px; padding: 10px 12px; font-size: 0.9375rem; }

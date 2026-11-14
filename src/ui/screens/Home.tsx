@@ -56,6 +56,7 @@ export function CycleMuscles({ muscles, onBack }: { muscles: WeekMuscles; onBack
     <>
       <button type="button" class="btn btn-back" onClick={onBack}>‹ Retour à l’accueil</button>
       <h1>Muscles par type de séance</h1>
+      <p class="mm-note" role="note">Cette séance, cette semaine : les exercices alternent d’une semaine à l’autre, donc une zone grise ici n’est pas forcément un oubli. Pour savoir si une zone est couverte, regarde la carte du cycle.</p>
       {one && <p class="dim">Ton programme fait travailler tout le corps à chaque séance : une seule carte.</p>}
       {muscles.cycle.map((c) => (
         <MuscleMapCard key={c.group} id={`cycle-${c.group}`} title={`${c.label} (${c.count} ${c.count > 1 ? 'séances' : 'séance'} par cycle)`} statuses={c.map.statuses} points={c.map.points} period="sur le cycle" />
@@ -265,7 +266,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
       <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} onOpenProgress={onOpenProgress} />
       {muscles && !security && (
-        <MuscleMapCard id="home-carte" title="Muscles de ton cycle" intro="Ce que ton programme prévoit sur un cycle (toutes ses séances, une fois chacune)." statuses={muscles.week.statuses} points={muscles.week.points} period="sur le cycle">
+        <MuscleMapCard id="home-carte" title="Muscles de ton cycle" intro="Ce que ton programme prévoit sur un cycle (toutes ses séances, une fois chacune). C’est cette carte qui dit si une zone est couverte." statuses={muscles.week.statuses} points={muscles.week.points} period="sur le cycle">
           <button type="button" class="btn" onClick={() => { setCycle(true); scrollTo(0, 0); }}>Voir par type de séance</button>
         </MuscleMapCard>
       )}
