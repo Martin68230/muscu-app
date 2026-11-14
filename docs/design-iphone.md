@@ -31,3 +31,13 @@ Propositions suivantes (par utilité) : 1) poids lissé dans l'écran Progressio
 - Séance : segments et pastilles lisibles, rien ne déborde à 375 px, minuteur de repos inchangé.
 - Accueil > « Voir par type de séance » : la mention est claire ; aperçu de séance : texte d'aide sous le titre de la carte.
 - Bibliothèque : la recherche reste visible en faisant défiler, le clavier n'est pas gêné ; « Tout afficher » après une recherche sans résultat.
+
+## Lot 3 (14/11/2026, branche claude/design-lot3)
+- Séance : sous « Dernière fois », rappel « Ton record : X kg » (meilleure charge d'une séance propre : sans douleur, ni abandon ni symptôme, hors import ; au moins 2 séances ; jamais pendant la grossesse / le post-partum ni sur le cardio). C'est une information, jamais un objectif de charge : la progression reste décidée par les règles existantes.
+- Accueil : pastille sur la carte de séance, « Prévue aujourd'hui » (jour prévu) ou « Prochaine séance, quand tu veux » (pas de pression).
+- États vides : Calendrier sans séance et Ma progression sans exercice proposent « Voir ma prochaine séance » (retour à l'accueil). Le poids (Nutrition) n'a pas été touché : écran d'une autre session.
+- Graphiques de charges / volume par exercice : déjà dans Ma progression (courbe par exercice, séries par semaine) ; aucun nouveau graphique ajouté dans ce lot.
+- Pas touché : section « Images de mes exercices » du Profil ni le point d'accroche de la fiche (import-gymvisual).
+### À vérifier sur l'iPhone
+- Une séance avec un exercice déjà fait 2 fois : « Ton record » à côté de « Dernière fois », ligne qui ne déborde pas à 375 px.
+- Accueil : la pastille change selon le jour prévu ; calendrier et progression vides : bouton visible et retour à l'accueil.
