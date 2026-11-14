@@ -5,7 +5,7 @@ import type { NutritionProfile } from '../../data/model';
 import { ALLERGEN_LABELS, ALLERGENS, type AllergenKey } from '../../nutrition/allergens';
 import { loadCatalog, type Catalog } from '../../nutrition/catalog';
 import type { FinalNeeds, Refused } from '../../nutrition/final-needs';
-import { ARRONDI_GRAMMES, NUTRITION_VERSION } from '../../nutrition/config';
+import { ARRONDI_GRAMMES, NUTRITION_VERSION, SEUIL_ECART_KCAL } from '../../nutrition/config';
 import { recipeAllowed, type PlanPrefs, type Recipe } from '../../nutrition/plan';
 import { buildShoppingList, RAYON_LABELS, RAYON_ORDER, shoppingToText } from '../../nutrition/shopping';
 import { getMealPlan, getShoppingState, saveMealPlan, saveNutritionProfile, setChecked } from '../../nutrition/store';
@@ -185,6 +185,11 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
           <p class="dim small">Les barres et muffins maison se préparent en lot : la quantité à fabriquer est calculée pour la semaine et ajoutée à ta liste de courses.</p>
         </fieldset>
         <fieldset class="create-group">
+          <legend>Atteindre ta cible</legend>
+          <label class="check-row"><input type="checkbox" checked={cfg.completerAuto} onChange={(e) => upCfg({ ...cfg, completerAuto: e.currentTarget.checked })} /><span>Ajouter un goûter ou un en-cas quand il manque plus de {SEUIL_ECART_KCAL} kcal</span></label>
+          <p class="dim small">Les portions des repas principaux montent d’abord jusqu’à +30 % ; si ce n’est pas assez, l’app propose un goûter puis un en-cas, jamais au-dessus de ta cible du jour. Décoche pour garder exactement les repas choisis ci-dessus.</p>
+        </fieldset>
+        <fieldset class="create-group">
           <legend>Allergies et intolérances (exclues strictement)</legend>
           <div class="chips" role="group" aria-label="Allergènes à exclure">
             {ALLERGENS.map((a) => (
@@ -225,8 +230,9 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
                   <h3>{DAYS_LONG[di]} <span class="dim small">cible {fmt(d.targetKcal)} kcal · prévu {fmt(d.kcal)} kcal</span></h3>
                   {d.status === 'incomplet' && <p class="notice small">Aucune recette ne convient à un des repas avec tes filtres : élargis tes préférences.</p>}
                   {d.belowFloor && <p class="notice small">Ce jour est sous le plancher de sécurité de l’app : régénère la semaine ou ajoute un repas.</p>}
-                  {d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal > 0.15 && <p class="notice small">Écart important avec ta cible ce jour-là ({fmt(Math.abs(d.kcal - d.targetKcal))} kcal {d.kcal < d.targetKcal ? 'de moins' : 'de plus'} que prévu) : ajoute ou retire un en-cas, ou régénère la semaine.</p>}
-                  {d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal <= 0.15 && <p class="dim small">Un peu d’écart avec ta cible ce jour-là.</p>}
+                  {(d.missingKcal ?? 0) > 0 && <p class="notice small" role="status">Il manque {fmt(d.missingKcal ?? 0)} kcal pour atteindre ta cible ce jour-là. {cfg.completerAuto ? 'L’app ne peut pas en ajouter davantage sans dépasser ta cible du jour ou sortir de tes préférences (allergies, régime, temps, matériel) : ajoute un en-cas toi-même ou assouplis un réglage.' : 'Active « Ajouter un goûter ou un en-cas » dans les réglages, ou ajoute un en-cas toi-même.'}</p>}
+                  {(d.missingKcal ?? 0) === 0 && d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal > 0.15 && <p class="notice small">Écart important avec ta cible ce jour-là ({fmt(Math.abs(d.kcal - d.targetKcal))} kcal {d.kcal < d.targetKcal ? 'de moins' : 'de plus'} que prévu) : ajoute ou retire un en-cas, ou régénère la semaine.</p>}
+                  {(d.missingKcal ?? 0) === 0 && d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal <= 0.15 && <p class="dim small">Un peu d’écart avec ta cible ce jour-là.</p>}
                   <ul class="nut-meals">
                     {slots.map((s, si) => {
                       const r = s.recipeId ? recipeById.get(s.recipeId) : undefined;
@@ -236,7 +242,7 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
                         <li key={si}>
                           <details class="nut-details">
                             <summary>
-                              <span class="dim small">{label}</span> <strong>{r.nom}</strong>{' '}
+                              <span class="dim small">{label}{s.auto ? ' (ajouté pour ta cible)' : ''}</span> <strong>{r.nom}</strong>{' '}
                               <span class="dim small">{s.pieces ? `${s.pieces} ${r.piece ?? 'pièce'}${s.pieces > 1 ? 's' : ''}` : s.scale && Math.abs(s.scale - 1) > 0.05 ? `portion ×${fmt(s.scale, 1)}` : ''} · {fmt(s.kcal)} kcal</span>
                             </summary>
                             <p class="small">P {fmt(s.prot)} g · G {fmt(s.gluc)} g · L {fmt(s.lip)} g</p>

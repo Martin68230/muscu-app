@@ -47,7 +47,7 @@ describe('plan de la semaine', () => {
   });
 
   it('repas optionnels : jour par jour, 0 à 2 en-cas, goûter, aucun repas non demandé', () => {
-    const c = cfg({ petitDej: [true, false, true, false, true, false, false], gouter: [false, false, true, false, false, false, false], encas: [0, 1, 2, 0, 0, 3 as number, 0] });
+    const c = cfg({ petitDej: [true, false, true, false, true, false, false], gouter: [false, false, true, false, false, false, false], encas: [0, 1, 2, 0, 0, 3 as number, 0], completerAuto: false });
     const p = generateWeekPlan(week(), R, foods, base, c, 2, [], 1500);
     const kinds = (d: number) => p.slots.filter((x) => x.day === d).map((x) => x.kind);
     expect(kinds(1)).not.toContain('petit-dej');
