@@ -1,15 +1,15 @@
 # D22 : couverture des images par fiche (14/11/2026)
 
-Fiches : 259 ; variantes : 539. GIF distincts utilisés : 164.
+Fiches : 271 (A1 et lot 6 compris) ; variantes : 574. GIF distincts utilisés : 174.
 
 | | fiches | variantes |
 |---|---|---|
-| image sûre (même mouvement, même matériel) | 80 | 106 |
-| variante proche seulement (même geste, autre matériel / charge ; légende « exercice proche ») | 51 | 123 |
-| aucune image | 128 | 310 |
+| image sûre (même mouvement, même matériel) | 86 | 113 |
+| variante proche seulement (même geste, autre matériel / charge ; légende « exercice proche ») | 51 | 133 |
+| aucune image | 134 | 328 |
 
-Sans image, par raison (variantes) : ambigu 102, pas_dans_le_jeu 207.
-Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute = rien. Niveaux « proche » : le coach a aussi classé « proche » les variantes au sol qui reçoivent une image de banc. Quelques « sûr » reposent sur le nom seul : à regarder sur l'iPhone.
+Sans image, par raison (variantes) : ambigu 106, pas_dans_le_jeu 221.
+Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute = rien. Les variantes au sol qui reçoivent une image de banc sont « proche ». Quelques « sûr » reposent sur le nom seul : à regarder sur l'iPhone.
 
 ## Fiches sans aucune image (raison de leurs variantes)
 - abduction-couchee-cote : ambigu / pas_dans_le_jeu — 0710 side hip abduction : posture couchée non confirmée par le nom
@@ -140,3 +140,9 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - traction-negative-barre : pas_dans_le_jeu — Pas de traction negative
 - traction-un-bras : ambigu — 0638 un bras sans aide et 0970 deux bras contredisent la consigne
 - ytw-sol : pas_dans_le_jeu — Seuls Y et T inclines sur banc, pas au sol
+- coquille-hanche : pas_dans_le_jeu — aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
+- etirement-epaule-bras-croise : pas_dans_le_jeu — aucun étirement du bras croisé
+- fente-croisee : pas_dans_le_jeu — aucune fente croisée ; fentes arrière ou avant d'un geste différent
+- pallof-pas-lateraux : ambigu — seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
+- planche-glissee-serviette : pas_dans_le_jeu — aucune planche glissée sur serviette
+- posture-enfant-bras-avances : pas_dans_le_jeu — aucune posture de l'enfant

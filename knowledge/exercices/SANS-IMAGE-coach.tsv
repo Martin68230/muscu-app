@@ -308,3 +308,21 @@ traction-un-bras	traction-un-bras-aide-main-libre	ambigu	0638 un bras sans aide 
 traction-un-bras	traction-un-bras-elastique	ambigu	0638 un bras sans aide et 0970 deux bras contredisent la consigne
 ytw-sol	ytw-sol-sans-charge	pas_dans_le_jeu	Seuls Y et T inclines sur banc, pas au sol
 ytw-sol	ytw-sol-halteres	pas_dans_le_jeu	Seuls Y et T inclines sur banc, pas au sol
+coquille-hanche	coquille-sans-materiel	pas_dans_le_jeu	aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
+coquille-hanche	coquille-mini-bande	pas_dans_le_jeu	aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
+coquille-hanche	coquille-mini-bande-pause	pas_dans_le_jeu	aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
+elevation-frontale-halteres	frontale-sans-charge	pas_dans_le_jeu	aucune élévation frontale à vide
+etirement-epaule-bras-croise	epaule-croisee-assis	pas_dans_le_jeu	aucun étirement du bras croisé
+etirement-epaule-bras-croise	epaule-croisee-debout	pas_dans_le_jeu	aucun étirement du bras croisé
+fente-croisee	fente-croisee-appui	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
+fente-croisee	fente-croisee-libre	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
+fente-croisee	fente-croisee-halteres	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
+pallof-pas-lateraux	pallof-pas-elastique-court	ambigu	seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
+pallof-pas-lateraux	pallof-pas-poulie	ambigu	seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
+pallof-pas-lateraux	pallof-pas-elastique-bras-tendus	ambigu	seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
+planche-glissee-serviette	scie-genoux-serviette	pas_dans_le_jeu	aucune planche glissée sur serviette
+planche-glissee-serviette	scie-pieds-serviette-court	pas_dans_le_jeu	aucune planche glissée sur serviette
+planche-glissee-serviette	scie-pieds-serviette-long	pas_dans_le_jeu	aucune planche glissée sur serviette
+posture-enfant-bras-avances	enfant-bras-avances	pas_dans_le_jeu	aucune posture de l'enfant
+posture-enfant-bras-avances	enfant-bras-cote	pas_dans_le_jeu	aucune posture de l'enfant
+souleve-de-terre-halteres	sdt-halteres-surleves	ambigu	le GIF part du sol, ce qui contredit la hauteur des supports

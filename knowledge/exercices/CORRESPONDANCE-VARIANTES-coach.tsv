@@ -229,3 +229,20 @@ traction-barre	traction-barre-supination	1326	sûr	Deja valide
 traction-barre	traction-barre-pronation	0652	sûr	Deja valide
 traction-gilet-lest	traction-gilet-lest-supination	1326	proche	Meme traction ; sans lest dans le jeu
 traction-gilet-lest	traction-gilet-lest-pronation	0841	proche	Traction lestee ; type de lest du jeu non precise
+elevation-frontale-halteres	frontale-halteres	0310	sûr	élévation frontale aux haltères debout, même mouvement
+elevation-frontale-halteres	frontale-elastique	0978	proche	élévation frontale à l'élastique ; ancrage (sous les pieds) non vérifié
+elevation-frontale-halteres	frontale-halteres-alterne	0387	proche	élévation frontale alternée mais assis ; même geste
+porte-haltere-bras-leve	porte-bras-leve-marche	3548	sûr	porté d'un haltère bras tendu au-dessus de la tête en marchant
+porte-haltere-bras-leve	porte-bras-leve-tenue	3548	proche	même porté, le GIF montre la marche ; tenue sur place non montrée
+porte-haltere-bras-leve	porte-bras-leve-kettlebell	3548	proche	même geste avec un haltère au lieu d'un kettlebell
+pull-through-elastique	pull-through-poulie-corde	0196	sûr	pull-through poulie basse avec corde
+pull-through-elastique	pull-through-elastique-leger	0991	sûr	pull-through à l'élastique, même mouvement
+pull-through-elastique	pull-through-elastique-tendu	0991	proche	même mouvement ; tension plus forte et pause non montrées
+souleve-de-terre-halteres	sdt-halteres-sol	0300	sûr	soulevé de terre aux haltères depuis le sol
+souleve-de-terre-halteres	sdt-halteres-sol-pause	0300	proche	même mouvement ; pause en bas non montrée
+tirage-vertical-poulie	tirage-poulie-prise-neutre	2616	sûr	tirage vertical à la poulie avec barre en V (prise neutre)
+tirage-vertical-poulie	tirage-poulie-prise-large	0150	proche	tirage vertical à la barre ; largeur de prise non vérifiée, pas derrière la nuque
+tirage-vertical-poulie	tirage-poulie-un-bras	3563	proche	tirage vertical un bras ; position de l'autre main non vérifiée
+traction-assistee-machine	traction-assistee-moyenne	0017	sûr	traction assistée à la machine à contrepoids
+traction-assistee-machine	traction-assistee-forte	0017	proche	même machine ; niveau d'assistance non montré
+traction-assistee-machine	traction-assistee-faible	0017	proche	même machine ; niveau d'assistance non montré
