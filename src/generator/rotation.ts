@@ -117,7 +117,7 @@ export function mergeRotation(p1: GenProgram, p2: GenProgram, ctx: Ctx, pool: re
     // PV3-VAR-2 : le mélange des deux jeux ne crée aucune répétition de fiche dans la semaine que ni le jeu 1 ni le jeu 2 généré n'avaient.
     const occ2 = count(w2);
     for (const [id, n] of occ2) if (n > Math.max(occ1.get(id) ?? 0, occP2.get(id) ?? 0, 1)) return false;
-    if (weekCapsOk(w1) && !weekCapsOk(w2)) return false;
+    if (weekCapsOk(w1, ctx) && !weekCapsOk(w2, ctx)) return false; // plafonds relevés (13/11/2026) : même ctx que le générateur, sinon le jeu 2 n'est jamais contrôlé quand le jeu 1 dépasse 20
     for (const m of musclesOf(w1)) {
       if ((vol1.get(m) ?? 0) >= VOLUME.targetMuscle && w2.reduce((a, s) => a + sessionVol(s, m), 0) < VOLUME.targetMuscle) return false;
     }

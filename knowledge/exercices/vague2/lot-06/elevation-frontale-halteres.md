@@ -52,7 +52,7 @@ Repris par `kine` le 2026-11-14 (lot 6), prudence maximale en cas de doute ; cas
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: amplitude:bras-bas | adapter: variante:frontale-sans-charge | retirer |
+| Épaule | adapter: amplitude:bras-bas | retirer | retirer |
 | Coude | garder | adapter: variante:frontale-sans-charge | retirer |
 | Poignet | garder | adapter: variante:frontale-sans-charge | retirer |
 | Cou | garder | adapter: amplitude:tete-alignee | retirer |

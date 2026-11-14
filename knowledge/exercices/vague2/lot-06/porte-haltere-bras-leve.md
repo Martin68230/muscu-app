@@ -1,6 +1,6 @@
 ---
 id: porte-haltere-bras-leve
-nom: Marche avec un haltère bras levé
+nom: Porté d'une charge bras levé
 alias: [overhead carry, waiter walk au-dessus de la tête, porté bras tendu]
 schema: porte
 type: fonctionnel

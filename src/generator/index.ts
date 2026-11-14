@@ -7,7 +7,7 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CAL11, COMPLEMENTS, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CAL11, COMPLEMENTS, MANUAL_ONLY_FICHES, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
@@ -1343,7 +1343,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   if (achat) msgs.push(OBJETS_QUOTIDIEN.includes(achat.tag) ? msg.objet(achat.tag, achat.gain) : msg.achat(achat.tag, achat.gain));
 
   // V-MSG-EPAULES (§8.2) : aucune fiche poussee_v admissible pour la personne.
-  const pushV = (c: Ctx) => pool.some((f) => f.schema === 'poussee_v' && resolveFiche(f, c).candidates.length > 0);
+  const pushV = (c: Ctx) => pool.some((f) => f.schema === 'poussee_v' && !MANUAL_ONLY_FICHES.includes(f.id) && resolveFiche(f, c).candidates.length > 0);
   if (!pushV(ctx)) {
     const tags = ACHAT_CANDIDATES.filter((t) => !ctx.available.has(t) && pushV(buildCtx(input, { extraTags: [t] })));
     msgs.push(msg.epaules(tags, !!achat));

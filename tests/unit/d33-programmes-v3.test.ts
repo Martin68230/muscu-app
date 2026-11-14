@@ -194,8 +194,8 @@ describe('D33 §8 : filtre « salle » (PV3-SALLE-1, T-D33-26a à d)', () => {
   it('pénurie : seuls élastique et mini-bande reviennent, pour le plan en pénurie seulement ; jamais bosu, sac, porte', () => {
     const base = byId('tirage-vertical-elastique-haut');
     const mkF = (id: string, schema: string, tags: string[]): Fiche => ({ ...base, id, schema, variantes: [{ ...base.variantes[0], id: `${id}-v`, tags }] });
-    // Lot 04 (13/11/2026) : la barre de traction de la salle rend le tirage vertical non rare : ses 2 fiches sont retirées pour ce test de pénurie.
-    const fiches = [...FICHES.filter((f) => !['traction-negative-barre', 'tirage-vertical-elastique-barre-traction'].includes(f.id)), mkF('zz-tv-elastique', 'tirage_v', ['elastique', 'tapis']), mkF('zz-tv-bosu', 'tirage_v', ['bosu']), mkF('zz-ph-elastique', 'poussee_h', ['elastique'])];
+    // Lot 04 (13/11/2026) puis lot 06 (14/11/2026, poulie et traction assistée en salle) : le tirage vertical n'est plus rare : ses 4 fiches sont retirées pour ce test de pénurie.
+    const fiches = [...FICHES.filter((f) => !['traction-negative-barre', 'tirage-vertical-elastique-barre-traction', 'tirage-vertical-poulie', 'traction-assistee-machine'].includes(f.id)), mkF('zz-tv-elastique', 'tirage_v', ['elastique', 'tapis']), mkF('zz-tv-bosu', 'tirage_v', ['bosu']), mkF('zz-ph-elastique', 'poussee_h', ['elastique'])];
     const c = buildCtx(access(salle({ fiches })));
     expect(sallePenurie('tirage_v', c)).toBe(true);
     expect(sallePenurie('poussee_h', c)).toBe(false);
