@@ -27,7 +27,7 @@ const walk = (d: string): void => {
 walk(DIR);
 
 describe('table D22', () => {
-  it('à jour par rapport au TSV validé', () => { expect(readFileSync('src/images/gv-table.ts', 'utf8')).toBe(build()); });
+  it('à jour par rapport au TSV validé', () => { expect(readFileSync('src/images/gv-table.ts', 'utf8').split(String.fromCharCode(13)).join('')).toBe(build()); });
   it('fiches et variantes visées existent ; un GIF ne sert que des fiches de même schéma', () => {
     expect(GV_TABLE.length).toBeGreaterThan(20);
     expect(new Set(GV_TABLE.map((e) => `${e.fiche}|${e.variante}|${e.id}`)).size).toBe(GV_TABLE.length);
