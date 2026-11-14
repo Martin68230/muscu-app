@@ -401,6 +401,12 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
       <ReportButton ficheId={reportFiche} variantId={ex?.variantId ?? null} />
     </header>
   );
+  // Avancement de la séance : un segment par exercice (fait / en cours / à venir), décoratif (le compteur donne l'information).
+  const progress = v.exerciseIndex !== null && day.exercises.length > 1 ? (
+    <div class="ex-progress" aria-hidden="true">
+      {day.exercises.map((_, i) => <span key={i} class={i < v.exerciseIndex! ? 'seg seg-done' : i === v.exerciseIndex ? 'seg seg-now' : 'seg'} />)}
+    </div>
+  ) : null;
   // Un seul message d'information par écran : le bandeau « écran qui peut s'éteindre » cède la place à l'annonce d'un superset.
   const bannersFor = (showWake: boolean) => (
     <>
@@ -493,6 +499,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     return (
       <div class="player">
         {header}
+        {progress}
         <div class="player-scroll">
           {banners}
           <h1>Échauffement</h1>
@@ -523,6 +530,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
     return (
       <div class="player">
         {header}
+        {progress}
         <div class="player-scroll">
           {banners}
           <p class="rest-label">{over ? 'Repos terminé' : transition ? 'Enchaîne vite' : 'Repos'}</p>
@@ -585,6 +593,7 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
   return (
     <div class="player">
       {header}
+      {progress}
       <div class="player-scroll">
         {bannersFor(!supersetText && !(pairText && state.workSetsDone === 0))}
         {pairText && state.workSetsDone === 0 && !supersetText && <div class="info-line" role="status"><p>{PAIR_FIRST_SESSION_TEXT}</p></div>}
@@ -609,6 +618,11 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
           {v.isWarmupSet ? `Série d’échauffement ${v.setNumber} sur ${v.setsTotal}` : `Série ${v.setNumber} sur ${v.setsTotal}`}
           {v.side ? ` · côté ${v.side}` : ''}
         </p>
+        {!v.isWarmupSet && v.setsTotal > 1 && v.setsTotal <= 12 && (
+          <div class="set-dots" aria-hidden="true">
+            {Array.from({ length: v.setsTotal }, (_, i) => <span key={i} class={i + 1 < v.setNumber ? 'dot dot-done' : i + 1 === v.setNumber ? 'dot dot-now' : 'dot'} />)}
+          </div>
+        )}
         {ex.cappedLabel && (ex.movementId === NECK_FICHE_ID || ex.cappedLabel.startsWith('Arrête tout de suite si tu ressens une douleur vive')) && <p class="small prog-line" role="note">{ex.cappedLabel}</p>}
         {sided && !v.isWarmupSet && <p class="side-rule">{PER_SIDE_RULE}</p>}
         <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}</p>

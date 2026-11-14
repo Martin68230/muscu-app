@@ -268,7 +268,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
           })}
         </ol>
       </section>
-      {muscles && <MuscleMapCard id="prev-carte" title="Muscles de cette séance" statuses={muscles.statuses} points={muscles.points} period="dans cette séance" />}
+      {muscles && <MuscleMapCard id="prev-carte" title="Muscles de cette séance" intro="Cette séance, cette semaine seulement : une zone grise ici n’est pas forcément un oubli, la carte du cycle (accueil) dit ce qui est couvert." statuses={muscles.statuses} points={muscles.points} period="dans cette séance" />}
       {postpone && <PreviewPostpone card={postpone.card} postpone={postpone.run} onDone={setSkipped} />}
       {onSkip && onUnwell && (
         <PreviewSkipLinks nom={day.label} twoDays={showT12(program)} onSkip={onSkip} onUnwell={onUnwell} onDone={setSkipped} />

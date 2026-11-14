@@ -93,6 +93,7 @@ export function Library() {
       {!error && !fiches && <p class="dim" role="status">Chargement…</p>}
       {fiches && (
         <>
+          <div class="lib-filters">
           <label class="small dim" for="lib-search">Chercher un exercice</label>
           <input
             id="lib-search"
@@ -106,6 +107,7 @@ export function Library() {
             value={query}
             onInput={(e) => changeQuery(e.currentTarget.value)}
           />
+          </div>
           <div class="chips" role="group" aria-label="Type d’exercice">
             {[{ id: 'tout', label: 'Tout' }, ...SCHEMA_GROUPS].map((g) => (
               <button
@@ -126,6 +128,7 @@ export function Library() {
             <div class="empty-state compact">
               <p><strong>Aucun exercice trouvé.</strong></p>
               <p class="dim small">Essaie un autre mot, ou choisis « Tout ».</p>
+              <button type="button" class="btn" onClick={() => { changeQuery(''); changeGroup('tout'); }}>Tout afficher</button>
             </div>
           ) : (
             <ul class="lib-list">

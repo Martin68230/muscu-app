@@ -40,6 +40,9 @@ async function setup(page: Page, info: { project: { name: string } }, problems: 
   await page.getByRole('button', { name: 'Échauffement fait' }).click();
   await page.getByRole('button', { name: 'Série faite' }).waitFor();
   await page.screenshot({ path: `screenshots/${info.project.name}/${process.env.SHOT ?? 'avant'}-seance.png` });
+  await tapPrimary(page);
+  await page.waitForTimeout(500);
+  await page.screenshot({ path: `screenshots/${info.project.name}/${process.env.SHOT ?? 'avant'}-seance2.png` });
 }
 
 
