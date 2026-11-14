@@ -84,7 +84,7 @@ export function addComplements(sessions: Sess[], d: FillDeps, typeOf: (label: st
         // Jamais plus de séries que la dose de la fiche (base sous plafond P-CAP) : 2 à 3 séries au plus.
         ex.sets = Math.min(row.sets, buildExercise({ ...c, capped: true }, 'correctif', 'a', ctx).sets);
         ex.capped = true; // dose fixe : jamais de série ni de charge en plus
-        ex.cappedLabel = CAL11.stopMessage; // signes d'arrêt affichés (avis kiné), comme les compléments CAL-11
+        ex.cappedLabel = COMPLEMENTS.stopMessage; // signes d'arrêt affichés (avis kiné)
         // CAL-12 (relecteur 14/11/2026) : dans une séance qui a le cou, tout complément lourd d'épaules / trapèzes (gainage, poussée, tirage, élastique) est refusé.
         const hasNeck = s.exercises.some((e) => e.slot === 'correctif' && e.ficheId === CORRECTIF_COU.ficheId);
         if (hasNeck && (isHeavyShoulderTrapExercise(ex, ctx) || c.fiche.schema.startsWith('poussee') || c.fiche.schema.startsWith('tirage') || ex.tags.includes('elastique'))) continue;

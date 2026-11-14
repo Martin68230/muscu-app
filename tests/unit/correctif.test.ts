@@ -6,7 +6,7 @@ import { CORRECTIF } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import { estimerDuree } from '../../src/generator/duration';
 import { caseFor } from '../../src/generator/safety';
-import { CAL11 } from '../../src/generator/config';
+import { CAL11, COMPLEMENTS } from '../../src/generator/config';
 import { addCorrectifs, checkZones, correctifCandidates, slotlessFor, SLOTLESS_ZONES } from '../../src/generator/zones-check';
 import type { GeneratorInput, GenExercise } from '../../src/generator/types';
 import { zonesOfInjury } from '../../src/zones/zones';
@@ -37,7 +37,7 @@ const gen = (input: GeneratorInput) => {
   return r.program;
 };
 // Les ajouts CAL-11 (slot correctif, marque cappedLabel) ont leurs propres règles (cal11-cal12.test.ts) : ni liste fermée CORRECTIF.ids ni limite 1 / 2 par séance.
-const isCal11 = (e: GenExercise) => e.cappedLabel === CAL11.stopMessage;
+const isCal11 = (e: GenExercise) => e.cappedLabel === CAL11.stopMessage || e.cappedLabel === COMPLEMENTS.stopMessage; // + compléments PUSH / PULL / LEGS (complements.test.ts)
 const corr = (exs: readonly GenExercise[]) => exs.filter((e) => e.slot === 'correctif' && !isCal11(e));
 
 /** Semaine sans correctif (copie de travail) et dépendances ouvertes (durée, plafonds) pour isoler la règle. */

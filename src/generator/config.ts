@@ -1481,4 +1481,8 @@ export const RAISED_CAPS = { enabled: true, weekMuscle: 24, zoneFactor: 1.2 };
  * Compléments de fin de séance PUSH / PULL / LEGS (13/11/2026, avis coach + kiné ; PROVISOIRE / NON SOURCÉ) : seulement avec les plafonds relevés, muscles non protégés,
  * dose fixe. Annuler : `COMPLEMENTS.enabled = false`.
  */
-export const COMPLEMENTS = { enabled: true, maxPerSession: 3, minFreeSec: 4 * 60 };
+export const COMPLEMENTS = {
+  enabled: true, maxPerSession: 3, minFreeSec: 4 * 60,
+  /** Signes d'arrêt des compléments : ceux de CAL-11 + la mention « facultatif » (le message distingue ces ajouts de ceux de CAL-11). */
+  stopMessage: `${CAL11.stopMessage} Exercice complémentaire, facultatif.`,
+};
