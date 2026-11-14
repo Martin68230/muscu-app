@@ -7,7 +7,7 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CAL11, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CAL11, COMPLEMENTS, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
@@ -37,6 +37,7 @@ import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
 import { addCal11 } from './cal11';
 import { addComplements } from './complements';
+import { addSportPrevention } from './sport-prevention';
 import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
@@ -53,7 +54,7 @@ type Label = string;
 const LABELS: Label[] = ['A', 'B', 'C'];
 /** V-ORDRE §4.1 : piliers, tirage_1, charnière, accessoires (indices croissants), tronc, fonctionnel. */
 const DISPLAY_ORDER: SlotKey[] = [
-  'jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'poussee_2', 'tirage_2', 'jambes_2', 'poussee_3', 'tirage_3', 'jambes_3',
+  'prevention_sport', 'jambes_genou', 'poussee_1', 'tirage_1', 'charniere', 'poussee_2', 'tirage_2', 'jambes_2', 'poussee_3', 'tirage_3', 'jambes_3',
   'poussee_4', 'tirage_4', 'jambes_4', 'iso_biceps', 'iso_deltoide_lateral', 'iso_deltoide_posterieur', 'iso_triceps', 'iso_mollets', 'tronc', 'fonctionnel', 'correctif',
 ];
 /** Ordre de retrait pour respecter les plafonds de volume par séance (V-PLAF) : le moins prioritaire d'abord. */
@@ -1043,6 +1044,11 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
   }
   fillToTarget(kept, { ...zoneDeps, target: (s) => Math.min(dur.targetMin * 60, budget.get(s.label) ?? dSec), functional: functionalAlternatives });
+  // « Mon sport » A2 (13/11/2026) : prévention du sport en exercices (1 à 2 par séance, 2 séries, dose fixe) ; le sport ne fait qu'ajouter une prévention sous les plafonds.
+  if (sportMap && p.sportPlan?.length) {
+    const prev = addSportPrevention(kept, zoneDeps, { entries: p.sportPlan, map: sportMap, dayOf, typeOf });
+    if (prev.raquette) msgs.push(msg.sportRaquette());
+  }
   // CAL-11 (kiné 12/11/2026) : compléments de fin de séance PUSH / HAUT sous tous les plafonds (aucune série de deltoïdes en plus).
   addCal11(kept, zoneDeps, typeOf);
   // Plafonds relevés (13/11/2026) : compléments PUSH / PULL / LEGS sur des muscles non protégés (complements.ts).
@@ -1502,7 +1508,7 @@ export function plannedOf(e: GenExercise): PlannedExercise {
   return {
     movementId: e.movementId, variantId: e.variantId, sets: e.sets, repsMin: e.repsMin, repsMax: e.repsMax, restSec: e.restSec,
     supersetGroup: e.supersetGroup, rirTarget: e.rirTarget, unit: e.unit, holdSec: e.holdSec, warmupSets: e.warmupSets, role: e.role,
-    slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, ...((e.ficheId === CORRECTIF_COU.ficheId || e.cappedLabel === CAL11.stopMessage) && e.cappedLabel ? { cappedLabel: e.cappedLabel } : {}), adaptation: e.adaptation, substitut: e.substitut,
+    slot: e.slot, startLoadKg: e.startLoadKg, capped: e.capped, ...((e.ficheId === CORRECTIF_COU.ficheId || e.cappedLabel === CAL11.stopMessage || e.cappedLabel === COMPLEMENTS.stopMessage) && e.cappedLabel ? { cappedLabel: e.cappedLabel } : {}), adaptation: e.adaptation, substitut: e.substitut,
     ...(e.rotation ? { rotation: true } : {}),
     // Un seul côté à la fois (un bras, une jambe, alterné) : une série = gauche puis droite. `reps_par_cote` l'est déjà.
     ...((e.unilateral || PER_SIDE_VARIANT_IDS.includes(e.variantId)) && e.unit !== 'reps_par_cote' && e.role !== 'cardio' ? { perSide: true } : {}),

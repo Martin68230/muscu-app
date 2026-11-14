@@ -129,7 +129,7 @@ export type MessageId =
   // D25 (structure-programmes.md) : 1 jour (STR-REP-1), jours légers (STR-REP-6), grossesse (STR-REP-11), séance unique courte.
   | 'V-MSG-UN-JOUR' | 'V-MSG-LEGERS' | 'V-MSG-GROS-SEANCES' | 'V-MSG-UN-JOUR-DUREE'
   // D30 / D31 : sauts (T8), séance de sport (veille de match), extérieur (T9).
-  | 'T8' | 'V-MSG-SPORT-MATCH' | 'T9'
+  | 'T8' | 'V-MSG-SPORT-MATCH' | 'V-MSG-SPORT-PREV' | 'T9'
   // « Mon sport » étape 2 : séances décalées, allégées ou retirées à cause du sport.
   | 'V-MSG-SPORT-PLACE'
   // D33 (programmes-v3.md §6, PV3-CAR-3) : séance de cardio incluse par défaut en perte de gras.
@@ -153,7 +153,9 @@ export type SlotKey =
   // D30 (STR-ISO-0) : isolation, ajoutée après tous les autres emplacements, coupée en premier.
   | 'iso_biceps' | 'iso_deltoide_lateral' | 'iso_deltoide_posterieur' | 'iso_triceps' | 'iso_mollets'
   // Emplacement correctif (06/11/2026, zones-check.ts) : petites zones grises, en fin de séance, après tous les autres.
-  | 'correctif';
+  | 'correctif'
+  // « Mon sport » A2 (13/11/2026, sport-prevention.ts) : prévention du sport en ENTRÉE de séance (épaule, équilibre, tronc), avant les piliers.
+  | 'prevention_sport';
 /** D25 : séance de la semaine : 'A' | 'B' | 'C' (corps entier) ou '<TYPE>-<gabarit>' (HAUT-A, BAS-B, PUSH-A…). */
 export type SessionLabel = string;
 export type Tier = 'a' | 'b' | 'c' | 'd' | 'e';

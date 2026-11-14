@@ -11,7 +11,7 @@ export type DClass = 1 | 2 | 3 | 4;
 
 /** §2 : pilier (PILLAR_SLOTS), isolation (emplacement `iso_*` ou fiche d'isolation), sinon accessoire. */
 export function doseRoleOf(slot: SlotKey, fiche: Pick<Fiche, 'id'>): DoseRole {
-  if (slot.startsWith('iso_') || slot === 'correctif' || ISOLATION_FICHE_PREFIXES.some((p) => fiche.id.startsWith(p))) return 'isolation';
+  if (slot.startsWith('iso_') || slot === 'correctif' || slot === 'prevention_sport' || ISOLATION_FICHE_PREFIXES.some((p) => fiche.id.startsWith(p))) return 'isolation';
   if (PILLAR_SLOTS.includes(slot)) return 'pilier_lourd';
   return 'accessoire';
 }

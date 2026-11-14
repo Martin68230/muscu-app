@@ -10,7 +10,7 @@ import type { GenProgram } from '../../src/generator/types';
 import { isHeavyShoulderTrapExercise } from '../../src/generator/zones-check';
 import { mk, type MkOpts } from './generator-helpers';
 
-const TYPES = ['PUSH', 'PULL', 'LEGS'];
+const TYPES = ['PUSH', 'PULL', 'LEGS', 'BAS'];
 const base = (o: MkOpts): MkOpts => ({ goal: 'muscle', dur: 60, days: 5, place: o.profile === 'F' ? 'salle' : 'maison', ...o });
 const PROTECTED = ['deltoides_anterieurs', 'deltoides_lateraux', 'deltoides_posterieurs', 'trapezes', 'rhomboides', 'triceps', 'biceps', 'avant_bras', 'erecteurs_rachis', 'carre_des_lombes', 'coiffe_des_rotateurs', 'dentele_anterieur'];
 const gen = (o: MkOpts, on: boolean): GenProgram | null => {
