@@ -101,6 +101,7 @@ export interface HomeViewProps {
   regularity?: Regularity | null;
   today?: Date;
   onOpenHistory?: () => void;
+  onOpenProgress?: () => void;
   /** D28 : ouvre l'écran « Créer une séance ». */
   onCreateSession?: () => void;
   /** Mon sport : ouvre « Noter une séance de sport ». */
@@ -142,7 +143,7 @@ function ResumeCard({ r, onResume, onCloseStale }: { r: Resumable; onResume: (id
 const seances = (n: number): string => `${n} ${n > 1 ? 'séances faites' : 'séance faite'}`;
 
 /** Régularité : ton positif, aucune comparaison, aucun chiffre tant qu'il n'y a pas de séance. */
-export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity | null; today: Date; onOpenHistory?: () => void }) {
+export function RegularityCard({ reg, today, onOpenHistory, onOpenProgress }: { reg: Regularity | null; today: Date; onOpenHistory?: () => void; onOpenProgress?: () => void }) {
   return (
     <div class="card regularity">
       <h2>Régularité</h2>
@@ -150,6 +151,11 @@ export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity 
         <p class="dim">Ta première séance lancera le suivi. Chaque séance compte, à ton rythme.</p>
       ) : (
         <>
+          {reg.plannedPerWeek ? (
+            <div class="week-dots" aria-hidden="true">
+              {Array.from({ length: Math.max(reg.plannedPerWeek, reg.doneThisWeek) }, (_, i) => <span key={i} class={i < reg.doneThisWeek ? 'dot dot-done' : 'dot'} />)}
+            </div>
+          ) : null}
           <p>
             <strong>Cette semaine :</strong>{' '}
             {reg.doneThisWeek === 0
@@ -164,7 +170,12 @@ export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity 
               : 'Une nouvelle série de semaines commence quand tu veux.'}
           </p>
           {reg.lastKey && <p class="dim">Dernière séance : {relativeDay(reg.lastKey, today)}.</p>}
-          {onOpenHistory && <button type="button" class="btn" onClick={onOpenHistory}>Voir mon historique</button>}
+          {(onOpenHistory || onOpenProgress) && (
+            <div class="btn-pair">
+              {onOpenHistory && <button type="button" class="btn" onClick={onOpenHistory}>Voir mon historique</button>}
+              {onOpenProgress && <button type="button" class="btn" onClick={onOpenProgress}>Ma progression</button>}
+            </div>
+          )}
         </>
       )}
     </div>
@@ -172,7 +183,7 @@ export function RegularityCard({ reg, today, onOpenHistory }: { reg: Regularity 
 }
 
 /** Contenu de l'accueil (sans accès à la base : testable). */
-export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, onCreateSession, onNoteSport, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
+export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpenSession, onCloseStale, regularity: reg, today, onOpenHistory, onOpenProgress, onCreateSession, onNoteSport, missedActions, onAckSecurity, onChanged }: HomeViewProps) {
   const hello = profile.displayName ? `Salut ${profile.displayName}` : 'Salut';
   const complete = isProfileComplete(profile);
   const [hidden, setHidden] = useState(false);
@@ -224,7 +235,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       )}
       {status.kind === 'reprise' && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
       {status.kind !== 'reprise' && !security && !missed && (
-        <div class="card">
+        <div class={status.kind === 'seance' ? 'card card-hero' : 'card'}>
           <h2>Séance du jour</h2>
           {status.kind === 'loading' && <p class="dim" role="status">Préparation de ta séance…</p>}
           {status.kind === 'profil' && <p class="dim">Réponds à quelques questions (moins d'une minute) pour préparer ton programme.</p>}
@@ -252,7 +263,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       )}
       {status.kind === 'seance' && !anyMessage && status.lightToday && <LightDayCard day={status.lightToday} painYesterday={!!status.painYesterday} />}
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
-      <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} />
+      <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} onOpenProgress={onOpenProgress} />
       {muscles && !security && (
         <MuscleMapCard id="home-carte" title="Muscles de ton cycle" intro="Ce que ton programme prévoit sur un cycle (toutes ses séances, une fois chacune)." statuses={muscles.week.statuses} points={muscles.week.points} period="sur le cycle">
           <button type="button" class="btn" onClick={() => { setCycle(true); scrollTo(0, 0); }}>Voir par type de séance</button>
@@ -271,13 +282,14 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
   );
 }
 
-export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory, onCreateSession, onNoteSport }: {
+export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, onOpenHistory, onOpenProgress, onCreateSession, onNoteSport }: {
   profile: Profile;
   onStart: () => void;
   onEditStep: (step: ProfileStep) => void;
   onResume: (sessionId: string) => void;
   onOpenSession: () => void;
   onOpenHistory?: () => void;
+  onOpenProgress?: () => void;
   onCreateSession?: () => void;
   onNoteSport?: () => void;
 }) {
@@ -387,6 +399,7 @@ export function Home({ profile, onStart, onEditStep, onResume, onOpenSession, on
       }}
       regularity={reg}
       onOpenHistory={onOpenHistory}
+      onOpenProgress={onOpenProgress}
       onCreateSession={onCreateSession}
       onNoteSport={onNoteSport}
       missedActions={missedActions}

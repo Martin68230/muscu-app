@@ -5,6 +5,7 @@ import { TabBar, type Tab } from './ui/TabBar';
 import { Onboarding } from './ui/screens/Onboarding';
 import { Home } from './ui/screens/Home';
 import { Calendar } from './ui/screens/Calendar';
+import { Progress } from './ui/screens/Progress';
 import { Library } from './ui/screens/Library';
 import { Fiche } from './ui/screens/Fiche';
 import { Profile } from './ui/screens/Profile';
@@ -38,6 +39,7 @@ const createFromHash = (): boolean => location.hash === '#/creer';
 const sportFromHash = (): boolean => location.hash === '#/sport';
 /** #/nutrition : écran Nutrition (phase 7), ouvert depuis la Bibliothèque. */
 const nutritionFromHash = (): boolean => location.hash === '#/nutrition';
+const progressFromHash = (): boolean => location.hash === '#/progression';
 
 interface Playing {
   controller: SessionController;
@@ -67,6 +69,7 @@ export function App() {
   const [create, setCreate] = useState<{ prefill: ScheduledCreated | null } | null>(createFromHash() ? { prefill: null } : null);
   const [sportNote, setSportNote] = useState(sportFromHash());
   const [nutrition, setNutrition] = useState(nutritionFromHash());
+  const [progress, setProgress] = useState(progressFromHash());
   /** Séance en cours dans le lecteur (plein écran, sans barre d'onglets). */
   const [playing, setPlaying] = useState<Playing | null>(null);
   /** Parcours du profil : 'all' = les cartes à la suite ; sinon une seule carte (modification depuis Profil). */
@@ -83,6 +86,7 @@ export function App() {
       setCreate((c) => (createFromHash() ? c ?? { prefill: null } : null));
       setSportNote(sportFromHash());
       setNutrition(nutritionFromHash());
+      setProgress(progressFromHash());
     };
     addEventListener('hashchange', onHash);
     return () => removeEventListener('hashchange', onHash);
@@ -96,6 +100,7 @@ export function App() {
     setCreate(null);
     setSportNote(false);
     setNutrition(false);
+    setProgress(false);
   };
   const openSport = () => {
     setSportNote(true);
@@ -196,8 +201,9 @@ export function App() {
 
   return (
     <div class="shell">
-      <main class="screen" key={nutrition ? 'nutrition' : ficheId ? `fiche-${ficheId}` : sportNote ? 'sport' : create ? 'creer' : preview ? 'seance' : tab}>
+      <main class="screen" key={nutrition ? 'nutrition' : progress ? 'progression' : ficheId ? `fiche-${ficheId}` : sportNote ? 'sport' : create ? 'creer' : preview ? 'seance' : tab}>
         {sportNote && <NoteSport profile={profile} onBack={() => go('accueil')} onEditPlan={() => go('profil')} />}
+        {tab === 'accueil' && !sportNote && !create && progress && <Progress pregnancy={profile.pregnancy} onBack={() => go('accueil')} />}
         {tab === 'accueil' && !sportNote && create && (
           <CreateSessionScreen
             profile={profile}
@@ -208,7 +214,7 @@ export function App() {
             onSchedule={scheduleCreatedDay}
           />
         )}
-        {tab === 'accueil' && !sportNote && !preview && !create && (
+        {tab === 'accueil' && !sportNote && !preview && !create && !progress && (
           <Home
             profile={profile}
             onStart={() => setWizard('all')}
@@ -216,6 +222,7 @@ export function App() {
             onResume={(id) => void resume(id)}
             onOpenSession={() => (location.hash = '#/seance')}
             onOpenHistory={() => go('calendrier')}
+            onOpenProgress={() => (location.hash = '#/progression')}
             onCreateSession={() => openCreate()}
             onNoteSport={openSport}
           />
