@@ -3,7 +3,7 @@
 // sur des muscles NON protégés, en isolation à faible fatigue, 2 à 3 séries à dose fixe (jamais de montée), 3 exercices au plus par séance, jamais deux fois la même
 // fiche dans la semaine. Mêmes garde-fous que le correctif / CAL-11 : sessionOk (V-PLAF, CAL-12), weekOk (24 / 20 selon le muscle ; les secondaires protégés comptent
 // 0,5), plafonds de zone. Annuler : COMPLEMENTS.enabled = false.
-import { CAL11, CORE_SAFE_FAMILIES, CORE_WHEEL_IDS, CORRECTIF, COMPLEMENTS, VOLUME } from './config';
+import { CAL11, CHARGEABLE_TAGS, CORE_MAX, CORE_SAFE_FAMILIES, CORE_WHEEL_IDS, CORRECTIF, CORRECTIF_COU, COMPLEMENTS, FIXED_LOAD_TAGS, TRONC_SCHEMAS, VOLUME } from './config';
 import { coreFamilyOf } from './core';
 import { buildExercise } from './dose';
 import { estimerDuree } from './duration';
@@ -11,7 +11,7 @@ import { isProtectedMuscle, raisedCaps } from './plaf';
 import { resolveFiche, type Candidate } from './safety';
 import { isTwinOfUsed } from './slots';
 import type { Fiche, GenExercise } from './types';
-import { correctifExercise, zoneCapsOk, type FillDeps } from './zones-check';
+import { correctifExercise, isHeavyShoulderTrapExercise, zoneCapsOk, type FillDeps } from './zones-check';
 import type { DurSession } from './duration';
 
 type Sess = DurSession<GenExercise>;
@@ -22,8 +22,10 @@ const isMollets = (f: Fiche) => f.schema === 'cheville_mollet' && f.musclesPrinc
 const lightTags = (tags: readonly string[]) => !tags.some((t) => t === 'barre' || t === 'disques' || t === 'rack');
 
 // Bas du corps en fin de PUSH / PULL (kiné : leg curl, pont fessier ou hip thrust sans barre ; jamais de charnière lourde ni de squat) : charnière légère, la règle des 2 charnières par séance reste appliquée.
-const ischios: Row = { key: 'ischios', fiche: (f) => /^curl-ischios/.test(f.id) && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'ischios', variantOk: lightTags, sets: 2 };
-const fessiers: Row = { key: 'fessiers', fiche: (f) => /^(pont-fessier|hip-thrust)/.test(f.id) && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'fessiers', variantOk: lightTags, sets: 2 };
+// Charnière légère seulement : aucune charge externe (relecteur 14/11/2026 : la première charnière d'une séance est exemptée de « sans charge » par hingesOk).
+const noLoad = (tags: readonly string[]) => lightTags(tags) && !tags.some((t) => CHARGEABLE_TAGS.includes(t) || FIXED_LOAD_TAGS.includes(t) || t === 'halteres' || t === 'kettlebell' || t === 'lest' || t.startsWith('sac'));
+const ischios: Row = { key: 'ischios', fiche: (f) => /^curl-ischios/.test(f.id) && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'ischios', variantOk: noLoad, sets: 2 };
+const fessiers: Row = { key: 'fessiers', fiche: (f) => /^(pont-fessier|hip-thrust)/.test(f.id) && f.musclesPrincipaux.length === 1 && f.musclesPrincipaux[0] === 'fessiers', variantOk: noLoad, sets: 2 };
 
 const ROWS: Record<string, readonly Row[]> = {
   PUSH: [
@@ -83,6 +85,16 @@ export function addComplements(sessions: Sess[], d: FillDeps, typeOf: (label: st
         ex.sets = Math.min(row.sets, buildExercise({ ...c, capped: true }, 'correctif', 'a', ctx).sets);
         ex.capped = true; // dose fixe : jamais de série ni de charge en plus
         ex.cappedLabel = CAL11.stopMessage; // signes d'arrêt affichés (avis kiné), comme les compléments CAL-11
+        // CAL-12 (relecteur 14/11/2026) : dans une séance qui a le cou, tout complément lourd d'épaules / trapèzes (gainage, poussée, tirage, élastique) est refusé.
+        const hasNeck = s.exercises.some((e) => e.slot === 'correctif' && e.ficheId === CORRECTIF_COU.ficheId);
+        if (hasNeck && (isHeavyShoulderTrapExercise(ex, ctx) || c.fiche.schema.startsWith('poussee') || c.fiche.schema.startsWith('tirage') || ex.tags.includes('elastique'))) continue;
+        // Tronc : mêmes plafonds de core que CAL-11 (par séance et par semaine).
+        if (row.key === 'tronc') {
+          const isCore = (e: GenExercise) => { const f = ctx.fichesById.get(e.ficheId); return !!f && TRONC_SCHEMAS.includes(f.schema) && coreFamilyOf(f) !== null; };
+          const coreSets = s.exercises.filter(isCore).reduce((a, e) => a + e.sets, 0);
+          const coreWeek = sessions.reduce((a, x) => a + x.exercises.filter(isCore).reduce((b, e) => b + e.sets, 0), 0);
+          if (coreSets + ex.sets > CORE_MAX.setsPerSession || coreWeek + ex.sets > CORE_MAX.setsPerWeek) continue;
+        }
         const trial = { ...s, exercises: [...s.exercises, ex] };
         const all = sessions.map((x) => (x === s ? trial : x));
         if (estimerDuree(trial) > d.budget(s)) continue;

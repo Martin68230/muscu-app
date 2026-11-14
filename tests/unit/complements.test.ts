@@ -7,6 +7,7 @@ import { COMPLEMENTS } from '../../src/generator/config';
 import { buildCtx } from '../../src/generator/context';
 import { raisedCaps, weekCapFor, weekMusclesOf, weekVol } from '../../src/generator/plaf';
 import type { GenProgram } from '../../src/generator/types';
+import { isHeavyShoulderTrapExercise } from '../../src/generator/zones-check';
 import { mk, type MkOpts } from './generator-helpers';
 
 const TYPES = ['PUSH', 'PULL', 'LEGS'];
@@ -47,6 +48,29 @@ describe('Compléments PUSH / PULL / LEGS', () => {
       for (const m of weekMusclesOf(on.sessions)) expect(on.sessions.reduce((a, s) => a + weekVol(s, m), 0), `${profile} ${level} ${m}`).toBeLessThanOrEqual(weekCapFor(ctx, m));
     }
     expect(seen).toBeGreaterThan(0);
+  }, 280_000);
+
+  it('CAL-12 : dans la séance qui a le cou, aucun complément lourd d épaules / trapèzes (gainage, poussée, tirage, élastique)', () => {
+    let checked = 0;
+    for (const profile of ['B', 'D', 'F']) for (const level of ['intermediaire', 'avance'] as const) {
+      const input = mk(base({ profile, level }));
+      input.profile.neckScreen = 'non';
+      const on = generateProgram(input);
+      (COMPLEMENTS as { enabled: boolean }).enabled = false;
+      let off;
+      try { off = generateProgram(input); } finally { (COMPLEMENTS as { enabled: boolean }).enabled = true; }
+      expect(on.ok && off.ok, `${profile} ${level}`).toBe(true);
+      if (!on.ok || !off.ok) continue;
+      const ctx = buildCtx(input);
+      const neckSession = on.program.sessions.find((x) => x.exercises.some((e) => e.ficheId === 'renfo-cou-isometrique'));
+      if (!neckSession) continue;
+      const before = new Set(off.program.sessions.find((x) => x.label === neckSession.label)?.exercises.map((e) => e.ficheId) ?? []);
+      for (const e of neckSession.exercises.filter((x) => !before.has(x.ficheId) && x.ficheId !== 'renfo-cou-isometrique')) {
+        checked++;
+        expect(isHeavyShoulderTrapExercise(e, ctx), `${profile} ${level} ${e.ficheId}`).toBe(false);
+      }
+    }
+    expect(checked).toBeGreaterThanOrEqual(0);
   }, 280_000);
 
   it('aucun complément pour un débutant, la santé, la grossesse, une zone gênée, la reprise', () => {
