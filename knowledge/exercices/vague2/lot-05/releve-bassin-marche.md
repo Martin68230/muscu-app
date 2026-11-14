@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [fessiers]
 muscles_secondaires: [ischios, abdominaux, erecteurs_rachis]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -78,7 +78,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 - Tapis non glissant ; chaise stable, sans roulettes, calée contre un mur (R8).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/releve-bassin-marche.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

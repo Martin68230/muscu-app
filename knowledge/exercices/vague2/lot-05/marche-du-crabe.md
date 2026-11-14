@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [fessiers]
 muscles_secondaires: [triceps, deltoides_posterieurs, ischios, abdominaux]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -55,6 +55,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 | Dos | retirer | retirer | retirer |
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 | Hanche | adapter: amplitude:reduite | retirer | retirer |
+| Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Genou | garder | adapter: amplitude:sans-gene | retirer |
 
 **Notes**
@@ -66,7 +67,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 - general : douleur pendant l'exercice : arrête, pas de progression (R4).
 
 **Grossesse** : retirer
-**Version plus douce** : pont-fessier
+**Version plus douce** : aucune
 
 **Signes qui doivent faire arrêter**
 - Douleur (pas la simple brûlure du muscle qui travaille) au poignet, à l'épaule, au cou ou au bas du dos : arrête (R4).
@@ -77,7 +78,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 - Tapis non glissant, sol dégagé derrière toi (R8).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/marche-du-crabe.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

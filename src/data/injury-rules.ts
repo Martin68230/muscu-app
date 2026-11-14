@@ -16,6 +16,9 @@ export const NECK_DEDICATED_IDS: readonly string[] = [
   'inclinaison-douce-cou',
   'retraction-cervicale',
   'isometrique-cou',
+  // Lot 5 (13/11/2026) : isométries du cou avec la main ; placement manuel seulement, jamais automatique.
+  'cou-lateral-arriere-main',
+  'rotation-isometrique-cou',
 ];
 
 export interface FicheRuleInfo {

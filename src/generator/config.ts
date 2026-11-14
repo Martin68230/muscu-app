@@ -1183,7 +1183,7 @@ export const CAL11 = {
   dentele: { ids: ['pompe-plus'] as readonly string[], repsMin: 8, repsMax: 12, rir: 3 },
   coiffe: { repsMin: 12, repsMax: 15, rir: 3 },
   /** Gainage / anti-rotation en appui sur les mains ou les poignets : refusés si le poignet est gêné (niveau >= 1). */
-  handSupportedCoreIds: ['planche', 'planche-ballon', 'planche-bosu', 'planche-bras-jambe-leves', 'planche-cercles-ballon', 'planche-touche-epaule', 'genoux-poitrine-ballon', 'bird-dog', 'bird-dog-jambe-seule', 'bird-dog-pause', 'rollout-ballon', 'roue-abdos'] as readonly string[],
+  handSupportedCoreIds: ['planche', 'planche-ballon', 'planche-bosu', 'planche-bras-jambe-leves', 'planche-cercles-ballon', 'planche-touche-epaule', 'genoux-poitrine-ballon', 'bird-dog', 'bird-dog-jambe-seule', 'bird-dog-pause', 'rollout-ballon', 'roue-abdos', 'marche-de-l-ours', 'marche-du-crabe'] as readonly string[],
   stopMessage: 'Arrête tout de suite si tu ressens une douleur vive, un pincement, un engourdissement ou des fourmillements, et ne refais pas cet exercice. Douleur la nuit, perte de force ou gonflement : consulte un professionnel de santé.',
 };
 
@@ -1394,6 +1394,7 @@ export const CREER_SEANCE = {
   plio: [
     { ficheId: 'squat-petit-saut', variantId: 'squat-petit-saut-saut', softVariantId: 'squat-petit-saut-douce', reps: 6 },
     { ficheId: 'saut-longueur-pieds-joints', variantId: 'saut-longueur-sur-place', softVariantId: null, reps: 5 },
+    { ficheId: 'saut-lateral-pieds-joints', variantId: 'saut-lateral-joints-un-saut', softVariantId: null, reps: 5 }, // lot 5 (13/11/2026) : « Créer une séance » seulement
     { ficheId: 'rebonds-chevilles', variantId: 'rebonds-deux-pieds', softVariantId: 'rebonds-chevilles-pointe', reps: 8 },
   ] as readonly { ficheId: string; variantId: string; softVariantId: string | null; reps: number }[],
   plioMinLevel: 'intermediaire' as Level,

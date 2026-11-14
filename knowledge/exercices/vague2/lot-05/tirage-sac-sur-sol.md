@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [rhomboides, biceps, avant_bras, fessiers]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -75,7 +75,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 - Seul le sac glisse sur la serviette : tes pieds restent sur un sol qui accroche, chaussures à semelle adhérente (jamais en chaussettes). Sol sec et dégagé.
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/tirage-sac-sur-sol.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |
