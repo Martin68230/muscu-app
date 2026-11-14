@@ -36,7 +36,7 @@ const cfg = (over: Partial<MealConfig> = {}): MealConfig => ({ ...DEFAULT_MEAL_C
 
 describe('plan de la semaine', () => {
   it('7 jours d’un coup : chaque jour a un déjeuner et un dîner, le petit-déjeuner selon le réglage', () => {
-    const p = generateWeekPlan(week(), R, foods, base, cfg(), 1);
+    const p = generateWeekPlan(week(), R, foods, base, cfg(), 1, [], 1500);
     for (let d = 0; d < 7; d++) {
       const s = p.slots.filter((x) => x.day === d);
       expect(s.some((x) => x.kind === 'dejeuner')).toBe(true);
@@ -48,7 +48,7 @@ describe('plan de la semaine', () => {
 
   it('repas optionnels : jour par jour, 0 à 2 en-cas, goûter, aucun repas non demandé', () => {
     const c = cfg({ petitDej: [true, false, true, false, true, false, false], gouter: [false, false, true, false, false, false, false], encas: [0, 1, 2, 0, 0, 3 as number, 0] });
-    const p = generateWeekPlan(week(), R, foods, base, c, 2);
+    const p = generateWeekPlan(week(), R, foods, base, c, 2, [], 1500);
     const kinds = (d: number) => p.slots.filter((x) => x.day === d).map((x) => x.kind);
     expect(kinds(1)).not.toContain('petit-dej');
     expect(kinds(2)).toContain('gouter');
@@ -68,14 +68,14 @@ describe('plan de la semaine', () => {
     }
     // ajouter des repas optionnels diminue la part des repas principaux
     const w2 = week(1800);
-    const sans = generateWeekPlan(w2, R, foods, base, cfg({ petitDej: Array(7).fill(false) }), 3);
-    const avec = generateWeekPlan(w2, R, foods, base, cfg({ petitDej: Array(7).fill(true), gouter: Array(7).fill(true) }), 3);
+    const sans = generateWeekPlan(w2, R, foods, base, cfg({ petitDej: Array(7).fill(false) }), 3, [], 1500);
+    const avec = generateWeekPlan(w2, R, foods, base, cfg({ petitDej: Array(7).fill(true), gouter: Array(7).fill(true) }), 3, [], 1500);
     const main = (pl: typeof sans) => pl.slots.filter((s) => s.kind === 'dejeuner').reduce((t, s) => t + s.kcal, 0);
     expect(main(avec)).toBeLessThan(main(sans));
   });
 
   it('petit-déjeuner identique : une seule recette pour toute la semaine', () => {
-    const p = generateWeekPlan(week(), R, foods, base, cfg({ petitDejIdentique: true }), 4);
+    const p = generateWeekPlan(week(), R, foods, base, cfg({ petitDejIdentique: true }), 4, [], 1500);
     const ids = new Set(p.slots.filter((s) => s.kind === 'petit-dej').map((s) => s.recipeId));
     expect(ids.size).toBe(1);
     expect([...ids][0]).not.toBeNull();
@@ -83,7 +83,7 @@ describe('plan de la semaine', () => {
 
   it('recette de lot : même barre tous les jours, pièces entières, liste de courses = pièces du lot x ingrédients d’une pièce', () => {
     const c = cfg({ encas: Array(7).fill(1) });
-    const p = generateWeekPlan(week(), R, foods, base, c, 5);
+    const p = generateWeekPlan(week(), R, foods, base, c, 5, [], 1500);
     const sl = p.slots.filter((s) => s.kind === 'encas' && s.recipeId === 'barre-avoine-amande');
     expect(sl.length).toBeGreaterThan(0);
     for (const s of sl) {
@@ -101,11 +101,11 @@ describe('plan de la semaine', () => {
 
   it('« fabriquer N pièces » : jamais en dessous du nécessaire, et les courses suivent', () => {
     const c = cfg({ encas: Array(7).fill(1) });
-    const a = generateWeekPlan(week(), R, foods, base, c, 5);
+    const a = generateWeekPlan(week(), R, foods, base, c, 5, [], 1500);
     const need = a.lots[0].needed;
-    const b = generateWeekPlan(week(), R, foods, base, { ...c, lotOverride: { 'barre-avoine-amande': need + 6 } }, 5);
+    const b = generateWeekPlan(week(), R, foods, base, { ...c, lotOverride: { 'barre-avoine-amande': need + 6 } }, 5, [], 1500);
     expect(b.lots[0].pieces).toBe(need + 6);
-    const c2 = generateWeekPlan(week(), R, foods, base, { ...c, lotOverride: { 'barre-avoine-amande': 1 } }, 5);
+    const c2 = generateWeekPlan(week(), R, foods, base, { ...c, lotOverride: { 'barre-avoine-amande': 1 } }, 5, [], 1500);
     expect(c2.lots[0].pieces).toBe(need);
     const am = (p: typeof a) => buildShoppingList(p.ingredients).find((i) => i.code === 'amande')!.neededGrams;
     expect(am(b)).toBeGreaterThan(am(a));
@@ -115,7 +115,7 @@ describe('plan de la semaine', () => {
     const c = cfg({ gouter: Array(7).fill(true), encas: Array(7).fill(2), petitDejIdentique: false });
     for (const a of ALLERGENS) {
       for (let seed = 1; seed <= 5; seed++) {
-        const p = generateWeekPlan(week(), R, foods, { ...base, allergens: [a as AllergenKey] }, c, seed);
+        const p = generateWeekPlan(week(), R, foods, { ...base, allergens: [a as AllergenKey] }, c, seed, [], 1500);
         for (const s of p.slots) {
           if (!s.recipeId) continue;
           expect(R.find((r) => r.id === s.recipeId)!.allergenes.includes(a), `${s.recipeId} avec ${a}`).toBe(false);
@@ -128,8 +128,8 @@ describe('plan de la semaine', () => {
     const c = cfg({ gouter: Array(7).fill(true), encas: Array(7).fill(1) });
     let a = 0, b = 0;
     for (let seed = 1; seed <= 15; seed++) {
-      a += new Set(generateWeekPlan(week(), R, foods, { ...base, optimizeShopping: true }, c, seed).ingredients.map((i) => i.code)).size;
-      b += new Set(generateWeekPlan(week(), R, foods, { ...base, optimizeShopping: false }, c, seed).ingredients.map((i) => i.code)).size;
+      a += new Set(generateWeekPlan(week(), R, foods, { ...base, optimizeShopping: true }, c, seed, [], 1500).ingredients.map((i) => i.code)).size;
+      b += new Set(generateWeekPlan(week(), R, foods, { ...base, optimizeShopping: false }, c, seed, [], 1500).ingredients.map((i) => i.code)).size;
     }
     expect(a).toBeLessThanOrEqual(b);
   });
@@ -144,6 +144,32 @@ describe('plan de la semaine', () => {
 
   it('déterministe pour une graine', () => {
     const c = cfg({ gouter: Array(7).fill(true), encas: Array(7).fill(1) });
-    expect(generateWeekPlan(week(), R, foods, base, c, 9)).toEqual(generateWeekPlan(week(), R, foods, base, c, 9));
+    expect(generateWeekPlan(week(), R, foods, base, c, 9, [], 1500)).toEqual(generateWeekPlan(week(), R, foods, base, c, 9, [], 1500));
+  });
+});
+
+describe('relecture du 14/11/2026 : cibles invalides, grammes, sous-plancher', () => {
+  it('cible NaN, nulle ou plancher invalide : aucun plan, jamais un jour « ok »', () => {
+    const w = week();
+    expect(() => generateWeekPlan([{ ...w[0], kcal: NaN }, ...w.slice(1)], R, foods, base, cfg(), 1, [], 1500)).toThrow();
+    expect(() => generateWeekPlan([{ ...w[0], kcal: 0 }, ...w.slice(1)], R, foods, base, cfg(), 1, [], 1500)).toThrow();
+    expect(() => generateWeekPlan(w, R, foods, base, cfg(), 1, [], NaN)).toThrow();
+    expect(() => generateWeekPlan(w.slice(0, 6), R, foods, base, cfg(), 1, [], 1500)).toThrow();
+  });
+  it('un jour incomplet sous le plancher est signalé sous le plancher', () => {
+    const p = generateWeekPlan(week(), R.filter((r) => r.repas !== 'dejeuner-diner' || r.id === 'poulet-riz'), foods, base, cfg(), 1, [], 99999);
+    expect(p.days.every((d) => d.belowFloor)).toBe(true);
+  });
+  it('courses des lots arrondies vers le haut, jamais sous le besoin', () => {
+    const c = cfg({ encas: Array(7).fill(1) });
+    const p = generateWeekPlan(week(), R, foods, base, c, 5, [], 1500);
+    const lot = p.lots[0];
+    const r = R.find((x) => x.id === lot.recipeId)!;
+    const list = buildShoppingList(p.ingredients);
+    for (const i of r.ingredients) expect(list.find((x) => x.code === i.code)!.neededGrams).toBeGreaterThanOrEqual(i.grammes * lot.pieces - 1e-6);
+  });
+  it('allergie grave sans allergène choisi : seules les recettes relues passent', () => {
+    const rr = { ...R[2], statut: 'complete_nutri' } as Recipe;
+    expect(generateWeekPlan(week(), [rr], foods, { ...base, strictControle: true }, cfg(), 1, [], 1500).slots.every((s) => !s.recipeId)).toBe(true);
   });
 });

@@ -85,7 +85,8 @@ function mulberry32(seed: number) {
   };
 }
 
-const roundG = (g: number) => Math.round(g / ARRONDI_GRAMMES) * ARRONDI_GRAMMES || ARRONDI_GRAMMES;
+/** Arrondi vers le HAUT : une quantité de courses ne descend jamais sous le besoin. */
+export const ceilG = (g: number) => Math.ceil(g / ARRONDI_GRAMMES - 1e-9) * ARRONDI_GRAMMES || ARRONDI_GRAMMES;
 
 interface Pick {
   r: Recipe;
@@ -111,6 +112,7 @@ function perPiece(r: Recipe, foods: ReadonlyMap<string, FoodMacros>) {
 
 /** Meilleure prise d'une recette pour une cible : pièces entières pour un lot, mise à l'échelle sinon. */
 function pickFor(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, target: number, tol: number): Pick | null {
+  if (!Number.isFinite(target) || target <= 0) return null;
   if (r.lot) {
     const p = perPiece(r, foods);
     if (!p || p.kcal <= 0) return null;
@@ -148,9 +150,11 @@ export function generateWeekPlan(
   prefs: Omit<PlanPrefs, 'mealsPerDay'>,
   cfgIn: Partial<MealConfig> | null,
   seed: number,
-  previousRecipeIds: readonly string[] = [],
-  floorKcal = 0,
+  previousRecipeIds: readonly string[],
+  floorKcal: number,
 ): WeekPlanResult {
+  // Cibles invalides : aucun plan (jamais un jour « ok » calculé sur NaN) ; le plancher est obligatoire.
+  if (!Number.isFinite(floorKcal) || days.length !== 7 || days.some((d) => !Number.isFinite(d.kcal) || d.kcal <= 0)) throw new Error('Cible invalide : plan impossible');
   const cfg = sanitizeMealConfig(cfgIn);
   const rnd = mulberry32(seed);
   const pf = { ...prefs, mealsPerDay: 3 as const };
@@ -270,7 +274,7 @@ export function generateWeekPlan(
   for (const { lines: ls } of lines) for (const l of ls) ingredients.push({ code: l.code, name: l.nom, grams: l.grammes, rayon: l.rayon, pantry: foods.get(l.code)?.gardeManger });
   for (const l of lots) {
     const r = recipes.find((x) => x.id === l.recipeId)!;
-    for (const i of r.ingredients) ingredients.push({ code: i.code, name: i.nom, grams: roundG(i.grammes * l.pieces) , rayon: i.rayon, pantry: foods.get(i.code)?.gardeManger });
+    for (const i of r.ingredients) ingredients.push({ code: i.code, name: i.nom, grams: ceilG(i.grammes * l.pieces), rayon: i.rayon, pantry: foods.get(i.code)?.gardeManger });
   }
 
   // Contrôles finaux : allergènes re-vérifiés, énergie du jour, plancher.
@@ -283,10 +287,11 @@ export function generateWeekPlan(
     const mine = slots.filter((s) => s.day === day);
     const kcal = mine.reduce((t, s) => t + s.kcal, 0);
     let status: DayCheck['status'] = 'ok';
+    const belowFloor = kcal < floorKcal - 1e-9;
     if (mine.some((s) => !s.recipeId)) status = 'incomplet';
-    else if (kcal < floorKcal - 1e-9) status = 'sous_plancher';
+    else if (belowFloor) status = 'sous_plancher';
     else if (Math.abs(kcal - d.kcal) / d.kcal > TOL_KCAL_JOUR) status = 'ecart';
-    return { day, kcal, targetKcal: d.kcal, status };
+    return { day, kcal, targetKcal: d.kcal, status, belowFloor };
   });
   return { version: NUTRITION_VERSION, slots, lots, days: checks, ingredients };
 }

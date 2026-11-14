@@ -5,10 +5,11 @@ import type { NutritionProfile } from '../../data/model';
 import { ALLERGEN_LABELS, ALLERGENS, type AllergenKey } from '../../nutrition/allergens';
 import { loadCatalog, type Catalog } from '../../nutrition/catalog';
 import type { FinalNeeds, Refused } from '../../nutrition/final-needs';
-import type { PlanPrefs, Recipe } from '../../nutrition/plan';
+import { ARRONDI_GRAMMES, NUTRITION_VERSION } from '../../nutrition/config';
+import { recipeAllowed, type PlanPrefs, type Recipe } from '../../nutrition/plan';
 import { buildShoppingList, RAYON_LABELS, RAYON_ORDER, shoppingToText } from '../../nutrition/shopping';
 import { getMealPlan, getShoppingState, saveMealPlan, saveNutritionProfile, setChecked } from '../../nutrition/store';
-import { generateWeekPlan, sanitizeMealConfig, type MealConfig, type SlotKind, type WeekPlanResult } from '../../nutrition/week-plan';
+import { ceilG, generateWeekPlan, sanitizeMealConfig, type MealConfig, type SlotKind, type WeekPlanResult } from '../../nutrition/week-plan';
 import { dateKey } from '../../session/calendar';
 import { weekStartOf } from '../../nutrition/weight-trend';
 
@@ -27,7 +28,7 @@ function addDays(key: string, n: number): string {
 
 /** Grammes d'un ingrédient pour un créneau : pièces x grammes d'une pièce (lot), ou grammes de base mis à l'échelle (ajustables seulement). */
 function slotLines(r: Recipe, scale: number, pieces: number) {
-  return r.ingredients.map((i) => ({ nom: i.nom, g: r.lot ? i.grammes * pieces : i.ajustable ? Math.round((i.grammes * scale) / 5) * 5 || 5 : i.grammes }));
+  return r.ingredients.map((i) => ({ nom: i.nom, g: r.lot ? ceilG(i.grammes * pieces) : i.ajustable ? Math.round((i.grammes * scale) / ARRONDI_GRAMMES) * ARRONDI_GRAMMES || ARRONDI_GRAMMES : i.grammes }));
 }
 
 export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | Refused }) {
@@ -40,6 +41,8 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
   const [maxCook, setMaxCook] = useState<number | null>(np.maxCookMin);
   const [optimize, setOptimize] = useState(np.optimizeShopping !== false);
   const [severe, setSevere] = useState(!!np.severeAllergy);
+  const [celiac, setCeliac] = useState(!!np.glutenStrict);
+  const [genErr, setGenErr] = useState('');
   const thisMonday = weekStartOf(dateKey(new Date()));
   const [next, setNext] = useState(false);
   const weekStart = next ? addDays(thisMonday, 7) : thisMonday;
@@ -53,7 +56,7 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
   }, []);
   useEffect(() => {
     setPlan(null);
-    void getMealPlan(weekStart).then((p) => setPlan((p?.result as unknown as WeekPlanResult) ?? null));
+    void getMealPlan(weekStart).then((p) => setPlan((p?.result as unknown as WeekPlanResult) ?? null)).catch(() => setPlan(null));
     void getShoppingState(weekStart).then((s) => setCheckedState(s?.checked ?? []));
   }, [weekStart]);
 
@@ -64,34 +67,59 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
 
   const recipeById = useMemo(() => new Map((catalog?.recipes ?? []).map((r) => [r.id, r])), [catalog]);
 
+  // Réglages COURANTS (pas ceux de la génération) : cœliaque = sans gluten strict ; allergie grave ou cœliaque = recettes relues seulement.
   const prefsOf = (): Omit<PlanPrefs, 'mealsPerDay'> | null => {
     if (fin.status !== 'ok') return null;
-    return { goal: fin.goal, allergens, allergenFree: np.allergenFree ?? [], diet, dislikedFoods: np.dislikedFoods ?? [], maxCookMin: maxCook, appliances, optimizeShopping: optimize, strictControle: severe };
+    return { goal: fin.goal, allergens, allergenFree: np.allergenFree ?? [], diet: celiac && !diet.includes('sans_gluten') ? [...diet, 'sans_gluten'] : diet, dislikedFoods: np.dislikedFoods ?? [], maxCookMin: maxCook, appliances, optimizeShopping: optimize, strictControle: severe || celiac };
   };
+
+  // Un plan enregistré n'est montré que s'il a la bonne forme, la version actuelle et si CHAQUE repas respecte les réglages d'aujourd'hui.
+  const planState = useMemo((): 'aucun' | 'ok' | 'perime' | 'invalide' => {
+    if (!plan || !catalog) return 'aucun';
+    const p = plan as Partial<WeekPlanResult>;
+    if (!Array.isArray(p.slots) || !Array.isArray(p.days) || p.days.length !== 7 || !Array.isArray(p.lots) || !Array.isArray(p.ingredients)) return 'invalide';
+    if ((p as { version?: string }).version !== NUTRITION_VERSION) return 'perime';
+    const prefs = prefsOf();
+    if (!prefs) return 'invalide';
+    const pf = { ...prefs, mealsPerDay: 3 as const };
+    for (const s of p.slots) {
+      if (!s.recipeId) continue;
+      const r = recipeById.get(s.recipeId);
+      if (!r || !recipeAllowed(r, pf)) return 'invalide';
+    }
+    return 'ok';
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [plan, catalog, allergens, diet, maxCook, appliances, severe, celiac, recipeById]);
+  const shown = planState === 'ok' ? plan : null;
 
   const generate = async () => {
     const prefs = prefsOf();
     if (!catalog || !prefs || fin.status !== 'ok' || !fin.week) return;
     setBusy(true);
-    const seed = Math.floor(Math.random() * 1e9) + 1;
-    const res = generateWeekPlan(fin.week, catalog.recipes, catalog.foods, prefs, cfg, seed, [], fin.needs.floor);
-    await saveMealPlan(weekStart, res.version, fin.week as unknown[], res as unknown as Record<string, unknown>, seed);
-    await saveNutritionProfile({ allergens, diet, appliances, maxCookMin: maxCook, optimizeShopping: optimize, severeAllergy: severe, mealConfig: cfg as unknown as Record<string, unknown> });
-    setPlan(res);
+    setGenErr('');
+    try {
+      const seed = Math.floor(Math.random() * 1e9) + 1;
+      const res = generateWeekPlan(fin.week, catalog.recipes, catalog.foods, prefs, cfg, seed, [], fin.needs.floor);
+      await saveNutritionProfile({ allergens, diet, appliances, maxCookMin: maxCook, optimizeShopping: optimize, severeAllergy: severe, glutenStrict: celiac, mealConfig: cfg as unknown as Record<string, unknown> });
+      await saveMealPlan(weekStart, res.version, fin.week as unknown[], res as unknown as Record<string, unknown>, seed, { allergens, diet, appliances, maxCook, severe, celiac });
+      setPlan(res);
+    } catch (e) {
+      setGenErr(`Impossible de construire la semaine (${e instanceof Error ? e.message : 'erreur'}). Vérifie tes besoins puis réessaie.`);
+    }
     setBusy(false);
   };
 
-  const shopping = useMemo(() => (plan && catalog ? buildShoppingList(plan.ingredients, catalog.units) : []), [plan, catalog]);
+  const shopping = useMemo(() => (shown && catalog ? buildShoppingList(shown.ingredients, catalog.units) : []), [shown, catalog]);
   const servesMeals = useMemo(() => {
     const m = new Map<string, number>();
-    if (!plan) return m;
-    for (const s of plan.slots) {
+    if (!shown) return m;
+    for (const s of shown.slots) {
       const r = s.recipeId ? recipeById.get(s.recipeId) : null;
       if (!r) continue;
       for (const i of r.ingredients) m.set(i.code, (m.get(i.code) ?? 0) + 1);
     }
     return m;
-  }, [plan, recipeById]);
+  }, [shown, recipeById]);
 
   const toggleChecked = async (code: string, on: boolean) => {
     setCheckedState((c) => (on ? [...c, code] : c.filter((x) => x !== code)));
@@ -125,7 +153,11 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
           <button type="button" class="chip" aria-pressed={!next} onClick={() => setNext(false)}>Cette semaine</button>
           <button type="button" class="chip" aria-pressed={next} onClick={() => setNext(true)}>Semaine prochaine</button>
         </div>
+        <p class="notice small">Vérifie toujours l’étiquette des produits que tu achètes : les recettes de l’app ne remplacent pas l’étiquetage ni l’avis d’un médecin.</p>
         {loadErr && <p class="notice notice-urgent" role="alert">{loadErr}</p>}
+        {genErr && <p class="notice notice-urgent" role="alert">{genErr}</p>}
+        {planState === 'invalide' && <p class="notice" role="status">Ta semaine enregistrée ne correspond plus à tes réglages (allergies, régime, matériel) : elle est masquée par sécurité. Régénère-la.</p>}
+        {planState === 'perime' && <p class="notice" role="status">Ta semaine enregistrée vient d’une ancienne version de l’app : régénère-la.</p>}
         {catalog && nPublished === 0 && <p class="notice">Aucune recette n’est encore disponible dans l’app.</p>}
         <button type="button" class="btn btn-primary" disabled={!catalog || busy || nPublished === 0} onClick={() => void generate()}>{plan ? 'Régénérer ma semaine' : 'Générer ma semaine'}</button>
       </section>
@@ -160,6 +192,7 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
             ))}
           </div>
           <label class="check-row"><input type="checkbox" checked={severe} onChange={(e) => setSevere(e.currentTarget.checked)} /><span>Allergie grave : seules les recettes relues sont proposées</span></label>
+          <label class="check-row"><input type="checkbox" checked={celiac} onChange={(e) => setCeliac(e.currentTarget.checked)} /><span>Maladie cœliaque : sans gluten, recettes relues seulement</span></label>
           <p class="notice small">Les allergènes affichés viennent de la composition générique des ingrédients ; les traces ne sont pas prises en compte. Vérifie toujours l’étiquette des produits. « Sans gluten » et « sans lactose » valent pour la composition générique, pas pour une allergie sévère ni pour la maladie cœliaque. {NOT_MEDICAL}</p>
         </fieldset>
         <fieldset class="create-group">
@@ -181,18 +214,19 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
         <p class="dim small">Régénère ta semaine pour appliquer ces réglages.</p>
       </details>
 
-      {plan && catalog && (
+      {shown && catalog && (
         <>
           <section class="card">
             <h2>Mes 7 jours</h2>
-            {plan.days.map((d, di) => {
-              const slots = plan.slots.filter((s) => s.day === di);
+            {shown.days.map((d, di) => {
+              const slots = shown.slots.filter((s) => s.day === di);
               return (
                 <div class="nut-plan-day" key={di}>
                   <h3>{DAYS_LONG[di]} <span class="dim small">cible {fmt(d.targetKcal)} kcal · prévu {fmt(d.kcal)} kcal</span></h3>
                   {d.status === 'incomplet' && <p class="notice small">Aucune recette ne convient à un des repas avec tes filtres : élargis tes préférences.</p>}
-                  {d.status === 'sous_plancher' && <p class="notice small">Ce jour est sous le plancher de sécurité de l’app : régénère la semaine.</p>}
-                  {d.status === 'ecart' && <p class="dim small">Un peu d’écart avec ta cible ce jour-là.</p>}
+                  {d.belowFloor && <p class="notice small">Ce jour est sous le plancher de sécurité de l’app : régénère la semaine ou ajoute un repas.</p>}
+                  {d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal > 0.15 && <p class="notice small">Écart important avec ta cible ce jour-là ({fmt(Math.abs(d.kcal - d.targetKcal))} kcal {d.kcal < d.targetKcal ? 'de moins' : 'de plus'} que prévu) : ajoute ou retire un en-cas, ou régénère la semaine.</p>}
+                  {d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal <= 0.15 && <p class="dim small">Un peu d’écart avec ta cible ce jour-là.</p>}
                   <ul class="nut-meals">
                     {slots.map((s, si) => {
                       const r = s.recipeId ? recipeById.get(s.recipeId) : undefined;
@@ -217,10 +251,10 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
                 </div>
               );
             })}
-            {plan.lots.length > 0 && (
+            {shown.lots.length > 0 && (
               <div class="notice small">
                 <strong>À préparer en lot :</strong>{' '}
-                {plan.lots.map((l) => `${l.pieces} ${l.piece}${l.pieces > 1 ? 's' : ''} (${recipeById.get(l.recipeId)?.nom ?? l.recipeId})`).join(' ; ')}
+                {shown.lots.map((l) => `${l.pieces} ${l.piece}${l.pieces > 1 ? 's' : ''} (${recipeById.get(l.recipeId)?.nom ?? l.recipeId})`).join(' ; ')}
               </div>
             )}
           </section>
@@ -253,7 +287,7 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
             {shopping.some((i) => i.pantry) && <p class="dim small">Déjà dans ton placard (sel, huile, épices) : {shopping.filter((i) => i.pantry).map((i) => i.name).join(', ')}.</p>}
             <button type="button" class="btn" onClick={() => void copy()}>Copier la liste</button>
             {copied && <p class="dim small" role="status">Liste copiée.</p>}
-            <p class="notice small">Vérifie toujours les étiquettes (allergènes). Valeurs nutritionnelles : Ciqual (ANSES), Licence Ouverte 2.0. {NOT_MEDICAL}</p>
+            <p class="notice small">Vérifie toujours l’étiquette des produits que tu achètes : les recettes de l’app ne remplacent pas l’étiquetage ni l’avis d’un médecin. Valeurs nutritionnelles : Ciqual (ANSES), Licence Ouverte 2.0.</p>
           </section>
         </>
       )}

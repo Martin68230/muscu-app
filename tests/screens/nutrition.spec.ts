@@ -190,6 +190,10 @@ test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et 
 
   // Allergie au lait : plus aucune recette avec du lait dans la semaine
   await page.getByRole('group', { name: 'Allergènes à exclure' }).getByRole('button', { name: 'Lait', exact: true }).click();
+  // Sans régénérer : la semaine enregistrée contient du lait, elle doit être MASQUÉE par sécurité.
+  await expect(page.getByText(/masquée par sécurité/)).toBeVisible();
+  await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toHaveCount(0);
+  await expect(page.getByRole('heading', { name: 'Mes courses de la semaine' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Régénérer ma semaine' }).click();
   await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
   const allergenLines = await page.locator('.nut-meals p').allInnerTexts();

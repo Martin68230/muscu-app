@@ -93,10 +93,10 @@ export async function getMealPlan(weekStart: string): Promise<MealPlan | null> {
   return (await list('mealPlans')).find((p) => p.weekStart === weekStart) ?? null;
 }
 
-export async function saveMealPlan(weekStart: string, version: string, dayTargets: unknown[], result: Record<string, unknown>, seed: number): Promise<MealPlan> {
+export async function saveMealPlan(weekStart: string, version: string, dayTargets: unknown[], result: Record<string, unknown>, seed: number, prefs: Record<string, unknown> = {}): Promise<MealPlan> {
   const cur = await getMealPlan(weekStart);
   const slots = Array.isArray(result.slots) ? (result.slots as unknown[]) : [];
-  const data = { weekStart, generatorVersion: version, dayTargets, slots, inputsHash: String(seed), result, seed };
+  const data = { weekStart, generatorVersion: version, dayTargets, slots, inputsHash: String(seed), result: { ...result, prefs }, seed };
   return cur ? update('mealPlans', cur.id, data) : create('mealPlans', data);
 }
 

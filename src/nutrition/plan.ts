@@ -77,6 +77,8 @@ export interface DayCheck {
   targetKcal: number;
   /** incomplet = au moins une case vide ; sous_plancher = énergie sous le plancher ; ecart = hors tolérance du jour ; ok sinon. */
   status: 'ok' | 'incomplet' | 'sous_plancher' | 'ecart';
+  /** Vrai si l'énergie du jour est sous le plancher, même quand le statut est « incomplet ». */
+  belowFloor?: boolean;
 }
 
 export interface WeekPlan {
@@ -121,7 +123,7 @@ function mulberry32(seed: number) {
 /** Filtres durs. Dès qu'une exclusion d'allergène est active, seules les recettes aux allergènes `valide` passent. */
 export function recipeAllowed(r: Recipe, p: PlanPrefs): boolean {
   // Strict dès qu'une allergie, un mot à exclure ou une intolérance (lactose, gluten) est déclaré : seules les recettes aux allergènes `valide`.
-  const strict = p.allergens.length > 0 || p.allergenFree.some((w) => norm(w)) || p.diet.includes('sans_lactose') || p.diet.includes('sans_gluten');
+  const strict = p.allergens.length > 0 || p.allergenFree.some((w) => norm(w)) || p.diet.includes('sans_lactose') || p.diet.includes('sans_gluten') || !!p.strictControle;
   if (r.statutAllergenes === 'inconnu') return false;
   if (strict && r.statutAllergenes !== 'valide') return false;
   if (p.strictControle && r.statut !== 'controle_relecteur') return false;
