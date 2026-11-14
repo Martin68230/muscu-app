@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [moyen_fessier]
 muscles_secondaires: [quadriceps, mollets, adducteurs]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -42,7 +42,7 @@ statut: complete_kine
 - plus-dur : saut-lateral-patineur
 
 ## Repères de dosage
-Aucune valeur sourcée. Contacts : comptés dans le budget de la séance (départ du niveau 40 / 60 / 80, creer-seance-v1.md §3, cardio-regles.md §5.2bis) ; proposition de `coach` : 2 séries, NON SOURCÉ, validé par `kine` le 13/11/2026 ; récupération 60 à 90 secondes en marchant.
+Aucune valeur sourcée. Contacts : comptés dans le budget de la séance (départ du niveau 40 / 60 / 80, creer-seance-v1.md §3, cardio-regles.md §5.2bis) ; proposition de `coach` : 2 séries de 3 à 5 sauts (un saut = un contact au budget), NON SOURCÉ, validé par `kine` le 13/11/2026 ; récupération 60 à 90 secondes en marchant.
 
 ## Sécurité et contre-indications
 Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, si le chef de projet le décide, un contrôle `relecteur` du lot) ; cases par zone, notes, ligne Grossesse et signes d'arrêt à contrôler contre regles-securite-communes.md et format-fiches.md §4. Les tableaux par zone sont NON SOURCÉS (choix prudents). Rien ici n'est un diagnostic.
@@ -79,7 +79,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 - Si l'objet bouge, glisse ou grince : arrêt, et l'objet n'est plus utilisé (R8).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/saut-lateral-pieds-joints.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

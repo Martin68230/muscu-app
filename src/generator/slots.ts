@@ -1,5 +1,5 @@
 // Emplacements d'une séance (V-EMP §2.2), classement (V-CLASSE §6.7), replis (V-IMPOS §7.1), rotation A/C (V-ROT §2.3).
-import { CORE_NOT_CORE_IDS, ISOLATION, MAIN_EXERCISE_SLOTS, PILLAR_EXCLUDED_FICHES } from './config';
+import { CORE_NOT_CORE_IDS, ISOLATION, MAIN_EXERCISE_SLOTS, MANUAL_ONLY_FICHES, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import { templateOf } from './split';
@@ -227,6 +227,7 @@ export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx
     for (const c of resolveFiche(X, ctx).candidates) {
       const s = schemas.get(c.fiche.schema);
       if (!s || used.has(c.fiche.id)) continue;
+      if (MANUAL_ONLY_FICHES.includes(c.fiche.id)) continue; // lot 5 : choix à la main seulement
       if (isTwinOfUsed(c.fiche, used, ctx)) continue; // lot cohérence 5 a : jamais le même exercice deux fois sous deux noms
       // Cou réservé (13/11/2026, CAL-12 inchangé) : dans la séance du bas du corps réservée au cou, aucune fiche lourde d’épaules / trapèzes (squat à la barre compris).
       if (ctx.neckSafeLabels?.has(st.label) && isHeavyShoulderTrapExercise({ ficheId: c.fiche.id, tags: c.variant.tags, schema: c.fiche.schema }, ctx)) continue;

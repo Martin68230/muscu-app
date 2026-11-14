@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [cou]
 muscles_secondaires: [trapezes]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -57,7 +57,6 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 
 **Notes**
 - general : cou : retiré dès la gêne légère ; cette fiche s'adresse à une personne sans douleur au cou, les fiches douces du cou prennent le relais si la zone est gênée (C1, choix prudent).
-- general : (ancien texte coach, remplacé par l'avis kine ci-dessous) jamais placée automatiquement dans un programme (choix prudent proposé, comme `renfo-cou-mains`) : choisie à la main par la personne, ou placement automatique seulement si `kine` l'accepte, avec les conditions (a) à (f) de `renfo-cou-isometrique` : dépistage « Non, rien », fin de séance, jamais en échauffement ni en superset, jamais deux jours de suite, jamais après un exercice lourd de trapèzes ou d'épaules (CAL-12).
 - general : avis `kine` du 13/11/2026 : **placement MANUEL seulement, jamais automatique** (refus de l'option « placement automatique » : les conditions (a) à (f) de `renfo-cou-isometrique` valent pour une seule direction avant, pas pour ces directions) ; maintien de 5 secondes au plus, 2 maintiens par direction, aucune série ajoutée, jamais deux jours de suite, jamais pour un débutant (niveau intermédiaire minimum), jamais si le cou a eu une gêne récente ou un choc (C3) ; message d'arrêt de la fiche affiché avant la première série.
 - general : variante arrière : mains à plat sur l'arrière du crâne, coudes bas devant ; la tête ne part jamais vers l'arrière, aucun renversement du cou (C6).
 - general : pression très légère (tu peux parler), respiration continue, tête et cou immobiles ; jamais de mouvement, jamais de poussée jusqu'à la fatigue ; aucune durée ni pression chiffrée sourcée.
@@ -68,16 +67,16 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 **Version plus douce** : renfo-cou-simple
 
 **Signes qui doivent faire arrêter**
-- Douleur au cou ou à la nuque, raideur nouvelle, vertige ou étourdissement, maux de tête, vision trouble, nausée, engourdissement ou fourmillements dans les bras ou les mains, sensation de décharge : arrête tout de suite et ne refais pas l'exercice avant l'avis d'un professionnel de santé (R4, S2, regles-securite-communes.md §9 C4).
+- Douleur au cou ou à la nuque, raideur nouvelle, vertige ou étourdissement, maux de tête, vision trouble ou double, nausée, engourdissement ou fourmillements dans les bras ou les mains, sensation de décharge : arrête tout de suite et ne refais pas l'exercice avant l'avis d'un professionnel de santé (R4, S2, regles-securite-communes.md §9 C4).
 - Visage qui tombe, faiblesse brutale d'un bras ou d'une jambe, difficulté soudaine à parler, perte de vue, mal de tête brutal et très intense : appelle le 15 ou le 112 (U1).
 - Douleur qui dure, gonflement, perte de force : consulte un professionnel de santé (S1, S2).
 - Douleur de cou après un choc, une chute ou un coup du lapin : ne fais pas cet exercice, demande l'avis d'un professionnel de santé (C3).
 
 **Objets du quotidien**
-- Chaise stable sans roulettes, ou sol plat si tu es debout (R8).
+- Chaise stable sans roulettes (R8).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/cou-lateral-arriere-main.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

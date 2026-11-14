@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [abdominaux]
 muscles_secondaires: [deltoides_anterieurs, quadriceps, dentele_anterieur, triceps]
 source_brouillon: []
-statut: complete_kine
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : choix de coach, NON SOURCÉ.
@@ -16,13 +16,13 @@ statut: complete_kine
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | ours-maintien-genoux-decolles | Maintien à quatre pattes, genoux à quelques centimètres du sol | 1 | intermediaire | poids_du_corps, tapis | Sur un tapis, mains sous les épaules, genoux sous les hanches ; décolle les genoux de quelques centimètres, dos plat. |
-| ours-pas-lents | Quelques pas lents en avant et en arrière | 2 | intermediaire | poids_du_corps, tapis | Même position ; avance une main et le pied opposé, très lentement, sur une courte distance dégagée. |
+| ours-pas-lents | Quelques pas lents en avant | 2 | intermediaire | poids_du_corps, tapis | Même position ; avance une main et le pied opposé, très lentement, sur une courte distance dégagée. |
 
 ## Consignes
 1. Mets-toi à quatre pattes sur un tapis, mains sous les épaules, genoux sous les hanches, dos plat, regard vers le sol.
 2. Serre le ventre et décolle les genoux de quelques centimètres seulement.
 3. Tiens en respirant normalement, sans cambrer ni arrondir le dos.
-4. Pour l'échelon 2 : avance lentement une main et le pied opposé, puis l'autre paire, sur 2 à 3 mètres.
+4. Pour l'échelon 2 : avance lentement une main et le pied opposé, puis l'autre paire, sur 3 mètres au plus, en avant seulement.
 5. Repose les genoux dès que la position se dégrade.
 
 ## Points d'attention
@@ -42,7 +42,7 @@ statut: complete_kine
 - plus-dur : aucun
 
 ## Repères de dosage
-Aucune valeur sourcée. Proposition de `coach`, NON SOURCÉ, validé par `kine` le 13/11/2026 : échelon 1 : 2 séries de 10 à 20 secondes ; échelon 2 : 2 séries de 2 à 3 mètres aller-retour ; repos 60 secondes ; dose fixe, jamais augmentée vers la fatigue.
+Aucune valeur sourcée. Proposition de `coach`, NON SOURCÉ, validé par `kine` le 13/11/2026 : échelon 1 : 2 séries de 10 à 20 secondes ; échelon 2 : 2 séries de 3 mètres au plus, en avant seulement ; repos 60 secondes ; dose fixe, jamais augmentée vers la fatigue.
 
 ## Sécurité et contre-indications
 Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, si le chef de projet le décide, un contrôle `relecteur` du lot) ; cases par zone, notes, ligne Grossesse et signes d'arrêt à contrôler contre regles-securite-communes.md et format-fiches.md §4. Les tableaux par zone sont NON SOURCÉS (choix prudents). Rien ici n'est un diagnostic.
@@ -78,7 +78,7 @@ Rédigé par `coach` le 2026-11-13, **validé par `kine` le 13/11/2026** (puis, 
 - Tapis non glissant, sol dégagé, mains et genoux sur une surface sèche (R8).
 
 ## Photo
-- aucune photo
+- illustration : public/illustrations/marche-de-l-ours.svg : affichable : oui (illustration originale de l'app)
 
 ## Sources
 | Affirmation | Source | Niveau de preuve | Lu le | Statut |

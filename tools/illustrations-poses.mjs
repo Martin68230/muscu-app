@@ -1246,4 +1246,46 @@ export const EXERCICES = [
     a: { p: [-18, 104], t: 11, h: 20, armN: { a: [191, -90] }, armF: { to: [46, 50], bend: 'f' }, legN: { a: [-90, 180], foot: 180 }, legF: { to: [-30, A], bend: 'b' }, back: [['rect', -85, 38, 155, 8, 2], ['lin', [[-70, 0], [-70, 38]], 6], ['lin', [[55, 0], [55, 38]], 6]], props: (J) => [['plate', J.haN, 8]] },
     b: { p: [-18, 104], t: 11, h: 20, armN: { a: [191, 191] }, armF: { to: [46, 50], bend: 'f' }, legN: { a: [-90, 180], foot: 180 }, legF: { to: [-30, A], bend: 'b' }, back: [['rect', -85, 38, 155, 8, 2], ['lin', [[-70, 0], [-70, 38]], 6], ['lin', [[55, 0], [55, 38]], 6]], props: (J) => [['plate', J.haN, 8], ['arrow', [-50, 120], [-90, 120]]] },
   },
+  {
+    id: 'cou-lateral-arriere-main', titre: 'Cou, isométrie avec la main, assis : la main derrière la tête pousse, la tête résiste sans bouger (côté : même geste, main sur le côté de la tête)',
+    labels: ['Main contre la tête, tête neutre', 'On résiste sans bouger la tête'],
+    a: { p: [-48, 58], t: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [-12, 128], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]] },
+    b: { p: [-48, 58], t: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [-12, 128], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: [['arrow', [-70, 138], [-40, 138]]] },
+  },
+  {
+    id: 'rotation-isometrique-cou', titre: 'Cou, résister à la rotation avec la main, assis : la main sur la joue pousse, la tête garde le regard devant',
+    labels: ['Main sur la joue, regard devant', 'On résiste sans tourner la tête'],
+    a: { p: [-48, 58], t: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [14, 120], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]] },
+    b: { p: [-48, 58], t: 90, legN: { to: [10, A], bend: 'f' }, legF: { to: [4, A], bend: 'f' }, armN: { to: [14, 120], bend: 'u' }, armF: { a: [3, -2] }, back: [['chair', -75, 46, 1]], props: [['arrow', [58, 120], [34, 120]]] },
+  },
+  {
+    id: 'marche-de-l-ours', titre: 'Marche de l\'ours, genoux décollés : à quatre pattes sur les mains et la pointe des pieds, genoux à quelques centimètres du sol, dos plat ; puis un pas lent main et pied opposés',
+    labels: ['Genoux décollés, dos plat', 'Un pas lent, main et pied opposés'],
+    a: quad({ p: [-18, 64], t: 9, h: 18, legN: { to: [-66, 9], bend: 'd', foot: -60 }, legF: { to: [-60, 9], bend: 'd', foot: -60 } }),
+    b: quad({ p: [-14, 64], t: 9, h: 18, armN: { to: [64, 6], bend: 'f' }, legF: { to: [-40, 9], bend: 'd', foot: -60 }, legN: { to: [-66, 9], bend: 'd', foot: -60 }, props: [['arrow', [30, 100], [70, 100]]] }),
+  },
+  {
+    id: 'marche-du-crabe', titre: 'Pont du crabe, maintien : assis au sol puis hanches levées, mains derrière sous les épaules, pieds à plat, genoux pliés ; corps en table',
+    labels: ['Hanches basses, mains derrière', 'Hanches levées, corps en table'],
+    a: { p: [-30, 24], t: 25, h: 30, armN: { to: [32, 7], bend: 'f' }, armF: { to: [26, 7], bend: 'f' }, legN: { to: [-70, A], bend: 'u' }, legF: { to: [-64, A], bend: 'u' }, back: [['mat', -140, 130]] },
+    b: { p: [-30, 54], t: 20, h: 28, armN: { to: [34, 7], bend: 'f' }, armF: { to: [28, 7], bend: 'f' }, legN: { to: [-72, A], bend: 'u' }, legF: { to: [-66, A], bend: 'u' }, back: [['mat', -140, 130]], props: [['arrow', [-30, 95], [-30, 125]]] },
+  },
+  {
+    id: 'releve-bassin-marche', titre: 'Relevé de bassin avec pas alternés : couché sur le dos, bassin levé en pont, puis un pied monte sans que le bassin s\'incline',
+    labels: ['Pont, bassin levé', 'Un pied monte, bassin stable'],
+    a: { p: [8, 38], t: 203, h: 170, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [60, A], bend: 'u' }, back: [['mat', -140, 130]] },
+    b: { p: [8, 38], t: 203, h: 170, armN: { to: [15, 9], bend: 'u' }, armF: { to: [10, 9], bend: 'u' }, legN: { to: [66, A], bend: 'u' }, legF: { to: [52, 40], bend: 'u' }, back: [['mat', -140, 130]], props: [['arrow', [100, 40], [100, 70]]] },
+  },
+  {
+    id: 'tirage-sac-sur-sol', titre: 'Tirage d\'un sac sur le sol : buste penché dos plat, mains sur la poignée du sac, le sac glisse vers soi en tirant main sur main',
+    labels: ['Bras tendus vers le sac', 'Sac tiré vers les pieds, coudes serrés'],
+    a: { p: [-40, 52], t: 30, h: 28, armN: { to: [64, 32], bend: 'd' }, armF: { to: [60, 32], bend: 'd' }, legN: { to: [-5, A], bend: 'f' }, legF: { to: [-15, A], bend: 'f' }, props: [['bag', [76, 24], 40, 26, 0]] },
+    b: { p: [-40, 52], t: 30, h: 28, armN: { to: [14, 40], bend: 'b' }, armF: { to: [10, 40], bend: 'b' }, legN: { to: [-5, A], bend: 'f' }, legF: { to: [-15, A], bend: 'f' }, props: [['bag', [26, 24], 40, 26, 0], ['arrow', [100, 70], [60, 70]]] },
+  },
+  {
+    id: 'saut-lateral-pieds-joints', titre: 'Saut latéral pieds joints, vue de face : réception souple pieds joints, puis petit saut de côté par-dessus une ligne, genoux au-dessus des pieds',
+    view: 'front', labels: ['Pieds joints, genoux souples', 'Petit saut de côté (quelques centimètres)'],
+    a: { p: [0, 106], legN: { to: [8, A], bend: 'f' }, legF: { to: [-8, A], bend: 'b' }, armN: { a: [-70, -50] }, armF: { a: [-110, -130] } },
+    b: { p: [0, 124], legN: { to: [8, 26], bend: 'f' }, legF: { to: [-8, 26], bend: 'b' }, armN: { a: [-50, -30] }, armF: { a: [-130, -150] }, props: [['arrow', [-40, 40], [40, 40]]] },
+  },
 ];
