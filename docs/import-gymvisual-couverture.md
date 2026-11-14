@@ -1,18 +1,17 @@
 # D22 : couverture des images par fiche (14/11/2026)
 
-Fiches : 271 (A1 et lot 6 compris) ; variantes : 574. GIF distincts utilisés : 174.
+Fiches : 271 (A1 et lot 6 compris) ; variantes : 574. GIF distincts utilisés : 179.
 
 | | fiches | variantes |
 |---|---|---|
 | image sûre (même mouvement, même matériel) | 86 | 113 |
-| variante proche seulement (même geste, autre matériel / charge ; légende « exercice proche ») | 51 | 133 |
-| aucune image | 134 | 328 |
+| variante proche seulement (même geste, autre matériel / charge ; légende « exercice proche ») | 57 | 140 |
+| aucune image | 128 | 321 |
 
-Sans image, par raison (variantes) : ambigu 106, pas_dans_le_jeu 221.
+Sans image, par raison (variantes) : pas_dans_le_jeu 218, ambigu 100.
 Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute = rien. Les variantes au sol qui reçoivent une image de banc sont « proche ». Quelques « sûr » reposent sur le nom seul : à regarder sur l'iPhone.
 
 ## Fiches sans aucune image (raison de leurs variantes)
-- abduction-couchee-cote : ambigu / pas_dans_le_jeu — 0710 side hip abduction : posture couchée non confirmée par le nom
 - abduction-hanche-debout : ambigu / pas_dans_le_jeu — 1427 straight leg outer hip abductor : posture non précisée
 - abduction-hanche-poulie : pas_dans_le_jeu — seuls extension et adduction à la poulie existent
 - abduction-quatre-pattes : pas_dans_le_jeu — pas de fire hydrant dans le jeu
@@ -41,7 +40,7 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - curl-ischios-serviette : ambigu — 0730 single leg platform slide : geste non confirmé par le nom
 - dead-bug-jambes-seules : ambigu — 0276 dead bug inclut les bras ; notre variante est jambes seules
 - descente-une-jambe-chaise : ambigu — pistol squat (1476, 1759) : technique, pas de chaise, contredit la consigne
-- developpe-arnold-halteres : ambigu — 2137 dumbbell arnold press : posture assise non confirmée par le nom
+- developpe-arnold-halteres : ? — 
 - developpe-epaules-sac-a-dos : pas_dans_le_jeu — aucun développé avec sac à dos
 - ecarte-sol-elastique : pas_dans_le_jeu / ambigu — aucun écarté pectoral à l élastique
 - ecartement-elastique : ambigu — 0993 band reverse fly : debout ou penché non précisé
@@ -82,7 +81,6 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - montee-rapide-chaise : ambigu — seuls des step-ups chargés ; notre consigne interdit toute charge
 - montees-genoux-sur-place : pas_dans_le_jeu — aucun équivalent dans le jeu
 - nage-au-sol : ambigu — swimmer kicks (3433) : battements de jambes seuls, pas bras opposés
-- nordique-ischios : pas_dans_le_jeu — aucun équivalent dans le jeu
 - ouverture-hanche-quatre-pattes : ambigu — side hip abduction (0710) : probablement couché, pas à quatre pattes
 - ouverture-livre-thoracique : pas_dans_le_jeu — aucun équivalent dans le jeu
 - pas-chasses-lateraux : pas_dans_le_jeu — aucun équivalent dans le jeu
@@ -105,7 +103,6 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - porte-un-haltere-epaule : ambigu — aucun porté sur l'épaule
 - porte-valise : pas_dans_le_jeu — aucun équivalent dans le jeu
 - poussee-verticale-mur : pas_dans_le_jeu — aucun équivalent dans le jeu
-- presse-des-mains : pas_dans_le_jeu — aucun équivalent dans le jeu
 - rebonds-chevilles : pas_dans_le_jeu — Aucun rebond sur les chevilles dans le jeu
 - reception-saut-stabilisee : pas_dans_le_jeu — Aucune reception de saut stabilisee
 - releve-tibial-mur : pas_dans_le_jeu — Pas de releve du tibial anterieur (seulement smith toe raise)
@@ -123,7 +120,6 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - souleve-de-terre-sac : ambigu — Aucun souleve avec sac ; prise differente des barres et halteres
 - squat-assis-debout : pas_dans_le_jeu — Pas de squat assis-debout poids du corps
 - squat-ballon-lest : pas_dans_le_jeu — Pas de squat avec ballon lestee
-- squat-bulgare : ambigu — Bulgare possible sous 0410/0099 single leg split squat, a verifier a l'ecran
 - squat-lancer-mur : pas_dans_le_jeu — Pas de lancer de ballon au mur
 - squat-mur-ballon : pas_dans_le_jeu — Pas de squat dos au ballon contre mur
 - squat-poids-du-corps : pas_dans_le_jeu — Aucun squat poids du corps simple dans le jeu
@@ -133,7 +129,6 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - tirage-sac-sur-sol : pas_dans_le_jeu — Pas de tirage de sac sur le sol
 - tirage-vertical-allonge-ventre : pas_dans_le_jeu — Pas de tirage vertical au sol sur le ventre
 - tirage-vertical-serviette : pas_dans_le_jeu — Pas de tirage a la serviette
-- tirage-vertical-un-bras-elastique : ambigu — Jeu ancre ; notre elastique tenu sans ancrage
 - tirage-visage-elastique-barre : pas_dans_le_jeu — Pas de tirage au visage (face pull)
 - tirage-visage-sangles : pas_dans_le_jeu — Pas de tirage au visage aux sangles
 - tirage-w-allonge : pas_dans_le_jeu — Pas de tirage en W allonge
@@ -141,8 +136,31 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - traction-un-bras : ambigu — 0638 un bras sans aide et 0970 deux bras contredisent la consigne
 - ytw-sol : pas_dans_le_jeu — Seuls Y et T inclines sur banc, pas au sol
 - coquille-hanche : pas_dans_le_jeu — aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
-- etirement-epaule-bras-croise : pas_dans_le_jeu — aucun étirement du bras croisé
 - fente-croisee : pas_dans_le_jeu — aucune fente croisée ; fentes arrière ou avant d'un geste différent
 - pallof-pas-lateraux : ambigu — seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
 - planche-glissee-serviette : pas_dans_le_jeu — aucune planche glissée sur serviette
 - posture-enfant-bras-avances : pas_dans_le_jeu — aucune posture de l'enfant
+
+## Causes des fiches restées sans image (128)
+- (a) aucun équivalent dans le jeu (poids du corps, élastique, chaise, objets du quotidien, exercices originaux du projet) : 76
+- (b) équivalent trouvé par le coach puis écarté à ma relecture (ex. alternance marche-course : le GIF montre la course seule) : 2
+- (c) équivalent présent mais ambigu : refusé (autre geste, posture ou appui possible) : 50
+
+## Les 15 fiches sans image les plus utilisées dans les programmes (sur 150 profils générés)
+- bird-dog : 150/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- gainage-creux : 150/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- bonjour-poids-du-corps : 84/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- assis-debout-mains-cuisses : 80/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- charniere-dos-au-mur : 80/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- pompe-piquee : 76/150 — cause c : 3662 pike-to-cobra push-up : enchaîne vers la cobra, autre geste ; pas de pompe piquée simple
+- curl-ischios-serviette : 70/150 — cause c : 0730 single leg platform slide : le nom ne confirme pas un curl couché talon glissant
+- dead-bug-jambes-seules : 68/150 — cause c : 0276 montre aussi les bras ; notre variante est jambes seules (autre nombre de membres)
+- adduction-serrage-genoux : 57/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- marche-laterale-poids-du-corps : 48/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- pompe-piquee-pieds-sureleves : 47/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- cheville-elastique : 46/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- releve-tibial-mur : 44/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- ecartement-serviette : 41/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
+- face-pull-elastique : 38/150 — cause c : 0203 rear delt row with rope : rowing buste penché à la poulie, pas un tirage au visage
+
+Seconde passe (14/11) : recherche par mouvement / muscle / matériel ; 9 variantes ajoutées (toutes « proche »). Les « proche » jugés sur le nom seul à regarder sur l'iPhone : 0696, 0669, 0410, 2137, 0287, 1297, 0710, 0983.

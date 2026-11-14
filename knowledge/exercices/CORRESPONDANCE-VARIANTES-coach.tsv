@@ -246,3 +246,12 @@ tirage-vertical-poulie	tirage-poulie-un-bras	3563	proche	tirage vertical un bras
 traction-assistee-machine	traction-assistee-moyenne	0017	sûr	traction assistée à la machine à contrepoids
 traction-assistee-machine	traction-assistee-forte	0017	proche	même machine ; niveau d'assistance non montré
 traction-assistee-machine	traction-assistee-faible	0017	proche	même machine ; niveau d'assistance non montré
+tirage-vertical-un-bras-elastique	tirage-un-bras-elastique-debout	0983	proche	tirage vertical un bras à la bande ; image à genoux et bande ancrée, comme pour la fiche voisine déjà validée
+tirage-vertical-un-bras-elastique	tirage-un-bras-elastique-assis	0983	proche	même geste ; image à genoux et bande ancrée, nous assis sur chaise
+abduction-couchee-cote	abduction-couchee-cote-base	0710	proche	abduction de hanche (muscle abducteur, poids du corps) ; position de la jambe du dessous non vérifiée
+presse-des-mains	presse-des-mains-debout	1297	proche	pression isométrique des paumes ; debout ou assis non précisé
+developpe-arnold-halteres	developpe-arnold-chaise	2137 0287	proche	développé Arnold haltères ; posture assise non confirmée par le nom
+developpe-arnold-halteres	developpe-arnold-banc	2137 0287	proche	développé Arnold haltères ; posture assise non confirmée par le nom
+squat-bulgare	squat-bulgare-halteres	0410	proche	single leg split squat aux haltères (pied arrière surélevé sur banc d après le geste usuel du jeu) ; banc au lieu de chaise, à vérifier à l écran
+nordique-ischios	nordique-ischios-poussee	0696	proche	self assisted inverse leg curl (on floor) : nordique avec aide des mains ; ancrage des pieds non vérifié
+etirement-epaule-bras-croise	epaule-croisee-debout	0669	proche	rear deltoid stretch au poids du corps ; posture debout supposée d après le nom

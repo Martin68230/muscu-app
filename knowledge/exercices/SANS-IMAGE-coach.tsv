@@ -1,5 +1,4 @@
 fiche_id	variante_id	raison	detail
-abduction-couchee-cote	abduction-couchee-cote-base	ambigu	0710 side hip abduction : posture couchée non confirmée par le nom
 abduction-couchee-cote	abduction-couchee-cote-dos-mur	pas_dans_le_jeu	aucun exercice contre un mur
 abduction-couchee-cote	abduction-couchee-cote-mini-bande	pas_dans_le_jeu	pas de levée de jambe couchée avec mini-bande
 abduction-hanche-debout	abduction-debout-chaise	ambigu	1427 straight leg outer hip abductor : posture non précisée
@@ -57,8 +56,6 @@ dead-bug-jambes-seules	dead-bug-talon-au-sol	ambigu	0276 dead bug inclut les bra
 dead-bug-jambes-seules	dead-bug-jambes-seules-sol	ambigu	0276 dead bug inclut les bras ; notre variante est jambes seules
 descente-une-jambe-chaise	descente-une-jambe-chaise-appui	ambigu	pistol squat (1476, 1759) : technique, pas de chaise, contredit la consigne
 descente-une-jambe-chaise	descente-une-jambe-chaise-libre	ambigu	pistol squat (1476, 1759) : technique, pas de chaise, contredit la consigne
-developpe-arnold-halteres	developpe-arnold-chaise	ambigu	2137 dumbbell arnold press : posture assise non confirmée par le nom
-developpe-arnold-halteres	developpe-arnold-banc	ambigu	2137 dumbbell arnold press : posture assise non confirmée par le nom
 developpe-elastique-dos	developpe-elastique-dos-debout	pas_dans_le_jeu	seul le développé à l élastique couché ou assis existe
 developpe-epaules-assis-dossier-incline	developpe-epaules-banc-sans-dossier	ambigu	0290 bench seated press : présence du dossier non précisée
 developpe-epaules-elastique	developpe-epaules-elastique-un-bras	ambigu	0997 est à deux bras ; notre variante est à un bras
@@ -164,7 +161,6 @@ montees-genoux-sur-place	montees-genoux-course	pas_dans_le_jeu	aucun équivalent
 mountain-climbers	mountain-climbers-chaise	ambigu	image au sol, plus difficile que mains sur chaise ; contredit l'installation
 nage-au-sol	nage-au-sol-lente	ambigu	swimmer kicks (3433) : battements de jambes seuls, pas bras opposés
 nordique-ischios	nordique-ischios-court	pas_dans_le_jeu	aucun équivalent dans le jeu
-nordique-ischios	nordique-ischios-poussee	pas_dans_le_jeu	aucun équivalent dans le jeu
 nordique-ischios	nordique-ischios-sans-mains	pas_dans_le_jeu	aucun équivalent dans le jeu
 oiseau-elastique	oiseau-elastique-assis	ambigu	band reverse fly (0993) : ancrage et posture assise non vérifiables
 oiseau-halteres	oiseau-sans-charge-assis	ambigu	rear fly (0378) : posture assise non vérifiable
@@ -220,7 +216,6 @@ porte-valise	porte-valise-haltere	pas_dans_le_jeu	aucun équivalent dans le jeu
 porte-valise	porte-valise-bidon-sac	pas_dans_le_jeu	aucun équivalent dans le jeu
 poussee-verticale-mur	poussee-verticale-mur-front	pas_dans_le_jeu	aucun équivalent dans le jeu
 poussee-verticale-mur	poussee-verticale-mur-haute	pas_dans_le_jeu	aucun équivalent dans le jeu
-presse-des-mains	presse-des-mains-debout	pas_dans_le_jeu	aucun équivalent dans le jeu
 pullover-haltere-au-sol	pullover-banc-haltere	ambigu	Le jeu montre probablement le pullover en travers du banc, que notre consigne exclut
 rebonds-chevilles	rebonds-deux-pieds	pas_dans_le_jeu	Aucun rebond sur les chevilles dans le jeu
 reception-saut-stabilisee	reception-saut-pas-stabilise	pas_dans_le_jeu	Aucune reception de saut stabilisee
@@ -272,7 +267,6 @@ squat-ballon-lest	squat-ballon-lest-poitrine	pas_dans_le_jeu	Pas de squat avec b
 squat-ballon-lest	squat-ballon-lest-bras-tendus	pas_dans_le_jeu	Pas de squat avec ballon lestee
 squat-bulgare	squat-bulgare-chaise	ambigu	Bulgare possible sous 0410/0099 single leg split squat, a verifier a l'ecran
 squat-bulgare	squat-bulgare-marche	ambigu	Bulgare possible sous 0410/0099 single leg split squat, a verifier a l'ecran
-squat-bulgare	squat-bulgare-halteres	ambigu	Bulgare possible sous 0410 single leg split squat, a verifier a l'ecran
 squat-fendu	squat-fendu-halteres	ambigu	0410 pourrait etre un bulgare (pied arriere sureleve) : conflit
 squat-gilet-lest	squat-gilet-lest-chaise	pas_dans_le_jeu	Pas de squat gilet avec chaise
 squat-gilet-lest	squat-gilet-lest-pause	pas_dans_le_jeu	Pas de squat avec arret en bas
@@ -294,8 +288,6 @@ tirage-vertical-allonge-ventre	tirage-ventre-poitrine-levee	pas_dans_le_jeu	Pas 
 tirage-vertical-serviette	tirage-serviette-debout	pas_dans_le_jeu	Pas de tirage a la serviette
 tirage-vertical-serviette	tirage-serviette-assis	pas_dans_le_jeu	Pas de tirage a la serviette
 tirage-vertical-serviette	tirage-serviette-une-main	pas_dans_le_jeu	Pas de tirage a la serviette
-tirage-vertical-un-bras-elastique	tirage-un-bras-elastique-debout	ambigu	Jeu ancre ; notre elastique tenu sans ancrage
-tirage-vertical-un-bras-elastique	tirage-un-bras-elastique-assis	ambigu	Jeu ancre ; notre elastique tenu sans ancrage
 tirage-visage-elastique-barre	tirage-visage-elastique-barre-assis	pas_dans_le_jeu	Pas de tirage au visage (face pull)
 tirage-visage-elastique-barre	tirage-visage-elastique-barre-debout	pas_dans_le_jeu	Pas de tirage au visage
 tirage-visage-sangles	tirage-visage-sangles-debout	pas_dans_le_jeu	Pas de tirage au visage aux sangles
@@ -313,7 +305,6 @@ coquille-hanche	coquille-mini-bande	pas_dans_le_jeu	aucune coquille ; l'abductio
 coquille-hanche	coquille-mini-bande-pause	pas_dans_le_jeu	aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
 elevation-frontale-halteres	frontale-sans-charge	pas_dans_le_jeu	aucune élévation frontale à vide
 etirement-epaule-bras-croise	epaule-croisee-assis	pas_dans_le_jeu	aucun étirement du bras croisé
-etirement-epaule-bras-croise	epaule-croisee-debout	pas_dans_le_jeu	aucun étirement du bras croisé
 fente-croisee	fente-croisee-appui	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
 fente-croisee	fente-croisee-libre	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
 fente-croisee	fente-croisee-halteres	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
