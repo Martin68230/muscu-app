@@ -125,7 +125,7 @@
     "allergenes": [
       "gluten"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten"
     ],
@@ -277,7 +277,7 @@
     "famille": "feculent",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -414,11 +414,15 @@
     "nom": "Tortilla de maïs",
     "famille": "feculent",
     "rayon": "feculents",
-    "allergenes": [],
+    "allergenes": [
+      "gluten",
+      "lait",
+      "soja"
+    ],
     "statut_allergenes": "a_verifier",
     "regimes_incompatibles": [],
     "unite_achat": null,
-    "conditionnement_g": 8,
+    "conditionnement_g": null,
     "garde_manger": false,
     "perissable": true
   },
@@ -742,7 +746,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -758,7 +762,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -774,7 +778,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -790,7 +794,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -822,7 +826,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -911,7 +915,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -930,7 +934,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -946,7 +950,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -962,7 +966,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -978,7 +982,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -994,7 +998,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1010,7 +1014,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1026,7 +1030,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1042,7 +1046,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien"
@@ -1061,7 +1065,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -1079,7 +1083,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -1097,7 +1101,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -1115,7 +1119,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -1133,7 +1137,7 @@
     "famille": "proteine_animale",
     "rayon": "viandes_poissons",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -3334,7 +3338,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 500,
@@ -3627,11 +3631,11 @@
   },
   {
     "code": "20083",
-    "nom": "Épinards hachés surgelés",
+    "nom": "Épinards hachés surgelés nature",
     "famille": "legume",
     "rayon": "surgeles",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -3644,7 +3648,7 @@
     "famille": "legume",
     "rayon": "surgeles",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -3670,7 +3674,7 @@
     "famille": "legume",
     "rayon": "surgeles",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -3869,8 +3873,10 @@
     "nom": "Maïs doux en conserve",
     "famille": "legume",
     "rayon": "epicerie",
-    "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "allergenes": [
+      "sulfites"
+    ],
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 285,
@@ -3897,8 +3903,10 @@
     "nom": "Petits pois en conserve",
     "famille": "legume",
     "rayon": "epicerie",
-    "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "allergenes": [
+      "sulfites"
+    ],
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 400,
@@ -4386,7 +4394,9 @@
       "celeri",
       "sulfites",
       "moutarde",
-      "gluten"
+      "gluten",
+      "lait",
+      "soja"
     ],
     "statut_allergenes": "valide",
     "regimes_incompatibles": [],
@@ -4495,13 +4505,16 @@
       "soja",
       "celeri",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "gluten",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
-      "sans_porc"
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "paquet de 4 tranches",
@@ -4521,12 +4534,15 @@
       "soja",
       "celeri",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "gluten",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
-      "vegetalien"
+      "vegetalien",
+      "sans_porc"
     ],
     "unite_achat": {
       "label": "paquet de 4 tranches",
@@ -4661,13 +4677,16 @@
       "soja",
       "celeri",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "gluten",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
-      "sans_lactose"
+      "sans_lactose",
+      "sans_porc"
     ],
     "unite_achat": {
       "label": "paquet de 4 tranches",
@@ -4687,9 +4706,11 @@
       "soja",
       "celeri",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "gluten",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -4716,14 +4737,17 @@
       "soja",
       "celeri",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
       "sans_gluten",
-      "sans_lactose"
+      "sans_lactose",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "saucisse",
@@ -4741,7 +4765,7 @@
     "allergenes": [
       "sulfites"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "sachet",
@@ -4759,9 +4783,12 @@
     "allergenes": [
       "celeri",
       "gluten",
-      "lait"
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose"
@@ -4782,9 +4809,10 @@
       "lait",
       "soja",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "vegetarien",
       "vegetalien",
@@ -4812,9 +4840,10 @@
       "celeri",
       "soja",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "oeufs"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
@@ -4839,9 +4868,11 @@
       "lait",
       "soja",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "oeufs",
+      "fruits_a_coque"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
@@ -4864,9 +4895,11 @@
       "celeri",
       "gluten",
       "moutarde",
-      "sulfites"
+      "sulfites",
+      "lait",
+      "soja"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten"
     ],

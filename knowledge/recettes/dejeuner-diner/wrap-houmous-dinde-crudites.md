@@ -6,7 +6,7 @@ objectifs: [perte, maintien, prise]
 duree_prep_min: 8
 duree_cuisson_min: 0
 materiel: [aucun]
-regimes: [sans_porc]
+regimes: []
 cout: normal
 source_glucides: "tortilla de blé"
 source_proteines: "dinde"
