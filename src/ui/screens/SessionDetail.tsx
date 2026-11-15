@@ -18,6 +18,7 @@ const PAD = { l: 44, r: 14, t: 14, b: 30 };
 
 /** Courbe écrite à la main (SVG) : une séance = un point, couleurs du thème, texte alternatif complet. */
 export function ProgressCurve({ movementId, name, sets, sessions }: { movementId: string; name: string; sets: readonly SetLog[]; sessions: readonly WorkoutSession[] }) {
+  const [sel, setSel] = useState<number | null>(null);
   const { metric, points } = curveSeries(movementId, sets, sessions);
   if (points.length < CURVE_MIN_POINTS) {
     return <p class="dim small">Pas encore assez de séances pour une courbe : il en faut au moins deux avec cet exercice, sans douleur.</p>;
@@ -37,10 +38,19 @@ export function ProgressCurve({ movementId, name, sets, sessions }: { movementId
         <text x={PAD.l - 6} y={g.xy.reduce((m, p) => Math.min(m, p.y), H) + 4} text-anchor="end" class="curve-txt">{fmt(g.max)}</text>
         {g.max !== g.min && <text x={PAD.l - 6} y={g.xy.reduce((m, p) => Math.max(m, p.y), 0) + 4} text-anchor="end" class="curve-txt">{fmt(g.min)}</text>}
         <path d={g.path} class="curve-line" fill="none" />
-        {g.xy.map((p, i) => <circle key={points[i].sessionId} cx={p.x} cy={p.y} r="5" class="curve-dot" />)}
+        {g.xy.map((p, i) => <circle key={points[i].sessionId} cx={p.x} cy={p.y} r={sel === i ? 7 : 5} class={sel === i ? 'curve-dot curve-dot-sel' : 'curve-dot'} />)}
+        {g.xy.map((p, i) => {
+          const half = Math.max(22, (W - PAD.l - PAD.r) / Math.max(1, points.length - 1) / 2);
+          return (
+            <rect key={`hit-${points[i].sessionId}`} x={p.x - half} y={0} width={half * 2} height={H} class="hit" role="button" tabIndex={0}
+              aria-label={`${frDate(points[i].dateKey)} : ${fmt(points[i].value)} ${unit}`.trim()}
+              onClick={() => setSel(sel === i ? null : i)} onKeyDown={(e: KeyboardEvent) => { if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); setSel(sel === i ? null : i); } }} />
+          );
+        })}
         <text x={PAD.l} y={H - 8} text-anchor="start" class="curve-txt">{short(first.dateKey)}</text>
         <text x={W - PAD.r} y={H - 8} text-anchor="end" class="curve-txt">{short(last.dateKey)}</text>
       </svg>
+      <p class="curve-readout" role="status">{sel === null ? 'Touche un point pour voir la valeur.' : `${frDate(points[sel].dateKey)} : ${fmt(points[sel].value)} ${unit}`.trim()}</p>
       <figcaption class="small dim">
         {CURVE_LEGEND[metric]} {points.length} séances, de {short(first.dateKey)} à {short(last.dateKey)}. Les séries avec douleur ne comptent pas.
       </figcaption>
