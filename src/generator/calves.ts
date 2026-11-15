@@ -82,7 +82,9 @@ export function addCalfGuarantee(sessions: Sess[], d: FillDeps, typeOf: (label: 
       };
       if (tryWith(s.exercises)) return;
       // Pas de place : le mollet passe avant un accessoire de tronc (le dernier, jamais sous le plancher de core), sinon avant l’exercice fonctionnel, sinon avant un correctif (jamais le cou).
-      const victims = ['tronc', 'fonctionnel', 'correctif'].flatMap((sl) => s.exercises.filter((e) => e.slot === sl && e.ficheId !== CORRECTIF_COU.ficheId).reverse());
+      // Le tronc n'est jamais sacrifié : les séances désignées pour le core (D25, T-D25-16, core-ppl) le gardent ; le mollet prend la place de l'exercice fonctionnel, sinon d'un correctif.
+      const victimSlots = ['fonctionnel', 'correctif'];
+      const victims = victimSlots.flatMap((sl) => s.exercises.filter((e) => e.slot === sl && e.ficheId !== CORRECTIF_COU.ficheId).reverse());
       for (const v of victims) if (tryWith(s.exercises.filter((e) => e !== v), true)) return;
     }
   });

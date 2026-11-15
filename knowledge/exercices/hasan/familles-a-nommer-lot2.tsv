@@ -1,0 +1,169 @@
+famille	schema	muscles	noms_anglais	ids
+poussee_v|deltoides_anterieurs|press shoulder	poussee_v	deltoides_anterieurs	cable alternate shoulder press / cable shoulder press / smith shoulder press	0148,0219,0766
+poussee_h|triceps|extension kneeling triceps	poussee_h	triceps	bodyweight kneeling triceps extension / cable kneeling triceps extension	1771,0176
+poussee_h|pectoraux|bench incline press	poussee_h	pectoraux	cable incline bench press / smith incline bench press	0169,0757
+poussee_h|grand_dorsal|incline pushdown	poussee_h	grand_dorsal	cable incline pushdown	0172
+poussee_v|deltoides_lateraux|front lateral raise to	poussee_v	deltoides_lateraux	dumbbell lateral to front raise	0335
+poussee_h|deltoides_posterieurs|fly rear	poussee_h	deltoides_posterieurs	dumbbell rear fly	0378
+poussee_h|fessiers|chest hug keens to	poussee_h	fessiers	hug keens to chest	1418
+poussee_h|avant_bras|arms lower modified push to up	poussee_h	avant_bras	modified push up to lower arms	1421
+poussee_v|erecteurs_rachis|exercise leg prone raise	poussee_v	erecteurs_rachis	exercise ball prone leg raise	1343
+poussee_v|dentele_anterieur|incline raises shoulder	poussee_v	dentele_anterieur	smith incline shoulder raises	0759
+poussee_h|deltoides_anterieurs|press	poussee_h	deltoides_anterieurs	kettlebell alternating press / kettlebell seated press	0520,0546
+poussee_h|triceps|close grip press	poussee_h	triceps	barbell lying close-grip press / dumbbell close-grip press	0055,0296
+poussee_h|pectoraux|fly	poussee_h	pectoraux	cable lying fly / cable standing fly	0185,0227
+poussee_h|grand_dorsal|arm pushdown straight v	poussee_h	grand_dorsal	cable pushdown (straight arm) v. 2	0199
+poussee_v|deltoides_lateraux|arm incline lateral raise	poussee_v	deltoides_lateraux	dumbbell incline one arm lateral raise	0323
+poussee_v|fessiers|cobra pike push to up	poussee_v	fessiers	pike-to-cobra push-up	3662
+poussee_v|deltoides_anterieurs|arm military press	poussee_v	deltoides_anterieurs	kettlebell seated two arm military press / kettlebell two arm military press	1438,0553
+poussee_h|triceps|arm extension grip overhead reverse tricep	poussee_h	triceps	cable standing reverse grip one arm overhead tricep extension / dumbbell seated reverse grip one arm overhead tricep extension	1727,1738
+poussee_h|pectoraux|decline fly	poussee_h	pectoraux	cable decline fly / dumbbell decline fly	0158,0302
+poussee_v|deltoides_lateraux|arm lateral raise support with	poussee_v	deltoides_lateraux	dumbbell one arm lateral raise with support	0356
+poussee_h|deltoides_anterieurs|cross fly over revers	poussee_h	deltoides_anterieurs	cable cross-over revers fly	0154
+poussee_h|triceps|bench dip floor on	poussee_h	triceps	bench dip on floor	1399
+poussee_h|pectoraux|arm exercise fly on	poussee_h	pectoraux	cable one arm fly on exercise ball / dumbbell one arm fly on exercise ball	1263,1288
+poussee_v|deltoides_anterieurs|forward raise	poussee_v	deltoides_anterieurs	cable forward raise	0161
+poussee_h|triceps|extension high overhead pulley tricep	poussee_h	triceps	cable high pulley overhead tricep extension	1722
+poussee_h|pectoraux|arm exercise fly incline on	poussee_h	pectoraux	cable one arm incline fly on exercise ball / dumbbell incline one arm fly on exercise ball	1264,1280
+poussee_v|deltoides_anterieurs|front raise shoulder	poussee_v	deltoides_anterieurs	cable front shoulder raise	0164
+poussee_h|triceps|extension triceps v	poussee_h	triceps	cable lying triceps extension v. 2	0186
+poussee_h|pectoraux|arm exercise incline on press	poussee_h	pectoraux	cable one arm incline press on exercise ball / dumbbell incline one arm press on exercise ball	1266,1282
+poussee_h|deltoides_anterieurs|press side	poussee_h	deltoides_anterieurs	dumbbell alternate side press	0286
+poussee_h|triceps|bar pushdown triceps v	poussee_h	triceps	cable triceps pushdown (v-bar)	0241
+poussee_h|pectoraux|arm exercise on press	poussee_h	pectoraux	cable one arm press on exercise ball / dumbbell one arm press on exercise ball	1267,1290
+poussee_v|deltoides_anterieurs|arnold press v	poussee_v	deltoides_anterieurs	dumbbell arnold press v. 2	0287
+poussee_h|triceps|arm bar blaster pushdown triceps v with	poussee_h	triceps	cable triceps pushdown (v-bar) (with arm blaster)	2405
+poussee_h|pectoraux|fly incline	poussee_h	pectoraux	cable incline fly	0171
+poussee_h|deltoides_anterieurs|bench press	poussee_h	deltoides_anterieurs	dumbbell bench seated press	0290
+poussee_h|triceps|elbow press	poussee_h	triceps	dumbbell lying elbow press	0338
+poussee_h|pectoraux|fly incline on	poussee_h	pectoraux	cable incline fly (on stability ball)	0170
+poussee_h|deltoides_anterieurs|cuban press	poussee_h	deltoides_anterieurs	dumbbell cuban press	0299
+poussee_h|triceps|bench in incline palms press	poussee_h	triceps	dumbbell palms in incline bench press	1623
+poussee_h|pectoraux|fly low	poussee_h	pectoraux	cable low fly	0179
+poussee_h|deltoides_anterieurs|cuban press v	poussee_h	deltoides_anterieurs	dumbbell cuban press v. 2	2136
+poussee_h|triceps|extension grip pronate triceps	poussee_h	triceps	dumbbell pronate-grip triceps extension	0373
+poussee_h|pectoraux|fly middle	poussee_h	pectoraux	cable middle fly	0188
+poussee_v|deltoides_anterieurs|front raise v	poussee_v	deltoides_anterieurs	dumbbell front raise v. 2	0309
+poussee_h|triceps|bench extension	poussee_h	triceps	dumbbell seated bench extension	0389
+poussee_h|pectoraux|crossovers straight up	poussee_h	pectoraux	cable standing up straight crossovers	1269
+poussee_v|deltoides_anterieurs|incline raise	poussee_v	deltoides_anterieurs	dumbbell incline raise	0325
+poussee_h|triceps|press tate	poussee_h	triceps	dumbbell tate press	0436
+poussee_h|pectoraux|chest crossovers upper	poussee_h	pectoraux	cable upper chest crossovers	1270
+poussee_v|deltoides_anterieurs|incline raise t	poussee_v	deltoides_anterieurs	dumbbell incline t-raise	3542
+poussee_h|triceps|dips elbow	poussee_h	triceps	elbow dips	3287
+poussee_h|pectoraux|chest dip	poussee_h	pectoraux	chest dip	0251
+poussee_v|deltoides_anterieurs|press push	poussee_v	deltoides_anterieurs	dumbbell push press	1700
+poussee_h|triceps|dip exercise	poussee_h	triceps	exercise ball dip	1744
+poussee_h|pectoraux|bar chest dip on straight	poussee_h	pectoraux	chest dip on straight bar	2462
+poussee_h|deltoides_anterieurs|press scott	poussee_h	deltoides_anterieurs	dumbbell scott press	2397
+poussee_h|triceps|exercise extension supine triceps	poussee_h	triceps	exercise ball supine triceps extension	1746
+poussee_h|pectoraux|chest push tap up	poussee_h	pectoraux	chest tap push-up (male)	3216
+poussee_v|deltoides_anterieurs|above front head raise	poussee_v	deltoides_anterieurs	dumbbell standing front raise above head	0419
+poussee_h|triceps|dips impossible	poussee_h	triceps	impossible dips	3289
+poussee_h|pectoraux|clock push up	poussee_h	pectoraux	clock push-up	0258
+poussee_h|deltoides_anterieurs|in palms press	poussee_h	deltoides_anterieurs	dumbbell standing palms in press	0427
+poussee_h|triceps|arms lower on push up	poussee_h	triceps	push-up on lower arms	1467
+poussee_h|pectoraux|deep push up	poussee_h	pectoraux	deep push up	1274
+poussee_h|deltoides_anterieurs|press w	poussee_h	deltoides_anterieurs	dumbbell w-press	0438
+poussee_h|triceps|dip reverse	poussee_h	triceps	reverse dip	0672
+poussee_h|pectoraux|exercise fly on	poussee_h	pectoraux	dumbbell fly on exercise ball	1277
+poussee_h|deltoides_anterieurs|bradford press rocky	poussee_h	deltoides_anterieurs	barbell seated bradford rocky press	0087
+poussee_h|triceps|dips ring	poussee_h	triceps	ring dips	0677
+poussee_h|pectoraux|exercise fly incline on	poussee_h	pectoraux	dumbbell incline fly on exercise ball	1278
+poussee_h|deltoides_anterieurs|bradford press	poussee_h	deltoides_anterieurs	barbell standing bradford press	0105
+poussee_h|triceps|push side up	poussee_h	triceps	side push-up	0717
+poussee_h|pectoraux|flyes incline twisted	poussee_h	pectoraux	dumbbell incline twisted flyes	0331
+poussee_v|deltoides_anterieurs|close grip military press	poussee_v	deltoides_anterieurs	barbell standing close grip military press	1456
+poussee_h|triceps|press stalder	poussee_h	triceps	stalder press	3291
+poussee_h|pectoraux|fly hyght	poussee_h	pectoraux	hyght dumbbell fly	3234
+poussee_v|deltoides_anterieurs|front head over raise	poussee_v	deltoides_anterieurs	barbell standing front raise over head	0107
+poussee_h|triceps|bench dip three	poussee_h	triceps	three bench dip	1753
+poussee_h|pectoraux|incline push up	poussee_h	pectoraux	incline push-up	0493
+poussee_v|deltoides_anterieurs|arm press shoulder v	poussee_v	deltoides_anterieurs	dumbbell one arm shoulder press v. 2	0360
+poussee_h|triceps|bench dip leg triceps	poussee_h	triceps	triceps dip (bench leg)	0812
+poussee_h|pectoraux|dips korean	poussee_h	pectoraux	korean dips	3288
+poussee_v|deltoides_anterieurs|hand raise side	poussee_v	deltoides_anterieurs	dumbbell side lying one hand raise	0408
+poussee_h|triceps|dips floor triceps	poussee_h	triceps	triceps dips floor	0815
+poussee_h|pectoraux|chest from point push stance	poussee_h	pectoraux	medicine ball chest push from 3 point stance	1303
+poussee_h|deltoides_anterieurs|arm in palm press	poussee_h	deltoides_anterieurs	dumbbell standing one arm palm in press	0424
+poussee_h|triceps|press triceps	poussee_h	triceps	triceps press	0816
+poussee_h|pectoraux|chest multiple push response	poussee_h	pectoraux	medicine ball chest push multiple response	1304
+poussee_h|deltoides_anterieurs|anti gravity press	poussee_h	deltoides_anterieurs	ez barbell anti gravity press	0445
+poussee_h|triceps|extension towel triceps with	poussee_h	triceps	assisted standing triceps extension (with towel)	0018
+poussee_h|pectoraux|chest push response	poussee_h	pectoraux	medicine ball chest push single response	1305
+poussee_v|deltoides_anterieurs|double press push	poussee_v	deltoides_anterieurs	kettlebell double push press	0528
+poussee_h|triceps|dip kneeling triceps	poussee_h	triceps	assisted triceps dip (kneeling)	0019
+poussee_h|pectoraux|hindu modified push up	poussee_h	pectoraux	modified hindu push-up (male)	3217
+poussee_v|deltoides_anterieurs|arm military press side the to	poussee_v	deltoides_anterieurs	kettlebell one arm military press to the side	0539
+poussee_h|triceps|close decline grip press skull to	poussee_h	triceps	barbell decline close grip to skull press	0035
+poussee_h|pectoraux|push up v wall	poussee_h	pectoraux	push-up (wall) v. 2	0658
+poussee_h|deltoides_anterieurs|press seesaw	poussee_h	deltoides_anterieurs	kettlebell seesaw press	0547
+poussee_h|triceps|grip incline press reverse	poussee_h	triceps	barbell incline reverse-grip press	0048
+poussee_h|pectoraux|push up	poussee_h	pectoraux	push-up medicine ball	0663
+poussee_v|deltoides_anterieurs|military press	poussee_v	deltoides_anterieurs	smith standing military press	0774
+poussee_h|triceps|arm floor press	poussee_h	triceps	barbell one arm floor press	0065
+poussee_h|pectoraux|push shoulder tap up	poussee_h	pectoraux	shoulder tap push-up	0699
+poussee_h|triceps|pin presses	poussee_h	triceps	barbell pin presses	1751
+poussee_h|pectoraux|push suspended up	poussee_h	pectoraux	suspended push-up	0806
+poussee_h|triceps|bench close grip press reverse	poussee_h	triceps	barbell reverse close-grip bench press	2187
+poussee_h|pectoraux|chest dip kneeling	poussee_h	pectoraux	assisted chest dip (kneeling)	0009
+poussee_h|triceps|grip reverse skullcrusher	poussee_h	triceps	barbell reverse grip skullcrusher	1721
+poussee_h|pectoraux|chest dip grip kneeling wide	poussee_h	pectoraux	assisted wide-grip chest dip (kneeling)	2364
+poussee_h|triceps|arm pushdown tricep	poussee_h	triceps	cable one arm tricep pushdown	1723
+poussee_h|pectoraux|arm chest press twisting	poussee_h	pectoraux	band one arm twisting chest press	0989
+poussee_h|triceps|arm bar blaster grip pushdown reverse sz triceps with	poussee_h	triceps	cable reverse grip triceps pushdown (sz-bar) (with arm blaster)	2406
+poussee_h|pectoraux|decline grip press wide	poussee_h	pectoraux	barbell decline wide-grip press	0036
+poussee_h|triceps|grip pushdown reverse	poussee_h	triceps	cable reverse-grip pushdown	0207
+poussee_h|pectoraux|bench decline grip press reverse	poussee_h	pectoraux	barbell reverse grip decline bench press	1256
+poussee_h|triceps|arm extension triceps	poussee_h	triceps	cable standing one arm triceps extension	0231
+poussee_h|pectoraux|bench grip incline press reverse	poussee_h	pectoraux	barbell reverse grip incline bench press	1257
+poussee_h|triceps|close grip knees on push up	poussee_h	triceps	close-grip push-up (on knees)	2398
+poussee_h|pectoraux|bench grip press reverse wide	poussee_h	pectoraux	barbell wide reverse grip bench press	1258
+poussee_h|triceps|arm extension pronated triceps	poussee_h	triceps	dumbbell lying one arm pronated triceps extension	0344
+poussee_h|pectoraux|arm decline press	poussee_h	pectoraux	cable decline one arm press	1260
+poussee_h|triceps|arm extension supinated triceps	poussee_h	triceps	dumbbell lying one arm supinated triceps extension	0346
+poussee_h|pectoraux|decline press	poussee_h	pectoraux	cable decline press	1261
+poussee_h|triceps|arm exercise french on press	poussee_h	triceps	dumbbell one arm french press on exercise ball	1736
+poussee_h|pectoraux|arm chest decline fly	poussee_h	pectoraux	cable one arm decline chest fly	1262
+poussee_h|triceps|arm bench extension on triceps	poussee_h	triceps	dumbbell one arm triceps extension (on bench)	0362
+poussee_h|pectoraux|arm incline press	poussee_h	pectoraux	cable one arm incline press	1265
+poussee_h|triceps|bar exercise french on press	poussee_h	triceps	ez bar french press on exercise ball	1747
+poussee_h|pectoraux|arm decline fly	poussee_h	pectoraux	dumbbell decline one arm fly	1276
+poussee_h|triceps|bar french press	poussee_h	triceps	ez bar standing french press	1749
+poussee_h|pectoraux|decline fly twist	poussee_h	pectoraux	dumbbell decline twist fly	0307
+poussee_h|triceps|bench jm press	poussee_h	triceps	ez barbell jm bench press	0450
+poussee_h|pectoraux|arm fly incline	poussee_h	pectoraux	dumbbell incline one arm fly	1279
+poussee_h|triceps|close grip incline push up	poussee_h	triceps	incline close-grip push-up	0490
+poussee_h|pectoraux|arm press v	poussee_h	pectoraux	dumbbell lying one arm press v. 2	0342
+poussee_h|triceps|arm dip	poussee_h	triceps	one arm dip	0639
+poussee_h|pectoraux|arm bench fly	poussee_h	pectoraux	dumbbell one arm bench fly	1285
+poussee_h|triceps|close grip off push up	poussee_h	triceps	push-up close-grip off dumbbell	0660
+poussee_h|pectoraux|arm chest exercise fly on	poussee_h	pectoraux	dumbbell one arm chest fly on exercise ball	1286
+poussee_h|triceps|bench close grip press	poussee_h	triceps	smith close-grip bench press	0751
+poussee_h|pectoraux|arm chest decline press	poussee_h	pectoraux	dumbbell one arm decline chest press	1287
+poussee_h|triceps|bench dip	poussee_h	triceps	weighted bench dip	0830
+poussee_h|pectoraux|arm chest incline press	poussee_h	pectoraux	dumbbell one arm incline chest press	1289
+poussee_h|triceps|bench dips three	poussee_h	triceps	weighted three bench dips	1754
+poussee_h|pectoraux|arm grip press reverse	poussee_h	pectoraux	dumbbell one arm reverse grip press	1622
+poussee_h|triceps|dips tricep	poussee_h	triceps	weighted tricep dips	1755
+poussee_h|pectoraux|exercise fly leg on	poussee_h	pectoraux	dumbbell one leg fly on exercise ball	1292
+poussee_h|triceps|bars dip high on parallel triceps	poussee_h	triceps	weighted triceps dip on high parallel bars	1767
+poussee_v|pectoraux|exercise pike push up	poussee_v	pectoraux	exercise ball pike push up	1296
+poussee_h|pectoraux|floor fly with	poussee_h	pectoraux	floor fly (with barbell)	0458
+poussee_h|pectoraux|grip incline push reverse up	poussee_h	pectoraux	incline reverse grip push-up	0494
+poussee_h|pectoraux|floor on press	poussee_h	pectoraux	kettlebell alternating press on floor	0519
+poussee_h|pectoraux|arm extended floor on press range	poussee_h	pectoraux	kettlebell extended range one arm press on floor	0531
+poussee_h|pectoraux|arm floor press	poussee_h	pectoraux	kettlebell one arm floor press	1298
+poussee_h|pectoraux|chest inner press	poussee_h	pectoraux	machine inner chest press	1301
+poussee_v|pectoraux|arm push raise up	poussee_v	pectoraux	raise single arm push-up	0666
+poussee_h|pectoraux|bench decline press	poussee_h	pectoraux	smith decline bench press	0753
+poussee_h|pectoraux|decline grip press reverse	poussee_h	pectoraux	smith decline reverse-grip press	0754
+poussee_h|pectoraux|grip incline press reverse	poussee_h	pectoraux	smith incline reverse-grip press	0758
+poussee_h|pectoraux|bench close decline grip press reverse	poussee_h	pectoraux	smith machine reverse decline close grip bench press	1626
+poussee_h|pectoraux|grip press reverse	poussee_h	pectoraux	smith reverse-grip press	0764
+poussee_h|pectoraux|bench grip press wide	poussee_h	pectoraux	smith wide grip bench press	1308
+poussee_h|pectoraux|bench decline grip press wide	poussee_h	pectoraux	smith wide grip decline bench press	1309
+poussee_h|pectoraux|bar dip straight	poussee_h	pectoraux	weighted straight bar dip	3313
+poussee_h|pectoraux|press svend	poussee_h	pectoraux	weighted svend press	0856
+poussee_h|pectoraux|hand push up wide	poussee_h	pectoraux	wide hand push up	1311
+poussee_h|pectoraux|bars chest dip grip high on parallel wide	poussee_h	pectoraux	wide-grip chest dip on high parallel bars	2363

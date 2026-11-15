@@ -49,6 +49,6 @@ if (detail) console.log(rows.slice(0, 80).join('\n'));
 if (process.argv.includes('--one')) {
   const [level, days, dur, profile, goal] = process.argv[process.argv.indexOf('--one') + 1].split(',');
   const r = gen.generateProgram(mk({ profile, level, days: +days, dur: +dur, place: profile === 'F' ? 'salle' : 'maison', goal }));
-  for (const s of r.program.sessions) console.log(s.label, `~${s.estimatedMin ?? '?'}min`, s.exercises.map((e) => `${e.slot}:${e.ficheId}x${e.sets}`).join(' | '));
+  for (const s of r.program.sessions) console.log(s.label, `~${s.estimatedMin ?? '?'}min`, s.exercises.map((e) => `${e.slot}:${e.ficheId}${e.slot === "tronc" ? "[" + e.variantId + (e.perSide ? " cote" : "") + "]" : ""}x${e.sets}`).join(' | '));
   console.log((r.program.messages ?? []).map((m) => m.id).join(','));
 }

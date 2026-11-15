@@ -1,0 +1,153 @@
+famille	nom_fr	alias
+tirage_h|biceps|curl	ECARTER	doublon de curl-barre / curl-halteres
+tirage_h|avant_bras|back curl wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_v|pectoraux|exercise on pullover	Pullover sur ballon de gym	pullover sur swiss ball, pull-over sur ballon
+tirage_h|grand_dorsal+rhomboides|arm bent over row	ECARTER	doublon de rowing-unilateral-haltere
+tirage_h|triceps|arm bent extension over triceps	ECARTER	doublon de kickback-triceps-halteres
+tirage_h|deltoides_posterieurs|delt rear row stirrups	ECARTER	doublon de rowing-epaules-arriere
+tirage_h|deltoides_anterieurs|internal rotation shoulder	Rotation interne de l'épaule	rotation interne d'épaule, renfo coiffe des rotateurs
+tirage_h|deltoides_lateraux|external rotation shoulder upright	ECARTER	nom mélangeant tirage menton et rotation externe, incohérent
+tirage_h|erecteurs_rachis|back curl lower	ECARTER	geste incertain et risqué pour les lombaires
+tirage_h|trapezes|decline shrug v	ECARTER	doublon de haussement-d-epaules-au-banc-incline
+tirage_h|biceps|arm biceps blaster curl with	ECARTER	doublon de curl-barre / curl-halteres
+tirage_h|avant_bras|curl wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_v|pectoraux|cage chest dip dip on pull up	Dips aux barres parallèles (pectoraux)	dips, dips penché en avant, dips pectoraux
+tirage_h|grand_dorsal+rhomboides|bent grip over reverse row	Rowing buste penché prise supination	rowing supination, rowing inversé à la barre, rowing prise inversée
+tirage_h|triceps|bent extension over triceps	ECARTER	doublon de kickback-triceps-halteres
+tirage_h|deltoides_posterieurs|fly reverse supine	Oiseau allongé sur le dos	oiseau couché sur le dos, écarté arrière allongé
+tirage_h|trapezes|back shrug	ECARTER	haussement derrière le dos, doublon et inconfortable pour les épaules
+tirage_h|biceps|curl preacher reverse	Curl inversé au pupitre	reverse preacher curl, curl pupitre prise pronation
+tirage_h|avant_bras|bench curl over wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_v|pectoraux|around pullover	ECARTER	cercle complet des bras au-dessus de la tête, risqué pour les épaules
+tirage_v|grand_dorsal|lateral pulldown	Tirage vertical alterné	tirage poitrine alterné, tirage vertical un bras après l'autre
+tirage_h|triceps|exercise narrow on push up	ECARTER	doublon de pompe-mains-ballon / pompe-mains-rapprochees
+tirage_h|deltoides_posterieurs|delt floor on raise rear	Oiseau allongé sur le ventre	oiseau au sol, élévation arrière face au sol
+tirage_h|biceps|close curl grip	Curl prise serrée	curl mains rapprochées, curl close grip
+tirage_h|avant_bras|a bench curl down over palms wrist	ECARTER	doublon de extension-poignet-avant-bras
+tirage_v|pectoraux|arm pullover straight	Pullover bras tendus	pull-over bras tendus, pullover jambes au sol
+tirage_v|grand_dorsal|back fixed pulldown underhand	ECARTER	doublon de tirage-vertical-prise-supination
+tirage_h|deltoides_posterieurs|head lateral raise rear support	ECARTER	doublon de oiseau-banc-incline
+tirage_h|biceps|curl overhead	Curl bras en hauteur	curl au-dessus de la tête, curl poulie haute, overhead curl
+tirage_h|avant_bras|a bench curl over palms up wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_v|pectoraux|decline pullover	ECARTER	doublon de pullover-haltere-au-sol, pullover à la barre déclinée peu sûr pour l'épaule
+tirage_v|grand_dorsal|bench pull ups	ECARTER	doublon de traction-barre
+tirage_h|deltoides_posterieurs|fly reverse	ECARTER	doublon de oiseau-halteres
+tirage_h|biceps|bicep curl exercise leg on raised with	ECARTER	curl sur ballon, jambe levée : exercice d'équilibre, pas de gain
+tirage_h|avant_bras|curl revers v wrist	ECARTER	doublon de extension-poignet-avant-bras
+tirage_v|pectoraux|and front pullover raise	ECARTER	nom mélangeant deux gestes (élévation frontale et pullover)
+tirage_h|grand_dorsal+rhomboides|row towel with	ECARTER	doublon de rowing-serviette-resistee
+tirage_h|deltoides_posterieurs|fly reverse rotation	ECARTER	nom mélangeant oiseau et rotation, incohérent
+tirage_h|biceps|curl preacher zottman	Curl Zottman au pupitre	zottman preacher curl, curl pupitre avec rotation de poignet
+tirage_h|avant_bras|curl v wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_h|pectoraux|arm bent lateral over	ECARTER	nom incohérent (pectoraux classés en tirage)
+tirage_v|grand_dorsal|cross lateral over pulldown	ECARTER	nom incohérent, geste peu clair
+tirage_h|deltoides_posterieurs|arm lateral raise rear	Oiseau un bras couché sur le côté	oiseau un bras allongé, élévation arrière couché
+tirage_h|biceps|biceps curl grip wide	Curl prise large	curl mains écartées, wide grip curl
+tirage_h|avant_bras|arm curl reverse wrist	ECARTER	doublon de extension-poignet-avant-bras
+tirage_h|grand_dorsal+rhomboides|high kneeling row	Tirage haut à genoux	rowing haut à genoux, tirage poulie haute à genoux
+tirage_h|biceps|arm curl	Curl à un bras	curl un bras, curl unilatéral
+tirage_h|avant_bras|arm curl neutral wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_h|grand_dorsal+rhomboides|bench incline row	ECARTER	doublon de rowing-poitrine-appuyee-banc
+tirage_h|biceps|arm curl preacher reverse	Curl inversé au pupitre, un bras	reverse preacher curl un bras
+tirage_h|avant_bras|arm curl wrist	ECARTER	doublon de flexion-poignet-avant-bras
+tirage_v|grand_dorsal|full lat motion of pulldown range	ECARTER	doublon de tirage-vertical-poulie
+tirage_h|biceps|arm curl reverse	Curl inversé à un bras	reverse curl un bras
+tirage_h|avant_bras|arm bench curl over reverse wrist	ECARTER	doublon de extension-poignet-avant-bras
+tirage_h|grand_dorsal+rhomboides|low row	Rowing assis à la poulie basse	tirage horizontal assis, rowing poulie, seated cable row
+tirage_h|biceps|arm concentration curl	ECARTER	doublon de curl-concentration-halteres
+tirage_h|grand_dorsal+rhomboides|palm rotational row	ECARTER	rotation de la paume pendant le tirage, geste peu clair
+tirage_h|biceps|arm bench curl incline over	ECARTER	doublon de curl-incline-halteres
+tirage_v|grand_dorsal|bar lat pro pulldown	ECARTER	doublon de tirage-vertical-poulie
+tirage_h|biceps|biceps concentration curl leg	ECARTER	doublon de curl-concentration-halteres
+tirage_h|grand_dorsal|bar high row v	Tirage haut assis, prise neutre	rowing haut assis, tirage haut à la poulie, tirage au menton assis
+tirage_v|biceps|biceps narrow pull ups	ECARTER	doublon de la traction prise serrée supination (intra-lot)
+tirage_h|grand_dorsal+rhomboides|bar row v	Tirage debout à la poulie	rowing debout poulie, tirage debout prise neutre
+tirage_v|biceps|biceps pull up	ECARTER	doublon de traction-barre
+tirage_h|grand_dorsal+rhomboides|bar row twist v	ECARTER	rotation ajoutée au tirage, geste mélangé
+tirage_h|biceps|biceps curl side	ECARTER	nom incohérent, geste peu clair
+tirage_h|grand_dorsal+rhomboides|back row straight	ECARTER	doublon de rowing assis à la poulie basse (intra-lot)
+tirage_h|biceps|curl drag	Curl traînant	drag curl, curl barre le long du corps
+tirage_h|grand_dorsal|kayak row thibaudeau	ECARTER	exercice technique
+tirage_h|biceps|curl exercise on overhead	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_h|grand_dorsal+rhomboides|row upper	ECARTER	nom incohérent, geste peu clair
+tirage_v|biceps|bicep curl pulldown	ECARTER	nom mélangeant curl et tirage vertical
+tirage_v|grand_dorsal+rhomboides|chin grip narrow parallel ups	Traction prise neutre serrée	traction mains parallèles, traction prise parallèle serrée
+tirage_h|biceps|curl reverse	ECARTER	doublon de curl-inverse-halteres
+tirage_h|grand_dorsal+rhomboides|delt rear row	ECARTER	doublon de rowing-epaules-arriere
+tirage_h|biceps|curl inner	ECARTER	doublon de curl-halteres
+tirage_h|grand_dorsal+rhomboides|bent over palm rotational row	ECARTER	rotation de la paume pendant le tirage, geste peu clair
+tirage_h|biceps|arm bench curl incline on	ECARTER	doublon de curl-incline-halteres
+tirage_v|grand_dorsal|chin grip mixed up	ECARTER	prise mixte asymétrique, doublon de traction-barre
+tirage_h|biceps|bicep curl exercise on	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_v|grand_dorsal|grip neutral pull up	Traction prise neutre	traction mains parallèles, traction prise marteau
+tirage_h|biceps|bicep curl stance stork with	ECARTER	curl en équilibre sur une jambe, exercice d'équilibre
+tirage_v|grand_dorsal|pull rear up	ECARTER	traction derrière la nuque, dangereux pour épaules et cou
+tirage_h|biceps|biceps curl reverse	ECARTER	doublon de curl-inverse-halteres
+tirage_v|grand_dorsal|pull pulldown rocky up	ECARTER	geste technique, souvent tirage derrière la nuque
+tirage_h|biceps|bicep curl exercise kneeling	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_v|grand_dorsal|grip pull shoulder up	ECARTER	nom incohérent, geste peu clair
+tirage_h|biceps|biceps curl supine	Curl allongé sur le dos	curl couché, curl biceps allongé
+tirage_h|grand_dorsal+rhomboides|row suspended	Rowing en suspension	rowing aux sangles, rowing inversé, tirage horizontal au poids du corps
+tirage_h|biceps|curl supine	ECARTER	doublon de curl allongé sur le dos (intra-lot)
+tirage_h|biceps|bench curl neutral over wrist	ECARTER	doublon de curl-halteres
+tirage_v|grand_dorsal|grip handle lat parallel pulldown twin	Tirage vertical prise neutre	tirage poitrine prise parallèle, lat pulldown mains parallèles
+tirage_v|grand_dorsal|close grip parallel pull up	ECARTER	doublon de traction-assistee-machine
+tirage_h|biceps|curl exercise over preacher	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_v|grand_dorsal|chin up	ECARTER	doublon de traction-assistee-machine
+tirage_h|biceps|biceps curl grip revers	ECARTER	doublon de curl-inverse-halteres
+tirage_v|grand_dorsal|pull up	ECARTER	doublon de traction-assistee-machine
+tirage_h|biceps|biceps curl on	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_v|grand_dorsal|back close fixed grip pulldown	ECARTER	doublon de tirage-vertical-elastique-haut
+tirage_h|biceps|biceps curl press shoulder to	ECARTER	nom mélangeant curl et développé
+tirage_h|grand_dorsal+rhomboides|arm row twisting	ECARTER	rotation ajoutée au tirage, geste mélangé
+tirage_h|biceps|biceps curl inner	ECARTER	doublon de curl-halteres
+tirage_v|grand_dorsal|arm bent pullover	ECARTER	doublon de pullover-haltere-au-sol
+tirage_h|biceps|curl neutral wrist	ECARTER	doublon de curl-halteres (curl marteau)
+tirage_v|grand_dorsal|arm bent decline pullover	ECARTER	doublon de pullover-haltere-au-sol
+tirage_h|biceps|concentration curl grip revers	ECARTER	doublon de curl-concentration-halteres
+tirage_v|grand_dorsal|decline grip pullover wide	ECARTER	doublon de pullover-haltere-au-sol, prise large peu sûre pour l'épaule
+tirage_h|biceps|biceps curl inner v	ECARTER	doublon de curl-halteres
+tirage_v|grand_dorsal|pullover	ECARTER	doublon de pullover-haltere-au-sol
+tirage_h|biceps|biceps curl waiter	Curl en coupe	waiter curl, curl haltère à la verticale
+tirage_v|grand_dorsal|press pullover to	ECARTER	nom mélangeant pullover et développé
+tirage_h|biceps|arm biceps curl overhead	ECARTER	doublon de curl bras en hauteur (intra-lot)
+tirage_h|grand_dorsal+rhomboides|bench grip incline reverse row	ECARTER	doublon de rowing-poitrine-appuyee-banc
+tirage_h|biceps|curl incline prone	Curl en araignée	spider curl, curl poitrine appuyée sur banc incliné
+tirage_h|grand_dorsal+rhomboides|arm close grip row	ECARTER	doublon de rowing-unilateral-haltere
+tirage_h|biceps|close concentration curl grip	ECARTER	doublon de curl-concentration-halteres
+tirage_h|grand_dorsal+rhomboides|close grip row	ECARTER	doublon de rowing en suspension (intra-lot)
+tirage_h|biceps|curl grip reverse	ECARTER	doublon de curl-inverse-halteres
+tirage_h|grand_dorsal+rhomboides|arm row towel with	ECARTER	doublon de rowing-serviette-resistee
+tirage_h|biceps|curl grip wide	ECARTER	doublon de curl prise large (intra-lot)
+tirage_h|grand_dorsal+rhomboides|decline grip row wide	ECARTER	doublon de rowing assis prise large (intra-lot)
+tirage_h|biceps|arm curl preacher	Curl au pupitre, un bras	preacher curl un bras, curl Scott un bras
+tirage_h|grand_dorsal+rhomboides|floor grip row wide	ECARTER	doublon de rowing assis prise large (intra-lot)
+tirage_h|biceps|curl wide	ECARTER	doublon de curl prise large (intra-lot)
+tirage_h|grand_dorsal+rhomboides|arm back high kneeling row straight	ECARTER	doublon de tirage haut à genoux (intra-lot)
+tirage_h|biceps|arm concentration curl on	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_h|grand_dorsal+rhomboides|back grip high reverse row straight	ECARTER	doublon de tirage haut assis, prise neutre (intra-lot)
+tirage_h|biceps|arm curl prone	ECARTER	doublon de curl en araignée (intra-lot)
+tirage_h|grand_dorsal+rhomboides|grip row wide	Rowing assis prise large	rowing poulie prise large, tirage horizontal prise large
+tirage_h|biceps|arm bicep curl exercise on	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_h|grand_dorsal+rhomboides|bar cambered row	ECARTER	matériel rare, doublon de rowing-barre-ez
+tirage_h|biceps|arm curl preacher zottman	Curl Zottman au pupitre, un bras	zottman preacher curl un bras
+tirage_v|grand_dorsal|chin close grip up	Traction supination prise serrée	chin-up prise serrée, traction mains rapprochées paumes vers soi
+tirage_h|biceps|arm bench curl neutral over wrist	ECARTER	doublon de curl-halteres
+tirage_h|grand_dorsal+rhomboides|grip reverse row	ECARTER	doublon de rowing buste penché prise supination (intra-lot)
+tirage_h|biceps|arm bicep curl exercise leg on raised with	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_v|grand_dorsal|arms bar bent pullover	ECARTER	doublon de pullover-haltere-au-sol
+tirage_h|biceps|bar close concentration curl grip	ECARTER	doublon de curl-concentration-halteres
+tirage_h|grand_dorsal+rhomboides|renegade row	ECARTER	exercice technique, risque pour épaules et lombaires
+tirage_h|biceps|close curl grip preacher	ECARTER	doublon de curl-au-pupitre
+tirage_h|grand_dorsal+rhomboides|arm row towel	ECARTER	doublon de rowing-serviette-resistee
+tirage_h|biceps|curl grip preacher reverse	ECARTER	doublon de curl inversé au pupitre (intra-lot)
+tirage_v|grand_dorsal|grip lat pulldown reverse	ECARTER	doublon de tirage-vertical-prise-supination
+tirage_h|biceps|arm bar biceps blaster curl with	ECARTER	doublon de curl-barre
+tirage_v|grand_dorsal|grip pull reverse up	Traction supination	chin-up, traction prise supination, traction paumes vers soi
+tirage_h|biceps|bicep curl on	ECARTER	curl sur ballon, exercice d'équilibre
+tirage_h|grand_dorsal+rhomboides|bent over row	ECARTER	doublon de rowing-barre-penche
+tirage_h|grand_dorsal+rhomboides|narrow row	ECARTER	doublon de rowing-barre-penche
+tirage_v|grand_dorsal|cage chin close dip grip on up	ECARTER	traction lestée, doublon de traction-gilet-lest
+tirage_v|grand_dorsal|hand pull up	ECARTER	traction à un bras lestée, exercice de performance
+tirage_v|grand_dorsal|grip pull up wide	Traction prise large	traction pronation large, wide grip pull-up
+tirage_v|grand_dorsal|grip pull rear up wide	ECARTER	traction derrière la nuque, dangereux pour épaules et cou

@@ -37,6 +37,7 @@ import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
 import { addCal11 } from './cal11';
 import { addCalfGuarantee } from './calves';
+import { capCoreWeek } from './core-cap';
 import { addComplements } from './complements';
 import { addSportPrevention } from './sport-prevention';
 import { a1Allowed, lightenLegs } from './sport-legs-light';
@@ -1075,6 +1076,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   addComplements(kept, zoneDeps, typeOf);
   // 14/11/2026 : chaque séance de jambes (BAS / LEGS) reçoit des mollets en dernier quand une fiche admissible existe (calves.ts).
   addCalfGuarantee(kept, zoneDeps, typeOf);
+  // Plafonds de core (6 par séance, 12 par semaine) tenus après tous les ajouts : on ne fait que baisser des séries de tronc (core-cap.ts).
+  capCoreWeek(kept, ctx);
   // Cou (`kine`, 07/11/2026) : l'isolation, le remplissage PPL et le remplissage du temps passent après le correctif ; si l'un d'eux a ajouté un exercice lourd
   // d'épaules / trapèzes dans une séance qui a déjà le cou, le cou en est retiré (jamais ailleurs).
   for (const s of kept) {
