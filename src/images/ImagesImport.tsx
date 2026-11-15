@@ -1,7 +1,8 @@
 import { useEffect, useRef, useState } from 'preact/hooks';
 import { importFiles, type ImportReport } from './importer';
-import { countImages, deleteAllImages } from './store';
+import { countImages, deleteAllImages, imageUrl, listImageIds } from './store';
 import { UNIQUE_IDS } from './match';
+import { GV_TABLE } from './gv-table';
 
 export const IMPORT_WARNING = 'Importe seulement des images dont tu as le droit d’usage. Elles restent sur ce téléphone et ne sont jamais envoyées nulle part.';
 
@@ -26,6 +27,20 @@ export function ImagesImport() {
     if (zipIn.current) zipIn.current.value = '';
     if (dirIn.current) dirIn.current.value = '';
   };
+  const [diag, setDiag] = useState<string | null>(null);
+  const runDiag = async () => {
+    setDiag('Vérification…');
+    try {
+      const ids = await listImageIds();
+      let ok = 0; let sample = '';
+      for (const id of ids) {
+        const u = await imageUrl(id);
+        const good = !!u && await new Promise<boolean>((res) => { const im = new Image(); im.onload = () => res(im.naturalWidth > 0); im.onerror = () => res(false); im.src = u!; });
+        if (good) { ok++; if (!sample) { const e = GV_TABLE.find((x) => x.id === id); sample = e ? ` Exemple : ${e.fiche} (${e.variante}).` : ''; } }
+      }
+      setDiag(`${ids.length} image${ids.length > 1 ? 's' : ''} lue${ids.length > 1 ? 's' : ''} dans la base, ${ok} affichable${ok > 1 ? 's' : ''}.${sample}`);
+    } catch (e) { setDiag(`Lecture impossible : ${(e as Error).message}`); }
+  };
   const pct = prog && prog.total ? Math.round((prog.done / prog.total) * 100) : 0;
   return (
     <section class="card img-import" aria-labelledby="img-import-t">
@@ -46,6 +61,8 @@ export function ImagesImport() {
           {rep.errors.length > 0 && <p class="dim">Choisis de nouveau le même fichier : ce qui est déjà importé est sauté.</p>}
         </div>
       )}
+      <button type="button" class="btn" disabled={busy || count === 0} onClick={runDiag}>Tester l’affichage</button>
+      {diag && <p class="small" role="status">{diag}</p>}
       <button type="button" class="btn btn-danger" disabled={busy || count === 0} onClick={() => setAsk(true)}>Supprimer les images importées</button>
       {ask && (
         <div role="alertdialog" aria-label="Confirmer la suppression" class="card">
