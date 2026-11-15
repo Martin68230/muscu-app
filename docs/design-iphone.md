@@ -50,3 +50,10 @@ Propositions suivantes (par utilité) : 1) poids lissé dans l'écran Progressio
 ### À vérifier sur l'iPhone
 - Ma progression : puces de muscles (2 lignes), bascule Séries / Charge soulevée, toucher d'une barre : valeur affichée sous le graphique ; aucun défilement horizontal.
 - Liste de records : ligne >= 44 px, nom long qui passe à la ligne, historique au toucher ; courbe : toucher d'un point.
+
+## Lot 4 (15/11/2026) : cohérence des écrans ajoutés
+- Nutrition : bouton « Retour » au même style que les autres écrans (bordé, pas un lien) ; chargement annoncé (role status).
+- Profil > Images : le compteur « N images importées sur M » vient en premier, l'estimation de place est repliée (« Place disponible ») ; l'avertissement de licence reste visible, inchangé.
+- Bibliothèque : déjà revue au lot 2 (recherche collée, état vide « Aucun exercice trouvé »). Captures de contrôle : tests/screens/coherence-ecrans.spec.ts (les écrans défilent dans un conteneur : captures de la fenêtre seulement ; vérification faite surtout dans le code).
+### À vérifier sur l'iPhone
+- Nutrition : bouton retour de même style que Ma progression. Profil > Images : compteur lisible en haut, « Place disponible » se déplie, boutons espacés de 8 px, rien ne déborde à 375 px.
