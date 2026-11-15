@@ -41,3 +41,12 @@ Propositions suivantes (par utilité) : 1) poids lissé dans l'écran Progressio
 ### À vérifier sur l'iPhone
 - Une séance avec un exercice déjà fait 2 fois : « Ton record » à côté de « Dernière fois », ligne qui ne déborde pas à 375 px.
 - Accueil : la pastille change selon le jour prévu ; calendrier et progression vides : bouton visible et retour à l'accueil.
+
+## Lot 1 et 2 (15/11/2026, branche claude/design-lot4-3bbdbf) : graphiques et records
+- Ma progression : « Volume par muscle » (8 groupes + Tout, bascule Séries / Charge soulevée, 8 semaines), valeur au toucher sur chaque barre et chaque point de courbe (ligne sous le graphique, aussi au clavier). « Mes records » : liste (récents d'abord, pastille « Récent » 14 jours), un appui = historique des records battus ; courbes par exercice conservées. Mêmes exclusions qu'avant (douleur, échauffement, abandon / symptôme, import) ; grossesse / post-partum : aucun chiffre. Le tonnage ne compte que les séries chargées.
+- Lot 3 : vérifié dans le code, l'accueil montre la carte du cycle, la vue « par type de séance » porte déjà la mention « cette séance, cette semaine » : rien changé.
+- Lot 4 (cohérence Nutrition / Profil / Bibliothèque) : NON fait dans cette session.
+- Captures WebKit : tests/screens/progression-graphiques.spec.ts (sert un `vite preview` ; le port 4190 est refusé par WebKit, utiliser 4183).
+### À vérifier sur l'iPhone
+- Ma progression : puces de muscles (2 lignes), bascule Séries / Charge soulevée, toucher d'une barre : valeur affichée sous le graphique ; aucun défilement horizontal.
+- Liste de records : ligne >= 44 px, nom long qui passe à la ligne, historique au toucher ; courbe : toucher d'un point.

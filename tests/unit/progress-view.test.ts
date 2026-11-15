@@ -42,3 +42,31 @@ describe('weeklySets', () => {
     expect(w.reduce((n, x) => n + x.sets, 0)).toBe(3);
   });
 });
+
+import { groupsOfMuscles, recordHistory, weeklyMetrics } from '../../src/session/progress-view';
+
+describe('weeklyMetrics', () => {
+  it('séries et tonnage par semaine, filtre par exercice, douleur / échauffement / import ignorés', () => {
+    const sets = [
+      set('s1', 'a', 0, { loadKg: 20, reps: 10 }), set('s1', 'a', 1, { loadKg: 20, reps: 10, pain: true }), set('s1', 'a', 2, { loadKg: 50, reps: 5, isWarmup: true }),
+      set('s1', 'a', 3, { loadKg: null, reps: 12 }), set('s1', 'b', 0, { loadKg: 10, reps: 10 }), set('s3', 'a', 0),
+    ];
+    const all = weeklyMetrics(sets, [s1, s3], new Date(2026, 9, 7));
+    expect(all[7]).toEqual({ startKey: '2026-10-05', sets: 3, tonnage: 300 });
+    const onlyA = weeklyMetrics(sets, [s1, s3], new Date(2026, 9, 7), (id) => id === 'a');
+    expect(onlyA[7]).toEqual({ startKey: '2026-10-05', sets: 2, tonnage: 200 });
+  });
+});
+
+describe('recordHistory et groupes', () => {
+  it('ne garde que les records battus, le plus récent d’abord', () => {
+    const s5 = session('s5', '2026-10-26');
+    const sets = [set('s1', 'x', 0, { loadKg: 20 }), set('s2', 'x', 0, { loadKg: 20 }), set('s5', 'x', 0, { loadKg: 25 })];
+    const r = recordHistory('x', sets, [s1, s2, s5]);
+    expect(r.steps).toEqual([{ dateKey: '2026-10-26', value: 25 }, { dateKey: '2026-10-05', value: 20 }]);
+  });
+  it('groupes musculaires', () => {
+    expect(groupsOfMuscles(['grand_dorsal', 'biceps'])).toEqual(['dos', 'bras']);
+    expect(groupsOfMuscles([])).toEqual([]);
+  });
+});
