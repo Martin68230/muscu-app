@@ -30,10 +30,10 @@ export function ImagesImport() {
   return (
     <section class="card img-import" aria-labelledby="img-import-t">
       <h2 id="img-import-t">Images de mes exercices</h2>
+      <p class="img-count" role="status"><strong>{count}</strong> image{count > 1 ? 's' : ''} importée{count > 1 ? 's' : ''} sur {UNIQUE_IDS.length}.</p>
       <p class="small">Tu peux ajouter les GIF de ta propre copie du jeu d’images Gym visual (ZIP ou dossier). Seuls les exercices dont la correspondance est sûre en reçoivent une ({UNIQUE_IDS.length} images possibles) ; les autres gardent l’écran actuel. La consigne écrite prime toujours sur l’image.</p>
       <p class="small"><strong>{IMPORT_WARNING}</strong></p>
-      <p class="dim small">L’estimation de la place disponible reste indicative : si le téléphone manque de place, l’import s’arrête avec un message et tu peux le reprendre.</p>
-      <p class="dim small">{count} image{count > 1 ? 's' : ''} importée{count > 1 ? 's' : ''} sur {UNIQUE_IDS.length}.</p>
+      <details class="img-more small"><summary>Place disponible</summary><p class="dim">L’estimation de la place disponible reste indicative : si le téléphone manque de place, l’import s’arrête avec un message et tu peux le reprendre.</p></details>
       <input ref={zipIn} type="file" accept=".zip,application/zip" hidden onChange={(e) => go((e.currentTarget as HTMLInputElement).files)} />
       <input ref={dirIn} type="file" accept="image/gif" multiple hidden onChange={(e) => go((e.currentTarget as HTMLInputElement).files)} />
       <button type="button" class="btn" disabled={busy} onClick={() => zipIn.current?.click()}>Choisir le ZIP</button>

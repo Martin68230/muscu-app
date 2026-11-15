@@ -126,13 +126,13 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
   const reload = () => loadData().then(setData);
   useEffect(() => void reload(), []);
 
-  if (!data) return <div class="nut"><p class="dim">Chargement…</p></div>;
+  if (!data) return <div class="nut"><p class="dim" role="status">Chargement…</p></div>;
   const { np } = data;
   const setupDone = !!np && np.screeningResult !== null && !editing;
 
   return (
     <div class="nut">
-      <button type="button" class="btn btn-link btn-back" onClick={onBack}>‹ Retour à la bibliothèque</button>
+      <button type="button" class="btn btn-back" onClick={onBack}>‹ Retour à la bibliothèque</button>
       <h1>Nutrition</h1>
       <p class="dim small">Des estimations pour t’aider à manger selon ton entraînement. {NOT_MEDICAL} Tout reste sur ton téléphone.</p>
       {!setupDone ? (
