@@ -1,0 +1,3 @@
+# Lot 7 (vague 2) : 13 fiches débutant à la maison, statut brouillon_coach (14/11/2026)
+Rédigées par `coach`, valeurs NON SOURCÉES, à passer par `kine` (cases de sécurité) puis, si décidé, un contrôle `relecteur`. Aucune photo : illustrations originales à faire.
+squat-pause-bas (squat), squat-descente-lente (squat), squat-elastique-genoux (squat), fente-arriere-glissee-serviette (fente), fente-arriere-courte (fente), pont-fessier-elastique-genoux (charniere), pont-fessier-pause (charniere), pont-fessier-pieds-sureleves (charniere), extension-hanche-debout-appui (charniere), releve-mollets-genoux-flechis (cheville_mollet), releve-mollets-une-jambe-appui (cheville_mollet), planche-inclinee (gainage), planche-laterale-appui (gainage).
