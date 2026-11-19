@@ -35,9 +35,11 @@ export const AGE_MAX = 100;
 /** Mise à l'échelle des portions d'une recette. PROVISOIRE. */
 export const ECHELLE_MIN = 0.5;
 export const ECHELLE_MAX = 1.75;
+/** Repas principaux du plan de la semaine : portion au plus 1,3 x la recette de base (plage réaliste, demande du 14/11/2026) ; le reste passe par un goûter / en-cas. PROVISOIRE. */
+export const ECHELLE_MAX_PRINCIPAL = 1.3;
 
 /** Numéro de version du générateur de plan (invalide un plan périmé). */
-export const NUTRITION_VERSION = 'N0.1';
+export const NUTRITION_VERSION = 'N0.2';
 
 // --- Besoins et plancher (nutrition-rules.md A et C). PROVISOIRE (S) : relecteur obligatoire avant mise en ligne. ---
 /** Facteurs d'activité par nombre de séances de musculation par semaine (points médians FAO/WHO/UNU 2004). */
@@ -113,7 +115,7 @@ export const TOL_KCAL_JOUR = 0.05;
 /** Arrondi des grammes d'un ingrédient ajustable. */
 export const ARRONDI_GRAMMES = 5;
 /** Poids du score de choix d'une recette. */
-export const SCORE = { ecartKcal: 10, repetition: 6, repetitionSemaineDerniere: 3, memeProteine: 2, dejaDansPanier: 1.2, nouveauPerissable: 1.0, nouveauNonPerissable: 0.4, bruit: 0.5 } as const;
+export const SCORE = { ecartKcal: 10, repetition: 6, repetitionSemaineDerniere: 3, memeProteine: 2, dejaDansPanier: 1.2, nouveauPerissable: 1.0, nouveauNonPerissable: 0.4, bruit: 0.5, glucidesCompl: 1.5 } as const;
 /** Tolérance du recalage : au moins 0,1 kg/semaine et 25 % du rythme visé. */
 export const RECALAGE_TOL_MIN_KG = 0.1;
 export const RECALAGE_TOL_PCT = 0.25;
@@ -139,9 +141,17 @@ export const TOL_KCAL_OPTIONNEL = 0.35;
 export const BONUS_LOT = 3;
 /** Repli : si aucune recette ne tient dans la tolérance du repas, la plus proche (écart <= 60 %) est choisie plutôt qu'une case vide ; le jour est alors signalé « écart ». */
 export const TOL_KCAL_REPLI = 0.6;
+/** Repas principal : la portion est plafonnée (ECHELLE_MAX_PRINCIPAL), donc la tolérance est élargie à ce seuil avant d'accepter une recette déjà vue 2 fois ; le goûter ajouté comble le reste. */
+export const TOL_KCAL_PRINCIPAL_ELARGIE = 0.25;
 
 // --- Variété des repas principaux (demande du 14/11/2026). PROVISOIRE. ---
 /** Une même recette de repas principal au plus ce nombre de fois dans la semaine (relâché seulement si aucune autre recette ne convient). */
 export const MAX_FOIS_RECETTE_SEMAINE = 2;
 /** Pénalités de rotation : même protéine ou même féculent que la veille ou la veille du jour ; usage déjà fait dans la semaine (par prise). */
 export const SCORE_VARIETE = { memeSourceVeille: 2.5, memeSourceMemeJour: 4, parUsageSemaine: 0.7 } as const;
+
+// --- Compléter automatiquement les jours sous la cible (demande du 14/11/2026 : « c'est quasiment tout le temps sous la cible »). PROVISOIRE (S). ---
+/** Manque d'énergie d'un jour (kcal) au-delà duquel le plan ajoute un goûter / en-cas, puis affiche « il manque X kcal » s'il reste. */
+export const SEUIL_ECART_KCAL = 150;
+/** Énergie maximale d'un goûter ou en-cas ajouté automatiquement (kcal) : jamais un repas déguisé. */
+export const ENCAS_AUTO_MAX_KCAL = 450;

@@ -202,3 +202,47 @@ test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et 
   await expect(await problems(page)).toEqual([]);
   await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-09-semaine-sans-lait.png`, fullPage: true });
 });
+
+test('Nutrition : un goûter est ajouté quand le plan est sous la cible (prise de muscle, gros besoins)', async ({ page }, info) => {
+  test.setTimeout(120_000);
+  const theme = info.project.name.endsWith('clair') ? 'light' : 'dark';
+  await page.addInitScript((t) => {
+    try {
+      localStorage.setItem('muscu.theme', t);
+    } catch {
+      /* ignoré */
+    }
+  }, theme);
+  await page.goto('./');
+  await page.getByText("J'ai 18 ans ou plus.").click();
+  await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
+  await page.getByRole('button', { name: 'Commencer' }).click();
+  await page.getByRole('button', { name: 'Bibliothèque', exact: true }).click();
+  await page.getByRole('link', { name: /Nutrition/ }).first().click();
+  await page.getByLabel('Un homme').check();
+  await page.getByLabel('Année de naissance').fill('1998');
+  await page.getByLabel('Taille (cm)').fill('190');
+  await page.getByLabel('Poids actuel (kg)').fill('95');
+  for (const q of ['maladie suivie', 'perdre le contrôle', 'traitement médicamenteux']) {
+    await page.getByRole('group', { name: new RegExp(q) }).getByLabel('Non', { exact: true }).check();
+  }
+  await page.getByLabel('Prendre du muscle').check();
+  await page.getByRole('button', { name: 'Enregistrer', exact: true }).click();
+  await expect(page.getByRole('heading', { name: 'Ma journée moyenne' })).toBeVisible();
+  await page.getByRole('button', { name: 'Semaine', exact: true }).click();
+  // Réglage par défaut : le complément automatique est coché.
+  await page.getByText('Repas, allergies et préférences').click();
+  await expect(page.getByLabel(/Ajouter un goûter ou un en-cas quand il manque/)).toBeChecked();
+  await page.getByRole('button', { name: 'Générer ma semaine' }).click();
+  await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
+  await expect(page.getByText(/ajouté pour ta cible/).first()).toBeVisible();
+  await expect(await problems(page)).toEqual([]);
+  await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-10-semaine-completee.png`, fullPage: true });
+  // Désactivé : plus aucun ajout automatique après régénération.
+  await page.getByLabel(/Ajouter un goûter ou un en-cas quand il manque/).uncheck();
+  await page.getByRole('button', { name: 'Régénérer ma semaine' }).click();
+  await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
+  await expect(page.getByText(/ajouté pour ta cible/)).toHaveCount(0);
+  await expect(await problems(page)).toEqual([]);
+  await page.screenshot({ path: `screenshots/${info.project.name}/nutrition-11-semaine-sans-complement.png`, fullPage: true });
+});

@@ -3,8 +3,8 @@
 // Les filtres durs (allergènes, régime, aliments évités, temps, matériel) sont ceux de plan.ts (`recipeAllowed`) : jamais assouplis.
 
 import {
-  ARRONDI_GRAMMES, BONUS_LOT, ENCAS_MAX_PAR_JOUR, NUTRITION_VERSION, PART_DEJEUNER, PART_OPTIONNEL, PART_OPTIONNEL_MAX, PIECES_MAX_PAR_PRISE,
-  MAX_FOIS_RECETTE_SEMAINE, SCORE, SCORE_VARIETE, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_REPAS, TOL_KCAL_REPLI,
+  ARRONDI_GRAMMES, BONUS_LOT, ECHELLE_MAX_PRINCIPAL, ENCAS_AUTO_MAX_KCAL, ENCAS_MAX_PAR_JOUR, SEUIL_ECART_KCAL, NUTRITION_VERSION, PART_DEJEUNER, PART_OPTIONNEL, PART_OPTIONNEL_MAX, PIECES_MAX_PAR_PRISE,
+  MAX_FOIS_RECETTE_SEMAINE, SCORE, SCORE_VARIETE, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_PRINCIPAL_ELARGIE, TOL_KCAL_REPAS, TOL_KCAL_REPLI,
 } from './config';
 import type { DayTarget } from './day-targets';
 import { recipeAllowed, scaleRecipe, type DayCheck, type FoodMacros, type PlanPrefs, type Recipe } from './plan';
@@ -19,6 +19,8 @@ export interface MealConfig {
   encas: number[];
   /** Un seul petit-déjeuner pour toute la semaine. */
   petitDejIdentique: boolean;
+  /** Complète automatiquement un jour sous la cible (goûter puis en-cas), jamais au-dessus de la cible ; désactivable. */
+  completerAuto: boolean;
   /** « Fabriquer N pièces » : remplace le nombre de pièces d'un lot (jamais en dessous du nécessaire). */
   lotOverride: Record<string, number>;
 }
@@ -28,6 +30,7 @@ export const DEFAULT_MEAL_CONFIG: MealConfig = {
   gouter: Array(7).fill(false),
   encas: Array(7).fill(0),
   petitDejIdentique: false,
+  completerAuto: true,
   lotOverride: {},
 };
 
@@ -37,7 +40,7 @@ export function sanitizeMealConfig(c: Partial<MealConfig> | null | undefined): M
   const encas = Array.isArray(c?.encas) && c!.encas!.length === 7 ? c!.encas!.map((n) => Math.min(ENCAS_MAX_PAR_JOUR, Math.max(0, Math.round(Number(n) || 0)))) : [...DEFAULT_MEAL_CONFIG.encas];
   const lot: Record<string, number> = {};
   for (const [k, v] of Object.entries(c?.lotOverride ?? {})) if (Number.isFinite(v) && v > 0 && v <= 200) lot[k] = Math.round(v);
-  return { petitDej: bools(c?.petitDej, DEFAULT_MEAL_CONFIG.petitDej), gouter: bools(c?.gouter, DEFAULT_MEAL_CONFIG.gouter), encas, petitDejIdentique: c?.petitDejIdentique === true, lotOverride: lot };
+  return { petitDej: bools(c?.petitDej, DEFAULT_MEAL_CONFIG.petitDej), gouter: bools(c?.gouter, DEFAULT_MEAL_CONFIG.gouter), encas, petitDejIdentique: c?.petitDejIdentique === true, completerAuto: c?.completerAuto !== false, lotOverride: lot };
 }
 
 export interface WeekSlot {
@@ -54,6 +57,8 @@ export interface WeekSlot {
   prot: number;
   gluc: number;
   lip: number;
+  /** Goûter / en-cas ajouté automatiquement pour combler un manque de plus du seuil (désactivable dans les réglages). */
+  auto?: boolean;
 }
 
 export interface LotInfo {
@@ -111,7 +116,7 @@ function perPiece(r: Recipe, foods: ReadonlyMap<string, FoodMacros>) {
 }
 
 /** Meilleure prise d'une recette pour une cible : pièces entières pour un lot, mise à l'échelle sinon. */
-function pickFor(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, target: number, tol: number): Pick | null {
+function pickFor(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, target: number, tol: number, maxScale?: number): Pick | null {
   if (!Number.isFinite(target) || target <= 0) return null;
   if (r.lot) {
     const p = perPiece(r, foods);
@@ -123,7 +128,7 @@ function pickFor(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, target: numb
     }
     return best;
   }
-  const s = scaleRecipe(r, foods, target);
+  const s = scaleRecipe(r, foods, target, maxScale);
   if (!s) return null;
   const err = Math.abs(s.kcal - target) / target;
   if (err > tol) return null;
@@ -208,9 +213,9 @@ export function generateWeekPlan(
     const protToday = new Set<string>();
     const fecToday = new Set<string>();
     const done: WeekSlot[] = [];
-    const push = (kind: SlotKind, index: number, pk: Pick | null) => {
+    const push = (kind: SlotKind, index: number, pk: Pick | null, auto = false) => {
       const s: WeekSlot = pk
-        ? { day, kind, index, recipeId: pk.r.id, scale: pk.scale, pieces: pk.pieces, kcal: pk.kcal, prot: pk.prot, gluc: pk.gluc, lip: pk.lip }
+        ? { day, kind, index, recipeId: pk.r.id, scale: pk.scale, pieces: pk.pieces, kcal: pk.kcal, prot: pk.prot, gluc: pk.gluc, lip: pk.lip, ...(auto ? { auto: true } : {}) }
         : { day, kind, index, recipeId: null, scale: 0, pieces: 0, kcal: 0, prot: 0, gluc: 0, lip: 0 };
       slots.push(s);
       done.push(s);
@@ -225,26 +230,33 @@ export function generateWeekPlan(
       }
     };
 
-    // 1) repas optionnels d'abord (cibles nominales)
-    for (const o of optional) {
-      const target = d.kcal * o.share;
-      const want = repasOf(o.kind);
-      if (o.kind === 'petit-dej' && fixedBreakfast) { push(o.kind, o.index, pickFor(fixedBreakfast, foods, target, TOL_KCAL_REPAS)); continue; }
-      const key = `${o.kind}-${o.index}`;
+    // Choix d'une recette pour un goûter / en-cas / petit-déjeuner ; maxKcal = plafond dur (jamais au-dessus), carb = préférer les glucides.
+    const chooseOptional = (kind: SlotKind, index: number, target: number, maxKcal?: number, carb = false): Pick | null => {
+      const want = repasOf(kind);
+      const key = `${kind}-${index}`;
       const chosenLot = lotFor.get(key);
       let best: { pk: Pick; score: number } | null = null;
       for (const r of allowed) {
         if (r.repas !== want || usedToday.has(r.id)) continue;
         if (chosenLot && r.lot && r.id !== chosenLot.id) continue; // un seul lot par créneau sur la semaine
-        const pk = pickFor(r, foods, target, r.lot || o.kind !== 'petit-dej' ? TOL_KCAL_OPTIONNEL : TOL_KCAL_REPAS);
+        const pk = pickFor(r, foods, target, r.lot || kind !== 'petit-dej' ? TOL_KCAL_OPTIONNEL : TOL_KCAL_REPAS);
         if (!pk) continue;
+        if (maxKcal !== undefined && pk.kcal > maxKcal + 1e-9) continue;
         let score = -pk.err * SCORE.ecartKcal + basketScore(pk) + rnd() * SCORE.bruit;
+        if (carb && pk.kcal > 0) score += (SCORE.glucidesCompl * 4 * pk.gluc) / pk.kcal;
         if (r.lot) score += BONUS_LOT + (chosenLot?.id === r.id ? BONUS_LOT : 0);
         else score -= (usedMain.get(r.id) ?? 0) * SCORE.repetition - (previousRecipeIds.includes(r.id) ? SCORE.repetitionSemaineDerniere : 0);
         if (!best || score > best.score) best = { pk, score };
       }
       if (best?.pk.r.lot) lotFor.set(key, best.pk.r);
-      push(o.kind, o.index, best?.pk ?? null);
+      return best?.pk ?? null;
+    };
+
+    // 1) repas optionnels d'abord (cibles nominales)
+    for (const o of optional) {
+      const target = d.kcal * o.share;
+      if (o.kind === 'petit-dej' && fixedBreakfast) { push(o.kind, o.index, pickFor(fixedBreakfast, foods, target, TOL_KCAL_REPAS)); continue; }
+      push(o.kind, o.index, chooseOptional(o.kind, o.index, target));
     }
 
     // 2) repas principaux : ils absorbent le reste de la cible du jour (déjeuner puis dîner)
@@ -257,13 +269,13 @@ export function generateWeekPlan(
         // Ordre des essais : dans la tolérance du repas ET sous le plafond de répétition, puis dans la tolérance sans le plafond, puis repli sur la
         // recette la plus proche (le jour sera signalé « écart »). Jamais une case vide si une recette autorisée existe.
         const passes: { tol: number; cap: boolean }[] = [
-          { tol: TOL_KCAL_REPAS, cap: true }, { tol: TOL_KCAL_REPAS, cap: false }, { tol: TOL_KCAL_REPLI, cap: true }, { tol: TOL_KCAL_REPLI, cap: false },
+          { tol: TOL_KCAL_REPAS, cap: true }, { tol: TOL_KCAL_PRINCIPAL_ELARGIE, cap: true }, { tol: TOL_KCAL_REPAS, cap: false }, { tol: TOL_KCAL_REPLI, cap: true }, { tol: TOL_KCAL_REPLI, cap: false },
         ];
         for (const { tol, cap } of passes) {
           for (const r of allowed) {
             if (r.repas !== 'dejeuner-diner' || usedToday.has(r.id)) continue;
             if (cap && (usedMain.get(r.id) ?? 0) >= MAX_FOIS_RECETTE_SEMAINE) continue;
-            const pk = pickFor(r, foods, target, tol);
+            const pk = pickFor(r, foods, target, tol, ECHELLE_MAX_PRINCIPAL);
             if (!pk) continue;
             const p = r.sourceProteines ?? '';
             const g = r.sourceGlucides ?? '';
@@ -278,9 +290,30 @@ export function generateWeekPlan(
       }
       push(kind, 0, best?.pk ?? null);
     }
+    // 3) jour sous la cible de plus du seuil : goûter puis en-cas ajoutés (actifs par défaut, désactivables), jamais au-dessus de la cible du jour.
+    // La cible du jour est déjà bornée par le plafond de sécurité (surplus, déficit, plancher) : l'ajout ne la dépasse jamais.
+    if (cfg.completerAuto && !done.some((s) => !s.recipeId)) {
+      const free: { kind: SlotKind; index: number }[] = [];
+      if (!cfg.gouter[day]) free.push({ kind: 'gouter', index: 0 });
+      for (let i = cfg.encas[day]; i < ENCAS_MAX_PAR_JOUR; i++) free.push({ kind: 'encas', index: i });
+      free.forEach((o, k) => {
+        const eaten = done.reduce((t, x) => t + x.kcal, 0);
+        const gap = d.kcal - eaten;
+        // Sous le plancher : on complète même si le manque est petit ; le plancher passe avant la cible (marge de ±5 % du jour, jamais plus).
+        const belowFloor = eaten < floorKcal - 1e-9;
+        if (gap <= SEUIL_ECART_KCAL && !belowFloor) return;
+        const need = Math.max(1, Math.min(free.length - k, Math.ceil(gap / ENCAS_AUTO_MAX_KCAL)));
+        const cap = Math.min(ENCAS_AUTO_MAX_KCAL, Math.max(gap, 0) + (belowFloor ? d.kcal * TOL_KCAL_JOUR : 0));
+        const pk = chooseOptional(o.kind, o.index, Math.min(ENCAS_AUTO_MAX_KCAL, Math.max(gap, 1) / need), cap, true);
+        if (pk) push(o.kind, o.index, pk, true);
+      });
+    }
     protYesterday = protToday;
     fecYesterday = fecToday;
   });
+  // Ordre d'affichage dans la journée : petit-déjeuner, 1er en-cas, déjeuner, goûter, 2e en-cas, dîner.
+  const rank = (s: WeekSlot) => (s.kind === 'petit-dej' ? 0 : s.kind === 'encas' && s.index === 0 ? 1 : s.kind === 'dejeuner' ? 2 : s.kind === 'gouter' ? 3 : s.kind === 'encas' ? 4 : 5);
+  slots.sort((a, b) => a.day - b.day || rank(a) - rank(b));
 
   // Lots : pièces nécessaires = somme des prises ; fabriquées = max(nécessaire, réglage). Courses = pièces du lot x ingrédients d'une pièce.
   const lotMap = new Map<string, LotInfo>();
@@ -314,7 +347,8 @@ export function generateWeekPlan(
     if (mine.some((s) => !s.recipeId)) status = 'incomplet';
     else if (belowFloor) status = 'sous_plancher';
     else if (Math.abs(kcal - d.kcal) / d.kcal > TOL_KCAL_JOUR) status = 'ecart';
-    return { day, kcal, targetKcal: d.kcal, status, belowFloor };
+    const manque = d.kcal - kcal;
+    return { day, kcal, targetKcal: d.kcal, status, belowFloor, missingKcal: manque > SEUIL_ECART_KCAL ? manque : 0 };
   });
   return { version: NUTRITION_VERSION, slots, lots, days: checks, ingredients };
 }

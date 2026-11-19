@@ -4910,5 +4910,168 @@
     "conditionnement_g": 400,
     "garde_manger": false,
     "perissable": false
+  },
+  {
+    "code": "19860",
+    "nom": "Yaourt grec nature",
+    "famille": "laitage",
+    "rayon": "laitiers_oeufs",
+    "allergenes": [
+      "lait"
+    ],
+    "regimes_incompatibles": [
+      "vegetalien",
+      "sans_lactose"
+    ],
+    "unite_achat": {
+      "label": "pot",
+      "grammes": 150
+    },
+    "conditionnement_g": 600,
+    "perissable": true,
+    "statut_allergenes": "valide",
+    "garde_manger": false
+  },
+  {
+    "code": "24015",
+    "nom": "Biscuits petit-beurre",
+    "famille": "autre",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten",
+      "lait",
+      "oeufs",
+      "soja",
+      "fruits_a_coque",
+      "arachides",
+      "sesame",
+      "sulfites"
+    ],
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 200
+    },
+    "conditionnement_g": 200,
+    "perissable": false,
+    "statut_allergenes": "valide",
+    "garde_manger": false
+  },
+  {
+    "code": "7711",
+    "nom": "Pain au lait (préemballé)",
+    "famille": "feculent",
+    "rayon": "feculents",
+    "allergenes": [
+      "gluten",
+      "lait",
+      "oeufs",
+      "soja",
+      "sesame",
+      "fruits_a_coque",
+      "arachides",
+      "lupin"
+    ],
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "paquet de 10 pains au lait",
+      "grammes": 350
+    },
+    "conditionnement_g": 350,
+    "perissable": false,
+    "statut_allergenes": "valide",
+    "garde_manger": false
+  },
+  {
+    "code": "13046",
+    "nom": "Raisins secs",
+    "famille": "fruit",
+    "rayon": "epicerie",
+    "allergenes": [
+      "sulfites"
+    ],
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "perissable": false,
+    "statut_allergenes": "valide",
+    "garde_manger": false
+  },
+  {
+    "code": "32003",
+    "nom": "Céréales du petit-déjeuner (type corn flakes)",
+    "famille": "feculent",
+    "rayon": "epicerie",
+    "allergenes": [
+      "gluten",
+      "lait",
+      "fruits_a_coque",
+      "arachides",
+      "soja",
+      "sesame",
+      "sulfites"
+    ],
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "paquet",
+      "grammes": 375
+    },
+    "conditionnement_g": 375,
+    "perissable": false,
+    "statut_allergenes": "valide",
+    "garde_manger": false
+  },
+  {
+    "code": "19118",
+    "nom": "Lait chocolaté",
+    "famille": "laitage",
+    "rayon": "epicerie",
+    "allergenes": [
+      "lait",
+      "soja",
+      "gluten",
+      "fruits_a_coque",
+      "arachides"
+    ],
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "bouteille",
+      "grammes": 1000
+    },
+    "conditionnement_g": 1000,
+    "perissable": false,
+    "statut_allergenes": "valide",
+    "garde_manger": false
+  },
+  {
+    "code": "13042",
+    "nom": "Pruneaux secs",
+    "famille": "fruit",
+    "rayon": "epicerie",
+    "allergenes": [
+      "sulfites"
+    ],
+    "regimes_incompatibles": [],
+    "unite_achat": null,
+    "conditionnement_g": 250,
+    "perissable": false,
+    "statut_allergenes": "valide",
+    "garde_manger": false
   }
 ]

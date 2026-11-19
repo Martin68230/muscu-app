@@ -80,6 +80,8 @@ export interface DayCheck {
   status: 'ok' | 'incomplet' | 'sous_plancher' | 'ecart';
   /** Vrai si l'énergie du jour est sous le plancher, même quand le statut est « incomplet ». */
   belowFloor?: boolean;
+  /** Énergie qui manque encore pour la cible du jour (kcal) quand elle dépasse le seuil, 0 sinon : l'écart est montré, jamais caché. */
+  missingKcal?: number;
 }
 
 export interface WeekPlan {
@@ -150,7 +152,7 @@ interface Scaled {
 }
 
 /** Mise à l'échelle des seuls ingrédients ajustables vers l'énergie cible, dans [ECHELLE_MIN, ECHELLE_MAX]. */
-export function scaleRecipe(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, targetKcal: number): Scaled | null {
+export function scaleRecipe(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, targetKcal: number, maxScale: number = ECHELLE_MAX): Scaled | null {
   let fixed = 0;
   let adj = 0;
   for (const i of r.ingredients) {
@@ -161,7 +163,7 @@ export function scaleRecipe(r: Recipe, foods: ReadonlyMap<string, FoodMacros>, t
   }
   if (adj <= 0) return null;
   const raw = (targetKcal - fixed) / adj;
-  const scale = Math.min(ECHELLE_MAX, Math.max(ECHELLE_MIN, raw));
+  const scale = Math.min(maxScale, Math.max(ECHELLE_MIN, raw));
   let kcal = 0, prot = 0, gluc = 0, lip = 0;
   const lines: Scaled['lines'] = [];
   for (const i of r.ingredients) {

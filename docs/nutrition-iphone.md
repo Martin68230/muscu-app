@@ -19,6 +19,11 @@ Captures WebKit faites (375x667 et 430x932, clair et sombre) : `screenshots/<pro
 10. Courses : classées par rayon, quantités de la semaine, unités d'achat (œufs, paquets), « sert à N repas », cases à cocher qui restent cochées en rouvrant l'app, bouton « Copier la liste ».
 11. Allergie cochée (par exemple le lait) puis « Régénérer » : plus aucune recette avec cet allergène ; si aucune recette ne convient à un repas, le message le dit au lieu de proposer autre chose. Rappel affiché : vérifier les étiquettes.
 
+### Goûter ajouté automatiquement (14/11/2026)
+11 bis. Profil à gros besoins (par exemple 95 kg, « Prendre du muscle ») : « Générer ma semaine » ajoute un goûter, puis un en-cas, aux jours où il manque plus de 150 kcal ; ils portent la mention « (ajouté pour ta cible) » et se déplient comme les autres repas (recette, grammes, étapes). Dans « Repas, allergies et préférences », la case « Ajouter un goûter ou un en-cas quand il manque plus de 150 kcal » est cochée par défaut ; décochée puis « Régénérer » : plus aucun ajout.
+11 ter. Les portions des repas principaux ne dépassent pas +30 % ; la ligne du jour montre « cible X kcal · prévu Y kcal » : l'écart doit être petit (moins de 150 kcal). Si un manque subsiste (filtres stricts : allergies, 15 min de cuisine...), une phrase « Il manque X kcal pour atteindre ta cible ce jour-là » l'explique ; jamais de repas au-dessus de ta cible du jour.
+11 quater. Courses : les goûters et en-cas ajoutés sont comptés avec le reste, par rayon, en paquets (barres : « boîte de 6 barres », yaourts grecs : « pot », pain au lait : « paquet de 10 »).
+
 ## Pesée et courbe
 12. « Poids et courbe » : saisie d'une pesée (date, poids avec virgule), phrase d'interprétation, courbe lisible en clair et en sombre, tableau des pesées, bouton « Supprimer ».
 
