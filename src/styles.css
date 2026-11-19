@@ -637,6 +637,22 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .bar { fill: var(--surface-2); stroke: var(--line); }
 .bar-now { fill: var(--accent); stroke: none; }
 .prog-line { margin-bottom: 4px; }
+.bar-sel { fill: var(--accent); stroke: var(--text); stroke-width: 2; }
+.hit { fill: transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+.hit:focus-visible { outline: 3px solid var(--accent); }
+.curve-dot-sel { stroke: var(--text); }
+.curve-readout { margin: 6px 0 2px; min-height: 1.5em; font-weight: 600; }
+.rec-list { list-style: none; padding: 4px 16px; }
+.rec-item { border-bottom: 1px solid var(--line); }
+.rec-item:last-child { border-bottom: 0; }
+.rec-row { display: flex; align-items: center; justify-content: space-between; gap: 12px; width: 100%; min-height: 52px; padding: 8px 0; background: transparent; border: 0; color: inherit; font: inherit; text-align: left; }
+.rec-row:active { filter: brightness(0.9); }
+.rec-row:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.rec-name { flex: 1; min-width: 0; overflow-wrap: anywhere; font-weight: 600; }
+.rec-val { text-align: right; flex-shrink: 0; }
+.rec-new { display: inline-block; margin-left: 8px; padding: 1px 8px; border-radius: 10px; background: var(--surface-2); color: var(--accent); font-size: 0.75rem; font-weight: 700; }
+.rec-history { margin: 0 0 10px; padding-left: 20px; }
+.rec-history li { padding: 2px 0; }
 
 /* Accueil : carte de séance mise en avant, régularité en pastilles, deux boutons côte à côte. */
 .card-hero { border-color: var(--accent); border-width: 2px; }
@@ -672,3 +688,9 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .img-bar > div { height: 100%; background: var(--accent, #4a9); }
 .img-bar > span { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; }
 .img-import { margin-top: 16px; }
+.card .segmented { margin: 10px 0; }
+
+/* Lot 4 : section d'import d'images, compteur d'abord, détails repliés. */
+.img-count { margin: 0 0 8px; font-size: 1rem; }
+.img-more summary { min-height: 44px; display: flex; align-items: center; color: var(--accent); }
+.img-import .btn { margin-top: 8px; }
