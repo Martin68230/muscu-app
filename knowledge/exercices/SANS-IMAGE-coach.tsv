@@ -190,7 +190,6 @@ planche-touche-epaule	planche-touche-epaule-pieds	ambigu	seule la version sur ge
 planche-touche-epaule	planche-touche-epaule-pieds-serres	ambigu	seule la version sur genoux (3239)
 pompe-bosu	pompe-bosu-genoux	ambigu	bosu 1307 et 0653 : orientation du dôme et appui genoux non vérifiables
 pompe-bosu	pompe-bosu-pieds	ambigu	bosu 1307 et 0653 : orientation du dôme non vérifiable
-pompe-ecartee	pompe-ecartee-sol	ambigu	pas de pompe large ; push-up standard a les mains à largeur d'épaules
 pompe-equilibre-mur	pompe-equilibre-mur-pieds	ambigu	handstand push-up (0471) différent, geste technique
 pompe-equilibre-mur	pompe-equilibre-mur-ventre	ambigu	handstand push-up (0471) proche mais technique : doute = rien
 pompe-mains-ballon	pompe-mains-ballon-mur	pas_dans_le_jeu	aucun équivalent dans le jeu
@@ -305,9 +304,6 @@ coquille-hanche	coquille-mini-bande	pas_dans_le_jeu	aucune coquille ; l'abductio
 coquille-hanche	coquille-mini-bande-pause	pas_dans_le_jeu	aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
 elevation-frontale-halteres	frontale-sans-charge	pas_dans_le_jeu	aucune élévation frontale à vide
 etirement-epaule-bras-croise	epaule-croisee-assis	pas_dans_le_jeu	aucun étirement du bras croisé
-fente-croisee	fente-croisee-appui	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
-fente-croisee	fente-croisee-libre	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
-fente-croisee	fente-croisee-halteres	pas_dans_le_jeu	aucune fente croisée ; fentes arrière ou avant d'un geste différent
 pallof-pas-lateraux	pallof-pas-elastique-court	ambigu	seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
 pallof-pas-lateraux	pallof-pas-poulie	ambigu	seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
 pallof-pas-lateraux	pallof-pas-elastique-bras-tendus	ambigu	seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits

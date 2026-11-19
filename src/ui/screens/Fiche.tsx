@@ -47,8 +47,14 @@ export function displayImages(f: FicheData) {
   return f.images.filter((i) => i.type === 'illustration').slice(0, 1);
 }
 
+function importedCaption(im: { niveau: 'sûr' | 'proche'; variante: string; exact: boolean }, fiche: FicheData): string {
+  if (!im.exact) return `Image importée par toi, d’une autre variante de cet exercice : « ${fiche.variantes.find((v) => v.id === im.variante)?.nom ?? 'variante'} ». Elle peut différer de la tienne : suis la consigne écrite.`;
+  return im.niveau === 'proche' ? 'Image importée par toi, d’un exercice proche (autre matériel) : suis la consigne écrite.' : 'Image importée par toi. En cas de doute, suis la consigne écrite.';
+}
+
 export function FicheImages({ fiche, compact = false, variantId = null }: { fiche: FicheData; compact?: boolean; variantId?: string | null }) {
-  const imported = useImportedImage(fiche.id, variantId);
+  const order = [...fiche.variantes].sort((a, b) => a.echelon - b.echelon).map((v) => v.id);
+  const imported = useImportedImage(fiche.id, variantId, order);
   const imgs = displayImages(fiche);
   const [broken, setBroken] = useState<string[]>([]);
   const shown = imgs.filter((i) => !broken.includes(i.src)).slice(0, compact ? 1 : 2);
@@ -56,7 +62,7 @@ export function FicheImages({ fiche, compact = false, variantId = null }: { fich
     return (
       <figure class={`fiche-figure${compact ? ' compact' : ''}`}>
         <div class="fiche-imgs"><img class="fiche-img" src={imported.url} alt={`Image importée de l’exercice : ${fiche.nom}`} /></div>
-        <figcaption class="dim small">{imported.niveau === 'proche' ? 'Image importée par toi, d’un exercice proche (autre matériel) : suis la consigne écrite.' : 'Image importée par toi. En cas de doute, suis la consigne écrite.'}</figcaption>
+        <figcaption class="dim small">{importedCaption(imported, fiche)}</figcaption>
       </figure>
     );
   }
@@ -140,7 +146,7 @@ export function FicheView({ fiche, all, equipment, injuries, pregnancy }: FicheV
         {SCHEMA_LABEL[fiche.schema] ?? 'Exercice'} · à partir du niveau {levelText(fiche.niveauMin)}
       </p>
 
-      <FicheImages fiche={fiche} variantId={choice.best?.id ?? null} />
+      <FicheImages fiche={fiche} variantId={choice.best?.id ?? choice.closest?.variante.id ?? null} />
 
       <section class="card" aria-labelledby="f-muscles">
         <h2 id="f-muscles">Muscles travaillés</h2>

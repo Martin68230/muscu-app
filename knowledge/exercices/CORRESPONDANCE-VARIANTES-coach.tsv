@@ -255,3 +255,7 @@ developpe-arnold-halteres	developpe-arnold-banc	2137 0287	proche	développé Arn
 squat-bulgare	squat-bulgare-halteres	0410	proche	single leg split squat aux haltères (pied arrière surélevé sur banc d après le geste usuel du jeu) ; banc au lieu de chaise, à vérifier à l écran
 nordique-ischios	nordique-ischios-poussee	0696	proche	self assisted inverse leg curl (on floor) : nordique avec aide des mains ; ancrage des pieds non vérifié
 etirement-epaule-bras-croise	epaule-croisee-debout	0669	proche	rear deltoid stretch au poids du corps ; posture debout supposée d après le nom
+pompe-ecartee	pompe-ecartee-sol	1311	sûr	pompe mains écartées au poids du corps, même geste et même matériel (wide hand push up)
+fente-croisee	fente-croisee-libre	3769	sûr	curtsy lunge, pied qui passe derrière en croisant, poids du corps sans appui
+fente-croisee	fente-croisee-appui	3769	proche	même fente croisée ; l image est sans appui, notre consigne ajoute une main sur un support (plus sûr)
+fente-croisee	fente-croisee-halteres	3769	proche	même fente croisée ; l image est sans charge, notre variante tient deux haltères légers
