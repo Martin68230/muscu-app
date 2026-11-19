@@ -39,6 +39,8 @@ export interface Fiche {
   technique?: boolean | string;
   /** D26 (CORE-FAM-1) : famille de core facultative (gainage, anti_rotation, rotation, flexion, extension). */
   familleCore?: string;
+  /** Images affichables de la fiche (fiches.json) : vide pour une fiche du jeu hasaneyldrm (GIF importé localement par l'utilisateur, aucun fichier dans le dépôt). */
+  images?: unknown[];
   variantes: FicheVariant[];
   securite: {
     zones: Record<string, SafetyCase[]>;

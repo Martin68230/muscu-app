@@ -1,0 +1,153 @@
+famille	schema	muscles	noms_anglais	ids
+tirage_h|biceps|curl	tirage_h	biceps	cable curl / cable seated curl / weighted standing curl	0868,1641,0853
+tirage_h|avant_bras|back curl wrist	tirage_h	avant_bras	barbell standing back wrist curl / cable standing back wrist curl / smith standing back wrist curl	0104,0224,0771
+tirage_v|pectoraux|exercise on pullover	tirage_v	pectoraux	dumbbell lying pullover on exercise ball / dumbbell pullover on exercise ball	1284,1295
+tirage_h|grand_dorsal+rhomboides|arm bent over row	tirage_h	grand_dorsal,rhomboides	barbell one arm bent over row / cable one arm bent over row	0064,0189
+tirage_h|triceps|arm bent extension over triceps	tirage_h	triceps	dumbbell standing bent over one arm triceps extension / dumbbell standing bent over two arm triceps extension	1740,1741
+tirage_h|deltoides_posterieurs|delt rear row stirrups	tirage_h	deltoides_posterieurs	cable rear delt row (stirrups)	0202
+tirage_h|deltoides_anterieurs|internal rotation shoulder	tirage_h	deltoides_anterieurs	cable seated shoulder internal rotation	0216
+tirage_h|deltoides_lateraux|external rotation shoulder upright	tirage_h	deltoides_lateraux	dumbbell upright shoulder external rotation	0864
+tirage_h|erecteurs_rachis|back curl lower	tirage_h	erecteurs_rachis	lower back curl	1352
+tirage_h|trapezes|decline shrug v	tirage_h	trapezes	dumbbell decline shrug v. 2	0304
+tirage_h|biceps|arm biceps blaster curl with	tirage_h	biceps	barbell biceps curl (with arm blaster) / dumbbell alternate biceps curl (with arm blaster) / dumbbell biceps curl (with arm blaster)	2407,2403,2401
+tirage_h|avant_bras|curl wrist	tirage_h	avant_bras	barbell wrist curl / cable wrist curl / smith seated wrist curl	0126,0247,1426
+tirage_v|pectoraux|cage chest dip dip on pull up	tirage_v	pectoraux	chest dip (on dip-pull-up cage)	1430
+tirage_h|grand_dorsal+rhomboides|bent grip over reverse row	tirage_h	grand_dorsal,rhomboides	barbell reverse grip bent over row / smith reverse grip bent over row	0118,1361
+tirage_h|triceps|bent extension over triceps	tirage_h	triceps	dumbbell seated bent over triceps extension	1737
+tirage_h|deltoides_posterieurs|fly reverse supine	tirage_h	deltoides_posterieurs	cable supine reverse fly	0240
+tirage_h|trapezes|back shrug	tirage_h	trapezes	smith back shrug	0746
+tirage_h|biceps|curl preacher reverse	tirage_h	biceps	barbell reverse preacher curl / cable reverse preacher curl / dumbbell reverse preacher curl	0081,0209,0384
+tirage_h|avant_bras|bench curl over wrist	tirage_h	avant_bras	dumbbell over bench wrist curl	0369
+tirage_v|pectoraux|around pullover	tirage_v	pectoraux	dumbbell around pullover	0288
+tirage_v|grand_dorsal|lateral pulldown	tirage_v	grand_dorsal	alternate lateral pulldown	0007
+tirage_h|triceps|exercise narrow on push up	tirage_h	triceps	narrow push-up on exercise ball	2328
+tirage_h|deltoides_posterieurs|delt floor on raise rear	tirage_h	deltoides_posterieurs	dumbbell lying on floor rear delt raise	2470
+tirage_h|biceps|close curl grip	tirage_h	biceps	barbell standing close grip curl / cable close grip curl / cable lying close-grip curl	0106,1630,0182
+tirage_h|avant_bras|a bench curl down over palms wrist	tirage_h	avant_bras	barbell palms down wrist curl over a bench	1411
+tirage_v|pectoraux|arm pullover straight	tirage_v	pectoraux	dumbbell straight arm pullover	0433
+tirage_v|grand_dorsal|back fixed pulldown underhand	tirage_v	grand_dorsal	band fixed back underhand pulldown	3116
+tirage_h|deltoides_posterieurs|head lateral raise rear support	tirage_h	deltoides_posterieurs	dumbbell rear lateral raise (support head)	0379
+tirage_h|biceps|curl overhead	tirage_h	biceps	cable overhead curl / cable seated overhead curl	1636,1643
+tirage_h|avant_bras|a bench curl over palms up wrist	tirage_h	avant_bras	barbell palms up wrist curl over a bench	1412
+tirage_v|pectoraux|decline pullover	tirage_v	pectoraux	barbell decline pullover	1255
+tirage_v|grand_dorsal|bench pull ups	tirage_v	grand_dorsal	bench pull-ups	3019
+tirage_h|deltoides_posterieurs|fly reverse	tirage_h	deltoides_posterieurs	dumbbell reverse fly	0383
+tirage_h|biceps|bicep curl exercise leg on raised with	tirage_h	biceps	dumbbell alternating bicep curl with leg raised on exercise ball / dumbbell bicep curl on exercise ball with leg raised	1649,1652
+tirage_h|avant_bras|curl revers v wrist	tirage_h	avant_bras	barbell revers wrist curl v. 2	0079
+tirage_v|pectoraux|and front pullover raise	tirage_v	pectoraux	barbell front raise and pullover	0040
+tirage_h|grand_dorsal+rhomboides|row towel with	tirage_h	grand_dorsal,rhomboides	bodyweight standing row (with towel)	3165
+tirage_h|deltoides_posterieurs|fly reverse rotation	tirage_h	deltoides_posterieurs	dumbbell rotation reverse fly	0386
+tirage_h|biceps|curl preacher zottman	tirage_h	biceps	dumbbell standing zottman preacher curl / dumbbell zottman preacher curl	2293,2294
+tirage_h|avant_bras|curl v wrist	tirage_h	avant_bras	barbell wrist curl v. 2	0125
+tirage_h|pectoraux|arm bent lateral over	tirage_h	pectoraux	cable one arm lateral bent-over	0191
+tirage_v|grand_dorsal|cross lateral over pulldown	tirage_v	grand_dorsal	cable cross-over lateral pulldown	0153
+tirage_h|deltoides_posterieurs|arm lateral raise rear	tirage_h	deltoides_posterieurs	dumbbell lying one arm rear lateral raise	0345
+tirage_h|biceps|biceps curl grip wide	tirage_h	biceps	barbell standing wide grip biceps curl / ez-barbell standing wide grip biceps curl	1629,2741
+tirage_h|avant_bras|arm curl reverse wrist	tirage_h	avant_bras	dumbbell one arm reverse wrist curl	0358
+tirage_h|grand_dorsal+rhomboides|high kneeling row	tirage_h	grand_dorsal,rhomboides	cable high row (kneeling)	0167
+tirage_h|biceps|arm curl	tirage_h	biceps	cable one arm curl / dumbbell one arm standing curl	0190,1670
+tirage_h|avant_bras|arm curl neutral wrist	tirage_h	avant_bras	dumbbell one arm seated neutral wrist curl	1415
+tirage_h|grand_dorsal+rhomboides|bench incline row	tirage_h	grand_dorsal,rhomboides	cable incline bench row	1318
+tirage_h|biceps|arm curl preacher reverse	tirage_h	biceps	cable one arm reverse preacher curl / dumbbell one arm reverse preacher curl	1635,1414
+tirage_h|avant_bras|arm curl wrist	tirage_h	avant_bras	dumbbell one arm wrist curl	0364
+tirage_v|grand_dorsal|full lat motion of pulldown range	tirage_v	grand_dorsal	cable lat pulldown full range of motion	2330
+tirage_h|biceps|arm curl reverse	tirage_h	biceps	cable reverse one arm curl / dumbbell standing one arm reverse curl	1413,0425
+tirage_h|avant_bras|arm bench curl over reverse wrist	tirage_h	avant_bras	dumbbell over bench one arm reverse wrist curl	1441
+tirage_h|grand_dorsal+rhomboides|low row	tirage_h	grand_dorsal,rhomboides	cable low seated row	0180
+tirage_h|biceps|arm concentration curl	tirage_h	biceps	cable seated one arm concentration curl / dumbbell standing one arm concentration curl	1642,0421
+tirage_h|grand_dorsal+rhomboides|palm rotational row	tirage_h	grand_dorsal,rhomboides	cable palm rotational row	1319
+tirage_h|biceps|arm bench curl incline over	tirage_h	biceps	dumbbell standing one arm curl (over incline bench) / dumbbell standing one arm curl over incline bench	0422,1680
+tirage_v|grand_dorsal|bar lat pro pulldown	tirage_v	grand_dorsal	cable pulldown (pro lat bar)	0197
+tirage_h|biceps|biceps concentration curl leg	tirage_h	biceps	biceps leg concentration curl	1770
+tirage_h|grand_dorsal|bar high row v	tirage_h	grand_dorsal	cable seated high row (v-bar)	0213
+tirage_v|biceps|biceps narrow pull ups	tirage_v	biceps	biceps narrow pull-ups	0139
+tirage_h|grand_dorsal+rhomboides|bar row v	tirage_h	grand_dorsal,rhomboides	cable standing row (v-bar)	0234
+tirage_v|biceps|biceps pull up	tirage_v	biceps	biceps pull-up	0140
+tirage_h|grand_dorsal+rhomboides|bar row twist v	tirage_h	grand_dorsal,rhomboides	cable standing twist row (v-bar)	0236
+tirage_h|biceps|biceps curl side	tirage_h	biceps	bodyweight side lying biceps curl	1769
+tirage_h|grand_dorsal+rhomboides|back row straight	tirage_h	grand_dorsal,rhomboides	cable straight back seated row	0239
+tirage_h|biceps|curl drag	tirage_h	biceps	cable drag curl	1632
+tirage_h|grand_dorsal|kayak row thibaudeau	tirage_h	grand_dorsal	cable thibaudeau kayak row	2464
+tirage_h|biceps|curl exercise on overhead	tirage_h	biceps	cable overhead curl on exercise ball	1637
+tirage_h|grand_dorsal+rhomboides|row upper	tirage_h	grand_dorsal,rhomboides	cable upper row	1324
+tirage_v|biceps|bicep curl pulldown	tirage_v	biceps	cable pulldown bicep curl	1638
+tirage_v|grand_dorsal+rhomboides|chin grip narrow parallel ups	tirage_v	grand_dorsal,rhomboides	chin-ups (narrow parallel grip)	0253
+tirage_h|biceps|curl reverse	tirage_h	biceps	cable reverse curl	0206
+tirage_h|grand_dorsal+rhomboides|delt rear row	tirage_h	grand_dorsal,rhomboides	dumbbell lying rear delt row	1328
+tirage_h|biceps|curl inner	tirage_h	biceps	cable standing inner curl	0229
+tirage_h|grand_dorsal+rhomboides|bent over palm rotational row	tirage_h	grand_dorsal,rhomboides	dumbbell palm rotational bent over row	1329
+tirage_h|biceps|arm bench curl incline on	tirage_h	biceps	cable two arm curl on incline bench	1645
+tirage_v|grand_dorsal|chin grip mixed up	tirage_v	grand_dorsal	mixed grip chin-up	0627
+tirage_h|biceps|bicep curl exercise on	tirage_h	biceps	dumbbell alternating seated bicep curl on exercise ball	1650
+tirage_v|grand_dorsal|grip neutral pull up	tirage_v	grand_dorsal	pull up (neutral grip)	0651
+tirage_h|biceps|bicep curl stance stork with	tirage_h	biceps	dumbbell bicep curl with stork stance	1653
+tirage_v|grand_dorsal|pull rear up	tirage_v	grand_dorsal	rear pull-up	0670
+tirage_h|biceps|biceps curl reverse	tirage_h	biceps	dumbbell biceps curl reverse	1654
+tirage_v|grand_dorsal|pull pulldown rocky up	tirage_v	grand_dorsal	rocky pull-up pulldown	0678
+tirage_h|biceps|bicep curl exercise kneeling	tirage_h	biceps	dumbbell kneeling bicep curl exercise ball	1660
+tirage_v|grand_dorsal|grip pull shoulder up	tirage_v	grand_dorsal	shoulder grip pull-up	1763
+tirage_h|biceps|biceps curl supine	tirage_h	biceps	dumbbell lying supine biceps curl	1661
+tirage_h|grand_dorsal+rhomboides|row suspended	tirage_h	grand_dorsal,rhomboides	suspended row	0808
+tirage_h|biceps|curl supine	tirage_h	biceps	dumbbell lying supine curl	0350
+tirage_v|grand_dorsal|grip handle lat parallel pulldown twin	tirage_v	grand_dorsal	twin handle parallel grip lat pulldown	0818
+tirage_h|biceps|bench curl neutral over wrist	tirage_h	biceps	dumbbell over bench neutral wrist curl	0365
+tirage_v|grand_dorsal|close grip parallel pull up	tirage_v	grand_dorsal	assisted parallel close grip pull-up	0015
+tirage_h|biceps|curl exercise over preacher	tirage_h	biceps	dumbbell preacher curl over exercise ball	1673
+tirage_v|grand_dorsal|chin up	tirage_v	grand_dorsal	assisted standing chin-up	1431
+tirage_h|biceps|biceps curl grip revers	tirage_h	biceps	dumbbell revers grip biceps curl	0382
+tirage_v|grand_dorsal|pull up	tirage_v	grand_dorsal	assisted standing pull-up	1432
+tirage_h|biceps|biceps curl on	tirage_h	biceps	dumbbell seated biceps curl (on stability ball)	0390
+tirage_v|grand_dorsal|back close fixed grip pulldown	tirage_v	grand_dorsal	band fixed back close grip pulldown	3117
+tirage_h|biceps|biceps curl press shoulder to	tirage_h	biceps	dumbbell seated biceps curl to shoulder press	3547
+tirage_h|grand_dorsal+rhomboides|arm row twisting	tirage_h	grand_dorsal,rhomboides	band one arm twisting seated row	0990
+tirage_h|biceps|biceps curl inner	tirage_h	biceps	dumbbell seated inner biceps curl	0393
+tirage_v|grand_dorsal|arm bent pullover	tirage_v	grand_dorsal	barbell bent arm pullover	1316
+tirage_h|biceps|curl neutral wrist	tirage_h	biceps	dumbbell seated neutral wrist curl	0397
+tirage_v|grand_dorsal|arm bent decline pullover	tirage_v	grand_dorsal	barbell decline bent arm pullover	0034
+tirage_h|biceps|concentration curl grip revers	tirage_h	biceps	dumbbell seated revers grip concentration curl	0403
+tirage_v|grand_dorsal|decline grip pullover wide	tirage_v	grand_dorsal	barbell decline wide-grip pullover	0037
+tirage_h|biceps|biceps curl inner v	tirage_h	biceps	dumbbell standing inner biceps curl v. 2	2321
+tirage_v|grand_dorsal|pullover	tirage_v	grand_dorsal	barbell pullover	0073
+tirage_h|biceps|biceps curl waiter	tirage_h	biceps	dumbbell waiter biceps curl	5201
+tirage_v|grand_dorsal|press pullover to	tirage_v	grand_dorsal	barbell pullover to press	0022
+tirage_h|biceps|arm biceps curl overhead	tirage_h	biceps	band one arm overhead biceps curl	0986
+tirage_h|grand_dorsal+rhomboides|bench grip incline reverse row	tirage_h	grand_dorsal,rhomboides	barbell reverse grip incline bench row	1317
+tirage_h|biceps|curl incline prone	tirage_h	biceps	barbell prone incline curl	0072
+tirage_h|grand_dorsal+rhomboides|arm close grip row	tirage_h	grand_dorsal,rhomboides	bodyweight standing close-grip one arm row	3156
+tirage_h|biceps|close concentration curl grip	tirage_h	biceps	barbell seated close-grip concentration curl	0089
+tirage_h|grand_dorsal+rhomboides|close grip row	tirage_h	grand_dorsal,rhomboides	bodyweight standing close-grip row	3158
+tirage_h|biceps|curl grip reverse	tirage_h	biceps	barbell standing reverse grip curl	0110
+tirage_h|grand_dorsal+rhomboides|arm row towel with	tirage_h	grand_dorsal,rhomboides	bodyweight standing one arm row (with towel)	3161
+tirage_h|biceps|curl grip wide	tirage_h	biceps	barbell standing wide-grip curl	0113
+tirage_h|grand_dorsal+rhomboides|decline grip row wide	tirage_h	grand_dorsal,rhomboides	cable decline seated wide-grip row	0159
+tirage_h|biceps|arm curl preacher	tirage_h	biceps	cable one arm preacher curl	1633
+tirage_h|grand_dorsal+rhomboides|floor grip row wide	tirage_h	grand_dorsal,rhomboides	cable floor seated wide-grip row	0160
+tirage_h|biceps|curl wide	tirage_h	biceps	dumbbell lying wide curl	1662
+tirage_h|grand_dorsal+rhomboides|arm back high kneeling row straight	tirage_h	grand_dorsal,rhomboides	cable one arm straight back high row (kneeling)	0193
+tirage_h|biceps|arm concentration curl on	tirage_h	biceps	dumbbell one arm concentration curl (on stability ball)	0353
+tirage_h|grand_dorsal+rhomboides|back grip high reverse row straight	tirage_h	grand_dorsal,rhomboides	cable reverse-grip straight back seated high row	0208
+tirage_h|biceps|arm curl prone	tirage_h	biceps	dumbbell one arm prone curl	1665
+tirage_h|grand_dorsal+rhomboides|grip row wide	tirage_h	grand_dorsal,rhomboides	cable seated wide-grip row	0218
+tirage_h|biceps|arm bicep curl exercise on	tirage_h	biceps	dumbbell one arm seated bicep curl on exercise ball	1668
+tirage_h|grand_dorsal+rhomboides|bar cambered row	tirage_h	grand_dorsal,rhomboides	cambered bar lying row	0248
+tirage_h|biceps|arm curl preacher zottman	tirage_h	biceps	dumbbell one arm zottman preacher curl	1672
+tirage_v|grand_dorsal|chin close grip up	tirage_v	grand_dorsal	close grip chin-up	1327
+tirage_h|biceps|arm bench curl neutral over wrist	tirage_h	biceps	dumbbell over bench one arm neutral wrist curl	0366
+tirage_h|grand_dorsal+rhomboides|grip reverse row	tirage_h	grand_dorsal,rhomboides	dumbbell reverse grip row (female)	2327
+tirage_h|biceps|arm bicep curl exercise leg on raised with	tirage_h	biceps	dumbbell seated one arm bicep curl on exercise ball with leg raised	1679
+tirage_v|grand_dorsal|arms bar bent pullover	tirage_v	grand_dorsal	ez bar lying bent arms pullover	3010
+tirage_h|biceps|bar close concentration curl grip	tirage_h	biceps	ez bar seated close grip concentration curl	1682
+tirage_h|grand_dorsal+rhomboides|renegade row	tirage_h	grand_dorsal,rhomboides	kettlebell alternating renegade row	0521
+tirage_h|biceps|close curl grip preacher	tirage_h	biceps	ez barbell close grip preacher curl	1627
+tirage_h|grand_dorsal+rhomboides|arm row towel	tirage_h	grand_dorsal,rhomboides	one arm towel row	1773
+tirage_h|biceps|curl grip preacher reverse	tirage_h	biceps	ez barbell reverse grip preacher curl	0452
+tirage_v|grand_dorsal|grip lat pulldown reverse	tirage_v	grand_dorsal	reverse grip machine lat pulldown	0673
+tirage_h|biceps|arm bar biceps blaster curl with	tirage_h	biceps	ez-bar biceps curl (with arm blaster)	2404
+tirage_v|grand_dorsal|grip pull reverse up	tirage_v	grand_dorsal	reverse grip pull-up	0674
+tirage_h|biceps|bicep curl on	tirage_h	biceps	weighted seated bicep curl (on stability ball)	0847
+tirage_h|grand_dorsal+rhomboides|bent over row	tirage_h	grand_dorsal,rhomboides	smith bent over row	1359
+tirage_h|grand_dorsal+rhomboides|narrow row	tirage_h	grand_dorsal,rhomboides	smith narrow row	0761
+tirage_v|grand_dorsal|cage chin close dip grip on up	tirage_v	grand_dorsal	weighted close grip chin-up on dip cage	2987
+tirage_v|grand_dorsal|hand pull up	tirage_v	grand_dorsal	weighted one hand pull up	3290
+tirage_v|grand_dorsal|grip pull up wide	tirage_v	grand_dorsal	wide grip pull-up	1429
+tirage_v|grand_dorsal|grip pull rear up wide	tirage_v	grand_dorsal	wide grip rear pull-up	1367

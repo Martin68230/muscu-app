@@ -1,0 +1,1325 @@
+id	statut	raison	famille	schema	type	fam	niveau	main	sec	tags	equipment	target	name
+0001	retenu		gainage|abdominaux|sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	3/4 sit-up
+0002	retenu		gainage|abdominaux|bend side	gainage	gainage	gainage	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	45° side bend
+0003	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	air bike
+1512	retenu		mobilite|quadriceps|all fours squad stretch	mobilite	mobilite_recup		debutant	quadriceps	ischios,fessiers	poids_du_corps	body weight	quads	all fours squad stretch
+0006	retenu		gainage|abdominaux|heel touchers	gainage	gainage	gainage	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	alternate heel touchers
+0007	retenu		tirage_v|grand_dorsal|lateral pulldown	tirage_v	force		debutant	grand_dorsal	biceps,rhomboides	poulie	cable	lats	alternate lateral pulldown
+1368	retenu		mobilite|mollets|ankle circles	mobilite	mobilite_recup		debutant	mollets		poids_du_corps	body weight	calves	ankle circles
+3293	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	lats	archer pull up
+3294	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	pectorals	archer push up
+2355	retenu		gainage|abdominaux|arm bent hanging knee legs slingers	gainage	gainage	flexion	intermediaire	abdominaux	deltoides_anterieurs,grand_dorsal	barre_traction	body weight	abs	arm slingers hanging bent knee legs
+2333	retenu		gainage|abdominaux|arm hanging legs slingers straight	gainage	gainage	gainage	intermediaire	abdominaux	deltoides_anterieurs,grand_dorsal	barre_traction	body weight	abs	arm slingers hanging straight legs
+3214	ecarte	schema-non-deduit									body weight	glutes	arms apart circular toe touch (male)
+3204	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	arms overhead full sit-up (male)
+0009	retenu		poussee_h|pectoraux|chest dip kneeling	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	leverage machine	pectorals	assisted chest dip (kneeling)
+0011	retenu		gainage|abdominaux|hanging knee raise	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche	machine	assisted	abs	assisted hanging knee raise
+0010	ecarte	technique-ou-dangereux-ou-hors-sujet									assisted	abs	assisted hanging knee raise with throw down
+1708	retenu		mobilite|mollets|calves stretch	mobilite	mobilite_recup		intermediaire	mollets	ischios	machine	assisted	calves	assisted lying calves stretch
+1709	retenu		mobilite|fessiers|glutes stretch	mobilite	mobilite_recup		intermediaire	fessiers	ischios	machine	assisted	glutes	assisted lying glutes stretch
+1710	retenu		mobilite|fessiers|and gluteus piriformis stretch	mobilite	mobilite_recup		intermediaire	fessiers	ischios	machine	assisted	glutes	assisted lying gluteus and piriformis stretch
+0012	ecarte	technique-ou-dangereux-ou-hors-sujet									assisted	abs	assisted lying leg raise with lateral throw down
+0013	ecarte	technique-ou-dangereux-ou-hors-sujet									assisted	abs	assisted lying leg raise with throw down
+0014	retenu		rotation|abdominaux|motion russian twist	rotation	gainage	rotation	debutant	abdominaux	obliques,erecteurs_rachis	medecine_ball	medicine ball	abs	assisted motion russian twist
+0015	retenu		tirage_v|grand_dorsal|close grip parallel pull up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	machine	leverage machine	lats	assisted parallel close grip pull-up
+0016	ecarte	schema-non-deduit									assisted	hamstrings	assisted prone hamstring
+1713	retenu		mobilite|quadriceps|prone quads stretch	mobilite	mobilite_recup		intermediaire	quadriceps	ischios,fessiers	machine	assisted	quads	assisted prone lying quads stretch
+1714	retenu		mobilite|abdominaux|femoris prone rectus stretch	mobilite	mobilite_recup		intermediaire	abdominaux	quadriceps	machine	assisted	abs	assisted prone rectus femoris stretch
+0017	ecarte	deja-couvert-gif									leverage machine	lats	assisted pull-up
+1716	retenu		mobilite|pectoraux|major pectoralis stretch with	mobilite	mobilite_recup		intermediaire	pectoraux	deltoides_anterieurs,triceps	machine	assisted	pectorals	assisted seated pectoralis major stretch with stability ball
+1712	retenu		mobilite|adducteurs|adductor side stretch	mobilite	mobilite_recup		intermediaire	adducteurs	ischios,fessiers	machine	assisted	adductors	assisted side lying adductor stretch
+1758	retenu		gainage|abdominaux|sit up	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche	machine	assisted	abs	assisted sit-up
+1431	retenu		tirage_v|grand_dorsal|chin up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	machine	leverage machine	lats	assisted standing chin-up
+1432	retenu		tirage_v|grand_dorsal|pull up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	machine	leverage machine	lats	assisted standing pull-up
+0018	retenu		poussee_h|triceps|extension towel triceps with	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	machine	assisted	triceps	assisted standing triceps extension (with towel)
+0019	retenu		poussee_h|triceps|dip kneeling triceps	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	machine	leverage machine	triceps	assisted triceps dip (kneeling)
+2364	retenu		poussee_h|pectoraux|chest dip grip kneeling wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	leverage machine	pectorals	assisted wide-grip chest dip (kneeling)
+3220	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	astride jumps (male)
+3672	ecarte	cou-ou-cardio									body weight	cardiovascular system	back and forth step
+1314	ecarte	deja-couvert-gif									stability ball	spine	back extension on exercise ball
+3297	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	back lever
+1405	retenu		mobilite|grand_dorsal|back pec stretch	mobilite	mobilite_recup		debutant	grand_dorsal	deltoides_anterieurs,pectoraux	poids_du_corps	body weight	lats	back pec stretch
+1473	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	quads	backward jump
+0020	ecarte	schema-non-deduit									body weight	quads	balance board
+0968	ecarte	deja-couvert-gif									band	biceps	band alternating biceps curl
+0969	retenu		gainage|abdominaux|up v	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	elastique	band	abs	band alternating v-up
+0970	ecarte	deja-couvert-gif									band	lats	band assisted pull-up
+0971	retenu		mobilite|abdominaux|rollerout	mobilite	mobilite_recup		debutant	abdominaux	erecteurs_rachis	elastique	band	abs	band assisted wheel rollerout
+1254	ecarte	deja-couvert-gif									band	pectorals	band bench press
+0980	retenu		charniere|fessiers|bent extension hip over	charniere	force		debutant	fessiers	ischios,erecteurs_rachis	elastique	band	glutes	band bent-over hip extension
+0972	ecarte	technique-ou-dangereux-ou-hors-sujet									band	abs	band bicycle crunch
+0974	ecarte	deja-couvert-gif									band	lats	band close-grip pulldown
+0975	retenu		poussee_h|triceps|close grip push up	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	elastique	band	triceps	band close-grip push-up
+0976	ecarte	doublon:curl-elastique									band	biceps	band concentration curl
+3117	retenu		tirage_v|grand_dorsal|back close fixed grip pulldown	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	elastique,ancrage_porte	band	lats	band fixed back close grip pulldown
+3116	retenu		tirage_v|grand_dorsal|back fixed pulldown underhand	tirage_v	force		debutant	grand_dorsal	biceps,rhomboides,deltoides_posterieurs	elastique,ancrage_porte	band	lats	band fixed back underhand pulldown
+0977	retenu		poussee_v|deltoides_lateraux|front lateral raise	poussee_v	force		debutant	deltoides_lateraux	trapezes,rhomboides	elastique	band	delts	band front lateral raise
+0978	ecarte	deja-couvert-gif									band	delts	band front raise
+1408	ecarte	schema-non-deduit									band	glutes	band hip lift
+0979	ecarte	deja-couvert-gif									band	abs	band horizontal pallof press
+0981	retenu		gainage|abdominaux|jack knife sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	elastique	band	abs	band jack knife sit-up
+0983	ecarte	technique-ou-dangereux-ou-hors-sujet									band	lats	band kneeling one arm pulldown
+0985	retenu		rotation|abdominaux|crunch kneeling twisting	rotation	gainage	rotation	debutant	abdominaux	obliques	elastique	band	abs	band kneeling twisting crunch
+0984	retenu		tirage_h|fessiers|hip internal rotation	tirage_h	force		debutant	fessiers	ischios,quadriceps	elastique	band	glutes	band lying hip internal rotation
+1002	retenu		gainage|abdominaux|leg raise straight	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	elastique	band	abs	band lying straight leg raise
+0986	retenu		tirage_h|biceps|arm biceps curl overhead	tirage_h	force		intermediaire	biceps	avant_bras,deltoides_anterieurs	elastique,ancrage_porte	band	biceps	band one arm overhead biceps curl
+0987	retenu		fente|quadriceps|arm leg split squat	fente	force		intermediaire	quadriceps	fessiers,ischios	elastique	band	quads	band one arm single leg split squat
+0988	ecarte	deja-couvert-gif									band	upper back	band one arm standing low row
+0989	retenu		poussee_h|pectoraux|arm chest press twisting	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	elastique	band	pectorals	band one arm twisting chest press
+0990	retenu		tirage_h|grand_dorsal+rhomboides|arm row twisting	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	elastique	band	upper back	band one arm twisting seated row
+0991	ecarte	deja-couvert-gif									band	glutes	band pull through
+0992	retenu		gainage|abdominaux|push sit up	gainage	gainage	flexion	debutant	abdominaux	deltoides_anterieurs,pectoraux	elastique	band	abs	band push sit-up
+0993	ecarte	deja-couvert-gif									band	delts	band reverse fly
+0994	ecarte	deja-couvert-gif									band	forearms	band reverse wrist curl
+0996	retenu		tirage_h|fessiers|hip internal rotation	tirage_h	force		debutant	fessiers	ischios,quadriceps	elastique	band	glutes	band seated hip internal rotation
+1011	retenu		rotation|abdominaux|twist	rotation	gainage	rotation	debutant	abdominaux	obliques	elastique	band	abs	band seated twist
+0997	ecarte	deja-couvert-gif									band	delts	band shoulder press
+1018	ecarte	deja-couvert-gif									band	traps	band shrug
+0998	ecarte	doublon:extension-triceps-elastique									band	triceps	band side triceps extension
+0999	retenu		cheville_mollet|mollets|calf leg raise	cheville_mollet	force		intermediaire	mollets		elastique	band	calves	band single leg calf raise
+1000	retenu		cheville_mollet|mollets|calf leg raise reverse	cheville_mollet	force		intermediaire	mollets	ischios,fessiers	elastique	band	calves	band single leg reverse calf raise
+1001	retenu		fente|quadriceps|leg split squat	fente	force		intermediaire	quadriceps	fessiers,ischios	elastique	band	quads	band single leg split squat
+1004	retenu		squat|fessiers|squat	squat	force		debutant	fessiers	quadriceps,ischios,mollets	elastique	band	glutes	band squat
+1003	retenu		squat|fessiers|row squat	squat	force		debutant	fessiers	ischios,quadriceps,grand_dorsal	elastique	band	glutes	band squat row
+1005	retenu		gainage|abdominaux|crunch	gainage	gainage	flexion	debutant	abdominaux	obliques	elastique	band	abs	band standing crunch
+1022	retenu		tirage_h|deltoides_posterieurs|delt rear row	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides,biceps	elastique	band	delts	band standing rear delt row
+1007	retenu		rotation|abdominaux|crunch twisting	rotation	gainage	rotation	debutant	abdominaux	obliques	elastique	band	abs	band standing twisting crunch
+1008	retenu		fente|fessiers|step up	fente	force		debutant	fessiers	quadriceps,ischios,mollets	elastique	band	glutes	band step-up
+1009	ecarte	technique-ou-dangereux-ou-hors-sujet									band	glutes	band stiff leg deadlift
+1023	ecarte	technique-ou-dangereux-ou-hors-sujet									band	glutes	band straight back stiff leg deadlift
+1010	retenu		charniere|erecteurs_rachis|deadlift leg straight	charniere	force		intermediaire	erecteurs_rachis	ischios,fessiers	elastique	band	spine	band straight leg deadlift
+1012	ecarte	doublon:developpe-epaules-elastique									band	delts	band twisting overhead press
+1369	ecarte	deja-couvert-gif									band	calves	band two legs calf raise - (band under both legs) v. 2
+1013	ecarte	doublon:tirage-vertical-un-bras-elastique									band	lats	band underhand pulldown
+1014	retenu		gainage|abdominaux|up v	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	elastique	band	abs	band v-up
+1015	retenu		anti_rotation|abdominaux|pallof press vertical	anti_rotation	gainage	anti_rotation	debutant	abdominaux	obliques,fessiers	elastique	band	abs	band vertical pallof press
+1016	ecarte	deja-couvert-gif									band	forearms	band wrist curl
+1017	retenu		poussee_v|deltoides_anterieurs|raise y	poussee_v	force		debutant	deltoides_anterieurs	trapezes,rhomboides	elastique	band	delts	band y-raise
+0023	retenu		tirage_h|biceps|biceps curl	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell alternate biceps curl
+0024	ecarte	doublon:squat-avant-barre									barbell	quads	barbell bench front squat
+0025	ecarte	deja-couvert-gif									barbell	pectorals	barbell bench press
+0026	ecarte	deja-couvert-gif									barbell	quads	barbell bench squat
+1316	retenu		tirage_v|grand_dorsal|arm bent pullover	tirage_v	force		intermediaire	grand_dorsal	triceps,pectoraux	barre,disques	barbell	lats	barbell bent arm pullover
+0027	ecarte	deja-couvert-gif									barbell	upper back	barbell bent over row
+2407	retenu		tirage_h|biceps|arm biceps blaster curl with	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell biceps curl (with arm blaster)
+0028	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	quads	barbell clean and press
+0029	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell clean-grip front squat
+0030	ecarte	deja-couvert-gif									barbell	triceps	barbell close-grip bench press
+0031	ecarte	deja-couvert-gif									barbell	biceps	barbell curl
+0032	ecarte	deja-couvert-gif									barbell	glutes	barbell deadlift
+0033	ecarte	doublon:developpe-couche-barre									barbell	pectorals	barbell decline bench press
+0034	retenu		tirage_v|grand_dorsal|arm bent decline pullover	tirage_v	force		intermediaire	grand_dorsal	triceps,pectoraux	barre,disques,banc	barbell	lats	barbell decline bent arm pullover
+0035	retenu		poussee_h|triceps|close decline grip press skull to	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	barre,disques,banc	barbell	triceps	barbell decline close grip to skull press
+1255	retenu		tirage_v|pectoraux|decline pullover	tirage_v	force		intermediaire	pectoraux	triceps,deltoides_posterieurs	barre,disques,banc	barbell	pectorals	barbell decline pullover
+0036	retenu		poussee_h|pectoraux|decline grip press wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	barre,disques,banc	barbell	pectorals	barbell decline wide-grip press
+0037	retenu		tirage_v|grand_dorsal|decline grip pullover wide	tirage_v	force		intermediaire	grand_dorsal	triceps,pectoraux	barre,disques,banc	barbell	lats	barbell decline wide-grip pullover
+0038	ecarte	doublon:curl-barre									barbell	biceps	barbell drag curl
+1370	retenu		cheville_mollet|mollets|calf floor raise	cheville_mollet	force		intermediaire	mollets	ischios	barre,disques	barbell	calves	barbell floor calf raise
+0039	ecarte	doublon:squat-avant-barre									barbell	glutes	barbell front chest squat
+0041	ecarte	doublon:elevation-frontale-halteres									barbell	delts	barbell front raise
+0040	retenu		tirage_v|pectoraux|and front pullover raise	tirage_v	force		intermediaire	pectoraux	deltoides_lateraux,triceps	barre,disques	barbell	pectorals	barbell front raise and pullover
+0042	ecarte	doublon:squat-avant-barre									barbell	glutes	barbell front squat
+0043	ecarte	deja-couvert-gif									barbell	glutes	barbell full squat
+1461	retenu		squat|fessiers|back full pov squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets,abdominaux	barre,disques,rack	barbell	glutes	barbell full squat (back pov)
+1462	retenu		squat|fessiers|full pov side squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets,abdominaux	barre,disques,rack	barbell	glutes	barbell full squat (side pov)
+1545	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell full zercher squat
+1409	ecarte	deja-couvert-gif									barbell	glutes	barbell glute bridge
+3562	retenu		charniere|fessiers|bench bridge glute legs on	charniere	force		intermediaire	fessiers	ischios,abdominaux	barre,disques,rack,banc	barbell	glutes	barbell glute bridge two legs on bench (male)
+0044	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	hamstrings	barbell good morning
+0045	ecarte	doublon:developpe-couche-barre									barbell	pectorals	barbell guillotine bench press
+0046	retenu		squat|fessiers|hack squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques,rack	barbell	glutes	barbell hack squat
+1436	retenu		squat|fessiers|bar high squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets,abdominaux	barre,disques,rack	barbell	glutes	barbell high bar squat
+0047	ecarte	deja-couvert-gif									barbell	pectorals	barbell incline bench press
+1719	ecarte	doublon:developpe-couche-prise-serree-barre									barbell	triceps	barbell incline close grip bench press
+0048	retenu		poussee_h|triceps|grip incline press reverse	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	barre,disques,banc_inclinable	barbell	triceps	barbell incline reverse-grip press
+0049	ecarte	deja-couvert-gif									barbell	upper back	barbell incline row
+0050	retenu		poussee_v|dentele_anterieur|incline raise shoulder	poussee_v	force		intermediaire	dentele_anterieur	deltoides_lateraux,trapezes	barre,disques,banc_inclinable	barbell	serratus anterior	barbell incline shoulder raise
+0051	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell jefferson squat
+0052	ecarte	doublon:developpe-couche-barre									barbell	triceps	barbell jm bench press
+0053	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell jump squat
+1410	retenu		fente|fessiers|lateral lunge	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques	barbell	glutes	barbell lateral lunge
+1435	retenu		squat|fessiers|bar low squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques,rack	barbell	glutes	barbell low bar squat
+0054	retenu		fente|fessiers|lunge	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques	barbell	glutes	barbell lunge
+1720	ecarte	doublon:extension-triceps-barre-ez-allonge									barbell	triceps	barbell lying back of the head tricep extension
+0055	retenu		poussee_h|triceps|close grip press	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	barre,disques	barbell	triceps	barbell lying close-grip press
+0056	ecarte	doublon:extension-triceps-barre-ez-allonge									barbell	triceps	barbell lying close-grip triceps extension
+0057	ecarte	schema-non-deduit									barbell	triceps	barbell lying extension
+0058	ecarte	schema-non-deduit									barbell	glutes	barbell lying lifting (on hip)
+0059	retenu		tirage_h|biceps|curl preacher	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell lying preacher curl
+0061	ecarte	doublon:extension-triceps-barre-ez-allonge									barbell	triceps	barbell lying triceps extension
+0060	ecarte	deja-couvert-gif									barbell	triceps	barbell lying triceps extension skull crusher
+0063	retenu		squat|fessiers|narrow squat stance	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques,rack	barbell	glutes	barbell narrow stance squat
+0064	retenu		tirage_h|grand_dorsal+rhomboides|arm bent over row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	barre,disques	barbell	upper back	barbell one arm bent over row
+0065	retenu		poussee_h|triceps|arm floor press	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	barre,disques	barbell	triceps	barbell one arm floor press
+0066	retenu		hanche_laterale|fessiers|arm deadlift side	hanche_laterale	force		intermediaire	fessiers	ischios,quadriceps,erecteurs_rachis	barre,disques	barbell	glutes	barbell one arm side deadlift
+0067	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	barbell one arm snatch
+0068	retenu		squat|quadriceps|leg squat	squat	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell one leg squat
+0069	retenu		squat|quadriceps|overhead squat	squat	force		intermediaire	quadriceps	fessiers,ischios,mollets,abdominaux	barre,disques,rack	barbell	quads	barbell overhead squat
+1411	retenu		tirage_h|avant_bras|a bench curl down over palms wrist	tirage_h	force		intermediaire	avant_bras	biceps	barre,disques,rack,banc	barbell	forearms	barbell palms down wrist curl over a bench
+1412	retenu		tirage_h|avant_bras|a bench curl over palms up wrist	tirage_h	force		intermediaire	avant_bras	biceps,deltoides_anterieurs	barre,disques,rack,banc	barbell	forearms	barbell palms up wrist curl over a bench
+3017	ecarte	deja-couvert-gif									barbell	upper back	barbell pendlay row
+1751	retenu		poussee_h|triceps|pin presses	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	barre,disques	barbell	triceps	barbell pin presses
+0070	ecarte	doublon:curl-barre									barbell	biceps	barbell preacher curl
+0071	retenu		gainage|abdominaux|press sit up	gainage	gainage	flexion	intermediaire	abdominaux	deltoides_anterieurs,pectoraux	barre,disques	barbell	abs	barbell press sit-up
+0072	retenu		tirage_h|biceps|curl incline prone	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques,banc_inclinable	barbell	biceps	barbell prone incline curl
+0073	retenu		tirage_v|grand_dorsal|pullover	tirage_v	force		intermediaire	grand_dorsal	pectoraux,triceps	barre,disques	barbell	lats	barbell pullover
+0022	retenu		tirage_v|grand_dorsal|press pullover to	tirage_v	force		intermediaire	grand_dorsal	triceps,pectoraux,deltoides_posterieurs	barre,disques	barbell	lats	barbell pullover to press
+0074	ecarte	schema-non-deduit									barbell	glutes	barbell rack pull
+0075	retenu		tirage_h|deltoides_posterieurs|delt raise rear	tirage_h	force		intermediaire	deltoides_posterieurs	trapezes,rhomboides	barre,disques	barbell	delts	barbell rear delt raise
+0076	retenu		tirage_h|deltoides_posterieurs|delt rear row	tirage_h	force		intermediaire	deltoides_posterieurs	trapezes,rhomboides,biceps	barre,disques	barbell	delts	barbell rear delt row
+0078	retenu		fente|fessiers|lunge rear	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques	barbell	glutes	barbell rear lunge
+0077	retenu		fente|fessiers|lunge rear v	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques	barbell	glutes	barbell rear lunge v. 2
+0079	retenu		tirage_h|avant_bras|curl revers v wrist	tirage_h	force		intermediaire	avant_bras	biceps	barre,disques	barbell	forearms	barbell revers wrist curl v. 2
+2187	retenu		poussee_h|triceps|bench close grip press reverse	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	barre,disques,rack,banc	barbell	triceps	barbell reverse close-grip bench press
+0080	ecarte	doublon:curl-barre									barbell	biceps	barbell reverse curl
+0118	retenu		tirage_h|grand_dorsal+rhomboides|bent grip over reverse row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	barre,disques	barbell	upper back	barbell reverse grip bent over row
+1256	retenu		poussee_h|pectoraux|bench decline grip press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	barre,disques,rack,banc	barbell	pectorals	barbell reverse grip decline bench press
+1257	retenu		poussee_h|pectoraux|bench grip incline press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	barre,disques,rack,banc_inclinable	barbell	pectorals	barbell reverse grip incline bench press
+1317	retenu		tirage_h|grand_dorsal+rhomboides|bench grip incline reverse row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	barre,disques,rack,banc_inclinable	barbell	upper back	barbell reverse grip incline bench row
+1721	retenu		poussee_h|triceps|grip reverse skullcrusher	poussee_h	force		intermediaire	triceps	avant_bras	barre,disques	barbell	triceps	barbell reverse grip skullcrusher
+0081	retenu		tirage_h|biceps|curl preacher reverse	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell reverse preacher curl
+0082	retenu		tirage_h|avant_bras|curl reverse wrist	tirage_h	force		intermediaire	avant_bras	biceps	barre,disques	barbell	forearms	barbell reverse wrist curl
+0084	retenu		mobilite|abdominaux|rollerout	mobilite	mobilite_recup		intermediaire	abdominaux	erecteurs_rachis	barre,disques	barbell	abs	barbell rollerout
+0083	retenu		mobilite|abdominaux|bench from rollerout	mobilite	mobilite_recup		intermediaire	abdominaux	deltoides_anterieurs,triceps	barre,disques,rack,banc	barbell	abs	barbell rollerout from bench
+0085	ecarte	deja-couvert-gif									barbell	glutes	barbell romanian deadlift
+0086	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	barbell seated behind head military press
+0087	retenu		poussee_h|deltoides_anterieurs|bradford press rocky	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	barre,disques	barbell	delts	barbell seated bradford rocky press
+0088	retenu		cheville_mollet|mollets|calf raise	cheville_mollet	force		intermediaire	mollets	ischios,quadriceps	barre,disques	barbell	calves	barbell seated calf raise
+1371	retenu		cheville_mollet|mollets|calf raise	cheville_mollet	force		intermediaire	mollets	ischios	barre,disques	barbell	calves	barbell seated calf raise
+1718	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	triceps	barbell seated close grip behind neck triceps extension
+0089	retenu		tirage_h|biceps|close concentration curl grip	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell seated close-grip concentration curl
+0090	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell seated good morning
+0091	ecarte	deja-couvert-gif									barbell	delts	barbell seated overhead press
+0092	retenu		poussee_h|triceps|extension overhead triceps	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	barre,disques,rack	barbell	triceps	barbell seated overhead triceps extension
+0094	retenu		rotation|abdominaux|twist	rotation	gainage	rotation	intermediaire	abdominaux	obliques,erecteurs_rachis	barre,disques	barbell	abs	barbell seated twist
+0095	ecarte	deja-couvert-gif									barbell	traps	barbell shrug
+0096	retenu		gainage|abdominaux|bent side v	gainage	gainage	gainage	intermediaire	abdominaux	obliques,erecteurs_rachis	barre,disques	barbell	abs	barbell side bent v. 2
+0098	retenu		fente|quadriceps|side split squat	fente	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell side split squat
+0097	retenu		fente|quadriceps|side split squat v	fente	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell side split squat v. 2
+1756	ecarte	doublon:souleve-de-terre-barre									barbell	glutes	barbell single leg deadlift
+0099	retenu		fente|quadriceps|leg split squat	fente	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell single leg split squat
+2799	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	abs	barbell sitted alternate leg raise
+2800	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	abs	barbell sitted alternate leg raise (female)
+0100	ecarte	schema-non-deduit									barbell	delts	barbell skier
+0101	retenu		squat|fessiers|speed squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques,rack	barbell	glutes	barbell speed squat
+2810	retenu		fente|quadriceps|split squat v	fente	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell split squat v. 2
+0102	retenu		squat|quadriceps|knees on squat	squat	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell squat (on knees)
+2798	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	quads	barbell squat jump step rear lunge
+0103	retenu		mobilite|abdominaux|ab rollerout	mobilite	mobilite_recup		intermediaire	abdominaux	deltoides_anterieurs,erecteurs_rachis	barre,disques	barbell	abs	barbell standing ab rollerout
+0104	retenu		tirage_h|avant_bras|back curl wrist	tirage_h	force		intermediaire	avant_bras	biceps,deltoides_anterieurs	barre,disques	barbell	forearms	barbell standing back wrist curl
+0105	retenu		poussee_h|deltoides_anterieurs|bradford press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	barre,disques	barbell	delts	barbell standing bradford press
+1372	ecarte	deja-couvert-gif									barbell	calves	barbell standing calf raise
+0106	retenu		tirage_h|biceps|close curl grip	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell standing close grip curl
+1456	retenu		poussee_v|deltoides_anterieurs|close grip military press	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	barre,disques,rack	barbell	delts	barbell standing close grip military press
+2414	retenu		tirage_h|biceps|concentration curl	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell standing concentration curl
+0107	retenu		poussee_v|deltoides_anterieurs|front head over raise	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	barre,disques	barbell	delts	barbell standing front raise over head
+0108	retenu		cheville_mollet|mollets|calf leg raise	cheville_mollet	force		intermediaire	mollets	ischios,fessiers	barre,disques	barbell	calves	barbell standing leg calf raise
+0109	retenu		poussee_h|triceps|extension overhead triceps	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	barre,disques,rack	barbell	triceps	barbell standing overhead triceps extension
+0110	retenu		tirage_h|biceps|curl grip reverse	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell standing reverse grip curl
+0111	retenu		cheville_mollet|mollets|calf leg raise rocking	cheville_mollet	force		intermediaire	mollets	ischios,quadriceps	barre,disques	barbell	calves	barbell standing rocking leg calf raise
+0112	retenu		rotation|abdominaux|twist	rotation	gainage	rotation	intermediaire	abdominaux	obliques,erecteurs_rachis	barre,disques	barbell	abs	barbell standing twist
+1629	retenu		tirage_h|biceps|biceps curl grip wide	tirage_h	force		intermediaire	biceps	avant_bras	barre,disques	barbell	biceps	barbell standing wide grip biceps curl
+1457	ecarte	doublon:developpe-militaire-barre									barbell	delts	barbell standing wide military press
+0113	retenu		tirage_h|biceps|curl grip wide	tirage_h	force		intermediaire	biceps	avant_bras,deltoides_anterieurs	barre,disques	barbell	biceps	barbell standing wide-grip curl
+0114	retenu		fente|fessiers|step up	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques	barbell	glutes	barbell step-up
+0115	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell stiff leg good morning
+0116	ecarte	doublon:souleve-de-terre-barre									barbell	hamstrings	barbell straight leg deadlift
+0117	ecarte	deja-couvert-gif									barbell	glutes	barbell sumo deadlift
+3305	ecarte	schema-non-deduit									barbell	delts	barbell thruster
+0120	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	barbell upright row
+0119	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	barbell upright row v. 2
+0121	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	barbell upright row v. 3
+0122	ecarte	doublon:developpe-couche-barre									barbell	pectorals	barbell wide bench press
+1258	retenu		poussee_h|pectoraux|bench grip press reverse wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	barre,disques,rack,banc	barbell	pectorals	barbell wide reverse grip bench press
+0124	retenu		squat|quadriceps|squat wide	squat	force		intermediaire	quadriceps	fessiers,ischios,mollets	barre,disques,rack	barbell	quads	barbell wide squat
+0123	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	barbell wide-grip upright row
+0126	retenu		tirage_h|avant_bras|curl wrist	tirage_h	force		intermediaire	avant_bras	biceps	barre,disques	barbell	forearms	barbell wrist curl
+0125	retenu		tirage_h|avant_bras|curl v wrist	tirage_h	force		intermediaire	avant_bras	biceps	barre,disques	barbell	forearms	barbell wrist curl v. 2
+0127	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	barbell zercher squat
+3212	ecarte	schema-non-deduit									body weight	glutes	basic toe touch (male)
+0128	ecarte	technique-ou-dangereux-ou-hors-sujet									rope	delts	battling ropes
+3360	ecarte	cou-ou-cardio									body weight	cardiovascular system	bear crawl
+1259	ecarte	technique-ou-dangereux-ou-hors-sujet									assisted	pectorals	behind head chest stretch
+0129	ecarte	deja-couvert-gif									body weight	triceps	bench dip (knees bent)
+1399	retenu		poussee_h|triceps|bench dip floor on	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps,banc	body weight	triceps	bench dip on floor
+0130	retenu		charniere|fessiers|bench extension hip	charniere	force		debutant	fessiers	ischios	poids_du_corps	body weight	glutes	bench hip extension
+3019	retenu		tirage_v|grand_dorsal|bench pull ups	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	bench pull-ups
+3639	ecarte	schema-non-deduit									body weight	glutes	bent knee lying twist (male)
+1770	retenu		tirage_h|biceps|biceps concentration curl leg	tirage_h	force		debutant	biceps	avant_bras	poids_du_corps	body weight	biceps	biceps leg concentration curl
+0139	retenu		tirage_v|biceps|biceps narrow pull ups	tirage_v	force		debutant	biceps	avant_bras,deltoides_posterieurs	barre_traction	body weight	biceps	biceps narrow pull-ups
+0140	retenu		tirage_v|biceps|biceps pull up	tirage_v	force		debutant	biceps	avant_bras,deltoides_posterieurs	barre_traction	body weight	biceps	biceps pull-up
+0137	ecarte	schema-non-deduit									body weight	triceps	body-up
+3543	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	bodyweight drop jump squat
+3544	retenu		gainage|abdominaux|incline plank side	gainage	gainage	gainage	debutant	abdominaux	obliques,deltoides_anterieurs	poids_du_corps	body weight	abs	bodyweight incline side plank
+1771	retenu		poussee_h|triceps|extension kneeling triceps	poussee_h	force		debutant	triceps	deltoides_anterieurs,pectoraux	poids_du_corps	body weight	triceps	bodyweight kneeling triceps extension
+1769	retenu		tirage_h|biceps|biceps curl side	tirage_h	force		debutant	biceps	avant_bras	poids_du_corps	body weight	biceps	bodyweight side lying biceps curl
+3168	retenu		squat|grand_dorsal+rhomboides|row squatting	squat	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poids_du_corps	body weight	upper back	bodyweight squatting row
+3167	retenu		squat|grand_dorsal+rhomboides|row squatting towel with	squat	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poids_du_corps,serviette	body weight	upper back	bodyweight squatting row (with towel)
+1373	ecarte	deja-couvert-gif									body weight	calves	bodyweight standing calf raise
+3156	retenu		tirage_h|grand_dorsal+rhomboides|arm close grip row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poids_du_corps	body weight	upper back	bodyweight standing close-grip one arm row
+3158	retenu		tirage_h|grand_dorsal+rhomboides|close grip row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poids_du_corps	body weight	upper back	bodyweight standing close-grip row
+3162	retenu		tirage_h|grand_dorsal+rhomboides|arm row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poids_du_corps	body weight	upper back	bodyweight standing one arm row
+3161	retenu		tirage_h|grand_dorsal+rhomboides|arm row towel with	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poids_du_corps,serviette	body weight	upper back	bodyweight standing one arm row (with towel)
+3166	retenu		tirage_h|grand_dorsal+rhomboides|row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poids_du_corps	body weight	upper back	bodyweight standing row
+3165	retenu		tirage_h|grand_dorsal+rhomboides|row towel with	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poids_du_corps,serviette	body weight	upper back	bodyweight standing row (with towel)
+0138	retenu		gainage|abdominaux|bottoms up	gainage	gainage	gainage	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	bottoms-up
+1374	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	calves	box jump down with one leg stabilization
+2466	retenu		gainage|abdominaux|body bridge climber cross mountain	gainage	gainage	gainage	debutant	abdominaux	fessiers,quadriceps,ischios,deltoides_anterieurs,triceps	poids_du_corps	body weight	abs	bridge - mountain climber (cross body)
+1160	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	burpee
+0870	retenu		gainage|abdominaux|butt ups	gainage	gainage	gainage	debutant	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	butt-ups
+1494	retenu		mobilite|adducteurs|butterfly pose yoga	mobilite	mobilite_recup		debutant	adducteurs	ischios	poids_du_corps	body weight	adductors	butterfly yoga pose
+0148	retenu		poussee_v|deltoides_anterieurs|press shoulder	poussee_v	force		debutant	deltoides_anterieurs	triceps,rhomboides	poulie	cable	delts	cable alternate shoulder press
+0149	retenu		poussee_h|triceps|extension triceps	poussee_h	force		debutant	triceps	deltoides_anterieurs	poulie	cable	triceps	cable alternate triceps extension
+3235	retenu		charniere|ischios|curl inverse leg	charniere	force		debutant	ischios	fessiers,mollets	poulie	cable	hamstrings	cable assisted inverse leg curl
+0150	ecarte	deja-couvert-gif									cable	lats	cable bar lateral pulldown
+0151	ecarte	doublon:developpe-couche-barre									cable	pectorals	cable bench press
+1630	retenu		tirage_h|biceps|close curl grip	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable close grip curl
+1631	ecarte	doublon:curl-concentration-halteres									cable	biceps	cable concentration curl
+0152	ecarte	schema-non-deduit									cable	triceps	cable concentration extension (on knee)
+0153	retenu		tirage_v|grand_dorsal|cross lateral over pulldown	tirage_v	force		debutant	grand_dorsal	biceps,rhomboides,deltoides_posterieurs	poulie	cable	lats	cable cross-over lateral pulldown
+0154	retenu		poussee_h|deltoides_anterieurs|cross fly over revers	poussee_h	force		debutant	deltoides_anterieurs	rhomboides,trapezes	poulie	cable	delts	cable cross-over revers fly
+0155	ecarte	schema-non-deduit									cable	pectorals	cable cross-over variation
+0868	retenu		tirage_h|biceps|curl	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable curl
+0157	retenu		charniere|fessiers|deadlift	charniere	force		intermediaire	fessiers	ischios,quadriceps,erecteurs_rachis	poulie	cable	glutes	cable deadlift
+0158	retenu		poussee_h|pectoraux|decline fly	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable decline fly
+1260	retenu		poussee_h|pectoraux|arm decline press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	poulie	cable	pectorals	cable decline one arm press
+1261	retenu		poussee_h|pectoraux|decline press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	poulie	cable	pectorals	cable decline press
+0159	retenu		tirage_h|grand_dorsal+rhomboides|decline grip row wide	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable decline seated wide-grip row
+1632	retenu		tirage_h|biceps|curl drag	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable drag curl
+0160	retenu		tirage_h|grand_dorsal+rhomboides|floor grip row wide	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable floor seated wide-grip row
+0161	retenu		poussee_v|deltoides_anterieurs|forward raise	poussee_v	force		debutant	deltoides_anterieurs	triceps,avant_bras	poulie	cable	delts	cable forward raise
+0162	ecarte	doublon:elevation-frontale-halteres									cable	delts	cable front raise
+0164	retenu		poussee_v|deltoides_anterieurs|front raise shoulder	poussee_v	force		debutant	deltoides_anterieurs	trapezes,biceps	poulie	cable	delts	cable front shoulder raise
+0165	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	biceps	cable hammer curl (with rope)
+1722	retenu		poussee_h|triceps|extension high overhead pulley tricep	poussee_h	force		debutant	triceps	deltoides_posterieurs	poulie	cable	triceps	cable high pulley overhead tricep extension
+0167	retenu		tirage_h|grand_dorsal+rhomboides|high kneeling row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poulie	cable	upper back	cable high row (kneeling)
+0168	ecarte	deja-couvert-gif									cable	adductors	cable hip adduction
+0169	retenu		poussee_h|pectoraux|bench incline press	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable incline bench press
+1318	retenu		tirage_h|grand_dorsal+rhomboides|bench incline row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poulie	cable	upper back	cable incline bench row
+0171	retenu		poussee_h|pectoraux|fly incline	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable incline fly
+0170	retenu		poussee_h|pectoraux|fly incline on	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable incline fly (on stability ball)
+0172	retenu		poussee_h|grand_dorsal|incline pushdown	poussee_h	force		debutant	grand_dorsal	triceps,deltoides_anterieurs	poulie	cable	lats	cable incline pushdown
+0173	retenu		poussee_h|triceps|extension incline triceps	poussee_h	force		debutant	triceps	deltoides_anterieurs	poulie	cable	triceps	cable incline triceps extension
+0174	retenu		gainage|abdominaux|flip judo	gainage	gainage	gainage	debutant	abdominaux	obliques,deltoides_anterieurs	poulie	cable	abs	cable judo flip
+0860	retenu		charniere|triceps|kickback	charniere	force		debutant	triceps	deltoides_anterieurs	poulie	cable	triceps	cable kickback
+0175	retenu		gainage|abdominaux|crunch kneeling	gainage	gainage	flexion	debutant	abdominaux	obliques	poulie	cable	abs	cable kneeling crunch
+3697	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	delts	cable kneeling rear delt row (with rope) (male)
+0176	retenu		poussee_h|triceps|extension kneeling triceps	poussee_h	force		debutant	triceps	deltoides_anterieurs	poulie	cable	triceps	cable kneeling triceps extension
+2330	retenu		tirage_v|grand_dorsal|full lat motion of pulldown range	tirage_v	force		debutant	grand_dorsal	biceps,rhomboides,deltoides_posterieurs	poulie	cable	lats	cable lat pulldown full range of motion
+0177	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	lats	cable lateral pulldown (with rope attachment)
+2616	ecarte	deja-couvert-gif									cable	lats	cable lateral pulldown with v-bar
+0178	ecarte	doublon:elevation-laterale									cable	delts	cable lateral raise
+0179	retenu		poussee_h|pectoraux|fly low	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable low fly
+0180	retenu		tirage_h|grand_dorsal+rhomboides|low row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable low seated row
+1634	retenu		tirage_h|biceps|bicep curl	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable lying bicep curl
+0182	retenu		tirage_h|biceps|close curl grip	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable lying close-grip curl
+0184	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	lats	cable lying extension pullover (with rope attachment)
+0185	retenu		poussee_h|pectoraux|fly	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable lying fly
+0186	retenu		poussee_h|triceps|extension triceps v	poussee_h	force		debutant	triceps	deltoides_anterieurs	poulie	cable	triceps	cable lying triceps extension v. 2
+0188	retenu		poussee_h|pectoraux|fly middle	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable middle fly
+0189	retenu		tirage_h|grand_dorsal+rhomboides|arm bent over row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable one arm bent over row
+0190	retenu		tirage_h|biceps|arm curl	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable one arm curl
+1262	retenu		poussee_h|pectoraux|arm chest decline fly	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable one arm decline chest fly
+1263	retenu		poussee_h|pectoraux|arm exercise fly on	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable one arm fly on exercise ball
+1264	retenu		poussee_h|pectoraux|arm exercise fly incline on	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable one arm incline fly on exercise ball
+1265	retenu		poussee_h|pectoraux|arm incline press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable one arm incline press
+1266	retenu		poussee_h|pectoraux|arm exercise incline on press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable one arm incline press on exercise ball
+0191	retenu		tirage_h|pectoraux|arm bent lateral over	tirage_h	force		intermediaire	pectoraux	deltoides_lateraux,trapezes	poulie	cable	pectorals	cable one arm lateral bent-over
+0192	retenu		poussee_v|deltoides_lateraux|arm lateral raise	poussee_v	force		intermediaire	deltoides_lateraux	trapezes,triceps	poulie	cable	delts	cable one arm lateral raise
+1633	retenu		tirage_h|biceps|arm curl preacher	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable one arm preacher curl
+1267	retenu		poussee_h|pectoraux|arm exercise on press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable one arm press on exercise ball
+3563	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	lats	cable one arm pulldown
+1635	retenu		tirage_h|biceps|arm curl preacher reverse	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable one arm reverse preacher curl
+0193	retenu		tirage_h|grand_dorsal+rhomboides|arm back high kneeling row straight	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poulie	cable	upper back	cable one arm straight back high row (kneeling)
+1723	retenu		poussee_h|triceps|arm pushdown tricep	poussee_h	force		intermediaire	triceps	avant_bras	poulie	cable	triceps	cable one arm tricep pushdown
+1636	retenu		tirage_h|biceps|curl overhead	tirage_h	force		debutant	biceps	avant_bras,deltoides_anterieurs	poulie	cable	biceps	cable overhead curl
+1637	retenu		tirage_h|biceps|curl exercise on overhead	tirage_h	force		debutant	biceps	avant_bras,deltoides_anterieurs	poulie	cable	biceps	cable overhead curl on exercise ball
+0194	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	triceps	cable overhead triceps extension (rope attachment)
+1319	retenu		tirage_h|grand_dorsal+rhomboides|palm rotational row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable palm rotational row
+0195	retenu		tirage_h|biceps|curl preacher	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable preacher curl
+1268	retenu		poussee_h|pectoraux|exercise on press	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable press on exercise ball
+0196	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	glutes	cable pull through (with rope)
+0198	ecarte	doublon:tirage-vertical-poulie									cable	lats	cable pulldown
+0197	retenu		tirage_v|grand_dorsal|bar lat pro pulldown	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	poulie	cable	lats	cable pulldown (pro lat bar)
+1638	retenu		tirage_v|biceps|bicep curl pulldown	tirage_v	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable pulldown bicep curl
+0201	ecarte	deja-couvert-gif									cable	triceps	cable pushdown
+0199	retenu		poussee_h|grand_dorsal|arm pushdown straight v	poussee_h	force		debutant	grand_dorsal	triceps,deltoides_anterieurs	poulie	cable	lats	cable pushdown (straight arm) v. 2
+0200	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	triceps	cable pushdown (with rope attachment)
+0202	retenu		tirage_h|deltoides_posterieurs|delt rear row stirrups	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides,biceps	poulie	cable	delts	cable rear delt row (stirrups)
+0203	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	delts	cable rear delt row (with rope)
+0204	ecarte	schema-non-deduit									cable	triceps	cable rear drive
+0205	ecarte	doublon:tirage-vertical-poulie									cable	lats	cable rear pulldown
+0873	ecarte	doublon:releve-bassin-jambes-pliees									cable	abs	cable reverse crunch
+0206	retenu		tirage_h|biceps|curl reverse	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable reverse curl
+2406	retenu		poussee_h|triceps|arm bar blaster grip pushdown reverse sz triceps with	poussee_h	force		intermediaire	triceps	avant_bras	poulie	cable	triceps	cable reverse grip triceps pushdown (sz-bar) (with arm blaster)
+1413	retenu		tirage_h|biceps|arm curl reverse	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable reverse one arm curl
+0209	retenu		tirage_h|biceps|curl preacher reverse	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable reverse preacher curl
+0210	retenu		tirage_h|avant_bras|curl reverse wrist	tirage_h	force		debutant	avant_bras		poulie	cable	forearms	cable reverse wrist curl
+0207	retenu		poussee_h|triceps|grip pushdown reverse	poussee_h	force		intermediaire	triceps	avant_bras	poulie	cable	triceps	cable reverse-grip pushdown
+0208	retenu		tirage_h|grand_dorsal+rhomboides|back grip high reverse row straight	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable reverse-grip straight back seated high row
+1320	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	upper back	cable rope crossover seated row
+1321	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	upper back	cable rope elevated seated row
+1322	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	upper back	cable rope extension incline bench row
+1639	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	biceps	cable rope hammer preacher curl
+1724	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	triceps	cable rope high pulley overhead tricep extension
+1725	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	triceps	cable rope incline tricep extension
+1726	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	triceps	cable rope lying on floor tricep extension
+1640	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	biceps	cable rope one arm hammer preacher curl
+1323	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	upper back	cable rope seated row
+0211	retenu		rotation|abdominaux|on russian twists	rotation	gainage	rotation	debutant	abdominaux	obliques,erecteurs_rachis	poulie	cable	abs	cable russian twists (on stability ball)
+2144	retenu		poussee_h|pectoraux|chest press	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable seated chest press
+0212	retenu		gainage|abdominaux|crunch	gainage	gainage	flexion	debutant	abdominaux	obliques	poulie	cable	abs	cable seated crunch
+1641	retenu		tirage_h|biceps|curl	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable seated curl
+0213	retenu		tirage_h|grand_dorsal|bar high row v	tirage_h	force		debutant	grand_dorsal	biceps,rhomboides,deltoides_posterieurs	poulie	cable	lats	cable seated high row (v-bar)
+0214	retenu		tirage_h|grand_dorsal+rhomboides|arm row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable seated one arm alternate row
+1642	retenu		tirage_h|biceps|arm concentration curl	tirage_h	force		intermediaire	biceps	avant_bras	poulie	cable	biceps	cable seated one arm concentration curl
+1643	retenu		tirage_h|biceps|curl overhead	tirage_h	force		debutant	biceps	avant_bras,deltoides_anterieurs	poulie	cable	biceps	cable seated overhead curl
+0215	retenu		tirage_h|deltoides_posterieurs|lateral raise rear	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	poulie	cable	delts	cable seated rear lateral raise
+0861	retenu		tirage_h|grand_dorsal+rhomboides|row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable seated row
+0216	retenu		tirage_h|deltoides_anterieurs|internal rotation shoulder	tirage_h	force		debutant	deltoides_anterieurs	coiffe_des_rotateurs,triceps	poulie	cable	delts	cable seated shoulder internal rotation
+2399	retenu		rotation|abdominaux|twist	rotation	gainage	rotation	debutant	abdominaux	obliques	poulie	cable	abs	cable seated twist
+0218	retenu		tirage_h|grand_dorsal+rhomboides|grip row wide	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poulie	cable	upper back	cable seated wide-grip row
+0219	retenu		poussee_v|deltoides_anterieurs|press shoulder	poussee_v	force		debutant	deltoides_anterieurs	triceps,rhomboides	poulie	cable	delts	cable shoulder press
+0220	ecarte	doublon:haussement-epaules-halteres									cable	traps	cable shrug
+0222	retenu		gainage|abdominaux|bend side	gainage	gainage	gainage	debutant	abdominaux	obliques	poulie	cable	abs	cable side bend
+0221	retenu		gainage|abdominaux|bend crunch side	gainage	gainage	flexion	debutant	abdominaux	obliques	poulie	cable	abs	cable side bend crunch (bosu ball)
+0223	retenu		gainage|abdominaux|crunch side	gainage	gainage	flexion	debutant	abdominaux	obliques	poulie	cable	abs	cable side crunch
+1717	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	lats	cable squat row (with rope attachment)
+1644	retenu		squat|biceps|curl squatting	squat	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable squatting curl
+0224	retenu		tirage_h|avant_bras|back curl wrist	tirage_h	force		debutant	avant_bras	biceps	poulie	cable	forearms	cable standing back wrist curl
+1375	retenu		cheville_mollet|mollets|calf raise	cheville_mollet	force		debutant	mollets	ischios,fessiers	poulie	cable	calves	cable standing calf raise
+0225	ecarte	deja-couvert-gif									cable	delts	cable standing cross-over high reverse fly
+0226	retenu		gainage|abdominaux|crunch	gainage	gainage	flexion	debutant	abdominaux	obliques	poulie	cable	abs	cable standing crunch
+0874	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	abs	cable standing crunch (with rope attachment)
+0227	retenu		poussee_h|pectoraux|fly	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable standing fly
+0228	ecarte	deja-couvert-gif									cable	glutes	cable standing hip extension
+0229	retenu		tirage_h|biceps|curl inner	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable standing inner curl
+0230	retenu		gainage|abdominaux|lift	gainage	gainage	gainage	debutant	abdominaux	obliques,erecteurs_rachis	poulie	cable	abs	cable standing lift
+0231	retenu		poussee_h|triceps|arm extension triceps	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	poulie	cable	triceps	cable standing one arm triceps extension
+1376	retenu		cheville_mollet|mollets|calf leg raise	cheville_mollet	force		intermediaire	mollets		poulie	cable	calves	cable standing one leg calf raise
+0232	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	biceps	cable standing pulldown (with rope)
+0233	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	delts	cable standing rear delt row (with rope)
+1727	retenu		poussee_h|triceps|arm extension grip overhead reverse tricep	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	poulie	cable	triceps	cable standing reverse grip one arm overhead tricep extension
+0234	retenu		tirage_h|grand_dorsal+rhomboides|bar row v	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poulie	cable	upper back	cable standing row (v-bar)
+0235	ecarte	deja-couvert-gif									cable	delts	cable standing shoulder external rotation
+0236	retenu		tirage_h|grand_dorsal+rhomboides|bar row twist v	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poulie	cable	upper back	cable standing twist row (v-bar)
+1269	retenu		poussee_h|pectoraux|crossovers straight up	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable standing up straight crossovers
+0238	ecarte	deja-couvert-gif									cable	lats	cable straight arm pulldown
+0237	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	lats	cable straight arm pulldown (with rope)
+0239	retenu		tirage_h|grand_dorsal+rhomboides|back row straight	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras,deltoides_posterieurs	poulie	cable	upper back	cable straight back seated row
+0240	retenu		tirage_h|deltoides_posterieurs|fly reverse supine	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	poulie	cable	delts	cable supine reverse fly
+2464	retenu		tirage_h|grand_dorsal|kayak row thibaudeau	tirage_h	force		debutant	grand_dorsal	biceps,rhomboides,deltoides_posterieurs	poulie	cable	lats	cable thibaudeau kayak row
+0241	retenu		poussee_h|triceps|bar pushdown triceps v	poussee_h	force		debutant	triceps	avant_bras	poulie	cable	triceps	cable triceps pushdown (v-bar)
+2405	retenu		poussee_h|triceps|arm bar blaster pushdown triceps v with	poussee_h	force		debutant	triceps	avant_bras	poulie	cable	triceps	cable triceps pushdown (v-bar) (with arm blaster)
+0242	retenu		gainage|abdominaux|crunch reverse tuck	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poulie	cable	abs	cable tuck reverse crunch
+0243	retenu		rotation|abdominaux|twist	rotation	gainage	rotation	debutant	abdominaux	obliques	poulie	cable	abs	cable twist
+0862	retenu		rotation|abdominaux|down twist up	rotation	gainage	rotation	debutant	abdominaux	obliques,erecteurs_rachis	poulie	cable	abs	cable twist (up-down)
+0244	ecarte	schema-non-deduit									cable	lats	cable twisting pull
+1645	retenu		tirage_h|biceps|arm bench curl incline on	tirage_h	force		debutant	biceps	avant_bras	poulie	cable	biceps	cable two arm curl on incline bench
+1728	retenu		charniere|triceps|arm kickback tricep	charniere	force		debutant	triceps	deltoides_anterieurs	poulie	cable	triceps	cable two arm tricep kickback
+0245	ecarte	doublon:tirage-vertical-poulie									cable	lats	cable underhand pulldown
+1270	retenu		poussee_h|pectoraux|chest crossovers upper	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	poulie	cable	pectorals	cable upper chest crossovers
+1324	retenu		tirage_h|grand_dorsal+rhomboides|row upper	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poulie	cable	upper back	cable upper row
+0246	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	delts	cable upright row
+1325	ecarte	technique-ou-dangereux-ou-hors-sujet									cable	lats	cable wide grip rear pulldown behind neck
+0247	retenu		tirage_h|avant_bras|curl wrist	tirage_h	force		debutant	avant_bras	biceps	poulie	cable	forearms	cable wrist curl
+1407	retenu		mobilite|mollets|against calf hands push stretch wall with	mobilite	mobilite_recup		debutant	mollets	ischios	poids_du_corps,mur	body weight	calves	calf push stretch with hands against wall
+1377	ecarte	deja-couvert-gif									body weight	calves	calf stretch with hands against wall
+1378	ecarte	technique-ou-dangereux-ou-hors-sujet									rope	calves	calf stretch with rope
+0248	retenu		tirage_h|grand_dorsal+rhomboides|bar cambered row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	barre,disques	barbell	upper back	cambered bar lying row
+2963	retenu		gainage|abdominaux|captains chair leg raise straight	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps,chaise	body weight	abs	captains chair straight leg raise
+1548	retenu		mobilite|quadriceps|chair extended leg stretch	mobilite	mobilite_recup		debutant	quadriceps	ischios,mollets	poids_du_corps,chaise	body weight	quads	chair leg extended stretch
+1271	retenu		mobilite|pectoraux|and chest front of shoulder stretch	mobilite	mobilite_recup		debutant	pectoraux	deltoides_anterieurs	poids_du_corps	body weight	pectorals	chest and front of shoulder stretch
+0251	retenu		poussee_h|pectoraux|chest dip	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	chest dip
+1430	retenu		tirage_v|pectoraux|cage chest dip dip on pull up	tirage_v	force		debutant	pectoraux	triceps,deltoides_posterieurs	barre_traction	body weight	pectorals	chest dip (on dip-pull-up cage)
+2462	retenu		poussee_h|pectoraux|bar chest dip on straight	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	barre_traction	body weight	pectorals	chest dip on straight bar
+1272	retenu		mobilite|pectoraux|chest exercise stretch with	mobilite	mobilite_recup		debutant	pectoraux	deltoides_anterieurs,triceps	swiss_ball	stability ball	pectorals	chest stretch with exercise ball
+3216	retenu		poussee_h|pectoraux|chest push tap up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	chest tap push-up (male)
+1326	ecarte	deja-couvert-gif									body weight	lats	chin-up
+0253	retenu		tirage_v|grand_dorsal+rhomboides|chin grip narrow parallel ups	tirage_v	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	barre_traction	body weight	upper back	chin-ups (narrow parallel grip)
+0257	retenu		mobilite|mollets|circles knee stretch	mobilite	mobilite_recup		debutant	mollets	ischios,quadriceps	poids_du_corps	body weight	calves	circles knee stretch
+1273	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	pectorals	clap push up
+0258	retenu		poussee_h|pectoraux|clock push up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs,abdominaux	poids_du_corps	body weight	pectorals	clock push-up
+1327	retenu		tirage_v|grand_dorsal|chin close grip up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	close grip chin-up
+0259	retenu		poussee_h|triceps|close grip push up	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	close-grip push-up
+2398	retenu		poussee_h|triceps|close grip knees on push up	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	close-grip push-up (on knees)
+0260	retenu		gainage|abdominaux|cocoons	gainage	gainage	gainage	debutant	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	cocoons
+1468	retenu		rotation|abdominaux|crab toe touch twist	rotation	gainage	rotation	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	crab twist toe touch
+0262	retenu		gainage|abdominaux|body cross crunch	gainage	gainage	flexion	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	cross body crunch
+0267	retenu		gainage|abdominaux|crunch hands overhead	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	crunch (hands overhead)
+0271	retenu		gainage|abdominaux|crunch on	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	swiss_ball	stability ball	abs	crunch (on stability ball)
+0272	retenu		gainage|abdominaux|arms crunch on straight	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	swiss_ball	stability ball	abs	crunch (on stability ball, arms straight)
+0274	ecarte	deja-couvert-gif									body weight	abs	crunch floor
+3016	retenu		gainage|abdominaux|curl up	gainage	gainage	gainage	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	curl-up
+3769	retenu		squat|fessiers|curtsey squat	squat	force		debutant	fessiers	quadriceps,ischios,mollets	poids_du_corps	body weight	glutes	curtsey squat
+2331	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	cardiovascular system	cycle cross trainer
+0276	ecarte	deja-couvert-gif									body weight	abs	dead bug
+0277	retenu		gainage|abdominaux|crunch decline	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	decline crunch
+0279	ecarte	deja-couvert-gif									body weight	pectorals	decline push-up
+0282	retenu		gainage|abdominaux|decline sit up	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	decline sit-up
+1274	retenu		poussee_h|pectoraux|deep push up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	halteres	dumbbell	pectorals	deep push up
+0283	ecarte	deja-couvert-gif									body weight	triceps	diamond push-up
+0284	retenu		charniere|mollets|calf donkey raise	charniere	force		debutant	mollets	ischios,fessiers	poids_du_corps	body weight	calves	donkey calf raise
+1275	retenu		poussee_h|pectoraux|drop push up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	drop push up
+0285	retenu		tirage_h|biceps|biceps curl	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell alternate biceps curl
+2403	retenu		tirage_h|biceps|arm biceps blaster curl with	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell alternate biceps curl (with arm blaster)
+1646	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell alternate hammer preacher curl
+1647	retenu		tirage_h|biceps|curl preacher	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell alternate preacher curl
+1648	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell alternate seated hammer curl
+0286	retenu		poussee_h|deltoides_anterieurs|press side	poussee_h	force		debutant	deltoides_anterieurs	triceps,abdominaux	halteres	dumbbell	delts	dumbbell alternate side press
+1649	retenu		tirage_h|biceps|bicep curl exercise leg on raised with	tirage_h	force		debutant	biceps	avant_bras,deltoides_lateraux	halteres	dumbbell	biceps	dumbbell alternating bicep curl with leg raised on exercise ball
+1650	retenu		tirage_h|biceps|bicep curl exercise on	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell alternating seated bicep curl on exercise ball
+2137	ecarte	doublon:developpe-arnold-halteres									dumbbell	delts	dumbbell arnold press
+0287	retenu		poussee_v|deltoides_anterieurs|arnold press v	poussee_v	force		debutant	deltoides_anterieurs	triceps,pectoraux	halteres	dumbbell	delts	dumbbell arnold press v. 2
+0288	retenu		tirage_v|pectoraux|around pullover	tirage_v	force		debutant	pectoraux	triceps,grand_dorsal	halteres	dumbbell	pectorals	dumbbell around pullover
+0289	ecarte	deja-couvert-gif									dumbbell	pectorals	dumbbell bench press
+0290	retenu		poussee_h|deltoides_anterieurs|bench press	poussee_h	force		debutant	deltoides_anterieurs	triceps,pectoraux	halteres,banc	dumbbell	delts	dumbbell bench seated press
+0291	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell bench squat
+0293	ecarte	deja-couvert-gif									dumbbell	upper back	dumbbell bent over row
+1651	retenu		fente|biceps|bicep bowling curl lunge motion with	fente	force		intermediaire	biceps	avant_bras,deltoides_anterieurs	halteres	dumbbell	biceps	dumbbell bicep curl lunge with bowling motion
+1652	retenu		tirage_h|biceps|bicep curl exercise leg on raised with	tirage_h	force		debutant	biceps	avant_bras,deltoides_lateraux	halteres	dumbbell	biceps	dumbbell bicep curl on exercise ball with leg raised
+1653	retenu		tirage_h|biceps|bicep curl stance stork with	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell bicep curl with stork stance
+0294	ecarte	doublon:curl-halteres									dumbbell	biceps	dumbbell biceps curl
+2401	retenu		tirage_h|biceps|arm biceps blaster curl with	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell biceps curl (with arm blaster)
+1654	retenu		tirage_h|biceps|biceps curl reverse	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell biceps curl reverse
+1655	retenu		squat|biceps|biceps curl squat	squat	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell biceps curl squat
+1656	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell biceps curl v sit on bosu ball
+1201	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	cardiovascular system	dumbbell burpee
+0295	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	glutes	dumbbell clean
+1731	ecarte	doublon:developpe-couche-prise-serree-barre									dumbbell	triceps	dumbbell close grip press
+0296	retenu		poussee_h|triceps|close grip press	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell close-grip press
+0297	ecarte	deja-couvert-gif									dumbbell	biceps	dumbbell concentration curl
+3635	retenu		fente|fessiers|contralateral forward lunge	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	halteres	dumbbell	glutes	dumbbell contralateral forward lunge
+0298	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell cross body hammer curl
+1657	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell cross body hammer curl v. 2
+0299	retenu		poussee_h|deltoides_anterieurs|cuban press	poussee_h	force		debutant	deltoides_anterieurs	triceps,rhomboides	halteres	dumbbell	delts	dumbbell cuban press
+2136	retenu		poussee_h|deltoides_anterieurs|cuban press v	poussee_h	force		debutant	deltoides_anterieurs	triceps,rhomboides	halteres	dumbbell	delts	dumbbell cuban press v. 2
+0300	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell deadlift
+0301	ecarte	doublon:developpe-couche-halteres									dumbbell	pectorals	dumbbell decline bench press
+0302	retenu		poussee_h|pectoraux|decline fly	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs	halteres,banc	dumbbell	pectorals	dumbbell decline fly
+0303	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	pectorals	dumbbell decline hammer press
+1276	retenu		poussee_h|pectoraux|arm decline fly	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs	halteres,banc	dumbbell	pectorals	dumbbell decline one arm fly
+1617	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	triceps	dumbbell decline one arm hammer press
+0305	retenu		tirage_h|trapezes|decline shrug	tirage_h	force		intermediaire	trapezes	deltoides_anterieurs,rhomboides	halteres,banc	dumbbell	traps	dumbbell decline shrug
+0304	retenu		tirage_h|trapezes|decline shrug v	tirage_h	force		intermediaire	trapezes	deltoides_anterieurs,rhomboides	halteres,banc	dumbbell	traps	dumbbell decline shrug v. 2
+0306	ecarte	doublon:extension-triceps-couche-halteres									dumbbell	triceps	dumbbell decline triceps extension
+0307	retenu		poussee_h|pectoraux|decline fly twist	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres,banc	dumbbell	pectorals	dumbbell decline twist fly
+1437	retenu		tirage_h|avant_bras|curls finger	tirage_h	force		debutant	avant_bras		halteres	dumbbell	forearms	dumbbell finger curls
+0308	ecarte	deja-couvert-gif									dumbbell	pectorals	dumbbell fly
+1277	retenu		poussee_h|pectoraux|exercise fly on	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	halteres	dumbbell	pectorals	dumbbell fly on exercise ball
+1732	retenu		fente|triceps|extension forward lunge triceps	fente	force		intermediaire	triceps	deltoides_anterieurs,abdominaux	halteres	dumbbell	triceps	dumbbell forward lunge triceps extension
+0310	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell front raise
+0309	retenu		poussee_v|deltoides_anterieurs|front raise v	poussee_v	force		debutant	deltoides_anterieurs	trapezes,biceps	halteres	dumbbell	delts	dumbbell front raise v. 2
+0311	retenu		poussee_v|deltoides_lateraux|can full lateral raise	poussee_v	force		debutant	deltoides_lateraux	trapezes,coiffe_des_rotateurs	halteres	dumbbell	delts	dumbbell full can lateral raise
+1760	ecarte	deja-couvert-gif									dumbbell	quads	dumbbell goblet squat
+0313	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell hammer curl
+1659	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell hammer curl on exercise ball
+0312	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell hammer curl v. 2
+2402	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell hammer curls (with arm blaster)
+1664	ecarte	doublon:curl-halteres									dumbbell	biceps	dumbbell high curl
+3545	ecarte	doublon:developpe-incline-halteres									dumbbell	pectorals	dumbbell incline alternate press
+0314	ecarte	deja-couvert-gif									dumbbell	pectorals	dumbbell incline bench press
+0315	ecarte	deja-couvert-gif									dumbbell	biceps	dumbbell incline biceps curl
+0316	ecarte	schema-non-deduit									dumbbell	pectorals	dumbbell incline breeding
+0318	ecarte	deja-couvert-gif									dumbbell	biceps	dumbbell incline curl
+0317	ecarte	doublon:curl-incline-halteres									dumbbell	biceps	dumbbell incline curl v. 2
+0319	ecarte	deja-couvert-gif									dumbbell	pectorals	dumbbell incline fly
+1278	retenu		poussee_h|pectoraux|exercise fly incline on	poussee_h	force		debutant	pectoraux	deltoides_anterieurs	halteres,banc_inclinable	dumbbell	pectorals	dumbbell incline fly on exercise ball
+0320	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell incline hammer curl
+0321	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	pectorals	dumbbell incline hammer press
+1618	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	triceps	dumbbell incline hammer press on exercise ball
+0322	ecarte	doublon:curl-incline-halteres									dumbbell	biceps	dumbbell incline inner biceps curl
+1279	retenu		poussee_h|pectoraux|arm fly incline	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres,banc_inclinable	dumbbell	pectorals	dumbbell incline one arm fly
+1280	retenu		poussee_h|pectoraux|arm exercise fly incline on	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs	halteres,banc_inclinable	dumbbell	pectorals	dumbbell incline one arm fly on exercise ball
+1619	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	triceps	dumbbell incline one arm hammer press
+1620	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	triceps	dumbbell incline one arm hammer press on exercise ball
+0323	retenu		poussee_v|deltoides_lateraux|arm incline lateral raise	poussee_v	force		intermediaire	deltoides_lateraux	trapezes,triceps	halteres,banc_inclinable	dumbbell	delts	dumbbell incline one arm lateral raise
+1281	ecarte	doublon:developpe-incline-halteres									dumbbell	pectorals	dumbbell incline one arm press
+1282	retenu		poussee_h|pectoraux|arm exercise incline on press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres,banc_inclinable	dumbbell	pectorals	dumbbell incline one arm press on exercise ball
+0324	ecarte	doublon:developpe-incline-halteres									dumbbell	pectorals	dumbbell incline palm-in press
+1283	ecarte	doublon:developpe-incline-halteres									dumbbell	pectorals	dumbbell incline press on exercise ball
+0325	retenu		poussee_v|deltoides_anterieurs|incline raise	poussee_v	force		debutant	deltoides_anterieurs	trapezes,triceps	halteres,banc_inclinable	dumbbell	delts	dumbbell incline raise
+0326	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell incline rear lateral raise
+0327	ecarte	deja-couvert-gif									dumbbell	upper back	dumbbell incline row
+0328	retenu		poussee_v|dentele_anterieur|incline raise shoulder	poussee_v	force		debutant	dentele_anterieur	deltoides_lateraux,trapezes	halteres,banc_inclinable	dumbbell	serratus anterior	dumbbell incline shoulder raise
+0329	retenu		tirage_h|trapezes|incline shrug	tirage_h	force		debutant	trapezes	deltoides_anterieurs	halteres,banc_inclinable	dumbbell	traps	dumbbell incline shrug
+3542	retenu		poussee_v|deltoides_anterieurs|incline raise t	poussee_v	force		debutant	deltoides_anterieurs	trapezes,rhomboides	halteres,banc_inclinable	dumbbell	delts	dumbbell incline t-raise
+0330	ecarte	doublon:extension-triceps-couche-halteres									dumbbell	triceps	dumbbell incline triceps extension
+0331	retenu		poussee_h|pectoraux|flyes incline twisted	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	halteres,banc_inclinable	dumbbell	pectorals	dumbbell incline twisted flyes
+1733	ecarte	schema-non-deduit									dumbbell	triceps	dumbbell incline two arm extension
+3541	retenu		poussee_v|rhomboides|incline raise y	poussee_v	force		debutant	rhomboides	deltoides_lateraux,deltoides_posterieurs	halteres,banc_inclinable	dumbbell	upper back	dumbbell incline y-raise
+0332	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	delts	dumbbell iron cross
+0333	ecarte	deja-couvert-gif									dumbbell	triceps	dumbbell kickback
+1734	retenu		charniere|triceps|exercise kickbacks on	charniere	force		debutant	triceps	deltoides_anterieurs,grand_dorsal	halteres	dumbbell	triceps	dumbbell kickbacks on exercise ball
+1660	retenu		tirage_h|biceps|bicep curl exercise kneeling	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell kneeling bicep curl exercise ball
+0334	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell lateral raise
+0335	retenu		poussee_v|deltoides_lateraux|front lateral raise to	poussee_v	force		debutant	deltoides_lateraux	trapezes,biceps	halteres	dumbbell	delts	dumbbell lateral to front raise
+0336	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell lunge
+1658	retenu		fente|biceps|bicep curl lunge with	fente	force		intermediaire	biceps	quadriceps,ischios	halteres	dumbbell	biceps	dumbbell lunge with bicep curl
+0337	ecarte	schema-non-deduit									dumbbell	triceps	dumbbell lying extension (across face)
+1729	ecarte	schema-non-deduit									dumbbell	triceps	dumbbell lying alternate extension
+0338	retenu		poussee_h|triceps|elbow press	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	halteres,banc	dumbbell	triceps	dumbbell lying elbow press
+0863	ecarte	schema-non-deduit									dumbbell	delts	dumbbell lying external shoulder rotation
+0339	ecarte	schema-non-deduit									dumbbell	hamstrings	dumbbell lying femoral
+0340	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	pectorals	dumbbell lying hammer press
+2470	retenu		tirage_h|deltoides_posterieurs|delt floor on raise rear	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres,banc	dumbbell	delts	dumbbell lying on floor rear delt raise
+0341	ecarte	schema-non-deduit									dumbbell	delts	dumbbell lying one arm deltoid rear
+0343	ecarte	deja-couvert-gif									dumbbell	pectorals	dumbbell lying one arm press
+0342	retenu		poussee_h|pectoraux|arm press v	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	halteres,banc	dumbbell	pectorals	dumbbell lying one arm press v. 2
+0344	retenu		poussee_h|triceps|arm extension pronated triceps	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	halteres,banc	dumbbell	triceps	dumbbell lying one arm pronated triceps extension
+0345	retenu		tirage_h|deltoides_posterieurs|arm lateral raise rear	tirage_h	force		intermediaire	deltoides_posterieurs	trapezes,rhomboides	halteres,banc	dumbbell	delts	dumbbell lying one arm rear lateral raise
+0346	retenu		poussee_h|triceps|arm extension supinated triceps	poussee_h	force		intermediaire	triceps	avant_bras	halteres,banc	dumbbell	triceps	dumbbell lying one arm supinated triceps extension
+0347	ecarte	schema-non-deduit									dumbbell	forearms	dumbbell lying pronation
+2705	ecarte	schema-non-deduit									dumbbell	forearms	dumbbell lying pronation on floor
+1284	retenu		tirage_v|pectoraux|exercise on pullover	tirage_v	force		debutant	pectoraux	triceps,deltoides_posterieurs,grand_dorsal	halteres,banc	dumbbell	pectorals	dumbbell lying pullover on exercise ball
+1328	retenu		tirage_h|grand_dorsal+rhomboides|delt rear row	tirage_h	force		debutant	grand_dorsal,rhomboides	deltoides_posterieurs,biceps	halteres,banc	dumbbell	upper back	dumbbell lying rear delt row
+0348	retenu		tirage_h|deltoides_posterieurs|lateral raise rear	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres,banc	dumbbell	delts	dumbbell lying rear lateral raise
+1735	ecarte	schema-non-deduit									dumbbell	triceps	dumbbell lying single extension
+0349	ecarte	schema-non-deduit									dumbbell	forearms	dumbbell lying supination
+2706	ecarte	schema-non-deduit									dumbbell	forearms	dumbbell lying supination on floor
+1661	retenu		tirage_h|biceps|biceps curl supine	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell lying supine biceps curl
+0350	retenu		tirage_h|biceps|curl supine	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell lying supine curl
+0351	ecarte	deja-couvert-gif									dumbbell	triceps	dumbbell lying triceps extension
+1662	retenu		tirage_h|biceps|curl wide	tirage_h	force		intermediaire	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell lying wide curl
+0352	ecarte	deja-couvert-gif									dumbbell	triceps	dumbbell neutral grip bench press
+1285	retenu		poussee_h|pectoraux|arm bench fly	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs	halteres,banc	dumbbell	pectorals	dumbbell one arm bench fly
+0292	ecarte	deja-couvert-gif									dumbbell	upper back	dumbbell one arm bent-over row
+1286	retenu		poussee_h|pectoraux|arm chest exercise fly on	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres	dumbbell	pectorals	dumbbell one arm chest fly on exercise ball
+0353	retenu		tirage_h|biceps|arm concentration curl on	tirage_h	force		intermediaire	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell one arm concentration curl (on stability ball)
+1287	retenu		poussee_h|pectoraux|arm chest decline press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	halteres,banc	dumbbell	pectorals	dumbbell one arm decline chest press
+1288	retenu		poussee_h|pectoraux|arm exercise fly on	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres	dumbbell	pectorals	dumbbell one arm fly on exercise ball
+1736	retenu		poussee_h|triceps|arm exercise french on press	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell one arm french press on exercise ball
+1663	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell one arm hammer preacher curl
+1621	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	triceps	dumbbell one arm hammer press on exercise ball
+1289	retenu		poussee_h|pectoraux|arm chest incline press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres,banc_inclinable	dumbbell	pectorals	dumbbell one arm incline chest press
+0354	retenu		charniere|triceps|arm kickback	charniere	force		intermediaire	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell one arm kickback
+0355	retenu		poussee_v|deltoides_lateraux|arm lateral raise	poussee_v	force		intermediaire	deltoides_lateraux	trapezes,triceps	halteres	dumbbell	delts	dumbbell one arm lateral raise
+0356	retenu		poussee_v|deltoides_lateraux|arm lateral raise support with	poussee_v	force		intermediaire	deltoides_lateraux	trapezes,coiffe_des_rotateurs	halteres	dumbbell	delts	dumbbell one arm lateral raise with support
+1290	retenu		poussee_h|pectoraux|arm exercise on press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps,abdominaux	halteres	dumbbell	pectorals	dumbbell one arm press on exercise ball
+1665	retenu		tirage_h|biceps|arm curl prone	tirage_h	force		intermediaire	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell one arm prone curl
+1666	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell one arm prone hammer curl
+1291	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	pectorals	dumbbell one arm pullover on exercise ball
+0358	retenu		tirage_h|avant_bras|arm curl reverse wrist	tirage_h	force		intermediaire	avant_bras		halteres	dumbbell	forearms	dumbbell one arm reverse wrist curl
+0359	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell one arm reverse fly (with support)
+1622	retenu		poussee_h|pectoraux|arm grip press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	halteres	dumbbell	pectorals	dumbbell one arm reverse grip press
+1414	retenu		tirage_h|biceps|arm curl preacher reverse	tirage_h	force		intermediaire	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell one arm reverse preacher curl
+1667	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell one arm reverse spider curl
+1668	retenu		tirage_h|biceps|arm bicep curl exercise on	tirage_h	force		intermediaire	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell one arm seated bicep curl on exercise ball
+1669	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell one arm seated hammer curl
+1415	retenu		tirage_h|avant_bras|arm curl neutral wrist	tirage_h	force		intermediaire	avant_bras	biceps	halteres	dumbbell	forearms	dumbbell one arm seated neutral wrist curl
+0361	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell one arm shoulder press
+0360	retenu		poussee_v|deltoides_anterieurs|arm press shoulder v	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	halteres	dumbbell	delts	dumbbell one arm shoulder press v. 2
+3888	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	glutes	dumbbell one arm snatch
+1670	retenu		tirage_h|biceps|arm curl	tirage_h	force		intermediaire	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell one arm standing curl
+1671	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell one arm standing hammer curl
+0362	retenu		poussee_h|triceps|arm bench extension on triceps	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	halteres,banc	dumbbell	triceps	dumbbell one arm triceps extension (on bench)
+0363	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	delts	dumbbell one arm upright row
+0364	retenu		tirage_h|avant_bras|arm curl wrist	tirage_h	force		intermediaire	avant_bras	biceps	halteres	dumbbell	forearms	dumbbell one arm wrist curl
+1672	retenu		tirage_h|biceps|arm curl preacher zottman	tirage_h	force		intermediaire	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell one arm zottman preacher curl
+1292	retenu		poussee_h|pectoraux|exercise fly leg on	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	halteres	dumbbell	pectorals	dumbbell one leg fly on exercise ball
+0365	retenu		tirage_h|biceps|bench curl neutral over wrist	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell over bench neutral wrist curl
+0366	retenu		tirage_h|biceps|arm bench curl neutral over wrist	tirage_h	force		intermediaire	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell over bench one arm neutral wrist curl
+1441	retenu		tirage_h|avant_bras|arm bench curl over reverse wrist	tirage_h	force		intermediaire	avant_bras	biceps	halteres,banc	dumbbell	forearms	dumbbell over bench one arm reverse wrist curl
+0367	ecarte	deja-couvert-gif									dumbbell	forearms	dumbbell over bench one arm wrist curl
+0368	retenu		tirage_h|avant_bras|bench curl over revers wrist	tirage_h	force		debutant	avant_bras	biceps	halteres,banc	dumbbell	forearms	dumbbell over bench revers wrist curl
+0369	retenu		tirage_h|avant_bras|bench curl over wrist	tirage_h	force		debutant	avant_bras	biceps	halteres,banc	dumbbell	forearms	dumbbell over bench wrist curl
+1329	retenu		tirage_h|grand_dorsal+rhomboides|bent over palm rotational row	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	halteres	dumbbell	upper back	dumbbell palm rotational bent over row
+1623	retenu		poussee_h|triceps|bench in incline palms press	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	halteres,banc_inclinable	dumbbell	triceps	dumbbell palms in incline bench press
+0370	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell peacher hammer curl
+0371	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	glutes	dumbbell plyo squat
+0372	ecarte	doublon:curl-halteres									dumbbell	biceps	dumbbell preacher curl
+1673	retenu		tirage_h|biceps|curl exercise over preacher	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell preacher curl over exercise ball
+1293	retenu		poussee_h|pectoraux|exercise on press	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	halteres	dumbbell	pectorals	dumbbell press on exercise ball
+0373	retenu		poussee_h|triceps|extension grip pronate triceps	poussee_h	force		debutant	triceps	avant_bras	halteres	dumbbell	triceps	dumbbell pronate-grip triceps extension
+0374	ecarte	doublon:curl-incline-halteres									dumbbell	biceps	dumbbell prone incline curl
+1674	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell prone incline hammer curl
+0375	ecarte	deja-couvert-gif									dumbbell	pectorals	dumbbell pullover
+1294	retenu		charniere|pectoraux|exercise extension hip on pullover	charniere	force		debutant	pectoraux	triceps,deltoides_posterieurs,abdominaux	halteres	dumbbell	pectorals	dumbbell pullover hip extension on exercise ball
+1295	retenu		tirage_v|pectoraux|exercise on pullover	tirage_v	force		debutant	pectoraux	triceps,grand_dorsal	halteres	dumbbell	pectorals	dumbbell pullover on exercise ball
+1700	retenu		poussee_v|deltoides_anterieurs|press push	poussee_v	force		debutant	deltoides_anterieurs	triceps,abdominaux	halteres	dumbbell	delts	dumbbell push press
+0376	retenu		poussee_v|deltoides_anterieurs|raise	poussee_v	force		debutant	deltoides_anterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell raise
+2292	retenu		tirage_h|deltoides_posterieurs|delt raise rear	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell rear delt raise
+0377	retenu		tirage_h|deltoides_posterieurs|delt rear row shoulder	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell rear delt row_shoulder
+0378	retenu		poussee_h|deltoides_posterieurs|fly rear	poussee_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell rear fly
+0380	retenu		tirage_h|deltoides_posterieurs|lateral raise rear	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell rear lateral raise
+0379	retenu		tirage_h|deltoides_posterieurs|head lateral raise rear support	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell rear lateral raise (support head)
+0381	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell rear lunge
+0382	retenu		tirage_h|biceps|biceps curl grip revers	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell revers grip biceps curl
+1624	ecarte	doublon:developpe-couche-halteres									dumbbell	pectorals	dumbbell reverse bench press
+0383	retenu		tirage_h|deltoides_posterieurs|fly reverse	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell reverse fly
+1330	retenu		tirage_h|grand_dorsal+rhomboides|arm bench grip incline reverse row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	halteres,banc_inclinable	dumbbell	upper back	dumbbell reverse grip incline bench one arm row
+1331	retenu		tirage_h|grand_dorsal+rhomboides|arm bench grip incline reverse row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	halteres,banc_inclinable	dumbbell	upper back	dumbbell reverse grip incline bench two arm row
+2327	retenu		tirage_h|grand_dorsal+rhomboides|grip reverse row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	halteres	dumbbell	upper back	dumbbell reverse grip row (female)
+0384	retenu		tirage_h|biceps|curl preacher reverse	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell reverse preacher curl
+1675	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell reverse spider curl
+0385	retenu		tirage_h|avant_bras|curl reverse wrist	tirage_h	force		debutant	avant_bras	biceps	halteres	dumbbell	forearms	dumbbell reverse wrist curl
+1459	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell romanian deadlift
+0386	retenu		tirage_h|deltoides_posterieurs|fly reverse rotation	tirage_h	force		debutant	deltoides_posterieurs	trapezes,rhomboides	halteres	dumbbell	delts	dumbbell rotation reverse fly
+2397	retenu		poussee_h|deltoides_anterieurs|press scott	poussee_h	force		debutant	deltoides_anterieurs	triceps,pectoraux	halteres	dumbbell	delts	dumbbell scott press
+0387	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell seated alternate front raise
+1676	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell seated alternate hammer curl on exercise ball
+0388	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell seated alternate press
+3546	ecarte	schema-non-deduit									dumbbell	delts	dumbbell seated alternate shoulder
+0389	retenu		poussee_h|triceps|bench extension	poussee_h	force		debutant	triceps	deltoides_anterieurs	halteres,banc	dumbbell	triceps	dumbbell seated bench extension
+2317	ecarte	doublon:elevation-laterale-assis-halteres									dumbbell	delts	dumbbell seated bent arm lateral raise
+1730	retenu		charniere|triceps|bent kickback over	charniere	force		debutant	triceps	deltoides_anterieurs,grand_dorsal	halteres	dumbbell	triceps	dumbbell seated bent over alternate kickback
+1737	retenu		tirage_h|triceps|bent extension over triceps	tirage_h	force		debutant	triceps	deltoides_anterieurs,grand_dorsal	halteres	dumbbell	triceps	dumbbell seated bent over triceps extension
+1677	retenu		tirage_h|biceps|bicep curl	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell seated bicep curl
+0390	retenu		tirage_h|biceps|biceps curl on	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell seated biceps curl (on stability ball)
+3547	retenu		tirage_h|biceps|biceps curl press shoulder to	tirage_h	force		debutant	biceps	deltoides_anterieurs	halteres	dumbbell	biceps	dumbbell seated biceps curl to shoulder press
+1379	ecarte	deja-couvert-gif									dumbbell	calves	dumbbell seated calf raise
+0391	ecarte	deja-couvert-gif									dumbbell	biceps	dumbbell seated curl
+0392	retenu		poussee_v|deltoides_anterieurs|front raise	poussee_v	force		debutant	deltoides_anterieurs	trapezes,biceps	halteres	dumbbell	delts	dumbbell seated front raise
+1678	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell seated hammer curl
+0393	retenu		tirage_h|biceps|biceps curl inner	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell seated inner biceps curl
+0394	retenu		charniere|triceps|kickback	charniere	force		debutant	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell seated kickback
+0396	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell seated lateral raise
+0395	ecarte	doublon:elevation-laterale-assis-halteres									dumbbell	delts	dumbbell seated lateral raise v. 2
+0397	retenu		tirage_h|biceps|curl neutral wrist	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell seated neutral wrist curl
+1679	retenu		tirage_h|biceps|arm bicep curl exercise leg on raised with	tirage_h	force		intermediaire	biceps	avant_bras,deltoides_lateraux	halteres	dumbbell	biceps	dumbbell seated one arm bicep curl on exercise ball with leg raised
+0398	retenu		charniere|triceps|arm kickback	charniere	force		intermediaire	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell seated one arm kickback
+0399	ecarte	schema-non-deduit									dumbbell	forearms	dumbbell seated one arm rotate
+0400	ecarte	deja-couvert-gif									dumbbell	calves	dumbbell seated one leg calf raise
+1380	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	calves	dumbbell seated one leg calf raise - hammer grip
+1381	retenu		cheville_mollet|mollets|calf leg palm raise up	cheville_mollet	force		intermediaire	mollets	ischios,fessiers	halteres	dumbbell	calves	dumbbell seated one leg calf raise - palm up
+0401	ecarte	deja-couvert-gif									dumbbell	forearms	dumbbell seated palms up wrist curl
+0402	retenu		tirage_h|biceps|curl preacher	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell seated preacher curl
+0403	retenu		tirage_h|biceps|concentration curl grip revers	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell seated revers grip concentration curl
+1738	retenu		poussee_h|triceps|arm extension grip overhead reverse tricep	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell seated reverse grip one arm overhead tricep extension
+0405	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell seated shoulder press
+0404	ecarte	doublon:developpe-epaules-assis-dossier-incline									dumbbell	delts	dumbbell seated shoulder press (parallel grip)
+2188	ecarte	deja-couvert-gif									dumbbell	triceps	dumbbell seated triceps extension
+0406	ecarte	deja-couvert-gif									dumbbell	traps	dumbbell shrug
+0407	retenu		gainage|abdominaux|bend side	gainage	gainage	gainage	debutant	abdominaux	obliques	halteres	dumbbell	abs	dumbbell side bend
+0408	retenu		poussee_v|deltoides_anterieurs|hand raise side	poussee_v	force		intermediaire	deltoides_anterieurs	trapezes,rhomboides	halteres,banc	dumbbell	delts	dumbbell side lying one hand raise
+3664	retenu		poussee_h|rhomboides|fly plank rear side with	poussee_h	force		debutant	rhomboides	deltoides_posterieurs,abdominaux	halteres	dumbbell	upper back	dumbbell side plank with rear fly
+3548	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell single arm overhead carry
+0409	ecarte	deja-couvert-gif									dumbbell	calves	dumbbell single leg calf raise
+1757	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell single leg deadlift
+2805	retenu		charniere|fessiers|deadlift leg stepbox support with	charniere	force		intermediaire	fessiers	ischios,erecteurs_rachis	halteres	dumbbell	glutes	dumbbell single leg deadlift with stepbox support
+0410	ecarte	deja-couvert-gif									dumbbell	quads	dumbbell single leg split squat
+0411	retenu		squat|fessiers|leg squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	halteres	dumbbell	glutes	dumbbell single leg squat
+0413	retenu		squat|fessiers|squat	squat	force		debutant	fessiers	quadriceps,ischios,mollets	halteres	dumbbell	glutes	dumbbell squat
+3560	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	biceps	dumbbell standing alternate hammer curl and press
+0414	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell standing alternate overhead press
+0415	retenu		poussee_v|deltoides_anterieurs|raise	poussee_v	force		debutant	deltoides_anterieurs	trapezes,avant_bras	halteres	dumbbell	delts	dumbbell standing alternate raise
+1739	retenu		charniere|triceps|kickback tricep	charniere	force		debutant	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell standing alternating tricep kickback
+2143	ecarte	schema-non-deduit									dumbbell	delts	dumbbell standing around world
+1740	retenu		tirage_h|triceps|arm bent extension over triceps	tirage_h	force		intermediaire	triceps	deltoides_anterieurs,grand_dorsal	halteres	dumbbell	triceps	dumbbell standing bent over one arm triceps extension
+1741	retenu		tirage_h|triceps|arm bent extension over triceps	tirage_h	force		debutant	triceps	deltoides_anterieurs,grand_dorsal	halteres	dumbbell	triceps	dumbbell standing bent over two arm triceps extension
+0416	ecarte	deja-couvert-gif									dumbbell	biceps	dumbbell standing biceps curl
+0417	ecarte	deja-couvert-gif									dumbbell	calves	dumbbell standing calf raise
+0418	retenu		tirage_h|biceps|concentration curl	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell standing concentration curl
+0419	retenu		poussee_v|deltoides_anterieurs|above front head raise	poussee_v	force		debutant	deltoides_anterieurs	trapezes,biceps	halteres	dumbbell	delts	dumbbell standing front raise above head
+2321	retenu		tirage_h|biceps|biceps curl inner v	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell standing inner biceps curl v. 2
+0420	retenu		charniere|triceps|kickback	charniere	force		debutant	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell standing kickback
+0421	retenu		tirage_h|biceps|arm concentration curl	tirage_h	force		intermediaire	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell standing one arm concentration curl
+0422	retenu		tirage_h|biceps|arm bench curl incline over	tirage_h	force		intermediaire	biceps	avant_bras	halteres,banc_inclinable	dumbbell	biceps	dumbbell standing one arm curl (over incline bench)
+1680	retenu		tirage_h|biceps|arm bench curl incline over	tirage_h	force		intermediaire	biceps	avant_bras	halteres,banc_inclinable	dumbbell	biceps	dumbbell standing one arm curl over incline bench
+0423	ecarte	schema-non-deduit									dumbbell	triceps	dumbbell standing one arm extension
+0424	retenu		poussee_h|deltoides_anterieurs|arm in palm press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	halteres	dumbbell	delts	dumbbell standing one arm palm in press
+0425	retenu		tirage_h|biceps|arm curl reverse	tirage_h	force		intermediaire	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell standing one arm reverse curl
+0426	ecarte	deja-couvert-gif									dumbbell	delts	dumbbell standing overhead press
+0427	retenu		poussee_h|deltoides_anterieurs|in palms press	poussee_h	force		debutant	deltoides_anterieurs	triceps,pectoraux	halteres	dumbbell	delts	dumbbell standing palms in press
+0428	retenu		tirage_h|biceps|curl preacher	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell standing preacher curl
+0429	ecarte	deja-couvert-gif									dumbbell	biceps	dumbbell standing reverse curl
+0430	ecarte	doublon:extension-triceps-couche-halteres									dumbbell	triceps	dumbbell standing triceps extension
+2293	retenu		tirage_h|biceps|curl preacher zottman	tirage_h	force		debutant	biceps	avant_bras	halteres	dumbbell	biceps	dumbbell standing zottman preacher curl
+1684	retenu		fente|biceps|balance bicep curl leg step up with	fente	force		intermediaire	biceps	quadriceps,fessiers,ischios	halteres	dumbbell	biceps	dumbbell step up single leg balance with bicep curl
+0431	ecarte	deja-couvert-gif									dumbbell	glutes	dumbbell step-up
+2796	retenu		fente|quadriceps|lunge step up	fente	force		intermediaire	quadriceps	fessiers,ischios,mollets	halteres	dumbbell	quads	dumbbell step-up lunge
+2812	retenu		fente|quadriceps|split squat step up	fente	force		intermediaire	quadriceps	fessiers,ischios,mollets	halteres	dumbbell	quads	dumbbell step-up split squat
+0432	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	glutes	dumbbell stiff leg deadlift
+0433	retenu		tirage_v|pectoraux|arm pullover straight	tirage_v	force		debutant	pectoraux	grand_dorsal,triceps	halteres	dumbbell	pectorals	dumbbell straight arm pullover
+0434	ecarte	doublon:souleve-de-terre-halteres									dumbbell	glutes	dumbbell straight leg deadlift
+2808	retenu		charniere|fessiers|pull sumo through	charniere	force		intermediaire	fessiers	ischios,quadriceps,abdominaux	halteres	dumbbell	glutes	dumbbell sumo pull through
+2803	retenu		squat|quadriceps|squat supported	squat	force		debutant	quadriceps	fessiers,ischios,mollets	halteres	dumbbell	quads	dumbbell supported squat
+0436	retenu		poussee_h|triceps|press tate	poussee_h	force		debutant	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell tate press
+1742	retenu		charniere|triceps|kickback stance stork tricep with	charniere	force		debutant	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	dumbbell tricep kickback with stork stance
+1743	ecarte	doublon:developpe-couche-halteres									dumbbell	triceps	dumbbell twisting bench press
+0437	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	delts	dumbbell upright row
+1765	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	delts	dumbbell upright row (back pov)
+0864	retenu		tirage_h|deltoides_lateraux|external rotation shoulder upright	tirage_h	force		debutant	deltoides_lateraux	coiffe_des_rotateurs,trapezes	halteres	dumbbell	delts	dumbbell upright shoulder external rotation
+5201	retenu		tirage_h|biceps|biceps curl waiter	tirage_h	force		debutant	biceps	avant_bras,deltoides_anterieurs	halteres	dumbbell	biceps	dumbbell waiter biceps curl
+0438	retenu		poussee_h|deltoides_anterieurs|press w	poussee_h	force		debutant	deltoides_anterieurs	triceps,pectoraux	halteres	dumbbell	delts	dumbbell w-press
+0439	ecarte	doublon:curl-halteres									dumbbell	biceps	dumbbell zottman curl
+2294	retenu		tirage_h|biceps|curl preacher zottman	tirage_h	force		debutant	biceps	avant_bras	halteres,banc	dumbbell	biceps	dumbbell zottman preacher curl
+2189	ecarte	deja-couvert-gif									dumbbell	triceps	dumbbells seated triceps extension
+1167	retenu		mobilite|pectoraux|chest dynamic stretch	mobilite	mobilite_recup		debutant	pectoraux	deltoides_anterieurs,triceps	poids_du_corps	body weight	pectorals	dynamic chest stretch (male)
+3287	retenu		poussee_h|triceps|dips elbow	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	elbow dips
+1772	retenu		poussee_h|rhomboides|elbow lift push reverse up	poussee_h	force		debutant	rhomboides	triceps,deltoides_anterieurs	poids_du_corps	body weight	upper back	elbow lift - reverse push-up
+0443	retenu		gainage|abdominaux|elbow knee to	gainage	gainage	flexion	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	elbow-to-knee
+3292	ecarte	schema-non-deduit									body weight	upper back	elevator
+1332	ecarte	schema-non-deduit									stability ball	lats	exercise ball alternating arm ups
+1333	retenu		charniere|erecteurs_rachis|arms back exercise extended extension with	charniere	force	extension	debutant	erecteurs_rachis	fessiers,ischios	swiss_ball	stability ball	spine	exercise ball back extension with arms extended
+1334	ecarte	technique-ou-dangereux-ou-hors-sujet									stability ball	spine	exercise ball back extension with hands behind head
+1335	retenu		charniere|erecteurs_rachis|back exercise extension ground knees off with	charniere	force	extension	debutant	erecteurs_rachis	fessiers,ischios	swiss_ball	stability ball	spine	exercise ball back extension with knees off ground
+1336	retenu		charniere|erecteurs_rachis|back exercise extension rotation with	charniere	force	extension	debutant	erecteurs_rachis	fessiers,ischios	swiss_ball	stability ball	spine	exercise ball back extension with rotation
+1744	retenu		poussee_h|triceps|dip exercise	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	swiss_ball	stability ball	triceps	exercise ball dip
+1559	retenu		mobilite|fessiers|exercise flexor hip stretch	mobilite	mobilite_recup		debutant	fessiers	quadriceps,ischios	swiss_ball	stability ball	glutes	exercise ball hip flexor stretch
+1338	ecarte	schema-non-deduit									stability ball	spine	exercise ball hug
+1339	retenu		mobilite|grand_dorsal|exercise lat stretch	mobilite	mobilite_recup		debutant	grand_dorsal	deltoides_anterieurs,triceps	swiss_ball	stability ball	lats	exercise ball lat stretch
+1341	retenu		mobilite|grand_dorsal|back exercise lower pyramid stretch	mobilite	mobilite_recup		debutant	grand_dorsal	fessiers,ischios	swiss_ball	stability ball	lats	exercise ball lower back stretch (pyramid)
+1342	retenu		mobilite|grand_dorsal|exercise lat side stretch	mobilite	mobilite_recup		debutant	grand_dorsal	deltoides_anterieurs,triceps	swiss_ball	stability ball	lats	exercise ball lying side lat stretch
+1382	retenu		cheville_mollet|mollets|calf exercise on raise the wall	cheville_mollet	force		debutant	mollets	ischios,quadriceps	halteres	dumbbell	calves	exercise ball on the wall calf raise
+3241	retenu		cheville_mollet|mollets|ankles between calf exercise on raise tennis the wall	cheville_mollet	force		debutant	mollets	ischios,quadriceps	halteres	dumbbell	calves	exercise ball on the wall calf raise (tennis ball between ankles)
+3240	retenu		cheville_mollet|mollets|between calf exercise knees on raise tennis the wall	cheville_mollet	force		debutant	mollets	quadriceps,ischios	halteres	dumbbell	calves	exercise ball on the wall calf raise (tennis ball between knees)
+1416	ecarte	schema-non-deduit									stability ball	glutes	exercise ball one leg prone lower body rotation
+1417	ecarte	technique-ou-dangereux-ou-hors-sujet									stability ball	glutes	exercise ball one legged diagonal kick hamstring curl
+1296	retenu		poussee_v|pectoraux|exercise pike push up	poussee_v	force		intermediaire	pectoraux	deltoides_anterieurs,triceps,abdominaux	swiss_ball	stability ball	pectorals	exercise ball pike push up
+1343	retenu		poussee_v|erecteurs_rachis|exercise leg prone raise	poussee_v	force		intermediaire	erecteurs_rachis	abdominaux,fessiers	swiss_ball	stability ball	spine	exercise ball prone leg raise
+1560	retenu		mobilite|ischios|exercise hamstring stretch	mobilite	mobilite_recup		debutant	ischios	fessiers,erecteurs_rachis	swiss_ball	stability ball	hamstrings	exercise ball seated hamstring stretch
+1745	retenu		mobilite|triceps|exercise stretch triceps	mobilite	mobilite_recup		debutant	triceps	deltoides_anterieurs	swiss_ball	stability ball	triceps	exercise ball seated triceps stretch
+1746	retenu		poussee_h|triceps|exercise extension supine triceps	poussee_h	force		debutant	triceps	deltoides_anterieurs	halteres	dumbbell	triceps	exercise ball supine triceps extension
+1747	retenu		poussee_h|triceps|bar exercise french on press	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	barre_ez,disques	ez barbell	triceps	ez bar french press on exercise ball
+3010	retenu		tirage_v|grand_dorsal|arms bar bent pullover	tirage_v	force		intermediaire	grand_dorsal	triceps,pectoraux	barre_ez,disques,banc	ez barbell	lats	ez bar lying bent arms pullover
+1748	ecarte	technique-ou-dangereux-ou-hors-sujet									ez barbell	triceps	ez bar lying close grip triceps extension behind head
+1344	ecarte	deja-couvert-gif									ez barbell	upper back	ez bar reverse grip bent over row
+1682	retenu		tirage_h|biceps|bar close concentration curl grip	tirage_h	force		intermediaire	biceps	avant_bras	barre_ez,disques	ez barbell	biceps	ez bar seated close grip concentration curl
+1749	retenu		poussee_h|triceps|bar french press	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	barre_ez,disques	ez barbell	triceps	ez bar standing french press
+0445	retenu		poussee_h|deltoides_anterieurs|anti gravity press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,pectoraux	barre_ez,disques	ez barbell	delts	ez barbell anti gravity press
+1627	retenu		tirage_h|biceps|close curl grip preacher	tirage_h	force		intermediaire	biceps	avant_bras	barre_ez,disques,banc	ez barbell	biceps	ez barbell close grip preacher curl
+0446	ecarte	doublon:curl-barre									ez barbell	biceps	ez barbell close-grip curl
+0447	ecarte	deja-couvert-gif									ez barbell	biceps	ez barbell curl
+0448	ecarte	doublon:developpe-couche-prise-serree-barre									ez barbell	triceps	ez barbell decline close grip face press
+2186	ecarte	doublon:extension-triceps-barre-ez-allonge									ez barbell	triceps	ez barbell decline triceps extension
+0449	ecarte	doublon:extension-triceps-barre-ez-allonge									ez barbell	triceps	ez barbell incline triceps extension
+0450	retenu		poussee_h|triceps|bench jm press	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	barre_ez,disques,banc	ez barbell	triceps	ez barbell jm bench press
+0451	ecarte	doublon:curl-barre									ez barbell	biceps	ez barbell reverse grip curl
+0452	retenu		tirage_h|biceps|curl grip preacher reverse	tirage_h	force		intermediaire	biceps	avant_bras	barre_ez,disques,banc	ez barbell	biceps	ez barbell reverse grip preacher curl
+1458	ecarte	doublon:curl-barre									ez barbell	biceps	ez barbell seated curls
+0453	ecarte	doublon:extension-triceps-barre-ez-allonge									ez barbell	triceps	ez barbell seated triceps extension
+0454	ecarte	technique-ou-dangereux-ou-hors-sujet									ez barbell	biceps	ez barbell spider curl
+1628	ecarte	technique-ou-dangereux-ou-hors-sujet									ez barbell	biceps	ez barbell spider curl
+2404	retenu		tirage_h|biceps|arm bar biceps blaster curl with	tirage_h	force		intermediaire	biceps	avant_bras	barre_ez,disques	ez barbell	biceps	ez-bar biceps curl (with arm blaster)
+2432	ecarte	deja-couvert-gif									ez barbell	triceps	ez-bar close-grip bench press
+2741	retenu		tirage_h|biceps|biceps curl grip wide	tirage_h	force		intermediaire	biceps	avant_bras	barre_ez,disques	ez barbell	biceps	ez-barbell standing wide grip biceps curl
+2133	ecarte	technique-ou-dangereux-ou-hors-sujet									dumbbell	quads	farmers walk
+0455	retenu		tirage_h|avant_bras|curls finger	tirage_h	force		intermediaire	avant_bras		barre,disques	barbell	forearms	finger curls
+3303	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	flag
+0456	retenu		gainage|abdominaux|bent flexion knee leg sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	flexion leg sit up (bent knee)
+0457	retenu		gainage|abdominaux|arm flexion leg sit straight up	gainage	gainage	gainage	debutant	abdominaux	flechisseurs_hanche,quadriceps	poids_du_corps	body weight	abs	flexion leg sit up (straight arm)
+0458	retenu		poussee_h|pectoraux|floor fly with	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	barre,disques	barbell	pectorals	floor fly (with barbell)
+0459	ecarte	schema-non-deduit									body weight	glutes	flutter kicks
+1472	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	quads	forward jump
+3470	ecarte	deja-couvert-gif									body weight	glutes	forward lunge (male)
+3194	retenu		squat|fessiers|frankenstein squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	barre,disques,rack	barbell	glutes	frankenstein squat
+2429	retenu		gainage|abdominaux|crunch frog	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	frog crunch
+3301	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	frog planche
+3296	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	front lever
+3295	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	front lever reps
+0464	retenu		rotation|abdominaux|front plank twist with	rotation	gainage	rotation	debutant	abdominaux	obliques,deltoides_anterieurs	poids_du_corps	body weight	abs	front plank with twist
+3315	retenu		gainage|abdominaux|full maltese	gainage	gainage	gainage	debutant	abdominaux	deltoides_anterieurs,pectoraux	poids_du_corps	body weight	abs	full maltese
+3299	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	full planche
+3327	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	pectorals	full planche push-up
+0466	ecarte	schema-non-deduit									body weight	lats	gironda sternum chin
+3561	ecarte	deja-couvert-gif									body weight	glutes	glute bridge march
+3523	retenu		charniere|fessiers|bench bridge glute legs on	charniere	force		debutant	fessiers	ischios,abdominaux	poids_du_corps	body weight	glutes	glute bridge two legs on bench (male)
+3193	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	hamstrings	glute-ham raise
+0467	retenu		gainage|abdominaux|chin gorilla	gainage	gainage	gainage	debutant	abdominaux	avant_bras,biceps	poids_du_corps	body weight	abs	gorilla chin
+0469	retenu		gainage|abdominaux|crunch groin	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche,adducteurs	poids_du_corps	body weight	abs	groin crunch
+1383	ecarte	materiel-hors-taxonomie									sled machine	calves	hack calf raise
+1384	ecarte	materiel-hors-taxonomie									sled machine	calves	hack one leg calf raise
+3221	ecarte	cou-ou-cardio									body weight	cardiovascular system	half knee bends (male)
+3202	retenu		gainage|abdominaux|half sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	half sit-up (male)
+1511	retenu		mobilite|ischios|hamstring stretch	mobilite	mobilite_recup		debutant	ischios	fessiers	poids_du_corps	body weight	hamstrings	hamstring stretch
+2139	ecarte	technique-ou-dangereux-ou-hors-sujet									upper body ergometer	pectorals	hands bike
+3218	ecarte	schema-non-deduit									body weight	glutes	hands clasped circular toe touch (male)
+3215	ecarte	schema-non-deduit									body weight	glutes	hands reversed clasped circular toe touch (male)
+3302	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	triceps	handstand
+0471	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	triceps	handstand push-up
+1764	retenu		gainage|abdominaux|hanging hip leg raise	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche,erecteurs_rachis	barre_traction	body weight	abs	hanging leg hip raise
+0472	retenu		gainage|abdominaux|hanging leg raise	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche	barre_traction	body weight	abs	hanging leg raise
+1761	retenu		gainage|abdominaux|hanging knee oblique raise	gainage	gainage	flexion	intermediaire	abdominaux	obliques	barre_traction	body weight	abs	hanging oblique knee raise
+0473	retenu		gainage|abdominaux|hanging pike	gainage	gainage	gainage	intermediaire	abdominaux	flechisseurs_hanche,deltoides_anterieurs	barre_traction	body weight	abs	hanging pike
+0474	retenu		gainage|abdominaux|hanging hip leg raise straight	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche	barre_traction	body weight	abs	hanging straight leg hip raise
+0475	retenu		gainage|abdominaux|hanging leg raise straight	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche	barre_traction	body weight	abs	hanging straight leg raise
+0476	retenu		rotation|abdominaux|hanging hip leg raise straight twisting	rotation	gainage	rotation	intermediaire	abdominaux	obliques,flechisseurs_hanche	barre_traction	body weight	abs	hanging straight twisting leg hip raise
+3636	ecarte	cou-ou-cardio									body weight	cardiovascular system	high knee against wall
+0484	ecarte	deja-couvert-gif									body weight	abs	hip raise (bent knee)
+1418	retenu		poussee_h|fessiers|chest hug keens to	poussee_h	force		debutant	fessiers	ischios,quadriceps	poids_du_corps	body weight	glutes	hug keens to chest
+3234	retenu		poussee_h|pectoraux|fly hyght	poussee_h	force		debutant	pectoraux	deltoides_anterieurs	halteres	dumbbell	pectorals	hyght dumbbell fly
+0489	retenu		charniere|erecteurs_rachis|hyperextension	charniere	force	extension	debutant	erecteurs_rachis	fessiers,ischios	poids_du_corps	body weight	spine	hyperextension
+0488	retenu		charniere|erecteurs_rachis|bench hyperextension on	charniere	force	extension	debutant	erecteurs_rachis	fessiers,ischios	poids_du_corps	body weight	spine	hyperextension (on bench)
+3289	retenu		poussee_h|triceps|dips impossible	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	impossible dips
+1471	retenu		gainage|abdominaux|inchworm	gainage	gainage	gainage	debutant	abdominaux	deltoides_anterieurs,ischios	poids_du_corps	body weight	abs	inchworm
+3698	retenu		gainage|abdominaux|inchworm v	gainage	gainage	gainage	debutant	abdominaux	deltoides_anterieurs,ischios	poids_du_corps	body weight	abs	inchworm v. 2
+0490	retenu		poussee_h|triceps|close grip incline push up	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	incline close-grip push-up
+0491	retenu		gainage|abdominaux|hip incline leg leg raise straight	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	incline leg hip raise (leg straight)
+0492	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	pectorals	incline push up depth jump
+0493	retenu		poussee_h|pectoraux|incline push up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	incline push-up
+3785	ecarte	deja-couvert-gif									body weight	pectorals	incline push-up (on box)
+0494	retenu		poussee_h|pectoraux|grip incline push reverse up	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	incline reverse grip push-up
+3011	retenu		poussee_h|dentele_anterieur|incline push scapula up	poussee_h	force		debutant	dentele_anterieur	triceps,deltoides_anterieurs	poids_du_corps	body weight	serratus anterior	incline scapula push up
+0495	retenu		rotation|abdominaux|incline sit twisting up	rotation	gainage	rotation	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	incline twisting sit-up
+1564	ecarte	materiel-hors-taxonomie									rope	quads	intermediate hip flexor and quad stretch
+0496	retenu		charniere|ischios|bench curl inverse leg support	charniere	force		debutant	ischios	fessiers,mollets	poids_du_corps	body weight	hamstrings	inverse leg curl (bench support)
+2400	retenu		charniere|ischios|curl inverse leg on pull up	charniere	force		debutant	ischios	fessiers,mollets	barre_traction	body weight	hamstrings	inverse leg curl (on pull-up cable machine)
+0499	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	inverted row
+2300	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	inverted row bent knees
+2298	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	inverted row on bench
+0497	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	inverted row v. 2
+0498	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	inverted row with straps
+1419	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	iron cross stretch
+1297	ecarte	deja-couvert-gif									body weight	pectorals	isometric chest squeeze
+0500	ecarte	schema-non-deduit									body weight	pectorals	isometric wipers
+0501	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	jack burpee
+3224	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	jack jump (male)
+0507	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	jackknife sit-up
+0508	retenu		gainage|abdominaux|janda sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	janda sit-up
+2612	ecarte	technique-ou-dangereux-ou-hors-sujet									rope	cardiovascular system	jump rope
+0514	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	jump squat
+0513	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	jump squat v. 2
+0517	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	abs	kettlebell advanced windmill
+0518	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	forearms	kettlebell alternating hang clean
+0520	retenu		poussee_h|deltoides_anterieurs|press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell alternating press
+0519	retenu		poussee_h|pectoraux|floor on press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	kettlebell	kettlebell	pectorals	kettlebell alternating press on floor
+0521	retenu		tirage_h|grand_dorsal+rhomboides|renegade row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	abdominaux,deltoides_posterieurs	kettlebell	kettlebell	upper back	kettlebell alternating renegade row
+0522	retenu		tirage_h|grand_dorsal+rhomboides|row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	kettlebell	kettlebell	upper back	kettlebell alternating row
+0523	ecarte	doublon:developpe-arnold-halteres									kettlebell	delts	kettlebell arnold press
+0524	retenu		gainage|abdominaux|bent press	gainage	gainage	gainage	intermediaire	abdominaux	deltoides_anterieurs,triceps,obliques	kettlebell	kettlebell	abs	kettlebell bent press
+0525	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	biceps	kettlebell bottoms up clean from the hang position
+0526	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	biceps	kettlebell double alternating hang clean
+0527	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell double jerk
+0528	retenu		poussee_v|deltoides_anterieurs|double press push	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell double push press
+0529	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell double snatch
+0530	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	abs	kettlebell double windmill
+0531	retenu		poussee_h|pectoraux|arm extended floor on press range	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	kettlebell	kettlebell	pectorals	kettlebell extended range one arm press on floor
+0532	retenu		gainage|abdominaux|figure	gainage	gainage	gainage	intermediaire	abdominaux	deltoides_anterieurs,avant_bras	kettlebell	kettlebell	abs	kettlebell figure 8
+0533	retenu		squat|fessiers|front squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	kettlebell	kettlebell	glutes	kettlebell front squat
+0534	ecarte	deja-couvert-gif									kettlebell	glutes	kettlebell goblet squat
+0535	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	hamstrings	kettlebell hang clean
+0536	retenu		fente|fessiers|lunge pass through	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	kettlebell	kettlebell	glutes	kettlebell lunge pass through
+0537	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm clean and jerk
+1298	retenu		poussee_h|pectoraux|arm floor press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	kettlebell	kettlebell	pectorals	kettlebell one arm floor press
+0538	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm jerk
+0539	retenu		poussee_v|deltoides_anterieurs|arm military press side the to	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell one arm military press to the side
+0540	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm push press
+0541	ecarte	deja-couvert-gif									kettlebell	upper back	kettlebell one arm row
+0542	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm snatch
+0543	ecarte	schema-non-deduit									kettlebell	delts	kettlebell pirate supper legs
+0544	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	glutes	kettlebell pistol squat
+0545	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	pectorals	kettlebell plyo push-up
+0546	retenu		poussee_h|deltoides_anterieurs|press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell seated press
+1438	retenu		poussee_v|deltoides_anterieurs|arm military press	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	kettlebell	kettlebell	delts	kettlebell seated two arm military press
+0547	retenu		poussee_h|deltoides_anterieurs|press seesaw	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell seesaw press
+0548	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	traps	kettlebell sumo high pull
+0549	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	glutes	kettlebell swing
+0550	ecarte	schema-non-deduit									kettlebell	delts	kettlebell thruster
+0551	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	glutes	kettlebell turkish get up (squat style)
+0552	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell two arm clean
+0553	retenu		poussee_v|deltoides_anterieurs|arm military press	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	kettlebell	kettlebell	delts	kettlebell two arm military press
+1345	retenu		tirage_h|grand_dorsal+rhomboides|arm row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	kettlebell	kettlebell	upper back	kettlebell two arm row
+0554	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	abs	kettlebell windmill
+0555	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	hamstrings	kick out sit
+0558	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	lats	kipping muscle up
+3640	retenu		gainage|abdominaux|crunch knee touch	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	knee touch crunch
+1420	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	glutes	kneeling jump squat
+1346	retenu		mobilite|grand_dorsal|kneeling lat stretch	mobilite	mobilite_recup		debutant	grand_dorsal	deltoides_anterieurs,triceps	poids_du_corps	body weight	lats	kneeling lat stretch
+3239	ecarte	deja-couvert-gif									body weight	abs	kneeling plank tap shoulder (male)
+3211	ecarte	deja-couvert-gif									body weight	pectorals	kneeling push-up (male)
+3288	retenu		poussee_h|pectoraux|dips korean	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	korean dips
+3418	ecarte	doublon:traction-negative-barre									body weight	lats	l-pull-up
+3419	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	l-sit on floor
+0562	retenu		gainage|abdominaux|landmine	gainage	gainage	gainage	intermediaire	abdominaux	obliques,quadriceps	barre,disques	barbell	abs	landmine 180
+3237	ecarte	doublon:elevation-laterale									barbell	delts	landmine lateral raise
+3300	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	lean planche
+2271	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	delts	left hook. boxing
+0570	retenu		gainage|abdominaux|bench flat in leg pull	gainage	gainage	gainage	debutant	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	leg pull in flat bench
+1576	retenu		mobilite|ischios|hamstring leg stretch up	mobilite	mobilite_recup		debutant	ischios	fessiers	poids_du_corps	body weight	hamstrings	leg up hamstring stretch
+2287	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	quads	lever alternate leg press
+0571	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever alternating narrow grip seated row
+0572	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	lats	lever assisted chin-up
+0573	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	spine	lever back extension
+0574	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	upper back	lever bent over row
+3200	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever bent-over row with v-bar
+0575	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	biceps	lever bicep curl
+2289	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever calf press
+0577	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever chest press
+0576	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever chest press
+0578	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	glutes	lever deadlift
+1300	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever decline chest press
+1253	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever donkey calf raise
+0579	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	lats	lever front pulldown
+0580	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	traps	lever gripless shrug
+1439	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	traps	lever gripless shrug v. 2
+2288	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	forearms	lever gripper hands
+1615	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	biceps	lever hammer grip preacher curl
+0581	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever high row
+2286	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	glutes	lever hip extension v. 2
+2611	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	glutes	lever horizontal one leg press
+1299	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever incline chest press
+1479	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever incline chest press v. 2
+0582	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	hamstrings	lever kneeling leg curl
+0583	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	abs	lever kneeling twist
+0584	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever lateral raise
+0585	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	quads	lever leg extension
+0586	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	hamstrings	lever lying leg curl
+3195	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	hamstrings	lever lying two-one leg curl
+0587	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever military press
+0588	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever narrow grip seated row
+0589	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	upper back	lever one arm bent over row
+1356	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever one arm lateral high row
+1347	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	lats	lever one arm lateral wide pulldown
+0590	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever one arm shoulder press
+0591	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	triceps	lever overhand triceps dip
+0592	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	biceps	lever preacher curl
+1614	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	biceps	lever preacher curl v. 2
+2285	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	lats	lever pullover
+2736	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	lats	lever reverse grip lateral pulldown
+1616	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	biceps	lever reverse grip preacher curl
+1348	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever reverse grip vertical row
+0593	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	glutes	lever reverse hyperextension
+1349	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever reverse t-bar row
+2315	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever rotary calf
+2335	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever seated calf press
+0594	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever seated calf raise
+1452	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	abs	lever seated crunch
+0595	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	abs	lever seated crunch (chest pad)
+3760	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	abs	lever seated crunch v. 2
+1451	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	triceps	lever seated dip
+0596	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever seated fly
+3759	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	glutes	lever seated good morning
+0597	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	abductors	lever seated hip abduction
+0598	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	adductors	lever seated hip adduction
+0599	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	hamstrings	lever seated leg curl
+0600	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	abs	lever seated leg raise crunch
+0602	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever seated reverse fly
+0601	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever seated reverse fly (parallel grip)
+1350	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever seated row
+1385	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever seated squat calf raise on leg press machine
+0603	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever shoulder press
+0869	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever shoulder press v. 2
+2318	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	delts	lever shoulder press v. 3
+0604	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	traps	lever shrug
+0605	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	calves	lever standing calf raise
+3758	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	pectorals	lever standing chest press
+0606	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever t bar row
+1351	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever t-bar reverse grip row
+0607	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	triceps	lever triceps extension
+1313	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	upper back	lever unilateral row
+0609	ecarte	materiel-hors-taxonomie									rope	upper back	london bridge
+3013	ecarte	deja-couvert-gif									body weight	glutes	low glute bridge on floor
+1352	retenu		tirage_h|erecteurs_rachis|back curl lower	tirage_h	force		debutant	erecteurs_rachis	fessiers,ischios	poids_du_corps	body weight	spine	lower back curl
+3582	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	lunge with jump
+1688	retenu		rotation|abdominaux|lunge twist with	rotation	gainage	rotation	intermediaire	abdominaux	quadriceps,fessiers,ischios	poids_du_corps	body weight	abs	lunge with twist
+0613	ecarte	deja-couvert-gif									body weight	quads	lying (side) quads stretch
+2312	retenu		gainage|abdominaux|elbow knee to	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche,erecteurs_rachis	poids_du_corps	body weight	abs	lying elbow to knee
+0620	retenu		gainage|abdominaux|bench flat leg raise	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	lying leg raise flat bench
+0865	retenu		gainage|abdominaux|hip leg raise	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	lying leg-hip raise
+1301	retenu		poussee_h|pectoraux|chest inner press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	leverage machine	pectorals	machine inner chest press
+0624	ecarte	schema-non-deduit									body weight	glutes	march sit (wall)
+1353	ecarte	technique-ou-dangereux-ou-hors-sujet									medicine ball	lats	medicine ball catch and overhead throw
+1302	ecarte	deja-couvert-gif									medicine ball	pectorals	medicine ball chest pass
+1303	retenu		poussee_h|pectoraux|chest from point push stance	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	medecine_ball	medicine ball	pectorals	medicine ball chest push from 3 point stance
+1304	retenu		poussee_h|pectoraux|chest multiple push response	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	medecine_ball	medicine ball	pectorals	medicine ball chest push multiple response
+1305	retenu		poussee_h|pectoraux|chest push response	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	medecine_ball	medicine ball	pectorals	medicine ball chest push single response
+1312	ecarte	technique-ou-dangereux-ou-hors-sujet									medicine ball	pectorals	medicine ball chest push with run release
+1701	retenu		poussee_h|triceps|close grip push up	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	medecine_ball	medicine ball	triceps	medicine ball close grip push up
+1354	ecarte	technique-ou-dangereux-ou-hors-sujet									medicine ball	upper back	medicine ball overhead slam
+1750	ecarte	technique-ou-dangereux-ou-hors-sujet									medicine ball	triceps	medicine ball supine chest throw
+0627	retenu		tirage_v|grand_dorsal|chin grip mixed up	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	mixed grip chin-up
+3217	retenu		poussee_h|pectoraux|hindu modified push up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs,abdominaux	poids_du_corps	body weight	pectorals	modified hindu push-up (male)
+1421	retenu		poussee_h|avant_bras|arms lower modified push to up	poussee_h	force		debutant	avant_bras	triceps,pectoraux,deltoides_anterieurs	poids_du_corps	body weight	forearms	modified push up to lower arms
+0628	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	monster walk
+0630	ecarte	cou-ou-cardio									body weight	cardiovascular system	mountain climber
+0631	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	lats	muscle up
+1401	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	lats	muscle-up (on vertical bar)
+2328	retenu		tirage_h|triceps|exercise narrow on push up	tirage_h	force		debutant	triceps	pectoraux,deltoides_posterieurs	swiss_ball	stability ball	triceps	narrow push-up on exercise ball
+1403	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	levator scapulae	neck side stretch
+0634	retenu		gainage|abdominaux|crunch negative	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	negative crunch
+1495	retenu		gainage|abdominaux|crunch oblique v	gainage	gainage	flexion	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	oblique crunch v. 2
+0635	retenu		gainage|abdominaux|crunches floor oblique	gainage	gainage	flexion	debutant	abdominaux	obliques	poids_du_corps	body weight	abs	oblique crunches floor
+0636	ecarte	technique-ou-dangereux-ou-hors-sujet									olympic barbell	biceps	olympic barbell hammer curl
+0637	retenu		poussee_h|triceps|extension triceps	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	barre,disques	olympic barbell	triceps	olympic barbell triceps extension
+1355	ecarte	schema-non-deduit									body weight	lats	one arm against wall
+0638	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	lats	one arm chin-up
+0639	retenu		poussee_h|triceps|arm dip	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	one arm dip
+0640	ecarte	technique-ou-dangereux-ou-hors-sujet									medicine ball	abs	one arm slam (with medicine ball)
+1773	retenu		tirage_h|grand_dorsal+rhomboides|arm row towel	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	poids_du_corps,serviette	body weight	upper back	one arm towel row
+1386	retenu		charniere|mollets|calf donkey leg raise	charniere	force		intermediaire	mollets	ischios,fessiers	poids_du_corps	body weight	calves	one leg donkey calf raise
+1387	ecarte	deja-couvert-gif									body weight	calves	one leg floor calf raise
+1476	retenu		squat|fessiers|leg squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	poids_du_corps	body weight	glutes	one leg squat
+0641	retenu		gainage|abdominaux|otis up	gainage	gainage	gainage	intermediaire	abdominaux	flechisseurs_hanche,erecteurs_rachis	lest	weighted	abs	otis up
+0642	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	outside leg kick push-up
+0643	retenu		mobilite|triceps|overhead stretch triceps	mobilite	mobilite_recup		debutant	triceps	deltoides_anterieurs	poids_du_corps	body weight	triceps	overhead triceps stretch
+3147	retenu		gainage|abdominaux|pelvic tilt	gainage	gainage	gainage	debutant	abdominaux	erecteurs_rachis	poids_du_corps	body weight	abs	pelvic tilt
+1422	retenu		charniere|fessiers|bridge into pelvic tilt	charniere	force		debutant	fessiers	ischios,abdominaux	poids_du_corps	body weight	glutes	pelvic tilt into bridge
+1388	ecarte	materiel-hors-taxonomie									rope	calves	peroneals stretch
+3662	retenu		poussee_v|fessiers|cobra pike push to up	poussee_v	force		intermediaire	fessiers	abdominaux,deltoides_anterieurs,triceps	poids_du_corps	body weight	glutes	pike-to-cobra push-up
+1306	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	pectorals	plyo push up
+1687	retenu		gainage|abdominaux|overhead posterior reach step to	gainage	gainage	gainage	debutant	abdominaux	fessiers,ischios,quadriceps,deltoides_anterieurs	poids_du_corps,box_ou_step	body weight	abs	posterior step to overhead reach
+1389	ecarte	materiel-hors-taxonomie									rope	calves	posterior tibialis stretch
+3119	retenu		gainage|abdominaux|potty squat	gainage	gainage	gainage	debutant	abdominaux	quadriceps,fessiers	poids_du_corps	body weight	abs	potty squat
+3132	retenu		squat|fessiers|potty squat support with	squat	force		debutant	fessiers	quadriceps,ischios,mollets	poids_du_corps	body weight	glutes	potty squat with support
+0648	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	hamstrings	power clean
+3665	retenu		gainage|abdominaux|plank point power	gainage	gainage	gainage	debutant	abdominaux	deltoides_anterieurs,triceps,fessiers	poids_du_corps	body weight	abs	power point plank
+3203	retenu		gainage|abdominaux|half prisoner sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	prisoner half sit-up (male)
+1707	retenu		rotation|abdominaux|on prone twist	rotation	gainage	rotation	debutant	abdominaux	obliques,erecteurs_rachis	swiss_ball	stability ball	abs	prone twist on stability ball
+0651	retenu		tirage_v|grand_dorsal|grip neutral pull up	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	pull up (neutral grip)
+0650	ecarte	deja-couvert-gif									stability ball	abs	pull-in (on stability ball)
+0652	ecarte	deja-couvert-gif									body weight	lats	pull-up
+1689	ecarte	schema-non-deduit									body weight	pectorals	push and pull bodyweight
+3638	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	push to run
+1307	ecarte	doublon:pompe-bosu									bosu ball	pectorals	push up on bosu ball
+0662	ecarte	deja-couvert-gif									body weight	pectorals	push-up
+0653	ecarte	doublon:pompe-bosu									bosu ball	pectorals	push-up (bosu ball)
+0655	ecarte	deja-couvert-gif									stability ball	pectorals	push-up (on stability ball)
+0656	ecarte	deja-couvert-gif									stability ball	pectorals	push-up (on stability ball)
+0659	ecarte	deja-couvert-gif									body weight	pectorals	push-up (wall)
+0658	retenu		poussee_h|pectoraux|push up v wall	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs	poids_du_corps,mur	body weight	pectorals	push-up (wall) v. 2
+0660	retenu		poussee_h|triceps|close grip off push up	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	halteres	dumbbell	triceps	push-up close-grip off dumbbell
+0661	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	push-up inside leg kick
+0663	retenu		poussee_h|pectoraux|push up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs,abdominaux	medecine_ball	medicine ball	pectorals	push-up medicine ball
+1467	retenu		poussee_h|triceps|arms lower on push up	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	push-up on lower arms
+3145	ecarte	deja-couvert-gif									body weight	pectorals	push-up plus
+0664	ecarte	doublon:planche-laterale									body weight	abs	push-up to side plank
+3533	ecarte	schema-non-deduit									body weight	quads	quads
+3201	retenu		gainage|abdominaux|quarter sit up	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	quarter sit-up
+3552	ecarte	schema-non-deduit									body weight	quads	quick feet v. 2
+0666	retenu		poussee_v|pectoraux|arm push raise up	poussee_v	force		intermediaire	pectoraux	triceps,deltoides_lateraux,abdominaux	poids_du_corps	body weight	pectorals	raise single arm push-up
+0668	retenu		charniere|fessiers|bridge decline rear	charniere	force		intermediaire	fessiers	ischios,erecteurs_rachis	poids_du_corps	body weight	glutes	rear decline bridge
+0669	ecarte	deja-couvert-gif									body weight	delts	rear deltoid stretch
+0670	retenu		tirage_v|grand_dorsal|pull rear up	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	rear pull-up
+1582	ecarte	technique-ou-dangereux-ou-hors-sujet									rope	hamstrings	reclining big toe pose with rope
+3236	retenu		charniere|fessiers|hip knees on thrusts	charniere	force		debutant	fessiers	ischios,quadriceps	elastique	resistance band	glutes	resistance band hip thrusts on knees (female)
+3007	ecarte	deja-couvert-gif									resistance band	quads	resistance band leg extension
+3123	ecarte	deja-couvert-gif									resistance band	biceps	resistance band seated biceps curl
+3124	retenu		poussee_h|pectoraux|chest press	poussee_h	force		debutant	pectoraux	deltoides_anterieurs,triceps	elastique	resistance band	pectorals	resistance band seated chest press
+3006	retenu		hanche_laterale|moyen_fessier|abduction hip	hanche_laterale	force		debutant	moyen_fessier	fessiers,ischios	elastique	resistance band	abductors	resistance band seated hip abduction
+3122	ecarte	deja-couvert-gif									resistance band	delts	resistance band seated shoulder press
+3144	ecarte	deja-couvert-gif									resistance band	upper back	resistance band seated straight back row
+0872	ecarte	deja-couvert-gif									body weight	abs	reverse crunch
+0672	retenu		poussee_h|triceps|dip reverse	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	reverse dip
+0673	retenu		tirage_v|grand_dorsal|grip lat pulldown reverse	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	machine	leverage machine	lats	reverse grip machine lat pulldown
+0674	retenu		tirage_v|grand_dorsal|grip pull reverse up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	reverse grip pull-up
+0675	ecarte	technique-ou-dangereux-ou-hors-sujet									stability ball	glutes	reverse hyper extension (on stability ball)
+1423	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	reverse hyper on flat bench
+3663	retenu		gainage|abdominaux|leg lift plank reverse with	gainage	gainage	gainage	debutant	abdominaux	fessiers,ischios,deltoides_anterieurs	poids_du_corps	body weight	abs	reverse plank with leg lift
+0677	retenu		poussee_h|triceps|dips ring	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	ring dips
+2571	ecarte	deja-couvert-gif									body weight	glutes	rocking frog stretch
+0678	retenu		tirage_v|grand_dorsal|pull pulldown rocky up	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	rocky pull-up pulldown
+2208	retenu		mobilite|erecteurs_rachis|back stretch	mobilite	mobilite_recup		debutant	erecteurs_rachis	ischios,fessiers	rouleau_massage	roller	spine	roller back stretch
+2204	retenu		mobilite|abdominaux|body saw	mobilite	mobilite_recup		debutant	abdominaux	deltoides_anterieurs,triceps	rouleau_massage	roller	abs	roller body saw
+2205	retenu		mobilite|fessiers|hip lat stretch	mobilite	mobilite_recup		debutant	fessiers	ischios,quadriceps	rouleau_massage	roller	glutes	roller hip lat stretch
+2202	retenu		mobilite|fessiers|hip stretch	mobilite	mobilite_recup		debutant	fessiers	ischios,quadriceps	rouleau_massage	roller	glutes	roller hip stretch
+2206	retenu		mobilite|abdominaux|crunch reverse	mobilite	mobilite_recup		debutant	abdominaux	flechisseurs_hanche	rouleau_massage	roller	abs	roller reverse crunch
+2203	retenu		mobilite|pectoraux|depresor flexor retractor shoulder	mobilite	mobilite_recup		debutant	pectoraux	deltoides_anterieurs,triceps	rouleau_massage	roller	pectorals	roller seated shoulder flexor depresor retractor
+2209	retenu		mobilite|pectoraux|depresor flexor leg retractor shoulder	mobilite	mobilite_recup		intermediaire	pectoraux	deltoides_anterieurs,triceps	rouleau_massage	roller	pectorals	roller seated single leg shoulder flexor depresor retractor
+2207	retenu		mobilite|grand_dorsal|lat side stretch	mobilite	mobilite_recup		debutant	grand_dorsal	deltoides_anterieurs,triceps	rouleau_massage	roller	lats	roller side lat stretch
+0680	ecarte	technique-ou-dangereux-ou-hors-sujet									rope	upper back	rope climb
+0685	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	run
+0684	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	run (equipment)
+1585	retenu		mobilite|ischios|runners stretch	mobilite	mobilite_recup		debutant	ischios	mollets,quadriceps	poids_du_corps	body weight	hamstrings	runners stretch
+0687	ecarte	deja-couvert-gif									body weight	abs	russian twist
+3012	retenu		poussee_h|trapezes|dips scapula	poussee_h	force		debutant	trapezes	rhomboides,deltoides_anterieurs	poids_du_corps	body weight	traps	scapula dips
+3021	retenu		poussee_h|dentele_anterieur|push scapula up	poussee_h	force		debutant	dentele_anterieur	triceps,deltoides_anterieurs	poids_du_corps	body weight	serratus anterior	scapula push-up
+0688	ecarte	deja-couvert-gif									body weight	traps	scapular pull-up
+3219	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	scissor jumps (male)
+1390	retenu		mobilite|mollets|calf stretch	mobilite	mobilite_recup		debutant	mollets	ischios	poids_du_corps	body weight	calves	seated calf stretch (male)
+1424	ecarte	deja-couvert-gif									body weight	glutes	seated glute stretch
+0689	retenu		gainage|abdominaux|leg raise	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	seated leg raise
+0690	retenu		mobilite|grand_dorsal|back lower stretch	mobilite	mobilite_recup		debutant	grand_dorsal	fessiers,ischios	poids_du_corps	body weight	lats	seated lower back stretch
+2567	retenu		mobilite|fessiers|piriformis stretch	mobilite	mobilite_recup		debutant	fessiers	ischios	poids_du_corps	body weight	glutes	seated piriformis stretch
+0691	retenu		gainage|abdominaux|crunch side wall	gainage	gainage	flexion	debutant	abdominaux	obliques	poids_du_corps,mur	body weight	abs	seated side crunch (wall)
+1587	retenu		mobilite|ischios|angle pose sequence wide	mobilite	mobilite_recup		intermediaire	ischios	quadriceps,mollets	poids_du_corps	body weight	hamstrings	seated wide angle pose sequence
+0697	retenu		charniere|ischios|curl inverse leg self	charniere	force		debutant	ischios	fessiers,mollets	poids_du_corps	body weight	hamstrings	self assisted inverse leg curl
+1766	retenu		charniere|ischios|curl inverse leg self	charniere	force		debutant	ischios	fessiers,mollets	poids_du_corps	body weight	hamstrings	self assisted inverse leg curl
+0696	ecarte	deja-couvert-gif									body weight	hamstrings	self assisted inverse leg curl (on floor)
+3222	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	semi squat jump (male)
+3656	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	short stride run
+1763	retenu		tirage_v|grand_dorsal|grip pull shoulder up	tirage_v	force		debutant	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	shoulder grip pull-up
+3699	retenu		gainage|abdominaux|shoulder tap	gainage	gainage	gainage	debutant	abdominaux	deltoides_anterieurs,triceps	poids_du_corps	body weight	abs	shoulder tap
+0699	retenu		poussee_h|pectoraux|push shoulder tap up	poussee_h	force		debutant	pectoraux	triceps,abdominaux	poids_du_corps	body weight	pectorals	shoulder tap push-up
+1774	ecarte	deja-couvert-gif									body weight	abductors	side bridge hip abduction
+0705	ecarte	deja-couvert-gif									body weight	abs	side bridge v. 2
+0709	retenu		gainage|abdominaux|bars hip on parallel side	gainage	gainage	gainage	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	side hip (on parallel bars)
+0710	ecarte	deja-couvert-gif									body weight	abductors	side hip abduction
+1358	retenu		mobilite|grand_dorsal|floor side stretch	mobilite	mobilite_recup		debutant	grand_dorsal	obliques,fessiers	poids_du_corps	body weight	lats	side lying floor stretch
+3667	ecarte	deja-couvert-gif									body weight	adductors	side lying hip adduction (male)
+1775	retenu		hanche_laterale|adducteurs|adduction hip plank side	hanche_laterale	force		debutant	adducteurs	obliques,fessiers	poids_du_corps	body weight	adductors	side plank hip adduction
+0716	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	levator scapulae	side push neck stretch
+0717	retenu		poussee_h|triceps|push side up	poussee_h	force		debutant	triceps	deltoides_anterieurs,pectoraux,abdominaux	poids_du_corps	body weight	triceps	side push-up
+0721	retenu		mobilite|avant_bras|pull side stretch wrist	mobilite	mobilite_recup		debutant	avant_bras		poids_du_corps	body weight	forearms	side wrist pull stretch
+0720	ecarte	schema-non-deduit									body weight	lats	side-to-side chin
+3213	retenu		gainage|abdominaux|side side to toe touch	gainage	gainage	gainage	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	side-to-side toe touch (male)
+0725	ecarte	deja-couvert-gif									body weight	pectorals	single arm push-up
+3645	ecarte	deja-couvert-gif									body weight	glutes	single leg bridge with outstretched leg
+0727	retenu		cheville_mollet|mollets|a calf leg on raise	cheville_mollet	force		intermediaire	mollets		halteres	dumbbell	calves	single leg calf raise (on a dumbbell)
+0730	ecarte	schema-non-deduit									body weight	hamstrings	single leg platform slide
+1759	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	single leg squat (pistol) male
+1489	retenu		squat|quadriceps|sissy squat	squat	force		intermediaire	quadriceps	mollets,fessiers	poids_du_corps	body weight	quads	sissy squat
+0735	retenu		gainage|abdominaux|sit up v	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	sit-up v. 2
+3679	retenu		gainage|abdominaux|arms chest on sit up with	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	sit-up with arms on chest
+3361	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	skater hops
+2142	ecarte	technique-ou-dangereux-ou-hors-sujet									skierg machine	triceps	ski ergometer
+3671	ecarte	cou-ou-cardio									body weight	cardiovascular system	ski step
+3304	ecarte	schema-non-deduit									body weight	upper back	skin the cat
+1425	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled 45 degrees one leg press
+0738	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	calves	sled 45в° calf press
+0739	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled 45в° leg press
+1464	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled 45в° leg press (back pov)
+1463	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled 45° leg press (side pov)
+0740	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled 45в° leg wide press
+1391	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	calves	sled calf press on leg press
+0741	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled closer hack squat
+0742	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	calves	sled forward angled calf raise
+0743	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled hack squat
+2334	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	calves	sled lying calf press
+0744	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	glutes	sled lying squat
+1392	ecarte	technique-ou-dangereux-ou-hors-sujet									sled machine	calves	sled one leg calf press on leg press
+1496	ecarte	technique-ou-dangereux-ou-hors-sujet									hammer	abs	sledge hammer
+0746	retenu		tirage_h|trapezes|back shrug	tirage_h	force		intermediaire	trapezes	deltoides_anterieurs	machine	smith machine	traps	smith back shrug
+0747	ecarte	technique-ou-dangereux-ou-hors-sujet									smith machine	delts	smith behind neck press
+0748	ecarte	doublon:developpe-couche-barre									smith machine	pectorals	smith bench press
+0749	ecarte	technique-ou-dangereux-ou-hors-sujet									smith machine	glutes	smith bent knee good morning
+1359	retenu		tirage_h|grand_dorsal+rhomboides|bent over row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	machine	smith machine	upper back	smith bent over row
+0750	retenu		squat|quadriceps|chair squat	squat	force		intermediaire	quadriceps	fessiers,ischios,mollets	machine	smith machine	quads	smith chair squat
+0751	retenu		poussee_h|triceps|bench close grip press	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	machine	smith machine	triceps	smith close-grip bench press
+0752	retenu		charniere|fessiers|deadlift	charniere	force		intermediaire	fessiers	ischios,quadriceps,erecteurs_rachis	machine	smith machine	glutes	smith deadlift
+0753	retenu		poussee_h|pectoraux|bench decline press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith decline bench press
+0754	retenu		poussee_h|pectoraux|decline grip press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith decline reverse-grip press
+1433	ecarte	technique-ou-dangereux-ou-hors-sujet									smith machine	glutes	smith front squat (clean grip)
+3281	retenu		squat|fessiers|full squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	machine	smith machine	glutes	smith full squat
+0755	retenu		squat|fessiers|hack squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	machine	smith machine	glutes	smith hack squat
+0756	retenu		gainage|abdominaux|hip raise	gainage	gainage	flexion	intermediaire	abdominaux	fessiers,ischios	machine	smith machine	abs	smith hip raise
+0757	retenu		poussee_h|pectoraux|bench incline press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	machine	smith machine	pectorals	smith incline bench press
+0758	retenu		poussee_h|pectoraux|grip incline press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith incline reverse-grip press
+0759	retenu		poussee_v|dentele_anterieur|incline raises shoulder	poussee_v	force		intermediaire	dentele_anterieur	deltoides_lateraux,trapezes	machine	smith machine	serratus anterior	smith incline shoulder raises
+0760	retenu		squat|fessiers|leg press	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	machine	smith machine	glutes	smith leg press
+1434	retenu		squat|fessiers|bar low squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	machine	smith machine	glutes	smith low bar squat
+1683	retenu		tirage_h|biceps|bicep curl	tirage_h	force		intermediaire	biceps	avant_bras	machine	smith machine	biceps	smith machine bicep curl
+1625	ecarte	doublon:developpe-couche-prise-serree-barre									smith machine	triceps	smith machine decline close grip bench press
+1752	retenu		poussee_h|triceps|extension incline tricep	poussee_h	force		intermediaire	triceps	deltoides_anterieurs	machine	smith machine	triceps	smith machine incline tricep extension
+1626	retenu		poussee_h|pectoraux|bench close decline grip press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith machine reverse decline close grip bench press
+0761	retenu		tirage_h|grand_dorsal+rhomboides|narrow row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	machine	smith machine	upper back	smith narrow row
+1360	retenu		tirage_h|grand_dorsal+rhomboides|arm row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	machine	smith machine	upper back	smith one arm row
+1393	retenu		cheville_mollet|mollets|calf floor leg raise	cheville_mollet	force		intermediaire	mollets	ischios,fessiers	machine	smith machine	calves	smith one leg floor calf raise
+0762	retenu		tirage_h|deltoides_posterieurs|delt rear row	tirage_h	force		intermediaire	deltoides_posterieurs	trapezes,rhomboides,biceps	machine	smith machine	delts	smith rear delt row
+0763	retenu		cheville_mollet|mollets|calf raises reverse	cheville_mollet	force		intermediaire	mollets	ischios	machine	smith machine	calves	smith reverse calf raises
+1394	retenu		cheville_mollet|mollets|calf raises reverse	cheville_mollet	force		intermediaire	mollets	ischios	machine	smith machine	calves	smith reverse calf raises
+1361	retenu		tirage_h|grand_dorsal+rhomboides|bent grip over reverse row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	machine	smith machine	upper back	smith reverse grip bent over row
+0764	retenu		poussee_h|pectoraux|grip press reverse	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith reverse-grip press
+1395	retenu		cheville_mollet|mollets|calf leg raise	cheville_mollet	force		intermediaire	mollets	ischios	machine	smith machine	calves	smith seated one leg calf raise
+0765	ecarte	doublon:developpe-epaules-assis-dossier-incline									smith machine	delts	smith seated shoulder press
+1426	retenu		tirage_h|avant_bras|curl wrist	tirage_h	force		intermediaire	avant_bras	biceps	machine	smith machine	forearms	smith seated wrist curl
+0766	retenu		poussee_v|deltoides_anterieurs|press shoulder	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	machine	smith machine	delts	smith shoulder press
+0767	ecarte	doublon:haussement-epaules-halteres									smith machine	traps	smith shrug
+0768	retenu		fente|quadriceps|leg split squat	fente	force		intermediaire	quadriceps	fessiers,ischios	machine	smith machine	quads	smith single leg split squat
+0769	ecarte	technique-ou-dangereux-ou-hors-sujet									smith machine	glutes	smith sprint lunge
+0770	retenu		squat|fessiers|squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	machine	smith machine	glutes	smith squat
+0771	retenu		tirage_h|avant_bras|back curl wrist	tirage_h	force		intermediaire	avant_bras	biceps,triceps	machine	smith machine	forearms	smith standing back wrist curl
+0772	ecarte	technique-ou-dangereux-ou-hors-sujet									smith machine	delts	smith standing behind head military press
+0773	retenu		cheville_mollet|mollets|calf leg raise	cheville_mollet	force		intermediaire	mollets	ischios,fessiers	machine	smith machine	calves	smith standing leg calf raise
+0774	retenu		poussee_v|deltoides_anterieurs|military press	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	machine	smith machine	delts	smith standing military press
+3142	retenu		squat|fessiers|squat sumo	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	machine	smith machine	glutes	smith sumo squat
+1396	retenu		cheville_mollet|mollets|raise toe	cheville_mollet	force		intermediaire	mollets	tibial_anterieur	machine	smith machine	calves	smith toe raise
+0775	ecarte	technique-ou-dangereux-ou-hors-sujet									smith machine	delts	smith upright row
+1308	retenu		poussee_h|pectoraux|bench grip press wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith wide grip bench press
+1309	retenu		poussee_h|pectoraux|bench decline grip press wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith wide grip decline bench press
+0776	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	quads	snatch pull
+0777	retenu		gainage|abdominaux|caster spell	gainage	gainage	gainage	debutant	abdominaux	obliques,erecteurs_rachis	halteres	dumbbell	abs	spell caster
+1362	ecarte	schema-non-deduit									body weight	spine	sphinx
+0778	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	spider crawl push up
+1363	retenu		mobilite|erecteurs_rachis|spine stretch	mobilite	mobilite_recup		debutant	erecteurs_rachis	ischios,fessiers	poids_du_corps	body weight	spine	spine stretch
+2329	retenu		rotation|abdominaux|spine twist	rotation	gainage	rotation	debutant	abdominaux	obliques,erecteurs_rachis	poids_du_corps	body weight	abs	spine twist
+2368	ecarte	deja-couvert-gif									body weight	quads	split squats
+0786	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	quads	squat jerk
+1705	ecarte	deja-couvert-gif									bosu ball	quads	squat on bosu ball
+1685	retenu		squat|quadriceps|overhead reach squat to	squat	force		debutant	quadriceps	fessiers,ischios,abdominaux	poids_du_corps	body weight	quads	squat to overhead reach
+1686	retenu		squat|quadriceps|overhead reach squat to twist with	squat	force		debutant	quadriceps	fessiers,ischios,abdominaux	poids_du_corps	body weight	quads	squat to overhead reach with twist
+2297	ecarte	technique-ou-dangereux-ou-hors-sujet									stability ball	abs	stability ball crunch (full range hands behind head)
+3291	retenu		poussee_h|triceps|press stalder	poussee_h	force		debutant	triceps	deltoides_anterieurs,abdominaux	poids_du_corps	body weight	triceps	stalder press
+3669	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	upper back	standing archer
+0788	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	delts	standing behind neck press
+1490	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	calves	standing calf raise (on a staircase)
+1397	retenu		cheville_mollet|mollets|calves	cheville_mollet	force		debutant	mollets	ischios,fessiers	poids_du_corps	body weight	calves	standing calves
+1398	retenu		mobilite|mollets|calf calves stretch	mobilite	mobilite_recup		debutant	mollets	ischios,fessiers	poids_du_corps	body weight	calves	standing calves calf stretch
+1599	ecarte	materiel-hors-taxonomie									rope	hamstrings	standing hamstring and calf stretch with strap
+0794	retenu		mobilite|grand_dorsal|lateral stretch	mobilite	mobilite_recup		debutant	grand_dorsal	deltoides_lateraux,obliques	poids_du_corps	body weight	lats	standing lateral stretch
+1364	ecarte	schema-non-deduit									body weight	spine	standing pelvic tilt
+0795	ecarte	deja-couvert-gif									body weight	hamstrings	standing single leg curl
+0796	ecarte	deja-couvert-gif									wheel roller	abs	standing wheel rollerout
+3223	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	star jump (male)
+2138	ecarte	technique-ou-dangereux-ou-hors-sujet									stationary bike	cardiovascular system	stationary bike run v. 3
+0798	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	cardiovascular system	stationary bike walk
+3314	retenu		gainage|abdominaux|maltese straddle	gainage	gainage	gainage	debutant	abdominaux	deltoides_anterieurs,pectoraux	poids_du_corps	body weight	abs	straddle maltese
+3298	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	straddle planche
+1427	ecarte	schema-non-deduit									body weight	abductors	straight leg outer hip abductor
+0803	retenu		charniere|pectoraux|push superman up	charniere	force	extension	debutant	pectoraux	abdominaux,deltoides_anterieurs	poids_du_corps	body weight	pectorals	superman push-up
+0805	retenu		gainage|abdominaux|abdominal fallout suspended	gainage	gainage	gainage	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	suspended abdominal fallout
+0806	retenu		poussee_h|pectoraux|push suspended up	poussee_h	force		debutant	pectoraux	triceps,deltoides_anterieurs,abdominaux	poids_du_corps	body weight	pectorals	suspended push-up
+0807	ecarte	doublon:releve-bassin-jambes-pliees									body weight	abs	suspended reverse crunch
+0808	retenu		tirage_h|grand_dorsal+rhomboides|row suspended	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,deltoides_posterieurs	poids_du_corps	body weight	upper back	suspended row
+0809	ecarte	doublon:squat-fendu									body weight	quads	suspended split squat
+3433	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	swimmer kicks v. 2 (male)
+3318	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	swing 360
+1753	retenu		poussee_h|triceps|bench dip three	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps,banc	body weight	triceps	three bench dip
+2459	ecarte	technique-ou-dangereux-ou-hors-sujet									tire	glutes	tire flip
+0811	ecarte	materiel-hors-taxonomie									trap bar	glutes	trap bar deadlift
+0814	ecarte	deja-couvert-gif									body weight	triceps	triceps dip
+0812	retenu		poussee_h|triceps|bench dip leg triceps	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps,banc	body weight	triceps	triceps dip (bench leg)
+0813	ecarte	deja-couvert-gif									body weight	triceps	triceps dip (between benches)
+0815	retenu		poussee_h|triceps|dips floor triceps	poussee_h	force		debutant	triceps	pectoraux,deltoides_anterieurs	poids_du_corps	body weight	triceps	triceps dips floor
+0816	retenu		poussee_h|triceps|press triceps	poussee_h	force		debutant	triceps	deltoides_anterieurs	poids_du_corps	body weight	triceps	triceps press
+0817	retenu		mobilite|triceps|stretch triceps	mobilite	mobilite_recup		debutant	triceps	deltoides_anterieurs	poids_du_corps	body weight	triceps	triceps stretch
+0871	retenu		gainage|abdominaux|crunch tuck	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	tuck crunch
+0818	retenu		tirage_v|grand_dorsal|grip handle lat parallel pulldown twin	tirage_v	force		debutant	grand_dorsal	biceps,rhomboides,deltoides_posterieurs	poulie	cable	lats	twin handle parallel grip lat pulldown
+1466	ecarte	schema-non-deduit									body weight	glutes	twist hip lift
+2802	retenu		rotation|abdominaux|leg raise twisted	rotation	gainage	rotation	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	twisted leg raise
+2801	retenu		rotation|abdominaux|leg raise twisted	rotation	gainage	rotation	debutant	abdominaux	obliques,flechisseurs_hanche	poids_du_corps	body weight	abs	twisted leg raise (female)
+3231	ecarte	schema-non-deduit									body weight	spine	two toe touch (male)
+1365	retenu		mobilite|rhomboides|back stretch upper	mobilite	mobilite_recup		debutant	rhomboides	deltoides_anterieurs	poids_du_corps	body weight	upper back	upper back stretch
+1366	ecarte	schema-non-deduit									body weight	spine	upward facing dog
+3420	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	v-sit on floor
+0826	retenu		gainage|abdominaux|bars leg on parallel raise vertical	gainage	gainage	flexion	debutant	abdominaux	flechisseurs_hanche	poids_du_corps	body weight	abs	vertical leg raise (on parallel bars)
+2141	ecarte	technique-ou-dangereux-ou-hors-sujet									elliptical machine	cardiovascular system	walk elliptical cross trainer
+3655	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	walking high knees lunge
+1460	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	walking lunge
+3666	ecarte	technique-ou-dangereux-ou-hors-sujet									leverage machine	cardiovascular system	walking on incline treadmill
+2311	ecarte	technique-ou-dangereux-ou-hors-sujet									stepmill machine	cardiovascular system	walking on stepmill
+0830	retenu		poussee_h|triceps|bench dip	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	lest	weighted	triceps	weighted bench dip
+2987	retenu		tirage_v|grand_dorsal|cage chin close dip grip on up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	lest	weighted	lats	weighted close grip chin-up on dip cage
+3643	retenu		squat|fessiers|cossack squats	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	lest	weighted	glutes	weighted cossack squats (male)
+0832	ecarte	technique-ou-dangereux-ou-hors-sujet									weighted	abs	weighted crunch
+3670	ecarte	technique-ou-dangereux-ou-hors-sujet									weighted	abs	weighted decline sit-up
+0833	retenu		charniere|mollets|calf donkey raise	charniere	force		intermediaire	mollets	ischios,fessiers	lest	weighted	calves	weighted donkey calf raise
+1310	retenu		poussee_h|pectoraux|drop push up	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	lest	weighted	pectorals	weighted drop push up
+2135	retenu		gainage|abdominaux|front plank	gainage	gainage	gainage	intermediaire	abdominaux	deltoides_anterieurs,erecteurs_rachis	lest	weighted	abs	weighted front plank
+0834	ecarte	doublon:elevation-frontale-halteres									weighted	delts	weighted front raise
+0866	retenu		gainage|abdominaux|hanging hip leg raise	gainage	gainage	flexion	intermediaire	abdominaux	flechisseurs_hanche,erecteurs_rachis	lest	weighted	abs	weighted hanging leg-hip raise
+0835	retenu		charniere|erecteurs_rachis|hyperextension on	charniere	force	extension	intermediaire	erecteurs_rachis	fessiers,ischios	lest	weighted	spine	weighted hyperextension (on stability ball)
+3641	ecarte	technique-ou-dangereux-ou-hors-sujet									weighted	delts	weighted kneeling step with swing
+3644	ecarte	technique-ou-dangereux-ou-hors-sujet									weighted	glutes	weighted lunge with swing
+3286	ecarte	technique-ou-dangereux-ou-hors-sujet									weighted	lats	weighted muscle up
+3312	ecarte	technique-ou-dangereux-ou-hors-sujet									weighted	lats	weighted muscle up (on bar)
+3290	retenu		tirage_v|grand_dorsal|hand pull up	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	lest	weighted	lats	weighted one hand pull up
+0840	retenu		gainage|abdominaux|crunch on overhead	gainage	gainage	flexion	intermediaire	abdominaux	obliques,erecteurs_rachis	lest	weighted	abs	weighted overhead crunch (on stability ball)
+0841	ecarte	deja-couvert-gif									weighted	lats	weighted pull-up
+0844	ecarte	schema-non-deduit									weighted	delts	weighted round arm
+0846	ecarte	deja-couvert-gif									weighted	abs	weighted russian twist
+0845	ecarte	deja-couvert-gif									weighted	abs	weighted russian twist (legs up)
+2371	retenu		rotation|abdominaux|russian twist v	rotation	gainage	rotation	intermediaire	abdominaux	obliques,erecteurs_rachis	lest	weighted	abs	weighted russian twist v. 2
+0847	retenu		tirage_h|biceps|bicep curl on	tirage_h	force		intermediaire	biceps	avant_bras	medecine_ball	medicine ball	biceps	weighted seated bicep curl (on stability ball)
+0849	retenu		rotation|abdominaux|on twist	rotation	gainage	rotation	intermediaire	abdominaux	obliques,erecteurs_rachis	lest	weighted	abs	weighted seated twist (on stability ball)
+0850	retenu		gainage|abdominaux|bend on side	gainage	gainage	gainage	intermediaire	abdominaux	obliques,erecteurs_rachis	lest	weighted	abs	weighted side bend (on stability ball)
+0851	retenu		squat|quadriceps|sissy squat	squat	force		intermediaire	quadriceps	fessiers,ischios,mollets	lest	weighted	quads	weighted sissy squat
+0852	ecarte	deja-couvert-gif									weighted	glutes	weighted squat
+0853	retenu		tirage_h|biceps|curl	tirage_h	force		intermediaire	biceps	avant_bras	lest	weighted	biceps	weighted standing curl
+0854	ecarte	schema-non-deduit									weighted	forearms	weighted standing hand squeeze
+3313	retenu		poussee_h|pectoraux|bar dip straight	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	lest	weighted	pectorals	weighted straight bar dip
+3642	retenu		mobilite|fessiers|lunge stretch	mobilite	mobilite_recup		intermediaire	fessiers	quadriceps,ischios,mollets	lest	weighted	glutes	weighted stretch lunge
+0856	retenu		poussee_h|pectoraux|press svend	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	lest	weighted	pectorals	weighted svend press
+1754	retenu		poussee_h|triceps|bench dips three	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	lest	weighted	triceps	weighted three bench dips
+1755	retenu		poussee_h|triceps|dips tricep	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	lest	weighted	triceps	weighted tricep dips
+1767	retenu		poussee_h|triceps|bars dip high on parallel triceps	poussee_h	force		intermediaire	triceps	pectoraux,deltoides_anterieurs	lest	weighted	triceps	weighted triceps dip on high parallel bars
+0857	ecarte	deja-couvert-gif									wheel roller	abs	wheel rollerout
+3637	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	cardiovascular system	wheel run
+1429	retenu		tirage_v|grand_dorsal|grip pull up wide	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	wide grip pull-up
+1367	retenu		tirage_v|grand_dorsal|grip pull rear up wide	tirage_v	force		intermediaire	grand_dorsal	biceps,avant_bras	barre_traction	body weight	lats	wide grip rear pull-up
+1311	retenu		poussee_h|pectoraux|hand push up wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	wide hand push up
+2363	retenu		poussee_h|pectoraux|bars chest dip grip high on parallel wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	poids_du_corps	body weight	pectorals	wide-grip chest dip on high parallel bars
+0858	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	abs	wind sprints
+1604	ecarte	deja-couvert-gif									body weight	hamstrings	world greatest stretch
+1428	ecarte	deja-couvert-gif									body weight	forearms	wrist circles
+0859	retenu		mobilite|avant_bras|rollerer wrist	mobilite	mobilite_recup		intermediaire	avant_bras	biceps,triceps	lest	weighted	forearms	wrist rollerer

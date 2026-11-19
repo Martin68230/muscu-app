@@ -1,0 +1,224 @@
+famille	schema	muscles	noms_anglais	ids
+cheville_mollet|mollets|calf raise	cheville_mollet	mollets	barbell seated calf raise / barbell seated calf raise / cable standing calf raise	0088,1371,1375
+gainage|abdominaux|up v	gainage	abdominaux	band alternating v-up / band v-up	0969,1014
+charniere|fessiers|bench bridge glute legs on	charniere	fessiers	barbell glute bridge two legs on bench (male) / glute bridge two legs on bench (male)	3562,3523
+charniere|triceps|arm kickback	charniere	triceps	dumbbell one arm kickback / dumbbell seated one arm kickback	0354,0398
+mobilite|grand_dorsal|back pec stretch	mobilite	grand_dorsal	back pec stretch	1405
+charniere|ischios|curl inverse leg	charniere	ischios	cable assisted inverse leg curl	3235
+squat|biceps|curl squatting	squat	biceps	cable squatting curl	1644
+mobilite|quadriceps|chair extended leg stretch	mobilite	quadriceps	chair leg extended stretch	1548
+mobilite|pectoraux|and chest front of shoulder stretch	mobilite	pectoraux	chest and front of shoulder stretch	1271
+charniere|erecteurs_rachis|hyperextension	charniere	erecteurs_rachis	hyperextension	0489
+mobilite|avant_bras|pull side stretch wrist	mobilite	avant_bras	side wrist pull stretch	0721
+mobilite|rhomboides|back stretch upper	mobilite	rhomboides	upper back stretch	1365
+mobilite|adducteurs|adductor side stretch	mobilite	adducteurs	assisted side lying adductor stretch	1712
+cheville_mollet|mollets|calf raises reverse	cheville_mollet	mollets	smith reverse calf raises / smith reverse calf raises	0763,1394
+mobilite|abdominaux|rollerout	mobilite	abdominaux	band assisted wheel rollerout / barbell rollerout	0971,0084
+squat|fessiers|hack squat	squat	fessiers	barbell hack squat / smith hack squat	0046,0755
+charniere|triceps|arm kickback tricep	charniere	triceps	cable two arm tricep kickback	1728
+squat|grand_dorsal+rhomboides|row squatting	squat	grand_dorsal,rhomboides	bodyweight squatting row	3168
+charniere|ischios|bench curl inverse leg support	charniere	ischios	inverse leg curl (bench support)	0496
+squat|biceps|biceps curl squat	squat	biceps	dumbbell biceps curl squat	1655
+squat|quadriceps|squat supported	squat	quadriceps	dumbbell supported squat	2803
+mobilite|pectoraux|chest exercise stretch with	mobilite	pectoraux	chest stretch with exercise ball	1272
+charniere|erecteurs_rachis|bench hyperextension on	charniere	erecteurs_rachis	hyperextension (on bench)	0488
+mobilite|avant_bras|rollerer wrist	mobilite	avant_bras	wrist rollerer	0859
+mobilite|mollets|circles knee stretch	mobilite	mollets	circles knee stretch	0257
+gainage|abdominaux|elbow knee to	gainage	abdominaux	elbow-to-knee / lying elbow to knee	0443,2312
+squat|fessiers|bar low squat	squat	fessiers	barbell low bar squat / smith low bar squat	1435,1434
+charniere|triceps|exercise kickbacks on	charniere	triceps	dumbbell kickbacks on exercise ball	1734
+squat|grand_dorsal+rhomboides|row squatting towel with	squat	grand_dorsal,rhomboides	bodyweight squatting row (with towel)	3167
+charniere|ischios|curl inverse leg on pull up	charniere	ischios	inverse leg curl (on pull-up cable machine)	2400
+fente|biceps|bicep bowling curl lunge motion with	fente	biceps	dumbbell bicep curl lunge with bowling motion	1651
+squat|quadriceps|overhead reach squat to	squat	quadriceps	squat to overhead reach	1685
+charniere|pectoraux|exercise extension hip on pullover	charniere	pectoraux	dumbbell pullover hip extension on exercise ball	1294
+mobilite|erecteurs_rachis|back stretch	mobilite	erecteurs_rachis	roller back stretch	2208
+cheville_mollet|mollets|calf exercise on raise the wall	cheville_mollet	mollets	exercise ball on the wall calf raise	1382
+rotation|abdominaux|leg raise twisted	rotation	abdominaux	twisted leg raise / twisted leg raise (female)	2802,2801
+charniere|fessiers|deadlift	charniere	fessiers	cable deadlift / smith deadlift	0157,0752
+charniere|triceps|bent kickback over	charniere	triceps	dumbbell seated bent over alternate kickback	1730
+mobilite|grand_dorsal|exercise lat stretch	mobilite	grand_dorsal	exercise ball lat stretch	1339
+mobilite|ischios|hamstring leg stretch up	mobilite	ischios	leg up hamstring stretch	1576
+fente|biceps|bicep curl lunge with	fente	biceps	dumbbell lunge with bicep curl	1658
+squat|quadriceps|overhead reach squat to twist with	squat	quadriceps	squat to overhead reach with twist	1686
+mobilite|pectoraux|chest dynamic stretch	mobilite	pectoraux	dynamic chest stretch (male)	1167
+mobilite|erecteurs_rachis|spine stretch	mobilite	erecteurs_rachis	spine stretch	1363
+cheville_mollet|mollets|ankles between calf exercise on raise tennis the wall	cheville_mollet	mollets	exercise ball on the wall calf raise (tennis ball between ankles)	3241
+gainage|abdominaux|hanging hip leg raise	gainage	abdominaux	hanging leg hip raise / weighted hanging leg-hip raise	1764,0866
+squat|fessiers|leg squat	squat	fessiers	dumbbell single leg squat / one leg squat	0411,1476
+charniere|triceps|kickback tricep	charniere	triceps	dumbbell standing alternating tricep kickback	1739
+mobilite|grand_dorsal|back exercise lower pyramid stretch	mobilite	grand_dorsal	exercise ball lower back stretch (pyramid)	1341
+mobilite|ischios|runners stretch	mobilite	ischios	runners stretch	1585
+fente|biceps|balance bicep curl leg step up with	fente	biceps	dumbbell step up single leg balance with bicep curl	1684
+mobilite|quadriceps|prone quads stretch	mobilite	quadriceps	assisted prone lying quads stretch	1713
+mobilite|pectoraux|depresor flexor retractor shoulder	mobilite	pectoraux	roller seated shoulder flexor depresor retractor	2203
+charniere|erecteurs_rachis|deadlift leg straight	charniere	erecteurs_rachis	band straight leg deadlift	1010
+cheville_mollet|mollets|between calf exercise knees on raise tennis the wall	cheville_mollet	mollets	exercise ball on the wall calf raise (tennis ball between knees)	3240
+gainage|abdominaux|heel touchers	gainage	abdominaux	alternate heel touchers	0006
+charniere|fessiers|bent extension hip over	charniere	fessiers	band bent-over hip extension	0980
+charniere|triceps|kickback stance stork tricep with	charniere	triceps	dumbbell tricep kickback with stork stance	1742
+mobilite|grand_dorsal|exercise lat side stretch	mobilite	grand_dorsal	exercise ball lying side lat stretch	1342
+mobilite|ischios|angle pose sequence wide	mobilite	ischios	seated wide angle pose sequence	1587
+fente|quadriceps|arm leg split squat	fente	quadriceps	band one arm single leg split squat	0987
+charniere|pectoraux|push superman up	charniere	pectoraux	superman push-up	0803
+charniere|erecteurs_rachis|hyperextension on	charniere	erecteurs_rachis	weighted hyperextension (on stability ball)	0835
+mobilite|mollets|calf stretch	mobilite	mollets	seated calf stretch (male)	1390
+rotation|abdominaux|motion russian twist	rotation	abdominaux	assisted motion russian twist	0014
+squat|fessiers|row squat	squat	fessiers	band squat row	1003
+mobilite|triceps|exercise stretch triceps	mobilite	triceps	exercise ball seated triceps stretch	1745
+mobilite|grand_dorsal|kneeling lat stretch	mobilite	grand_dorsal	kneeling lat stretch	1346
+squat|quadriceps|leg squat	squat	quadriceps	barbell one leg squat	0068
+mobilite|pectoraux|major pectoralis stretch with	mobilite	pectoraux	assisted seated pectoralis major stretch with stability ball	1716
+cheville_mollet|mollets|calves	cheville_mollet	mollets	standing calves	1397
+gainage|abdominaux|jack knife sit up	gainage	abdominaux	band jack knife sit-up	0981
+charniere|fessiers|bench extension hip	charniere	fessiers	bench hip extension	0130
+mobilite|triceps|overhead stretch triceps	mobilite	triceps	overhead triceps stretch	0643
+mobilite|grand_dorsal|lat side stretch	mobilite	grand_dorsal	roller side lat stretch	2207
+squat|quadriceps|overhead squat	squat	quadriceps	barbell overhead squat	0069
+mobilite|pectoraux|depresor flexor leg retractor shoulder	mobilite	pectoraux	roller seated single leg shoulder flexor depresor retractor	2209
+mobilite|mollets|calf calves stretch	mobilite	mollets	standing calves calf stretch	1398
+rotation|abdominaux|crunch kneeling twisting	rotation	abdominaux	band kneeling twisting crunch	0985
+squat|fessiers|curtsey squat	squat	fessiers	curtsey squat	3769
+mobilite|triceps|stretch triceps	mobilite	triceps	triceps stretch	0817
+mobilite|grand_dorsal|back lower stretch	mobilite	grand_dorsal	seated lower back stretch	0690
+fente|quadriceps|side split squat	fente	quadriceps	barbell side split squat	0098
+mobilite|mollets|calves stretch	mobilite	mollets	assisted lying calves stretch	1708
+gainage|abdominaux|leg raise straight	gainage	abdominaux	band lying straight leg raise	1002
+mobilite|fessiers|exercise flexor hip stretch	mobilite	fessiers	exercise ball hip flexor stretch	1559
+fente|triceps|extension forward lunge triceps	fente	triceps	dumbbell forward lunge triceps extension	1732
+mobilite|grand_dorsal|floor side stretch	mobilite	grand_dorsal	side lying floor stretch	1358
+fente|quadriceps|side split squat v	fente	quadriceps	barbell side split squat v. 2	0097
+cheville_mollet|mollets|calf leg raise reverse	cheville_mollet	mollets	band single leg reverse calf raise	1000
+gainage|abdominaux|push sit up	gainage	abdominaux	band push sit-up	0992
+charniere|fessiers|bridge into pelvic tilt	charniere	fessiers	pelvic tilt into bridge	1422
+mobilite|grand_dorsal|lateral stretch	mobilite	grand_dorsal	standing lateral stretch	0794
+fente|quadriceps|split squat v	fente	quadriceps	barbell split squat v. 2	2810
+cheville_mollet|mollets|calf floor raise	cheville_mollet	mollets	barbell floor calf raise	1370
+rotation|abdominaux|crunch twisting	rotation	abdominaux	band standing twisting crunch	1007
+squat|fessiers|potty squat support with	squat	fessiers	potty squat with support	3132
+squat|quadriceps|knees on squat	squat	quadriceps	barbell squat (on knees)	0102
+cheville_mollet|mollets|calf leg raise rocking	cheville_mollet	mollets	barbell standing rocking leg calf raise	0111
+anti_rotation|abdominaux|pallof press vertical	anti_rotation	abdominaux	band vertical pallof press	1015
+charniere|fessiers|hip knees on thrusts	charniere	fessiers	resistance band hip thrusts on knees (female)	3236
+squat|quadriceps|squat wide	squat	quadriceps	barbell wide squat	0124
+cheville_mollet|mollets|calf leg palm raise up	cheville_mollet	mollets	dumbbell seated one leg calf raise - palm up	1381
+gainage|abdominaux|incline plank side	gainage	abdominaux	bodyweight incline side plank	3544
+mobilite|fessiers|hip lat stretch	mobilite	fessiers	roller hip lat stretch	2205
+fente|quadriceps|lunge step up	fente	quadriceps	dumbbell step-up lunge	2796
+charniere|mollets|calf donkey leg raise	charniere	mollets	one leg donkey calf raise	1386
+gainage|abdominaux|bottoms up	gainage	abdominaux	bottoms-up	0138
+mobilite|fessiers|hip stretch	mobilite	fessiers	roller hip stretch	2202
+fente|quadriceps|split squat step up	fente	quadriceps	dumbbell step-up split squat	2812
+cheville_mollet|mollets|a calf leg on raise	cheville_mollet	mollets	single leg calf raise (on a dumbbell)	0727
+gainage|abdominaux|body bridge climber cross mountain	gainage	abdominaux	bridge - mountain climber (cross body)	2466
+mobilite|fessiers|piriformis stretch	mobilite	fessiers	seated piriformis stretch	2567
+squat|quadriceps|chair squat	squat	quadriceps	smith chair squat	0750
+cheville_mollet|mollets|calf floor leg raise	cheville_mollet	mollets	smith one leg floor calf raise	1393
+gainage|abdominaux|butt ups	gainage	abdominaux	butt-ups	0870
+mobilite|fessiers|glutes stretch	mobilite	fessiers	assisted lying glutes stretch	1709
+cheville_mollet|mollets|raise toe	cheville_mollet	mollets	smith toe raise	1396
+gainage|abdominaux|flip judo	gainage	abdominaux	cable judo flip	0174
+mobilite|fessiers|and gluteus piriformis stretch	mobilite	fessiers	assisted lying gluteus and piriformis stretch	1710
+gainage|abdominaux|crunch kneeling	gainage	abdominaux	cable kneeling crunch	0175
+squat|fessiers|back full pov squat	squat	fessiers	barbell full squat (back pov)	1461
+rotation|abdominaux|on russian twists	rotation	abdominaux	cable russian twists (on stability ball)	0211
+squat|fessiers|full pov side squat	squat	fessiers	barbell full squat (side pov)	1462
+gainage|abdominaux|bend crunch side	gainage	abdominaux	cable side bend crunch (bosu ball)	0221
+squat|fessiers|bar high squat	squat	fessiers	barbell high bar squat	1436
+gainage|abdominaux|crunch side	gainage	abdominaux	cable side crunch	0223
+fente|fessiers|lateral lunge	fente	fessiers	barbell lateral lunge	1410
+gainage|abdominaux|lift	gainage	abdominaux	cable standing lift	0230
+fente|fessiers|lunge	fente	fessiers	barbell lunge	0054
+gainage|abdominaux|crunch reverse tuck	gainage	abdominaux	cable tuck reverse crunch	0242
+squat|fessiers|narrow squat stance	squat	fessiers	barbell narrow stance squat	0063
+rotation|abdominaux|down twist up	rotation	abdominaux	cable twist (up-down)	0862
+hanche_laterale|fessiers|arm deadlift side	hanche_laterale	fessiers	barbell one arm side deadlift	0066
+gainage|abdominaux|captains chair leg raise straight	gainage	abdominaux	captains chair straight leg raise	2963
+fente|fessiers|lunge rear	fente	fessiers	barbell rear lunge	0078
+gainage|abdominaux|cocoons	gainage	abdominaux	cocoons	0260
+fente|fessiers|lunge rear v	fente	fessiers	barbell rear lunge v. 2	0077
+rotation|abdominaux|crab toe touch twist	rotation	abdominaux	crab twist toe touch	1468
+squat|fessiers|speed squat	squat	fessiers	barbell speed squat	0101
+gainage|abdominaux|body cross crunch	gainage	abdominaux	cross body crunch	0262
+fente|fessiers|contralateral forward lunge	fente	fessiers	dumbbell contralateral forward lunge	3635
+gainage|abdominaux|crunch hands overhead	gainage	abdominaux	crunch (hands overhead)	0267
+charniere|fessiers|deadlift leg stepbox support with	charniere	fessiers	dumbbell single leg deadlift with stepbox support	2805
+gainage|abdominaux|crunch on	gainage	abdominaux	crunch (on stability ball)	0271
+charniere|fessiers|pull sumo through	charniere	fessiers	dumbbell sumo pull through	2808
+gainage|abdominaux|arms crunch on straight	gainage	abdominaux	crunch (on stability ball, arms straight)	0272
+squat|fessiers|frankenstein squat	squat	fessiers	frankenstein squat	3194
+gainage|abdominaux|curl up	gainage	abdominaux	curl-up	3016
+squat|fessiers|front squat	squat	fessiers	kettlebell front squat	0533
+gainage|abdominaux|bent flexion knee leg sit up	gainage	abdominaux	flexion leg sit up (bent knee)	0456
+fente|fessiers|lunge pass through	fente	fessiers	kettlebell lunge pass through	0536
+gainage|abdominaux|arm flexion leg sit straight up	gainage	abdominaux	flexion leg sit up (straight arm)	0457
+charniere|fessiers|bridge decline rear	charniere	fessiers	rear decline bridge	0668
+gainage|abdominaux|crunch frog	gainage	abdominaux	frog crunch	2429
+squat|fessiers|full squat	squat	fessiers	smith full squat	3281
+rotation|abdominaux|front plank twist with	rotation	abdominaux	front plank with twist	0464
+squat|fessiers|leg press	squat	fessiers	smith leg press	0760
+gainage|abdominaux|full maltese	gainage	abdominaux	full maltese	3315
+squat|fessiers|squat sumo	squat	fessiers	smith sumo squat	3142
+gainage|abdominaux|chin gorilla	gainage	abdominaux	gorilla chin	0467
+squat|fessiers|cossack squats	squat	fessiers	weighted cossack squats (male)	3643
+gainage|abdominaux|crunch groin	gainage	abdominaux	groin crunch	0469
+mobilite|fessiers|lunge stretch	mobilite	fessiers	weighted stretch lunge	3642
+gainage|abdominaux|inchworm	gainage	abdominaux	inchworm	1471
+gainage|abdominaux|inchworm v	gainage	abdominaux	inchworm v. 2	3698
+gainage|abdominaux|hip incline leg leg raise straight	gainage	abdominaux	incline leg hip raise (leg straight)	0491
+rotation|abdominaux|incline sit twisting up	rotation	abdominaux	incline twisting sit-up	0495
+gainage|abdominaux|crunch knee touch	gainage	abdominaux	knee touch crunch	3640
+gainage|abdominaux|bench flat in leg pull	gainage	abdominaux	leg pull in flat bench	0570
+gainage|abdominaux|bench flat leg raise	gainage	abdominaux	lying leg raise flat bench	0620
+gainage|abdominaux|hip leg raise	gainage	abdominaux	lying leg-hip raise	0865
+gainage|abdominaux|crunch negative	gainage	abdominaux	negative crunch	0634
+gainage|abdominaux|crunch oblique v	gainage	abdominaux	oblique crunch v. 2	1495
+gainage|abdominaux|crunches floor oblique	gainage	abdominaux	oblique crunches floor	0635
+gainage|abdominaux|pelvic tilt	gainage	abdominaux	pelvic tilt	3147
+gainage|abdominaux|overhead posterior reach step to	gainage	abdominaux	posterior step to overhead reach	1687
+gainage|abdominaux|potty squat	gainage	abdominaux	potty squat	3119
+gainage|abdominaux|plank point power	gainage	abdominaux	power point plank	3665
+gainage|abdominaux|half prisoner sit up	gainage	abdominaux	prisoner half sit-up (male)	3203
+rotation|abdominaux|on prone twist	rotation	abdominaux	prone twist on stability ball	1707
+gainage|abdominaux|leg lift plank reverse with	gainage	abdominaux	reverse plank with leg lift	3663
+mobilite|abdominaux|body saw	mobilite	abdominaux	roller body saw	2204
+mobilite|abdominaux|crunch reverse	mobilite	abdominaux	roller reverse crunch	2206
+gainage|abdominaux|leg raise	gainage	abdominaux	seated leg raise	0689
+gainage|abdominaux|crunch side wall	gainage	abdominaux	seated side crunch (wall)	0691
+gainage|abdominaux|shoulder tap	gainage	abdominaux	shoulder tap	3699
+gainage|abdominaux|bars hip on parallel side	gainage	abdominaux	side hip (on parallel bars)	0709
+gainage|abdominaux|side side to toe touch	gainage	abdominaux	side-to-side toe touch (male)	3213
+gainage|abdominaux|sit up v	gainage	abdominaux	sit-up v. 2	0735
+gainage|abdominaux|arms chest on sit up with	gainage	abdominaux	sit-up with arms on chest	3679
+gainage|abdominaux|caster spell	gainage	abdominaux	spell caster	0777
+rotation|abdominaux|spine twist	rotation	abdominaux	spine twist	2329
+gainage|abdominaux|maltese straddle	gainage	abdominaux	straddle maltese	3314
+gainage|abdominaux|abdominal fallout suspended	gainage	abdominaux	suspended abdominal fallout	0805
+gainage|abdominaux|crunch tuck	gainage	abdominaux	tuck crunch	0871
+gainage|abdominaux|bars leg on parallel raise vertical	gainage	abdominaux	vertical leg raise (on parallel bars)	0826
+gainage|abdominaux|arm bent hanging knee legs slingers	gainage	abdominaux	arm slingers hanging bent knee legs	2355
+gainage|abdominaux|arm hanging legs slingers straight	gainage	abdominaux	arm slingers hanging straight legs	2333
+gainage|abdominaux|hanging knee raise	gainage	abdominaux	assisted hanging knee raise	0011
+mobilite|abdominaux|femoris prone rectus stretch	mobilite	abdominaux	assisted prone rectus femoris stretch	1714
+gainage|abdominaux|press sit up	gainage	abdominaux	barbell press sit-up	0071
+mobilite|abdominaux|bench from rollerout	mobilite	abdominaux	barbell rollerout from bench	0083
+gainage|abdominaux|bent side v	gainage	abdominaux	barbell side bent v. 2	0096
+mobilite|abdominaux|ab rollerout	mobilite	abdominaux	barbell standing ab rollerout	0103
+gainage|abdominaux|crunch decline	gainage	abdominaux	decline crunch	0277
+gainage|abdominaux|hanging leg raise	gainage	abdominaux	hanging leg raise	0472
+gainage|abdominaux|hanging knee oblique raise	gainage	abdominaux	hanging oblique knee raise	1761
+gainage|abdominaux|hanging pike	gainage	abdominaux	hanging pike	0473
+gainage|abdominaux|hanging hip leg raise straight	gainage	abdominaux	hanging straight leg hip raise	0474
+gainage|abdominaux|hanging leg raise straight	gainage	abdominaux	hanging straight leg raise	0475
+rotation|abdominaux|hanging hip leg raise straight twisting	rotation	abdominaux	hanging straight twisting leg hip raise	0476
+gainage|abdominaux|bent press	gainage	abdominaux	kettlebell bent press	0524
+gainage|abdominaux|figure	gainage	abdominaux	kettlebell figure 8	0532
+gainage|abdominaux|landmine	gainage	abdominaux	landmine 180	0562
+rotation|abdominaux|lunge twist with	rotation	abdominaux	lunge with twist	1688
+gainage|abdominaux|otis up	gainage	abdominaux	otis up	0641
+gainage|abdominaux|hip raise	gainage	abdominaux	smith hip raise	0756
+gainage|abdominaux|front plank	gainage	abdominaux	weighted front plank	2135
+gainage|abdominaux|crunch on overhead	gainage	abdominaux	weighted overhead crunch (on stability ball)	0840
+rotation|abdominaux|russian twist v	rotation	abdominaux	weighted russian twist v. 2	2371
+rotation|abdominaux|on twist	rotation	abdominaux	weighted seated twist (on stability ball)	0849
+gainage|abdominaux|bend on side	gainage	abdominaux	weighted side bend (on stability ball)	0850

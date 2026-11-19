@@ -98,7 +98,7 @@ export function buildFiche(text, file, { publicDir } = {}) {
   const images = [];
   const missing = [];
   for (const ph of fiche.photos) {
-    if (ph.statut !== 'oui') continue;
+    if (ph.statut !== 'oui' || ph.gymvisual) continue; // image Gym visual : importée localement, jamais dans le dépôt (src/images/gv-table.ts)
     let src;
     if (ph.illustration) src = ph.path.replace(/^public\//, '');
     else {

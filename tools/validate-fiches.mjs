@@ -375,6 +375,9 @@ export function parseFiche(text, file) {
         fiche.photos.push({ line: l.n, path: il[1], statut: il[3] === 'a verifier' ? 'à vérifier' : il[3], illustration: true });
         continue;
       }
+      // Image du jeu Gym visual importée LOCALEMENT par l'utilisateur (D22) : « - gymvisual : <id du jeu> : affichable : oui (raison) » ; aucun fichier dans le dépôt (table src/images/gv-table.ts).
+      const gv = l.text.match(/^\s*[-*]\s*gymvisual\s*:\s*(\d{4})\s*:\s*affichable\s*:\s*(oui|non|à vérifier|a verifier)\b\s*(?:\((.+)\))?\s*\.?\s*$/);
+      if (gv) { fiche.photos.push({ line: l.n, path: 'gymvisual:' + gv[1], statut: gv[2] === 'a verifier' ? 'à vérifier' : gv[2], gymvisual: true }); continue; }
       const m =l.text.match(/^\s*[-*]\s*`([^`]+)`\s*:\s*affichable\s*:\s*(oui|non|à vérifier|a verifier)\b\s*(?:\((.+)\))?\s*\.?\s*$/);
       if (!m) { add(l.n, 'photo', 'écriture attendue : « - `Dossier/0.jpg` : affichable : oui | non (raison) | à vérifier (raison) » ou « - illustration : public/illustrations/<id>.svg : affichable : oui (illustration originale de l\'app) »'); continue; }
       if (!/^[A-Za-z0-9_\-]+\/\d+\.jpg$/.test(m[1])) add(l.n, 'photo', `chemin d'image « ${m[1]} » : attendu Dossier/<n>.jpg`);
@@ -525,7 +528,7 @@ export function validateLot(files, options = {}) {
     }
     if (options.photosDir) {
       for (const ph of fiche.photos) {
-        if (ph.statut !== 'oui' || ph.illustration) continue;
+        if (ph.statut !== 'oui' || ph.illustration || ph.gymvisual) continue;
         const [dir, f] = ph.path.split('/');
         const webp = join(options.photosDir, `${dir}-${f.replace(/\.jpg$/, '')}.webp`);
         if (!existsSync(webp)) issues.push({ file: fiche.file, line: ph.line, categorie: 'photo', severite: 'avertissement', message: `photo « oui » sans fichier WebP : ${basename(webp)}` });
