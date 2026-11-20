@@ -2,6 +2,8 @@ import { useEffect, useLayoutEffect, useMemo, useRef, useState } from 'preact/ho
 import { FICHES_ERROR, isUsable, loadFiches, searchFiches, sortByName, type Fiche } from '../../data/fiches';
 import { MUSCLE_SHORT, SCHEMA_GROUPS } from '../../data/labels';
 import { list } from '../../data/repo';
+import { activeFilters, filterFiches, GEARS, LEVELS, NO_FILTERS, type LibFilters } from '../../data/library-filters';
+import { MUSCLE_GROUPS } from '../../session/progress-view';
 import { MACHINE_TAGS } from '../../generator/config';
 
 /** machines-etiquettes.md §2 : fiche de machine = toutes ses variantes exigent une machine guidée, une poulie ou une machine de cardio. */
@@ -9,7 +11,7 @@ export const isMachineFiche = (f: Pick<Fiche, 'variantes'>): boolean =>
   f.variantes.length > 0 && f.variantes.every((v) => v.tags.some((t) => MACHINE_TAGS.includes(t)));
 
 /** Garde la recherche, le filtre et le défilement quand on revient d'une fiche. */
-const memo = { query: '', group: 'tout', scroll: 0 };
+const memo = { query: '', group: 'tout', filters: { ...NO_FILTERS } as LibFilters, scroll: 0 };
 
 function Thumb({ fiche }: { fiche: Fiche }) {
   const [ok, setOk] = useState(true);
@@ -36,6 +38,7 @@ export function Library() {
   const [error, setError] = useState<string | null>(null);
   const [query, setQuery] = useState(memo.query);
   const [group, setGroup] = useState(memo.group);
+  const [filters, setFilters] = useState<LibFilters>(memo.filters);
   const root = useRef<HTMLDivElement>(null);
   const restored = useRef(false);
 
@@ -62,8 +65,8 @@ export function Library() {
     if (!fiches) return [];
     const schemas = SCHEMA_GROUPS.find((g) => g.id === group)?.schemas;
     const inGroup = schemas ? fiches.filter((f) => schemas.includes(f.schema)) : fiches;
-    return searchFiches(inGroup, query);
-  }, [fiches, group, query]);
+    return searchFiches(filterFiches(inGroup, filters), query);
+  }, [fiches, group, query, filters]);
 
   const remember = () => {
     memo.scroll = root.current?.closest('.screen')?.scrollTop ?? 0;
@@ -73,6 +76,13 @@ export function Library() {
     memo.scroll = 0;
     setQuery(v);
   };
+  const changeFilter = (k: keyof LibFilters, v: string) => {
+    const next = { ...filters, [k]: v };
+    memo.filters = next;
+    memo.scroll = 0;
+    setFilters(next);
+  };
+  const resetAll = () => { changeQuery(''); changeGroup('tout'); memo.filters = { ...NO_FILTERS }; setFilters({ ...NO_FILTERS }); };
   const changeGroup = (g: string) => {
     memo.group = g;
     memo.scroll = 0;
@@ -121,14 +131,32 @@ export function Library() {
               </button>
             ))}
           </div>
+          <div class="lib-selects">
+            <label class="small dim">Muscle
+              <select class="hist-select" value={filters.muscle} onChange={(e) => changeFilter('muscle', e.currentTarget.value)}>
+                <option value="tout">Tous</option>
+                {MUSCLE_GROUPS.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}
+              </select>
+            </label>
+            <label class="small dim">Niveau
+              <select class="hist-select" value={filters.level} onChange={(e) => changeFilter('level', e.currentTarget.value)}>
+                {LEVELS.map((l) => <option key={l.id} value={l.id}>{l.label}</option>)}
+              </select>
+            </label>
+            <label class="small dim">Matériel
+              <select class="hist-select" value={filters.gear} onChange={(e) => changeFilter('gear', e.currentTarget.value)}>
+                {GEARS.map((g) => <option key={g.id} value={g.id}>{g.label}</option>)}
+              </select>
+            </label>
+          </div>
           <p class="dim small" role="status" aria-live="polite">
-            {shown.length === 1 ? '1 exercice' : `${shown.length} exercices`}
+            {shown.length === 1 ? '1 exercice' : `${shown.length} exercices`}{activeFilters(filters) > 0 && <> · <button type="button" class="btn-link-inline" onClick={() => { memo.filters = { ...NO_FILTERS }; setFilters({ ...NO_FILTERS }); }}>Retirer les filtres</button></>}
           </p>
           {shown.length === 0 ? (
             <div class="empty-state compact">
               <p><strong>Aucun exercice trouvé.</strong></p>
-              <p class="dim small">Essaie un autre mot, ou choisis « Tout ».</p>
-              <button type="button" class="btn" onClick={() => { changeQuery(''); changeGroup('tout'); }}>Tout afficher</button>
+              <p class="dim small">Essaie un autre mot, ou retire un filtre.</p>
+              <button type="button" class="btn" onClick={resetAll}>Tout afficher</button>
             </div>
           ) : (
             <ul class="lib-list">
