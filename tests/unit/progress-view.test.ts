@@ -70,3 +70,14 @@ describe('recordHistory et groupes', () => {
     expect(groupsOfMuscles([])).toEqual([]);
   });
 });
+
+import { weighDue } from '../../src/session/weigh-reminder';
+describe('weighDue', () => {
+  const today = new Date(2026, 10, 20);
+  it('seulement si la nutrition est configurée et sans pesée sur 7 jours', () => {
+    expect(weighDue(false, [], today)).toBe(false);
+    expect(weighDue(true, [], today)).toBe(true);
+    expect(weighDue(true, ['2026-11-14'], today)).toBe(false);
+    expect(weighDue(true, ['2026-11-13'], today)).toBe(true);
+  });
+});

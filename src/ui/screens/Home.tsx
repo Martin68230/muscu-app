@@ -9,7 +9,8 @@ import { ensureActiveProgram, getNextSession, programWeek, withProgramWeek, type
 import { closeStaleSession, findResumable, type Resumable } from '../../session/store';
 import { NEUTRAL_CONTEXT } from '../../session/engine';
 import { asGenFiches } from '../session/launch';
-import { listTrusted } from '../../data/repo';
+import { list, listTrusted } from '../../data/repo';
+import { weighDue } from '../../session/weigh-reminder';
 import { buildEntries, regularity, relativeDay, type Regularity } from '../../session/calendar';
 import type { MissedCard } from '../../session/missed';
 import { acknowledgeSecurity, answerLater, loadMissedContext, postponeTo, skipSession } from '../../session/missed-store';
@@ -144,6 +145,27 @@ function ResumeCard({ r, onResume, onCloseStale }: { r: Resumable; onResume: (id
 const seances = (n: number): string => `${n} ${n > 1 ? 'séances faites' : 'séance faite'}`;
 
 /** Régularité : ton positif, aucune comparaison, aucun chiffre tant qu'il n'y a pas de séance. */
+/** Rappel de pesée : carte discrète, visible seulement si la nutrition est configurée et sans pesée récente. */
+export function WeighReminder() {
+  const [due, setDue] = useState(false);
+  useEffect(() => {
+    (async () => {
+      const [goals, weights] = await Promise.all([list('nutritionGoals'), list('bodyWeights')]);
+      setDue(weighDue(goals.length > 0, weights.filter((w) => !w.deletedAt).map((w) => w.date), new Date()));
+    })().catch(() => setDue(false));
+  }, []);
+  if (!due) return null;
+  return (
+    <a class="lib-nutrition" href="#/nutrition">
+      <span class="nut-entry-text">
+        <span class="nut-entry-name">Pesée de la semaine</span>
+        <span class="dim small">Une fois par semaine suffit, au réveil. Quand tu veux.</span>
+      </span>
+      <span class="nut-entry-chevron" aria-hidden="true">›</span>
+    </a>
+  );
+}
+
 export function RegularityCard({ reg, today, onOpenHistory, onOpenProgress }: { reg: Regularity | null; today: Date; onOpenHistory?: () => void; onOpenProgress?: () => void }) {
   return (
     <div class="card regularity">
@@ -265,6 +287,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       )}
       {status.kind === 'seance' && !anyMessage && status.lightToday && <LightDayCard day={status.lightToday} painYesterday={!!status.painYesterday} />}
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
+      <WeighReminder />
       <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} onOpenProgress={onOpenProgress} />
       {muscles && !security && (
         <MuscleMapCard id="home-carte" title="Muscles de ton cycle" intro="Ce que ton programme prévoit sur un cycle (toutes ses séances, une fois chacune). C’est cette carte qui dit si une zone est couverte." statuses={muscles.week.statuses} points={muscles.week.points} period="sur le cycle">
