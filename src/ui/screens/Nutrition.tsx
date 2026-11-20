@@ -147,7 +147,7 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
           {tab === 'besoins' ? (
             <Needs profile={profile} data={data} onEdit={() => setEditing(true)} />
           ) : tab === 'semaine' ? (
-            <WeekTab np={np!} fin={finalFor(profile, data).result} />
+            <WeekTab np={np!} fin={finalFor(profile, data).result} aiEnabled={profile.aiEnabled} />
           ) : (
             <Weight profile={profile} data={data} onChanged={reload} />
           )}

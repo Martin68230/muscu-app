@@ -142,7 +142,7 @@
     "allergenes": [
       "gluten"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten"
     ],
@@ -159,7 +159,7 @@
     "allergenes": [
       "gluten"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [
       "sans_gluten"
     ],
@@ -659,7 +659,7 @@
     "famille": "proteine_vegetale",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 400,
@@ -702,7 +702,7 @@
     "allergenes": [
       "soja"
     ],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 200,
@@ -2440,7 +2440,7 @@
     "famille": "fruit",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "pièce",
@@ -3309,7 +3309,7 @@
     "famille": "legume",
     "rayon": "fruits_legumes",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": {
       "label": "barquette",
@@ -3700,7 +3700,7 @@
     "famille": "legume",
     "rayon": "surgeles",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 1000,
@@ -3817,7 +3817,7 @@
     "famille": "legume",
     "rayon": "epicerie",
     "allergenes": [],
-    "statut_allergenes": "a_verifier",
+    "statut_allergenes": "valide",
     "regimes_incompatibles": [],
     "unite_achat": null,
     "conditionnement_g": 400,

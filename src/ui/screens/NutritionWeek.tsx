@@ -10,6 +10,7 @@ import { recipeAllowed, type PlanPrefs, type Recipe } from '../../nutrition/plan
 import { buildShoppingList, RAYON_LABELS, RAYON_ORDER, shoppingToText } from '../../nutrition/shopping';
 import { getMealPlan, getShoppingState, saveMealPlan, saveNutritionProfile, setChecked } from '../../nutrition/store';
 import { ceilG, generateWeekPlan, sanitizeMealConfig, type MealConfig, type SlotKind, type WeekPlanResult } from '../../nutrition/week-plan';
+import { ExportCard } from './NutritionExport';
 import { dateKey } from '../../session/calendar';
 import { weekStartOf } from '../../nutrition/weight-trend';
 
@@ -31,7 +32,7 @@ function slotLines(r: Recipe, scale: number, pieces: number) {
   return r.ingredients.map((i) => ({ nom: i.nom, g: r.lot ? ceilG(i.grammes * pieces) : i.ajustable ? Math.round((i.grammes * scale) / ARRONDI_GRAMMES) * ARRONDI_GRAMMES || ARRONDI_GRAMMES : i.grammes }));
 }
 
-export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | Refused }) {
+export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; fin: FinalNeeds | Refused; aiEnabled?: boolean }) {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
   const [loadErr, setLoadErr] = useState('');
   const [cfg, setCfg] = useState<MealConfig>(() => sanitizeMealConfig(np.mealConfig as Partial<MealConfig> | undefined));
@@ -295,6 +296,7 @@ export function WeekTab({ np, fin }: { np: NutritionProfile; fin: FinalNeeds | R
             {copied && <p class="dim small" role="status">Liste copiée.</p>}
             <p class="notice small">Vérifie toujours l’étiquette des produits que tu achètes : les recettes de l’app ne remplacent pas l’étiquetage ni l’avis d’un médecin. Valeurs nutritionnelles : Ciqual (ANSES), Licence Ouverte 2.0.</p>
           </section>
+          <ExportCard plan={shown} recipes={recipeById} units={catalog.units} targets={fin.week} allergens={allergens} diet={diet} severe={severe || celiac} aiEnabled={aiEnabled} />
         </>
       )}
     </>
