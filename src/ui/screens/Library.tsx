@@ -131,6 +131,8 @@ export function Library() {
               </button>
             ))}
           </div>
+          <details class="lib-more" open={activeFilters(filters) > 0}>
+            <summary>Filtres{activeFilters(filters) > 0 ? ` (${activeFilters(filters)})` : ''} : muscle, niveau, matériel</summary>
           <div class="lib-selects">
             <label class="small dim">Muscle
               <select class="hist-select" value={filters.muscle} onChange={(e) => changeFilter('muscle', e.currentTarget.value)}>
@@ -149,6 +151,7 @@ export function Library() {
               </select>
             </label>
           </div>
+          </details>
           <p class="dim small" role="status" aria-live="polite">
             {shown.length === 1 ? '1 exercice' : `${shown.length} exercices`}{activeFilters(filters) > 0 && <> · <button type="button" class="btn-link-inline" onClick={() => { memo.filters = { ...NO_FILTERS }; setFilters({ ...NO_FILTERS }); }}>Retirer les filtres</button></>}
           </p>

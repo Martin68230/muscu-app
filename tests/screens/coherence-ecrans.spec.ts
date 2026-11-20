@@ -38,10 +38,14 @@ test('cohérence : écrans nutrition, profil, bibliothèque', async ({ page }, i
     expect(overflow, name).toBe(false);
     await page.screenshot({ path: `screenshots/${info.project.name}/lot4-${name}.png`, fullPage: true });
   };
-  await page.goto('./#/nutrition'); await shot('nutrition');
-  const week = page.getByRole('button', { name: /Semaine/ }).first();
-  if (await week.count()) { await week.click(); await shot('nutrition-semaine'); }
-  await page.goto('./#/profil'); await shot('profil');
-  await page.goto('./#/bibliotheque'); await shot('bibliotheque');
-  await page.goto('./#/calendrier'); await shot('calendrier');
+  await page.locator('.tabbar').getByRole('button', { name: 'Bibliothèque' }).click();
+  await expect(page.getByText(/Filtres/)).toBeVisible({ timeout: 60_000 });
+  await shot('bibliotheque');
+  await page.getByText(/Filtres/).click();
+  await page.getByLabel('Muscle').selectOption('dos');
+  await page.getByLabel('Matériel').selectOption('halteres');
+  await shot('bibliotheque-filtres');
+  await page.getByLabel('Niveau').selectOption('debutant');
+  await page.getByLabel('Matériel').selectOption('swiss_ball');
+  await shot('bibliotheque-vide-ou-court');
 });
