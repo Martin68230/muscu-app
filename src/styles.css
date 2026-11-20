@@ -694,3 +694,8 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .img-count { margin: 0 0 8px; font-size: 1rem; }
 .img-more summary { min-height: 44px; display: flex; align-items: center; color: var(--accent); }
 .img-import .btn { margin-top: 8px; }
+
+.lib-selects { display: grid; grid-template-columns: 1fr; gap: 8px; margin: 8px 0; }
+@media (min-width: 400px) { .lib-selects { grid-template-columns: 1fr 1fr 1fr; } }
+.lib-selects label { min-width: 0; }
+.btn-link-inline { min-height: 44px; padding: 0 8px; background: transparent; border: 0; color: var(--accent); font: inherit; text-decoration: underline; }
