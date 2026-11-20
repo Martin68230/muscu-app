@@ -12,7 +12,7 @@ test('D22 : après import, la fiche affiche le GIF importé (variante exacte ou 
     { name: '0659-LEH9jxP.gif', mimeType: 'image/gif', buffer: GIF }, // pompe contre un mur
     { name: '3211-ZOuKWir.gif', mimeType: 'image/gif', buffer: GIF }, // pompe sur les genoux
   ]);
-  await expect(page.getByText(/2 images importées sur/)).toBeVisible();
+  await expect(page.locator('.img-count')).toContainText('2 images importées');
   await page.getByRole('button', { name: 'Tester l’affichage' }).click();
   await expect(page.getByText(/2 images lues dans la base, 2 affichables/)).toBeVisible();
   await page.evaluate(() => { location.hash = '#/fiche/pompe'; });
