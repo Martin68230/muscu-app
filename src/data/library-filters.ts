@@ -3,16 +3,16 @@ import type { Fiche } from './fiches';
 import { MUSCLE_GROUPS } from '../session/progress-view';
 
 export const LEVELS = [
-  { id: 'tout', label: 'Tous niveaux' },
+  { id: 'tout', label: 'Tous' },
   { id: 'debutant', label: 'Débutant' },
-  { id: 'intermediaire', label: 'Jusqu’à intermédiaire' },
+  { id: 'intermediaire', label: 'Intermédiaire' },
 ] as const;
 const RANK: Record<string, number> = { debutant: 0, intermediaire: 1, avance: 2 };
 
 /** Sans matériel = au moins une variante qui n'utilise que le corps, un tapis, un mur ou une chaise. */
 const NO_GEAR = new Set(['poids_du_corps', 'tapis', 'mur', 'chaise']);
 export const GEARS = [
-  { id: 'tout', label: 'Tout matériel' },
+  { id: 'tout', label: 'Tout' },
   { id: 'sans', label: 'Sans matériel' },
   { id: 'halteres', label: 'Haltères' },
   { id: 'elastique', label: 'Élastique' },

@@ -57,3 +57,12 @@ Propositions suivantes (par utilité) : 1) poids lissé dans l'écran Progressio
 - Bibliothèque : déjà revue au lot 2 (recherche collée, état vide « Aucun exercice trouvé »). Captures de contrôle : tests/screens/coherence-ecrans.spec.ts (les écrans défilent dans un conteneur : captures de la fenêtre seulement ; vérification faite surtout dans le code).
 ### À vérifier sur l'iPhone
 - Nutrition : bouton retour de même style que Ma progression. Profil > Images : compteur lisible en haut, « Place disponible » se déplie, boutons espacés de 8 px, rien ne déborde à 375 px.
+
+## Lot 5 (20/11/2026, branche design-lot5)
+- Bibliothèque : repli « Filtres : muscle, niveau, matériel » (3 listes, côte à côte dès 400 px, ouvert si un filtre est actif, « Retirer les filtres ») ; « Intermédiaire » = débutant + intermédiaire ; « Sans matériel » = corps, tapis, mur, chaise. Logique : src/data/library-filters.ts (test unitaire).
+- Accueil : carte discrète « Pesée de la semaine » seulement si la nutrition est configurée et sans pesée depuis 7 jours (src/session/weigh-reminder.ts).
+- Déjà en place, vérifié dans le code : carte du cycle par défaut + vue par type de séance avec mention ; calendrier / progression : états vides.
+- Non fait : revue de l'écran de séance (minuteur de repos, boutons) ; GIF dans la liste (vignettes déjà affichées quand une image existe).
+### À vérifier sur l'iPhone
+- Bibliothèque : le repli Filtres s'ouvre, les 3 listes tiennent sur une ligne en 430 px et s'empilent en 375 px, aucun texte coupé, compteur et « Retirer les filtres » (44 px).
+- Accueil : la carte de pesée apparaît après 7 jours sans pesée (nutrition configurée), ouvre Nutrition, disparaît après une pesée.
