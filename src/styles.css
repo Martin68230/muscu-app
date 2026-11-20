@@ -790,3 +790,4 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .meal-table-day { text-align: left; font-weight: 700; }
 .meal-cell { display: flex; align-items: center; justify-content: center; min-height: 44px; }
 .meal-cell input { width: 24px; height: 24px; }
+.img-stats { margin: 8px 0; padding-left: 18px; }

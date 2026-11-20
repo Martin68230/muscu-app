@@ -54,8 +54,14 @@ export function Credits({ onBack }: { onBack: () => void }) {
       ))}
 
       <section class="card credit">
+        <h2>Liste d’exercices du jeu hasaneyldrm</h2>
+        <p>Une partie des exercices de l’app est créée à partir de la liste d’exercices du jeu « exercises-dataset » de Hasan Emir Yıldırım (licence MIT, © 2026 Hasan Emir Yıldırım). Seul le texte de la liste est utilisé ; les consignes sont réécrites pour l’app.</p>
+        <p class="small"><a href="https://github.com/hasaneyldrm/exercises-dataset" rel="noopener noreferrer" target="_blank">Voir la source</a></p>
+      </section>
+
+      <section class="card credit">
         <h2>Images importées par toi</h2>
-        <p>Les GIF du jeu Gym visual (liste d’exercices hasaneyldrm) ne sont pas dans l’app. Si tu importes ta propre copie, elle reste sur ton téléphone, n’est ni envoyée ni redistribuée, et appartient à Gym visual.</p>
+        <p>Les GIF du jeu Gym visual (liste d’exercices hasaneyldrm) ne sont pas dans l’app. Si tu importes ta propre copie, elle reste sur ton téléphone, n’est ni envoyée ni redistribuée, et appartient à Gym visual. Ces images ne sont pas fournies par l’app : tu les importes toi-même, sous ta responsabilité.</p>
       </section>
 
       <section class="card credit">

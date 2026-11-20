@@ -4,6 +4,8 @@ import { countImages, deleteAllImages, imageUrl, listImageIds, countThumbs } fro
 import { regenerateThumbs } from './thumbs';
 import { UNIQUE_IDS } from './match';
 import { GV_TABLE } from './gv-table';
+import { ficheImageStats, type FicheImageStats } from './stats';
+import { loadFiches } from '../data/fiches';
 
 export const IMPORT_WARNING = 'Importe seulement des images dont tu as le droit d’usage. Elles restent sur ce téléphone et ne sont jamais envoyées nulle part.';
 
@@ -18,7 +20,12 @@ export function ImagesImport() {
   const [prog, setProg] = useState<{ done: number; total: number } | null>(null);
   const [rep, setRep] = useState<ImportReport | null>(null);
   const [ask, setAsk] = useState(false);
-  const refresh = () => { void countThumbs().then(setThumbs, () => setThumbs(0)); return countImages().then(setCount, () => setCount(0)); };
+  const [stats, setStats] = useState<FicheImageStats | null>(null);
+  const refresh = () => {
+    void countThumbs().then(setThumbs, () => setThumbs(0));
+    void Promise.all([listImageIds(), loadFiches()]).then(([ids, fiches]) => setStats(ficheImageStats(ids, fiches.map((f) => f.id))), () => setStats(null));
+    return countImages().then(setCount, () => setCount(0));
+  };
   useEffect(() => { void refresh(); }, []);
 
   const go = async (list: FileList | null) => {
@@ -49,12 +56,19 @@ export function ImagesImport() {
     <section class="card img-import" aria-labelledby="img-import-t">
       <h2 id="img-import-t">Images de mes exercices</h2>
       <p class="img-count" role="status"><strong>{count}</strong> image{count > 1 ? 's' : ''} importée{count > 1 ? 's' : ''} sur {UNIQUE_IDS.length}. <span class="dim small" data-testid="thumb-count">{thumbs} miniature{thumbs > 1 ? 's' : ''} pour les listes.</span></p>
-      <p class="small">Tu peux ajouter les GIF de ta propre copie du jeu d’images Gym visual (ZIP ou dossier). Seuls les exercices dont la correspondance est sûre en reçoivent une ({UNIQUE_IDS.length} images possibles) ; les autres gardent l’écran actuel. La consigne écrite prime toujours sur l’image.</p>
+      {stats && (
+        <ul class="small img-stats">
+          <li><strong>{stats.withImage}</strong> exercice{stats.withImage > 1 ? 's' : ''} avec une image importée (sur {stats.total}).</li>
+          {stats.toImport > 0 && <li>{stats.toImport} pourrai{stats.toImport > 1 ? 'ent' : 't'} en avoir une : {count === 0 ? 'importe ton ZIP' : 'réimporte ton ZIP'}.</li>}
+          <li>{stats.noImageInGame} n’ont pas d’image dans le jeu : leur dessin ou leur photo reste.</li>
+        </ul>
+      )}
+      <p class="small">Tu peux ajouter les GIF de ta propre copie du jeu d’images Gym visual (ZIP ou dossier ; les noms de fichiers sont ceux du jeu, ex. 0025-EIeI8Vf.gif). Pour les exercices créés à partir de ce jeu, l’image est reliée par son identifiant. Seuls les exercices dont la correspondance est sûre en reçoivent une ({UNIQUE_IDS.length} images possibles) ; les autres gardent l’écran actuel. La consigne écrite prime toujours sur l’image.</p>
       <p class="small"><strong>{IMPORT_WARNING}</strong></p>
       <details class="img-more small"><summary>Place disponible</summary><p class="dim">L’estimation de la place disponible reste indicative : si le téléphone manque de place, l’import s’arrête avec un message et tu peux le reprendre.</p></details>
       <input ref={zipIn} type="file" accept=".zip,application/zip" hidden onChange={(e) => go((e.currentTarget as HTMLInputElement).files)} />
       <input ref={dirIn} type="file" accept="image/gif" multiple hidden onChange={(e) => go((e.currentTarget as HTMLInputElement).files)} />
-      <button type="button" class="btn" disabled={busy} onClick={() => zipIn.current?.click()}>Choisir le ZIP</button>
+      <button type="button" class="btn" disabled={busy} onClick={() => zipIn.current?.click()}>{count > 0 ? 'Réimporter le ZIP' : 'Choisir le ZIP'}</button>
       <button type="button" class="btn" disabled={busy} onClick={() => dirIn.current?.click()}>Choisir des images (GIF)</button>
       {prog && <div role="progressbar" aria-valuenow={pct} aria-valuemin={0} aria-valuemax={100} class="img-bar"><div style={{ width: `${pct}%` }} /><span class="small">{prog.total ? `${prog.done} / ${prog.total}` : 'Lecture du fichier…'}</span></div>}
       {rep && (
