@@ -105,3 +105,13 @@ export function isRandomSpike(rawKg: number, trendKg: number): boolean {
 export function isSuspiciousJump(prevKg: number, newKg: number): boolean {
   return Math.abs(newKg - prevKg) > ALERTE_SAUT_KG;
 }
+
+/** Rappel de pesée hebdomadaire (une carte dans l'app, jamais de notification) : « due » = jour de pesée atteint (ou dépassé) cette semaine et aucune pesée encore. */
+export function weighReminder(weightDates: readonly string[], weighDay: number, today: string): 'due' | 'late' | null {
+  const monday = weekStartOf(today);
+  if (weightDates.some((d) => weekStartOf(d) === monday)) return null;
+  const dayIdx = (new Date(`${today}T00:00:00Z`).getUTCDay() + 6) % 7;
+  const wd = Number.isInteger(weighDay) && weighDay >= 0 && weighDay <= 6 ? weighDay : 5;
+  if (dayIdx < wd) return null;
+  return dayIdx === wd ? 'due' : 'late';
+}

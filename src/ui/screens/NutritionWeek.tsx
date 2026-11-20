@@ -43,6 +43,8 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
   const [optimize, setOptimize] = useState(np.optimizeShopping !== false);
   const [severe, setSevere] = useState(!!np.severeAllergy);
   const [celiac, setCeliac] = useState(!!np.glutenStrict);
+  const [disliked, setDisliked] = useState<string[]>(np.dislikedFoods ?? []);
+  const [dq, setDq] = useState('');
   const [genErr, setGenErr] = useState('');
   const thisMonday = weekStartOf(dateKey(new Date()));
   const [next, setNext] = useState(false);
@@ -71,7 +73,7 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
   // Réglages COURANTS (pas ceux de la génération) : cœliaque = sans gluten strict ; allergie grave ou cœliaque = recettes relues seulement.
   const prefsOf = (): Omit<PlanPrefs, 'mealsPerDay'> | null => {
     if (fin.status !== 'ok') return null;
-    return { goal: fin.goal, allergens, allergenFree: np.allergenFree ?? [], diet: celiac && !diet.includes('sans_gluten') ? [...diet, 'sans_gluten'] : diet, dislikedFoods: np.dislikedFoods ?? [], maxCookMin: maxCook, appliances, optimizeShopping: optimize, strictControle: severe || celiac };
+    return { goal: fin.goal, allergens, allergenFree: np.allergenFree ?? [], diet: celiac && !diet.includes('sans_gluten') ? [...diet, 'sans_gluten'] : diet, dislikedFoods: disliked, maxCookMin: maxCook, appliances, optimizeShopping: optimize, strictControle: severe || celiac };
   };
 
   // Un plan enregistré n'est montré que s'il a la bonne forme, la version actuelle et si CHAQUE repas respecte les réglages d'aujourd'hui.
@@ -90,7 +92,7 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
     }
     return 'ok';
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan, catalog, allergens, diet, maxCook, appliances, severe, celiac, recipeById]);
+  }, [plan, catalog, allergens, diet, disliked, maxCook, appliances, severe, celiac, recipeById]);
   const shown = planState === 'ok' ? plan : null;
 
   const generate = async () => {
@@ -101,7 +103,7 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
     try {
       const seed = Math.floor(Math.random() * 1e9) + 1;
       const res = generateWeekPlan(fin.week, catalog.recipes, catalog.foods, prefs, cfg, seed, [], fin.needs.floor);
-      await saveNutritionProfile({ allergens, diet, appliances, maxCookMin: maxCook, optimizeShopping: optimize, severeAllergy: severe, glutenStrict: celiac, mealConfig: cfg as unknown as Record<string, unknown> });
+      await saveNutritionProfile({ allergens, diet, dislikedFoods: disliked, appliances, maxCookMin: maxCook, optimizeShopping: optimize, severeAllergy: severe, glutenStrict: celiac, mealConfig: cfg as unknown as Record<string, unknown> });
       await saveMealPlan(weekStart, res.version, fin.week as unknown[], res as unknown as Record<string, unknown>, seed, { allergens, diet, appliances, maxCook, severe, celiac });
       setPlan(res);
     } catch (e) {
@@ -200,6 +202,25 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
           <label class="check-row"><input type="checkbox" checked={severe} onChange={(e) => setSevere(e.currentTarget.checked)} /><span>Allergie grave : seules les recettes relues sont proposées</span></label>
           <label class="check-row"><input type="checkbox" checked={celiac} onChange={(e) => setCeliac(e.currentTarget.checked)} /><span>Maladie cœliaque : sans gluten, recettes relues seulement</span></label>
           <p class="notice small">Les allergènes affichés viennent de la composition générique des ingrédients ; les traces ne sont pas prises en compte. Vérifie toujours l’étiquette des produits. « Sans gluten » et « sans lactose » valent pour la composition générique, pas pour une allergie sévère ni pour la maladie cœliaque. {NOT_MEDICAL}</p>
+        </fieldset>
+        <fieldset class="create-group">
+          <legend>Aliments que je ne veux pas</legend>
+          <label class="field">Chercher un aliment<input type="text" autocomplete="off" value={dq} onInput={(e) => setDq(e.currentTarget.value)} /></label>
+          {dq.trim().length >= 2 && catalog && (
+            <div class="chips" role="group" aria-label="Résultats">
+              {[...catalog.info.values()].filter((f) => f.nom.toLowerCase().includes(dq.trim().toLowerCase()) && !disliked.includes(f.code)).slice(0, 6).map((f) => (
+                <button type="button" key={f.code} class="chip" onClick={() => { const n = [...disliked, f.code]; setDisliked(n); persist({ dislikedFoods: n }); setDq(''); }}>Exclure : {f.nom}</button>
+              ))}
+            </div>
+          )}
+          {disliked.length > 0 && (
+            <div class="chips" role="group" aria-label="Aliments exclus">
+              {disliked.map((c) => (
+                <button type="button" key={c} class="chip" aria-pressed="true" onClick={() => { const n = disliked.filter((x) => x !== c); setDisliked(n); persist({ dislikedFoods: n }); }}>{catalog?.info.get(c)?.nom ?? c} ✕</button>
+              ))}
+            </div>
+          )}
+          <p class="dim small">Les recettes qui contiennent un de ces aliments ne sont jamais proposées. Régénère ta semaine pour appliquer.</p>
         </fieldset>
         <fieldset class="create-group">
           <legend>Régime</legend>

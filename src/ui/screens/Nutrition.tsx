@@ -9,7 +9,7 @@ import { N_PESEES_MIN, PERTE_PCT_SEMAINE, PRISE_PCT_SEMAINE, POIDS_KG_MAX, POIDS
 import { ageFromBirthYear, finalNeeds, type FinalNeeds } from '../../nutrition/final-needs';
 import { bmi, screenNutrition, type GoalKind, type Pace, type ScreeningAnswers, type Sex } from '../../nutrition/needs';
 import { addWeighIn, getActiveGoal, getNutritionProfile, listCheckins, listWeighIns, removeWeighIn, saveGoal, saveNutritionProfile, setCheckinAdjust } from '../../nutrition/store';
-import { interpretTrend, rateKgPerWeek, smoothWeights, weekStartOf, type TrendPoint, type TrendState } from '../../nutrition/weight-trend';
+import { interpretTrend, rateKgPerWeek, smoothWeights, weekStartOf, weighReminder, type TrendPoint, type TrendState } from '../../nutrition/weight-trend';
 import { dateKey } from '../../session/calendar';
 import { WeekTab } from './NutritionWeek';
 
@@ -144,6 +144,12 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
             <button type="button" class="chip" aria-pressed={tab === 'semaine'} onClick={() => setTab('semaine')}>Semaine</button>
             <button type="button" class="chip" aria-pressed={tab === 'poids'} onClick={() => setTab('poids')}>Poids et courbe</button>
           </div>
+          {tab !== 'poids' && weighReminder(data.weights.map((w) => w.date), np!.weighDay ?? 5, dateKey(new Date())) && (
+            <section class="card" aria-label="Rappel de pesée">
+              <p><strong>{weighReminder(data.weights.map((w) => w.date), np!.weighDay ?? 5, dateKey(new Date())) === 'due' ? 'C’est ton jour de pesée.' : 'Tu n’as pas encore pesé cette semaine.'}</strong> Une pesée par semaine suffit : elle sert à ajuster ta cible.</p>
+              <button type="button" class="btn btn-primary" onClick={() => setTab('poids')}>Noter mon poids</button>
+            </section>
+          )}
           {tab === 'besoins' ? (
             <Needs profile={profile} data={data} onEdit={() => setEditing(true)} />
           ) : tab === 'semaine' ? (
