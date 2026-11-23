@@ -312,7 +312,7 @@ export function zoneCatchUp(weekSets: readonly SetLog[], next: CatchUpWeek, prof
       const pts = points[z.id] ?? 0;
       return {
         zone: z.id, points: pts, status: zoneStatus(pts, z.id, ctx.goalKey), shortfall: rouge - pts,
-        missed: (planned[z.id] ?? 0) >= rouge && pts < rouge, weeks: weeksLow(z.id),
+        missed: pts < rouge && ((planned[z.id] ?? 0) >= rouge || (planned[z.id] ?? 0) - pts >= 1), weeks: weeksLow(z.id),
       };
     })
     .filter((z) => z.status !== 'rouge')

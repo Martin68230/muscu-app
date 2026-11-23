@@ -98,7 +98,6 @@ Famille posée par le convertisseur (tools/hasan-vers-fiches.mjs), revue par `co
 | planche-appui-haut-sur-les-mains-puissance | gainage | intermediaire | CF1 |
 | planche-avec-rotation | rotation | intermediaire | CF3 |
 | planche-inversee-avec-jambe-levee | gainage | intermediaire | CF1 |
-| planche-lestee | gainage | intermediaire | CF1 |
 | releve-de-bassin-jambes-verticales | gainage | intermediaire | CF4 |
 | releve-de-bras-en-diagonale-a-la-poulie | rotation | intermediaire | CF3 |
 | releve-de-buste | gainage | debutant | CF4 |

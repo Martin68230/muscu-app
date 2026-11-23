@@ -657,7 +657,7 @@ describe('Propriétés : profils A-F x maison/salle x 2-3 jours x niveaux x bles
           }
     expect(count).toBe(7 * 2 * 2 * 3 * 35);
     expect(outcomes.programme).toBeGreaterThan(0);
-  }, 300000);
+  }, 1_500_000); // 15/11/2026 : 2 940 programmes ; ~6 min depuis que le pool compte ~430 fiches (300 s ne suffisait plus)
   it('les doses de base viennent de config (contrôle de quelques valeurs P-GROS)', () => {
     expect(PREGNANCY.reps).toEqual([10, 15]);
   });

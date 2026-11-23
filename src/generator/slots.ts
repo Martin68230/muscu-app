@@ -181,6 +181,9 @@ function rankKey(c: Candidate, slot: SlotKey, schemaRank: number, ctx: Ctx): (nu
   }
   // Clé 5 : favoris d'abord (les fiches masquées sont exclues en amont).
   key.push(ctx.favoris.has(f.id) ? 0 : 1);
+  // Clé 6 bis (15/11/2026) : à rang égal, une fiche du jeu hasaneyldrm (GIF importé, aucune image dans le dépôt) passe APRÈS les fiches validées à la main ; elle sert aux rotations et à la
+  // variété, sans déloger les choix par défaut (sinon l'ordre alphabétique de ses ids ferait changer tous les programmes, ex. bascule-du-bassin avant gainage-creux).
+  key.push(Array.isArray(f.images) && f.images.length === 0 ? 1 : 0);
   // Clé 7 : id alphabétique.
   key.push(f.id, c.variant.id);
   return key;
