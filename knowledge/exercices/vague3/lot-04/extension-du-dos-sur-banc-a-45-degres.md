@@ -1,6 +1,6 @@
 ---
 id: extension-du-dos-sur-banc-a-45-degres
-nom: Extension du dos sur banc à 45 degrés
+nom: Extension du dos à 45 degrés
 alias: [extension lombaire, hyperextension contrôlée]
 schema: charniere
 type: force

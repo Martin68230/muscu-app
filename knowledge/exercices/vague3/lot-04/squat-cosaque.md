@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| squat-cosaque-lest | Avec un lest | 1 | intermediaire | lest | Debout, pieds bien écartés, un petit poids tenu contre la poitrine. |
+| squat-cosaque-lest | Avec un haltère contre la poitrine | 1 | intermediaire | halteres | Debout, pieds bien écartés, un petit haltère tenu à deux mains contre la poitrine. |
 
 ## Consignes
 1. Tiens-toi debout, les pieds plus écartés que la largeur des épaules et les orteils légèrement tournés vers l'extérieur.

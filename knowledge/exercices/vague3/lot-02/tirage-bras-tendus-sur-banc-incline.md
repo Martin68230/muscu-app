@@ -6,7 +6,7 @@ schema: tirage_v
 type: force
 niveau_min: debutant
 muscles_principaux: [grand_dorsal]
-muscles_secondaires: [triceps, dentele_anterieur, trapezes]
+muscles_secondaires: [triceps, dentele_anterieur]
 source_brouillon: []
 statut: utilisable
 ---

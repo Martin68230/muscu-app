@@ -65,8 +65,9 @@ describe('F0 : fiches.json', () => {
   it("chaque image citée existe dans public/ et vient d'une ligne « oui »", () => {
     const texts = listFiches(knowledge).map((n: string) => readFileSync(join(knowledge, n), 'utf8'));
     for (const f of fiches) {
-      expect(f.images.length, f.id).toBeGreaterThan(0);
       const t = texts.find((x: string) => new RegExp(`^id: ${f.id}\\s*$`, 'm').test(x))!;
+      // 15/11/2026 : une fiche du jeu hasaneyldrm n'a aucune image dans le dépôt (GIF importé localement) : elle porte une ligne « - gymvisual : <id> : affichable : oui ».
+      if (f.images.length === 0) { expect(t, f.id).toMatch(/^- gymvisual : \d{4} : affichable : oui/m); continue; }
       for (const img of f.images) {
         expect(existsSync(join(publicDir, img.src)), `${f.id} : ${img.src}`).toBe(true);
         expect(img.src).toMatch(/^(photos\/free-exercise-db\/[A-Za-z0-9_-]+-\d+\.webp|illustrations\/[a-z0-9-]+\.svg)$/);

@@ -6,7 +6,7 @@ schema: tirage_v
 type: force
 niveau_min: intermediaire
 muscles_principaux: [grand_dorsal, rhomboides]
-muscles_secondaires: [biceps, avant_bras, trapezes]
+muscles_secondaires: [biceps, avant_bras]
 source_brouillon: []
 statut: utilisable
 ---

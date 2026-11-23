@@ -1,6 +1,6 @@
 ---
 id: dips-aux-barres-paralleles
-nom: Dips aux barres parallèles
+nom: Dips sur appuis parallèles
 alias: [dips pectoraux, dips aux barres, chest dip]
 schema: poussee_h
 type: force

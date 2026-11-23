@@ -1528,3 +1528,6 @@ export const COMPLEMENTS = {
   /** Signes d'arrêt des compléments : ceux de CAL-11 + la mention « facultatif » (le message distingue ces ajouts de ceux de CAL-11). */
   stopMessage: `${CAL11.stopMessage} Exercice complémentaire, facultatif.`,
 };
+
+/** 15/11/2026 : fiches du haut du corps du jeu hasaneyldrm proposées par le générateur (false : bibliothèque et choix manuel seulement ; voir index.ts). */
+export const HASAN_UPPER_IN_GENERATOR = false;

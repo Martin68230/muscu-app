@@ -1,6 +1,6 @@
 ---
 id: montee-de-hanche-laterale-aux-barres-paralleles
-nom: Montée de hanche latérale aux barres parallèles
+nom: Montée de hanche latérale sur appuis parallèles
 alias: [relevé de hanche en appui latéral, flexion latérale aux barres]
 schema: gainage
 type: gainage

@@ -1,6 +1,6 @@
 ---
 id: releve-de-jambes-aux-barres-paralleles
-nom: Relevé de jambes aux barres parallèles
+nom: Relevé de jambes sur appuis parallèles
 alias: [relevé de genoux aux dips, relevé de jambes en appui sur les bras]
 schema: gainage
 type: gainage

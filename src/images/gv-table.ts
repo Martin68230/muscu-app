@@ -250,7 +250,6 @@ export const GV_TABLE: GvEntry[] = [
   { id: '3663', gif: '3663-tFToB7l.gif', fiche: 'planche-inversee-avec-jambe-levee', variante: 'planche-inversee-avec-jambe-levee-poids-du-corps', niveau: 'sûr' },
   { id: '0705', gif: '0705-RKjH6Lt.gif', fiche: 'planche-laterale', variante: 'planche-laterale-pieds', niveau: 'proche' },
   { id: '1774', gif: '1774-WL4EmxJ.gif', fiche: 'planche-laterale-jambe-levee', variante: 'planche-laterale-jambe-levee-avant-bras', niveau: 'proche' },
-  { id: '2135', gif: '2135-VBAWRPG.gif', fiche: 'planche-lestee', variante: 'planche-lestee-lest', niveau: 'sûr' },
   { id: '3239', gif: '3239-h1ezqSu.gif', fiche: 'planche-touche-epaule', variante: 'planche-touche-epaule-genoux', niveau: 'sûr' },
   { id: '3785', gif: '3785-F7vjXqT.gif', fiche: 'pompe', variante: 'pompe-chaise', niveau: 'proche' },
   { id: '3211', gif: '3211-ZOuKWir.gif', fiche: 'pompe', variante: 'pompe-genoux', niveau: 'sûr' },

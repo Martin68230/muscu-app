@@ -1,6 +1,6 @@
 ---
 id: releve-de-jambes-tendues-a-la-chaise-romaine
-nom: Relevé de jambes tendues à la chaise romaine
+nom: Relevé de jambes tendues en appui sur les coudes
 alias: [relevé de jambes sur chaise du capitaine, relevé de jambes en appui sur les coudes]
 schema: gainage
 type: gainage
