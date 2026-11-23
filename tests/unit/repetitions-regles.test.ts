@@ -79,7 +79,7 @@ describe('R-REPS : traction (kine, §8.6)', () => {
     let n = 0;
     for (const goal of ['muscle', 'force', 'perte_gras'])
       for (const days of [3, 5]) {
-        for (const e of allEx(gen(mk({ goal, level: 'avance', days, profile: 'F', place: 'salle', dur: null }))).filter((x) => TRACTION_FICHES.includes(x.ficheId))) {
+        for (const e of allEx(gen(mk({ goal, level: 'avance', days, profile: 'F', place: 'salle', dur: null, options: { favoris: [...TRACTION_FICHES] } }))).filter((x) => TRACTION_FICHES.includes(x.ficheId))) {
           n++;
           expect(e.rirTarget).toBeGreaterThanOrEqual(2);
           expect(e.sets).toBeLessThanOrEqual(3);
@@ -267,6 +267,8 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
       'rotation-externe-epaule', 'rotation-externe-poulie', 'shrug-barre', 'tirage-bras-tendus-elastique', 'tirage-visage-sangles', 'tirage-w-allonge',
       // vague 2 lot 04 (13/11/2026, relues : isolations d'une articulation, 1 ou 2 muscles principaux)
       'curl-concentration-halteres', 'curl-inverse-halteres', 'curl-poignet-halteres', 'extension-triceps-elastique', 'oiseau-elastique', 'tirage-visage-elastique-barre',
+      // lot 7 et vague 3 (15/11/2026, hasaneyldrm) : isolations d'une articulation, 1 ou 2 muscles principaux, relues par kine et relecteur
+      'curl-a-un-bras', 'curl-allonge-sur-le-dos', 'curl-au-pupitre', 'curl-au-pupitre-un-bras', 'curl-bras-en-hauteur', 'curl-des-doigts', 'curl-en-araignee', 'curl-en-coupe', 'curl-inverse-a-un-bras', 'curl-inverse-au-pupitre', 'curl-inverse-au-pupitre-un-bras', 'curl-prise-large', 'curl-prise-serree', 'curl-trainant', 'curl-zottman-au-pupitre', 'curl-zottman-au-pupitre-un-bras', 'ecarte-un-bras', 'elevation-laterale-un-bras-sur-banc-incline', 'elevation-laterale-vers-l-avant', 'extension-triceps-au-banc-incline', 'extension-triceps-au-dessus-de-la-tete', 'extension-triceps-au-dessus-de-la-tete-un-bras-prise-inversee', 'oiseau-allonge-sur-le-ventre', 'oiseau-un-bras-couche-sur-le-cote', 'releve-mollets-genoux-flechis', 'releve-mollets-une-jambe-appui', 'tirage-bras-tendus-sur-banc-incline',
     ];
     const hits = FICHES.filter((f) => ISOLATION_FICHE_PREFIXES.some((p) => f.id.startsWith(p)));
     expect(hits.map((f) => f.id).sort()).toEqual([...REVUES].sort());

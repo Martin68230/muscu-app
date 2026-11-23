@@ -1,0 +1,61 @@
+famille	schema	muscles	noms_anglais	ids
+tirage_h|biceps|curl preacher	tirage_h	biceps	barbell lying preacher curl / barbell preacher curl / cable preacher curl / dumbbell alternate preacher curl / dumbbell preacher curl / dumbbell seated preacher curl / dumbbell standing preacher curl	0059,0070,0195,1647,0372,0402,0428
+rotation|abdominaux|twist	rotation	abdominaux	band seated twist / barbell seated twist / barbell standing twist / cable seated twist / cable twist	1011,0094,0112,2399,0243
+cheville_mollet|mollets|calf leg raise	cheville_mollet	mollets	band single leg calf raise / barbell standing leg calf raise / cable standing one leg calf raise / smith seated one leg calf raise / smith standing leg calf raise	0999,0108,1376,1395,0773
+poussee_h|triceps|extension triceps	poussee_h	triceps	cable alternate triceps extension / dumbbell standing triceps extension / ez barbell seated triceps extension / olympic barbell triceps extension	0149,0430,0453,0637
+poussee_v|deltoides_anterieurs|front raise	poussee_v	deltoides_anterieurs	barbell front raise / cable front raise / dumbbell seated front raise / weighted front raise	0041,0162,0392,0834
+tirage_h|grand_dorsal+rhomboides|arm row	tirage_h	grand_dorsal,rhomboides	bodyweight standing one arm row / cable seated one arm alternate row / kettlebell two arm row / smith one arm row	3162,0214,1345,1360
+squat|fessiers|squat	squat	fessiers	band squat / dumbbell squat / smith squat	1004,0413,0770
+tirage_h|deltoides_posterieurs|delt rear row	tirage_h	deltoides_posterieurs	band standing rear delt row / barbell rear delt row / smith rear delt row	1022,0076,0762
+fente|quadriceps|leg split squat	fente	quadriceps	band single leg split squat / barbell single leg split squat / smith single leg split squat	1001,0099,0768
+tirage_h|avant_bras|curl reverse wrist	tirage_h	avant_bras	barbell reverse wrist curl / cable reverse wrist curl / dumbbell reverse wrist curl	0082,0210,0385
+poussee_h|pectoraux|exercise on press	poussee_h	pectoraux	cable press on exercise ball / dumbbell press on exercise ball	1268,1293
+charniere|ischios|curl inverse leg self	charniere	ischios	self assisted inverse leg curl / self assisted inverse leg curl	0697,1766
+poussee_v|dentele_anterieur|incline raise shoulder	poussee_v	dentele_anterieur	barbell incline shoulder raise / dumbbell incline shoulder raise	0050,0328
+poussee_v|deltoides_lateraux|arm lateral raise	poussee_v	deltoides_lateraux	cable one arm lateral raise / dumbbell one arm lateral raise	0192,0355
+mobilite|adducteurs|butterfly pose yoga	mobilite	adducteurs	butterfly yoga pose	1494
+tirage_h|trapezes|incline shrug	tirage_h	trapezes	dumbbell incline shrug	0329
+poussee_v|rhomboides|incline raise y	poussee_v	rhomboides	dumbbell incline y-raise	3541
+charniere|erecteurs_rachis|arms back exercise extended extension with	charniere	erecteurs_rachis	exercise ball back extension with arms extended	1333
+hanche_laterale|moyen_fessier|abduction hip	hanche_laterale	moyen_fessier	resistance band seated hip abduction	3006
+tirage_h|biceps|concentration curl	tirage_h	biceps	band concentration curl / barbell standing concentration curl / cable concentration curl / dumbbell standing concentration curl	0976,2414,1631,0418
+gainage|abdominaux|bend side	gainage	abdominaux	45° side bend / cable side bend / dumbbell side bend	0002,0222,0407
+charniere|mollets|calf donkey raise	charniere	mollets	donkey calf raise / weighted donkey calf raise	0284,0833
+poussee_h|triceps|extension incline triceps	poussee_h	triceps	cable incline triceps extension / dumbbell incline triceps extension / ez barbell incline triceps extension	0173,0330,0449
+poussee_v|deltoides_anterieurs|arnold press	poussee_v	deltoides_anterieurs	dumbbell arnold press / kettlebell arnold press	2137,0523
+tirage_h|grand_dorsal+rhomboides|row	tirage_h	grand_dorsal,rhomboides	bodyweight standing row / cable seated row / kettlebell alternating row	3166,0861,0522
+tirage_h|fessiers|hip internal rotation	tirage_h	fessiers	band lying hip internal rotation / band seated hip internal rotation	0984,0996
+tirage_h|deltoides_posterieurs|lateral raise rear	tirage_h	deltoides_posterieurs	cable seated rear lateral raise / dumbbell lying rear lateral raise / dumbbell rear lateral raise	0215,0348,0380
+squat|quadriceps|sissy squat	squat	quadriceps	sissy squat / weighted sissy squat	1489,0851
+tirage_h|avant_bras|curls finger	tirage_h	avant_bras	dumbbell finger curls / finger curls	1437,0455
+poussee_h|pectoraux|chest press	poussee_h	pectoraux	cable seated chest press / resistance band seated chest press	2144,3124
+mobilite|ischios|exercise hamstring stretch	mobilite	ischios	exercise ball seated hamstring stretch	1560
+poussee_h|dentele_anterieur|incline push scapula up	poussee_h	dentele_anterieur	incline scapula push up	3011
+poussee_v|deltoides_lateraux|front lateral raise	poussee_v	deltoides_lateraux	band front lateral raise	0977
+hanche_laterale|adducteurs|adduction hip plank side	hanche_laterale	adducteurs	side plank hip adduction	1775
+poussee_h|trapezes|dips scapula	poussee_h	trapezes	scapula dips	3012
+poussee_h|rhomboides|fly plank rear side with	poussee_h	rhomboides	dumbbell side plank with rear fly	3664
+charniere|erecteurs_rachis|back exercise extension ground knees off with	charniere	erecteurs_rachis	exercise ball back extension with knees off ground	1335
+tirage_h|biceps|bicep curl	tirage_h	biceps	cable lying bicep curl / dumbbell seated bicep curl / smith machine bicep curl	1634,1677,1683
+gainage|abdominaux|crunch	gainage	abdominaux	band standing crunch / cable seated crunch / cable standing crunch	1005,0212,0226
+mobilite|mollets|ankle circles	mobilite	mollets	ankle circles	1368
+charniere|triceps|kickback	charniere	triceps	cable kickback / dumbbell seated kickback / dumbbell standing kickback	0860,0394,0420
+poussee_v|deltoides_anterieurs|raise	poussee_v	deltoides_anterieurs	dumbbell raise / dumbbell standing alternate raise	0376,0415
+tirage_v|grand_dorsal|pulldown underhand	tirage_v	grand_dorsal	band underhand pulldown / cable underhand pulldown	1013,0245
+fente|fessiers|step up	fente	fessiers	band step-up / barbell step-up	1008,0114
+tirage_h|deltoides_posterieurs|delt raise rear	tirage_h	deltoides_posterieurs	barbell rear delt raise / dumbbell rear delt raise	0075,2292
+mobilite|quadriceps|all fours squad stretch	mobilite	quadriceps	all fours squad stretch	1512
+tirage_h|avant_bras|bench curl over revers wrist	tirage_h	avant_bras	dumbbell over bench revers wrist curl	0368
+poussee_h|pectoraux|drop push up	poussee_h	pectoraux	drop push up / weighted drop push up	1275,1310
+mobilite|ischios|hamstring stretch	mobilite	ischios	hamstring stretch	1511
+poussee_h|dentele_anterieur|push scapula up	poussee_h	dentele_anterieur	scapula push-up	3021
+poussee_v|deltoides_lateraux|can full lateral raise	poussee_v	deltoides_lateraux	dumbbell full can lateral raise	0311
+tirage_h|trapezes|decline shrug	tirage_h	trapezes	dumbbell decline shrug	0305
+poussee_h|rhomboides|elbow lift push reverse up	poussee_h	rhomboides	elbow lift - reverse push-up	1772
+charniere|erecteurs_rachis|back exercise extension rotation with	charniere	erecteurs_rachis	exercise ball back extension with rotation	1336
+tirage_h|biceps|biceps curl	tirage_h	biceps	barbell alternate biceps curl / dumbbell alternate biceps curl / dumbbell biceps curl	0023,0285,0294
+gainage|abdominaux|sit up	gainage	abdominaux	3/4 sit-up / assisted sit-up	0001,1758
+mobilite|mollets|against calf hands push stretch wall with	mobilite	mollets	calf push stretch with hands against wall	1407
+poussee_h|triceps|close grip push up	poussee_h	triceps	band close-grip push-up / close-grip push-up / medicine ball close grip push up	0975,0259,1701
+poussee_v|deltoides_anterieurs|raise y	poussee_v	deltoides_anterieurs	band y-raise	1017
+tirage_h|grand_dorsal+rhomboides|arm bench grip incline reverse row	tirage_h	grand_dorsal,rhomboides	dumbbell reverse grip incline bench one arm row / dumbbell reverse grip incline bench two arm row	1330,1331

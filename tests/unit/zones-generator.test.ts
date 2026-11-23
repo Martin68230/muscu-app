@@ -40,8 +40,9 @@ const PROFILS: [string, GeneratorInput, string[]][] = [
   ['2 intermédiaire force salle 4 j', demo({ level: 'intermediaire', daysPerWeek: 4, sessionDurationMin: 60, place: 'salle', salleAccess: true }, salle, 'force'), ['coiffe_rotateurs', 'carre_des_lombes']],
   ['3 perte de gras + cardio', demo({ level: 'intermediaire', daysPerWeek: 3 }, eq(HE), 'perte_gras', 'cardio'), ['trapezes_bas', 'coiffe_rotateurs', 'carre_des_lombes', 'abducteurs', 'mollets_soleaire', 'tibiaux', 'peroniers']],
   ['4 volley', demo({ level: 'intermediaire', daysPerWeek: 3, sports: ['volley'] }, eq(E), 'sport'), ['epaules_cote', 'fessiers_moyen', 'coiffe_rotateurs', 'carre_des_lombes', 'tibiaux']],
-  ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef', 'tibiaux', 'biceps', 'avant_bras', 'mollets_soleaire']],
-  ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut', 'coiffe_rotateurs', 'abducteurs', 'carre_des_lombes']],
+  ['5 débutant sans matériel', demo({ level: 'debutant', daysPerWeek: 3 }, eq(['poids_du_corps', 'tapis']), 'muscle'), ['epaules_cote', 'triceps_long_chef', 'tibiaux', 'biceps', 'avant_bras', 'mollets_soleaire', 'trapezes_haut']],
+  ['6 avancé salle 5 j', demo({ level: 'avance', daysPerWeek: 5, sessionDurationMin: 75, place: 'salle', salleAccess: true }, salle, 'muscle'), ['trapezes_haut', 'coiffe_rotateurs', 'abducteurs', 'carre_des_lombes', 'trapezes_bas']],
+  // 15/11/2026 (fiches du jeu hasaneyldrm, rotation de variété) : profil 5, trapèzes (haut) et profil 6, trapèzes (bas) peuvent rester gris selon les fiches tirées dans la semaine ; cités dans le message V-MSG-ZONES-GRIS, aucun plafond relâché.
   // 13/11/2026 (plafonds relevés) : profil 6 : l'isolation PPL passe avant le contrôle des zones (elle prend une place par séance : 8 exercices au plus) ;
   // le carré des lombes (planche latérale, correctif) peut rester gris, cité dans le message : place, jamais un plafond relâché.
 ];

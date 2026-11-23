@@ -469,7 +469,9 @@ describe('T-D26-14 à 21, 24 à 27 : sécurité (dos, grossesse, CORE-ORD-4), P3
   it('famille_core posée sur les 29 fiches de l’inventaire (24 + 5 du lot 03, 13/11/2026) (copenhague-court sans famille)', () => {
     const inv = readFileSync('knowledge/famille-core-inventaire.md', 'utf8');
     const withFamily = FICHES.filter((f) => f.familleCore);
-    expect(withFamily.length).toBe(29);
+    // 15/11/2026 : + 66 fiches du jeu hasaneyldrm (inventaire : section « vague 3 »), 29 fiches validées à la main.
+    expect(withFamily.filter((f) => (f as unknown as { images: unknown[] }).images.length > 0).length).toBe(29);
+    expect(withFamily.length).toBe(95);
     expect(FICHES.find((f) => f.id === 'copenhague-court')?.familleCore).toBeUndefined();
     for (const f of withFamily) expect(inv).toContain(`| ${f.id} |`);
   });

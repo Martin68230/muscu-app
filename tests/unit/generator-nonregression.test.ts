@@ -170,5 +170,5 @@ describe('Non-régression du générateur pour les objectifs sans cardio (B4)', 
 
     expect(diff).toEqual([]);
     expect(Object.keys(now).length).toBe(Object.keys(ref).length);
-  }, 240_000);
+  }, 1_200_000); // 15/11/2026 : la grille (662 programmes) prend ~4 min depuis que le pool compte ~430 fiches (95 s à 270 fiches) : délai relevé
 });

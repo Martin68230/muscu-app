@@ -7,7 +7,7 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CAL11, COMPLEMENTS, MANUAL_ONLY_FICHES, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CAL11, COMPLEMENTS, MANUAL_ONLY_FICHES, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, HASAN_UPPER_IN_GENERATOR, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
@@ -36,6 +36,8 @@ import { cooldown, e3Sets, generalWarmup, lightMobility, mobilityWarmup } from '
 import { familyOf, fillWeekVariety, VAR_MAX_PER_FAMILY_WEEK } from './variety';
 import { mergeRotation } from './rotation';
 import { addCal11 } from './cal11';
+import { addCalfGuarantee } from './calves';
+import { capCoreWeek } from './core-cap';
 import { addComplements } from './complements';
 import { addSportPrevention } from './sport-prevention';
 import { a1Allowed, lightenLegs } from './sport-legs-light';
@@ -492,7 +494,11 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
         prefer: ctx.goalKey === 'sport' && sportFamily(ctx.sports) === 'sauts' && !impactExclusion(ctx) ? (d) => jumpDayAllowed(d, heavyDays, ctx.level) && !sportMap?.[d]?.jumpLock : undefined,
       });
 
-  const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut)).sort((a, b) => (a.id < b.id ? -1 : 1));
+  // 15/11/2026 : les fiches du HAUT du corps issues du jeu hasaneyldrm (poussées, tirages, bras, épaules ; sans image du dépôt) ne sont pas encore proposées par le générateur : avec ce pool, les
+  // zones de trapèzes et d'épaules dépassent leurs plafonds de zone et le cou n'est plus placé (tests plafonds-releves) ; elles restent dans la bibliothèque (choix manuel, « Créer une séance »).
+  // Bas du corps, tronc et mobilité du jeu sont proposés. Levée : HASAN_UPPER_IN_GENERATOR = true après étalonnage des zones par le développeur.
+  const hasanUpper = (f: Fiche): boolean => !HASAN_UPPER_IN_GENERATOR && Array.isArray(f.images) && f.images.length === 0 && /^(poussee_h|poussee_v|tirage_h|tirage_v)$/.test(f.schema);
+  const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut) && !hasanUpper(f)).sort((a, b) => (a.id < b.id ? -1 : 1));
   // D26 : séances qui reçoivent du core. Corps entier : table §2.2 et CORE-FREQ-5 (A puis C, puis B) ; D25 (STR-REP-9) : bas ou legs
   // d'abord, puis haut, puis pull (jamais push) ; l'ordre de retrait au-delà du plancher suit le même ordre (CORE-TPS-1).
   const coreTarget = coreTargetSessions(nDays, coreGoalOf(ctx.goalFamily, principal));
@@ -1072,6 +1078,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   addCal11(kept, zoneDeps, typeOf);
   // Plafonds relevés (13/11/2026) : compléments PUSH / PULL / LEGS sur des muscles non protégés (complements.ts).
   addComplements(kept, zoneDeps, typeOf);
+  // 14/11/2026 : chaque séance de jambes (BAS / LEGS) reçoit des mollets en dernier quand une fiche admissible existe (calves.ts).
+  addCalfGuarantee(kept, zoneDeps, typeOf);
+  // Plafonds de core (6 par séance, 12 par semaine) tenus après tous les ajouts : on ne fait que baisser des séries de tronc (core-cap.ts).
+  capCoreWeek(kept, ctx);
   // Cou (`kine`, 07/11/2026) : l'isolation, le remplissage PPL et le remplissage du temps passent après le correctif ; si l'un d'eux a ajouté un exercice lourd
   // d'épaules / trapèzes dans une séance qui a déjà le cou, le cou en est retiré (jamais ailleurs).
   for (const s of kept) {

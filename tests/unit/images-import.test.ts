@@ -9,7 +9,7 @@ import { getDB } from '../../src/data/db';
 import { wipeAllData } from '../../src/data/backup';
 import { MAX_ENTRIES } from '../../src/images/zip';
 import { GV_TABLE } from '../../src/images/gv-table';
-import { candidates, entryForFileName } from '../../src/images/match';
+import { candidates, candidatesForFiche, entryForFileName } from '../../src/images/match';
 import { importFiles } from '../../src/images/importer';
 import { countImages, deleteAllImages, getImage } from '../../src/images/store';
 // @ts-ignore
@@ -47,6 +47,15 @@ describe('table D22', () => {
     const lignes = readFileSync('knowledge/exercices/SANS-IMAGE-coach.tsv', 'utf8').replace(/\r/g, '').split('\n').filter(Boolean).slice(1).map((l: string) => l.split('\t'));
     expect(lignes.length).toBeGreaterThan(100);
     for (const [f, v, raison] of lignes) { expect(['pas_dans_le_jeu', 'ambigu']).toContain(raison); expect(GV_TABLE.some((e) => e.fiche === f && e.variante === v)).toBe(false); }
+  });
+  it('repli : variante affichée d’abord, puis autres variantes de la même fiche (sûr avant proche), jamais une autre fiche', () => {
+    const e = GV_TABLE.find((x) => x.fiche === 'pompe' && x.variante === 'pompe-mur')!;
+    const exact = candidatesForFiche('pompe', 'pompe-mur', ['pompe-mur', 'pompe-genoux', 'pompe-sol']);
+    expect(exact[0]).toMatchObject({ id: e.id, exact: true });
+    const sans = candidatesForFiche('pompe', 'variante-inconnue', ['pompe-mur', 'pompe-genoux']);
+    expect(sans.length).toBeGreaterThan(0);
+    expect(sans.every((c) => c.fiche === 'pompe' && !c.exact)).toBe(true);
+    expect(candidatesForFiche('fiche-inconnue', 'x', [])).toEqual([]);
   });
   it('variante exacte seulement', () => {
     expect(candidates('pompe', 'pompe-mur').map((e) => e.id)).toContain('0659');
@@ -108,6 +117,21 @@ describe('import local', () => {
     const r = await importFiles([file(GIF, D[3].gif), file(new Uint8Array(100), 'faux.zip')]);
     expect(r.stored).toEqual([D[3].id]); expect(r.errors.length).toBe(1);
     await deleteAllImages();
+  });
+});
+
+describe('entrée du convertisseur (fiches créées depuis le jeu)', () => {
+  const auto = JSON.parse(readFileSync('knowledge/exercices/CORRESPONDANCE-FICHES-HASAN.json', 'utf8')) as { hasan_id: string; fiche: string; variante: string; niveau?: string }[];
+  const gifs = new Set(readFileSync('knowledge/exercices/CORRESPONDANCE-GYMVISUAL.tsv', 'utf8').split(String.fromCharCode(10)).slice(1).map((l: string) => l.split(String.fromCharCode(9))[0]));
+  it('format : hasan_id du jeu, fiche et variante existantes, niveau sûr ou proche, présent dans la table générée', () => {
+    expect(Array.isArray(auto)).toBe(true);
+    for (const x of auto) {
+      expect(gifs.has(String(x.hasan_id))).toBe(true);
+      expect(idsFiches.has(x.fiche)).toBe(true);
+      expect(idsVar.has(`${x.fiche}/${x.variante}`)).toBe(true);
+      expect(['sûr', 'proche', undefined]).toContain(x.niveau);
+      expect(GV_TABLE.some((e) => e.id === String(x.hasan_id) && e.fiche === x.fiche && e.variante === x.variante)).toBe(true);
+    }
   });
 });
 

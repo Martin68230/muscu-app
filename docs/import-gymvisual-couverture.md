@@ -1,14 +1,14 @@
 # D22 : couverture des images par fiche (14/11/2026)
 
-Fiches : 271 (A1 et lot 6 compris) ; variantes : 574. GIF distincts utilisés : 179.
+Fiches : 271 (A1 et lot 6 compris) ; variantes : 574. GIF distincts utilisés : 181.
 
 | | fiches | variantes |
 |---|---|---|
-| image sûre (même mouvement, même matériel) | 86 | 113 |
-| variante proche seulement (même geste, autre matériel / charge ; légende « exercice proche ») | 57 | 140 |
-| aucune image | 128 | 321 |
+| image sûre (même mouvement, même matériel) | 88 | 115 |
+| variante proche seulement (même geste, autre matériel / charge ; légende « exercice proche ») | 57 | 142 |
+| aucune image | 126 | 317 |
 
-Sans image, par raison (variantes) : pas_dans_le_jeu 218, ambigu 100.
+Sans image, par raison (variantes) : pas_dans_le_jeu 215, ambigu 99.
 Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute = rien. Les variantes au sol qui reçoivent une image de banc sont « proche ». Quelques « sûr » reposent sur le nom seul : à regarder sur l'iPhone.
 
 ## Fiches sans aucune image (raison de leurs variantes)
@@ -91,7 +91,6 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - planche-bras-jambe-leves : pas_dans_le_jeu — aucun équivalent dans le jeu
 - planche-cercles-ballon : pas_dans_le_jeu — aucun équivalent dans le jeu
 - pompe-bosu : ambigu — bosu 1307 et 0653 : orientation du dôme et appui genoux non vérifiables
-- pompe-ecartee : ambigu — pas de pompe large ; push-up standard a les mains à largeur d'épaules
 - pompe-equilibre-mur : ambigu — handstand push-up (0471) différent, geste technique
 - pompe-mains-ballon : pas_dans_le_jeu — aucun équivalent dans le jeu
 - pompe-piquee : pas_dans_le_jeu — aucun équivalent dans le jeu
@@ -136,13 +135,12 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - traction-un-bras : ambigu — 0638 un bras sans aide et 0970 deux bras contredisent la consigne
 - ytw-sol : pas_dans_le_jeu — Seuls Y et T inclines sur banc, pas au sol
 - coquille-hanche : pas_dans_le_jeu — aucune coquille ; l'abduction couchée du jeu est une levée de jambe tendue
-- fente-croisee : pas_dans_le_jeu — aucune fente croisée ; fentes arrière ou avant d'un geste différent
 - pallof-pas-lateraux : ambigu — seuls des Pallof statifs existent (déjà utilisés) ; les pas de côté seraient contredits
 - planche-glissee-serviette : pas_dans_le_jeu — aucune planche glissée sur serviette
 - posture-enfant-bras-avances : pas_dans_le_jeu — aucune posture de l'enfant
 
-## Causes des fiches restées sans image (128)
-- (a) aucun équivalent dans le jeu (poids du corps, élastique, chaise, objets du quotidien, exercices originaux du projet) : 76
+## Causes des fiches restées sans image (126)
+- (a) aucun équivalent dans le jeu (poids du corps, élastique, chaise, objets du quotidien, exercices originaux du projet) : 74
 - (b) équivalent trouvé par le coach puis écarté à ma relecture (ex. alternance marche-course : le GIF montre la course seule) : 2
 - (c) équivalent présent mais ambigu : refusé (autre geste, posture ou appui possible) : 50
 
@@ -163,4 +161,4 @@ Jugement du coach d'après noms / matériel / muscle du jeu, NON SOURCÉ ; doute
 - ecartement-serviette : 41/150 — cause a : aucun équivalent dans le jeu (recherche mouvement, muscle, matériel : rien de la même posture et du même geste)
 - face-pull-elastique : 38/150 — cause c : 0203 rear delt row with rope : rowing buste penché à la poulie, pas un tirage au visage
 
-Seconde passe (14/11) : recherche par mouvement / muscle / matériel ; 9 variantes ajoutées (toutes « proche »). Les « proche » jugés sur le nom seul à regarder sur l'iPhone : 0696, 0669, 0410, 2137, 0287, 1297, 0710, 0983.
+Seconde passe (14/11) : recherche par mouvement / muscle / matériel, 9 variantes « proche » ajoutées. Troisième passe (15/11, recherche inverse sur les 998 GIF libres du jeu) : 4 variantes (2 sûr : pompe écartée, fente croisée ; 2 proche) ; tous les autres rapprochements recoupent des refus légitimes (posture ou geste non confirmé). Les « proche » jugés sur le nom seul à regarder sur l'iPhone : 0696, 0669, 0410, 2137, 0287, 1297, 0710, 0983.

@@ -1,0 +1,61 @@
+famille	nom_fr	alias
+tirage_h|biceps|curl preacher	Curl au pupitre	preacher curl, curl Scott
+rotation|abdominaux|twist	Rotation du tronc assis	seated twist, rotation assise
+cheville_mollet|mollets|calf leg raise	ECARTER	doublon de releve-mollets-une-jambe-appui et releve-mollets-debout-barre
+poussee_h|triceps|extension triceps	Extension triceps au-dessus de la tête	overhead triceps extension, french press
+poussee_v|deltoides_anterieurs|front raise	ECARTER	doublon de elevation-frontale-halteres
+tirage_h|grand_dorsal+rhomboides|arm row	ECARTER	doublon de rowing-unilateral-haltere
+squat|fessiers|squat	ECARTER	doublon de squat-gobelet / squat-barre
+tirage_h|deltoides_posterieurs|delt rear row	Rowing épaules arrière	rear delt row, rowing deltoïde postérieur
+fente|quadriceps|leg split squat	ECARTER	doublon de squat-bulgare / squat-fendu
+tirage_h|avant_bras|curl reverse wrist	ECARTER	doublon de curl-inverse-halteres / extension-poignet-avant-bras
+poussee_h|pectoraux|exercise on press	Développé couché sur ballon	chest press on ball, développé sur swiss ball
+charniere|ischios|curl inverse leg self	ECARTER	doublon de nordique-ischios
+poussee_v|dentele_anterieur|incline raise shoulder	ECARTER	geste incohérent (élévation scapulaire mal défini)
+poussee_v|deltoides_lateraux|arm lateral raise	ECARTER	doublon de elevation-laterale
+mobilite|adducteurs|butterfly pose yoga	Posture du papillon	butterfly stretch, étirement grenouille assis
+tirage_h|trapezes|incline shrug	Haussement d'épaules au banc incliné	incline shrug, shrug poitrine appuyée
+poussee_v|rhomboides|incline raise y	Élévation en Y au banc incliné	incline Y raise, Y-raise
+charniere|erecteurs_rachis|arms back exercise extended extension with	ECARTER	doublon de extension-dorsale-ballon
+hanche_laterale|moyen_fessier|abduction hip	Abduction de hanche assis	seated hip abduction, abduction assise élastique
+tirage_h|biceps|concentration curl	ECARTER	doublon de curl-concentration-halteres
+gainage|abdominaux|bend side	Flexion latérale du tronc	side bend, inclinaison latérale
+charniere|mollets|calf donkey raise	Mollets à l'âne	donkey calf raise, relevé de mollets penché
+poussee_h|triceps|extension incline triceps	Extension triceps au banc incliné	incline triceps extension, extension triceps incliné
+poussee_v|deltoides_anterieurs|arnold press	ECARTER	doublon de developpe-arnold-halteres
+tirage_h|grand_dorsal+rhomboides|row	ECARTER	regroupe des gestes différents (rowing au poids du corps, poulie, kettlebell)
+tirage_h|fessiers|hip internal rotation	Rotation interne de hanche	hip internal rotation, rotation interne couchée
+tirage_h|deltoides_posterieurs|lateral raise rear	ECARTER	doublon de oiseau-halteres
+squat|quadriceps|sissy squat	ECARTER	sollicitation importante des genoux, exercice technique
+tirage_h|avant_bras|curls finger	Curl des doigts	finger curls, flexion des doigts
+poussee_h|pectoraux|chest press	Développé poitrine assis	seated chest press, chest press
+mobilite|ischios|exercise hamstring stretch	ECARTER	doublon de etirement-ischios-serviette
+poussee_h|dentele_anterieur|incline push scapula up	Pompe scapulaire inclinée	incline scapular push-up, protraction scapulaire
+poussee_v|deltoides_lateraux|front lateral raise	ECARTER	doublon de elevation-laterale
+hanche_laterale|adducteurs|adduction hip plank side	Adduction en planche latérale	side plank adduction, planche latérale adduction
+poussee_h|trapezes|dips scapula	Dips scapulaire	scapular dips, dépression scapulaire
+poussee_h|rhomboides|fly plank rear side with	ECARTER	geste composite incohérent (planche latérale + oiseau)
+charniere|erecteurs_rachis|back exercise extension ground knees off with	ECARTER	doublon de extension-dorsale-ballon
+tirage_h|biceps|bicep curl	ECARTER	doublon de curl-halteres, gestes mélangés
+gainage|abdominaux|crunch	Crunch debout résisté	standing crunch, crunch debout
+mobilite|mollets|ankle circles	ECARTER	doublon de cercles-de-cheville
+charniere|triceps|kickback	ECARTER	doublon de kickback-triceps-halteres
+poussee_v|deltoides_anterieurs|raise	ECARTER	doublon de elevation-frontale-halteres
+tirage_v|grand_dorsal|pulldown underhand	Tirage vertical prise supination	underhand pulldown, tirage vertical prise serrée supination
+fente|fessiers|step up	ECARTER	doublon de montee-sur-marche / montee-sur-banc
+tirage_h|deltoides_posterieurs|delt raise rear	ECARTER	doublon de oiseau-halteres
+mobilite|quadriceps|all fours squad stretch	ECARTER	doublon de etirement-quadriceps
+tirage_h|avant_bras|bench curl over revers wrist	ECARTER	doublon de curl-inverse-halteres
+poussee_h|pectoraux|drop push up	ECARTER	exercice pliométrique avancé, non adapté débutants
+mobilite|ischios|hamstring stretch	ECARTER	doublon de etirement-ischios-serviette
+poussee_h|dentele_anterieur|push scapula up	ECARTER	doublon de la famille pompe scapulaire inclinée
+poussee_v|deltoides_lateraux|can full lateral raise	ECARTER	doublon de elevation-laterale
+tirage_h|trapezes|decline shrug	ECARTER	doublon de haussement-epaules-halteres
+poussee_h|rhomboides|elbow lift push reverse up	ECARTER	geste incohérent (pompe inversée avec levée de coude)
+charniere|erecteurs_rachis|back exercise extension rotation with	ECARTER	doublon de extension-dorsale-ballon
+tirage_h|biceps|biceps curl	ECARTER	doublon de curl-halteres
+gainage|abdominaux|sit up	Relevé de buste	sit-up, relevé de buste 3/4
+mobilite|mollets|against calf hands push stretch wall with	ECARTER	doublon de etirement-mollets-mur
+poussee_h|triceps|close grip push up	Pompe mains rapprochées	close-grip push-up, pompe prise serrée
+poussee_v|deltoides_anterieurs|raise y	ECARTER	doublon de ytw-sol
+tirage_h|grand_dorsal+rhomboides|arm bench grip incline reverse row	ECARTER	doublon de rowing-unilateral-haltere

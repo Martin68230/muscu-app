@@ -2,7 +2,8 @@
 import { describe, expect, it } from 'vitest';
 import type { ProgramDay, SetLog } from '../../src/data/model';
 import { generateProgram, toProgramDays } from '../../src/generator';
-import { UNLIMITED } from '../../src/generator/config';
+import { RAISED_CAPS, UNLIMITED } from '../../src/generator/config';
+import { raisedCaps } from '../../src/generator/plaf';
 import { buildCtx } from '../../src/generator/context';
 import type { GeneratorInput } from '../../src/generator/types';
 import { doneZoneSets, lastWeekOf, swapPointsOk, zoneCatchUp, type CatchUpProfile } from '../../src/zones/catchup';
@@ -64,7 +65,9 @@ describe('zoneCatchUp : fonction pure', () => {
     // (lecture relative, comme zones-check.ts : un groupe déjà au-dessus ne monte pas).
     const pts = (ds: readonly ProgramDay[]) => capGroupPoints(pointsByZone(ds.flatMap((d) => d.exercises.map((e) => ({ ficheId: e.movementId, sets: e.sets }))), FICHES as never));
     const before = pts(days);
-    for (const [g, v] of pts([r.day, ...days.slice(1)])) expect(v.points, g).toBeLessThanOrEqual(Math.max(zoneCaps(v.zone).week, before.get(g)!.points));
+    // 15/11/2026 : profil relevé (intermédiaire / avancé sans protection) : plafond de zone x1,2 pour les zones non protégées (comme le générateur), les six groupes protégés restent à 20.
+    const raised = raisedCaps(ctxOf(INTER));
+    for (const [g, v] of pts([r.day, ...days.slice(1)])) expect(v.points, g).toBeLessThanOrEqual(Math.max(zoneCaps(v.zone, raised && { factor: RAISED_CAPS.zoneFactor }).week, before.get(g)!.points));
   });
 
   it('séance manquée : les zones de cette séance passent en gris ou orange, une semaine complète n’en a pas autant', () => {

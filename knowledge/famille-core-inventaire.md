@@ -57,3 +57,76 @@ Cinq fiches ajoutées (crunch-au-sol, releve-bassin-jambes-pliees, superman-alte
 - **CF4 (flexion du tronc) : une seule fiche** (crunch-bicyclette, tranchée CF4 avec restrictions de CF3) (pas de relevé de buste court, pas de relevé de jambes, pas de flexion latérale dynamique).
 - **CF5 (extension) : une seule fiche** (extension-dorsale-ballon, tranchée CF5 hors plancher ; pas d'extension au sol).
 - Conséquence : le plancher de CORE-FREQ-2 est atteignable avec CF1 et CF2 seulement (17 fiches : 10 CF1 et 7 CF2), ce qui suffit au débutant et au dos niveau 2. Rédaction de fiches CF4 et CF5 : demande à `coach` si l'utilisateur veut ces familles disponibles.
+
+## Fiches du jeu hasaneyldrm (vague 3, 15/11/2026)
+
+Famille posée par le convertisseur (tools/hasan-vers-fiches.mjs), revue par `coach` et `kine` ; mêmes plafonds de core (CORE_MAX) et mêmes règles de dos que les fiches ci-dessus ; plafonds tenus après tous les ajouts (core-cap.ts). Statuts NON SOURCÉS.
+
+| id | schéma | niveau | famille |
+|---|---|---|---|
+| balayage-diagonal-avec-halteres | rotation | intermediaire | CF3 |
+| bascule-du-bassin | gainage | debutant | CF1 |
+| cocon | gainage | debutant | CF4 |
+| coude-vers-genou-allonge | rotation | intermediaire | CF4 |
+| crunch-a-descente-lente | gainage | debutant | CF4 |
+| crunch-a-genoux-resiste | gainage | intermediaire | CF4 |
+| crunch-avec-toucher-de-genou | gainage | intermediaire | CF4 |
+| crunch-bras-tendus-au-dessus-de-la-tete | gainage | debutant | CF4 |
+| crunch-croise | gainage | intermediaire | CF4 |
+| crunch-debout-resiste | gainage | intermediaire | CF4 |
+| crunch-en-rotation-a-genoux | rotation | intermediaire | CF3 |
+| crunch-en-rotation-debout | rotation | intermediaire | CF3 |
+| crunch-grenouille | gainage | debutant | CF4 |
+| crunch-jambes-repliees | gainage | intermediaire | CF4 |
+| crunch-lateral-a-la-poulie | gainage | intermediaire | CF4 |
+| crunch-lateral-assis-contre-un-mur | gainage | debutant | CF4 |
+| crunch-oblique | gainage | debutant | CF4 |
+| crunch-oblique-en-v | rotation | intermediaire | CF4 |
+| crunch-sur-ballon | gainage | intermediaire | CF4 |
+| crunch-sur-ballon-bras-tendus | gainage | intermediaire | CF4 |
+| crunch-sur-plan-incline | gainage | intermediaire | CF4 |
+| extension-du-dos-sur-banc-a-45-degres | charniere | intermediaire | CF5 |
+| fente-avec-rotation-du-buste-sans-charge | rotation | intermediaire | CF3 |
+| flexion-laterale-du-tronc | gainage | debutant | CF1 |
+| flexion-laterale-sur-ballon-charge-legere | gainage | intermediaire | CF4 |
+| grimpeur-croise | gainage | intermediaire | CF1 |
+| marche-de-la-chenille | gainage | intermediaire | CF1 |
+| marche-de-la-chenille-en-v | gainage | intermediaire | CF1 |
+| montee-de-hanche-laterale-aux-barres-paralleles | gainage | intermediaire | CF4 |
+| pallof-vers-le-haut | anti_rotation | intermediaire | CF2 |
+| pique-suspendu | gainage | avance | CF4 |
+| planche-appui-haut-sur-les-mains-puissance | gainage | intermediaire | CF1 |
+| planche-avec-rotation | rotation | intermediaire | CF3 |
+| planche-inversee-avec-jambe-levee | gainage | intermediaire | CF1 |
+| planche-lestee | gainage | intermediaire | CF1 |
+| releve-de-bassin-jambes-verticales | gainage | intermediaire | CF4 |
+| releve-de-bras-en-diagonale-a-la-poulie | rotation | intermediaire | CF3 |
+| releve-de-buste | gainage | debutant | CF4 |
+| releve-de-buste-incline-avec-rotation | rotation | intermediaire | CF3 |
+| releve-de-buste-jambes-tendues-bras-tendus | gainage | intermediaire | CF4 |
+| releve-de-genoux-en-oblique-suspendu | gainage | intermediaire | CF4 |
+| releve-de-genoux-suspendu | gainage | intermediaire | CF4 |
+| releve-de-genoux-suspendu-balancier | gainage | intermediaire | CF4 |
+| releve-de-jambes-allonge-sur-banc | gainage | intermediaire | CF4 |
+| releve-de-jambes-assis | gainage | debutant | CF4 |
+| releve-de-jambes-aux-barres-paralleles | gainage | intermediaire | CF4 |
+| releve-de-jambes-et-de-bassin-allonge | gainage | intermediaire | CF4 |
+| releve-de-jambes-sur-banc-incline | gainage | intermediaire | CF4 |
+| releve-de-jambes-suspendu | gainage | intermediaire | CF4 |
+| releve-de-jambes-suspendu-avec-bascule-du-bassin | gainage | intermediaire | CF4 |
+| releve-de-jambes-suspendu-en-rotation | rotation | avance | CF3 |
+| releve-de-jambes-tendues-a-la-chaise-romaine | gainage | intermediaire | CF4 |
+| releve-de-jambes-tendues-allonge | gainage | intermediaire | CF4 |
+| releve-de-jambes-tendues-suspendu-balancier | gainage | intermediaire | CF4 |
+| releve-de-jambes-tendues-suspendu-bassin-bascule | gainage | intermediaire | CF4 |
+| releve-en-v | gainage | intermediaire | CF4 |
+| rentree-de-genoux-allonge | gainage | debutant | CF4 |
+| rotation-du-tronc-assis | rotation | debutant | CF3 |
+| rotation-lestee-assise-sur-ballon | rotation | intermediaire | CF3 |
+| rotation-russe-sur-ballon-a-la-poulie | rotation | avance | CF3 |
+| roule-de-l-abdomen-suspendu-aux-sangles | gainage | intermediaire | CF1 |
+| torsion-allonge-sur-ballon-face-au-sol | rotation | intermediaire | CF3 |
+| torsion-de-la-colonne-au-sol | rotation | intermediaire | CF3 |
+| torsion-du-buste-a-la-poulie-du-bas-vers-le-haut | rotation | intermediaire | CF3 |
+| touche-pied-en-crabe | rotation | intermediaire | CF3 |
+| touche-talons-alternes | gainage | debutant | CF4 |

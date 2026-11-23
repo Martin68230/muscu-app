@@ -294,7 +294,7 @@ export const D4_OPEN_SESSIONS = 2;
 /** Décision du chef de projet (contrôle relecteur 05/11/2026) : pilier chargé, 3 séries au plus (repetitions-regles.md §3 : 2-3 séries). */
 export const PILLAR_CHARGED_MAX_SETS = 3;
 /** [kine] Traction (même avancée) : réserve >= 2, 3 séries au plus, 5-10 répétitions (au-dessus de 10 : on monte d'échelon). */
-export const TRACTION_FICHES: readonly string[] = ['traction-barre', 'traction-gilet-lest'];
+export const TRACTION_FICHES: readonly string[] = ['traction-barre', 'traction-gilet-lest', 'traction-prise-large', 'traction-prise-neutre', 'traction-prise-neutre-serree', 'traction-supination', 'traction-supination-prise-serree']; // + 5 tractions de la vague 3 (15/11/2026) : mêmes plafonds de dose
 export const TRACTION_RULE = { minRir: 2, maxSets: 3, reps: [5, 10] as [number, number] };
 /** [kine] Mouvements techniques à barre (squat, soulevé de terre, good-morning, rowing barre, hip thrust barre) : au plus 12 répétitions. */
 export const TECHNICAL_CAP_FICHES: readonly string[] = [
@@ -645,6 +645,10 @@ export const PER_SIDE_VARIANT_IDS: readonly string[] = [
   // Vague 2 lot 04 (consigne « termine un côté, puis change ») : exercices à un bras à la fois.
   'coquille-sans-materiel', 'coquille-mini-bande', 'coquille-mini-bande-pause', // lot 6 : coquille de hanche, un côté puis l'autre
   'curl-concentration-banc', 'curl-concentration-chaise', 'kickback-triceps-banc', 'kickback-triceps-chaise', 'curl-poignet-halteres-banc', 'curl-poignet-halteres-cuisse',
+  // Lot 7 (15/11/2026) : extension de hanche debout, un côté puis l'autre.
+  'extension-hanche-debout-mur', 'extension-hanche-debout-chaise',
+  // Fiches du jeu hasaneyldrm (vague 3, 15/11/2026) : un côté puis l'autre.
+  'abduction-de-hanche-assis-elastique', 'balayage-diagonal-avec-halteres-halteres',
 ];
 
 // ---------------------------------------------------------------------------------------------
@@ -690,7 +694,7 @@ export const CORE_NOT_CORE_IDS: readonly string[] = ['copenhague-court', 'marche
 /** Inventaire : CF5 qui ne compte PAS dans le plancher (schéma charnière, hors GG5) ; jamais en superset. */
 export const CORE_OUT_OF_FLOOR_IDS: readonly string[] = ['extension-dorsale-ballon', 'superman-alterne', 'nage-au-sol'];
 /** Roue abdominale et roulé au ballon (CF1 dynamique) : débutant, dos dès le niveau 1, grossesse, charge lourde, P3. */
-export const CORE_WHEEL_IDS: readonly string[] = ['roue-abdos', 'rollout-ballon'];
+export const CORE_WHEEL_IDS: readonly string[] = ['roue-abdos', 'rollout-ballon', 'roule-de-l-abdomen-suspendu-aux-sangles'];
 /** CF1 dynamiques ou instables retirées au dos niveau 2 (CORE-SEC-3, R7 ; planche-ballon / planche-bosu : à confirmer par `kine`). */
 export const CORE_CF1_DYNAMIC_IDS: readonly string[] = ['planche-cercles-ballon', 'genoux-poitrine-ballon', 'planche-ballon', 'planche-bosu', 'gainage-lateral-dynamique'];
 /**
@@ -1524,3 +1528,6 @@ export const COMPLEMENTS = {
   /** Signes d'arrêt des compléments : ceux de CAL-11 + la mention « facultatif » (le message distingue ces ajouts de ceux de CAL-11). */
   stopMessage: `${CAL11.stopMessage} Exercice complémentaire, facultatif.`,
 };
+
+/** 15/11/2026 : fiches du haut du corps du jeu hasaneyldrm proposées par le générateur (false : bibliothèque et choix manuel seulement ; voir index.ts). */
+export const HASAN_UPPER_IN_GENERATOR = false;
