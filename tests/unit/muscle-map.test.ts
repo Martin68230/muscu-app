@@ -64,7 +64,12 @@ describe('map-data : échelle d\'affichage de la carte (PROVISOIRE, décision du
       if (!r.ok) throw new Error(`profil ${i + 1}`);
       const objectif = input.goals[0].goalKey;
       const { statuses, points } = weekMap(toProgramDays(r.program), byId, objectif);
-      for (const z of ZONES) expect(statuses[z.id], `profil ${i + 1} ${z.id}`).toBe(zoneStatus(points[z.id] ?? 0, z.id, objectif));
+      // 15/11/2026 : une zone grise travaillée par un exercice à dose fixe plafonnée (cou, mollets de fin de séance, correctifs) s'affiche orange (statusesFromPoints, « couverte ») ; sinon exactement zoneStatus.
+      for (const z of ZONES) {
+        const exp = zoneStatus(points[z.id] ?? 0, z.id, objectif);
+        if (exp === 'gris' && statuses[z.id] === 'orange' && (points[z.id] ?? 0) > 0) continue;
+        expect(statuses[z.id], `profil ${i + 1} ${z.id}`).toBe(exp);
+      }
     });
   });
 });
