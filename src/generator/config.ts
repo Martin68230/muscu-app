@@ -1529,5 +1529,13 @@ export const COMPLEMENTS = {
   stopMessage: `${CAL11.stopMessage} Exercice complémentaire, facultatif.`,
 };
 
-/** 15/11/2026 : fiches du haut du corps du jeu hasaneyldrm proposées par le générateur (false : bibliothèque et choix manuel seulement ; voir index.ts). */
-export const HASAN_UPPER_IN_GENERATOR = false;
+/**
+ * Fiches du haut du corps du jeu hasaneyldrm (sans image du dépôt) proposées par le générateur, par GROUPE : clé = schéma (poussee_h, poussee_v, tirage_h, tirage_v) ; un groupe absent reste en
+ * bibliothèque et en choix manuel (index.ts). Activation progressive après balayage de profils (plafonds de zone, cou, épaules) : voir docs/decisions-prises.md.
+ */
+export const HASAN_UPPER_ACTIVE: readonly string[] = ['poussee_v', 'tirage_h', 'tirage_v']; // poussee_h : à activer après revue (pompes / développés du jeu : séances pleines, correctifs supprimés, profil 3)
+
+/** Muscles principaux dont les fiches du jeu restent hors générateur même dans un groupe actif : zones à plafond protégé et petites zones (avant-bras, trapèzes, coiffe, dentelé, cou) : leur dose vient des fiches validées à la main. */
+export const HASAN_UPPER_EXCLUDED_MUSCLES: readonly string[] = ['avant_bras', 'trapezes', 'rhomboides', 'grand_dorsal', 'coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
+/** Même liste pour les muscles SECONDAIRES : la coiffe, le dentelé et le cou ne reçoivent aucun travail incident d'une fiche du jeu (cases de sécurité propres à ces zones). */
+export const HASAN_UPPER_EXCLUDED_SECONDARY: readonly string[] = ['coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
