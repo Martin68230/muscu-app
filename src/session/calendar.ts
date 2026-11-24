@@ -11,17 +11,17 @@ export type DayMark = 'faite' | 'douleur' | 'reportee' | 'arretee' | 'symptome' 
 export const MARK_TEXT: Record<DayMark, string> = {
   faite: 'Faite',
   douleur: 'Faite, avec une douleur',
-  reportee: 'Reportée',
+  reportee: 'Décalée',
   arretee: 'Arrêtée',
   symptome: 'Arrêtée, symptôme',
   sautee_choix: 'Sautée',
 };
-export const MARK_GLYPH: Record<DayMark, string> = { faite: '✓', douleur: '◆', reportee: '↷', arretee: '–', symptome: '◆', sautee_choix: '»' };
+export const MARK_GLYPH: Record<DayMark, string> = { faite: '✓', douleur: '◆', reportee: '↪', arretee: '–', symptome: '◆', sautee_choix: '✕' };
 
 /** Jour planifié sans séance enregistrée : « prévue » (aujourd'hui ou à venir) ou « non faite » (passée). Ton neutre, aucun reproche. */
 export type PlannedMark = 'prevue' | 'non_faite';
 export const PLANNED_TEXT: Record<PlannedMark, string> = { prevue: 'Prévue', non_faite: 'Non faite' };
-export const PLANNED_GLYPH: Record<PlannedMark, string> = { prevue: '○', non_faite: '◌' };
+export const PLANNED_GLYPH: Record<PlannedMark, string> = { prevue: '○', non_faite: '✕' };
 /** Priorité quand plusieurs séances tombent le même jour : la sécurité d'abord. */
 const MARK_PRIORITY: DayMark[] = ['symptome', 'douleur', 'faite', 'arretee', 'reportee', 'sautee_choix'];
 
@@ -39,6 +39,8 @@ export interface HistoryEntry {
   mark: DayMark;
   /** Séance faite à partir d'un jour décalé (SM-D2) : ne « couvre » pas un autre jour planifié manqué. */
   shifted?: boolean;
+  /** Séance décalée (statut reportee) : jour choisi pour la refaire (AAAA-MM-JJ), pour dire « Décalée au jeudi ». */
+  postponedTo?: string;
   /** D19 : séance importée d'un CSV (affichage seulement). */
   imported?: boolean;
 }
@@ -108,6 +110,7 @@ export function buildEntries(sessions: readonly WorkoutSession[], sets: readonly
       setsDone: counted ? mine.length : 0,
       mark,
       ...(s.dejaDecalee ? { shifted: true } : {}),
+      ...(mark === 'reportee' && s.postponedTo ? { postponedTo: s.postponedTo.slice(0, 10) } : {}),
       ...(s.imported ? { imported: true } : {}),
     });
   }

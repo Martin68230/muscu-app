@@ -154,14 +154,14 @@ describe('Accueil : un seul message, dans l’ordre de SM-3', () => {
 
 describe('calendrier : « Sautée » distincte de « Arrêtée », jours décalés', () => {
   const e = (id: string, dateKey: string, mark: HistoryEntry['mark']): HistoryEntry => ({ id, dateKey, atMs: Date.parse(`${dateKey}T10:00:00`), label: 'A', durationMin: null, setsDone: 0, mark });
-  it('» Sautée, ↷ Reportée, ○ jour décalé ; jamais « pas bien » ; aucun « Voir le bilan » pour une séance sautée', () => {
+  it('✕ Sautée, ↪ Décalée, ○ jour décalé ; jamais « pas bien » ; aucun « Voir le bilan » pour une séance sautée', () => {
     render(
       <CalendarView entries={[e('a', '2026-10-19', 'sautee_choix'), e('b', '2026-10-21', 'reportee'), e('c', '2026-10-23', 'arretee')]}
         today={new Date(2026, 9, 22, 12)} daysPerWeek={3} startKey="2026-10-01" plannedWeekdays={[0, 2, 4]} programStartKey="2026-10-01"
         shiftedKeys={['2026-10-22']} onOpen={vi.fn()} />,
     );
     expect(screen.getByRole('button', { name: /lundi 19 octobre.*séance sautée/i })).toBeTruthy();
-    expect(screen.getByRole('button', { name: /mercredi 21 octobre.*séance reportée/i })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /mercredi 21 octobre.*séance décalée/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /vendredi 23 octobre.*séance arrêtée/i })).toBeTruthy();
     expect(screen.getByRole('button', { name: /jeudi 22 octobre.*séance prévue/i })).toBeTruthy();
     expect(screen.getByText('Sautée', { selector: 'li' , exact: false })).toBeTruthy();

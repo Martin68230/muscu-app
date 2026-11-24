@@ -91,8 +91,8 @@ describe('SM-2 à SM-5 : carte et jours proposés', () => {
     const planned = new Set(plannedDates([0, 3], '2026-09-01', '2026-11-15'));
     const shifted = shiftedDays(p2, s);
     expect(dayMark(entries, MON)).toBe('reportee');
-    expect(MARK_TEXT.reportee).toBe('Reportée');
-    expect(MARK_GLYPH.reportee).toBe('↷');
+    expect(MARK_TEXT.reportee).toBe('Décalée');
+    expect(MARK_GLYPH.reportee).toBe('↪');
     expect(plannedMark(TUE, planned, entries, TUE, shifted)).toBe('prevue');
     expect(nextSession(p2, s, at(TUE, 9).getTime())?.scheduledToday).toBe(true);
     expect(missedCard(ctx(p2, s, at(TUE, 10)))).toBeNull(); // missedAnswers + R = lundi
@@ -131,7 +131,7 @@ describe('SM-2 à SM-5 : carte et jours proposés', () => {
     const s = [done(p2, 1, PREV_THU), fromRow(r)];
     expect(dayMark(buildEntries(s, []), MON)).toBe('sautee_choix');
     expect(MARK_TEXT.sautee_choix).toBe('Sautée');
-    expect(MARK_GLYPH.sautee_choix).toBe('»');
+    expect(MARK_GLYPH.sautee_choix).toBe('✕');
     expect(nextSession(p2, s, at(TUE, 10).getTime())?.dayIndex).toBe(1);
     expect(showT12(p2)).toBe(true);
     expect(showT12(p3)).toBe(false);

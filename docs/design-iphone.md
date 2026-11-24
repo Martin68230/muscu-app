@@ -78,3 +78,10 @@ Classé par impact, [x] = corrigé dans ce lot :
 ### À vérifier sur l'iPhone
 - Séance : « garde 2 en réserve » + bouton « ? » (44 px de zone d'appui), l'explication s'ouvre et se referme.
 - Onglet « Aujourd’hui » ; accueil : boutons en 2 colonnes sans texte coupé à 375 px.
+
+## Calendrier : états de séance (24/11/2026, branche claude/calendrier-etats)
+- Couleur + forme + texte : ✓ vert = faite ; ○ gris pointillé = prévue ; ✕ rouge = sautée ou non faite ; ↪ jaune = décalée ; – orange = arrêtée ; ◆ orange = douleur ou symptôme. Légende sous le calendrier. Le point des repas passe à 5 px, coin bas, opacité réduite : la séance domine.
+- « Décalée » = statut `reportee` (ligne O) ; le jour choisi (`postponedTo`) existe dans les données : le détail dit « Décalée au jeudi ». Le jour de destination reste « Prévue ». Aucun état « partielle » distinct dans les données : « Arrêtée » (orange).
+- Les jours sans séance n'ont plus de bordure verte (elle laissait croire « fait »).
+### À vérifier sur l'iPhone
+- Les 6 symboles distincts en clair ET en sombre (le rouge et le jaune clair non capturés en mode clair ici), point des repas discret, détail « Décalée au … ».

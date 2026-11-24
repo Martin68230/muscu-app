@@ -20,6 +20,12 @@ import { DayMeals } from './NutritionMeals';
 const DOW = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const PAGE = 10;
 
+/** « Décalée au jeudi » quand le jour choisi est connu, sinon le texte de la marque. */
+function markTitle(e: HistoryEntry): string {
+  if (e.mark === 'reportee' && e.postponedTo) return `Décalée au ${parseKey(e.postponedTo).toLocaleDateString('fr-FR', { weekday: 'long' })}`;
+  return MARK_TEXT[e.mark];
+}
+
 const plural = (n: number, one: string, many: string): string => `${n} ${n > 1 ? many : one}`;
 
 /** Détail chiffré d'une séance de l'historique : seulement pour une séance faite (aucun chiffre pour une séance arrêtée). */
@@ -141,13 +147,12 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
           })}
         </div>
         <ul class="cal-legend small dim" aria-label="Légende">
-          <li><span aria-hidden="true">✓</span> Faite</li>
-          <li><span aria-hidden="true">○</span> Prévue</li>
-          <li><span aria-hidden="true">◌</span> Non faite</li>
-          <li><span aria-hidden="true">↷</span> Reportée</li>
-          <li><span aria-hidden="true">»</span> Sautée</li>
-          <li><span aria-hidden="true">–</span> Arrêtée</li>
-          <li><span aria-hidden="true">◆</span> Douleur ou symptôme</li>
+          <li><span class="st-faite" aria-hidden="true">✓</span> Faite</li>
+          <li><span class="st-prevue" aria-hidden="true">○</span> Prévue</li>
+          <li><span class="st-sautee_choix" aria-hidden="true">✕</span> Sautée ou non faite</li>
+          <li><span class="st-reportee" aria-hidden="true">↪</span> Décalée</li>
+          <li><span class="st-arretee" aria-hidden="true">–</span> Arrêtée</li>
+          <li><span class="st-symptome" aria-hidden="true">◆</span> Douleur ou symptôme</li>
           <li><span aria-hidden="true">•</span> Aujourd’hui</li>
           {mealDays && mealDays.size > 0 && <li><span class="day-meal day-meal-legend" aria-hidden="true" /> Repas prévus</li>}
         </ul>
@@ -203,7 +208,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
           <h2 class="cap-first">{frDate(selected)}</h2>
           {dayEntries.map((e) => (
             <div class="hist-detail" key={e.id}>
-              <p><strong>{MARK_GLYPH[e.mark]} {MARK_TEXT[e.mark]}</strong></p>
+              <p><strong class={`st-${e.mark}`}><span aria-hidden="true">{MARK_GLYPH[e.mark]}</span> {markTitle(e)}</strong></p>
               <p class="dim">{entryDetail(e)}</p>
               {e.mark !== 'reportee' && e.mark !== 'sautee_choix' && <button type="button" class="btn" onClick={() => onOpen(e.id)}>Voir le bilan</button>}
             </div>
