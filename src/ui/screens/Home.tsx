@@ -1,3 +1,4 @@
+import { ShoppingDayCard, TodayMeals } from './NutritionMeals';
 import { useEffect, useState } from 'preact/hooks';
 import type { LightDay, Profile } from '../../data/model';
 import { LightDayCard } from '../LightDayCard';
@@ -287,6 +288,8 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       )}
       {status.kind === 'seance' && !anyMessage && status.lightToday && <LightDayCard day={status.lightToday} painYesterday={!!status.painYesterday} />}
       {status.kind === 'seance' && status.resume && <ResumeCard r={status.resume} onResume={onResume} onCloseStale={onCloseStale} />}
+      <ShoppingDayCard />
+      <TodayMeals />
       <WeighReminder />
       <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} onOpenProgress={onOpenProgress} />
       {muscles && !security && (

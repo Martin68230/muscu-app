@@ -69,13 +69,17 @@ export function checkPerson2(p: Person2): Person2Check {
 }
 
 /** Grammes d'un ingrédient pour un créneau (même règle que l'écran) : pièces x grammes d'une pièce pour un lot, sinon grammes de base mis à l'échelle (ajustables). */
-export function slotLines(r: Recipe, s: Pick<WeekSlot, 'scale' | 'pieces'>): { code: string; nom: string; g: number; rayon: PlannedIngredient['rayon'] }[] {
-  return r.ingredients.map((i) => ({
+export function slotLines(r: Recipe, s: Pick<WeekSlot, 'scale' | 'pieces'> & { swaps?: WeekSlot['swaps'] }): { code: string; nom: string; g: number; rayon: PlannedIngredient['rayon'] }[] {
+  return r.ingredients.map((i) => {
+    const sw = r.lot ? undefined : s.swaps?.find((x) => x.from === i.code);
+    if (sw) return { code: sw.to, nom: sw.nom, rayon: sw.rayon, g: sw.grammes };
+    return {
     code: i.code,
     nom: i.nom,
     rayon: i.rayon,
     g: r.lot ? Math.ceil((i.grammes * s.pieces) / ARRONDI_GRAMMES - 1e-9) * ARRONDI_GRAMMES : i.ajustable ? Math.round((i.grammes * s.scale) / ARRONDI_GRAMMES) * ARRONDI_GRAMMES || ARRONDI_GRAMMES : i.grammes,
-  }));
+    };
+  });
 }
 
 export interface ExportResult {
@@ -129,19 +133,20 @@ export function buildExport(
       const label = s.kind === 'encas' ? `En-cas ${s.index + 1}` : KIND_LABEL[s.kind];
       if (!r) { lines.push(`- ${label} : (aucune recette)`); continue; }
       const ls = slotLines(r, s);
+      const al = [...new Set([...r.allergenes, ...(s.swaps ?? []).flatMap((x) => x.allergenes)])];
       for (const l of ls) {
         planned.push({ code: l.code, name: l.nom, grams: l.g, rayon: l.rayon });
         if (p2) planned.push({ code: l.code, name: l.nom, grams: l.g * ratio, rayon: l.rayon });
       }
-      if (p2 && r.allergenes.some((a) => p2.allergens.includes(a))) conflicts.push(`${DAYS_LONG[di]} · ${label} : ${r.nom}`);
+      if (p2 && al.some((a) => p2.allergens.includes(a))) conflicts.push(`${DAYS_LONG[di]} · ${label} : ${r.nom}`);
       if (opts.meals) {
         const portion = s.pieces ? `${s.pieces} ${r.piece ?? 'pièce'}${s.pieces > 1 ? 's' : ''}` : '1 portion';
         lines.push(`- ${label} : ${r.nom} (${portion}, ${fmt(s.kcal)} kcal · P ${fmt(s.prot)} g · G ${fmt(s.gluc)} g · L ${fmt(s.lip)} g)`);
-        if (r.allergenes.length) lines.push(`  Allergènes : ${r.allergenes.map((a) => ALLERGEN_LABELS[a].label).join(', ')}`);
+        if (al.length) lines.push(`  Allergènes : ${al.map((a) => ALLERGEN_LABELS[a].label).join(', ')}`);
         lines.push(`  Ingrédients (moi) : ${ls.map((l) => `${l.nom} ${l.g} g`).join(', ')}`);
         if (p2) lines.push(`  Ingrédients (personne 2, à ajuster) : ${ls.map((l) => `${l.nom} ${Math.round((l.g * ratio) / ARRONDI_GRAMMES) * ARRONDI_GRAMMES} g`).join(', ')}`);
         for (const [k, e] of (r.etapes ?? []).entries()) lines.push(`  ${k + 1}. ${e}`);
-        (dayJson.repas as unknown[]).push({ creneau: label, recette: r.nom, portions: s.pieces || 1, kcal: Math.round(s.kcal), allergenes: r.allergenes, ingredients: ls.map((l) => ({ nom: l.nom, grammes: l.g })), etapes: r.etapes ?? [] });
+        (dayJson.repas as unknown[]).push({ creneau: label, recette: r.nom, portions: s.pieces || 1, kcal: Math.round(s.kcal), allergenes: al, ingredients: ls.map((l) => ({ nom: l.nom, grammes: l.g })), etapes: r.etapes ?? [] });
       }
     }
     lines.push('');

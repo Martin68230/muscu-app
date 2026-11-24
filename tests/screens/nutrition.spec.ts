@@ -191,11 +191,11 @@ test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et 
 
   // Allergie au lait : plus aucune recette avec du lait dans la semaine
   await page.getByRole('group', { name: 'Allergènes à exclure' }).getByRole('button', { name: 'Lait', exact: true }).click();
-  // Sans régénérer : la semaine enregistrée contient du lait, elle doit être MASQUÉE par sécurité.
-  await expect(page.getByText(/masquée par sécurité/)).toBeVisible();
-  await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toHaveCount(0);
+  // Sans régénérer : les repas avec du lait sont signalés « À changer » (jamais détaillés), la liste de courses et l'export sont masqués par sécurité.
+  await expect(page.getByText(/À changer : ce repas ne correspond plus/).first()).toBeVisible();
   await expect(page.getByRole('heading', { name: 'Mes courses de la semaine' })).toHaveCount(0);
   await page.getByRole('button', { name: 'Régénérer ma semaine' }).click();
+  await page.getByRole('button', { name: 'Oui, régénérer' }).click();
   await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
   const allergenLines = await page.locator('.nut-meals p').evaluateAll((els) => els.map((e) => e.textContent ?? ''));
   for (const l of allergenLines) if (l.startsWith('Allergènes')) expect(l).not.toMatch(/Lait/);
@@ -241,6 +241,7 @@ test('Nutrition : un goûter est ajouté quand le plan est sous la cible (prise 
   // Désactivé : plus aucun ajout automatique après régénération.
   await page.getByLabel(/Ajouter un goûter ou un en-cas quand il manque/).uncheck();
   await page.getByRole('button', { name: 'Régénérer ma semaine' }).click();
+  await page.getByRole('button', { name: 'Oui, régénérer' }).click();
   await expect(page.getByRole('heading', { name: 'Mes 7 jours' })).toBeVisible();
   await expect(page.getByText(/ajouté pour ta cible/)).toHaveCount(0);
   await expect(await problems(page)).toEqual([]);

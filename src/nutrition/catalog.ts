@@ -2,12 +2,18 @@
 // générés par tools/build-recettes.mjs et tools/build-aliments.mjs. Aucune requête vers un service externe.
 
 import type { FoodMacros, Recipe } from './plan';
-import type { PurchaseUnit } from './shopping';
+import type { AllergenKey } from './allergens';
+import type { PurchaseUnit, Rayon } from './shopping';
 
 export interface FoodInfo extends FoodMacros {
   nom: string;
   unite: { label: string; grammes: number } | null;
   conditionnementG: number | null;
+  famille: string;
+  rayon: Rayon;
+  allergenes: AllergenKey[];
+  statutAllergenes: 'valide' | 'a_verifier' | 'inconnu';
+  regimesIncompatibles: string[];
 }
 
 export interface Catalog {
@@ -28,6 +34,10 @@ export function loadCatalog(): Promise<Catalog> {
       info.set(code, {
         code, nom: String(a.nom), kcal: Number(a.kcal), prot: Number(a.prot), gluc: Number(a.gluc), lip: Number(a.lip),
         perissable: !!a.perissable, gardeManger: !!a.gardeManger,
+        famille: String(a.famille ?? ''), rayon: (a.rayon as Rayon) ?? 'epicerie',
+        allergenes: Array.isArray(a.allergenes) ? (a.allergenes as AllergenKey[]) : [],
+        statutAllergenes: a.statutAllergenes === 'valide' || a.statutAllergenes === 'a_verifier' ? a.statutAllergenes : 'inconnu',
+        regimesIncompatibles: Array.isArray(a.regimesIncompatibles) ? (a.regimesIncompatibles as string[]) : [],
         unite: a.unite ? { label: String((a.unite as { label: string }).label), grammes: Number((a.unite as { grammes: number }).grammes) } : null,
         conditionnementG: typeof a.conditionnementG === 'number' ? a.conditionnementG : null,
       });

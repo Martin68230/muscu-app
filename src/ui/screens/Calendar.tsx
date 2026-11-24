@@ -1,10 +1,10 @@
-import { useEffect, useState } from 'preact/hooks';
+import { useEffect, useRef, useState } from 'preact/hooks';
 import type { Profile } from '../../data/model';
 import { list } from '../../data/repo';
 import { getActiveProgram } from '../../session/program';
 import {
   buildEntries, dateKey, dayMark, entriesOfMonth, frDate, frMonth, isDone, MARK_GLYPH, MARK_TEXT, monthSummary,
-  PLANNED_GLYPH, PLANNED_TEXT, plannedDates, plannedMark, type HistoryEntry,
+  PLANNED_GLYPH, PLANNED_TEXT, parseKey, plannedDates, plannedMark, type HistoryEntry,
 } from '../../session/calendar';
 import { filterEntries, frMonthKey, monthOptions, typeOptions } from '../../session/history-view';
 import { PastSummary } from './PastSummary';
@@ -12,6 +12,10 @@ import { shiftedDays } from '../../session/missed';
 import { removeScheduled, scheduledOf, type ScheduledCreated } from '../../session/create-store';
 import type { SportSession } from '../../data/model';
 import { EFFORT_LABEL, SPORT_SHORT, SPORT_TEXT } from '../../sport/sport-config';
+import { mealDates } from '../../nutrition/meals-calendar';
+import { listPlans } from '../../nutrition/store';
+import { DayNav, PlannedDetail } from './DaySheet';
+import { DayMeals } from './NutritionMeals';
 
 const DOW = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const PAGE = 10;
@@ -52,11 +56,13 @@ export interface CalendarViewProps {
   /** Mon sport : séances de sport notées (affichées à part, « Sport », jamais comptées avec la musculation) et accès à la saisie. */
   sportSessions?: SportSession[];
   onNoteSport?: () => void;
+  /** Jours qui ont des repas prévus (semaine proposée ou validée) : petit repère sur le jour. */
+  mealDays?: ReadonlySet<string>;
   onOpen: (sessionId: string) => void;
 }
 
 /** Calendrier du mois + historique (sans accès à la base : testable). */
-export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], scheduled = [], onPrepareCreated, onRemoveCreated, sportSessions = [], onNoteSport, onOpen }: CalendarViewProps) {
+export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWeekdays = [], programStartKey = null, shiftedKeys = [], scheduled = [], onPrepareCreated, onRemoveCreated, sportSessions = [], onNoteSport, mealDays, onOpen }: CalendarViewProps) {
   const [cursor, setCursor] = useState({ year: today.getFullYear(), month: today.getMonth() });
   const [selected, setSelected] = useState<string | null>(null);
   const [shown, setShown] = useState(PAGE);
@@ -69,6 +75,12 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
   const label = frMonth(year, month);
   const todayKey = dateKey(today);
   const isCurrent = year === today.getFullYear() && month === today.getMonth();
+  const sheetKey = useRef<string | null>(null);
+  const goTo = (key: string) => {
+    const d = parseKey(key);
+    setCursor({ year: d.getFullYear(), month: d.getMonth() });
+    setSelected(key);
+  };
   const move = (delta: number) => {
     const d = new Date(year, month + delta, 1);
     setCursor({ year: d.getFullYear(), month: d.getMonth() });
@@ -113,18 +125,18 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
             const mark = dayMark(entries, key);
             const pmark = mark ? null : pm(key);
             const isToday = key === todayKey;
-            const name = `${frDate(key)}${isToday ? ', aujourd’hui' : ''}${mark ? ` : séance ${MARK_TEXT[mark].toLowerCase()}` : pmark ? ` : séance ${PLANNED_TEXT[pmark].toLowerCase()}` : ''}`;
+            const hasMeals = mealDays?.has(key) ?? false;
+            const name = `${frDate(key)}${isToday ? ', aujourd’hui' : ''}${mark ? ` : séance ${MARK_TEXT[mark].toLowerCase()}` : pmark ? ` : séance ${PLANNED_TEXT[pmark].toLowerCase()}` : ''}${hasMeals ? ', repas prévus' : ''}`;
             const cls = `day${isToday ? ' today' : ''}${mark ? ` has-${mark}` : pmark ? ` has-${pmark}` : ''}${selected === key ? ' selected' : ''}`;
             const body = (
               <>
                 <span class="day-num">{i + 1}</span>
                 <span class="day-mark" aria-hidden="true">{mark ? MARK_GLYPH[mark] : pmark ? PLANNED_GLYPH[pmark] : isToday ? '•' : ''}</span>
+                {hasMeals && <span class="day-meal" aria-hidden="true" />}
               </>
             );
-            return mark || pmark ? (
+            return (
               <button type="button" class={cls} key={key} aria-label={name} aria-pressed={selected === key} onClick={() => setSelected(selected === key ? null : key)}>{body}</button>
-            ) : (
-              <div class={cls} key={key} aria-label={name} role="img">{body}</div>
             );
           })}
         </div>
@@ -137,6 +149,7 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
           <li><span aria-hidden="true">–</span> Arrêtée</li>
           <li><span aria-hidden="true">◆</span> Douleur ou symptôme</li>
           <li><span aria-hidden="true">•</span> Aujourd’hui</li>
+          {mealDays && mealDays.size > 0 && <li><span class="day-meal day-meal-legend" aria-hidden="true" /> Repas prévus</li>}
         </ul>
       </div>
       <p class="month-line" role="status">{monthLine(sum.done, sum.planned)}</p>
@@ -154,6 +167,11 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
         </section>
       )}
 
+      {selected && (
+        <div class="card day-sheet" ref={(el) => { if (el && sheetKey.current !== selected) { sheetKey.current = selected; el.scrollIntoView?.({ block: 'nearest' }); } }}>
+          <DayNav date={selected} todayKey={todayKey} onGo={goTo} onClose={() => setSelected(null)} />
+        </div>
+      )}
       {selected && dayEntries.length === 0 && createdOn.length > 0 && (
         <section class="card" aria-label={`Séance créée du ${frDate(selected)}`}>
           <h2 class="cap-first">{frDate(selected)}</h2>
@@ -192,6 +210,9 @@ export function CalendarView({ entries, today, daysPerWeek, startKey, plannedWee
           ))}
         </section>
       )}
+
+      {selected && <PlannedDetail date={selected} hasDone={dayEntries.some(isDone) || createdOn.length > 0} />}
+      {selected && <DayMeals key={selected} date={selected} heading="Repas du jour" includeDraft showTargets editable emptyHint="Pas de repas prévu ce jour-là. Prépare ta semaine dans Nutrition, onglet Semaine." />}
 
       <h2>Historique</h2>
       {entries.length > 0 && (
@@ -243,12 +264,14 @@ export function Calendar({ profile, onPrepareCreated, onNoteSport }: { profile: 
   const [openId, setOpenId] = useState<string | null>(null);
   const [scheduled, setScheduled] = useState<ScheduledCreated[]>([]);
   const [sport, setSport] = useState<SportSession[]>([]);
+  const [mealDays, setMealDays] = useState<Set<string>>(new Set());
   const [plan, setPlan] = useState<{ weekdays: number[]; startKey: string | null; shifted: string[] }>({ weekdays: [], startKey: null, shifted: [] });
   const load = async () => {
     try {
       const [all, sets] = await Promise.all([list('sessions'), list('sets')]);
       const sessions = all.filter((s) => !s.imported);
       setSport(await list('sportSessions').catch(() => []));
+      setMealDays(mealDates(await listPlans().catch(() => []), true));
       setEntries(buildEntries(all, sets));
       setScheduled(scheduledOf(sessions, dateKey(new Date())));
       const prog = await getActiveProgram();
@@ -290,6 +313,7 @@ export function Calendar({ profile, onPrepareCreated, onNoteSport }: { profile: 
       shiftedKeys={plan.shifted}
       scheduled={scheduled}
       sportSessions={sport}
+      mealDays={mealDays}
       onNoteSport={onNoteSport}
       onPrepareCreated={onPrepareCreated}
       onRemoveCreated={(id) => void removeScheduled(id).then(load)}

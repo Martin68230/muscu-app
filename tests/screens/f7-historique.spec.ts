@@ -113,7 +113,7 @@ test('F7 : accueil, calendrier, historique, bilan passé', async ({ page }, info
   await checkPhoneRules(page);
   await page.screenshot({ path: `screenshots/${info.project.name}/f7-calendrier.png`, fullPage: true });
 
-  await page.locator('.calendar button.day').first().click();
+  await page.locator('.calendar button.day[class*="has-"]').first().click();
   await expect(page.getByRole('button', { name: 'Voir le bilan' }).first()).toBeVisible();
   await page.getByRole('button', { name: 'Précédent' }).count();
   await checkPhoneRules(page);

@@ -11,7 +11,7 @@
 // Les tables ne stockent que des identifiants (mouvement, variante, aliment Ciqual), jamais
 // le contenu de la bibliothèque, qui reste un fichier statique de l'app.
 
-export const SCHEMA_VERSION = 5;
+export const SCHEMA_VERSION = 6;
 // 2 : table signalements (D9)
 // 3 : F1 + F3 — zones cuisse et aine, lieu, grossesse et fin de parcours dans le profil, champs d'étalonnage des séries
 //     et du programme. Les sauvegardes v1 et v2 restent importables (champs ajoutés = facultatifs à l'import).
@@ -20,6 +20,8 @@ export const SCHEMA_VERSION = 5;
 // 5 : phase 7 « Nutrition » (docs/nutrition-spec.md §4) : six tables locales PRIVÉES (nutritionProfiles, nutritionGoals, weeklyCheckins,
 //     mealPlans, shoppingStates, recipePrefs). Migration additive : aucune donnée existante n'est touchée. Les sauvegardes v1 à v4 restent
 //     importables (table absente = vide). Jamais partagées ; exportées et supprimées avec les données.
+// 6 : nutrition « semaine validée » : table locale PRIVÉE mealLogs (repas fait / pas fait / écart, jour par jour) et champs facultatifs de mealPlans
+//     (status, confirmedAt, locks, previous). Migration additive : aucune donnée existante n'est touchée ; les sauvegardes v1 à v5 restent importables.
 // (F5, sans changement de version : programme actif (empreinte, messages), séance en cours (curseur, repos, plan), zone de douleur des séries.
 //     tous facultatifs, donc aucune migration IndexedDB ni changement de SCHEMA_VERSION.)
 
@@ -598,6 +600,26 @@ export interface MealPlan extends SyncFields {
   result?: Record<string, unknown>;
   /** Graine du tirage : « régénérer » en choisit une autre. */
   seed?: number;
+  /** brouillon (modifiable, régénérable) ou valide (figée, ajoutée au calendrier et à l'historique). Absent = brouillon. */
+  status?: 'brouillon' | 'valide';
+  confirmedAt?: string | null;
+  /** Repas verrouillés : clés `jour-type-rang` (survivent à une régénération). */
+  locks?: string[];
+  /** Dernier état avant le dernier changement (un seul niveau d'annulation). */
+  previous?: Record<string, unknown> | null;
+}
+
+/** Un repas du plan : fait, pas fait ou fait autrement (écart), avec une note courte. Privé, jamais partagé. */
+export interface MealLog extends SyncFields {
+  /** Jour civil local 'YYYY-MM-DD'. */
+  date: string;
+  /** Clé du repas : `jour-type-rang` (ex. 0-dejeuner-0). */
+  slotKey: string;
+  state: 'fait' | 'pas_fait' | 'ecart';
+  /** Ce qu'on a vraiment mangé (écart), texte libre court. */
+  note: string;
+  /** Estimation facultative des kcal réellement mangées (écart). */
+  kcal: number | null;
 }
 
 export interface ShoppingState extends SyncFields {
@@ -652,6 +674,7 @@ export interface SyncedTables {
   mealPlans: MealPlan;
   shoppingStates: ShoppingState;
   recipePrefs: RecipePref;
+  mealLogs: MealLog;
 }
 
 export type TableName = keyof SyncedTables;
@@ -679,6 +702,7 @@ export const TABLES: TableName[] = [
   'mealPlans',
   'shoppingStates',
   'recipePrefs',
+  'mealLogs',
 ];
 
 /** Tables de la phase 7 : privées par défaut, jamais partagées (aucun ShareDataType ne les expose en v1). */
@@ -689,6 +713,7 @@ export const NUTRITION_TABLES: TableName[] = [
   'mealPlans',
   'shoppingStates',
   'recipePrefs',
+  'mealLogs',
 ];
 
 /**
