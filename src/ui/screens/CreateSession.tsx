@@ -14,6 +14,7 @@ import { loadCreateContext, upcomingDays, ZONE_TEXT, type ScheduledCreated } fro
 import { loadGeneratorInput } from '../../session/program';
 import { asGenFiches } from '../session/launch';
 import { durationText, lineText } from '../session/text';
+import { ExoThumbById } from '../../images/ExoThumb';
 import { Precautions } from '../Precautions';
 
 const ZONES: CreateZone[] = ['jambes', 'haut', 'tronc', 'corps_entier'];
@@ -137,9 +138,10 @@ function SessionResult({ s }: { s: CreatedSession }) {
         <h2>Exercices</h2>
         <ol class="plain-list">
           {s.exercises.map((e, i) => (
-            <li key={`${e.variantId}-${i}`}>
-              <strong>{e.nom}{e.variantNom && e.variantNom !== e.nom ? ` (${e.variantNom})` : ''}</strong>
-              <div class="dim small">{lineText(plannedOf(e))}{e.tempo ? ` · ${e.tempo}` : ''}</div>
+            <li key={`${e.variantId}-${i}`} class="prev-row">
+              <ExoThumbById ficheId={e.ficheId} variantId={e.variantId} size={44} />
+              <div class="prev-body"><strong>{e.nom}{e.variantNom && e.variantNom !== e.nom ? ` (${e.variantNom})` : ''}</strong>
+              <div class="dim small">{lineText(plannedOf(e))}{e.tempo ? ` · ${e.tempo}` : ''}</div></div>
             </li>
           ))}
         </ol>

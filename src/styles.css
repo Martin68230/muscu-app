@@ -701,3 +701,12 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .btn-link-inline { min-height: 44px; padding: 0 8px; background: transparent; border: 0; color: var(--accent); font: inherit; text-decoration: underline; }
 .lib-more { margin: 8px 0; }
 .lib-more summary { min-height: 44px; display: flex; align-items: center; color: var(--accent); font-weight: 600; }
+
+/* Miniatures d'exercices (listes) : image importée statique, sinon pictogramme ; jamais un carré noir */
+.exo-thumb { flex: none; display: inline-block; position: relative; overflow: hidden; border-radius: 10px; background: var(--surface-2); vertical-align: middle; }
+.exo-thumb-img { display: block; width: 100%; height: 100%; object-fit: cover; background: #fff; }
+.exo-thumb > .lib-thumb, .exo-thumb > .lib-thumb-crop { width: 100%; height: 100%; border-radius: 0; }
+.exo-ph { display: flex; align-items: center; justify-content: center; width: 100%; height: 100%; color: var(--accent); background: var(--surface-2); }
+.exo-ph svg { width: 55%; height: 55%; }
+.prev-list li.prev-row, .plain-list li.prev-row { display: flex; gap: 12px; align-items: flex-start; }
+.prev-body { flex: 1; min-width: 0; }
