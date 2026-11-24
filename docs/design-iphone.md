@@ -66,3 +66,15 @@ Propositions suivantes (par utilité) : 1) poids lissé dans l'écran Progressio
 ### À vérifier sur l'iPhone
 - Bibliothèque : le repli Filtres s'ouvre, les 3 listes tiennent sur une ligne en 430 px et s'empilent en 375 px, aucun texte coupé, compteur et « Retirer les filtres » (44 px).
 - Accueil : la carte de pesée apparaît après 7 jours sans pesée (nutrition configurée), ouvre Nutrition, disparaît après une pesée.
+
+## Lot « convivial » 1 (24/11/2026, branche claude/design-convivial-0c3870)
+Audit d'usage (captures WebKit 375x667 sombre, 430x932 clair : `SHOT=audit npx playwright test design-audit`, lancer avant `npm run preview` si le build dépasse 180 s). Constat : la séance est déjà rapide (charge et répétitions pré-remplies, boutons +/- , repos qui démarre seul) ; le frein principal est le vocabulaire et l'accueil.
+Classé par impact, [x] = corrigé dans ce lot :
+1. [x] Jargon « réserve 2 » sur la ligne d'objectif → « garde 2 en réserve » + bulle « ? » qui explique (nouveau composant `src/ui/Help.tsx`, classes `ux-`).
+2. [x] « Repos (1) » (titre incompréhensible) → « Un peu de repos ? » (accueil et aperçu).
+3. [x] Onglet « Accueil » → « Aujourd’hui » (dit ce qu'on y trouve).
+4. [x] Accueil : 3 boutons secondaires empilés de même poids → grille 2 colonnes compacte (Créer une séance / Noter du sport, puis Modifier mon profil).
+5. [ ] À faire : onboarding en 3 écrans à sauter, annuler la dernière série, haptique, texte plus court des écrans de profil.
+### À vérifier sur l'iPhone
+- Séance : « garde 2 en réserve » + bouton « ? » (44 px de zone d'appui), l'explication s'ouvre et se referme.
+- Onglet « Aujourd’hui » ; accueil : boutons en 2 colonnes sans texte coupé à 375 px.

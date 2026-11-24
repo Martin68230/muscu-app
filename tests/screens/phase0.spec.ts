@@ -73,7 +73,7 @@ test('parcours phase 0', async ({ page }, info) => {
 
   // Le profil est conservé après rechargement (IndexedDB).
   await page.reload();
-  await page.getByRole('button', { name: 'Accueil' }).click();
+  await page.getByRole('button', { name: 'Aujourd’hui' }).click();
   await expect(page.getByRole('heading', { name: 'Salut Martin' })).toBeVisible();
 });
 

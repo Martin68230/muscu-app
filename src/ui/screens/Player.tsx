@@ -16,6 +16,7 @@ import type { PairPain } from '../../session/engine';
 import { loadGeneratorInput } from '../../session/program';
 import type { SessionController } from '../../session/store';
 import { formatClock, startDisplayTick } from '../../session/timer';
+import { Help } from '../Help';
 import { clearHold, heldSec, HOLD_RIR_LABELS, holdOver, holdRemainingMs, isHoldExercise, isPerSide, loadHold, needsRir, PER_SIDE_RULE, saveHold, startHold, type HoldState } from '../../session/sides';
 import { ReportButton } from '../ReportButton';
 import { cleanText, type Fiche } from '../../data/fiches';
@@ -633,7 +634,9 @@ export function SessionPlayer({ controller: ctl, data, profile, onClose, onEditI
         )}
         {ex.cappedLabel && (ex.movementId === NECK_FICHE_ID || ex.cappedLabel.startsWith('Arrête tout de suite si tu ressens une douleur vive')) && <p class="small prog-line" role="note">{ex.cappedLabel}</p>}
         {sided && !v.isWarmupSet && <p class="side-rule">{PER_SIDE_RULE}</p>}
-        <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}</p>
+        <p class="target-line">{v.isWarmupSet ? `${ex.warmupSets[v.setNumber - 1]?.reps ?? ex.repsMin} répétitions, léger${v.loadKg !== null ? ` · ${fmtKg(v.loadKg)} kg` : ''}` : targetText(ex)}
+          {!v.isWarmupSet && ex.role !== 'cardio' && !ex.jump && ex.unit !== 'sec' && <Help term="en réserve">« En réserve » = les répétitions que tu aurais encore pu faire. Garde 2 en réserve : arrête-toi quand tu sentirais que tu pourrais en faire 2 de plus.</Help>}
+        </p>
         {lastLine && !v.isWarmupSet && <p class="dim small">{lastLine}{recordLine ? ` · ${recordLine}` : ''}</p>}
         {progLine && !v.isWarmupSet && <p class="small prog-line">{progLine}</p>}
 
