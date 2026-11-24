@@ -25,14 +25,14 @@ export function durationText(sec: number): string {
   return s ? `${m} min ${s} s` : `${m} min`;
 }
 
-/** « 10-15 répétitions · réserve 3 », « 20 s », « 8-10 répétitions par côté ». */
+/** « 10-15 répétitions · garde 3 en réserve », « 20 s », « 8-10 répétitions par côté ». */
 export function targetText(ex: PlannedExercise): string {
   if (ex.jump) return `${ex.sets} × ${ex.repsMax} ${ex.jump.soft ? 'répétitions, sans saut' : 'sauts'} · repos ${ex.restSec} s`;
   if (ex.role === 'cardio') return `${durationText(ex.holdSec ?? 0)} · effort ${ex.intensity === 'facile' ? 'facile' : 'modéré'}`;
-  if (isPerSide(ex)) return ex.unit === 'reps' ? `${perSideTarget(ex)} · réserve ${ex.rirTarget}` : perSideTarget(ex);
+  if (isPerSide(ex)) return ex.unit === 'reps' ? `${perSideTarget(ex)} · garde ${ex.rirTarget} en réserve` : perSideTarget(ex);
   if (ex.unit === 'sec') return `${ex.holdSec ?? ex.repsMin} s`;
   const range = ex.repsMin === ex.repsMax ? `${ex.repsMin}` : `${ex.repsMin}-${ex.repsMax}`;
-  return `${range} répétitions · réserve ${ex.rirTarget}`;
+  return `${range} répétitions · garde ${ex.rirTarget} en réserve`;
 }
 
 /** Ligne de la liste d'aperçu : « 3 × 10-15 · repos 1 min 30 ». */

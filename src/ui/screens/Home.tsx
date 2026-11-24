@@ -277,7 +277,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
                 {status.next.day.estimatedMin ? `Environ ${status.next.day.estimatedMin} min · ` : ''}{status.next.day.exercises.length} exercices
               </p>
               {status.next.tooSoon && !anyMessage && !(status.equipmentChangedId && !hidden) && (
-                <Precautions title="Repos (1)" label="Repos">
+                <Precautions title="Un peu de repos ?" label="Repos">
                   <p>Ta dernière séance date de moins de 48 h. Tu peux attendre un peu pour laisser reposer tes muscles, mais c’est toi qui décides.</p>
                 </Precautions>
               )}
@@ -294,9 +294,13 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
           <button type="button" class="btn" onClick={() => { setCycle(true); scrollTo(0, 0); }}>Voir par type de séance</button>
         </MuscleMapCard>
       )}
-      {complete && onCreateSession && !security && <button type="button" class="btn" onClick={onCreateSession}>Créer une séance</button>}
-      {onNoteSport && !security && <button type="button" class="btn" onClick={onNoteSport}>Noter une séance de sport</button>}
-      {complete && <button type="button" class="btn" onClick={onStart}>Modifier mon profil</button>}
+      {complete && (
+        <div class="ux-quick">
+          {onCreateSession && !security && <button type="button" class="btn" onClick={onCreateSession}>Créer une séance</button>}
+          {onNoteSport && !security && <button type="button" class="btn" onClick={onNoteSport}>Noter une séance de sport</button>}
+          <button type="button" class="btn ux-quick-wide" onClick={onStart}>Modifier mon profil</button>
+        </div>
+      )}
       <div class="thumb-zone">
         {!complete && <button type="button" class="btn btn-primary" onClick={onStart}>Créer mon programme</button>}
         {complete && status.kind === 'seance' && !missed && (

@@ -7,7 +7,7 @@ export type Tab = 'accueil' | 'calendrier' | 'bibliotheque' | 'amis' | 'profil';
 export const FRIENDS_ENABLED = false;
 
 const TABS: { id: Tab; label: string; Icon: ComponentType }[] = [
-  { id: 'accueil', label: 'Accueil', Icon: IconHome },
+  { id: 'accueil', label: 'Aujourd’hui', Icon: IconHome },
   { id: 'calendrier', label: 'Calendrier', Icon: IconCalendar },
   { id: 'bibliotheque', label: 'Bibliothèque', Icon: IconLibrary },
   { id: 'amis', label: 'Amis', Icon: IconFriends },

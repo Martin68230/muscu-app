@@ -701,3 +701,12 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .btn-link-inline { min-height: 44px; padding: 0 8px; background: transparent; border: 0; color: var(--accent); font: inherit; text-decoration: underline; }
 .lib-more { margin: 8px 0; }
 .lib-more summary { min-height: 44px; display: flex; align-items: center; color: var(--accent); font-weight: 600; }
+
+/* ux- : aide contextuelle « ? » et actions secondaires de l'accueil (lot « convivial ») */
+.ux-help { display: inline; }
+.ux-help-btn { display: inline-flex; align-items: center; justify-content: center; width: 28px; height: 28px; margin-left: 6px; padding: 0; border-radius: 50%; border: 1px solid var(--border, var(--text-dim)); background: var(--surface-2); color: var(--text-dim); font-size: 0.875rem; font-weight: 700; vertical-align: middle; position: relative; }
+.ux-help-btn::after { content: ''; position: absolute; inset: -8px; }
+.ux-help-text { display: block; margin-top: 6px; padding: 10px 12px; border-radius: 12px; background: var(--surface-2); color: var(--text); font-size: 0.9375rem; line-height: 1.4; }
+.ux-quick { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; margin: 0 0 8px; }
+.ux-quick .btn { margin: 0; min-height: 48px; font-size: 0.9375rem; line-height: 1.15; text-align: center; }
+.ux-quick .ux-quick-wide { grid-column: 1 / -1; }

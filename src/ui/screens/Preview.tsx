@@ -194,7 +194,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
         </Precautions>
       )}
       {next.tooSoon && repriseTexts.length === 0 && (
-        <Precautions title="Repos (1)" label="Repos">
+        <Precautions title="Un peu de repos ?" label="Repos">
           <p>Ta dernière séance date de moins de 48 h. Tes muscles ont besoin de repos : tu peux attendre, mais c’est toi qui décides.</p>
         </Precautions>
       )}
