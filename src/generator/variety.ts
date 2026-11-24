@@ -45,6 +45,8 @@ export interface WeekFillArgs {
   labels: readonly string[];
   slotsFor: (l: string) => readonly SlotKey[];
   ctx: Ctx;
+  /** Lieu par jour : contexte de la séance `l` (matériel de son jour) ; absent = `ctx` pour toutes. */
+  ctxOf?: (l: string) => Ctx;
   pool: Fiche[];
   /** Semaine du bloc (1 à 4) et bloc (1, 2…) : PV3-VAR-6. */
   week: number;
@@ -109,26 +111,30 @@ export function fillWeekVariety(a: WeekFillArgs): WeekFill {
           record(l, slot, a.fillTronc(l, s, used.get(l)!, weekUsed), step);
           continue;
         }
-        const ranked = rankSlot(slot, s, used.get(l)!, ctx, a.poolFor?.(l, slot) ?? a.pool) as Ranked[];
+        const cx = a.ctxOf?.(l) ?? ctx;
+        const ranked = rankSlot(slot, s, used.get(l)!, cx, a.poolFor?.(l, slot) ?? a.pool) as Ranked[];
         if (!ranked.length) {
           record(l, slot, { slot, tier: 'e', cand: null, schemaRank: 0 }, step);
           continue;
         }
         const best = ranked[0];
-        const underCap = best.cand.capped || ctx.pregnant;
+        const underCap = best.cand.capped || cx.pregnant;
         const C = ranked.filter(
           (r) => r.tier === best.tier && r.key[1] === best.key[1] && r.cand.adapted === best.cand.adapted &&
             (!underCap || levelIdx(r.cand.fiche.niveauMin) <= levelIdx(best.cand.fiche.niveauMin)),
         );
-        let L = C;
+        // Lieu « salle » : la rotation et les contrôles de variété se font d'abord parmi les exercices de salle (même clé « salle » que le meilleur) ; les basiques ne servent que de repli.
+        const Cg = C.filter((r) => r.key[3] === best.key[3]);
+        const Cb = C.filter((r) => r.key[3] !== best.key[3]);
+        let L = Cg;
         let r0 = 0;
         if (step === 1) r0 = (a.block - 1) % L.length;
         else if (step >= 3) {
-          const free = C.filter((r) => !fixedUsed.has(r.cand.fiche.id));
+          const free = Cg.filter((r) => !fixedUsed.has(r.cand.fiche.id));
           if (free.length) L = free;
           r0 = rotationStart(L.length, kByPlan.get(planOf(l, slot)) ?? 1, a.week, a.block);
         }
-        const order = L.map((_, i) => L[(r0 + i) % L.length]);
+        const order = [...L.map((_, i) => L[(r0 + i) % L.length]), ...Cb];
         const fam = (r: Ranked) => familyOf(r.cand.fiche);
         const checks: ((r: Ranked) => boolean)[] = [
           (r) => !weekCount.get(r.cand.fiche.id) && (famCount.get(fam(r)) ?? 0) < VAR_MAX_PER_FAMILY_WEEK && !fams.get(l)!.has(fam(r)),
@@ -136,6 +142,17 @@ export function fillWeekVariety(a: WeekFillArgs): WeekFill {
           (r) => !weekCount.get(r.cand.fiche.id),
         ];
         let pick: Ranked | undefined;
+        if (Cb.length) {
+          // Lieu « salle » : un exercice de salle qui relâche seulement « famille absente de la séance » passe avant un basique ; jamais une fiche déjà prise cette semaine tant qu'un basique neuf existe.
+          const gymOrder = order.slice(0, order.length - Cb.length);
+          for (const [list, c] of [[gymOrder, 0], [gymOrder, 1], [Cb, 0], [Cb, 1]] as [Ranked[], number][]) {
+            pick = list.find(checks[c]);
+            if (pick) {
+              if (c > 0) penurie.add(pick.cand.fiche.schema);
+              break;
+            }
+          }
+        }
         for (let c = 0; c < checks.length && !pick; c++) {
           pick = order.find(checks[c]);
           if (pick && c > 0) penurie.add(pick.cand.fiche.schema);

@@ -1,5 +1,5 @@
 // Emplacements d'une séance (V-EMP §2.2), classement (V-CLASSE §6.7), replis (V-IMPOS §7.1), rotation A/C (V-ROT §2.3).
-import { CORE_NOT_CORE_IDS, ISOLATION, MAIN_EXERCISE_SLOTS, MANUAL_ONLY_FICHES, PILLAR_EXCLUDED_FICHES } from './config';
+import { CORE_NOT_CORE_IDS, GYM_RANK_TAGS, ISOLATION, MAIN_EXERCISE_SLOTS, MANUAL_ONLY_FICHES, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import { templateOf } from './split';
@@ -163,9 +163,15 @@ const TIER_ORDER: Tier[] = ['a', 'b', 'c', 'd', 'e'];
 export const tierRank = (t: Tier) => TIER_ORDER.indexOf(t);
 
 /** V-CLASSE §6.7 (clés 1 à 5 et 7 ; la clé 6, rotation, est appliquée par fillSlot). */
+/** Clé « salle » (24/11/2026) : en lieu « salle », 0 = machine, poulie, barre, haltères, banc, traction ; 1 = le reste (poids du corps, chaise, tapis). Hors salle : toujours 0 (aucun changement). */
+export function gymRank(c: Candidate, ctx: Pick<Ctx, 'place'>): number {
+  return ctx.place === 'salle' && !c.variant.tags.some((t) => GYM_RANK_TAGS.includes(t)) ? 1 : 0;
+}
+
 function rankKey(c: Candidate, slot: SlotKey, schemaRank: number, ctx: Ctx): (number | string)[] {
   const f = c.fiche;
-  const key: (number | string)[] = [schemaRank, c.adapted ? 1 : 0];
+  // Index 3 de la clé finale (après le niveau de repli) : exercice de salle d'abord (salle seulement), avant la charge et le niveau.
+  const key: (number | string)[] = [schemaRank, c.adapted ? 1 : 0, gymRank(c, ctx)];
   // Clé 3 : familles force/muscle, fiche de type force : variante chargeable ; puis variante au niveau de la personne.
   const underCap = c.capped || ctx.pregnant;
   if ((ctx.family === 'force' || ctx.family === 'muscle') && f.type === 'force') {

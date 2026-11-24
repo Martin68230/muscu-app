@@ -5,7 +5,7 @@ import type { LightDay, Level, PlannedExercise, ProgramDay } from '../data/model
 import {
   ACCESSORY_REMOVAL_ORDER_V2, JUMPS, ACHAT_CANDIDATES, CARDIO_V2, LIGHT_DAY, ONE_DAY_BEGINNER_MAX_MIN, SPLIT_MIN_FORCE_EXERCISES, SPLIT_START_N_BY_DURATION,
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
-  OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
+  CORE_MAX, OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
   CAL11, COMPLEMENTS, MANUAL_ONLY_FICHES, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, HASAN_UPPER_IN_GENERATOR, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
@@ -28,6 +28,7 @@ import { ALL_SLOTS, fillSession, fillSlot, rankSlot, slotDef, tierRank, type Slo
 import { adaptWeekToSport, canHost, noForceDays, placeA1, type SportAdapt } from './sport-plan';
 import { SPORT } from '../sport/sport-config';
 import { weekLoadMap } from '../sport/week-map';
+import { dominantPlace, preferGymDays, restDays, validDayPlaces } from './day-places';
 import { chooseLightDays, planWeek, sessionTitle, TYPE_NOYAU, TYPE_SLOTS, typeOf, UPPER_TYPES } from './split';
 import type {
   CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, JumpBlock, JumpItem, SlotKey, Tier,
@@ -41,7 +42,7 @@ import { capCoreWeek } from './core-cap';
 import { addComplements } from './complements';
 import { addSportPrevention } from './sport-prevention';
 import { a1Allowed, lightenLegs } from './sport-legs-light';
-import { addCorrectifs, checkZones, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
+import { addCorrectifs, checkZones, enforceZoneCaps, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
 export { zoneName, ZONES } from '../zones/zones';
@@ -373,7 +374,10 @@ function causeOf(slot: SlotKey, label: Label, fill: SlotFill, healthFree: SlotFi
 
 /** Programme complet. */
 function generateWeek(input: GeneratorInput, week: number): GenerateResult {
-  const ctx = buildCtx(input);
+  // Lieu par jour : lieu général du programme = lieu dominant des jours d'entraînement ; chaque séance prend le lieu de son jour (ctxFor).
+  const dayPlaces = validDayPlaces(input.profile.dayPlaces);
+  const basePlace = dominantPlace(dayPlaces);
+  const ctx = buildCtx(input, basePlace ? { place: basePlace } : {});
   // D34 (PV3-VAR-6) : bloc (1, 2…) et plans où la variété a été relâchée cette semaine.
   const block = Math.max(1, Math.floor(input.options?.bloc ?? 1));
   const penurieVar = new Set<string>();
@@ -387,7 +391,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   // un débutant) ; le placement lit ensuite la carte (jambes, épaule). Sans sport déclaré, ou interrupteur éteint : rien ne change.
   const sportMap = SPORT.enabled && p.sportPlan?.length ? weekLoadMap(p.sportPlan, ctx.level, JUMPS.startContacts[ctx.level]) : null;
   const sportNoForce = sportMap ? noForceDays(sportMap, ctx.level) : [];
-  const blocked = [...new Set([...(p.blockedWeekdays ?? []), ...sportNoForce])].sort((a, b) => a - b);
+  const blocked = [...new Set([...(p.blockedWeekdays ?? []), ...restDays(dayPlaces), ...sportNoForce])].sort((a, b) => a - b);
   const sportAllowed = sportMap ? (label: string, day: number) => canHost(typeOf(label), sportMap[day]) : undefined;
   let sportAdapt: SportAdapt | null = null;
   // A1 : une séance corps entier à jambes légères quand le sport occupe exactement 3 jours (sport-legs-light.ts).
@@ -422,8 +426,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       level: ctx.level, levelAbsent: !p.level, goalFamily: ctx.goalFamily, pregnant: ctx.pregnant,
       zones2: ctx.zones.filter((z) => !z.isG && z.level >= 2).map((z) => z.key),
     };
-    const plan = planWeek(want, blocked, splitInput);
-    if (!plan) return { ok: false, code: 'JOURS2', messages: [msg.jours2(null)] };
+    const plan0 = planWeek(want, blocked, splitInput);
+    if (!plan0) return { ok: false, code: 'JOURS2', messages: [msg.jours2(null)] };
+    // Lieu par jour : sans sport, les jours de salle cochés sont utilisés en priorité (même répartition, même nombre de séances).
+    const plan = dayPlaces && !sportMap ? preferGymDays(plan0, dayPlaces, blocked, (b) => planWeek(want, b, splitInput)) : plan0;
     // Placement d'abord sous les contraintes du sport (jambes seulement un jour libre de charge, pas de poussée un jour d'épaule) ; si la semaine
     // voulue ne tient pas ainsi, on place comme avant puis on convertit ou retire les séances que le sport interdit.
     let placed = plan;
@@ -450,6 +456,15 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     lightReason = plan.reason;
     forceWanted = plan.wanted;
   }
+  // Lieu par jour : une seule séance de salle dans une semaine de corps entier = la plus technique (A : squat, poussée et tirage horizontaux à la barre ou à la machine).
+  if (dayPlaces && !sportMap && labels.length > 1 && labels.every((l) => typeOf(l) === 'CE')) {
+    const gymIdx = days.flatMap((d, i) => (dayPlaces[d] === 'salle' ? [i] : []));
+    const a = labels.indexOf('A' as Label);
+    if (gymIdx.length === 1 && a >= 0 && a !== gymIdx[0]) {
+      labels = [...labels];
+      [labels[a], labels[gymIdx[0]]] = [labels[gymIdx[0]], labels[a]];
+    }
+  }
   if ((sportAdapt && (sportAdapt.converted || sportAdapt.dropped)) || sportMoved) msgs.push(msg.sportPlace(!!sportAdapt?.noLegs));
   const nDays = labels.length;
   const isSplit = labels.some((l) => typeOf(l) !== 'CE');
@@ -460,6 +475,23 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const dSec = dur.dMin * 60;
   const addSec = dur.addMin * 60;
   const dayOf = (l: Label) => days[labels.indexOf(l)];
+  // Lieu par jour : contexte (matériel, salle) du jour de chaque séance ; le contexte de base quand le lieu est le même.
+  const placeOfLabel = (l: Label): 'salle' | 'maison' | 'dehors' | null => {
+    const pl = dayPlaces?.[dayOf(l)];
+    return pl && pl !== 'repos' ? pl : null;
+  };
+  const placeCtx = new WeakMap<Ctx, Map<string, Ctx>>();
+  const forLabel = (c: Ctx, l: Label): Ctx => {
+    const pl = placeOfLabel(l);
+    if (!pl || pl === c.place) return c;
+    let m = placeCtx.get(c);
+    if (!m) placeCtx.set(c, (m = new Map()));
+    let pc = m.get(pl);
+    if (!pc) m.set(pl, (pc = buildCtx(input, { ...c.ov, place: pl })));
+    pc.neckSafeLabels = c.neckSafeLabels;
+    return pc;
+  };
+  const ctxFor = (l: Label): Ctx => forLabel(ctx, l);
 
   // Messages d'objectif (V-OBJ) et de santé (R3 une fois par zone, C3).
   if (!ctx.pregnant) {
@@ -528,7 +560,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       let rot = 0;
       let prevFam: CoreFamily | null = null;
       return fillWeekVariety({
-        labels, slotsFor, ctx: c, pool, week: w, block,
+        labels, slotsFor, ctx: c, ctxOf: (l) => forLabel(c, l as Label), pool, week: w, block,
         // Inventaire : extension-dorsale-ballon (CF5) jamais après une charge lourde.
         poolFor: (l, slot) => ((slot === 'charniere' || slot === 'jambes_3') && heavySet.has(l) ? poolNoExtension : null),
         fillTronc: (l, st, used, weekUsed) => {
@@ -536,7 +568,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           const order = [...CORE_FAMILY_ORDER.slice(rot % n), ...CORE_FAMILY_ORDER.slice(0, rot % n)];
           // Jamais la même famille que la séance de core précédente, sauf s'il n'en reste qu'une admissible.
           for (const fam of [...order.filter((x) => x !== prevFam), ...order.filter((x) => x === prevFam)]) {
-            const fill = fillSlot('tronc', st, used, weekUsed, c, troncPool(fam, heavySet.has(l) || followsCore(l)));
+            const fill = fillSlot('tronc', st, used, weekUsed, forLabel(c, l as Label), troncPool(fam, heavySet.has(l) || followsCore(l)));
             if (fill.cand) {
               rot = CORE_FAMILY_ORDER.indexOf(fam) + 1;
               prevFam = fam;
@@ -575,9 +607,9 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   }
   const fills = fillWeek(ctx, true);
   const healthy = ctx.zones.length > 0;
-  const ctxNH = buildCtx(input, { zones: [], pregnant: false });
+  const ctxNH = buildCtx(input, { zones: [], pregnant: false, ...(basePlace ? { place: basePlace } : {}) });
   const fillsNH = healthy ? fillWeek(ctxNH) : fills;
-  const ctxNoL3 = buildCtx(input, { zones: ctx.zones.filter((z) => !z.isG && z.level < 3) });
+  const ctxNoL3 = buildCtx(input, { zones: ctx.zones.filter((z) => !z.isG && z.level < 3), ...(basePlace ? { place: basePlace } : {}) });
   const fillsNoL3 = ctx.zones.some((z) => !z.isG && z.level === 3) ? fillWeek(ctxNoL3) : fills;
   const tierOf = (m: Map<Label, Map<SlotKey, SlotFill>>, l: Label, s: SlotKey): Tier => m.get(l)!.get(s)?.tier ?? 'e';
   const noyauOf = (l: Label): SlotKey[] => TYPE_NOYAU[typeOf(l)].filter((s) => fills.get(l)!.has(s));
@@ -608,12 +640,15 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   const freshFirst = <T extends { tier: Tier; key: (number | string)[]; cand: { fiche: { id: string }; adapted: boolean; capped: boolean } }>(list: T[], ids: Set<string>): T[] =>
     ctx.pregnant || list.some((r) => r.cand.capped)
       ? list
-      : [...list].sort((a, b) => tierRank(a.tier) - tierRank(b.tier) || Number(a.key[1]) - Number(b.key[1]) || Number(a.cand.adapted) - Number(b.cand.adapted) ||
+      : [...list].sort((a, b) => tierRank(a.tier) - tierRank(b.tier) || Number(a.key[1]) - Number(b.key[1]) || Number(a.key[3]) - Number(b.key[3]) || Number(a.cand.adapted) - Number(b.cand.adapted) ||
           Number(ids.has(a.cand.fiche.id)) - Number(ids.has(b.cand.fiche.id)) || list.indexOf(a) - list.indexOf(b));
 
   // Séances : N emplacements de départ, échauffement, supersets, durée, ajout.
   type Built = { s: DurSession<GenExercise>; actions: string[]; removedCore: SlotKey[]; overBudget: boolean; attempted: SlotKey[]; warm: ReturnType<typeof mobilityWarmup> };
+  // 24/11/2026 : repli de jambes_3 (autre charnière sous plafond) déjà pris par une autre séance de la semaine : mis en dernier (jamais le même exercice deux fois dans la semaine quand une autre fiche existe).
+  const j3Pick = new Map<Label, string>();
   const build = (l: Label, budgetSec: number, addBudgetSec: number, coreProtected: boolean): Built => {
+    const ctx = ctxFor(l); // lieu du jour de cette séance (lieu par jour) ; le contexte de base sinon
     const f = fills.get(l)!;
     const sl = slotsFor(l);
     const type = typeOf(l);
@@ -643,12 +678,15 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       const hingePool = heavyBy.get(l) ? poolNoExtension : pool;
       // D34 (PV3-VAR-2) : d'abord les fiches absentes des autres séances de la semaine.
       const weekIds = weekIdsExcept(l);
+      for (const [o, id] of j3Pick) if (o !== l) weekIds.add(id);
       for (const r of freshFirst(rankSlot('jambes_3', st, used, ctx, hingePool), weekIds)) {
         if (r.cand.fiche.schema !== 'charniere') continue;
         const alt = mkFrom(slot, { slot, tier: r.tier, cand: r.cand, schemaRank: 0 });
-        if (alt && splitCapsOk([...current, alt], plafSlot)) return alt;
+        if (alt && splitCapsOk([...current, alt], plafSlot)) { j3Pick.set(l, alt.ficheId); return alt; }
       }
-      return mkFrom(slot, fillSlot('jambes_3', { ...st, noHinge: true }, used, weekIds, ctx, pool));
+      const fb = mkFrom(slot, fillSlot('jambes_3', { ...st, noHinge: true }, used, weekIds, ctx, pool));
+      if (fb) j3Pick.set(l, fb.ficheId);
+      return fb;
     };
     const exercises: GenExercise[] = [];
     const attempted: SlotKey[] = [];
@@ -825,10 +863,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     const placed: Partial<Record<SlotKey, string>> = {};
     for (const x of s.exercises) placed[x.slot] = x.schema;
     const weekIds = new Set(durSessions.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
-    for (const r of freshFirst(rankSlot('jambes_3', { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
-      const alt = buildExercise(r.cand, 'jambes_3', r.tier, ctx);
+    for (const r of freshFirst(rankSlot('jambes_3', { label: s.label, placedSchema: placed }, used, ctxFor(s.label), pool), weekIds)) {
+      const alt = buildExercise(r.cand, 'jambes_3', r.tier, ctxFor(s.label));
       if (frac(alt, m) === 1) continue;
-      alt.warmupSets = e3Sets(alt, ctx);
+      alt.warmupSets = e3Sets(alt, ctxFor(s.label));
       if (!splitCapsOk(s.exercises.map((x) => (x === e ? alt : x)), plafSlot)) continue;
       return alt;
     }
@@ -841,7 +879,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     const placed: Partial<Record<SlotKey, string>> = {};
     for (const x of s.exercises) if (x !== e) placed[x.slot] = x.schema;
     const weekIds = new Set(all.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
-    const ranked = freshFirst(rankSlot(e.slot, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds);
+    const ranked = freshFirst(rankSlot(e.slot, { label: s.label, placedSchema: placed }, used, ctxFor(s.label), pool), weekIds);
     const weekOf = (ss: DurSession<GenExercise>[], m: string) => ss.reduce((a, x) => a + sessionVol(x, m), 0);
     const limitSec = Math.max(budget.get(s.label) ?? dSec, estimerDuree(s));
     // Ordre : fiche pleine (niveaux a, b) sans épaules ; fiche pleine à épaules secondaires si elle suffit seule à repasser sous 20 ;
@@ -851,9 +889,9 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     for (const [full, target, mustResolve] of passes) {
       for (const r of ranked) {
         if ((r.tier === 'a' || r.tier === 'b') !== full) continue;
-        const alt = buildExercise(r.cand, e.slot, r.tier, ctx);
+        const alt = buildExercise(r.cand, e.slot, r.tier, ctxFor(s.label));
         if (frac(alt, 'deltoides') !== target) continue;
-        alt.warmupSets = e3Sets(alt, ctx);
+        alt.warmupSets = e3Sets(alt, ctxFor(s.label));
         const exs = s.exercises.map((x) => (x === e ? alt : x));
         if (!(isSplit ? splitCapsOk(exs, plafSlot) : sessionCapsOk({ exercises: exs }, plafSlot))) continue;
         const trial = { ...s, exercises: exs };
@@ -925,7 +963,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
             Math.floor(ISOLATION.maxSetsPerGroupWeek / ISOLATION.setsPerExercise),
           );
           const weekUsed = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((e) => e.ficheId)));
-          const ex = isoExercise(def, ctx, pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
+          const ex = isoExercise(def, ctxFor(s.label), pool, new Set(s.exercises.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
           if (!ex) continue;
           const trial = { ...s, exercises: [...s.exercises, ex] };
           if (estimerDuree(trial) > budgetS - isoCardioReserveSec - extraReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
@@ -956,7 +994,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
           for (const v of victims) {
             // Le partenaire d'un superset défait continue seul (la durée est recontrôlée sur l'essai).
             const others = s.exercises.filter((e) => e !== v).map((e) => (v.supersetGroup && e.supersetGroup === v.supersetGroup ? { ...e, supersetGroup: null } : e));
-            const ex = isoExercise(def, ctx, pool, new Set(others.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
+            const ex = isoExercise(def, ctxFor(s.label), pool, new Set(others.map((e) => e.ficheId)), { weekUsed, week, block, k: isoK });
             if (!ex) break;
             const trial = { ...s, exercises: [...others, ex] };
             if (estimerDuree(trial) > budgetS - isoCardioReserveSec || !(isSplit ? splitCapsOk(trial.exercises, plafAuto) : sessionCapsOk(trial, plafAuto))) continue;
@@ -984,10 +1022,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     const placed: Partial<Record<SlotKey, string>> = {};
     for (const x of s.exercises) if (x !== e) placed[x.slot] = x.schema;
     const weekIds = new Set(all.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
-    for (const r of freshFirst(rankSlot(e.slot, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+    for (const r of freshFirst(rankSlot(e.slot, { label: s.label, placedSchema: placed }, used, ctxFor(s.label), pool), weekIds)) {
       if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34) : jamais une fiche déjà placée ailleurs dans la semaine
-      const alt = buildExercise(r.cand, e.slot, r.tier, ctx);
-      alt.warmupSets = e3Sets(alt, ctx);
+      const alt = buildExercise(r.cand, e.slot, r.tier, ctxFor(s.label));
+      alt.warmupSets = e3Sets(alt, ctxFor(s.label));
       yield alt;
     }
   }
@@ -996,6 +1034,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     budget: (s: DurSession<GenExercise>) => budget.get(s.label) ?? dSec,
     sessionOk: (exs: GenExercise[], mode: 'slot' | 'auto') => {
       const p = mode === 'slot' ? plafSlot : plafAuto;
+      // 24/11/2026 : aucun ajout (zones grises, fonctionnel, correctifs, remplissage du temps) ne porte le core de la séance (gainage, anti-rotation, rotation, tous emplacements) au-delà de 6 séries (CORE_MAX, kiné).
+      if (exs.filter((e) => TRONC_SCHEMAS.includes(e.schema)).reduce((a, e) => a + e.sets, 0) > CORE_MAX.setsPerSession) return false;
       // CAL-12 : aucun ajout (zones grises, remplissage du temps, correctifs) ne peut mettre un exercice lourd d'épaules / trapèzes dans une séance qui a le cou.
       if (exs.some((e) => e.ficheId === CORRECTIF_COU.ficheId && e.slot === 'correctif') && hasHeavyShoulderTrap({ exercises: exs }, ctx)) return false;
       return isSplit ? splitCapsOk(exs, p) : sessionCapsOk({ exercises: exs }, p);
@@ -1027,10 +1067,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       const weekIds = new Set(kept.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
       let added = false;
       for (const sl of free) {
-        for (const r of freshFirst(rankSlot(sl, { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+        for (const r of freshFirst(rankSlot(sl, { label: s.label, placedSchema: placed }, used, ctxFor(s.label), pool), weekIds)) {
           if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34)
-          const ex = buildExercise(r.cand, sl, r.tier, ctx);
-          ex.warmupSets = e3Sets(ex, ctx);
+          const ex = buildExercise(r.cand, sl, r.tier, ctxFor(s.label));
+          ex.warmupSets = e3Sets(ex, ctxFor(s.label));
           const trial = { ...s, exercises: [...s.exercises, ex] };
           if (estimerDuree(trial) > (budget.get(s.label) ?? dSec) || !splitCapsOk(trial.exercises, plafAuto) || !weekCapsFracOk(kept.map((x) => (x === s ? trial : x)))) continue;
           s.exercises = trial.exercises;
@@ -1051,10 +1091,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     const placed: Partial<Record<SlotKey, string>> = {};
     for (const x of s.exercises) placed[x.slot] = x.schema;
     const weekIds = new Set(all.filter((x) => x !== s).flatMap((x) => x.exercises.map((y) => y.ficheId)));
-    for (const r of freshFirst(rankSlot('fonctionnel', { label: s.label, placedSchema: placed }, used, ctx, pool), weekIds)) {
+    for (const r of freshFirst(rankSlot('fonctionnel', { label: s.label, placedSchema: placed }, used, ctxFor(s.label), pool), weekIds)) {
       if (weekIds.has(r.cand.fiche.id)) continue; // variété (D34) : jamais une fiche déjà placée ailleurs dans la semaine
-      const ex = buildExercise(r.cand, 'fonctionnel', r.tier, ctx);
-      ex.warmupSets = e3Sets(ex, ctx);
+      const ex = buildExercise(r.cand, 'fonctionnel', r.tier, ctxFor(s.label));
+      ex.warmupSets = e3Sets(ex, ctxFor(s.label));
       yield ex;
     }
   }
@@ -1082,6 +1122,7 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   addCalfGuarantee(kept, zoneDeps, typeOf);
   // Plafonds de core (6 par séance, 12 par semaine) tenus après tous les ajouts : on ne fait que baisser des séries de tronc (core-cap.ts).
   capCoreWeek(kept, ctx);
+  enforceZoneCaps(kept, ctx);
   // Cou (`kine`, 07/11/2026) : l'isolation, le remplissage PPL et le remplissage du temps passent après le correctif ; si l'un d'eux a ajouté un exercice lourd
   // d'épaules / trapèzes dans une séance qui a déjà le cou, le cou en est retiré (jamais ailleurs).
   for (const s of kept) {
@@ -1145,6 +1186,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
       label: s.label,
       type: typeOf(s.label),
       weekday: dayOf(s.label),
+      ...(placeOfLabel(s.label) ? { place: placeOfLabel(s.label)! } : {}),
+      ...(placeOfLabel(s.label) ? { place: placeOfLabel(s.label)! } : {}),
       warmup: {
         general: general ? { ...general, sec: s.e1Sec } : null,
         generalSec: s.e1Sec,
@@ -1552,6 +1595,7 @@ export function toProgramDays(p: GenProgram): ProgramDay[] {
     label: sessionTitle(s.label),
     sessionType: s.type,
     weekday: s.weekday,
+    ...(s.place ? { place: s.place } : {}),
     estimatedMin: s.estimatedMin,
     warmup: { generalSec: s.warmup.generalSec, general: item(s.warmup.general), mobility: s.warmup.mobility.map((m) => item(m)!), cooldown: item(s.warmup.cooldown) },
     exercises: [

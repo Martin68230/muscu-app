@@ -1092,6 +1092,10 @@ export const MACHINE_TAGS: readonly string[] = ['machine', 'poulie', 'machine_ca
 export const SALLE_EXCLUS: readonly string[] = ['sac_a_dos', 'bidons_ou_sacs', 'sac_de_sable', 'bosu', 'elastique', 'mini_bande', 'porte', 'ancrage_porte'];
 export const SALLE_PENURIE_READMIS: readonly string[] = ['elastique', 'mini_bande'];
 export const SALLE_PENURIE_MIN_FICHES = 2;
+/** Lieu « dehors » (lieu par jour, 24/11/2026) : seul le matériel qui se porte ; jamais machine, banc, barre ni haltères lourds. */
+export const OUTDOOR_TAGS: readonly string[] = ['poids_du_corps', 'marche_escalier', 'mur', 'elastique', 'mini_bande', 'corde_a_sauter', 'sac_a_dos', 'lest', 'sangles_suspension', 'serviette'];
+/** Classement en salle (24/11/2026) : tags d'un exercice « de salle » (machine, poulie, barre, haltères, banc, traction), préférés aux basiques (poids du corps, élastique, chaise). */
+export const GYM_RANK_TAGS: readonly string[] = ['machine', 'poulie', 'barre', 'barre_ez', 'rack', 'banc', 'banc_inclinable', 'barre_traction', 'halteres', 'kettlebell', 'disques'];
 export const SALLE_HOME_SUFFIX = ' (à la maison)';
 
 /** STR-ISO-0 à 5 (structure-programmes.md §2.4). NON SOURCÉ. */
