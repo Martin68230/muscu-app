@@ -269,6 +269,8 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
       'curl-concentration-halteres', 'curl-inverse-halteres', 'curl-poignet-halteres', 'extension-triceps-elastique', 'oiseau-elastique', 'tirage-visage-elastique-barre',
       // lot 7 et vague 3 (15/11/2026, hasaneyldrm) : isolations d'une articulation, 1 ou 2 muscles principaux, relues par kine et relecteur
       'curl-a-un-bras', 'curl-allonge-sur-le-dos', 'curl-au-pupitre', 'curl-au-pupitre-un-bras', 'curl-bras-en-hauteur', 'curl-des-doigts', 'curl-en-araignee', 'curl-en-coupe', 'curl-inverse-a-un-bras', 'curl-inverse-au-pupitre', 'curl-inverse-au-pupitre-un-bras', 'curl-prise-large', 'curl-prise-serree', 'curl-trainant', 'curl-zottman-au-pupitre', 'curl-zottman-au-pupitre-un-bras', 'ecarte-un-bras', 'elevation-laterale-un-bras-sur-banc-incline', 'elevation-laterale-vers-l-avant', 'extension-triceps-au-banc-incline', 'extension-triceps-au-dessus-de-la-tete', 'extension-triceps-au-dessus-de-la-tete-un-bras-prise-inversee', 'oiseau-allonge-sur-le-ventre', 'oiseau-un-bras-couche-sur-le-cote', 'releve-mollets-genoux-flechis', 'releve-mollets-une-jambe-appui', 'tirage-bras-tendus-sur-banc-incline',
+      // lot 6 de la vague 3 (24/11/2026, jeu hasaneyldrm) : curls marteau et variantes relus par kine et relecteur
+      'curl-des-jambes', 'curl-des-jambes-a-genoux', 'curl-marteau', 'curl-marteau-a-la-corde', 'curl-marteau-a-un-bras', 'curl-marteau-au-pupitre', 'curl-marteau-croise', 'curl-marteau-sur-ballon-de-gym', 'extension-triceps-a-la-corde',
     ];
     const hits = FICHES.filter((f) => ISOLATION_FICHE_PREFIXES.some((p) => f.id.startsWith(p)));
     expect(hits.map((f) => f.id).sort()).toEqual([...REVUES].sort());

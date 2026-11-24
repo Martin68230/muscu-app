@@ -129,3 +129,4 @@ Famille posée par le convertisseur (tools/hasan-vers-fiches.mjs), revue par `co
 | torsion-du-buste-a-la-poulie-du-bas-vers-le-haut | rotation | intermediaire | CF3 |
 | touche-pied-en-crabe | rotation | intermediaire | CF3 |
 | touche-talons-alternes | gainage | debutant | CF4 |
+| crunch-assis-guide | gainage | intermediaire | CF4 |

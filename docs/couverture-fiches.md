@@ -16,3 +16,15 @@ Restent faibles (peu de fiches à la maison, sans matériel) : poussée vertical
 
 ## Par lot de la vague 3 (fiches gardées après coach, kiné, relecteur)
 Lot 1 (bras, épaules, poussées variées) 20 · lot 2 (poussées) 16 · lot 3 (tirages, bras) 34 · lot 4 (bas du corps, tronc, mobilité) 51 · lot 5 (abdominaux) 31. Écartées : doublons des fiches existantes, exercices techniques ou dangereux (voir `knowledge/exercices/hasan/plan.tsv`, colonne `raison`).
+
+## Mise à jour du 24/11/2026 (lots 6 : machines de salle ; activation du haut du corps du jeu)
+Après le lot 6 (37 fiches : presses à cuisses, hack, curls de jambes, développés / rowings / tirages guidés, dips à la machine, curls marteau, extension à la corde, mollets) : 470 fiches `utilisable`.
+
+| Profil | squat / charnière / fente / poussée H / poussée V / tirage H / tirage V / gainage |
+|---|---|
+| F salle complète | 33 / 39 / 16 / 50 / 21 / 76 / 28 / 66 (avant la session : 18 / 30 / 14 / 30 / 14 / 32 / 14 / 14) |
+| E + matériel maison | 26 / 35 / 16 / 44 / 19 / 54 / 20 / 60 |
+| A poids du corps | 13 / 14 / 13 / 14 / 6 / 8 / 3 / 34 |
+
+Générateur : 21 fiches du haut du corps du jeu (poussée verticale, tirage horizontal et vertical, hors grand dorsal, rhomboïdes, trapèzes, avant-bras, coiffe, dentelé, cou) sont proposées ; poussée horizontale du jeu encore en bibliothèque. Restent faibles : poussée verticale et tirage vertical à la maison (6 et 3 sans matériel), fente (16 en salle).
+Pistes pour la salle : fente (fentes à la barre / Smith, fente bulgare à la machine), tirage vertical (tractions assistées, prises variées), poussée verticale à la maison, pec deck / écartés à la poulie (famille « écarté » du jeu : 0 fiche machine), abduction / adduction machine (2 fiches), mollets debout machine.

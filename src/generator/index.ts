@@ -7,7 +7,7 @@ import {
   SPLIT_UNLIMITED_START_N, SUPPORTED_DAYS, BLOCK_WEEKS, CARDIO, DEFAULT_DURATION_MIN, DURATION_STEPS_MIN, FREQ_MIN_PER_WEEK, GG_LIST, MIN_DURATION_MIN,
   OBJETS_QUOTIDIEN, PER_SIDE_VARIANT_IDS, PREGNANCY, P_ZONE3_MAX_EMPTY_CORE, START_N_BY_DURATION, TEMPS_RIR_PLACEHOLDER, TIME, TRONC_SCHEMAS, UNLIMITED, VOLUME, WARMUP, type GG,
   CORE_FAMILY_ORDER, CORE_FLOOR, CORE_HEAVY_MAX_HOLD_SEC, CORE_OUT_OF_FLOOR_IDS, CORE_REMOVAL_SESSION_ORDER, CORE_SESSION_PRIORITY, type CoreFamily,
-  CAL11, COMPLEMENTS, MANUAL_ONLY_FICHES, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, HASAN_UPPER_IN_GENERATOR, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
+  CAL11, COMPLEMENTS, MANUAL_ONLY_FICHES, CORRECTIF_COU, CARDIO_CAPS, ISOLATION_FICHE_PREFIXES, HASAN_UPPER_ACTIVE, HASAN_UPPER_EXCLUDED_MUSCLES, HASAN_UPPER_EXCLUDED_SECONDARY, ROPE, CARDIO_OPTION, ISOLATION, SALLE_HOME_SUFFIX, LIGHT_DAY_CARDIO, LOWER_LIMB_ZONES, SPORT_FAMILIES, doseLimitOf, MAIN_EXERCISE_SLOTS,
 } from './config';
 import { dedicatedDuration, planDedicated, sportFamily, type DedicatedPlan } from './dedicated';
 import { composeJumpBlock, impactExclusion, jumpChoices, jumpContacts, jumpDayAllowed, plioBlockMin, ropeCardio } from './impact';
@@ -496,8 +496,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
 
   // 15/11/2026 : les fiches du HAUT du corps issues du jeu hasaneyldrm (poussées, tirages, bras, épaules ; sans image du dépôt) ne sont pas encore proposées par le générateur : avec ce pool, les
   // zones de trapèzes et d'épaules dépassent leurs plafonds de zone et le cou n'est plus placé (tests plafonds-releves) ; elles restent dans la bibliothèque (choix manuel, « Créer une séance »).
-  // Bas du corps, tronc et mobilité du jeu sont proposés. Levée : HASAN_UPPER_IN_GENERATOR = true après étalonnage des zones par le développeur.
-  const hasanUpper = (f: Fiche): boolean => !HASAN_UPPER_IN_GENERATOR && Array.isArray(f.images) && f.images.length === 0 && /^(poussee_h|poussee_v|tirage_h|tirage_v)$/.test(f.schema);
+  // Bas du corps, tronc et mobilité du jeu sont proposés. Levée par groupe : HASAN_UPPER_ACTIVE (config.ts).
+  const hasanUpper = (f: Fiche): boolean => (!HASAN_UPPER_ACTIVE.includes(f.schema) || f.musclesPrincipaux.some((m) => HASAN_UPPER_EXCLUDED_MUSCLES.includes(m)) || (f.musclesSecondaires ?? []).some((m) => HASAN_UPPER_EXCLUDED_SECONDARY.includes(m))) && Array.isArray(f.images) && f.images.length === 0 && /^(poussee_h|poussee_v|tirage_h|tirage_v)$/.test(f.schema);
   const pool = input.fiches.filter((f) => USABLE_STATUTS.includes(f.statut) && !hasanUpper(f)).sort((a, b) => (a.id < b.id ? -1 : 1));
   // D26 : séances qui reçoivent du core. Corps entier : table §2.2 et CORE-FREQ-5 (A puis C, puis B) ; D25 (STR-REP-9) : bas ou legs
   // d'abord, puis haut, puis pull (jamais push) ; l'ordre de retrait au-delà du plancher suit le même ordre (CORE-TPS-1).
