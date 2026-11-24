@@ -38,7 +38,7 @@ describe('calendrier', () => {
     expect(screen.getByRole('button', { name: /mardi 20 octobre : séance faite, avec une douleur/ })).toBeTruthy();
     expect(screen.getByRole('button', { name: /mardi 13 octobre : séance arrêtée/ })).toBeTruthy();
     expect(screen.getByRole('button', { name: /mardi 6 octobre : séance reportée/ })).toBeTruthy();
-    expect(screen.getByRole('img', { name: /mercredi 28 octobre, aujourd’hui/ })).toBeTruthy();
+    expect(screen.getByRole('button', { name: /mercredi 28 octobre, aujourd’hui/ })).toBeTruthy();
     expect(screen.getByText('2 séances faites sur environ 12 prévues (estimation).')).toBeTruthy();
   });
   it('appui sur un jour : détail et lien « Voir le bilan »', () => {

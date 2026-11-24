@@ -38,7 +38,7 @@ const createFromHash = (): boolean => location.hash === '#/creer';
 /** #/sport : écran « Noter une séance de sport » (Mon sport). */
 const sportFromHash = (): boolean => location.hash === '#/sport';
 /** #/nutrition : écran Nutrition (phase 7), ouvert depuis la Bibliothèque. */
-const nutritionFromHash = (): boolean => location.hash === '#/nutrition';
+const nutritionFromHash = (): boolean => location.hash === '#/nutrition' || location.hash.startsWith('#/nutrition/');
 const progressFromHash = (): boolean => location.hash === '#/progression';
 
 interface Playing {

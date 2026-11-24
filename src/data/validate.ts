@@ -172,7 +172,8 @@ export const SPECS: Record<TableName, Spec> = {
     endedAt: 'string?',
   },
   weeklyCheckins: { weekStart: 'string', bodyWeightId: 'string?', adherence: 'string?', trendKgAfter: 'number?', kcalAdjust: 'number', note: 'string' },
-  mealPlans: { weekStart: 'string', generatorVersion: 'string', dayTargets: 'array', slots: 'array', inputsHash: 'string', result: 'object', seed: 'number' },
+  mealPlans: { weekStart: 'string', generatorVersion: 'string', dayTargets: 'array', slots: 'array', inputsHash: 'string', result: 'object', seed: 'number', status: 'string?', confirmedAt: 'string?', locks: 'array', previous: 'object?' },
+  mealLogs: { date: 'string', slotKey: 'string', state: 'string', note: 'string', kcal: 'number?' },
   shoppingStates: { weekStart: 'string', checked: 'array', pantry: 'array', custom: 'array' },
   recipePrefs: { recipeId: 'string', state: 'string' },
   shares: { dataType: 'string', friendId: 'string?', enabled: 'boolean' },
@@ -203,7 +204,7 @@ const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
   equipment: ['dumbbellKind', 'platesKg', 'other'],
   sportSessions: ['name', 'match', 'jumps', 'overhead', 'painZone', 'signs', 'note'],
   nutritionProfiles: ['mealConfig'],
-  mealPlans: ['result', 'seed'],
+  mealPlans: ['result', 'seed', 'status', 'confirmedAt', 'locks', 'previous'],
 };
 
 /** Valeurs permises des champs qui pilotent la sécurité (un import ne doit pas en introduire d'inconnues). */
@@ -223,6 +224,8 @@ const ENUMS: Partial<Record<TableName, Record<string, string[]>>> = {
   nutritionGoals: { kind: ['perte', 'maintien', 'prise'], pace: ['doux', 'standard', 'ferme'] },
   weeklyCheckins: { adherence: ['oui', 'peu_pres', 'non'] },
   recipePrefs: { state: ['favori', 'bloque'] },
+  mealPlans: { status: ['brouillon', 'valide'] },
+  mealLogs: { state: ['fait', 'pas_fait', 'ecart'] },
   injuries: { zone: ['cou', 'epaule', 'coude', 'poignet', 'dos', 'hanche', 'genou', 'cheville', 'cuisse', 'aine'] },
 };
 
@@ -372,6 +375,11 @@ function deepErrors(table: TableName, r: Record<string, unknown>): string[] {
   }
   if (table === 'nutritionGoals') {
     if (!num(r.startKg, 1, 1000) || (r.targetKg != null && !num(r.targetKg, 1, 1000))) out.push(`${where} : poids hors limites`);
+  }
+  if (table === 'mealLogs') {
+    if (!/^\d{4}-\d{2}-\d{2}$/.test(String(r.date))) out.push(`${where} : date invalide`);
+    if (typeof r.note === 'string' && r.note.length > 300) out.push(`${where} : note trop longue`);
+    if (r.kcal != null && !num(r.kcal, 0, 10000)) out.push(`${where} : kcal hors limites`);
   }
   if (table === 'weeklyCheckins' && !num(r.kcalAdjust, -2000, 2000)) out.push(`${where} : ajustement hors limites`);
   if (table === 'profile' && r.heightCm != null && !num(r.heightCm, 30, 300)) out.push(`${where} : taille hors limites`);

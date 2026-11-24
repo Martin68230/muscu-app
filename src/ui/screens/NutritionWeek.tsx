@@ -1,36 +1,29 @@
-// Onglet « Semaine » (docs/nutrition-spec.md, annexe du 14/11/2026) : plan des 7 jours, repas optionnels, lots, liste de courses cochable.
+// Onglet « Semaine » (docs/nutrition-spec.md, annexe du 14/11/2026 ; semaine validée : docs/nutrition-reprise.md) : plan des 7 jours, repas optionnels,
+// lots, liste de courses cochable, changement de repas / d'aliment, verrous, validation (calendrier + historique).
 // Les calories et macros viennent UNIQUEMENT de la cible finale (src/nutrition/final-needs.ts), jamais d'un calcul refait ici.
 import { useEffect, useMemo, useState } from 'preact/hooks';
-import type { NutritionProfile } from '../../data/model';
+import type { MealPlan, NutritionProfile } from '../../data/model';
 import { ALLERGEN_LABELS, ALLERGENS, type AllergenKey } from '../../nutrition/allergens';
 import { loadCatalog, type Catalog } from '../../nutrition/catalog';
 import type { FinalNeeds, Refused } from '../../nutrition/final-needs';
-import { ARRONDI_GRAMMES, NUTRITION_VERSION, SEUIL_ECART_KCAL } from '../../nutrition/config';
-import { recipeAllowed, type PlanPrefs, type Recipe } from '../../nutrition/plan';
-import { buildShoppingList, RAYON_LABELS, RAYON_ORDER, shoppingToText } from '../../nutrition/shopping';
-import { getMealPlan, getShoppingState, saveMealPlan, saveNutritionProfile, setChecked } from '../../nutrition/store';
-import { ceilG, generateWeekPlan, sanitizeMealConfig, type MealConfig, type SlotKind, type WeekPlanResult } from '../../nutrition/week-plan';
+import { NUTRITION_VERSION, SEUIL_ECART_KCAL } from '../../nutrition/config';
+import { addDaysKey } from '../../nutrition/meals-calendar';
+import { recipeAllowed, type PlanPrefs } from '../../nutrition/plan';
+import { confirmMealPlan, getMealPlan, reopenMealPlan, saveEditedPlan, saveGeneratedPlan, saveNutritionProfile, undoLastChange } from '../../nutrition/store';
+import { assembleWeek, normalizePlan, slotUsable, usableFixed, type EditCtx } from '../../nutrition/week-edit';
+import { generateWeekPlan, sanitizeMealConfig, slotKeyOf, repasOf, type MealConfig, type SlotKind, type WeekPlanResult } from '../../nutrition/week-plan';
 import { ExportCard } from './NutritionExport';
+import { ShoppingListCard } from './NutritionShopping';
+import { PlanDays } from './NutritionPlanView';
 import { dateKey } from '../../session/calendar';
 import { weekStartOf } from '../../nutrition/weight-trend';
 
 const NOT_MEDICAL = 'Ce n’est pas un avis médical.';
 const DAYS = ['L', 'M', 'M', 'J', 'V', 'S', 'D'];
 const DAYS_LONG = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
-const KIND_LABEL: Record<SlotKind, string> = { 'petit-dej': 'Petit-déjeuner', dejeuner: 'Déjeuner', diner: 'Dîner', gouter: 'Goûter', encas: 'En-cas' };
+const IMPOSE_KINDS: [SlotKind, string][] = [['petit-dej', 'Petit-déj'], ['dejeuner', 'Déjeuner'], ['gouter', 'Goûter'], ['diner', 'Dîner']];
 const DIETS: [string, string][] = [['vegetarien', 'Végétarien'], ['vegetalien', 'Végétalien'], ['sans_porc', 'Sans porc'], ['sans_lactose', 'Sans lactose'], ['sans_gluten', 'Sans gluten']];
 const APPLIANCES: [string, string][] = [['four', 'Four'], ['micro-ondes', 'Micro-ondes'], ['plaques', 'Plaques'], ['blender', 'Blender']];
-const fmt = (n: number, d = 0) => n.toLocaleString('fr-FR', { maximumFractionDigits: d, minimumFractionDigits: d });
-
-function addDays(key: string, n: number): string {
-  const t = Date.parse(`${key}T00:00:00Z`) + n * 86_400_000;
-  return new Date(t).toISOString().slice(0, 10);
-}
-
-/** Grammes d'un ingrédient pour un créneau : pièces x grammes d'une pièce (lot), ou grammes de base mis à l'échelle (ajustables seulement). */
-function slotLines(r: Recipe, scale: number, pieces: number) {
-  return r.ingredients.map((i) => ({ nom: i.nom, g: r.lot ? ceilG(i.grammes * pieces) : i.ajustable ? Math.round((i.grammes * scale) / ARRONDI_GRAMMES) * ARRONDI_GRAMMES || ARRONDI_GRAMMES : i.grammes }));
-}
 
 export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; fin: FinalNeeds | Refused; aiEnabled?: boolean }) {
   const [catalog, setCatalog] = useState<Catalog | null>(null);
@@ -48,19 +41,25 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
   const [genErr, setGenErr] = useState('');
   const thisMonday = weekStartOf(dateKey(new Date()));
   const [next, setNext] = useState(false);
-  const weekStart = next ? addDays(thisMonday, 7) : thisMonday;
-  const [plan, setPlan] = useState<WeekPlanResult | null>(null);
-  const [checked, setCheckedState] = useState<string[]>([]);
+  const weekStart = next ? addDaysKey(thisMonday, 7) : thisMonday;
+  const [row, setRow] = useState<MealPlan | null>(null);
   const [busy, setBusy] = useState(false);
-  const [copied, setCopied] = useState(false);
+  const [confirmRegen, setConfirmRegen] = useState(false);
+  const [toast, setToast] = useState('');
+  const [imposed, setImposed] = useState<Record<string, string>>({});
+  const [impDay, setImpDay] = useState(0);
+  const [impKind, setImpKind] = useState<SlotKind>('dejeuner');
+  const [impQ, setImpQ] = useState('');
 
   useEffect(() => {
     loadCatalog().then(setCatalog).catch(() => setLoadErr('Les recettes ne se chargent pas (hors ligne ?). Réessaie quand le réseau revient.'));
   }, []);
   useEffect(() => {
-    setPlan(null);
-    void getMealPlan(weekStart).then((p) => setPlan((p?.result as unknown as WeekPlanResult) ?? null)).catch(() => setPlan(null));
-    void getShoppingState(weekStart).then((s) => setCheckedState(s?.checked ?? []));
+    setRow(null);
+    setToast('');
+    setConfirmRegen(false);
+    setImposed({});
+    void getMealPlan(weekStart).then(setRow).catch(() => setRow(null));
   }, [weekStart]);
 
   const persist = (patch: Parameters<typeof saveNutritionProfile>[0]) => void saveNutritionProfile(patch);
@@ -75,44 +74,78 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
     if (fin.status !== 'ok') return null;
     return { goal: fin.goal, allergens, allergenFree: np.allergenFree ?? [], diet: celiac && !diet.includes('sans_gluten') ? [...diet, 'sans_gluten'] : diet, dislikedFoods: disliked, maxCookMin: maxCook, appliances, optimizeShopping: optimize, strictControle: severe || celiac };
   };
+  const prefs = prefsOf();
+  const ctx: EditCtx | null = catalog && prefs && fin.status === 'ok' && fin.week ? { recipes: catalog.recipes, foods: catalog.foods, info: catalog.info, prefs, days: fin.week, cfg, floorKcal: fin.needs.floor } : null;
 
-  // Un plan enregistré n'est montré que s'il a la bonne forme, la version actuelle et si CHAQUE repas respecte les réglages d'aujourd'hui.
+  const validated = row?.status === 'valide';
+  const todayKey = dateKey(new Date());
+  const plan = (row?.result as unknown as WeekPlanResult | undefined) ?? null;
+  // Un plan enregistré est montré s'il a la bonne forme (et, pour un brouillon, la version actuelle). Chaque repas qui ne respecte plus les réglages
+  // d'aujourd'hui est signalé « à changer » et n'est jamais détaillé ; la validation est refusée tant qu'il en reste.
   const planState = useMemo((): 'aucun' | 'ok' | 'perime' | 'invalide' => {
-    if (!plan || !catalog) return 'aucun';
+    if (!row || !plan) return 'aucun';
     const p = plan as Partial<WeekPlanResult>;
     if (!Array.isArray(p.slots) || !Array.isArray(p.days) || p.days.length !== 7 || !Array.isArray(p.lots) || !Array.isArray(p.ingredients)) return 'invalide';
-    if ((p as { version?: string }).version !== NUTRITION_VERSION) return 'perime';
-    const prefs = prefsOf();
-    if (!prefs) return 'invalide';
-    const pf = { ...prefs, mealsPerDay: 3 as const };
-    for (const s of p.slots) {
-      if (!s.recipeId) continue;
-      const r = recipeById.get(s.recipeId);
-      if (!r || !recipeAllowed(r, pf)) return 'invalide';
-    }
+    if (!validated && p.version !== NUTRITION_VERSION) return 'perime';
     return 'ok';
+  }, [row, plan, validated]);
+  const shown = useMemo(() => (planState === 'ok' && plan ? (catalog ? normalizePlan(plan, catalog.info) : plan) : null), [planState, plan, catalog]);
+  const locks = row?.locks ?? [];
+  // Échec sûr : tant que le catalogue ou les réglages ne sont pas chargés, un repas n'est pas jugé utilisable.
+  const usable = (s: WeekPlanResult['slots'][number]) => (!catalog || !prefs ? false : slotUsable(s, recipeById, catalog.info, prefs));
+  const unusableCount = shown ? shown.slots.filter((s) => !usable(s)).length : 0;
+  useEffect(() => {
+    if (location.hash === '#/nutrition/courses' && shown && catalog) document.getElementById('courses')?.scrollIntoView?.({ block: 'start' });
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [plan, catalog, allergens, diet, disliked, maxCook, appliances, severe, celiac, recipeById]);
-  const shown = planState === 'ok' ? plan : null;
+  }, [!!shown, !!catalog]);
+
+  // Jours recalculés avec le plancher d'aujourd'hui (jamais les contrôles stockés dans un plan enregistré ou importé).
+  const checkedDays = shown ? (ctx ? assembleWeek(shown.slots, ctx, shown.version).days : shown.days) : [];
+  const badDay = shown ? checkedDays.find((d) => d.belowFloor || d.status === 'incomplet' || d.status === 'sous_plancher') : undefined;
 
   const generate = async () => {
-    const prefs = prefsOf();
-    if (!catalog || !prefs || fin.status !== 'ok' || !fin.week) return;
+    if (!catalog || !prefs || !ctx || fin.status !== 'ok' || !fin.week) return;
     setBusy(true);
     setGenErr('');
+    setConfirmRegen(false);
     try {
       const seed = Math.floor(Math.random() * 1e9) + 1;
-      const res = generateWeekPlan(fin.week, catalog.recipes, catalog.foods, prefs, cfg, seed, [], fin.needs.floor);
+      const old = shown;
+      const fixed = old ? usableFixed(old, locks, ctx) : new Map();
+      const prev = old ? old.slots.filter((s) => s.recipeId && !fixed.has(slotKeyOf(s))).map((s) => s.recipeId as string) : [];
+      const res = generateWeekPlan(fin.week, catalog.recipes, catalog.foods, prefs, { ...cfg, imposed }, seed, prev, fin.needs.floor, fixed);
+      // Les repas gardés (verrouillés) et les repas imposés réussis restent verrouillés pour les prochaines régénérations.
+      const keep = res.slots.filter((s) => s.recipeId && ((fixed.get(slotKeyOf(s))?.recipeId === s.recipeId) || imposed[slotKeyOf(s)] === s.recipeId)).map(slotKeyOf);
       await saveNutritionProfile({ allergens, diet, dislikedFoods: disliked, appliances, maxCookMin: maxCook, optimizeShopping: optimize, severeAllergy: severe, glutenStrict: celiac, mealConfig: cfg as unknown as Record<string, unknown> });
-      await saveMealPlan(weekStart, res.version, fin.week as unknown[], res as unknown as Record<string, unknown>, seed, { allergens, diet, appliances, maxCook, severe, celiac });
-      setPlan(res);
+      setRow(await saveGeneratedPlan(weekStart, res.version, fin.week as unknown[], res as unknown as Record<string, unknown>, seed, { allergens, diet, appliances, maxCook, severe, celiac, floor: fin.needs.floor }, keep));
+      setImposed({});
+      setToast(fixed.size ? `Semaine régénérée : ${fixed.size} repas verrouillé${fixed.size > 1 ? 's' : ''} gardé${fixed.size > 1 ? 's' : ''}.` : '');
     } catch (e) {
       setGenErr(`Impossible de construire la semaine (${e instanceof Error ? e.message : 'erreur'}). Vérifie tes besoins puis réessaie.`);
     }
     setBusy(false);
   };
 
-  const shopping = useMemo(() => (shown && catalog ? buildShoppingList(shown.ingredients, catalog.units) : []), [shown, catalog]);
+  const commit = async (nextPlan: WeekPlanResult, nextLocks: string[], message: string) => {
+    try {
+      setRow(await saveEditedPlan(weekStart, nextPlan as unknown as Record<string, unknown>, nextLocks));
+      setToast(message);
+    } catch {
+      setGenErr('Impossible d’enregistrer ce changement. Réessaie.');
+    }
+  };
+  const undo = async () => {
+    try {
+      if (await undoLastChange(weekStart)) { setRow(await getMealPlan(weekStart)); setToast('Dernier changement annulé.'); }
+    } catch { setGenErr('Impossible d’annuler. Réessaie.'); }
+  };
+  const validate = async () => {
+    try { setRow(await confirmMealPlan(weekStart)); setToast('Semaine validée : elle est dans ton calendrier et ton historique.'); } catch { setGenErr('Impossible de valider. Réessaie.'); }
+  };
+  const reopen = async () => {
+    try { setRow(await reopenMealPlan(weekStart)); setToast('Semaine rouverte : tu peux tout modifier.'); } catch { setGenErr('Impossible de rouvrir. Réessaie.'); }
+  };
+
   const servesMeals = useMemo(() => {
     const m = new Map<string, number>();
     if (!shown) return m;
@@ -120,22 +153,10 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
       const r = s.recipeId ? recipeById.get(s.recipeId) : null;
       if (!r) continue;
       for (const i of r.ingredients) m.set(i.code, (m.get(i.code) ?? 0) + 1);
+      for (const sw of s.swaps ?? []) m.set(sw.to, (m.get(sw.to) ?? 0) + 1);
     }
     return m;
   }, [shown, recipeById]);
-
-  const toggleChecked = async (code: string, on: boolean) => {
-    setCheckedState((c) => (on ? [...c, code] : c.filter((x) => x !== code)));
-    await setChecked(weekStart, code, on);
-  };
-  const copy = async () => {
-    try {
-      await navigator.clipboard.writeText(shoppingToText(shopping));
-      setCopied(true);
-    } catch {
-      setCopied(false);
-    }
-  };
 
   if (fin.status !== 'ok' || !fin.week) {
     return (
@@ -147,6 +168,11 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
   }
 
   const nPublished = catalog?.recipes.length ?? 0;
+  const imposeChoices = catalog && prefs
+    ? catalog.recipes.filter((r) => r.repas === repasOf(impKind) && !r.lot && recipeAllowed(r, { ...prefs, mealsPerDay: 3 }) && (impQ.trim().length < 2 || r.nom.toLowerCase().includes(impQ.trim().toLowerCase()))).slice(0, 6)
+    : [];
+  const impKey = `${impDay}-${impKind}-0`;
+  const impSlotOff = (impKind === 'petit-dej' && !cfg.petitDej[impDay]) || (impKind === 'gouter' && !cfg.gouter[impDay]);
   return (
     <>
       <section class="card">
@@ -159,11 +185,74 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
         <p class="notice small">Vérifie toujours l’étiquette des produits que tu achètes : les recettes de l’app ne remplacent pas l’étiquetage ni l’avis d’un médecin.</p>
         {loadErr && <p class="notice notice-urgent" role="alert">{loadErr}</p>}
         {genErr && <p class="notice notice-urgent" role="alert">{genErr}</p>}
-        {planState === 'invalide' && <p class="notice" role="status">Ta semaine enregistrée ne correspond plus à tes réglages (allergies, régime, matériel) : elle est masquée par sécurité. Régénère-la.</p>}
+        {planState === 'invalide' && <p class="notice" role="status">Ta semaine enregistrée est abîmée : régénère-la.</p>}
         {planState === 'perime' && <p class="notice" role="status">Ta semaine enregistrée vient d’une ancienne version de l’app : régénère-la.</p>}
         {catalog && nPublished === 0 && <p class="notice">Aucune recette n’est encore disponible dans l’app.</p>}
-        <button type="button" class="btn btn-primary" disabled={!catalog || busy || nPublished === 0} onClick={() => void generate()}>{plan ? 'Régénérer ma semaine' : 'Générer ma semaine'}</button>
+        {shown && unusableCount === 0 && <button type="button" class="btn" onClick={() => document.getElementById('courses')?.scrollIntoView({ behavior: 'smooth', block: 'start' })}>Mes courses</button>}
+        {validated ? (
+          <div class="notice" role="status">
+            <p><strong>✓ Semaine validée.</strong> Elle est dans ton calendrier et ton historique.</p>
+            <a class="btn btn-primary" href="#/calendrier">Voir au calendrier</a>
+            <button type="button" class="btn" onClick={() => void reopen()}>Rouvrir pour tout modifier</button>
+          </div>
+        ) : confirmRegen ? (
+          <div class="notice" role="alertdialog" aria-label="Confirmer la régénération">
+            <p><strong>Régénérer cette semaine ?</strong> Les repas non verrouillés sont remplacés{locks.length ? `, les ${locks.length} repas verrouillés restent` : ''}. Tu pourras annuler.</p>
+            <button type="button" class="btn btn-primary" disabled={busy} onClick={() => void generate()}>Oui, régénérer</button>
+            <button type="button" class="btn" onClick={() => setConfirmRegen(false)}>Garder ma semaine</button>
+          </div>
+        ) : (
+          <button type="button" class="btn btn-primary" disabled={!catalog || busy || nPublished === 0} onClick={() => (shown ? setConfirmRegen(true) : void generate())}>{shown ? 'Régénérer ma semaine' : 'Générer ma semaine'}</button>
+        )}
       </section>
+
+      {!validated && (
+        <details class="card nut-details" open={!shown}>
+          <summary>Avant de générer : préférences rapides</summary>
+          <fieldset class="create-group">
+            <legend>Aliments que je ne veux pas</legend>
+            <label class="field">Chercher un aliment<input type="text" autocomplete="off" value={dq} onInput={(e) => setDq(e.currentTarget.value)} /></label>
+            {dq.trim().length >= 2 && catalog && (
+              <div class="chips" role="group" aria-label="Résultats">
+                {[...catalog.info.values()].filter((f) => f.nom.toLowerCase().includes(dq.trim().toLowerCase()) && !disliked.includes(f.code)).slice(0, 6).map((f) => (
+                  <button type="button" key={f.code} class="chip" onClick={() => { const n = [...disliked, f.code]; setDisliked(n); persist({ dislikedFoods: n }); setDq(''); }}>Exclure : {f.nom}</button>
+                ))}
+              </div>
+            )}
+            {disliked.length > 0 && (
+              <div class="chips" role="group" aria-label="Aliments exclus">
+                {disliked.map((c) => (
+                  <button type="button" key={c} class="chip" aria-pressed="true" onClick={() => { const n = disliked.filter((x) => x !== c); setDisliked(n); persist({ dislikedFoods: n }); }}>{catalog?.info.get(c)?.nom ?? c} ✕</button>
+                ))}
+              </div>
+            )}
+            <p class="dim small">Les recettes qui contiennent un de ces aliments ne sont jamais proposées.</p>
+          </fieldset>
+          <fieldset class="create-group">
+            <legend>Imposer un repas</legend>
+            <div class="chips" role="group" aria-label="Jour">
+              {DAYS.map((d, i) => <button type="button" key={i} class="chip nut-day-chip" aria-label={DAYS_LONG[i]} aria-pressed={impDay === i} onClick={() => setImpDay(i)}>{d}</button>)}
+            </div>
+            <div class="chips" role="group" aria-label="Repas">
+              {IMPOSE_KINDS.map(([k, l]) => <button type="button" key={k} class="chip" aria-pressed={impKind === k} onClick={() => setImpKind(k)}>{l}</button>)}
+            </div>
+            {impSlotOff && <p class="dim small">Ce repas n’est pas activé ce jour-là : coche-le dans « Repas, allergies et préférences ».</p>}
+            <label class="field">Chercher une recette (2 lettres)<input type="text" autocomplete="off" value={impQ} onInput={(e) => setImpQ(e.currentTarget.value)} /></label>
+            <div class="chips" role="group" aria-label="Recettes proposées">
+              {imposeChoices.map((r) => <button type="button" key={r.id} class="chip" disabled={impSlotOff} onClick={() => setImposed({ ...imposed, [impKey]: r.id })}>{r.nom}</button>)}
+            </div>
+            {Object.keys(imposed).length > 0 && (
+              <div class="chips" role="group" aria-label="Repas imposés">
+                {Object.entries(imposed).map(([k, id]) => {
+                  const [d, kind] = k.split('-');
+                  return <button type="button" key={k} class="chip" aria-pressed="true" onClick={() => { const n = { ...imposed }; delete n[k]; setImposed(n); }}>{DAYS_LONG[Number(d)]} · {recipeById.get(id)?.nom ?? id} ({kind === 'petit' ? 'petit-déj' : kind}) ✕</button>;
+                })}
+              </div>
+            )}
+            <p class="dim small">Le repas imposé est placé à la prochaine génération (s’il respecte tes allergies et ton régime), puis verrouillé. Après la génération, tu peux aussi verrouiller un repas ou un jour entier, ou changer un repas ou un aliment.</p>
+          </fieldset>
+        </details>
+      )}
 
       <details class="card nut-details">
         <summary>Repas, allergies et préférences</summary>
@@ -204,25 +293,6 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
           <p class="notice small">Les allergènes affichés viennent de la composition générique des ingrédients ; les traces ne sont pas prises en compte. Vérifie toujours l’étiquette des produits. « Sans gluten » et « sans lactose » valent pour la composition générique, pas pour une allergie sévère ni pour la maladie cœliaque. {NOT_MEDICAL}</p>
         </fieldset>
         <fieldset class="create-group">
-          <legend>Aliments que je ne veux pas</legend>
-          <label class="field">Chercher un aliment<input type="text" autocomplete="off" value={dq} onInput={(e) => setDq(e.currentTarget.value)} /></label>
-          {dq.trim().length >= 2 && catalog && (
-            <div class="chips" role="group" aria-label="Résultats">
-              {[...catalog.info.values()].filter((f) => f.nom.toLowerCase().includes(dq.trim().toLowerCase()) && !disliked.includes(f.code)).slice(0, 6).map((f) => (
-                <button type="button" key={f.code} class="chip" onClick={() => { const n = [...disliked, f.code]; setDisliked(n); persist({ dislikedFoods: n }); setDq(''); }}>Exclure : {f.nom}</button>
-              ))}
-            </div>
-          )}
-          {disliked.length > 0 && (
-            <div class="chips" role="group" aria-label="Aliments exclus">
-              {disliked.map((c) => (
-                <button type="button" key={c} class="chip" aria-pressed="true" onClick={() => { const n = disliked.filter((x) => x !== c); setDisliked(n); persist({ dislikedFoods: n }); }}>{catalog?.info.get(c)?.nom ?? c} ✕</button>
-              ))}
-            </div>
-          )}
-          <p class="dim small">Les recettes qui contiennent un de ces aliments ne sont jamais proposées. Régénère ta semaine pour appliquer.</p>
-        </fieldset>
-        <fieldset class="create-group">
           <legend>Régime</legend>
           <div class="chips" role="group" aria-label="Régime">
             {DIETS.map(([k, l]) => <button type="button" key={k} class="chip" aria-pressed={diet.includes(k)} onClick={() => setDiet(diet.includes(k) ? diet.filter((x) => x !== k) : [...diet, k])}>{l}</button>)}
@@ -238,86 +308,49 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
           </div>
           <label class="check-row"><input type="checkbox" checked={optimize} onChange={(e) => setOptimize(e.currentTarget.checked)} /><span>Optimiser mes courses (peu d’ingrédients, réutilisés)</span></label>
         </fieldset>
+        <fieldset class="create-group">
+          <legend>Mon jour de courses (rappel sur l’Accueil)</legend>
+          <div class="chips" role="group" aria-label="Jour des courses">
+            <button type="button" class="chip" aria-pressed={cfg.shoppingDay === null} onClick={() => upCfg({ ...cfg, shoppingDay: null })}>Aucun</button>
+            {DAYS.map((d, i) => <button type="button" key={i} class="chip nut-day-chip" aria-label={`Courses le ${DAYS_LONG[i].toLowerCase()}`} aria-pressed={cfg.shoppingDay === i} onClick={() => upCfg({ ...cfg, shoppingDay: i })}>{d}</button>)}
+          </div>
+        </fieldset>
         <p class="dim small">Régénère ta semaine pour appliquer ces réglages.</p>
       </details>
 
-      {shown && catalog && (
+      {shown && catalog && ctx && (
         <>
           <section class="card">
             <h2>Mes 7 jours</h2>
-            {shown.days.map((d, di) => {
-              const slots = shown.slots.filter((s) => s.day === di);
-              return (
-                <div class="nut-plan-day" key={di}>
-                  <h3>{DAYS_LONG[di]} <span class="dim small">cible {fmt(d.targetKcal)} kcal · prévu {fmt(d.kcal)} kcal</span></h3>
-                  {d.status === 'incomplet' && <p class="notice small">Aucune recette ne convient à un des repas avec tes filtres : élargis tes préférences.</p>}
-                  {d.belowFloor && <p class="notice small">Ce jour est sous le plancher de sécurité de l’app : régénère la semaine ou ajoute un repas.</p>}
-                  {(d.missingKcal ?? 0) > 0 && <p class="notice small" role="status">Il manque {fmt(d.missingKcal ?? 0)} kcal pour atteindre ta cible ce jour-là. {cfg.completerAuto ? 'L’app ne peut pas en ajouter davantage sans dépasser ta cible du jour ou sortir de tes préférences (allergies, régime, temps, matériel) : ajoute un en-cas toi-même ou assouplis un réglage.' : 'Active « Ajouter un goûter ou un en-cas » dans les réglages, ou ajoute un en-cas toi-même.'}</p>}
-                  {(d.missingKcal ?? 0) === 0 && d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal > 0.15 && <p class="notice small">Écart important avec ta cible ce jour-là ({fmt(Math.abs(d.kcal - d.targetKcal))} kcal {d.kcal < d.targetKcal ? 'de moins' : 'de plus'} que prévu) : ajoute ou retire un en-cas, ou régénère la semaine.</p>}
-                  {(d.missingKcal ?? 0) === 0 && d.status === 'ecart' && Math.abs(d.kcal - d.targetKcal) / d.targetKcal <= 0.15 && <p class="dim small">Un peu d’écart avec ta cible ce jour-là.</p>}
-                  <ul class="nut-meals">
-                    {slots.map((s, si) => {
-                      const r = s.recipeId ? recipeById.get(s.recipeId) : undefined;
-                      const label = s.kind === 'encas' ? `En-cas ${s.index + 1}` : KIND_LABEL[s.kind];
-                      if (!r) return <li key={si}><span class="dim small">{label}</span> <span class="dim">Aucune recette</span></li>;
-                      return (
-                        <li key={si}>
-                          <details class="nut-details">
-                            <summary>
-                              <span class="dim small">{label}{s.auto ? ' (ajouté pour ta cible)' : ''}</span> <strong>{r.nom}</strong>{' '}
-                              <span class="dim small">{s.pieces ? `${s.pieces} ${r.piece ?? 'pièce'}${s.pieces > 1 ? 's' : ''}` : s.scale && Math.abs(s.scale - 1) > 0.05 ? `portion ×${fmt(s.scale, 1)}` : ''} · {fmt(s.kcal)} kcal</span>
-                            </summary>
-                            <p class="small">P {fmt(s.prot)} g · G {fmt(s.gluc)} g · L {fmt(s.lip)} g</p>
-                            {r.allergenes.length > 0 && <p class="small"><strong>Allergènes :</strong> {r.allergenes.map((a) => ALLERGEN_LABELS[a].label).join(', ')}</p>}
-                            <ul class="small">{slotLines(r, s.scale, s.pieces).map((l, k) => <li key={k}>{l.nom} : {fmt(l.g)} g</li>)}</ul>
-                            <ol class="small">{(r.etapes ?? []).map((e, k) => <li key={k}>{e}</li>)}</ol>
-                          </details>
-                        </li>
-                      );
-                    })}
-                  </ul>
-                </div>
-              );
-            })}
+            {toast && <p class="notice small" role="status">{toast}</p>}
+            {row?.previous && <button type="button" class="btn btn-quiet" onClick={() => void undo()}>Annuler le dernier changement</button>}
+            <PlanDays
+              plan={shown} locks={locks} catalog={catalog} ctx={ctx} weekStart={weekStart}
+              canEditDay={(d) => !validated || addDaysKey(weekStart, d) >= todayKey}
+              usable={usable}
+              onChange={(p, l, m) => void commit(p, l, m)}
+            />
             {shown.lots.length > 0 && (
               <div class="notice small">
                 <strong>À préparer en lot :</strong>{' '}
                 {shown.lots.map((l) => `${l.pieces} ${l.piece}${l.pieces > 1 ? 's' : ''} (${recipeById.get(l.recipeId)?.nom ?? l.recipeId})`).join(' ; ')}
               </div>
             )}
+            {!validated && (
+              <div class="validate-box">
+                {unusableCount > 0 && <p class="notice small" role="status">{unusableCount} repas ne correspond{unusableCount > 1 ? 'ent' : ''} plus à tes réglages (allergies, régime) : change-le{unusableCount > 1 ? 's' : ''} avant de valider.</p>}
+                {badDay && unusableCount === 0 && <p class="notice small" role="status">{DAYS_LONG[badDay.day]} est incomplet ou sous ton plancher de sécurité : change un repas ou régénère avant de valider.</p>}
+                <button type="button" class="btn btn-primary" disabled={!ctx || unusableCount > 0 || !!badDay} onClick={() => void validate()}>Valider la semaine</button>
+                <p class="dim small">Valider fige la semaine et l’ajoute à ton calendrier (repas à côté de la séance du jour) et à ton historique.</p>
+              </div>
+            )}
           </section>
 
-          <section class="card">
-            <h2>Mes courses de la semaine</h2>
-            <p class="dim small">Quantités additionnées pour les 7 jours, arrondies au conditionnement. Coche en magasin.</p>
-            {RAYON_ORDER.map((ray) => {
-              const items = shopping.filter((i) => i.rayon === ray && !i.pantry);
-              if (!items.length) return null;
-              return (
-                <div key={ray}>
-                  <h3>{RAYON_LABELS[ray]}</h3>
-                  <ul class="nut-shop">
-                    {items.map((i) => (
-                      <li key={i.code}>
-                        <label class="check-row">
-                          <input type="checkbox" checked={checked.includes(i.code)} onChange={(e) => void toggleChecked(i.code, e.currentTarget.checked)} />
-                          <span>
-                            <strong>{i.name}</strong> : {i.units ? `${i.units.count} × ${i.units.label}` : `${fmt(i.buyGrams)} g`}
-                            <span class="dim small"> · sert à {servesMeals.get(i.code) ?? 1} repas</span>
-                          </span>
-                        </label>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              );
-            })}
-            {shopping.some((i) => i.pantry) && <p class="dim small">Déjà dans ton placard (sel, huile, épices) : {shopping.filter((i) => i.pantry).map((i) => i.name).join(', ')}.</p>}
-            <button type="button" class="btn" onClick={() => void copy()}>Copier la liste</button>
-            {copied && <p class="dim small" role="status">Liste copiée.</p>}
-            <p class="notice small">Vérifie toujours l’étiquette des produits que tu achètes : les recettes de l’app ne remplacent pas l’étiquetage ni l’avis d’un médecin. Valeurs nutritionnelles : Ciqual (ANSES), Licence Ouverte 2.0.</p>
-          </section>
+          {unusableCount > 0 && <section class="card"><p class="notice" role="status">La liste de courses et l’export reviennent dès que les repas signalés « À changer » sont changés (ils ne correspondent plus à tes allergies ou à ton régime).</p></section>}
+          {unusableCount === 0 && <>
+          <ShoppingListCard weekStart={weekStart} ingredients={shown.ingredients} catalog={catalog} serves={servesMeals} />
           <ExportCard plan={shown} recipes={recipeById} units={catalog.units} targets={fin.week} allergens={allergens} diet={diet} severe={severe || celiac} aiEnabled={aiEnabled} />
+          </>}
         </>
       )}
     </>

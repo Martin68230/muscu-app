@@ -32,3 +32,15 @@ Captures WebKit faites (375x667 et 430x932, clair et sombre) : `screenshots/<pro
 14. Profil > « Tout supprimer » efface aussi la nutrition (l'export JSON contient les tables nutrition).
 
 Pas encore dans l'app : export pour une IA ou pour deux personnes, compléments, carte à l'Accueil. Le plan et les courses lisent la même cible finale (`src/nutrition/final-needs.ts`).
+
+## Semaine validée, calendrier, changements (24/11/2026, SCHEMA_VERSION 6)
+À vérifier à la main sur l'iPhone (captures WebKit faites : `screenshots/<projet>/nutrition-semaine-*.png`, 375x667 et 430x932, clair et sombre) :
+15. Onglet Semaine : « Générer ma semaine », puis quitter l'écran, fermer l'app, rouvrir : la MÊME semaine est là (jamais régénérée sans demande). « Régénérer ma semaine » demande une confirmation (« Oui, régénérer » / « Garder ma semaine »).
+16. Avant de générer : « Préférences rapides » (se déplie) : exclure un aliment, imposer un repas (choisir le jour, le repas, une recette ; il est placé à la génération s'il respecte allergies et régime, puis verrouillé).
+17. Chaque repas : appui sur le nom = détail ; bouton « ⋯ » (ou appui long) = menu : « Changer ce repas » (3 idées équivalentes en calories et protéines, mêmes filtres d'allergies et de régime, « Voir 3 autres »), « Changer un aliment » (choisir l'aliment, puis un équivalent ; allergènes affichés ; « Remettre … »), « Verrouiller ». Les kcal du jour et la liste de courses se recalculent aussitôt.
+18. « Annuler le dernier changement » (un niveau) ; « Verrouiller lundi » verrouille tous les repas du jour ; après « Régénérer », les repas verrouillés restent.
+19. « Valider la semaine » (grisé tant qu'un repas ne respecte plus les allergies / le régime, ou qu'un jour est sous le plancher) : la semaine apparaît au calendrier. « Rouvrir pour tout modifier » la remet en brouillon.
+20. Si on coche une allergie après coup : les repas concernés sont marqués « À changer » (jamais détaillés), la liste de courses et l'export reviennent une fois corrigé.
+21. Calendrier : un point sous les jours qui ont des repas ; toucher UN JOUR (passé, aujourd'hui ou futur) ouvre la fiche de la journée : navigation « jour précédent / suivant », séance prévue (nom, durée, exercices, « Voir / démarrer la séance »), repas (kcal et protéines, total vs ta cible du jour), « Changer ce repas ». Semaine pas encore validée : « Plan proposé, à valider ».
+22. Repas du jour (Accueil et fiche du jour) : « Fait », « Pas fait », « Autre chose » (note + kcal facultatif) en un appui ; le total « mangé » se met à jour.
+23. Nutrition > Historique : liste des semaines validées (repas faits, moyennes), détail par jour, courses de la semaine. Profil > « Tout supprimer » efface aussi plans et journal ; l'export JSON les contient.

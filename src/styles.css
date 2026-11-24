@@ -718,3 +718,41 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .exo-ph svg { width: 55%; height: 55%; }
 .prev-list li.prev-row, .plain-list li.prev-row { display: flex; gap: 12px; align-items: flex-start; }
 .prev-body { flex: 1; min-width: 0; }
+/* Nutrition : repas de la semaine, calendrier et fiche de journée (semaine validée) */
+.calendar .day { position: relative; }
+.day-meal { position: absolute; right: 6px; bottom: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.calendar .day.selected .day-meal { background: var(--accent-text); }
+.day-meal-legend { position: static; display: inline-block; vertical-align: middle; }
+.day-sheet { padding: 8px 12px; }
+.day-nav { display: grid; grid-template-columns: 44px 1fr 44px 44px; align-items: center; gap: 4px; }
+.day-nav h2 { margin: 0; text-align: center; font-size: 1.0625rem; }
+.day-session .plain-list li { display: flex; flex-direction: column; padding: 6px 0; }
+.meals-total { margin: 4px 0 8px; }
+.meals-list, .meal-list { list-style: none; margin: 0; padding: 0; }
+.meal-row { padding: 8px 0; border-bottom: 1px solid var(--line); }
+.meal-row:last-child { border-bottom: 0; }
+.meal-row.is-fait { border-left: 3px solid var(--accent); padding-left: 8px; }
+.meal-row.is-pas_fait { opacity: 0.7; }
+.meal-head { display: flex; flex-direction: column; align-items: flex-start; gap: 2px; width: 100%; min-height: 44px; padding: 4px 0; background: none; border: 0; color: inherit; font: inherit; text-align: left; cursor: pointer; }
+.meal-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 6px 0; }
+.meal-actions .btn { margin-top: 0; }
+.meal-btn { flex: 1 1 30%; min-height: 44px; margin-top: 8px; }
+.meal-btn[aria-pressed='true'] { background: var(--accent); color: var(--accent-text); border-color: transparent; }
+.meal-gap .field { display: block; margin: 8px 0; font-weight: 600; }
+.meal-gap input { display: block; width: 100%; min-height: 48px; margin-top: 6px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 16px; }
+.plan-meal { padding: 2px 0; }
+.plan-meal-line { display: flex; align-items: stretch; gap: 4px; }
+.plan-meal-line .meal-head { flex: 1; }
+.meal-more { flex: 0 0 44px; min-width: 44px; min-height: 44px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 1.25rem; font-weight: 800; cursor: pointer; }
+.meal-panel { margin: 6px 0 10px; padding: 10px; border-radius: 12px; background: var(--surface-2); }
+.meal-panel .btn { margin-top: 8px; }
+.alt-card { display: flex; flex-direction: column; gap: 2px; padding: 10px 0; border-bottom: 1px solid var(--line); }
+.alt-card .btn { margin-top: 8px; }
+.btn-quiet { background: transparent; border: 1px solid var(--line); color: var(--text); }
+.validate-box { margin-top: 12px; }
+.validate-box .small { margin-top: 6px; }
+.shop-line { display: flex; align-items: flex-start; gap: 4px; }
+.shop-line .check-row { flex: 1; }
+.shop-remove { flex: 0 0 44px; min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--text-dim); font-size: 1.125rem; cursor: pointer; }
+.shop-add .field { display: block; margin: 8px 0; font-weight: 600; }
+.shop-add input { display: block; width: 100%; min-height: 48px; margin-top: 6px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 16px; }

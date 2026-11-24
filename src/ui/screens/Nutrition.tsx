@@ -12,6 +12,7 @@ import { addWeighIn, getActiveGoal, getNutritionProfile, listCheckins, listWeigh
 import { interpretTrend, rateKgPerWeek, smoothWeights, weekStartOf, weighReminder, type TrendPoint, type TrendState } from '../../nutrition/weight-trend';
 import { dateKey } from '../../session/calendar';
 import { WeekTab } from './NutritionWeek';
+import { HistoryTab } from './NutritionHistory';
 
 const NOT_MEDICAL = 'Ce n’est pas un avis médical.';
 
@@ -121,7 +122,7 @@ function answersOf(np: NutritionProfile | null, profile: Profile): ScreeningAnsw
 
 export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack: () => void }) {
   const [data, setData] = useState<Data | null>(null);
-  const [tab, setTab] = useState<'besoins' | 'semaine' | 'poids'>('besoins');
+  const [tab, setTab] = useState<'besoins' | 'semaine' | 'historique' | 'poids'>(() => (location.hash === '#/nutrition/semaine' || location.hash === '#/nutrition/courses' ? 'semaine' : location.hash === '#/nutrition/historique' ? 'historique' : 'besoins'));
   const [editing, setEditing] = useState(false);
   const reload = () => loadData().then(setData);
   useEffect(() => void reload(), []);
@@ -142,6 +143,7 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
           <div class="chips" role="group" aria-label="Section">
             <button type="button" class="chip" aria-pressed={tab === 'besoins'} onClick={() => setTab('besoins')}>Mes besoins</button>
             <button type="button" class="chip" aria-pressed={tab === 'semaine'} onClick={() => setTab('semaine')}>Semaine</button>
+            <button type="button" class="chip" aria-pressed={tab === 'historique'} onClick={() => setTab('historique')}>Historique</button>
             <button type="button" class="chip" aria-pressed={tab === 'poids'} onClick={() => setTab('poids')}>Poids et courbe</button>
           </div>
           {tab !== 'poids' && weighReminder(data.weights.map((w) => w.date), np!.weighDay ?? 5, dateKey(new Date())) && (
@@ -154,6 +156,8 @@ export function NutritionScreen({ profile, onBack }: { profile: Profile; onBack:
             <Needs profile={profile} data={data} onEdit={() => setEditing(true)} />
           ) : tab === 'semaine' ? (
             <WeekTab np={np!} fin={finalFor(profile, data).result} aiEnabled={profile.aiEnabled} />
+          ) : tab === 'historique' ? (
+            <HistoryTab onOpenWeek={() => setTab('semaine')} />
           ) : (
             <Weight profile={profile} data={data} onChanged={reload} />
           )}
