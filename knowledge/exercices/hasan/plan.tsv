@@ -872,45 +872,45 @@ id	statut	raison	famille	schema	type	fam	niveau	main	sec	tags	equipment	target	n
 0513	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	jump squat v. 2
 0517	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	abs	kettlebell advanced windmill
 0518	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	forearms	kettlebell alternating hang clean
-0520	retenu		poussee_h|deltoides_anterieurs|press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell alternating press
-0519	retenu		poussee_h|pectoraux|floor on press	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	kettlebell	kettlebell	pectorals	kettlebell alternating press on floor
-0521	retenu		tirage_h|grand_dorsal+rhomboides|renegade row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	abdominaux,deltoides_posterieurs	kettlebell	kettlebell	upper back	kettlebell alternating renegade row
-0522	retenu		tirage_h|grand_dorsal+rhomboides|row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	kettlebell	kettlebell	upper back	kettlebell alternating row
+0520	retenu		kb-developpe-debout	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell alternating press
+0519	retenu		kb-developpe-sol	poussee_h	force		intermediaire	pectoraux	deltoides_anterieurs,triceps	kettlebell	kettlebell	pectorals	kettlebell alternating press on floor
+0521	retenu		kb-renegade	tirage_h	force		avance	grand_dorsal,rhomboides	abdominaux,deltoides_posterieurs	kettlebell	kettlebell	upper back	kettlebell alternating renegade row
+0522	retenu		kb-rowing	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	kettlebell	kettlebell	upper back	kettlebell alternating row
 0523	ecarte	doublon:developpe-arnold-halteres									kettlebell	delts	kettlebell arnold press
 0524	retenu		gainage|abdominaux|bent press	gainage	gainage	gainage	intermediaire	abdominaux	deltoides_anterieurs,triceps,obliques	kettlebell	kettlebell	abs	kettlebell bent press
-0525	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	biceps	kettlebell bottoms up clean from the hang position
+0525	retenu		kb-bottoms-up	charniere	fonctionnel		avance	biceps	avant_bras,deltoides_anterieurs	kettlebell	kettlebell	biceps	kettlebell bottoms up clean from the hang position
 0526	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	biceps	kettlebell double alternating hang clean
 0527	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell double jerk
-0528	retenu		poussee_v|deltoides_anterieurs|double press push	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell double push press
+0528	retenu		kb-push-press	poussee_v	force		avance	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell double push press
 0529	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell double snatch
 0530	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	abs	kettlebell double windmill
-0531	retenu		poussee_h|pectoraux|arm extended floor on press range	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	kettlebell	kettlebell	pectorals	kettlebell extended range one arm press on floor
+0531	retenu		kb-developpe-sol	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	kettlebell	kettlebell	pectorals	kettlebell extended range one arm press on floor
 0532	retenu		gainage|abdominaux|figure	gainage	gainage	gainage	intermediaire	abdominaux	deltoides_anterieurs,avant_bras	kettlebell	kettlebell	abs	kettlebell figure 8
-0533	retenu		squat|fessiers|front squat	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	kettlebell	kettlebell	glutes	kettlebell front squat
+0533	retenu		kb-squat-avant	squat	force		intermediaire	fessiers	quadriceps,ischios,mollets	kettlebell	kettlebell	glutes	kettlebell front squat
 0534	ecarte	deja-couvert-gif									kettlebell	glutes	kettlebell goblet squat
-0535	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	hamstrings	kettlebell hang clean
-0536	retenu		fente|fessiers|lunge pass through	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	kettlebell	kettlebell	glutes	kettlebell lunge pass through
+0535	retenu		kb-epaule	charniere	fonctionnel		avance	ischios	fessiers,quadriceps,mollets	kettlebell	kettlebell	hamstrings	kettlebell hang clean
+0536	retenu		kb-fente-passage	fente	force		intermediaire	fessiers	quadriceps,ischios,mollets	kettlebell	kettlebell	glutes	kettlebell lunge pass through
 0537	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm clean and jerk
-1298	retenu		poussee_h|pectoraux|arm floor press	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	kettlebell	kettlebell	pectorals	kettlebell one arm floor press
+1298	retenu		kb-developpe-sol	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	kettlebell	kettlebell	pectorals	kettlebell one arm floor press
 0538	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm jerk
 0539	retenu		poussee_v|deltoides_anterieurs|arm military press side the to	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell one arm military press to the side
 0540	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm push press
 0541	ecarte	deja-couvert-gif									kettlebell	upper back	kettlebell one arm row
-0542	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell one arm snatch
+0542	retenu		kb-arrache	charniere	fonctionnel		avance	deltoides_anterieurs	trapezes,avant_bras,abdominaux	kettlebell	kettlebell	delts	kettlebell one arm snatch
 0543	ecarte	schema-non-deduit									kettlebell	delts	kettlebell pirate supper legs
 0544	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	glutes	kettlebell pistol squat
 0545	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	pectorals	kettlebell plyo push-up
-0546	retenu		poussee_h|deltoides_anterieurs|press	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell seated press
-1438	retenu		poussee_v|deltoides_anterieurs|arm military press	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	kettlebell	kettlebell	delts	kettlebell seated two arm military press
+0546	retenu		kb-developpe-assis	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell seated press
+1438	retenu		kb-developpe-assis	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	kettlebell	kettlebell	delts	kettlebell seated two arm military press
 0547	retenu		poussee_h|deltoides_anterieurs|press seesaw	poussee_h	force		intermediaire	deltoides_anterieurs	triceps,abdominaux	kettlebell	kettlebell	delts	kettlebell seesaw press
-0548	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	traps	kettlebell sumo high pull
-0549	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	glutes	kettlebell swing
+0548	retenu		kb-tirage-sumo	tirage_v	fonctionnel		avance	trapezes	deltoides_posterieurs,fessiers,ischios	kettlebell	kettlebell	traps	kettlebell sumo high pull
+0549	retenu		kb-swing	charniere	fonctionnel		intermediaire	fessiers	ischios,abdominaux	kettlebell	kettlebell	glutes	kettlebell swing
 0550	ecarte	schema-non-deduit									kettlebell	delts	kettlebell thruster
-0551	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	glutes	kettlebell turkish get up (squat style)
+0551	retenu		kb-releve-turc	gainage	fonctionnel		avance	fessiers	quadriceps,ischios,abdominaux	kettlebell	kettlebell	glutes	kettlebell turkish get up (squat style)
 0552	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	delts	kettlebell two arm clean
-0553	retenu		poussee_v|deltoides_anterieurs|arm military press	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	kettlebell	kettlebell	delts	kettlebell two arm military press
-1345	retenu		tirage_h|grand_dorsal+rhomboides|arm row	tirage_h	force		intermediaire	grand_dorsal,rhomboides	biceps,avant_bras	kettlebell	kettlebell	upper back	kettlebell two arm row
-0554	ecarte	technique-ou-dangereux-ou-hors-sujet									kettlebell	abs	kettlebell windmill
+0553	retenu		kb-developpe-debout	poussee_v	force		intermediaire	deltoides_anterieurs	triceps,rhomboides	kettlebell	kettlebell	delts	kettlebell two arm military press
+1345	retenu		kb-rowing	tirage_h	force		debutant	grand_dorsal,rhomboides	biceps,avant_bras	kettlebell	kettlebell	upper back	kettlebell two arm row
+0554	retenu		kb-moulin	rotation	fonctionnel		avance	abdominaux	obliques,deltoides_anterieurs	kettlebell	kettlebell	abs	kettlebell windmill
 0555	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	hamstrings	kick out sit
 0558	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	lats	kipping muscle up
 3640	ecarte	deja-couvert-gif									body weight	abs	knee touch crunch

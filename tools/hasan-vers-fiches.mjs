@@ -76,6 +76,44 @@ const musc = (h) => {
   return { main: mains, sec };
 };
 
+// ---- famille kettlebell (24/11/2026) : seuls ces identifiants du jeu sont repris ; les autres exercices kettlebell restent écartés.
+// tech: true = exercice TECHNIQUE (règle 23 : jamais débutant ni à la maison sans avis) : niveau intermédiaire ou avancé, jamais proposé par le générateur (liste GENERATOR_EXCLUDED_FICHES).
+const KB = {
+  '0519': { famille: 'kb-developpe-sol', schema: 'poussee_h', type: 'force', niveau: 'intermediaire' }, '1298': { famille: 'kb-developpe-sol', schema: 'poussee_h', type: 'force', niveau: 'intermediaire' }, '0531': { famille: 'kb-developpe-sol', schema: 'poussee_h', type: 'force', niveau: 'intermediaire' },
+  '0546': { famille: 'kb-developpe-assis', schema: 'poussee_v', type: 'force', niveau: 'intermediaire' }, '1438': { famille: 'kb-developpe-assis', schema: 'poussee_v', type: 'force', niveau: 'intermediaire' },
+  '0533': { famille: 'kb-squat-avant', schema: 'squat', type: 'force', niveau: 'intermediaire' },
+  '0536': { famille: 'kb-fente-passage', schema: 'fente', type: 'force', niveau: 'intermediaire' },
+  '1345': { famille: 'kb-rowing', schema: 'tirage_h', type: 'force', niveau: 'debutant' }, '0522': { famille: 'kb-rowing', schema: 'tirage_h', type: 'force', niveau: 'debutant' },
+  '0549': { famille: 'kb-swing', schema: 'charniere', type: 'fonctionnel', niveau: 'intermediaire', tech: true },
+  '0535': { famille: 'kb-epaule', schema: 'charniere', type: 'fonctionnel', niveau: 'avance', tech: true },
+  '0542': { famille: 'kb-arrache', schema: 'charniere', type: 'fonctionnel', niveau: 'avance', tech: true },
+  '0551': { famille: 'kb-releve-turc', schema: 'gainage', type: 'fonctionnel', niveau: 'avance', tech: true },
+  '0554': { famille: 'kb-moulin', schema: 'rotation', type: 'fonctionnel', niveau: 'avance', tech: true },
+  '0525': { famille: 'kb-bottoms-up', schema: 'charniere', type: 'fonctionnel', niveau: 'avance', tech: true },
+  '0548': { famille: 'kb-tirage-sumo', schema: 'tirage_v', type: 'fonctionnel', niveau: 'avance', tech: true },
+  '0528': { famille: 'kb-push-press', schema: 'poussee_v', type: 'force', niveau: 'avance', tech: true },
+  '0553': { famille: 'kb-developpe-debout', schema: 'poussee_v', type: 'force', niveau: 'intermediaire', tech: true }, '0520': { famille: 'kb-developpe-debout', schema: 'poussee_v', type: 'force', niveau: 'intermediaire', tech: true },
+  '0521': { famille: 'kb-renegade', schema: 'tirage_h', type: 'force', niveau: 'avance', tech: true },
+};
+const TECH_AVERT = 'Exercice TECHNIQUE (règle 23) : niveau intermédiaire ou avancé seulement, jamais pour un débutant ni à la maison sans avis d’un coach ; jamais proposé par les programmes automatiques de l’appli (consultation de la fiche seulement).';
+const KB_TEXTE = {
+  'kb-swing': { att: [TECH_AVERT, 'Mouvement balistique de charnière : la puissance vient des hanches, les bras ne tirent pas ; la kettlebell monte à hauteur de poitrine, pas plus haut.', 'Dos neutre du début à la fin, jamais arrondi ; pas de squat : les genoux restent peu fléchis.', 'Poids : commence avec la kettlebell la plus légère que tu possèdes ; ne l’augmente que si 10 répétitions restent propres. Aucune valeur sourcée.', 'Séries courtes, jamais de grosse série à la fatigue : arrête dès que le dos ou la cadence se dégradent.'], dose: '3 à 5 séries de 5 à 10 répétitions (jamais plus), réserve >= 3, repos 60 à 90 secondes' },
+  'kb-epaule': { att: [TECH_AVERT, 'La kettlebell monte près du corps jusqu’à la position « rack » (poing près de l’épaule, coude contre les côtes) ; le poignet reste droit, la kettlebell ne claque pas sur l’avant-bras.', 'Apprends d’abord le swing et le squat avec la kettlebell, avec un coach ou une vidéo de qualité ; poids le plus léger pour commencer.', 'Séries courtes, un côté puis l’autre ; arrête dès que la technique se dégrade.'], dose: '3 à 4 séries de 3 à 6 répétitions par côté, réserve >= 3, repos 60 à 90 secondes' },
+  'kb-arrache': { att: [TECH_AVERT, 'Mouvement le plus technique de la famille : réservé aux personnes déjà à l’aise avec le swing et l’épaulé, de préférence sous le regard d’un coach.', 'Bras tendu au-dessus de la tête, épaule basse, poignet droit ; la kettlebell passe autour de la main sans claquer.', 'Poids le plus léger pour commencer ; séries courtes, arrêt dès que la technique se dégrade.'], dose: '3 à 4 séries de 3 à 5 répétitions par côté, réserve >= 3, repos 90 secondes' },
+  'kb-releve-turc': { att: [TECH_AVERT, 'Mouvement lent en plusieurs étapes : le regard reste sur la kettlebell, le bras qui porte reste vertical et tendu.', 'Apprends d’abord SANS charge, puis avec un objet léger, puis avec une kettlebell légère ; chaque étape est maîtrisée avant la suivante.', 'Sol dégagé, sans obstacle ; en cas de doute sur la stabilité de l’épaule, ne pas faire.'], dose: '2 à 3 séries de 1 à 3 répétitions par côté, réserve >= 3, repos 60 à 90 secondes' },
+  'kb-moulin': { att: [TECH_AVERT, 'Bras tendu au-dessus de la tête, regard sur la kettlebell ; le mouvement vient de la charnière de la hanche, pas du dos.', 'Apprends d’abord sans charge ou avec une charge très légère, puis augmente prudemment.', 'Amplitude progressive : ne descends que jusqu’où le dos reste neutre et la hanche libre.'], dose: '2 à 3 séries de 3 à 6 répétitions par côté, réserve >= 3, repos 60 secondes' },
+  'kb-bottoms-up': { att: [TECH_AVERT, 'La kettlebell est tenue à l’envers, fond vers le haut : poignet droit et fort, avant-bras vertical, épaule basse ; si elle penche, repose-la.', 'Poids très léger pour commencer, loin de la tête et des autres personnes ; sol dégagé.', 'Séries courtes, un côté puis l’autre ; arrête dès que le poignet fatigue.'], dose: '2 à 3 séries de 3 à 5 répétitions par côté, réserve >= 3, repos 60 à 90 secondes' },
+  'kb-tirage-sumo': { att: [TECH_AVERT, 'Pieds écartés, dos neutre ; la kettlebell monte près du corps, coudes hauts et vers l’extérieur, sans monter plus haut que la poitrine.', 'Les épaules restent loin des oreilles ; si l’épaule pince, arrête.', 'Poids le plus léger pour commencer ; séries courtes.'], dose: '3 à 4 séries de 6 à 10 répétitions, réserve >= 3, repos 60 à 90 secondes' },
+  'kb-push-press': { att: [TECH_AVERT, 'L’élan vient d’une courte flexion puis extension des jambes, puis les bras finissent le mouvement ; la kettlebell ne dépasse pas l’alignement des épaules au-dessus de la tête.', 'Ventre serré, sans cambrer le bas du dos ; descente lente jusqu’à la position de départ.', 'Poids le plus léger pour commencer ; séries courtes, arrêt dès que le dos se cambre.'], dose: '3 à 4 séries de 4 à 8 répétitions, réserve >= 3, repos 90 secondes' },
+  'kb-developpe-debout': { att: [TECH_AVERT, 'Mouvement au-dessus de la tête : ventre et fessiers serrés, sans cambrer le bas du dos ; poignet droit, coude sous la kettlebell.', 'Poids le plus léger pour commencer ; monte et descends lentement, sans élan.', 'Si l’épaule pince ou si le dos se cambre, passe à la version assise ou arrête.'], dose: '2 à 4 séries de 5 à 10 répétitions par côté, réserve >= 2, repos 60 à 90 secondes' },
+  'kb-renegade': { att: [TECH_AVERT, 'Position de planche sur deux kettlebells : bassin stable, jambes écartées pour limiter la rotation ; les poignets restent droits sur les poignées.', 'Les kettlebells sont stables et posées sur sol plat ; sinon ne pas faire.', 'Tire le coude vers la hanche sans faire pivoter le bassin ; séries courtes, arrêt dès que le bassin tourne.'], dose: '2 à 3 séries de 4 à 8 répétitions par côté, réserve >= 3, repos 60 à 90 secondes' },
+  'kb-developpe-sol': { att: ['Allongé sur le dos, genoux fléchis, pieds au sol ; le coude descend jusqu’à toucher le sol sans rebond.', 'Poignet droit, kettlebell contre l’avant-bras ; pas d’élan.', 'Choisis une kettlebell (parmi tes poids) qui permet de finir toutes les répétitions proprement.'], dose: '2 à 3 séries de 6 à 12 répétitions, réserve >= 2, repos 60 à 90 secondes' },
+  'kb-developpe-assis': { att: ['Assis, dos droit et ventre serré, sans cambrer ; la kettlebell est tenue contre l’épaule, poignet droit.', 'Mouvement lent, sans élan ; ne bloque pas les coudes brutalement en haut.', 'Choisis une kettlebell (parmi tes poids) qui permet de finir toutes les répétitions proprement ; si l’épaule pince, arrête.'], dose: '2 à 3 séries de 6 à 12 répétitions, réserve >= 2, repos 60 à 90 secondes' },
+  'kb-squat-avant': { att: ['Kettlebell tenue contre la poitrine (en « rack » ou à deux mains) ; coudes serrés, dos droit.', 'Les genoux restent dans l’axe des pieds ; descends en contrôlant, remonte en poussant dans les talons.', 'Choisis une kettlebell (parmi tes poids) qui permet de garder le dos droit à chaque répétition.'], dose: '2 à 3 séries de 6 à 12 répétitions, réserve >= 2, repos 60 à 90 secondes' },
+  'kb-fente-passage': { att: ['Pas contrôlé, buste droit, genou avant dans l’axe du pied ; la kettlebell passe lentement d’une main à l’autre sous la jambe, sans se pencher en avant.', 'Équilibre avant tout : commence très léger, sol non glissant.', 'Choisis une kettlebell (parmi tes poids) que tu peux passer sans perdre l’équilibre.'], dose: '2 à 3 séries de 6 à 10 répétitions par jambe, réserve >= 2, repos 60 à 90 secondes' },
+  'kb-rowing': { att: ['Buste penché, dos neutre, ventre serré ; tire le coude vers la hanche, épaule basse.', 'Mouvement lent, sans élan ni balancement du buste ; une main peut s’appuyer sur un banc ou une chaise.', 'Choisis une kettlebell (parmi tes poids) qui permet de finir toutes les répétitions proprement.'], dose: '2 à 3 séries de 8 à 12 répétitions par côté, réserve >= 2, repos 60 à 90 secondes' },
+};
+const KB_TECH = new Set(Object.values(KB).filter((x) => x.tech).map((x) => x.famille));
 function schemaOf(h) {
   const n = ` ${h.name.toLowerCase()} `;
   const t = (h.target ?? '').toLowerCase();
@@ -134,23 +172,24 @@ function plan() {
   for (const h of data) {
     const base = { id: h.id, name: h.name, equipment: h.equipment, target: h.target };
     const why = (r) => rows.push({ ...base, statut: 'ecarte', raison: r });
-    if (EXCLU_NOM.test(h.name)) { why('technique-ou-dangereux-ou-hors-sujet'); continue; }
+    const ov = KB[h.id];
+    if (!ov && EXCLU_NOM.test(h.name)) { why('technique-ou-dangereux-ou-hors-sujet'); continue; }
     if (h.body_part === 'neck' || h.body_part === 'cardio' || h.target === 'cardiovascular system') { why('cou-ou-cardio'); continue; }
     const tags = equipTags(h);
     if (!tags) { why('materiel-hors-taxonomie'); continue; }
     const m = musc(h);
     if (!m) { why('muscle-non-mappe'); continue; }
-    const sc = schemaOf(h);
+    const sc = ov ? { s: ov.schema, type: ov.type } : schemaOf(h);
     if (!sc) { why('schema-non-deduit'); continue; }
     if (covered.has(h.id)) { why('deja-couvert-gif'); continue; }
     const tk = tokens(translate(h.name));
     const sub = (a, b) => { const [s, l] = a.length <= b.length ? [a, b] : [b, a]; return s.length >= 2 && l.length - s.length <= 1 && s.every((x) => l.includes(x)); };
-    const hit = exTok.find((x) => x.f.schema === sc.s && (dice(tk, x.tok) >= 0.85 || (x.f.main.some((mm) => m.main.includes(mm)) && (dice(tk, x.tok) >= 0.7 || sub(tk, x.tok)))));
+    const hit = ov ? null : exTok.find((x) => x.f.schema === sc.s && (dice(tk, x.tok) >= 0.85 || (x.f.main.some((mm) => m.main.includes(mm)) && (dice(tk, x.tok) >= 0.7 || sub(tk, x.tok)))));
     if (hit) { why(`doublon:${hit.f.id}`); continue; }
     const fr = h.instruction_steps?.fr ?? [];
     if (fr.length < 2) { why('consigne-absente'); continue; }
-    const technique = RISQUE_NIVEAU2.test(h.name) || ['barre', 'barre_ez', 'lest', 'kettlebell'].some((x) => tags.includes(x)) || tags.includes('machine') ? 'intermediaire' : 'debutant';
-    rows.push({ ...base, statut: 'retenu', raison: '', tags: tags.join(','), main: m.main.join(','), sec: m.sec.join(','), schema: sc.s, type: sc.type, fam: sc.fam ?? '', niveau: technique, famille: famKey(h.name, sc.s, m.main) });
+    const technique = ov ? ov.niveau : RISQUE_NIVEAU2.test(h.name) || ['barre', 'barre_ez', 'lest', 'kettlebell'].some((x) => tags.includes(x)) || tags.includes('machine') ? 'intermediaire' : 'debutant';
+    rows.push({ ...base, statut: 'retenu', raison: '', tags: tags.join(','), main: m.main.join(','), sec: m.sec.join(','), schema: sc.s, type: sc.type, fam: sc.fam ?? '', niveau: technique, famille: ov ? ov.famille : famKey(h.name, sc.s, m.main) });
   }
   mkdirSync(outDir, { recursive: true });
   const cols = ['id', 'statut', 'raison', 'famille', 'schema', 'type', 'fam', 'niveau', 'main', 'sec', 'tags', 'equipment', 'target', 'name'];
@@ -211,7 +250,12 @@ function zonesOf(text) {
   return { rows, g };
 }
 let exCache;
-function deriveSafety(schema, mains, tags, nameEn) {
+function deriveSafety(schema, mains, tags, nameEn, famille) {
+  if (KB_TECH.has(famille)) {
+    const dur = ['adapter: charge:legere', 'retirer', 'retirer'];
+    const hanche = ['adapter: amplitude:reduite', 'retirer', 'retirer'];
+    return { zones: { cou: ['retirer', 'retirer', 'retirer'], dos: dur, epaule: dur, coude: dur, poignet: dur, hanche, genou: hanche, cuisse: hanche, cheville: ['garder', 'adapter: amplitude:reduite', 'retirer'] }, grossesse: 'retirer' };
+  }
   exCache ??= loadExisting().filter((f) => ['utilisable', 'verifie'].includes(f.statut));
   let grp = exCache.filter((f) => f.schema === schema && f.main.some((m) => mains.includes(m)));
   if (grp.length < 2) grp = exCache.filter((f) => f.schema === schema);
@@ -282,12 +326,13 @@ function steps(h) {
 }
 
 const ZN = { cou: 'Cou', epaule: 'Épaule', coude: 'Coude', poignet: 'Poignet', dos: 'Dos', hanche: 'Hanche', genou: 'Genou', cheville: 'Cheville', cuisse: 'Cuisse', aine: 'Aine' };
-function ficheMd({ id, nom, alias, schema, type, fam, mains, secs, variantes, h, safety, hasanIds, lotName }) {
+function ficheMd({ id, nom, alias, schema, type, fam, mains, secs, variantes, h, safety, hasanIds, lotName, famille }) {
+  const kbx = KB_TEXTE[famille];
   const niv0 = variantes[0].niveau;
   const L = ['---', 'id: ' + id, 'nom: ' + nom, ...(alias.length ? ['alias: [' + alias.join(', ') + ']'] : []), 'schema: ' + schema, 'type: ' + type, 'niveau_min: ' + niv0, 'muscles_principaux: [' + mains.join(', ') + ']', 'muscles_secondaires: [' + secs.join(', ') + ']', ...(fam ? ['famille_core: ' + fam] : []), 'source_brouillon: []', 'statut: brouillon_coach', '---'];
   L.push('## Variantes (installation + matériel, avec échelon de difficulté)', '`echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.', '', '| id variante | nom | echelon | niveau | materiel_tags | installation |', '|---|---|---|---|---|---|');
   for (const v of variantes) L.push('| ' + [v.id, v.nom, v.echelon, v.niveau, v.tags.join(', '), v.install].join(' | ') + ' |');
-  L.push('', '## Consignes', ...steps(h).map((s, i) => (i + 1) + '. ' + s), '', "## Points d'attention", ...((['biceps', 'triceps', 'avant_bras'].includes(mains[0]) ? BRAS_TEXTE : null) ?? SCHEMA_TEXTE[schema] ?? SCHEMA_TEXTE.mobilite).map((x) => '- ' + x), '- Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.', '', '## Erreurs fréquentes', ...ERREURS.map((x) => '- ' + x), '', '## Progression / régression', '- plus-facile : aucun', '- plus-dur : aucun', '', '## Repères de dosage', 'Aucune valeur sourcée. Proposition du convertisseur, NON SOURCÉ, à valider par `kine` : ' + DOSE(schema) + '.', '');
+  L.push('', '## Consignes', ...steps(h).map((s, i) => (i + 1) + '. ' + s), '', "## Points d'attention", ...(kbx?.att ?? (['biceps', 'triceps', 'avant_bras'].includes(mains[0]) ? BRAS_TEXTE : null) ?? SCHEMA_TEXTE[schema] ?? SCHEMA_TEXTE.mobilite).map((x) => '- ' + x), '- Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.', '', '## Erreurs fréquentes', ...ERREURS.map((x) => '- ' + x), '', '## Progression / régression', '- plus-facile : aucun', '- plus-dur : aucun', '', '## Repères de dosage', 'Aucune valeur sourcée. Proposition du convertisseur, NON SOURCÉ, à valider par `kine` : ' + (kbx?.dose ?? DOSE(schema)) + '.', '');
   L.push('## Sécurité et contre-indications', 'Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du même schéma et du même muscle, ' + DATE + ') ; `kine` relit les cas à risque. Prudence maximale en cas de doute. Les tableaux par zone sont NON SOURCÉS (choix prudents). Rien ici n’est un diagnostic.', '', '**Contre-indications par zone** (1 = gêne légère, 2 = gêne nette, 3 = douleur). Une case = une seule action ; format dans knowledge/format-fiches.md §4. Zone non listée = garder.', '', '| Zone | Niveau 1 | Niveau 2 | Niveau 3 |', '|---|---|---|---|');
   for (const [z, row] of Object.entries(safety.zones)) if (ZN[z]) L.push('| ' + ZN[z] + ' | ' + row.join(' | ') + ' |');
   L.push('', '**Notes**', '- grossesse : ' + (safety.grossesse.startsWith('retirer') ? 'retiré (choix prudent).' : 'adapté (choix prudent).') + ' post-partum : mêmes règles que la grossesse ; reprise des charges, des exercices abdominaux et des appuis prolongés seulement après l’avis de la sage-femme ou du médecin (G7).', '- general : douleur pendant l’exercice : arrête, pas de progression (R4).', '', '**Grossesse** : ' + safety.grossesse, '**Version plus douce** : aucune', '', '**Signes qui doivent faire arrêter**', '- Douleur (pas la simple brûlure du muscle qui travaille) : arrête (R4).', '- Position qui ne se tient plus, perte d’équilibre ou de contrôle : arrête.', '- Douleur qui dure, gonflement, perte de force, engourdissement ou fourmillements : consulte un professionnel de santé (S1, S2).', '- Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, vertige, essoufflement anormal : arrête la séance.', '', '**Objets du quotidien**', '- Appui ou support éventuel : stable, qui ne bouge pas ; sol sec et non glissant, chaussures aux pieds (R8).', '');
@@ -331,8 +376,8 @@ function generer() {
     const PREF = ['poids_du_corps', 'elastique', 'halteres', 'swiss_ball', 'kettlebell', 'poulie', 'machine'];
     const rep = [...vs].sort((a, b) => { const f = (r) => { const i = PREF.findIndex((p) => r.tags.split(',').every((t) => t === p || HOME.has(t) || t === p)); return PREF.findIndex((p) => r.tags.split(',').includes(p)) < 0 ? 99 : PREF.findIndex((p) => r.tags.split(',').includes(p)); }; return f(a) - f(b); })[0];
     const h = data.get(rep.id);
-    const safety = deriveSafety(rep.schema, rep.main.split(','), variantes.flatMap((v) => v.tags), rs.map((r) => r.name).join(' '));
-    const md = ficheMd({ id, nom: nomFr, alias: aliasStr.split(',').map((s) => s.trim()).filter(Boolean), schema: rep.schema, type: rep.type, fam: rep.fam, mains: rep.main.split(','), secs: rep.sec.split(',').filter(Boolean), variantes, h, safety, hasanIds: vs.map((r) => r.id), lotName: 'lot ' + lot });
+    const safety = deriveSafety(rep.schema, rep.main.split(','), variantes.flatMap((v) => v.tags), rs.map((r) => r.name).join(' '), famille);
+    const md = ficheMd({ famille, id, nom: nomFr, alias: aliasStr.split(',').map((s) => s.trim()).filter(Boolean), schema: rep.schema, type: rep.type, fam: rep.fam, mains: rep.main.split(','), secs: rep.sec.split(',').filter(Boolean), variantes, h, safety, hasanIds: vs.map((r) => r.id), lotName: 'lot ' + lot });
     writeFileSync(join(dir, id + '.md'), md);
     for (const v of variantes) corr.push({ hasan_id: v.hasan, fiche: id, variante: v.id, niveau: 'sûr' });
     for (const r of rs) { const j = vs.findIndex((v) => v.tags === r.tags); if (!vs.includes(r) && j >= 0) corr.push({ hasan_id: r.id, fiche: id, variante: variantes[j].id, niveau: 'proche' }); }
