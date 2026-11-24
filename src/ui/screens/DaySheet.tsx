@@ -4,6 +4,7 @@ import { useEffect, useState } from 'preact/hooks';
 import type { Program, ProgramDay } from '../../data/model';
 import { loadFiches, type Fiche } from '../../data/fiches';
 import { addDaysKey } from '../../nutrition/meals-calendar';
+import { placeLabel } from './DayPlaces';
 import { dateKey, frDate, parseKey } from '../../session/calendar';
 import { getActiveProgram, getNextSession } from '../../session/program';
 import { exName, lineText, withSides } from '../session/text';
@@ -52,7 +53,7 @@ export function PlannedDetail({ date, hasDone }: { date: string; hasDone: boolea
       <h2>Séance prévue</h2>
       {days.map((d) => (
         <div key={d.dayIndex} class="day-session">
-          <p><strong>{d.label}</strong>{d.estimatedMin ? <span class="dim"> · environ {d.estimatedMin} min</span> : null}</p>
+          <p><strong>{d.label}</strong>{d.place ? <span class="dim"> · {placeLabel(d.place)}</span> : null}{d.estimatedMin ? <span class="dim"> · environ {d.estimatedMin} min</span> : null}</p>
           <ul class="plain-list">
             {d.exercises.map((ex, i) => (
               <li key={i}><span>{exName(fiches, ex)}</span> <span class="dim small">{lineText(withSides(fiches, ex))}</span></li>

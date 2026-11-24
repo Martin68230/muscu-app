@@ -40,6 +40,8 @@ export type Level = 'debutant' | 'intermediaire' | 'avance';
 export type InjuryZone = 'cou' | 'epaule' | 'coude' | 'poignet' | 'dos' | 'hanche' | 'genou' | 'cheville' | 'cuisse' | 'aine';
 /** Lieu d'entraînement. */
 export type TrainingPlace = 'maison' | 'salle';
+/** Lieu d'un jour de la semaine (choix par jour, 24/11/2026) : salle, maison, dehors, ou repos (aucune séance ce jour-là). */
+export type DayPlace = 'salle' | 'maison' | 'dehors' | 'repos';
 /** Réglage facultatif, privé, jamais partagé (ce n'est pas un ShareDataType). null = pas renseigné, traité comme « non ». */
 export type PregnancyStatus = 'non' | 'enceinte' | 'post_partum';
 /** Objectif principal (table `goals`, rang 1) : clés de la famille v1 (generateur-v1.md §1.3). */
@@ -74,6 +76,11 @@ export interface Profile extends SyncFields {
   aiEnabled: boolean;
   /** Ajoutés par F1 : peuvent manquer dans une ancienne sauvegarde (lire avec ?? null). */
   place?: TrainingPlace | null;
+  /**
+   * Lieu de chaque jour (index 0 = lundi … 6 = dimanche), 7 valeurs. Absent = le lieu unique `place` vaut pour tous les jours (profils existants,
+   * aucun changement de comportement). « repos » s'ajoute aux jours impossibles.
+   */
+  dayPlaces?: DayPlace[];
   /** Privé, jamais partagé, jamais envoyé à l'IA sans choix explicite. */
   pregnancy?: PregnancyStatus | null;
   /** Date de fin du parcours « profil en cartes » ; null = à faire (l'Accueil propose « Créer mon programme »). */
@@ -234,6 +241,8 @@ export interface EquipmentProfile extends SyncFields {
   dumbbellKind?: 'fixes' | 'reglables' | null;
   /** Poids des disques disponibles (barre). */
   platesKg?: number[];
+  /** Matériel de la salle décoché (machine absente de ma salle, pas de rack…) ; absent ou vide = salle complète. Utilisé les jours de salle (lieu par jour). */
+  gymOff?: string[];
   /** Matériel non listé, texte libre : jamais utilisé comme tag de fiche. */
   other?: string;
 }
@@ -351,6 +360,8 @@ export interface ProgramDay {
   // Ajoutés par F5 : peuvent manquer dans une ancienne sauvegarde.
   /** 0 = lundi ... 6 = dimanche. */
   weekday?: number;
+  /** Lieu de la séance (salle, maison ou dehors) quand le profil choisit un lieu par jour ; absent sinon. */
+  place?: 'salle' | 'maison' | 'dehors';
   /** Durée affichée, arrondie aux 5 min supérieures. */
   estimatedMin?: number;
   warmup?: PlannedWarmup;

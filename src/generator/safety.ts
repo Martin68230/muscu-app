@@ -4,7 +4,7 @@
 import { NECK_DEDICATED_IDS, neckFicheAllowed } from '../data/injury-rules';
 import {
   CAPPED_LOWEST_START, GENERATOR_EXCLUDED_FICHES, IMPACT_SCHEMAS, IMPACT_VARIANTS, INTERMEDIATE_ECHELON_OFFSET, SALLE_EXCLUS, SALLE_PENURIE_MIN_FICHES,
-  SALLE_PENURIE_READMIS, TAG_ORDER,
+  SALLE_PENURIE_READMIS, TAG_ORDER, GYM_RANK_TAGS,
 } from './config';
 import { carriesLoad, isChargeable, levelIdx, type Ctx, type ZoneEntry } from './context';
 import { coreRule } from './core';
@@ -107,6 +107,11 @@ const tagRank = (v: FicheVariant): number => {
 export function sortSameEchelon(f: Fiche, list: FicheVariant[], ctx: Ctx): FicheVariant[] {
   const idx = (v: FicheVariant) => f.variantes.indexOf(v);
   return [...list].sort((x, y) => {
+    // Lieu « salle » (24/11/2026) : à échelon égal, la variante de salle (machine, barre, haltères, banc, traction) avant le poids du corps.
+    if (ctx.place === 'salle' && !ctx.pregnant && !ctx.postPartum) {
+      const g = Number(!x.tags.some((t) => GYM_RANK_TAGS.includes(t))) - Number(!y.tags.some((t) => GYM_RANK_TAGS.includes(t)));
+      if (g) return g;
+    }
     if (ctx.family === 'force' || ctx.family === 'muscle') {
       const c = (isChargeable(x) ? 0 : 1) - (isChargeable(y) ? 0 : 1);
       if (c) return c;

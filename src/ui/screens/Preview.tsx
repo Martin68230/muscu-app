@@ -12,6 +12,7 @@ import { dayWithNeckStage } from '../../session/neck-stage';
 import { pairsForSession } from '../../session/engine';
 import { update } from '../../data/repo';
 import { WEEKDAY_NAMES } from '../../generator/messages';
+import { placeLabel } from './DayPlaces';
 import { isCardioDay } from '../../generator';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { acceptEchelon, answerLevel, cancelArrivals, computeProposals, loadEvents, recordAdaptResult, refuseEchelon, staleArrivals, type MoveProposal, type ProposalItem, type ProposalSet } from '../../session/progression-store';
@@ -168,7 +169,7 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
       <button type="button" class="btn back-btn" onClick={goHome}>← Accueil</button>
       <h1>{day.label}</h1>
       <p class="dim">
-        {day.estimatedMin ? `Environ ${day.estimatedMin} min` : 'Durée estimée : 45 min environ'} · {day.exercises.length} exercice{day.exercises.length > 1 ? 's' : ''}
+        {day.weekday !== undefined && day.place ? `${WEEKDAY_NAMES[day.weekday][0].toUpperCase()}${WEEKDAY_NAMES[day.weekday].slice(1)} : ${placeLabel(day.place)} · ` : ''}{day.estimatedMin ? `Environ ${day.estimatedMin} min` : 'Durée estimée : 45 min environ'} · {day.exercises.length} exercice{day.exercises.length > 1 ? 's' : ''}
       </p>
       {noPostpone && <div class="notice small" role="status"><p>{MISSED_TEXT.T11}</p></div>}
       {gain && !cardioDay && (

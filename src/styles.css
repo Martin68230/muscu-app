@@ -791,3 +791,9 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .meal-cell { display: flex; align-items: center; justify-content: center; min-height: 44px; }
 .meal-cell input { width: 24px; height: 24px; }
 .img-stats { margin: 8px 0; padding-left: 18px; }
+
+/* Lieu de chaque jour (24/11/2026) : une ligne par jour, boutons >= 44 px, quatre choix qui tiennent à 375 px (sans retour à la ligne). */
+.dayplace-row { margin: 8px 0; }
+.dayplace-day { margin: 0 0 2px; text-transform: capitalize; font-weight: 600; }
+.dayplace-row .segmented { margin: 0; gap: 4px; padding: 3px; }
+.dayplace-row .segmented button { padding: 0 2px; font-size: 0.9rem; min-width: 0; }

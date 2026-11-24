@@ -446,3 +446,29 @@ export function fillToTarget(
 }
 
 export const zoneGroupOf = capGroupOf;
+
+/**
+ * 24/11/2026 : filet final des plafonds par zone (§3, 20 / 10 par semaine, x1,2 si plafonds relevés). Le placement ne regardait pas ce plafond (seuls les ajouts le
+ * faisaient) ; avec des exercices de salle (barres, tractions) un groupe pouvait le dépasser d'une série. On ne fait que BAISSER : une série de moins à la fois sur
+ * l'exercice qui charge le plus le groupe (séances les plus tardives d'abord), jamais sous 2 séries, jamais d'exercice retiré ni de série ajoutée ailleurs.
+ */
+export function enforceZoneCaps(sessions: Sess[], ctx: Ctx): void {
+  const po = raisedCaps(ctx);
+  const factor = po ? { factor: RAISED_CAPS.zoneFactor } : false;
+  for (let guard = 0; guard < 60; guard++) {
+    const groups = capGroupPoints(weekPoints(sessions, ctx, po));
+    const over = [...groups.entries()].find(([, v]) => v.points > zoneCaps(v.zone, factor).week);
+    if (!over) return;
+    const [g] = over;
+    let best: { e: GenExercise; pts: number } | null = null;
+    for (const s of [...sessions].reverse()) {
+      for (const e of s.exercises) {
+        if (e.sets <= 2 || e.slot === 'correctif') continue;
+        const pts = capGroupPoints(weekPoints([{ exercises: [e] }], ctx, po)).get(g)?.points ?? 0;
+        if (pts > 0 && (!best || pts / e.sets > best.pts / best.e.sets)) best = { e, pts };
+      }
+    }
+    if (!best) return;
+    best.e.sets--;
+  }
+}

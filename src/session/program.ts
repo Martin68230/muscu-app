@@ -48,9 +48,15 @@ function canonical(input: GeneratorInput, fichesSig: string): unknown {
       p.level ?? null, p.daysPerWeek ?? null, sortedNums(p.blockedWeekdays), p.sessionDurationMin ?? null, p.place ?? null, p.pregnancy ?? null,
       !!p.salleAccess, !!p.exterieur, p.neckScreen ?? null, sortedStrs(p.sports),
     ],
+    // Lieu par jour : seulement s'il est choisi (les programmes existants ne sont pas régénérés pour rien).
+    ...(p.dayPlaces?.length === 7 ? { dayPlaces: p.dayPlaces } : {}),
+    // Lieu par jour : seulement s'il est choisi (les programmes existants ne sont pas régénérés pour rien).
+    ...(p.dayPlaces?.length === 7 ? { dayPlaces: p.dayPlaces } : {}),
     // « Mon sport » : seulement si un sport est déclaré (les programmes existants ne sont pas régénérés pour rien).
     ...(p.sportPlan?.length ? { sport: sportSig(p.sportPlan) } : {}),
     equipment: [eq.preset, sortedStrs(eq.tags), sortedStrs(eq.disabledImplicit), sortedNums(eq.dumbbellWeightsKg), sortedNums(eq.kettlebellWeightsKg), sortedNums(eq.platesKg)],
+    // Salle : matériel décoché (seulement s'il y en a ; les programmes existants ne sont pas régénérés pour rien).
+    ...(eq.gymOff?.length ? { gymOff: sortedStrs(eq.gymOff) } : {}),
     // CAL-11 : zones à douleur récente (7 jours, même passée) ; vide dans la plupart des cas, l'empreinte ne change alors que si l'ensemble change.
     ...(recentPainList(input).length ? { recentPain: recentPainList(input) } : {}),
     injuries: (input.injuries ?? [])
@@ -107,6 +113,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
       blockedWeekdays: profile.blockedWeekdays,
       sessionDurationMin: profile.sessionDurationMin,
       place: profile.place ?? null,
+      ...(profile.dayPlaces?.length === 7 ? { dayPlaces: profile.dayPlaces } : {}),
       pregnancy: profile.pregnancy ?? null,
       salleAccess: !!profile.salleAccess,
       exterieur: !!profile.exterieur,
@@ -121,6 +128,7 @@ export async function loadGeneratorInput(fiches: Fiche[]): Promise<LoadedInput |
       dumbbellWeightsKg: equipment.dumbbellWeightsKg,
       kettlebellWeightsKg: equipment.kettlebellWeightsKg,
       platesKg: equipment.platesKg ?? [],
+      ...(equipment.gymOff?.length ? { gymOff: equipment.gymOff } : {}),
     },
     injuries: injuries.map((i) => ({ zone: i.zone, level: i.level, active: i.active, deletedAt: i.deletedAt, afterShock: i.afterShock, updatedAt: i.updatedAt })),
     goals: goals.map((g) => ({ goalKey: g.goalKey, rank: g.rank })),

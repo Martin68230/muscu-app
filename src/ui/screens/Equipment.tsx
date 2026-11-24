@@ -2,7 +2,7 @@ import { useEffect, useState } from 'preact/hooks';
 import type { EquipmentProfile } from '../../data/model';
 import { list, update } from '../../data/repo';
 import {
-  EQUIPMENT_GROUPS, addWeight, formatKg, normalizeEquipment, type NormalizedEquipment, QUICK_WEIGHTS_KG, removeWeight, toggleTag, type EquipmentOption,
+  EQUIPMENT_GROUPS, GYM_EQUIPMENT, addWeight, formatKg, normalizeEquipment, type NormalizedEquipment, QUICK_WEIGHTS_KG, removeWeight, toggleTag, type EquipmentOption,
 } from '../../data/equipment-options';
 
 /** Poids choisis : boutons rapides, champ « autre poids », pastilles retirables d'un appui. */
@@ -104,6 +104,16 @@ export function Equipment() {
           ))}
         </div>
       ))}
+      <div class="card" role="group" aria-label="Matériel de la salle">
+        <h3 class="eq-title">Matériel de ma salle</h3>
+        <p class="dim small">Utilisé les jours de salle (Profil, « Lieu de chaque jour »). Tout est coché : salle complète. Décoche ce qui manque dans ta salle ; un exercice qui en a besoin ne te sera pas proposé.</p>
+        {GYM_EQUIPMENT.map((o) => (
+          <label class="check" key={o.tag}>
+            <input type="checkbox" checked={!eq.gymOff.includes(o.tag)} onChange={(e) => save({ gymOff: e.currentTarget.checked ? eq.gymOff.filter((t) => t !== o.tag) : [...eq.gymOff.filter((t) => t !== o.tag), o.tag] })} />
+            <span>{o.label}</span>
+          </label>
+        ))}
+      </div>
       <div class="card">
         <label for="eq-other" class="small dim">Autre matériel (texte libre, pour toi)</label>
         <input

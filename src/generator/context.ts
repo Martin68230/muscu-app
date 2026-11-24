@@ -4,8 +4,9 @@ import { zoneLevel } from '../data/injury-rules';
 import tagsJson from '../../knowledge/materiel-tags.json';
 import {
   CAL11, CHARGEABLE_TAGS, DEFAULT_FAMILY, FIXED_LOAD_TAGS, DEFAULT_LEVEL, GOAL_FAMILY, GOALS_WITH_FONCTIONNEL, IMPLICIT_TAGS, NATIVE_GOALS,
-  MACHINE_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, PER_SIDE_VARIANT_IDS, UNILATERAL_MARKERS, UNILATERAL_WORDS, type Family,
+  MACHINE_TAGS, OUTDOOR_TAGS, PREGNANCY, PREGNANCY_CASE_PRIORITY, PER_SIDE_VARIANT_IDS, UNILATERAL_MARKERS, UNILATERAL_WORDS, type Family,
 } from './config';
+import { dominantPlace, validDayPlaces } from './day-places';
 import type { Fiche, FicheVariant, GeneratorInput, HistorySet } from './types';
 
 export const LEVELS: readonly Level[] = ['debutant', 'intermediaire', 'avance'];
@@ -36,7 +37,7 @@ export interface Ctx {
   ramene: boolean;
   pregnant: boolean;
   postPartum: boolean;
-  place: 'maison' | 'salle';
+  place: 'maison' | 'salle' | 'dehors';
   available: Set<string>;
   specialiseForbidden: boolean;
   zones: ZoneEntry[];
@@ -82,11 +83,24 @@ export interface Ctx {
   recentPainZones: Set<InjuryZone>;
   /** Mémo de resolveFiche (dépend du contexte). */
   memo: Map<string, unknown>;
+  /** Surcharges avec lesquelles ce contexte a été construit (pour le refaire avec un autre lieu : lieu par jour). */
+  ov: CtxOverrides;
 }
 
 const ALL_TAGS: string[] = (tagsJson as { tags: { id: string }[] }).tags.map((t) => t.id);
 
 /** V-MAT : implicites non décochés + tags cochés ; preset F non modifié = salle complète. */
+/** Lieu par jour : ce qu'il y a chez la personne (preset salle : seulement les implicites et ses cases). */
+export function homeTags(eq: GeneratorInput['equipment']): Set<string> {
+  const implicit = IMPLICIT_TAGS.filter((t) => !eq.disabledImplicit.includes(t));
+  return new Set([...implicit, ...eq.tags]);
+}
+/** Lieu par jour : jour de salle = salle complète (toutes les étiquettes) moins ce que la personne a décoché (`gymOff`). */
+export function gymTags(eq: GeneratorInput['equipment']): Set<string> {
+  const off = new Set(eq.gymOff ?? []);
+  return new Set([...ALL_TAGS.filter((t) => !off.has(t)), ...homeTags(eq)]);
+}
+
 export function availableTags(eq: GeneratorInput['equipment']): Set<string> {
   if (eq.preset === 'F') return new Set(ALL_TAGS);
   const implicit = IMPLICIT_TAGS.filter((t) => !eq.disabledImplicit.includes(t));
@@ -135,6 +149,8 @@ export interface CtxOverrides {
   zones?: ZoneEntry[];
   pregnant?: boolean;
   extraTags?: string[];
+  /** Lieu d'un jour précis (lieu par jour) : remplace le lieu du profil pour construire les séances de ce jour. */
+  place?: 'maison' | 'salle' | 'dehors';
 }
 
 export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
@@ -145,12 +161,23 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
   const goalFamily: Family = mainGoal ? (GOAL_FAMILY[mainGoal] ?? DEFAULT_FAMILY) : DEFAULT_FAMILY;
   const pregnantReal = p.pregnancy === 'enceinte' || p.pregnancy === 'post_partum';
   const pregnant = ov.pregnant ?? pregnantReal;
-  const place = p.place ?? (input.equipment.preset === 'F' ? 'salle' : 'maison');
-  const available = availableTags(input.equipment);
+  // Lieu par jour : sans lieu imposé (progression, bibliothèque, création de séance), le contexte est « large » : le matériel de la salle s'il y a un jour de salle (une variante
+  // possible un jour quelconque reste possible) ; le générateur impose le lieu de chaque jour (ov.place).
+  const dp = validDayPlaces(p.dayPlaces);
+  const dayMode = !!dp;
+  const anyGym = !!dp?.includes('salle');
+  const wide = dayMode && !ov.place;
+  const place = ov.place ?? (dayMode ? dominantPlace(dp) : null) ?? p.place ?? (input.equipment.preset === 'F' ? 'salle' : 'maison');
+  // Lieu par jour : le matériel du lieu du jour (salle complète moins les cases décochées ; maison = ce que la personne a chez elle).
+  const available = dayMode
+    ? (wide ? (anyGym ? new Set([...gymTags(input.equipment), ...homeTags(input.equipment)]) : homeTags(input.equipment)) : place === 'salle' ? gymTags(input.equipment) : homeTags(input.equipment))
+    : availableTags(input.equipment);
+  // Dehors : seulement ce qui se porte (poids du corps, élastique, charge légère) : ni machine, ni banc, ni barre.
+  if (place === 'dehors') for (const t of [...available]) if (!OUTDOOR_TAGS.includes(t)) available.delete(t);
   for (const t of ov.extraTags ?? []) available.add(t);
   // machines-etiquettes.md §2 : machine guidée, poulie et machine de cardio masquées sans le lieu « salle » ni l'accès à une salle ;
   // retirées par défaut en grossesse / post-partum (G9, point 4 ; lecture prudente : les trois étiquettes).
-  const gym = place === 'salle' || !!p.salleAccess;
+  const gym = dayMode ? (wide ? anyGym : place === 'salle') : place === 'salle' || (place !== 'dehors' && !!p.salleAccess);
   if (!gym || pregnant) for (const t of MACHINE_TAGS) available.delete(t);
 
   const injuries = (input.injuries ?? []).map((i) => ({ ...i, deletedAt: i.deletedAt ?? null, afterShock: i.afterShock ?? false }));
@@ -188,7 +215,8 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     place,
     available,
     // Règle 23 (V-ADM 5) : jamais de matériel spécialisé à la maison ni pour un débutant.
-    specialiseForbidden: place === 'maison' || level === 'debutant',
+    // Contexte « large » (sans lieu imposé : progression, création de séance) : matériel spécialisé jamais ouvert (règle 23, lecture prudente) ; seul le générateur l'ouvre un jour de salle.
+    specialiseForbidden: wide || place !== 'salle' || level === 'debutant',
     zones,
     neckLevel,
     neckShock,
@@ -203,7 +231,8 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     fonctionnelEnabled: !!opts.ajouterFonctionnel || (goalFamily === 'sante' && !!mainGoal && GOALS_WITH_FONCTIONNEL.includes(mainGoal)),
     gagnerDuTemps: !!opts.gagnerDuTemps,
     gym,
-    salleFilter: !!p.salleAccess && !pregnant,
+    // 24/11/2026 : un jour en salle filtre aussi (plus de sac, d'élastique ni de bosu à la place d'une machine, d'une barre ou de haltères sur banc) ; décision du retour utilisateur « en salle, des exercices de salle ».
+    salleFilter: (dayMode ? !wide && place === 'salle' : !!p.salleAccess || place === 'salle') && !pregnant,
     lightWeek: false,
     exterieur: !!p.exterieur,
     neckScreenOk: p.neckScreen === 'non',
@@ -214,5 +243,6 @@ export function buildCtx(input: GeneratorInput, ov: CtxOverrides = {}): Ctx {
     d4Open: new Set(opts.d4Open ?? []),
     recentPainZones: recentPain(injuries, opts.nowIso),
     memo: new Map(),
+    ov,
   };
 }
