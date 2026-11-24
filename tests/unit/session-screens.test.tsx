@@ -231,7 +231,7 @@ describe('saisie rapide', () => {
     const prog = await handmade([mkDay([planned(CURL.id, CURL.variant, { sets: 3, startLoadKg: 4, repsMin: 10, repsMax: 15, rirTarget: 3 })])]);
     const { fiches } = await mount(prog, profile);
     expect(screen.getByText('Série 1 sur 3')).toBeTruthy();
-    expect(screen.getByText('10-15 répétitions · réserve 3')).toBeTruthy();
+    expect(screen.getByText(/10-15 répétitions · garde 3 en réserve/)).toBeTruthy();
     expect(exName(fiches, prog.days[0].exercises[0])).toBe(byName(CURL.id).nom);
     expect(screen.getByText(/Première fois : commence léger/)).toBeTruthy();
   });
