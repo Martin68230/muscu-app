@@ -1,7 +1,7 @@
 // Repas d'une semaine validée posés sur le calendrier et dans l'historique (docs/nutrition-reprise.md). PUR : aucune lecture de base ici.
 
 import type { MealLog, MealPlan } from '../data/model';
-import { slotKeyOf, type WeekSlot } from './week-plan';
+import { sanitizeOut, slotKeyOf, type WeekSlot } from './week-plan';
 import { weekStartOf } from './weight-trend';
 
 export function addDaysKey(key: string, n: number): string {
@@ -12,7 +12,14 @@ export function addDaysKey(key: string, n: number): string {
 export function planSlots(p: MealPlan): WeekSlot[] {
   const raw = (p.result as { slots?: unknown } | undefined)?.slots;
   const arr = Array.isArray(raw) ? raw : p.slots;
-  return (arr as unknown[]).filter((s): s is WeekSlot => !!s && typeof s === 'object' && typeof (s as WeekSlot).day === 'number' && (s as WeekSlot).day >= 0 && (s as WeekSlot).day <= 6 && typeof (s as WeekSlot).kind === 'string' && typeof (s as WeekSlot).kcal === 'number');
+  const ok = (arr as unknown[]).filter((s): s is WeekSlot => !!s && typeof s === 'object' && typeof (s as WeekSlot).day === 'number' && (s as WeekSlot).day >= 0 && (s as WeekSlot).day <= 6 && typeof (s as WeekSlot).kind === 'string' && typeof (s as WeekSlot).kcal === 'number');
+  // Repas pris ailleurs : énergie bornée et mode connu, jamais la valeur brute d'un plan importé.
+  return ok.map((s) => {
+    if (!s.out) return s;
+    const o = sanitizeOut(s.out);
+    if (!o) { const { out: _o, ...rest } = s; void _o; return rest; }
+    return { ...s, out: o, kcal: o.kcal };
+  });
 }
 
 export interface DayMeals { plan: MealPlan; day: number; date: string; slots: WeekSlot[]; /** Semaine pas encore validée : plan proposé. */ draft: boolean }
@@ -38,6 +45,26 @@ export function mealDates(plans: readonly MealPlan[], includeDraft = false): Set
   return out;
 }
 
+/** État nutrition d'un jour pour l'affichage du calendrier : aucun repas, plan proposé, semaine validée, ou jour avec un repas pris ailleurs (resto, sauté, fait autrement). */
+export type MealDayState = 'aucun' | 'plan' | 'valide' | 'resto';
+
+export function mealDayStates(plans: readonly MealPlan[]): Map<string, MealDayState> {
+  const out = new Map<string, MealDayState>();
+  for (const p of plans) {
+    const byDay = new Map<number, boolean>();
+    for (const s of planSlots(p)) if (s.recipeId) byDay.set(s.day, (byDay.get(s.day) ?? false) || !!s.out);
+    for (const [d, anyOut] of byDay) {
+      const date = addDaysKey(p.weekStart, d);
+      out.set(date, anyOut ? 'resto' : p.status === 'valide' ? 'valide' : 'plan');
+    }
+  }
+  return out;
+}
+
+export function mealDayState(plans: readonly MealPlan[], date: string): MealDayState {
+  return mealDayStates(plans).get(date) ?? 'aucun';
+}
+
 export interface DayStats {
   plannedKcal: number;
   plannedProt: number;
@@ -55,6 +82,12 @@ export function dayStats(slots: readonly WeekSlot[], logs: readonly MealLog[], d
   for (const s of slots) {
     st.plannedKcal += s.kcal;
     st.plannedProt += s.prot;
+    // Repas pris ailleurs : compté comme mangé (estimation) ou sauté, sans rien à cocher.
+    if (s.out) {
+      if (s.out.mode === 'saute') st.skipped++;
+      else { st.done++; st.eatenKcal += s.kcal; st.eatenProt += s.prot; }
+      continue;
+    }
     const l = logs.find((x) => x.date === date && x.slotKey === slotKeyOf(s));
     if (l?.state === 'fait') { st.done++; st.eatenKcal += s.kcal; st.eatenProt += s.prot; }
     else if (l?.state === 'ecart') {

@@ -47,6 +47,10 @@ test('Nutrition : générer, changer, verrouiller, annuler, valider, calendrier,
   // Avant la génération : préférences rapides (état vide utile)
   await expect(page.getByText('Avant de générer : préférences rapides')).toBeVisible();
   await expect(page.getByText(/Imposer un repas/)).toBeVisible();
+  await expect(page.getByRole('group', { name: 'Repas pris, jour par jour' })).toBeVisible();
+  await page.getByRole('button', { name: 'Resto le samedi soir' }).click();
+  await expect(page.getByRole('checkbox', { name: 'Samedi : dîner' })).not.toBeChecked();
+  await expect(page.getByRole('checkbox', { name: 'Lundi : déjeuner' })).toBeChecked();
   await expect(await problems(page)).toEqual([]);
   await shot('01-avant-generation');
   await page.getByRole('button', { name: 'Générer ma semaine' }).click();
@@ -123,6 +127,17 @@ test('Nutrition : générer, changer, verrouiller, annuler, valider, calendrier,
   await expect(page.getByRole('heading', { name: 'Repas du jour' })).toBeVisible();
   await expect(page.getByText(/Ta cible/).first()).toBeVisible();
   await shot('07-calendrier-jour');
+  // Resto pour ce jour seulement : repas sorti du plan, annulable
+  await page.getByRole('button', { name: 'Changer ce repas' }).last().click();
+  await page.getByRole('button', { name: 'Où je mange ce repas ?' }).click();
+  await page.getByRole('button', { name: 'Au restaurant ou à l’extérieur' }).click();
+  await expect(await problems(page)).toEqual([]);
+  await shot('07b-resto');
+  await page.getByRole('button', { name: /^Normal · environ/ }).click();
+  await expect(page.getByText(/Resto · environ \d+ kcal \(estimation\)/).first()).toBeVisible();
+  await shot('07c-resto-fait');
+  await page.getByRole('button', { name: 'Annuler le dernier changement' }).click();
+  await expect(page.getByText(/Resto · environ/)).toHaveCount(0);
   await page.getByRole('button', { name: 'Fait', exact: true }).first().click();
   await expect(page.getByRole('button', { name: 'Fait', exact: true }).first()).toHaveAttribute('aria-pressed', 'true');
   await page.getByRole('button', { name: 'Jour suivant' }).click();
@@ -131,7 +146,7 @@ test('Nutrition : générer, changer, verrouiller, annuler, valider, calendrier,
   await shot('08-jour-suivant');
 
   // Accueil : repas du jour ; historique
-  await page.getByRole('button', { name: 'Accueil', exact: true }).click();
+  await page.getByRole('button', { name: 'Aujourd’hui', exact: true }).click();
   await expect(page.getByRole('heading', { name: 'Mes repas du jour' })).toBeVisible();
   await shot('09-accueil', false);
   await page.goto('./#/nutrition/historique');

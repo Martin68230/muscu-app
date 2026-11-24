@@ -756,3 +756,10 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .shop-remove { flex: 0 0 44px; min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--text-dim); font-size: 1.125rem; cursor: pointer; }
 .shop-add .field { display: block; margin: 8px 0; font-weight: 600; }
 .shop-add input { display: block; width: 100%; min-height: 48px; margin-top: 6px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 16px; }
+/* Tableau « Quels repas je prends ? » */
+.meal-table { margin: 8px 0; }
+.meal-table-row { display: grid; grid-template-columns: 3.2rem repeat(4, 1fr); align-items: center; min-height: 44px; border-bottom: 1px solid var(--line); text-align: center; }
+.meal-table-head { font-size: 0.75rem; color: var(--text-dim); min-height: 28px; }
+.meal-table-day { text-align: left; font-weight: 700; }
+.meal-cell { display: flex; align-items: center; justify-content: center; min-height: 44px; }
+.meal-cell input { width: 24px; height: 24px; }

@@ -1,18 +1,21 @@
 // Les 7 jours d'une semaine générée : chaque repas se déplie, se change (autre repas, autre aliment) ou se verrouille depuis un menu « ⋯ ».
 // Tout changement passe par src/nutrition/week-edit.ts (mêmes filtres que la génération) puis `onChange` (enregistrement + annulation).
 import { useRef, useState } from 'preact/hooks';
+import type { SlotOut } from '../../nutrition/week-plan';
 import { ALLERGEN_LABELS } from '../../nutrition/allergens';
 import type { Catalog } from '../../nutrition/catalog';
 import { addDaysKey } from '../../nutrition/meals-calendar';
-import { applyMealChange, applySwap, dayTotals, foodAlternatives, lockDay, mealAlternatives, slotAllergens, toggleLock, type EditCtx } from '../../nutrition/week-edit';
+import { applyMealChange, applySwap, cleanOutKcal, dayTotals, foodAlternatives, lockDay, mealAlternatives, restoKcal, setSlotOut, slotAllergens, toggleLock, type EditCtx } from '../../nutrition/week-edit';
 import { composeSlot, slotKeyOf, type WeekPlanResult, type WeekSlot } from '../../nutrition/week-plan';
 import { frDate } from '../../session/calendar';
-import { fmtN, MealDetail, slotLabel } from './NutritionMeals';
+import { fmtN, MealDetail, outTitle, slotLabel } from './NutritionMeals';
 
 const DAYS_LONG = ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche'];
 const sign = (n: number, d = 0) => `${n > 0 ? '+' : n < 0 ? '−' : '±'}${fmtN(Math.abs(n), d)}`;
 
-export type Panel = { key: string; mode: 'menu' | 'meal' | 'food'; from?: string; page: number } | null;
+export const outMessage = (label: string, o: SlotOut | null): string => (!o ? `${label} : de retour à la maison.` : o.mode === 'saute' ? `${label} sauté : les autres repas du jour s’ajustent.` : o.mode === 'resto' ? `${label} au restaurant (environ ${Math.round(o.kcal)} kcal, estimation) : les autres repas du jour s’ajustent.` : `${label} déjà fait autrement (environ ${Math.round(o.kcal)} kcal, estimation).`);
+
+export type Panel = { key: string; mode: 'menu' | 'meal' | 'food' | 'where'; from?: string; page: number } | null;
 
 export interface PlanViewProps {
   plan: WeekPlanResult;
@@ -73,21 +76,23 @@ export function PlanDays({ plan, locks, catalog, ctx, weekStart, canEditDay, usa
                         onContextMenu={(e) => { if (editable) e.preventDefault(); }}
                       >
                         <span class="dim small">{label}{s.auto ? ' (ajouté pour ta cible)' : ''}{locked ? ' · 🔒 verrouillé' : ''}</span>
-                        <strong>{r.nom}</strong>
-                        <span class="dim small">{s.pieces ? `${s.pieces} ${r.piece ?? 'pièce'}${s.pieces > 1 ? 's' : ''}` : s.scale && Math.abs(s.scale - 1) > 0.05 ? `portion ×${fmtN(s.scale, 1)}` : ''}{s.pieces || (s.scale && Math.abs(s.scale - 1) > 0.05) ? ' · ' : ''}{fmtN(s.kcal)} kcal · P {fmtN(s.prot)} g{s.swaps?.length ? ' · aliment changé' : ''}</span>
+                        <strong>{s.out ? outTitle(s.out) : r.nom}</strong>
+                        {s.out && <span class="dim small">Prévu à la maison : {r.nom}</span>}
+                        <span class="dim small">{s.out ? '' : s.pieces ? `${s.pieces} ${r.piece ?? 'pièce'}${s.pieces > 1 ? 's' : ''}` : s.scale && Math.abs(s.scale - 1) > 0.05 ? `portion ×${fmtN(s.scale, 1)}` : ''}{!s.out && (s.pieces || (s.scale && Math.abs(s.scale - 1) > 0.05)) ? ' · ' : ''}{fmtN(s.kcal)} kcal · P {fmtN(s.prot)} g{s.swaps?.length ? ' · aliment changé' : ''}</span>
                       </button>
                       {editable && (
                         <button type="button" class="meal-more" aria-label={`Actions pour ${r.nom}`} aria-expanded={isPanel} onClick={() => setPanel(isPanel ? null : { key, mode: 'menu', page: 0 })}>⋯</button>
                       )}
                     </div>
                     {!ok && <p class="notice small" role="status">À changer : ce repas ne correspond plus à tes réglages (allergies, régime, aliments exclus).</p>}
-                    {ok && open === key && <MealDetail slot={s} catalog={catalog} />}
+                    {ok && !s.out && open === key && <MealDetail slot={s} catalog={catalog} />}
                     {isPanel && editable && (
                       <MealPanel
                         slot={s} panel={panel!} setPanel={setPanel} plan={plan} ctx={ctx} locked={locked}
                         onMeal={(alt) => { onChange(applyMealChange(plan, key, alt, ctx), locks, `${label} changé : ${alt.recipe.nom}.`); setPanel(null); }}
                         onFood={(sw) => { onChange(applySwap(plan, key, sw, ctx), locks, sw.to === sw.from ? 'Aliment d’origine remis.' : `Aliment changé : ${sw.nom}.`); setPanel(null); }}
                         onLock={() => { onChange(plan, toggleLock(locks, key), locked ? 'Repas déverrouillé.' : 'Repas verrouillé : il reste en place si tu régénères.'); setPanel(null); }}
+                        onOut={(o) => { onChange(setSlotOut(plan, key, o, ctx), locks, outMessage(label, o)); setPanel(null); }}
                       />
                     )}
                   </li>
@@ -106,21 +111,55 @@ export function PlanDays({ plan, locks, catalog, ctx, weekStart, canEditDay, usa
   );
 }
 
-export function MealPanel({ slot, panel, setPanel, plan, ctx, locked, onMeal, onFood, onLock }: {
+export function MealPanel({ slot, panel, setPanel, plan, ctx, locked, onMeal, onFood, onLock, onOut }: {
   slot: WeekSlot; panel: NonNullable<Panel>; setPanel: (p: Panel) => void; plan: WeekPlanResult; ctx: EditCtx; locked: boolean;
-  onMeal: (a: ReturnType<typeof mealAlternatives>[number]) => void; onFood: (s: ReturnType<typeof foodAlternatives>[number]['swap']) => void; onLock: () => void;
+  onMeal: (a: ReturnType<typeof mealAlternatives>[number]) => void; onFood: (s: ReturnType<typeof foodAlternatives>[number]['swap']) => void; onLock: () => void; onOut: (out: SlotOut | null) => void;
 }) {
+  const [sub, setSub] = useState<'resto' | 'autrement' | null>(null);
+  const [kcalText, setKcalText] = useState('');
   const key = slotKeyOf(slot);
   const recipe = ctx.recipes.find((r) => r.id === slot.recipeId);
   const label = slotLabel(slot);
   if (panel.mode === 'menu') {
     return (
       <div class="meal-panel" role="group" aria-label={`Actions : ${recipe?.nom ?? label}`}>
-        <button type="button" class="btn" disabled={locked} onClick={() => setPanel({ key, mode: 'meal', page: 0 })}>Changer ce repas</button>
-        <button type="button" class="btn" disabled={locked || !recipe || !!recipe.lot} onClick={() => setPanel({ key, mode: 'food', page: 0 })}>Changer un aliment</button>
+        <button type="button" class="btn" disabled={locked || !!slot.out} onClick={() => setPanel({ key, mode: 'meal', page: 0 })}>Changer ce repas</button>
+        <button type="button" class="btn" onClick={() => setPanel({ key, mode: 'where', page: 0 })}>Où je mange ce repas ?</button>
+        <button type="button" class="btn" disabled={locked || !!slot.out || !recipe || !!recipe.lot} onClick={() => setPanel({ key, mode: 'food', page: 0 })}>Changer un aliment</button>
         <button type="button" class="btn" onClick={onLock}>{locked ? 'Déverrouiller' : 'Verrouiller'}</button>
         {locked && <p class="dim small">Déverrouille ce repas pour le changer.</p>}
         {recipe?.lot && <p class="dim small">Les recettes en lot (barres, muffins) se changent en entier.</p>}
+      </div>
+    );
+  }
+  if (panel.mode === 'where') {
+    const kind = slot.kind;
+    const levels: ['leger' | 'normal' | 'copieux', string][] = [['leger', 'Léger'], ['normal', 'Normal'], ['copieux', 'Copieux']];
+    const parsed = kcalText.trim() === '' ? null : cleanOutKcal(Number(kcalText.replace(',', '.')));
+    return (
+      <div class="meal-panel" role="group" aria-label="Où je mange ce repas ?">
+        <p class="small"><strong>Où je mange ce repas ?</strong> <span class="dim">Pour ce jour seulement. Les autres repas du jour s’ajustent, la liste de courses suit.</span></p>
+        <button type="button" class="btn" aria-pressed={!slot.out} onClick={() => { setSub(null); onOut(null); }}>À la maison (plan normal)</button>
+        <button type="button" class="btn" aria-pressed={slot.out?.mode === 'resto' || sub === 'resto'} onClick={() => { setSub('resto'); setKcalText(''); }}>Au restaurant ou à l’extérieur</button>
+        {sub === 'resto' && (
+          <div>
+            <div class="chips" role="group" aria-label="Repas au restaurant : léger, normal ou copieux">
+              {levels.map(([lv, label]) => <button type="button" key={lv} class="chip" aria-pressed={slot.out?.level === lv} onClick={() => onOut({ mode: 'resto', level: lv, kcal: restoKcal(kind, lv) })}>{label} · environ {restoKcal(kind, lv)} kcal</button>)}
+            </div>
+            <p class="dim small">Repères indicatifs (estimation), pas une mesure. Tu peux aussi saisir ta propre estimation :</p>
+            <label class="field">Mon estimation en kcal (facultatif)<input type="text" inputMode="numeric" autocomplete="off" value={kcalText} onInput={(e) => setKcalText(e.currentTarget.value)} /></label>
+            <button type="button" class="btn" disabled={parsed === null || kcalText.trim() === ''} onClick={() => onOut({ mode: 'resto', kcal: parsed ?? 0 })}>Enregistrer mon estimation</button>
+          </div>
+        )}
+        <button type="button" class="btn" aria-pressed={slot.out?.mode === 'saute'} onClick={() => { setSub(null); onOut({ mode: 'saute', kcal: 0 }); }}>Je saute ce repas</button>
+        <button type="button" class="btn" aria-pressed={slot.out?.mode === 'autrement' || sub === 'autrement'} onClick={() => { setSub('autrement'); setKcalText(''); }}>Déjà fait différemment</button>
+        {sub === 'autrement' && (
+          <div>
+            <label class="field">Estimation en kcal (facultatif, sinon la valeur prévue)<input type="text" inputMode="numeric" autocomplete="off" value={kcalText} onInput={(e) => setKcalText(e.currentTarget.value)} /></label>
+            <button type="button" class="btn btn-primary" disabled={kcalText.trim() !== '' && parsed === null} onClick={() => onOut({ mode: 'autrement', kcal: kcalText.trim() === '' ? Math.round(slot.out?.mode ? slot.out.kcal : slot.kcal) : (parsed ?? 0) })}>Enregistrer</button>
+          </div>
+        )}
+        <button type="button" class="btn btn-quiet" onClick={() => setPanel({ key, mode: 'menu', page: 0 })}>Retour</button>
       </div>
     );
   }

@@ -3,14 +3,14 @@
 // (allergènes, régime, aliments exclus, statut d'étiquetage). Rien n'est assoupli : en cas de doute, l'alternative n'est pas proposée.
 // Après chaque changement, tout est recalculé à partir des créneaux (macros, jours, lots, courses) : une seule source de vérité.
 
-import { ARRONDI_GRAMMES, ECHELLE_MAX_PRINCIPAL, NUTRITION_VERSION, SEUIL_ECART_KCAL, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_REPAS } from './config';
+import { ARRONDI_GRAMMES, ECHELLE_MAX_PRINCIPAL, NUTRITION_VERSION, OUT_KCAL_MAX, OUT_SPLIT, RESTO_KCAL_REPERES, SEUIL_ECART_KCAL, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_REPAS } from './config';
 import { ingredientAllowed } from './allergens';
 import type { FoodInfo } from './catalog';
 import type { DayTarget } from './day-targets';
-import { norm, recipeAllowed, type DayCheck, type FoodMacros, type PlanPrefs, type Recipe } from './plan';
+import { norm, recipeAllowed, scaleRecipe, type DayCheck, type FoodMacros, type PlanPrefs, type Recipe } from './plan';
 import type { GoalKind } from './needs';
 import type { PlannedIngredient } from './shopping';
-import { ceilG, composeSlot, pickFor, repasOf, slotKeyOf, type LotInfo, type MealConfig, type Swap, type WeekPlanResult, type WeekSlot } from './week-plan';
+import { ceilG, composeSlot, pickFor, repasOf, slotKeyOf, type LotInfo, sanitizeOut, type MealConfig, type SlotKind, type SlotOut, type Swap, type WeekPlanResult, type WeekSlot } from './week-plan';
 
 export type Prefs = Omit<PlanPrefs, 'mealsPerDay'>;
 const full = (p: Prefs): PlanPrefs => ({ ...p, mealsPerDay: 3 });
@@ -68,7 +68,12 @@ export const slotAllergens = (r: Recipe, s: Pick<WeekSlot, 'swaps'>) => [...new 
 
 export function assembleWeek(slotsIn: readonly WeekSlot[], ctx: EditCtx, version: string = NUTRITION_VERSION): WeekPlanResult {
   const recById = new Map(ctx.recipes.map((r) => [r.id, r]));
-  const slots = slotsIn.map((s): WeekSlot => {
+  const slots = slotsIn.map((s0): WeekSlot => {
+    let s = s0;
+    // Repas pris ailleurs : énergie estimée, macros par répartition indicative, aucun ingrédient.
+    const so = sanitizeOut(s.out);
+    if (s.out && !so) { const { out: _x, ...base } = s; void _x; s = base; }
+    if (so) { const k = so.kcal; return { ...s, out: so, kcal: k, prot: (k * OUT_SPLIT.prot) / 4, gluc: (k * OUT_SPLIT.gluc) / 4, lip: (k * OUT_SPLIT.lip) / 9 }; }
     const r = s.recipeId ? recById.get(s.recipeId) : undefined;
     const c = r ? composeSlot(r, s, ctx.foods) : null;
     return c ? { ...s, kcal: c.kcal, prot: c.prot, gluc: c.gluc, lip: c.lip } : { ...s };
@@ -77,7 +82,7 @@ export function assembleWeek(slotsIn: readonly WeekSlot[], ctx: EditCtx, version
 
   const lotMap = new Map<string, LotInfo>();
   for (const s of slots) {
-    if (!s.recipeId || !s.pieces) continue;
+    if (!s.recipeId || !s.pieces || s.out) continue;
     const r = recById.get(s.recipeId);
     if (!r) continue;
     const cur = lotMap.get(r.id) ?? { recipeId: r.id, piece: r.piece ?? 'pièce', needed: 0, pieces: 0 };
@@ -89,7 +94,7 @@ export function assembleWeek(slotsIn: readonly WeekSlot[], ctx: EditCtx, version
   const ingredients: PlannedIngredient[] = [];
   for (const s of slots) {
     const r = s.recipeId ? recById.get(s.recipeId) : undefined;
-    if (!r || r.lot) continue;
+    if (!r || r.lot || s.out) continue;
     const c = composeSlot(r, s, ctx.foods);
     if (!c) continue;
     for (const l of c.lines) ingredients.push({ code: l.code, name: l.nom, grams: l.grammes, rayon: l.rayon, pantry: ctx.foods.get(l.code)?.gardeManger });
@@ -162,8 +167,8 @@ export function mealAlternatives(plan: Pick<WeekPlanResult, 'slots'>, slot: Week
 export function applyMealChange(plan: WeekPlanResult, key: string, alt: MealAlternative, ctx: EditCtx): WeekPlanResult {
   const slots = plan.slots.map((s) => {
     if (slotKeyOf(s) !== key) return s;
-    const { swaps: _drop, ...rest } = s;
-    void _drop;
+    const { swaps: _drop, out: _out, baseScale: _base, ...rest } = s;
+    void _drop; void _out; void _base;
     return { ...rest, recipeId: alt.recipe.id, scale: alt.scale, pieces: alt.pieces, kcal: alt.kcal, prot: alt.prot, gluc: alt.gluc, lip: alt.lip };
   });
   return assembleWeek(slots, ctx, plan.version);
@@ -265,6 +270,74 @@ export function prefsFromProfile(np: { allergens?: string[]; allergenFree?: stri
 
 /** Remet à jour les allergènes des aliments remplacés d'après le catalogue (jamais d'après la valeur stockée dans un plan enregistré ou importé). */
 export function normalizePlan(plan: WeekPlanResult, info: ReadonlyMap<string, FoodInfo>): WeekPlanResult {
-  if (!plan.slots.some((s) => s.swaps?.length)) return plan;
-  return { ...plan, slots: plan.slots.map((s) => (s.swaps?.length ? { ...s, swaps: s.swaps.map((sw) => ({ ...sw, allergenes: info.get(sw.to)?.allergenes ?? sw.allergenes })) } : s)) };
+  if (!plan.slots.some((s) => s.swaps?.length || s.out)) return plan;
+  return { ...plan, slots: plan.slots.map((s0) => {
+    let s = s0;
+    if (s.out) {
+      const o = sanitizeOut(s.out);
+      if (o) s = { ...s, out: o, kcal: o.kcal };
+      else { const { out: _o, ...rest } = s; void _o; s = rest; }
+    }
+    return s.swaps?.length ? { ...s, swaps: s.swaps.map((sw) => ({ ...sw, allergenes: info.get(sw.to)?.allergenes ?? sw.allergenes })) } : s;
+  }) };
+}
+
+// ---- Repas pris ailleurs pour CE jour seulement (restaurant, sauté, déjà fait autrement) ----
+
+/** Estimation d'énergie d'un repas au restaurant selon son type et son niveau (repère indicatif, jamais une mesure). */
+export function restoKcal(kind: SlotKind, level: 'leger' | 'normal' | 'copieux'): number {
+  const g = kind === 'dejeuner' || kind === 'diner' ? 'principal' : kind === 'petit-dej' ? 'petit-dej' : 'collation';
+  return RESTO_KCAL_REPERES[g][level];
+}
+
+/** Saisie d'énergie valide (nombre entre 0 et OUT_KCAL_MAX), sinon null. */
+export const cleanOutKcal = (v: number): number | null => (Number.isFinite(v) && v >= 0 && v <= OUT_KCAL_MAX ? Math.round(v) : null);
+
+/**
+ * Rééquilibre UN jour après un repas pris ailleurs : les repas à la maison (recettes normales) absorbent la différence avec la cible du jour,
+ * dans la plage réaliste (portion de 0,5 à 1,3) ; jamais d'ingrédient inventé, les lots ne bougent pas. Si le jour ne peut pas tenir la cible
+ * (plafond ou plancher), il reste un écart signalé par `assembleWeek` (status « ecart » / « sous_plancher »). Sans repas ailleurs, les portions
+ * d'origine sont remises.
+ */
+export function rebalanceDay(slots: readonly WeekSlot[], day: number, ctx: EditCtx): WeekSlot[] {
+  const target = ctx.days[day]?.kcal;
+  const recById = new Map(ctx.recipes.map((r) => [r.id, r]));
+  const hasOut = slots.some((s) => s.day === day && s.out);
+  const refs = new Map<string, { r: Recipe; scale0: number; kcal: number; adjustable: boolean }>();
+  let fixedKcal = 0, adjKcal = 0;
+  for (const s of slots) {
+    if (s.day !== day) continue;
+    if (s.out) { fixedKcal += s.out.kcal; continue; }
+    const r = s.recipeId ? recById.get(s.recipeId) : undefined;
+    if (!r) continue;
+    const scale0 = s.baseScale ?? s.scale;
+    const c = composeSlot(r, { ...s, scale: scale0 }, ctx.foods);
+    if (!c) { fixedKcal += s.kcal; continue; }
+    const adjustable = !r.lot && r.ingredients.some((i) => i.ajustable);
+    refs.set(slotKeyOf(s), { r, scale0, kcal: c.kcal, adjustable });
+    if (adjustable) adjKcal += c.kcal; else fixedKcal += c.kcal;
+  }
+  return slots.map((s) => {
+    const ref = s.day === day ? refs.get(slotKeyOf(s)) : undefined;
+    if (!ref || !ref.adjustable) return s;
+    const { baseScale: _b, ...rest } = s;
+    void _b;
+    if (!hasOut || !target || adjKcal <= 0) return { ...rest, scale: ref.scale0 };
+    const want = Math.max(0, target - fixedKcal);
+    const sc = scaleRecipe(ref.r, ctx.foods, (ref.kcal * want) / adjKcal, ECHELLE_MAX_PRINCIPAL);
+    return sc ? { ...rest, scale: sc.scale, baseScale: ref.scale0 } : s;
+  });
+}
+
+/** Marque un repas comme pris ailleurs (`out`) ou le remet à la maison (`null`), pour ce jour seulement ; le jour est rééquilibré et tout est recalculé. */
+export function setSlotOut(plan: WeekPlanResult, key: string, out: SlotOut | null, ctx: EditCtx): WeekPlanResult {
+  const day = Number(key.split('-')[0]);
+  const slots = plan.slots.map((s) => {
+    if (slotKeyOf(s) !== key) return s;
+    if (out) return { ...s, out: { ...out, kcal: cleanOutKcal(out.kcal) ?? 0 } };
+    const { out: _o, ...rest } = s;
+    void _o;
+    return rest;
+  });
+  return assembleWeek(Number.isInteger(day) && day >= 0 && day <= 6 ? rebalanceDay(slots, day, ctx) : slots, ctx, plan.version);
 }

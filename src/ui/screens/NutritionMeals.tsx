@@ -9,14 +9,16 @@ import { dayStats, mealsForDate } from '../../nutrition/meals-calendar';
 import type { GoalKind } from '../../nutrition/needs';
 import { buildShoppingList, type PlannedIngredient } from '../../nutrition/shopping';
 import { weekStartOf } from '../../nutrition/weight-trend';
-import { customKey, getActiveGoal, getNutritionProfile, getShoppingState, listMealLogs, listPlans, listValidatedPlans, saveEditedPlan, setMealLog } from '../../nutrition/store';
-import { applyMealChange, applySwap, prefsFromProfile, slotAllergens, slotUsable, toggleLock, type EditCtx } from '../../nutrition/week-edit';
-import { composeSlot, sanitizeMealConfig, slotKeyOf, type SlotKind, type WeekPlanResult, type WeekSlot } from '../../nutrition/week-plan';
-import { MealPanel, type Panel } from './NutritionPlanView';
+import { customKey, getActiveGoal, getNutritionProfile, getShoppingState, listMealLogs, listPlans, listValidatedPlans, saveEditedPlan, setMealLog, undoLastChange } from '../../nutrition/store';
+import { applyMealChange, applySwap, prefsFromProfile, setSlotOut, slotAllergens, slotUsable, toggleLock, type EditCtx } from '../../nutrition/week-edit';
+import { composeSlot, sanitizeMealConfig, slotKeyOf, type SlotKind, type SlotOut, type WeekPlanResult, type WeekSlot } from '../../nutrition/week-plan';
+import { MealPanel, outMessage, type Panel } from './NutritionPlanView';
 import { dateKey } from '../../session/calendar';
 
 export const KIND_LABEL: Record<SlotKind, string> = { 'petit-dej': 'Petit-déjeuner', dejeuner: 'Déjeuner', diner: 'Dîner', gouter: 'Goûter', encas: 'En-cas' };
 export const slotLabel = (s: Pick<WeekSlot, 'kind' | 'index'>): string => (s.kind === 'encas' ? `En-cas ${s.index + 1}` : KIND_LABEL[s.kind]);
+/** Étiquette courte d'un repas pris ailleurs (les kcal sont toujours présentées comme une estimation). */
+export const outTitle = (o: SlotOut): string => (o.mode === 'saute' ? 'Repas sauté' : o.mode === 'resto' ? `Resto · environ ${Math.round(o.kcal)} kcal (estimation)` : `Fait autrement · environ ${Math.round(o.kcal)} kcal (estimation)`);
 export const fmtN = (n: number, d = 0) => n.toLocaleString('fr-FR', { maximumFractionDigits: d, minimumFractionDigits: d });
 
 /** Catalogue des recettes (fichier statique précaché) : null tant qu'il charge, 'erreur' si hors ligne sans cache. */
@@ -87,6 +89,9 @@ export function DayMeals({ date, heading, emptyHint, compact = false, onChanged,
   if (!dm) return emptyHint ? <section class="card meals-card"><h2>{heading ?? 'Repas du jour'}</h2><p class="dim">{emptyHint}</p></section> : null;
 
   const today = dateKey(new Date());
+  const undoDay = async () => {
+    try { await undoLastChange(dm.plan.weekStart); setMsg('Dernier changement annulé.'); setPanel(null); await reload(); onChanged?.(); } catch { setErr('Impossible d’annuler.'); }
+  };
   const canMark = date <= today;
   const recipeById = new Map(catalog.recipes.map((r) => [r.id, r]));
   const prefs = data.np ? prefsFromProfile(data.np, data.goal) : null;
@@ -108,6 +113,15 @@ export function DayMeals({ date, heading, emptyHint, compact = false, onChanged,
       <h2>{heading ?? 'Repas du jour'}</h2>
       {dm.draft && <p class="notice small" role="status"><strong>Plan proposé, à valider.</strong> Il apparaîtra définitivement au calendrier une fois la semaine validée. <a href="#/nutrition/semaine">Valider dans Nutrition</a></p>}
       {msg && <p class="notice small" role="status">{msg}</p>}
+      {editable && date >= today && dm.plan.previous && <button type="button" class="btn btn-quiet" onClick={() => void undoDay()}>Annuler le dernier changement</button>}
+      {(() => {
+        const dc = (dm.plan.result as unknown as WeekPlanResult | undefined)?.days?.[dm.day];
+        if (!dc) return null;
+        const hasOut = dm.slots.some((s) => s.out);
+        if (dc.belowFloor) return <p class="notice small" role="status">Ce jour passe sous le plancher de sécurité de l’app : ajoute un repas ou remets un repas à la maison.</p>;
+        if (dc.targetKcal > 0 && Math.abs(dc.kcal - dc.targetKcal) / dc.targetKcal > 0.05) return <p class="dim small" role="status">{hasOut ? 'Avec les repas pris ailleurs (estimation), ' : ''}ce jour est {fmtN(Math.abs(dc.kcal - dc.targetKcal))} kcal {dc.kcal < dc.targetKcal ? 'sous' : 'au-dessus de'} ta cible.</p>;
+        return null;
+      })()}
       <p class="meals-total" role="status">
         <strong>{fmtN(stats.plannedKcal)} kcal</strong> · {fmtN(stats.plannedProt)} g de protéines prévus
         {canMark && stats.done > 0 && <span class="dim small"> · mangé : {fmtN(stats.eatenKcal)} kcal ({stats.done}/{stats.meals} repas)</span>}
@@ -134,13 +148,14 @@ export function DayMeals({ date, heading, emptyHint, compact = false, onChanged,
             <li key={key} class={`meal-row${log ? ` is-${log.state}` : ''}`}>
               <button type="button" class="meal-head" aria-expanded={open === key} onClick={() => setOpen(open === key ? null : key)}>
                 <span class="dim small">{slotLabel(s)}{s.auto ? ' (ajouté pour ta cible)' : ''}</span>
-                <strong>{r?.nom ?? 'Repas'}</strong>
+                <strong>{s.out ? outTitle(s.out) : (r?.nom ?? 'Repas')}</strong>
+                {s.out && r && <span class="dim small">Prévu à la maison : {r.nom}</span>}
                 <span class="dim small">{fmtN(s.kcal)} kcal · P {fmtN(s.prot)} g{log?.state === 'fait' ? ' · ✓ fait' : log?.state === 'pas_fait' ? ' · pas fait' : log?.state === 'ecart' ? ' · fait autrement' : ''}</span>
               </button>
               {!usable && <p class="notice small" role="status">À changer : ce repas ne correspond plus à tes réglages (allergies, régime). Ouvre Nutrition, onglet Semaine.</p>}
-              {usable && open === key && !compact && <MealDetail slot={s} catalog={catalog} />}
+              {usable && !s.out && open === key && !compact && <MealDetail slot={s} catalog={catalog} />}
               {usable && log?.state === 'ecart' && log.note && <p class="small">Mangé : {log.note}{log.kcal != null ? ` (${fmtN(log.kcal)} kcal)` : ''}</p>}
-              {usable && canMark && !dm.draft && (
+              {usable && canMark && !dm.draft && !s.out && (
                 <div class="meal-actions" role="group" aria-label={`Noter : ${r?.nom ?? 'repas'}`}>
                   <button type="button" class="btn meal-btn" aria-pressed={log?.state === 'fait'} onClick={() => void mark(s, log?.state === 'fait' ? null : 'fait')}>Fait</button>
                   <button type="button" class="btn meal-btn" aria-pressed={log?.state === 'pas_fait'} onClick={() => void mark(s, log?.state === 'pas_fait' ? null : 'pas_fait')}>Pas fait</button>
@@ -156,6 +171,7 @@ export function DayMeals({ date, heading, emptyHint, compact = false, onChanged,
                   onMeal={(alt) => void commit(applyMealChange(planRes, key, alt, ctx), locks, `Repas changé : ${alt.recipe.nom}.`)}
                   onFood={(sw) => void commit(applySwap(planRes, key, sw, ctx), locks, sw.to === sw.from ? 'Aliment d’origine remis.' : `Aliment changé : ${sw.nom}.`)}
                   onLock={() => void commit(planRes, toggleLock(locks, key), locks.includes(key) ? 'Repas déverrouillé.' : 'Repas verrouillé.')}
+                  onOut={(o) => void commit(setSlotOut(planRes, key, o, ctx), locks, outMessage(slotLabel(s), o))}
                 />
               )}
               {usable && canMark && !dm.draft && gap?.key === key && (

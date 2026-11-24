@@ -3,7 +3,7 @@
 // Les filtres durs (allergènes, régime, aliments évités, temps, matériel) sont ceux de plan.ts (`recipeAllowed`) : jamais assouplis.
 
 import {
-  ARRONDI_GRAMMES, BONUS_LOT, ECHELLE_MAX_PRINCIPAL, ENCAS_AUTO_MAX_KCAL, ENCAS_MAX_PAR_JOUR, SEUIL_ECART_KCAL, NUTRITION_VERSION, PART_DEJEUNER, PART_OPTIONNEL, PART_OPTIONNEL_MAX, PIECES_MAX_PAR_PRISE,
+  ARRONDI_GRAMMES, BONUS_LOT, OUT_KCAL_MAX, OUT_SPLIT, ECHELLE_MAX, ECHELLE_MAX_PRINCIPAL, ENCAS_AUTO_MAX_KCAL, ENCAS_MAX_PAR_JOUR, SEUIL_ECART_KCAL, NUTRITION_VERSION, PART_DEJEUNER, PART_OPTIONNEL, PART_OPTIONNEL_MAX, PIECES_MAX_PAR_PRISE,
   MAX_FOIS_RECETTE_SEMAINE, SCORE, SCORE_VARIETE, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_PRINCIPAL_ELARGIE, TOL_KCAL_REPAS, TOL_KCAL_REPLI,
 } from './config';
 import type { DayTarget } from './day-targets';
@@ -16,6 +16,9 @@ export type SlotKind = 'petit-dej' | 'dejeuner' | 'diner' | 'gouter' | 'encas';
 /** Réglage des repas optionnels : un booléen par jour (lundi à dimanche), 0 à 2 en-cas par jour. */
 export interface MealConfig {
   petitDej: boolean[];
+  /** Déjeuner et dîner par jour (tableau « Quels repas je prends ? ») : décoché = repas non planifié, la cible du jour passe sur les autres. */
+  lunch: boolean[];
+  dinner: boolean[];
   gouter: boolean[];
   encas: number[];
   /** Un seul petit-déjeuner pour toute la semaine. */
@@ -32,6 +35,8 @@ export interface MealConfig {
 
 export const DEFAULT_MEAL_CONFIG: MealConfig = {
   petitDej: Array(7).fill(true),
+  lunch: Array(7).fill(true),
+  dinner: Array(7).fill(true),
   gouter: Array(7).fill(false),
   encas: Array(7).fill(0),
   petitDejIdentique: false,
@@ -54,7 +59,7 @@ export function sanitizeMealConfig(c: Partial<MealConfig> | null | undefined): M
   for (const [k, v] of Object.entries(c?.lotOverride ?? {})) if (Number.isFinite(v) && v > 0 && v <= 200) lot[k] = Math.round(v);
   const imposed: Record<string, string> = {};
   for (const [k, v] of Object.entries(c?.imposed ?? {})) if (SLOT_KEY_RE.test(k) && typeof v === 'string' && v.length > 0 && v.length <= 120) imposed[k] = v;
-  return { petitDej: bools(c?.petitDej, DEFAULT_MEAL_CONFIG.petitDej), gouter: bools(c?.gouter, DEFAULT_MEAL_CONFIG.gouter), encas, petitDejIdentique: c?.petitDejIdentique === true, completerAuto: c?.completerAuto !== false, lotOverride: lot, imposed, shoppingDay: Number.isInteger(c?.shoppingDay) && (c!.shoppingDay as number) >= 0 && (c!.shoppingDay as number) <= 6 ? (c!.shoppingDay as number) : null };
+  return { petitDej: bools(c?.petitDej, DEFAULT_MEAL_CONFIG.petitDej), lunch: bools(c?.lunch, DEFAULT_MEAL_CONFIG.lunch), dinner: bools(c?.dinner, DEFAULT_MEAL_CONFIG.dinner), gouter: bools(c?.gouter, DEFAULT_MEAL_CONFIG.gouter), encas, petitDejIdentique: c?.petitDejIdentique === true, completerAuto: c?.completerAuto !== false, lotOverride: lot, imposed, shoppingDay: Number.isInteger(c?.shoppingDay) && (c!.shoppingDay as number) >= 0 && (c!.shoppingDay as number) <= 6 ? (c!.shoppingDay as number) : null };
 }
 
 /** Un aliment remplacé dans une recette (« Changer un aliment ») : mêmes calories, allergènes de l'aliment d'arrivée gardés pour le contrôle. */
@@ -65,6 +70,25 @@ export interface Swap {
   grammes: number;
   rayon: Rayon;
   allergenes: AllergenKey[];
+}
+
+/** Repas pris ailleurs que dans le plan, pour CE jour seulement : restaurant / extérieur, repas sauté, ou déjà fait autrement. Les kcal sont une ESTIMATION. */
+export type OutMode = 'resto' | 'saute' | 'autrement';
+export interface SlotOut {
+  mode: OutMode;
+  /** Repère choisi pour un repas au restaurant (estimation). */
+  level?: 'leger' | 'normal' | 'copieux';
+  /** Énergie estimée du repas (0 si sauté). */
+  kcal: number;
+}
+
+/** Repas pris ailleurs lu depuis un plan enregistré ou importé : mode connu et énergie bornée (0 à OUT_KCAL_MAX), sinon ignoré (le repas redevient « à la maison »). */
+export function sanitizeOut(o: unknown): SlotOut | null {
+  if (!o || typeof o !== 'object') return null;
+  const x = o as Partial<SlotOut>;
+  if (x.mode !== 'resto' && x.mode !== 'saute' && x.mode !== 'autrement') return null;
+  const k = typeof x.kcal === 'number' && Number.isFinite(x.kcal) ? Math.min(OUT_KCAL_MAX, Math.max(0, Math.round(x.kcal))) : 0;
+  return { mode: x.mode, ...(x.level === 'leger' || x.level === 'normal' || x.level === 'copieux' ? { level: x.level } : {}), kcal: x.mode === 'saute' ? 0 : k };
 }
 
 export interface WeekSlot {
@@ -85,6 +109,10 @@ export interface WeekSlot {
   auto?: boolean;
   /** Aliments remplacés par l'utilisateur (recettes normales seulement). */
   swaps?: Swap[];
+  /** Repas pris ailleurs (resto, sauté, autrement) : la recette reste gardée pour pouvoir remettre « à la maison ». */
+  out?: SlotOut;
+  /** Échelle d'origine de la recette avant un rééquilibrage du jour (pour revenir en arrière). */
+  baseScale?: number;
 }
 
 export interface LotInfo {
@@ -122,6 +150,8 @@ export const ceilG = (g: number) => Math.ceil(g / ARRONDI_GRAMMES - 1e-9) * ARRO
 export interface Pick {
   r: Recipe;
   swaps?: Swap[];
+  out?: SlotOut;
+  baseScale?: number;
   scale: number;
   pieces: number;
   kcal: number;
@@ -269,6 +299,12 @@ export function generateWeekPlan(
       if (!fs || !r || !recipeAllowed(r, pf)) return null;
       const c = composeSlot(r, fs, foods);
       if (!c) return null;
+      // Repas pris ailleurs : énergie estimée, aucun ingrédient (ni courses), la recette reste gardée.
+      const fo = sanitizeOut(fs.out);
+      if (fo) {
+        const k = fo.kcal;
+        return { r, scale: fs.scale, pieces: fs.pieces, kcal: k, prot: (k * OUT_SPLIT.prot) / 4, gluc: (k * OUT_SPLIT.gluc) / 4, lip: (k * OUT_SPLIT.lip) / 9, err: 0, lines: [], out: fo, ...(fs.baseScale ? { baseScale: fs.baseScale } : {}), ...(fs.auto ? { auto: true } : {}) };
+      }
       return { r, scale: fs.scale, pieces: fs.pieces, kcal: c.kcal, prot: c.prot, gluc: c.gluc, lip: c.lip, err: 0, lines: c.lines.map((l) => ({ code: l.code, nom: l.nom, grammes: l.grammes, rayon: l.rayon })), ...(fs.swaps?.length ? { swaps: fs.swaps } : {}), ...(fs.auto ? { auto: true } : {}) };
     };
     const imposedPick = (kind: SlotKind, index: number, target: number, maxScale?: number): Pick | null => {
@@ -283,7 +319,7 @@ export function generateWeekPlan(
     const done: WeekSlot[] = [];
     const push = (kind: SlotKind, index: number, pk: Pick | null, auto = false) => {
       const s: WeekSlot = pk
-        ? { day, kind, index, recipeId: pk.r.id, scale: pk.scale, pieces: pk.pieces, kcal: pk.kcal, prot: pk.prot, gluc: pk.gluc, lip: pk.lip, ...(auto ? { auto: true } : {}), ...(pk.swaps?.length ? { swaps: pk.swaps } : {}) }
+        ? { day, kind, index, recipeId: pk.r.id, scale: pk.scale, pieces: pk.pieces, kcal: pk.kcal, prot: pk.prot, gluc: pk.gluc, lip: pk.lip, ...(auto ? { auto: true } : {}), ...(pk.swaps?.length ? { swaps: pk.swaps } : {}), ...(pk.out ? { out: pk.out } : {}), ...(pk.baseScale ? { baseScale: pk.baseScale } : {}) }
         : { day, kind, index, recipeId: null, scale: 0, pieces: 0, kcal: 0, prot: 0, gluc: 0, lip: 0 };
       slots.push(s);
       done.push(s);
@@ -334,14 +370,19 @@ export function generateWeekPlan(
     // 2) repas principaux : ils absorbent le reste de la cible du jour (déjeuner puis dîner)
     const eaten = done.reduce((s, x) => s + x.kcal, 0);
     const rest = Math.max(0, d.kcal - eaten);
-    const fixedMain = { dejeuner: fixedPick('dejeuner', 0), diner: fixedPick('diner', 0) };
+    const mainOn = { dejeuner: cfg.lunch[day], diner: cfg.dinner[day] };
+    const fixedMain = { dejeuner: mainOn.dejeuner ? fixedPick('dejeuner', 0) : null, diner: mainOn.diner ? fixedPick('diner', 0) : null };
     for (const kind of ['dejeuner', 'diner'] as const) {
+      if (!mainOn[kind]) continue; // repas non pris ce jour-là : jamais planifié
       const fm = fixedMain[kind];
       if (fm) { push(kind, 0, fm); continue; }
       const other = fixedMain[kind === 'dejeuner' ? 'diner' : 'dejeuner'];
-      const target = other ? Math.max(0, rest - other.kcal) : rest * (kind === 'dejeuner' ? PART_DEJEUNER : 1 - PART_DEJEUNER);
+      const otherOn = mainOn[kind === 'dejeuner' ? 'diner' : 'dejeuner'];
+      // Un seul repas principal ce jour-là : il porte tout le reste de la cible, dans une portion plus large (jamais au-delà de ECHELLE_MAX).
+      const target = other ? Math.max(0, rest - other.kcal) : otherOn ? rest * (kind === 'dejeuner' ? PART_DEJEUNER : 1 - PART_DEJEUNER) : rest;
+      const mainScale = otherOn ? ECHELLE_MAX_PRINCIPAL : ECHELLE_MAX;
       let best: { pk: Pick; score: number } | null = null;
-      const imp = target > 0 ? imposedPick(kind, 0, target, ECHELLE_MAX_PRINCIPAL) : null;
+      const imp = target > 0 ? imposedPick(kind, 0, target, mainScale) : null;
       if (imp) { push(kind, 0, imp); continue; }
       if (target > 0) {
         // Ordre des essais : dans la tolérance du repas ET sous le plafond de répétition, puis dans la tolérance sans le plafond, puis repli sur la
@@ -353,7 +394,7 @@ export function generateWeekPlan(
           for (const r of allowed) {
             if (r.repas !== 'dejeuner-diner' || usedToday.has(r.id)) continue;
             if (cap && (usedMain.get(r.id) ?? 0) >= MAX_FOIS_RECETTE_SEMAINE) continue;
-            const pk = pickFor(r, foods, target, tol, ECHELLE_MAX_PRINCIPAL);
+            const pk = pickFor(r, foods, target, tol, mainScale);
             if (!pk) continue;
             const p = r.sourceProteines ?? '';
             const g = r.sourceGlucides ?? '';
@@ -397,7 +438,7 @@ export function generateWeekPlan(
   // Lots : pièces nécessaires = somme des prises ; fabriquées = max(nécessaire, réglage). Courses = pièces du lot x ingrédients d'une pièce.
   const lotMap = new Map<string, LotInfo>();
   for (const s of slots) {
-    if (!s.recipeId || !s.pieces) continue;
+    if (!s.recipeId || !s.pieces || s.out) continue;
     const r = recipes.find((x) => x.id === s.recipeId)!;
     const cur = lotMap.get(r.id) ?? { recipeId: r.id, piece: (r as Recipe & { piece?: string | null }).piece ?? 'pièce', needed: 0, pieces: 0 };
     cur.needed += s.pieces;

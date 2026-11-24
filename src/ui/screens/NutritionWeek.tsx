@@ -64,7 +64,7 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
 
   const persist = (patch: Parameters<typeof saveNutritionProfile>[0]) => void saveNutritionProfile(patch);
   const upCfg = (c: MealConfig) => { setCfg(c); persist({ mealConfig: c as unknown as Record<string, unknown> }); };
-  const toggleDay = (k: 'petitDej' | 'gouter', d: number) => upCfg({ ...cfg, [k]: cfg[k].map((v, i) => (i === d ? !v : v)) });
+  const toggleDay = (k: 'petitDej' | 'lunch' | 'dinner' | 'gouter', d: number) => upCfg({ ...cfg, [k]: cfg[k].map((v, i) => (i === d ? !v : v)) });
   const cycleEncas = (d: number) => upCfg({ ...cfg, encas: cfg.encas.map((v, i) => (i === d ? (v + 1) % 3 : v)) });
 
   const recipeById = useMemo(() => new Map((catalog?.recipes ?? []).map((r) => [r.id, r])), [catalog]);
@@ -210,6 +210,27 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
         <details class="card nut-details" open={!shown}>
           <summary>Avant de générer : préférences rapides</summary>
           <fieldset class="create-group">
+            <legend>Quels repas je prends ?</legend>
+            <p class="dim small">Coche les repas que tu prends chaque jour. Un repas décoché n’est pas planifié : ta cible du jour est répartie sur les autres. Ton choix est gardé pour les semaines suivantes. Pour un repas au restaurant avec une estimation de calories, ouvre le jour après la génération.</p>
+            <div class="chips" role="group" aria-label="Raccourcis">
+              <button type="button" class="chip" onClick={() => upCfg({ ...cfg, petitDej: Array(7).fill(true), lunch: Array(7).fill(true), dinner: Array(7).fill(true), gouter: Array(7).fill(true) })}>Tous les repas, tous les jours</button>
+              <button type="button" class="chip" onClick={() => upCfg({ ...cfg, petitDej: cfg.petitDej.map((_, i) => i >= 5) })}>Pas de petit-déj en semaine</button>
+              <button type="button" class="chip" onClick={() => upCfg({ ...cfg, dinner: cfg.dinner.map((v, i) => (i === 5 ? false : v)) })}>Resto le samedi soir</button>
+              <button type="button" class="chip" onClick={() => upCfg({ ...cfg, gouter: Array(7).fill(false) })}>Pas de goûter</button>
+            </div>
+            <div class="meal-table" role="group" aria-label="Repas pris, jour par jour">
+              <div class="meal-table-row meal-table-head" aria-hidden="true"><span></span><span>Petit-déj</span><span>Déj.</span><span>Goûter</span><span>Dîner</span></div>
+              {DAYS_LONG.map((d, i) => (
+                <div class="meal-table-row" role="group" aria-label={d} key={d}>
+                  <span class="meal-table-day">{d.slice(0, 3)}.</span>
+                  {([['petitDej', 'petit-déjeuner'], ['lunch', 'déjeuner'], ['gouter', 'goûter'], ['dinner', 'dîner']] as ['petitDej' | 'lunch' | 'gouter' | 'dinner', string][]).map(([k, l]) => (
+                    <label class="meal-cell" key={k}><input type="checkbox" aria-label={`${d} : ${l}`} checked={cfg[k][i]} onChange={() => toggleDay(k, i)} /></label>
+                  ))}
+                </div>
+              ))}
+            </div>
+          </fieldset>
+          <fieldset class="create-group">
             <legend>Aliments que je ne veux pas</legend>
             <label class="field">Chercher un aliment<input type="text" autocomplete="off" value={dq} onInput={(e) => setDq(e.currentTarget.value)} /></label>
             {dq.trim().length >= 2 && catalog && (
@@ -257,17 +278,8 @@ export function WeekTab({ np, fin, aiEnabled = false }: { np: NutritionProfile; 
       <details class="card nut-details">
         <summary>Repas, allergies et préférences</summary>
         <fieldset class="create-group">
-          <legend>Petit-déjeuner (jours choisis)</legend>
-          <div class="chips" role="group" aria-label="Jours du petit-déjeuner">
-            {DAYS.map((d, i) => <button type="button" key={i} class="chip nut-day-chip" aria-label={DAYS_LONG[i]} aria-pressed={cfg.petitDej[i]} onClick={() => toggleDay('petitDej', i)}>{d}</button>)}
-          </div>
+          <legend>Petit-déjeuner</legend>
           <label class="check-row"><input type="checkbox" checked={cfg.petitDejIdentique} onChange={(e) => upCfg({ ...cfg, petitDejIdentique: e.currentTarget.checked })} /><span>Le même petit-déjeuner toute la semaine</span></label>
-        </fieldset>
-        <fieldset class="create-group">
-          <legend>Goûter (jours choisis)</legend>
-          <div class="chips" role="group" aria-label="Jours du goûter">
-            {DAYS.map((d, i) => <button type="button" key={i} class="chip nut-day-chip" aria-label={DAYS_LONG[i]} aria-pressed={cfg.gouter[i]} onClick={() => toggleDay('gouter', i)}>{d}</button>)}
-          </div>
         </fieldset>
         <fieldset class="create-group">
           <legend>En-cas : nombre par jour (un appui change 0, 1, 2)</legend>
