@@ -1,6 +1,6 @@
 import { expect, test, type Page } from '@playwright/test';
 
-// Séance manquée (knowledge/seance-manquee-v1.md, cas E1) : carte de l'Accueil, choix du jour, calendrier « Reportée » / « Sautée ».
+// Séance manquée (knowledge/seance-manquee-v1.md, cas E1) : carte de l'Accueil, choix du jour, calendrier « Décalée » / « Sautée ».
 // Captures : iPhone SE sombre (Accueil, choix du jour, calendrier) et grand iPhone clair (Accueil), quota.
 test.use({ timezoneId: 'Europe/Paris', locale: 'fr-FR' });
 
@@ -110,14 +110,15 @@ test('Séance manquée : carte, choix du jour, calendrier', async ({ page }, inf
   await page.getByRole('button', { name: 'Mardi' }).click();
   await expect(page.getByText(/C'est noté : « Séance A » est décalée à mardi. Elle est dans ton calendrier./)).toBeVisible();
 
-  // Calendrier : lundi 2 « Reportée », mardi 3 « Prévue », lundi 26/10 « Sautée ».
+  // Calendrier : lundi 2 « Décalée », mardi 3 « Prévue », lundi 26/10 « Sautée ».
   await page.getByRole('button', { name: /Calendrier/ }).click();
-  await expect(page.getByRole('button', { name: /lundi 2 novembre.*séance reportée/i })).toBeVisible();
+  await expect(page.getByRole('button', { name: /lundi 2 novembre.*séance décalée/i })).toBeVisible();
   await expect(page.getByRole('button', { name: /mardi 3 novembre.*séance prévue/i })).toBeVisible();
+  await page.screenshot({ path: `screenshots/${project}/cal-etats.png`, fullPage: true });
   await page.getByRole('button', { name: 'Mois précédent' }).click();
   await expect(page.getByRole('button', { name: /lundi 26 octobre : séance sautée/i })).toBeVisible();
   await page.getByRole('button', { name: 'Mois suivant' }).click();
-  await page.getByRole('button', { name: /lundi 2 novembre.*séance reportée/i }).click();
+  await page.getByRole('button', { name: /lundi 2 novembre.*séance décalée/i }).click();
   await checkPhoneRules(page);
   await page.screenshot({ path: `screenshots/${project}/sm-calendrier.png`, fullPage: true });
   expect(errors).toEqual([]);

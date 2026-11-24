@@ -720,7 +720,7 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .prev-body { flex: 1; min-width: 0; }
 /* Nutrition : repas de la semaine, calendrier et fiche de journée (semaine validée) */
 .calendar .day { position: relative; }
-.day-meal { position: absolute; right: 6px; bottom: 6px; width: 7px; height: 7px; border-radius: 50%; background: var(--accent); }
+.day-meal { position: absolute; right: 5px; bottom: 4px; width: 5px; height: 5px; border-radius: 50%; background: var(--accent); opacity: 0.45; }
 .calendar .day.selected .day-meal { background: var(--accent-text); }
 .day-meal-legend { position: static; display: inline-block; vertical-align: middle; }
 .day-sheet { padding: 8px 12px; }
@@ -756,3 +756,30 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .shop-remove { flex: 0 0 44px; min-width: 44px; min-height: 44px; border: 0; background: none; color: var(--text-dim); font-size: 1.125rem; cursor: pointer; }
 .shop-add .field { display: block; margin: 8px 0; font-weight: 600; }
 .shop-add input { display: block; width: 100%; min-height: 48px; margin-top: 6px; padding: 8px 12px; border-radius: 12px; border: 1px solid var(--line); background: var(--surface-2); color: var(--text); font-size: 16px; }
+
+/* États de séance du calendrier : couleur + forme + texte (jamais la couleur seule). Séance = signe dominant, repas = petit point discret. */
+:root { --st-ok: #5ee0a0; --st-skip: #ff8a8a; --st-moved: #f2cf4f; --st-part: #ffa94d; }
+:root[data-theme='light'] { --st-ok: #0c7a4c; --st-skip: #b42318; --st-moved: #8a6100; --st-part: #a84a00; }
+.st-faite { color: var(--st-ok); }
+.st-sautee_choix, .st-non_faite { color: var(--st-skip); }
+.st-reportee { color: var(--st-moved); }
+.st-arretee, .st-symptome, .st-douleur { color: var(--st-part); }
+.st-prevue { color: var(--text-dim); }
+.calendar .day-mark { font-size: 1.0625rem; line-height: 1; }
+.calendar .day.has-faite .day-mark { color: var(--st-ok); }
+.calendar .day.has-sautee_choix .day-mark, .calendar .day.has-non_faite .day-mark { color: var(--st-skip); }
+.calendar .day.has-reportee .day-mark { color: var(--st-moved); }
+.calendar .day.has-arretee .day-mark, .calendar .day.has-symptome .day-mark, .calendar .day.has-douleur .day-mark { color: var(--st-part); }
+.calendar .day.has-faite { border-color: var(--st-ok); }
+.calendar .day.has-sautee_choix, .calendar .day.has-non_faite { border-color: var(--st-skip); }
+.calendar .day.has-reportee { border-color: var(--st-moved); }
+.calendar .day.has-arretee, .calendar .day.has-symptome, .calendar .day.has-douleur { border-color: var(--st-part); }
+.calendar .day.has-non_faite { color: var(--text); }
+.calendar .day.selected .day-mark { color: inherit; }
+.calendar button.day { border-color: transparent; }
+.calendar button.day.has-prevue { border-color: var(--text-dim); }
+.calendar button.day.has-faite { border-color: var(--st-ok); }
+.calendar button.day.has-sautee_choix, .calendar button.day.has-non_faite { border-color: var(--st-skip); }
+.calendar button.day.has-reportee { border-color: var(--st-moved); }
+.calendar button.day.has-arretee, .calendar button.day.has-symptome, .calendar button.day.has-douleur { border-color: var(--st-part); }
+.calendar button.day.has-non_faite { border-style: solid; }
