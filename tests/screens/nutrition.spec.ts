@@ -173,7 +173,7 @@ test('Nutrition : semaine de repas, repas optionnels, lot, courses cochables et 
   // Réglages : goûter et un en-cas par jour
   await page.getByText('Repas, allergies et préférences').click();
   for (const d of ['Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi', 'Dimanche']) {
-    await page.getByRole('group', { name: 'Jours du goûter' }).getByRole('button', { name: d, exact: true }).click();
+    await page.getByRole('checkbox', { name: `${d} : goûter` }).check();
     await page.getByRole('group', { name: 'En-cas par jour' }).getByRole('button', { name: new RegExp(`^${d} : 0 en-cas`) }).click();
   }
   await expect(await problems(page)).toEqual([]);

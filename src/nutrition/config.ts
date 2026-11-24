@@ -155,3 +155,15 @@ export const SCORE_VARIETE = { memeSourceVeille: 2.5, memeSourceMemeJour: 4, par
 export const SEUIL_ECART_KCAL = 150;
 /** Énergie maximale d'un goûter ou en-cas ajouté automatiquement (kcal) : jamais un repas déguisé. */
 export const ENCAS_AUTO_MAX_KCAL = 450;
+
+// --- Repas pris ailleurs (restaurant, sauté, déjà fait autrement) : demande du 24/11/2026. Valeurs INDICATIVES, étiquetées « estimation » à l'écran. PROVISOIRE (à valider par le nutritionniste). ---
+/** Repères d'énergie d'un repas au restaurant ou à l'extérieur (kcal), par type de repas et niveau. Jamais présentés comme une mesure. */
+export const RESTO_KCAL_REPERES = {
+  principal: { leger: 600, normal: 900, copieux: 1300 },
+  'petit-dej': { leger: 250, normal: 400, copieux: 600 },
+  collation: { leger: 150, normal: 250, copieux: 400 },
+} as const;
+/** Répartition des macros d'un repas estimé (part de l'énergie : protéines 15 %, glucides 50 %, lipides 35 %). */
+export const OUT_SPLIT = { prot: 0.15, gluc: 0.5, lip: 0.35 } as const;
+/** Énergie maximale saisie pour un repas pris ailleurs (kcal) : au-delà, la saisie est refusée. */
+export const OUT_KCAL_MAX = 3000;

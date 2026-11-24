@@ -783,3 +783,10 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .calendar button.day.has-reportee { border-color: var(--st-moved); }
 .calendar button.day.has-arretee, .calendar button.day.has-symptome, .calendar button.day.has-douleur { border-color: var(--st-part); }
 .calendar button.day.has-non_faite { border-style: solid; }
+/* Tableau « Quels repas je prends ? » */
+.meal-table { margin: 8px 0; }
+.meal-table-row { display: grid; grid-template-columns: 3.2rem repeat(4, 1fr); align-items: center; min-height: 44px; border-bottom: 1px solid var(--line); text-align: center; }
+.meal-table-head { font-size: 0.75rem; color: var(--text-dim); min-height: 28px; }
+.meal-table-day { text-align: left; font-weight: 700; }
+.meal-cell { display: flex; align-items: center; justify-content: center; min-height: 44px; }
+.meal-cell input { width: 24px; height: 24px; }
