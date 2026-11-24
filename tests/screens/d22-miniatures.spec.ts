@@ -7,7 +7,7 @@ test('D22 : la bibliothèque affiche la miniature importée, un pictogramme sino
   const project = info.project.name;
   await page.addInitScript((t) => { try { localStorage.setItem('muscu.theme', t); } catch { /* ignoré */ } }, project.endsWith('clair') ? 'light' : 'dark');
   const external: string[] = [];
-  page.on('request', (r) => { const u = r.url(); if (!u.startsWith('http://localhost:4173') && !u.startsWith('data:') && !u.startsWith('blob:')) external.push(u); });
+  page.on('request', (r) => { const u = r.url(); if (!u.startsWith('http://localhost:') && !u.startsWith('data:') && !u.startsWith('blob:')) external.push(u); });
   await page.goto('./');
   await page.getByText("J'ai 18 ans ou plus.").click();
   await page.getByText("J'ai compris que ce n'est pas un avis médical.").click();
@@ -68,6 +68,7 @@ test('D22 : la bibliothèque affiche la miniature importée, un pictogramme sino
   await expect(page.getByTestId('thumb-count')).toContainText('0 miniature');
   await page.getByRole('button', { name: 'Bibliothèque', exact: true }).click();
   await page.locator('a.lib-row[href="#/fiche/pompe"]').scrollIntoViewIfNeeded();
-  await expect(page.locator('a.lib-row[href="#/fiche/pompe"] .exo-ph')).toBeVisible();
+  await expect(page.locator('a.lib-row[href="#/fiche/pompe"] .exo-thumb')).toBeVisible();
+  expect(await page.locator('.lib-list img.exo-thumb-img').count()).toBe(0); // plus de miniature importée
   await page.screenshot({ path: `screenshots/${project}/d22-miniatures-apres-suppression.png` });
 });
