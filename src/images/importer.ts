@@ -4,6 +4,7 @@ import { listZip, readZipEntry } from './zip';
 import { entryForFileName } from './match';
 import { UNIQUE_IDS } from './match';
 import { listImageIds, putImage, notify, clearUrlCache } from './store';
+import { ensureThumb } from './thumbs';
 
 export const MAX_GIF_BYTES = 8 * 1024 * 1024;
 export interface ImportReport { stored: string[]; already: string[]; missing: string[]; errors: { name: string; why: string }[]; scanned: number }
@@ -52,6 +53,7 @@ export async function importFiles(files: File[], progress: Progress = () => {}):
       const bytes = b.buffer.slice(b.byteOffset, b.byteOffset + b.byteLength) as ArrayBuffer;
       await putImage({ id: j.id, gif: j.name, bytes, type: 'image/gif' });
       rep.stored.push(j.id);
+      await ensureThumb(j.id); // miniature de liste (échec toléré : elle sera recréée à l'affichage)
     } catch (e) {
       const msg = (e as { name?: string; message?: string });
       rep.errors.push({ name: j.name, why: msg.name === 'QuotaExceededError' ? 'Plus de place sur ce téléphone.' : msg.message ?? 'erreur' });

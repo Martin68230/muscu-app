@@ -27,6 +27,7 @@ import { missedCard, showT12, type MissedCard } from '../../session/missed';
 import { MISSED_TEXT } from '../../session/missed-texts';
 import { loadMissedContext, postponeTo, skipSession } from '../../session/missed-store';
 import { PreviewPostpone, PreviewSkipLinks } from '../MissedCard';
+import { ExoThumb } from '../../images/ExoThumb';
 import { CardioDayNotes } from '../session/CardioNotes';
 import { Precautions } from '../Precautions';
 import { MuscleMapCard } from '../MuscleMapCard';
@@ -258,12 +259,15 @@ export function PreviewView({ program, next, fiches, error, onBegin, proposals, 
             const many = (ficheOf(fiches, ex)?.variantes.length ?? 0) > 1;
             const partner = ex.supersetGroup ? day.exercises.find((e) => e !== ex && e.supersetGroup === ex.supersetGroup) : undefined;
             return (
-              <li key={i}>
+              <li key={i} class="prev-row">
+                {(() => { const fi = ficheOf(fiches, ex); return fi ? <ExoThumb fiche={fi} variantId={ex.variantId} size={48} /> : null; })()}
+                <div class="prev-body">
                 <a class="fiche-link" href={`#/fiche/${ex.movementId}`}>{exName(fiches, ex)}</a>
                 {v && many && <div class="dim small">{v.nom}</div>}
                 <div class="small">{lineText(withSides(fiches, ex))}</div>
                 {ex.jump?.softNom && !ex.jump.soft && <div class="dim small">{D30_TEXT.softLine(ex.jump.softNom)}</div>}
                 {partner && <div class="small prev-super">Superset avec {exName(fiches, partner)} : enchaîne sans repos long.</div>}
+                </div>
               </li>
             );
           })}

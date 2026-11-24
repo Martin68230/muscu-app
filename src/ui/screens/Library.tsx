@@ -4,6 +4,7 @@ import { MUSCLE_SHORT, SCHEMA_GROUPS } from '../../data/labels';
 import { list } from '../../data/repo';
 import { activeFilters, filterFiches, GEARS, LEVELS, NO_FILTERS, type LibFilters } from '../../data/library-filters';
 import { MUSCLE_GROUPS } from '../../session/progress-view';
+import { ExoThumb } from '../../images/ExoThumb';
 import { MACHINE_TAGS } from '../../generator/config';
 
 /** machines-etiquettes.md §2 : fiche de machine = toutes ses variantes exigent une machine guidée, une poulie ou une machine de cardio. */
@@ -13,10 +14,10 @@ export const isMachineFiche = (f: Pick<Fiche, 'variantes'>): boolean =>
 /** Garde la recherche, le filtre et le défilement quand on revient d'une fiche. */
 const memo = { query: '', group: 'tout', filters: { ...NO_FILTERS } as LibFilters, scroll: 0 };
 
-function Thumb({ fiche }: { fiche: Fiche }) {
+function RepoThumb({ fiche }: { fiche: Fiche }) {
   const [ok, setOk] = useState(true);
   const img = fiche.images[0];
-  if (!img || !ok) return <span class="lib-thumb lib-thumb-empty" aria-hidden="true" />;
+  if (!img || !ok) return null;
   const pic = (
     <img
       class={img.type === 'illustration' ? 'lib-thumb-ill' : 'lib-thumb'}
@@ -31,6 +32,11 @@ function Thumb({ fiche }: { fiche: Fiche }) {
   );
   // Les illustrations ont deux panneaux côte à côte (départ / arrivée) : la vignette n'en montre que le premier.
   return img.type === 'illustration' ? <span class="lib-thumb lib-thumb-crop">{pic}</span> : pic;
+}
+
+/** Miniature importée (locale) si elle existe, sinon image du dépôt, sinon pictogramme : jamais un carré vide. */
+function Thumb({ fiche }: { fiche: Fiche }) {
+  return <ExoThumb fiche={fiche} fallback={fiche.images[0] ? <RepoThumb fiche={fiche} /> : undefined} />;
 }
 
 export function Library() {
