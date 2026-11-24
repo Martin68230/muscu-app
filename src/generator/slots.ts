@@ -164,7 +164,9 @@ export const tierRank = (t: Tier) => TIER_ORDER.indexOf(t);
 
 /** V-CLASSE §6.7 (clés 1 à 5 et 7 ; la clé 6, rotation, est appliquée par fillSlot). */
 /** Clé « salle » (24/11/2026) : en lieu « salle », 0 = machine, poulie, barre, haltères, banc, traction ; 1 = le reste (poids du corps, chaise, tapis). Hors salle : toujours 0 (aucun changement). */
-export function gymRank(c: Candidate, ctx: Pick<Ctx, 'place'>): number {
+export function gymRank(c: Candidate, ctx: Pick<Ctx, 'place' | 'pregnant' | 'postPartum'>): number {
+  // Sous plafond (case de sécurité, grossesse, post-partum) : l'ordre de prudence V-PRIO reste seul (aucune préférence « salle »).
+  if (c.capped || ctx.pregnant || ctx.postPartum) return 0;
   return ctx.place === 'salle' && !c.variant.tags.some((t) => GYM_RANK_TAGS.includes(t)) ? 1 : 0;
 }
 

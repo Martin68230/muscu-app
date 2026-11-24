@@ -23,6 +23,13 @@ export function dominantPlace(dp: readonly DayPlace[] | null): TrainingDayPlace 
   return n[best] ? best : null;
 }
 
+/** Lieu le plus restrictif des jours d'entraînement (dehors, puis maison, puis salle) : contexte général du programme (correctifs, mollets, compléments), jamais plus ouvert que le jour le plus fermé. */
+export function restrictivePlace(dp: readonly DayPlace[] | null): TrainingDayPlace | null {
+  if (!dp) return null;
+  for (const p of ['dehors', 'maison', 'salle'] as const) if (dp.includes(p)) return p;
+  return null;
+}
+
 /** Raccourcis du sélecteur. */
 export const PLACE_PRESETS = {
   toutSalle: ['salle', 'salle', 'salle', 'salle', 'salle', 'salle', 'salle'] as DayPlace[],

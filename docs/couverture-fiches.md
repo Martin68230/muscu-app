@@ -16,3 +16,16 @@ Restent faibles (peu de fiches à la maison, sans matériel) : poussée vertical
 
 ## Par lot de la vague 3 (fiches gardées après coach, kiné, relecteur)
 Lot 1 (bras, épaules, poussées variées) 20 · lot 2 (poussées) 16 · lot 3 (tirages, bras) 34 · lot 4 (bas du corps, tronc, mobilité) 51 · lot 5 (abdominaux) 31. Écartées : doublons des fiches existantes, exercices techniques ou dangereux (voir `knowledge/exercices/hasan/plan.tsv`, colonne `raison`).
+
+## Salle : emplacements encore faibles en exercices de salle (24/11/2026, pour la session fiches)
+Mesure (profil F, lieu salle, 3 niveaux, 3 à 6 jours, 45 / 75 min, hors tronc / correctifs / fonctionnel / cardio) : 75 à 100 % d'exercices de salle (moyenne >= 80 %) après la priorité « salle » ; avant : 40 à 71 % (poussée 2 / 3 en `lancer-poitrine-mur`, `pompe-piquee`, `squat-fendu`, fentes sans charge, `bonjour-poids-du-corps`, `marche-pointes-talons`). Un exercice « de salle » = variante avec machine, poulie, barre, haltères, banc, barre de traction.
+Il reste des basiques là où il manque des fiches AVEC ces matériels (nombre de fiches qui ont au moins une variante de salle, sans élastique / sac / bosu) :
+- **jambes_3 (charnière « sous plafond »)** : aucune charnière de salle de type curl ischios : à ajouter, **curl ischios allongé / assis à la machine** (niveau débutant), `extension-hanche` à la poulie. Aujourd'hui `bonjour-poids-du-corps`, `curl-ischios-serviette / ballon`, `lancer-bas-haut-mur`.
+- **cheville_mollet** : 4 fiches de salle sur 11 (`releve-mollets-machine`, `-halteres`, `-debout-barre`, `releve-mollets-assis-haltere`) ; manque **mollets à la presse (leg press)** et **mollets assis à la machine** distincts, en niveau débutant.
+- **hanche_laterale** : 2 fiches de salle (abduction machine, abduction poulie) ; manque **adduction à la machine**, **abduction / adduction à la poulie** (niveau débutant).
+- **fente / jambes_2** : 9 fiches sur 16 ont une variante de salle, mais seulement 3 au niveau débutant ; manque **fente à la barre guidée (Smith)**, **presse à cuisses (leg press) unilatérale**, **extension de jambes à la machine** si absente (squat : 11 fiches de salle sur 28, 4 au niveau débutant : **presse à cuisses**, **hack squat**).
+- **poussee_v** : 11 / 17 de salle (7 au niveau débutant) ; manque **développé épaules à la machine** unilatéral, **élévations à la poulie**.
+- **anti_rotation / rotation (tronc)** : 2 fiches de salle sur 10 (anti-rotation) : manque **pallof à la poulie**, **bûcheron à la poulie** (rotation : 10 sur 23), **crunch à la poulie**.
+- **tirage_v** : 16 / 20, correct ; **tirage_h** : 42 / 51, correct. Poussée horizontale : 20 / 41 de salle (6 au niveau débutant) : manque **presse pectorale à la machine** et **écarté à la machine (pec deck)** au niveau débutant si absents.
+- **Granularité du matériel** : l'étiquette `machine` est unique ; pour décocher « pas de presse à cuisses dans ma salle », la fiche doit porter une étiquette plus fine (`machine_presse`, `machine_pec_deck`…) : à décider avec la session fiches (aujourd'hui, la case « Machines guidées » retire toutes les machines).
+Seuil de test : `tests/unit/salle-jours.test.ts` exige une moyenne >= 80 % et un plancher de 75 % par programme.

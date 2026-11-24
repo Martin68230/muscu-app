@@ -28,7 +28,7 @@ import { ALL_SLOTS, fillSession, fillSlot, rankSlot, slotDef, tierRank, type Slo
 import { adaptWeekToSport, canHost, noForceDays, placeA1, type SportAdapt } from './sport-plan';
 import { SPORT } from '../sport/sport-config';
 import { weekLoadMap } from '../sport/week-map';
-import { dominantPlace, preferGymDays, restDays, validDayPlaces } from './day-places';
+import { preferGymDays, restrictivePlace, restDays, validDayPlaces } from './day-places';
 import { chooseLightDays, planWeek, sessionTitle, TYPE_NOYAU, TYPE_SLOTS, typeOf, UPPER_TYPES } from './split';
 import type {
   CardioItem, Fiche, GenCardioSession, GenerateResult, GeneratorInput, GenExercise, GenLightDay, GenMessage, GenProgram, GenSession, JumpBlock, JumpItem, SlotKey, Tier,
@@ -376,7 +376,7 @@ function causeOf(slot: SlotKey, label: Label, fill: SlotFill, healthFree: SlotFi
 function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   // Lieu par jour : lieu général du programme = lieu dominant des jours d'entraînement ; chaque séance prend le lieu de son jour (ctxFor).
   const dayPlaces = validDayPlaces(input.profile.dayPlaces);
-  const basePlace = dominantPlace(dayPlaces);
+  const basePlace = restrictivePlace(dayPlaces);
   const ctx = buildCtx(input, basePlace ? { place: basePlace } : {});
   // D34 (PV3-VAR-6) : bloc (1, 2…) et plans où la variété a été relâchée cette semaine.
   const block = Math.max(1, Math.floor(input.options?.bloc ?? 1));

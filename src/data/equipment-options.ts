@@ -84,13 +84,31 @@ export const EQUIPMENT_GROUPS: EquipmentGroup[] = [
   },
 ];
 
+/**
+ * Matériel d'une salle complète (24/11/2026) : tout est coché par défaut ; la personne décoche ce qui manque dans SA salle (`gymOff`). Les jours de salle (lieu par jour),
+ * une fiche qui demande un matériel décoché n'est pas proposée.
+ */
+export const GYM_EQUIPMENT: { tag: string; label: string }[] = [
+  { tag: 'machine', label: 'Machines guidées (presse, tirage, pec…)' },
+  { tag: 'poulie', label: 'Poulies (câbles)' },
+  { tag: 'barre', label: 'Barre droite' },
+  { tag: 'disques', label: 'Disques' },
+  { tag: 'rack', label: 'Rack ou cage à squat' },
+  { tag: 'barre_ez', label: 'Barre EZ' },
+  { tag: 'halteres', label: 'Haltères' },
+  { tag: 'banc', label: 'Banc plat' },
+  { tag: 'banc_inclinable', label: 'Banc inclinable' },
+  { tag: 'barre_traction', label: 'Barre de traction' },
+  { tag: 'machine_cardio', label: 'Machines de cardio (vélo, rameur, tapis)' },
+];
+
 export const ALL_OPTION_TAGS: string[] = EQUIPMENT_GROUPS.flatMap((g) => g.options.map((o) => o.tag));
 
 /** Remplit les champs absents des anciennes sauvegardes. */
-export type NormalizedEquipment = EquipmentProfile & { dumbbellKind: 'fixes' | 'reglables' | null; platesKg: number[]; other: string };
+export type NormalizedEquipment = EquipmentProfile & { dumbbellKind: 'fixes' | 'reglables' | null; platesKg: number[]; gymOff: string[]; other: string };
 
 export function normalizeEquipment(e: EquipmentProfile): NormalizedEquipment {
-  return { ...e, dumbbellKind: e.dumbbellKind ?? null, platesKg: e.platesKg ?? [], other: e.other ?? '' };
+  return { ...e, dumbbellKind: e.dumbbellKind ?? null, platesKg: e.platesKg ?? [], gymOff: e.gymOff ?? [], other: e.other ?? '' };
 }
 
 /** Matériel réellement possédé (implicites non décochés inclus), pour le moteur de règles. */

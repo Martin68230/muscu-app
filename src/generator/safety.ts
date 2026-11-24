@@ -108,7 +108,7 @@ export function sortSameEchelon(f: Fiche, list: FicheVariant[], ctx: Ctx): Fiche
   const idx = (v: FicheVariant) => f.variantes.indexOf(v);
   return [...list].sort((x, y) => {
     // Lieu « salle » (24/11/2026) : à échelon égal, la variante de salle (machine, barre, haltères, banc, traction) avant le poids du corps.
-    if (ctx.place === 'salle') {
+    if (ctx.place === 'salle' && !ctx.pregnant && !ctx.postPartum) {
       const g = Number(!x.tags.some((t) => GYM_RANK_TAGS.includes(t))) - Number(!y.tags.some((t) => GYM_RANK_TAGS.includes(t)));
       if (g) return g;
     }
