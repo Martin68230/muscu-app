@@ -1,0 +1,103 @@
+famille	schema	muscles	noms_anglais	ids
+tirage_h|biceps|curl hammer	tirage_h	biceps	dumbbell alternate seated hammer curl / dumbbell seated hammer curl / olympic barbell hammer curl	1648,1678,0636
+charniere|ischios|curl leg	charniere	ischios	lever lying leg curl / lever lying two-one leg curl / lever seated leg curl	0586,3195,0599
+tirage_h|deltoides_posterieurs|delt rear rope row with	tirage_h	deltoides_posterieurs	cable rear delt row (with rope) / cable standing rear delt row (with rope)	0203,0233
+poussee_h|triceps|extension overhead triceps	poussee_h	triceps	barbell seated overhead triceps extension / barbell standing overhead triceps extension	0092,0109
+tirage_h|grand_dorsal+rhomboides|grip narrow row	tirage_h	grand_dorsal,rhomboides	lever alternating narrow grip seated row / lever narrow grip seated row	0571,0588
+cheville_mollet|mollets|calf press	cheville_mollet	mollets	lever calf press / lever seated calf press	2289,2335
+poussee_v|deltoides_anterieurs|press shoulder v	poussee_v	deltoides_anterieurs	lever shoulder press v. 2 / lever shoulder press v. 3	0869,2318
+gainage|abdominaux|attachment crunch rope with	gainage	abdominaux	cable standing crunch (with rope attachment)	0874
+poussee_h|pectoraux|hammer press	poussee_h	pectoraux	dumbbell lying hammer press	0340
+mobilite|quadriceps|and flexor hip intermediate quad stretch	mobilite	quadriceps	intermediate hip flexor and quad stretch	1564
+charniere|rhomboides|bridge london	charniere	rhomboides	london bridge	0609
+tirage_h|trapezes|gripless shrug	tirage_h	trapezes	lever gripless shrug	0580
+squat|fessiers|horizontal leg press	squat	fessiers	lever horizontal one leg press	2611
+hanche_laterale|adducteurs|adduction hip	hanche_laterale	adducteurs	lever seated hip adduction	0598
+tirage_h|biceps|curl exercise hammer on	tirage_h	biceps	dumbbell hammer curl on exercise ball / dumbbell seated alternate hammer curl on exercise ball	1659,1676
+mobilite|ischios|and calf hamstring strap stretch with	mobilite	ischios	standing hamstring and calf stretch with strap	1599
+tirage_h|deltoides_posterieurs|delt kneeling rear rope row with	tirage_h	deltoides_posterieurs	cable kneeling rear delt row (with rope) (male)	3697
+poussee_h|triceps|attachment extension overhead rope triceps	poussee_h	triceps	cable overhead triceps extension (rope attachment)	0194
+tirage_v|grand_dorsal|attachment lateral pulldown rope with	tirage_v	grand_dorsal	cable lateral pulldown (with rope attachment)	0177
+cheville_mollet|mollets|calf press sled	cheville_mollet	mollets	sled 45в° calf press / sled lying calf press	0738,2334
+poussee_v|deltoides_anterieurs|press push	poussee_v	deltoides_anterieurs	dumbbell push press	1700
+gainage|abdominaux|half sit up	gainage	abdominaux	half sit-up (male)	3202
+poussee_h|pectoraux|decline hammer press	poussee_h	pectoraux	dumbbell decline hammer press	0303
+squat|quadriceps|leg press	squat	quadriceps	lever alternate leg press	2287
+tirage_h|trapezes|gripless shrug v	tirage_h	trapezes	lever gripless shrug v. 2	1439
+squat|fessiers|degrees leg press sled	squat	fessiers	sled 45 degrees one leg press	1425
+tirage_h|biceps|arm curl hammer	tirage_h	biceps	dumbbell one arm seated hammer curl / dumbbell one arm standing hammer curl	1669,1671
+charniere|ischios|curl kneeling leg	charniere	ischios	lever kneeling leg curl	0582
+tirage_h|deltoides_posterieurs|delt rear row shoulder	tirage_h	deltoides_posterieurs	dumbbell rear delt row_shoulder	0377
+poussee_h|triceps|attachment pushdown rope with	poussee_h	triceps	cable pushdown (with rope attachment)	0200
+tirage_v|grand_dorsal|attachment extension pullover rope with	tirage_v	grand_dorsal	cable lying extension pullover (with rope attachment)	0184
+mobilite|mollets|peroneals stretch	mobilite	mollets	peroneals stretch	1388
+poussee_v|deltoides_anterieurs|arm press shoulder	poussee_v	deltoides_anterieurs	lever one arm shoulder press	0590
+gainage|abdominaux|janda sit up	gainage	abdominaux	janda sit-up	0508
+poussee_h|pectoraux|chest decline press	poussee_h	pectoraux	lever decline chest press	1300
+squat|fessiers|leg press sled	squat	fessiers	sled 45в° leg press	0739
+tirage_h|biceps|curl hammer rope with	tirage_h	biceps	cable hammer curl (with rope)	0165
+tirage_h|deltoides_posterieurs|fly grip parallel reverse	tirage_h	deltoides_posterieurs	lever seated reverse fly (parallel grip)	0601
+poussee_h|triceps|extension high overhead pulley rope tricep	poussee_h	triceps	cable rope high pulley overhead tricep extension	1724
+tirage_h|grand_dorsal+rhomboides|crossover rope row	tirage_h	grand_dorsal,rhomboides	cable rope crossover seated row	1320
+mobilite|mollets|posterior stretch tibialis	mobilite	mollets	posterior tibialis stretch	1389
+gainage|abdominaux|quarter sit up	gainage	abdominaux	quarter sit-up	3201
+poussee_h|pectoraux|chest incline press	poussee_h	pectoraux	lever incline chest press	1299
+squat|fessiers|back leg pov press sled	squat	fessiers	sled 45в° leg press (back pov)	1464
+tirage_h|biceps|curl hammer preacher rope	tirage_h	biceps	cable rope hammer preacher curl	1639
+poussee_h|triceps|extension incline rope tricep	poussee_h	triceps	cable rope incline tricep extension	1725
+tirage_h|grand_dorsal+rhomboides|bench extension incline rope row	tirage_h	grand_dorsal,rhomboides	cable rope extension incline bench row	1322
+cheville_mollet|mollets|calf grip hammer leg raise	cheville_mollet	mollets	dumbbell seated one leg calf raise - hammer grip	1380
+gainage|abdominaux|decline sit up	gainage	abdominaux	decline sit-up	0282
+poussee_h|pectoraux|chest incline press v	poussee_h	pectoraux	lever incline chest press v. 2	1479
+squat|fessiers|leg pov press side sled	squat	fessiers	sled 45° leg press (side pov)	1463
+tirage_v|biceps|pulldown rope with	tirage_v	biceps	cable standing pulldown (with rope)	0232
+poussee_h|triceps|extension floor on rope tricep	poussee_h	triceps	cable rope lying on floor tricep extension	1726
+tirage_h|grand_dorsal+rhomboides|rope row	tirage_h	grand_dorsal,rhomboides	cable rope seated row	1323
+cheville_mollet|mollets|calf hack raise	cheville_mollet	mollets	hack calf raise	1383
+gainage|abdominaux|chest crunch pad	gainage	abdominaux	lever seated crunch (chest pad)	0595
+poussee_h|fessiers|leg press sled wide	poussee_h	fessiers	sled 45в° leg wide press	0740
+tirage_h|biceps|curl hammer preacher	tirage_h	biceps	dumbbell alternate hammer preacher curl	1646
+poussee_h|triceps|exercise hammer incline on press	poussee_h	triceps	dumbbell incline hammer press on exercise ball	1618
+squat|grand_dorsal|attachment rope row squat with	squat	grand_dorsal	cable squat row (with rope attachment)	1717
+cheville_mollet|mollets|calf hack leg raise	cheville_mollet	mollets	hack one leg calf raise	1384
+gainage|abdominaux|crunch v	gainage	abdominaux	lever seated crunch v. 2	3760
+squat|fessiers|closer hack sled squat	squat	fessiers	sled closer hack squat	0741
+tirage_h|biceps|body cross curl hammer	tirage_h	biceps	dumbbell cross body hammer curl	0298
+poussee_h|triceps|arm decline hammer press	poussee_h	triceps	dumbbell decline one arm hammer press	1617
+tirage_v|grand_dorsal|arm pulldown rope straight with	tirage_v	grand_dorsal	cable straight arm pulldown (with rope)	0237
+cheville_mollet|mollets|calf rotary	cheville_mollet	mollets	lever rotary calf	2315
+gainage|abdominaux|crunch leg raise	gainage	abdominaux	lever seated leg raise crunch	0600
+squat|fessiers|hack sled squat	squat	fessiers	sled hack squat	0743
+tirage_h|biceps|body cross curl hammer v	tirage_h	biceps	dumbbell cross body hammer curl v. 2	1657
+poussee_h|triceps|arm hammer incline press	poussee_h	triceps	dumbbell incline one arm hammer press	1619
+tirage_h|grand_dorsal+rhomboides|elevated rope row	tirage_h	grand_dorsal,rhomboides	cable rope elevated seated row	1321
+cheville_mollet|mollets|calf leg on press raise squat	cheville_mollet	mollets	lever seated squat calf raise on leg press machine	1385
+squat|fessiers|sled squat	squat	fessiers	sled lying squat	0744
+tirage_h|biceps|curl hammer v	tirage_h	biceps	dumbbell hammer curl v. 2	0312
+poussee_h|triceps|arm exercise hammer incline on press	poussee_h	triceps	dumbbell incline one arm hammer press on exercise ball	1620
+tirage_h|grand_dorsal+rhomboides|bar bent over row v with	tirage_h	grand_dorsal,rhomboides	lever bent-over row with v-bar	3200
+cheville_mollet|mollets|calf leg on press press sled	cheville_mollet	mollets	sled calf press on leg press	1391
+tirage_h|biceps|arm blaster curls hammer with	tirage_h	biceps	dumbbell hammer curls (with arm blaster)	2402
+poussee_h|triceps|arm exercise hammer on press	poussee_h	triceps	dumbbell one arm hammer press on exercise ball	1621
+tirage_v|grand_dorsal|front pulldown	tirage_v	grand_dorsal	lever front pulldown	0579
+cheville_mollet|mollets|angled calf forward raise sled	cheville_mollet	mollets	sled forward angled calf raise	0742
+tirage_h|biceps|curl hammer peacher	tirage_h	biceps	dumbbell peacher hammer curl	0370
+poussee_h|triceps|dip overhand triceps	poussee_h	triceps	lever overhand triceps dip	0591
+tirage_h|grand_dorsal+rhomboides|high row	tirage_h	grand_dorsal,rhomboides	lever high row	0581
+cheville_mollet|mollets|calf leg leg on press press sled	cheville_mollet	mollets	sled one leg calf press on leg press	1392
+tirage_h|biceps|and curl hammer press	tirage_h	biceps	dumbbell standing alternate hammer curl and press	3560
+poussee_h|triceps|dip	poussee_h	triceps	lever seated dip	1451
+tirage_h|grand_dorsal+rhomboides|arm high lateral row	tirage_h	grand_dorsal,rhomboides	lever one arm lateral high row	1356
+tirage_h|biceps|arm curl hammer preacher rope	tirage_h	biceps	cable rope one arm hammer preacher curl	1640
+poussee_h|triceps|extension incline tricep	poussee_h	triceps	smith machine incline tricep extension	1752
+tirage_v|grand_dorsal|arm lateral pulldown wide	tirage_v	grand_dorsal	lever one arm lateral wide pulldown	1347
+tirage_h|biceps|arm curl hammer preacher	tirage_h	biceps	dumbbell one arm hammer preacher curl	1663
+tirage_v|grand_dorsal|grip lateral pulldown reverse	tirage_v	grand_dorsal	lever reverse grip lateral pulldown	2736
+tirage_h|biceps|arm curl hammer prone	tirage_h	biceps	dumbbell one arm prone hammer curl	1666
+tirage_h|grand_dorsal+rhomboides|grip reverse row vertical	tirage_h	grand_dorsal,rhomboides	lever reverse grip vertical row	1348
+tirage_h|biceps|curl grip hammer preacher	tirage_h	biceps	lever hammer grip preacher curl	1615
+tirage_h|grand_dorsal+rhomboides|bar reverse row t	tirage_h	grand_dorsal,rhomboides	lever reverse t-bar row	1349
+tirage_h|biceps|curl preacher v	tirage_h	biceps	lever preacher curl v. 2	1614
+tirage_h|grand_dorsal+rhomboides|bar row t	tirage_h	grand_dorsal,rhomboides	lever t bar row	0606
+tirage_h|grand_dorsal+rhomboides|bar grip reverse row t	tirage_h	grand_dorsal,rhomboides	lever t-bar reverse grip row	1351
+tirage_h|grand_dorsal+rhomboides|row unilateral	tirage_h	grand_dorsal,rhomboides	lever unilateral row	1313

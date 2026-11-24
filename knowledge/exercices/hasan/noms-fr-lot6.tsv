@@ -1,0 +1,103 @@
+famille	nom_fr	alias
+tirage_h|biceps|curl hammer	Curl marteau	Curl prise neutre, Curl marteau assis
+charniere|ischios|curl leg	Curl des jambes	Leg curl, Curl des ischios assis ou allongé
+tirage_h|deltoides_posterieurs|delt rear rope row with	Rowing épaules arrière à la corde	Tirage deltoïdes postérieurs à la corde, Rowing arrière d'épaule à la poulie
+poussee_h|triceps|extension overhead triceps	ECARTER	doublon exact de extension-triceps-au-dessus-de-la-tete (même geste, même position)
+tirage_h|grand_dorsal+rhomboides|grip narrow row	Rowing assis prise serrée	Tirage horizontal prise serrée, Rowing assis prise neutre
+cheville_mollet|mollets|calf press	Presse à mollets	Calf press, Mollets à la presse
+poussee_v|deltoides_anterieurs|press shoulder v	Développé épaules assis guidé	Shoulder press, Développé épaules à la machine
+gainage|abdominaux|attachment crunch rope with	ECARTER	doublon exact de crunch-debout-resiste (crunch debout à la poulie)
+poussee_h|pectoraux|hammer press	Développé couché prise neutre	Développé marteau couché, Développé couché mains parallèles
+mobilite|quadriceps|and flexor hip intermediate quad stretch	Étirement quadriceps et fléchisseurs de hanche	Étirement de la cuisse en fente basse, Étirement avant de cuisse et de hanche
+charniere|rhomboides|bridge london	ECARTER	nom incohérent : geste inconnu (london bridge) classé charnière avec les rhomboïdes
+tirage_h|trapezes|gripless shrug	Haussement d'épaules sans prise	Shrug guidé, Haussement d'épaules à la machine
+squat|fessiers|horizontal leg press	Presse à cuisses horizontale, une jambe	Leg press horizontale unilatérale, Presse à cuisses une jambe
+hanche_laterale|adducteurs|adduction hip	Adduction de hanche assis	Machine à adducteurs, Adduction assise guidée
+tirage_h|biceps|curl exercise hammer on	Curl marteau sur ballon de gym	Curl prise neutre sur ballon, Curl marteau assis sur ballon
+mobilite|ischios|and calf hamstring strap stretch with	Étirement des ischios et du mollet debout	Étirement arrière de jambe debout, Étirement ischios et mollet
+tirage_h|deltoides_posterieurs|delt kneeling rear rope row with	Rowing épaules arrière à genoux	Tirage deltoïdes postérieurs à genoux, Rowing arrière d'épaule à genoux
+poussee_h|triceps|attachment extension overhead rope triceps	ECARTER	doublon exact de extension-triceps-au-dessus-de-la-tete (même geste, même position)
+tirage_v|grand_dorsal|attachment lateral pulldown rope with	Tirage vertical à la corde	Tirage poitrine à la corde, Lat pulldown à la corde
+cheville_mollet|mollets|calf press sled	Mollets à la presse inclinée	Calf press sur presse à cuisses, Montée sur pointes à la presse
+poussee_v|deltoides_anterieurs|press push	Push press	Développé avec impulsion des jambes, Développé poussé
+gainage|abdominaux|half sit up	ECARTER	doublon de releve-de-buste (relevé de buste partiel) et de crunch-au-sol
+poussee_h|pectoraux|decline hammer press	Développé décliné prise neutre	Développé décliné mains parallèles, Développé marteau décliné
+squat|quadriceps|leg press	Presse à cuisses alternée	Leg press une jambe après l'autre, Presse à cuisses jambes alternées
+tirage_h|trapezes|gripless shrug v	ECARTER	doublon de la famille haussement d'épaules sans prise (même geste, simple version 2)
+squat|fessiers|degrees leg press sled	Presse à cuisses inclinée, une jambe	Leg press inclinée unilatérale, Presse inclinée à 45° une jambe
+tirage_h|biceps|arm curl hammer	Curl marteau à un bras	Curl marteau unilatéral, Curl prise neutre à un bras
+charniere|ischios|curl kneeling leg	Curl des jambes à genoux	Leg curl à genoux, Curl des ischios à genoux
+tirage_h|deltoides_posterieurs|delt rear row shoulder	ECARTER	doublon exact de rowing-epaules-arriere (rear delt row aux haltères)
+poussee_h|triceps|attachment pushdown rope with	Extension triceps à la corde	Pushdown à la corde, Triceps poulie haute à la corde
+tirage_v|grand_dorsal|attachment extension pullover rope with	Pullover à la corde allongé	Pullover à la poulie, Pullover couché à la corde
+mobilite|mollets|peroneals stretch	Étirement des péroniers	Étirement du côté externe de la jambe, Étirement des muscles péroniers
+poussee_v|deltoides_anterieurs|arm press shoulder	Développé épaules guidé à un bras	Développé épaules unilatéral à la machine, Shoulder press à un bras
+gainage|abdominaux|janda sit up	Relevé de buste de Janda	Sit-up de Janda, Relevé de buste avec ischios actifs
+poussee_h|pectoraux|chest decline press	Développé poitrine décliné guidé	Chest press décliné, Développé décliné à la machine
+squat|fessiers|leg press sled	ECARTER	doublon exact de presse-a-cuisses (leg press inclinée à deux jambes)
+tirage_h|biceps|curl hammer rope with	Curl marteau à la corde	Curl corde à la poulie basse, Curl prise neutre à la poulie
+tirage_h|deltoides_posterieurs|fly grip parallel reverse	ECARTER	doublon exact de oiseau-machine-poulie (oiseau guidé)
+poussee_h|triceps|extension high overhead pulley rope tricep	ECARTER	doublon exact de extension-triceps-au-dessus-de-la-tete (même geste, même position)
+tirage_h|grand_dorsal+rhomboides|crossover rope row	ECARTER	doublon de la famille rowing assis à la corde ; geste croisé mal défini
+mobilite|mollets|posterior stretch tibialis	Étirement du tibial postérieur	Étirement de l'intérieur de la jambe, Étirement du tibial
+gainage|abdominaux|quarter sit up	ECARTER	doublon de crunch-au-sol (relevé de buste très court)
+poussee_h|pectoraux|chest incline press	Développé poitrine incliné guidé	Chest press incliné, Développé incliné à la machine
+squat|fessiers|back leg pov press sled	ECARTER	doublon exact de presse-a-cuisses (même geste, seul l'angle de la photo change)
+tirage_h|biceps|curl hammer preacher rope	Curl marteau au pupitre	Curl prise neutre au pupitre, Curl marteau Scott
+poussee_h|triceps|extension incline rope tricep	ECARTER	doublon exact de extension-triceps-au-banc-incline
+tirage_h|grand_dorsal+rhomboides|bench extension incline rope row	ECARTER	doublon exact de rowing-poitrine-appuyee-banc (poitrine appuyée sur banc incliné)
+cheville_mollet|mollets|calf grip hammer leg raise	Montée sur la pointe assis, une jambe	Mollet assis une jambe, Relevé de mollet assis unilatéral
+gainage|abdominaux|decline sit up	Relevé de buste décliné	Sit-up décliné, Relevé de buste sur banc incliné
+poussee_h|pectoraux|chest incline press v	ECARTER	doublon de la famille développé poitrine incliné guidé (simple version 2)
+squat|fessiers|leg pov press side sled	ECARTER	doublon exact de presse-a-cuisses (même geste, seul l'angle de la photo change)
+tirage_v|biceps|pulldown rope with	ECARTER	nom incohérent : tirage vertical à la corde classé biceps, doublon de la famille tirage vertical à la corde
+poussee_h|triceps|extension floor on rope tricep	ECARTER	doublon exact de extension-triceps-couche-halteres (extension triceps allongé)
+tirage_h|grand_dorsal+rhomboides|rope row	Rowing assis à la corde	Tirage horizontal à la corde, Rowing poulie basse à la corde
+cheville_mollet|mollets|calf hack raise	Montée sur pointes à la machine hack	Mollets à la hack squat, Calf raise hack
+gainage|abdominaux|chest crunch pad	Crunch assis guidé	Machine à abdominaux, Crunch à la machine
+poussee_h|fessiers|leg press sled wide	Presse à cuisses pieds écartés	Leg press pieds larges, Presse à cuisses prise large
+tirage_h|biceps|curl hammer preacher	ECARTER	doublon de la famille curl marteau au pupitre (même geste)
+poussee_h|triceps|exercise hammer incline on press	ECARTER	nom incohérent : développé incliné sur ballon instable classé triceps
+squat|grand_dorsal|attachment rope row squat with	ECARTER	noms qui mélangent deux gestes (squat + rowing)
+cheville_mollet|mollets|calf hack leg raise	Montée sur pointes à la machine hack, une jambe	Mollet unilatéral à la hack squat, Calf raise hack une jambe
+gainage|abdominaux|crunch v	ECARTER	doublon de la famille crunch assis guidé (simple version 2)
+squat|fessiers|closer hack sled squat	Squat hack pieds rapprochés	Hack squat prise serrée, Squat guidé pieds serrés
+tirage_h|biceps|body cross curl hammer	Curl marteau croisé	Curl marteau en travers du corps, Curl prise neutre croisé
+poussee_h|triceps|arm decline hammer press	ECARTER	variante rare (développé décliné un bras) classée triceps de façon incohérente ; non utile
+tirage_v|grand_dorsal|arm pulldown rope straight with	ECARTER	doublon exact de tirage-bras-tendus-sur-banc-incline (tirage bras tendus à la poulie haute)
+cheville_mollet|mollets|calf rotary	ECARTER	doublon de releve-mollets-machine (montée sur pointes à la machine)
+gainage|abdominaux|crunch leg raise	ECARTER	noms qui mélangent deux gestes (crunch + relevé de jambes) ; doublon de releve-de-jambes-assis
+squat|fessiers|hack sled squat	ECARTER	doublon exact de squat-hack (squat à la machine guidée)
+tirage_h|biceps|body cross curl hammer v	ECARTER	doublon de la famille curl marteau croisé (simple version 2)
+poussee_h|triceps|arm hammer incline press	ECARTER	variante rare (développé incliné un bras prise neutre) classée triceps de façon incohérente
+tirage_h|grand_dorsal+rhomboides|elevated rope row	Rowing assis à la corde, poulie haute	Tirage horizontal à la corde depuis une poulie haute, Rowing corde poulie haute
+cheville_mollet|mollets|calf leg on press raise squat	ECARTER	doublon de la famille mollets à la presse inclinée (mollets sur presse à cuisses)
+squat|fessiers|sled squat	ECARTER	doublon exact de presse-a-cuisses (squat allongé sur chariot = presse)
+tirage_h|biceps|curl hammer v	ECARTER	doublon de la famille curl marteau (simple version 2)
+poussee_h|triceps|arm exercise hammer incline on press	ECARTER	nom incohérent : développé incliné sur ballon, un bras, classé triceps
+tirage_h|grand_dorsal+rhomboides|bar bent over row v with	Rowing guidé buste penché	Rowing à la machine penché, Tirage horizontal guidé avec poignée en V
+cheville_mollet|mollets|calf leg on press press sled	ECARTER	doublon de la famille mollets à la presse inclinée
+tirage_h|biceps|arm blaster curls hammer with	ECARTER	doublon de la famille curl marteau (seul l'accessoire change)
+poussee_h|triceps|arm exercise hammer on press	ECARTER	nom incohérent : développé sur ballon instable, un bras, classé triceps
+tirage_v|grand_dorsal|front pulldown	ECARTER	doublon exact de tirage-vertical-poulie (tirage vertical devant)
+cheville_mollet|mollets|angled calf forward raise sled	ECARTER	doublon de la famille mollets à la presse inclinée
+tirage_h|biceps|curl hammer peacher	ECARTER	doublon de la famille curl marteau au pupitre (nom mal orthographié)
+poussee_h|triceps|dip overhand triceps	Dips à la machine	Dips assis guidé, Extension triceps assis à la machine
+tirage_h|grand_dorsal+rhomboides|high row	ECARTER	doublon exact de tirage-haut-assis-prise-neutre (rowing haut assis)
+cheville_mollet|mollets|calf leg leg on press press sled	ECARTER	doublon de la famille mollets à la presse inclinée
+tirage_h|biceps|and curl hammer press	ECARTER	noms qui mélangent deux gestes (curl marteau + développé)
+poussee_h|triceps|dip	ECARTER	doublon de la famille dips à la machine (dips assis guidé)
+tirage_h|grand_dorsal+rhomboides|arm high lateral row	Rowing haut à un bras	Tirage haut unilatéral à la machine, Rowing haut guidé un bras
+tirage_h|biceps|arm curl hammer preacher rope	ECARTER	doublon de la famille curl marteau au pupitre (un bras)
+poussee_h|triceps|extension incline tricep	ECARTER	doublon exact de extension-triceps-au-banc-incline
+tirage_v|grand_dorsal|arm lateral pulldown wide	Tirage vertical à un bras guidé	Tirage vertical unilatéral à la machine, Lat pulldown un bras guidé
+tirage_h|biceps|arm curl hammer preacher	ECARTER	doublon de la famille curl marteau au pupitre (un bras)
+tirage_v|grand_dorsal|grip lateral pulldown reverse	ECARTER	doublon exact de tirage-vertical-prise-supination
+tirage_h|biceps|arm curl hammer prone	ECARTER	doublon exact de curl-en-araignee (curl poitrine appuyée sur banc incliné)
+tirage_h|grand_dorsal+rhomboides|grip reverse row vertical	Rowing guidé prise supination	Rowing vertical prise inversée, Tirage horizontal guidé paumes vers le haut
+tirage_h|biceps|curl grip hammer preacher	ECARTER	doublon de la famille curl marteau au pupitre
+tirage_h|grand_dorsal+rhomboides|bar reverse row t	Rowing en T prise inversée	Rowing barre en T supination, Tirage en T paumes vers le haut
+tirage_h|biceps|curl preacher v	ECARTER	doublon exact de curl-au-pupitre (preacher curl)
+tirage_h|grand_dorsal+rhomboides|bar row t	Rowing en T	Tirage en T, T-bar row
+tirage_h|grand_dorsal+rhomboides|bar grip reverse row t	ECARTER	doublon de la famille rowing en T prise inversée
+tirage_h|grand_dorsal+rhomboides|row unilateral	Rowing à un bras guidé	Rowing unilatéral à la machine, Tirage horizontal à un bras guidé
