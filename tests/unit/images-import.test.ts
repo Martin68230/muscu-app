@@ -8,6 +8,7 @@ import { describe, expect, it, vi } from 'vitest';
 import { getDB } from '../../src/data/db';
 import { wipeAllData } from '../../src/data/backup';
 import { MAX_ENTRIES } from '../../src/images/zip';
+import { ficheImageStats } from '../../src/images/stats';
 import { GV_TABLE } from '../../src/images/gv-table';
 import { candidates, candidatesForFiche, entryForFileName } from '../../src/images/match';
 import { importFiles } from '../../src/images/importer';
@@ -132,6 +133,16 @@ describe('entrée du convertisseur (fiches créées depuis le jeu)', () => {
       expect(['sûr', 'proche', undefined]).toContain(x.niveau);
       expect(GV_TABLE.some((e) => e.id === String(x.hasan_id) && e.fiche === x.fiche && e.variante === x.variante)).toBe(true);
     }
+  });
+});
+
+describe('compteurs « Mes images »', () => {
+  it('avec image / à importer / sans image dans le jeu', () => {
+    const e = GV_TABLE[0];
+    const autre = GV_TABLE.find((x) => x.fiche !== e.fiche)!;
+    const r = ficheImageStats([e.id], [e.fiche, autre.fiche, 'fiche-sans-gif-du-jeu', e.fiche]);
+    expect(r).toEqual({ total: 3, withImage: 1, toImport: 1, noImageInGame: 1 });
+    expect(ficheImageStats([], [e.fiche]).toImport).toBe(1);
   });
 });
 

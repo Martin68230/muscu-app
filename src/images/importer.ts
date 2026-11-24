@@ -13,10 +13,11 @@ export type Progress = (done: number, total: number, label: string) => void;
 const isGif = (b: Uint8Array) => b.length > 6 && b[0] === 0x47 && b[1] === 0x49 && b[2] === 0x46 && b[3] === 0x38;
 const tick = () => new Promise<void>((r) => setTimeout(r, 0));
 
+/** Place nécessaire = taille réelle des images à écrire (lue dans l'index du ZIP) ; l'estimation du navigateur reste indicative. */
 export async function quotaOk(needBytes: number): Promise<string | null> {
   try {
     const est = await navigator.storage?.estimate?.();
-    if (est?.quota != null && est.usage != null && est.quota - est.usage < needBytes * 2 + 5_000_000) return 'Pas assez de place sur ce téléphone pour ces images. Libère de l’espace puis recommence.';
+    if (est?.quota != null && est.usage != null && est.quota - est.usage < needBytes * 1.5 + 5_000_000) return 'Pas assez de place sur ce téléphone pour ces images. Libère de l’espace puis recommence.';
   } catch { /* estimation indisponible : on tente, l'écriture signalera l'erreur */ }
   return null;
 }
@@ -25,24 +26,24 @@ export async function quotaOk(needBytes: number): Promise<string | null> {
 export async function importFiles(files: File[], progress: Progress = () => {}): Promise<ImportReport> {
   const rep: ImportReport = { stored: [], already: [], missing: [], errors: [], scanned: 0 };
   const have = new Set(await listImageIds());
-  const jobs: { id: string; name: string; read: () => Promise<Uint8Array> }[] = [];
+  const jobs: { id: string; name: string; size: number; read: () => Promise<Uint8Array> }[] = [];
   for (const f of files) {
     if (/\.zip$/i.test(f.name) || f.type === 'application/zip') {
       try {
         const entries = await listZip(f);
         rep.scanned += entries.length;
-        for (const en of entries) { const m = entryForFileName(en.name); if (m) jobs.push({ id: m.id, name: m.gif, read: () => readZipEntry(f, en, MAX_GIF_BYTES) }); }
+        for (const en of entries) { const m = entryForFileName(en.name); if (m) jobs.push({ id: m.id, name: m.gif, size: en.size, read: () => readZipEntry(f, en, MAX_GIF_BYTES) }); }
       } catch (e) { rep.errors.push({ name: f.name, why: (e as Error).message }); }
     } else {
       rep.scanned++;
       const rel = (f as File & { webkitRelativePath?: string }).webkitRelativePath || f.name;
       const m = entryForFileName(rel);
-      if (m) jobs.push({ id: m.id, name: m.gif, read: async () => { if (f.size > MAX_GIF_BYTES) throw new Error('image trop grosse'); return new Uint8Array(await f.arrayBuffer()); } });
+      if (m) jobs.push({ id: m.id, name: m.gif, size: f.size, read: async () => { if (f.size > MAX_GIF_BYTES) throw new Error('image trop grosse'); return new Uint8Array(await f.arrayBuffer()); } });
     }
   }
   const seen = new Set<string>();
   const todo = jobs.filter((j) => { if (seen.has(j.id)) return false; seen.add(j.id); if (have.has(j.id)) { rep.already.push(j.id); return false; } return true; });
-  const q = await quotaOk(todo.length * 1_500_000);
+  const q = await quotaOk(todo.reduce((a, j) => a + j.size, 0));
   if (q) { rep.errors.push({ name: 'stockage', why: q }); return rep; }
   let done = 0;
   for (const j of todo) {
