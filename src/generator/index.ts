@@ -1134,6 +1134,8 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
     }
   }
 
+  // Semaine A1 : jamais d'exercice de jambes (même un correctif ou un complément : hip-thrust, fente…) hors de la séance A1 (jambes protégées les veilles de match / d'entraînement).
+  if (a1Label) for (const s of kept) if (s.label !== a1Label) s.exercises = s.exercises.filter((e) => !(e.slot === 'correctif' && ['squat', 'fente', 'charniere'].includes(e.schema)));
   const zoneState = checkZones(kept, ctx, pool);
   // Décision du 06/11/2026 : zones orange jamais affichées (bruit : 661 cas sur 662) ; grises citées seulement si un exercice existe.
   if (zoneState.greyFixable.length) msgs.push(msg.zonesGris(zoneState.greyFixable.map(zoneName)));
