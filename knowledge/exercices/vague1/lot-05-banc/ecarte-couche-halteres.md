@@ -16,6 +16,7 @@ statut: utilisable
 |---|---|---|---|---|---|
 | ecarte-couche-halteres-banc | Sur banc plat, haltères très légers | 1 | intermediaire | halteres, banc | Allongé sur un banc plat, pieds au sol, haltères au-dessus de la poitrine, paumes face à face. |
 | ecarte-incline-halteres | Sur banc incliné, haltères très légers | 1 | intermediaire | halteres, banc_inclinable | Dossier peu incliné, réglage bloqué ; même geste. |
+| ecarte-decline-halteres | Sur banc légèrement décliné, haltères très légers | 2 | intermediaire | halteres, banc | Banc décliné de 10 à 15 degrés au plus, pieds calés, partenaire pour passer les haltères ; même geste, bras légèrement fléchis. |
 
 ## Consignes
 1. Installe-toi comme pour un développé, haltères au-dessus de la poitrine, paumes face à face, coudes à peine pliés.
@@ -25,6 +26,7 @@ statut: utilisable
 5. Repose les haltères sur les cuisses en te redressant.
 
 ## Points d'attention
+- Variante déclinée : tête plus basse que les pieds ; jamais seul, haltères très légers, arrête au moindre vertige ou pression à la tête.
 - Haltères nettement plus légers que ceux du développé : ce mouvement étire fort l'épaule.
 - Les coudes gardent le même angle du début à la fin : ce n'est pas un développé.
 - Descente lente, jamais de rebond.
@@ -54,13 +56,16 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | adapter: charge:legere | retirer | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |
-| Dos | garder | adapter: charge:legere | retirer |
+| Dos | garder | adapter: variante:ecarte-couche-halteres-banc | retirer |
+| Cou | adapter: variante:ecarte-couche-halteres-banc | adapter: variante:ecarte-couche-halteres-banc | retirer |
 
 **Notes**
 - epaule-n1 : descends moins bas (arrête-toi avant l'étirement net à l'avant de l'épaule) ; haltères très légers, jamais augmentés.
 - epaule-n2 : exercice d'isolation qui étire fortement l'épaule : retiré dès la gêne nette.
 - coude-n1 : charge de départ légère ; coudes à peine pliés et fixes (le long bras de levier tire sur le coude). Au niveau 2, retiré.
-- dos-n2 : charge légère, pas d'augmentation (R2).
+- dos-n2 : retour au banc plat, jamais décliné ; charge qui n'augmente pas (R2).
+- cou-n1 : jamais la variante déclinée (tête plus basse que les pieds). Après un choc au cou (C3) : niveau 3.
+- cou-n2 : jamais la variante déclinée (tête plus basse que les pieds). Après un choc au cou (C3) : niveau 3.
 - grossesse : couché sur le dos (banc plat) ou semi-allongé (banc incliné), donc retiré (G4 et prudence). Post-partum : G7.
 - general : version plus douce = développé couché à prise neutre (moins d'étirement de l'épaule) ; elle reste soumise aux cases de sa propre fiche.
 
