@@ -491,7 +491,17 @@ export function itemNom(ficheNom: string, variant: { id: string; nom: string }):
  * V-DOSE la doserait en 10 à 15 répétitions à réserve 2, l'inverse de la fiche (courts maintiens, jamais fatigué).
  * Exclue tant qu'aucun emplacement d'équilibre dosé selon la fiche n'existe. Choix prudent de `dev`.
  */
-export const GENERATOR_EXCLUDED_FICHES: readonly string[] = ['equilibre-unipodal-bosu'];
+/**
+ * Famille kettlebell (24/11/2026, règle 23) : exercices TECHNIQUES (swing, épaulé, arraché, relevé turc, moulin, bottoms-up, tirage haut,
+ * développé poussé, développé debout, rowing renégat), niveau intermédiaire ou avancé, consultables dans la bibliothèque, jamais placés par le
+ * générateur (ni débutant, ni maison, ni salle) tant qu'aucun avis coach / kiné ne prévoit leur dosage dans un programme. Pour les rouvrir : retirer l'identifiant.
+ */
+export const KETTLEBELL_TECHNIQUE_FICHES: readonly string[] = [
+  'swing-a-la-kettlebell', 'epaule-a-la-kettlebell', 'arrache-a-la-kettlebell', 'releve-turc-a-la-kettlebell', 'moulin-a-la-kettlebell',
+  'epaule-de-kettlebell-renversee', 'tirage-haut-sumo-a-la-kettlebell', 'developpe-pousse-a-la-kettlebell', 'developpe-militaire-debout-a-la-kettlebell',
+  'rowing-renegat-a-la-kettlebell',
+];
+export const GENERATOR_EXCLUDED_FICHES: readonly string[] = ['equilibre-unipodal-bosu', ...KETTLEBELL_TECHNIQUE_FICHES];
 
 /** Emplacements « piliers » (exercices principaux de la séance). */
 export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_1', 'tirage_1', 'charniere'];
