@@ -2,7 +2,7 @@
 import { CORE_NOT_CORE_IDS, GYM_RANK_TAGS, ISOLATION, MAIN_EXERCISE_SLOTS, MANUAL_ONLY_FICHES, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
-import { templateOf } from './split';
+import { templateOf, typeOf } from './split';
 import { isHeavyShoulderTrapExercise } from './zones-check';
 import type { Fiche, SlotKey, Tier } from './types';
 
@@ -228,7 +228,10 @@ function bySchema(pool: Fiche[]): Map<string, Fiche[]> {
 
 /** Tous les candidats classés d'un emplacement (pour le repli et la rotation). */
 export function rankSlot(slot: SlotKey, st: SessionState, used: Set<string>, ctx: Ctx, pool: Fiche[]): Ranked[] {
-  const def = slotDef(slot, st);
+  let def = slotDef(slot, st);
+  // Salle, famille muscle (25/11/2026, décision du chef de projet, option A) : l'emplacement poussee_2 d'une séance HAUT / PUSH de gabarit A (1re poussée horizontale) reste en poussée horizontale
+  // (développé couché / incliné, chest press) : le développé d'épaules en poussee_2 consommait le plafond hebdomadaire des épaules (protégé) et les pectoraux restaient sous le plancher de 9 séries.
+  if (slot === 'poussee_2' && ctx.place === 'salle' && ctx.family === 'muscle' && ctx.level !== 'debutant' && !ctx.pregnant && ['HAUT', 'PUSH'].includes(typeOf(st.label)) && templateOf(st.label) === 'A' && st.placedSchema.poussee_1 === 'poussee_h') def = { ...def, a: [req('poussee_h')] };
   const schemas = new Map<string, { tierFull: Tier; tierSub: Tier; r: SchemaReq; rank: number }>();
   def.a.forEach((r, i) => schemas.set(r.schema, { tierFull: 'a', tierSub: 'c', r, rank: i }));
   if (def.allowB) def.b.forEach((r, i) => !schemas.has(r.schema) && schemas.set(r.schema, { tierFull: 'b', tierSub: 'd', r, rank: i }));
