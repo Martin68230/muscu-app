@@ -14,8 +14,8 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-equilibre-mur-pieds | Pieds sur le mur, corps en L | 1 | avance | poids_du_corps, mur | Mains au sol, pieds posés sur le mur à hauteur des hanches, corps en L : pompe piquée avec les pieds fixés au mur. |
-| pompe-equilibre-mur-ventre | Ventre vers le mur, presque à la verticale | 2 | avance | poids_du_corps, mur | Mains à environ une longueur de pied du mur, ventre face au mur, corps presque vertical, pieds contre le mur. |
+| pompe-equilibre-mur-pieds | Pieds sur le mur, corps en L | 1 | avance | poids_du_corps, mur, tapis | Mains au sol, pieds posés sur le mur à hauteur des hanches, corps en L : pompe piquée avec les pieds fixés au mur. |
+| pompe-equilibre-mur-ventre | Ventre vers le mur, presque à la verticale | 2 | avance | poids_du_corps, mur, tapis | Mains à environ une longueur de pied du mur, ventre face au mur, corps presque vertical, pieds contre le mur. |
 
 ## Consignes
 1. Échelon 1 : mains au sol à largeur d'épaules, monte les pieds sur le mur jusqu'à ce que ton corps fasse un L.

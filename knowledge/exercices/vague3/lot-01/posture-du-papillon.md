@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| posture-du-papillon-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Assis au sol sur un tapis, plantes des pieds jointes, genoux écartés. |
+| posture-du-papillon-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Assis au sol sur un tapis, plantes des pieds jointes, genoux écartés. |
 
 ## Consignes
 1. Assieds-toi au sol, les jambes tendues devant toi.

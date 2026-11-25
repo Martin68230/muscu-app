@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| developpe-au-sol-a-la-kettlebell-kettlebell | Avec une kettlebell | 1 | intermediaire | kettlebell | Matériel : kettlebell ; position de départ : voir les consignes. |
+| developpe-au-sol-a-la-kettlebell-kettlebell | Avec une kettlebell | 1 | intermediaire | kettlebell, tapis | Matériel : kettlebell ; position de départ : voir les consignes. |
 
 ## Consignes
 1. Commence allongé sur le dos sur le sol, les genoux fléchis et les pieds à plat sur le sol.

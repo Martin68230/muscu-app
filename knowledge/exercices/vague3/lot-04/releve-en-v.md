@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| releve-en-v-elastique | Avec un élastique | 1 | intermediaire | elastique | Allongé sur le dos, bras tendus au-dessus de la tête, élastique tenu à deux mains. |
+| releve-en-v-elastique | Avec un élastique | 1 | intermediaire | elastique, tapis | Allongé sur le dos, bras tendus au-dessus de la tête, élastique tenu à deux mains. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les jambes tendues et les bras tendus au-dessus de la tête, l'élastique dans les mains.

@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| developpe-couche-barre-sol | Au sol, barre dans le rack | 1 | intermediaire | barre, disques, rack | Allongé au sol à l'intérieur du rack, barre sur les supports à hauteur de bras tendus, barres de sécurité juste au-dessus de ta poitrine ; la descente s'arrête quand les coudes touchent le sol. |
+| developpe-couche-barre-sol | Au sol, barre dans le rack | 1 | intermediaire | barre, disques, rack, tapis | Allongé au sol à l'intérieur du rack, barre sur les supports à hauteur de bras tendus, barres de sécurité juste au-dessus de ta poitrine ; la descente s'arrête quand les coudes touchent le sol. |
 | developpe-couche-barre-banc | Sur banc, dans le rack avec barres de sécurité | 2 | intermediaire | barre, disques, rack, banc | Banc plat au centre du rack, barre sur les supports à hauteur de bras tendus, barres de sécurité juste au-dessus de la poitrine ; pieds à plat au sol, omoplates serrées contre le banc. |
 
 ## Consignes

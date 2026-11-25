@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-en-rotation-a-genoux-elastique | Avec un élastique | 1 | intermediaire | elastique | Élastique ancré à hauteur de taille, à genoux dos au point d'ancrage, élastique tenu près de la poitrine. |
+| crunch-en-rotation-a-genoux-elastique | Avec un élastique | 1 | intermediaire | elastique, tapis | Élastique ancré à hauteur de taille, à genoux dos au point d'ancrage, élastique tenu près de la poitrine. |
 
 ## Consignes
 1. Fixe l'élastique à un point d'ancrage solide à hauteur de la taille.

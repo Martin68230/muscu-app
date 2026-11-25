@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| extension-triceps-barre-ez-sol | Allongé au sol | 1 | intermediaire | barre_ez, disques | Allongé sur le dos au sol, genoux fléchis, barre EZ tenue à bras tendus au-dessus de la poitrine, paumes vers l'avant ou neutres. |
+| extension-triceps-barre-ez-sol | Allongé au sol | 1 | intermediaire | barre_ez, disques, tapis | Allongé sur le dos au sol, genoux fléchis, barre EZ tenue à bras tendus au-dessus de la poitrine, paumes vers l'avant ou neutres. |
 | extension-triceps-barre-ez-banc | Allongé sur un banc | 2 | intermediaire | barre_ez, disques, banc | Allongé sur un banc plat, barre EZ à bras tendus au-dessus de la poitrine ; la barre descend vers derrière la tête (au-dessus du banc) pour plus d'étirement. |
 
 ## Consignes

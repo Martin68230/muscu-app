@@ -16,7 +16,7 @@ Pompe asymétrique : un bras plie, l'autre reste tendu sur le côté ; marche ve
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-archer-sol | Au sol | 1 | avance | poids_du_corps | Mains au sol très larges, pieds un peu écartés pour l'équilibre. |
+| pompe-archer-sol | Au sol | 1 | avance | poids_du_corps, tapis | Mains au sol très larges, pieds un peu écartés pour l'équilibre. |
 
 ## Consignes
 1. Mains au sol très larges, doigts vers l'avant ; pieds un peu écartés.

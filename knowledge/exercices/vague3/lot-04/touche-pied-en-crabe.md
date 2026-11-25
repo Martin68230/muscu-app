@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| touche-pied-en-crabe-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Position du crabe sur un tapis, mains derrière toi, hanches soulevées. |
+| touche-pied-en-crabe-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Position du crabe sur un tapis, mains derrière toi, hanches soulevées. |
 
 ## Consignes
 1. Commence assis au sol, les genoux fléchis et les pieds à plat sur le sol.

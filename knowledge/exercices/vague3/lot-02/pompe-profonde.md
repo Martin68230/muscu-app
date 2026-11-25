@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-profonde-halteres | Aux haltères | 1 | intermediaire | halteres | En planche haute, mains posées sur deux haltères hexagonaux stables, un peu plus écartées que les épaules. |
+| pompe-profonde-halteres | Aux haltères | 1 | intermediaire | halteres, tapis | En planche haute, mains posées sur deux haltères hexagonaux stables, un peu plus écartées que les épaules. |
 
 ## Consignes
 1. Pose deux haltères hexagonaux (qui ne roulent pas) au sol, parallèles, un peu plus écartés que les épaules.

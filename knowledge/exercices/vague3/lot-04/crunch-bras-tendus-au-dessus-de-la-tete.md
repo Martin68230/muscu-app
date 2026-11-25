@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-bras-tendus-au-dessus-de-la-tete-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Sur un tapis, genoux fléchis, bras tendus derrière la tête. |
+| crunch-bras-tendus-au-dessus-de-la-tete-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Sur un tapis, genoux fléchis, bras tendus derrière la tête. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les genoux fléchis et les pieds à plat au sol.

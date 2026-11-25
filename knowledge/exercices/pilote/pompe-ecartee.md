@@ -16,7 +16,7 @@ Variante de la pompe qui insiste sur les pectoraux (moins de triceps) : fiche s�
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-ecartee-sol | Au sol | 1 | intermediaire | poids_du_corps | Mains au sol nettement plus larges que les épaules, sur les pointes de pieds. |
+| pompe-ecartee-sol | Au sol | 1 | intermediaire | poids_du_corps, tapis | Mains au sol nettement plus larges que les épaules, sur les pointes de pieds. |
 
 ## Consignes
 1. Place les mains plus larges que les épaules, doigts vers l'avant.

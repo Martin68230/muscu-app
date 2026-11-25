@@ -20,8 +20,8 @@ Du plus facile au plus dur : les mains hautes (mur, chaise) allègent la charge 
 | pompe-mur | Au mur | 1 | debutant | mur | Debout face au mur, mains sur le mur à hauteur d'épaules, pieds reculés d'un pas. |
 | pompe-chaise | Mains sur une chaise | 2 | debutant | chaise, mur | Chaise stable, dossier calé contre un mur, mains sur le bord de l'assise (côté opposé au mur), pieds reculés : corps en planche inclinée. |
 | pompe-genoux | Sur les genoux | 3 | debutant | poids_du_corps, tapis | Genoux sur un tapis ou une serviette pliée, mains au sol, épaules-hanches-genoux alignés. |
-| pompe-sol | Classique (au sol) | 4 | debutant | poids_du_corps | Mains au sol, sur les pointes de pieds. |
-| pompe-pieds-sureleves | Pieds surélevés | 5 | intermediaire | chaise, mur | Mains au sol, pieds sur une chaise stable calée contre un mur : plus les pieds sont hauts, plus c'est dur. |
+| pompe-sol | Classique (au sol) | 4 | debutant | poids_du_corps, tapis | Mains au sol, sur les pointes de pieds. |
+| pompe-pieds-sureleves | Pieds surélevés | 5 | intermediaire | chaise, mur, tapis | Mains au sol, pieds sur une chaise stable calée contre un mur : plus les pieds sont hauts, plus c'est dur. |
 
 L'ancienne variante « mains sur la première marche » n'est pas reprise : la chaise joue le même rôle (mains hautes) avec un support plus stable ; elle est consignée au journal du README.
 

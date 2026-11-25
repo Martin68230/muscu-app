@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| planche-avec-rotation-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | En planche haute sur un tapis, pieds un peu écartés pour l'équilibre. |
+| planche-avec-rotation-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | En planche haute sur un tapis, pieds un peu écartés pour l'équilibre. |
 
 ## Consignes
 1. Commence en position de planche haute, les mains directement sous les épaules et le corps aligné de la tête aux pieds.

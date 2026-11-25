@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| adduction-en-planche-laterale-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Sur le côté, appui sur l'avant-bras sous l'épaule, sur un tapis. |
+| adduction-en-planche-laterale-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Sur le côté, appui sur l'avant-bras sous l'épaule, sur un tapis. |
 
 ## Consignes
 1. Allonge-toi sur le côté sur un tapis, appuyé sur l'avant-bras, le coude juste sous l'épaule.

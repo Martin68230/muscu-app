@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| releve-de-jambes-tendues-allonge-elastique | Avec un élastique | 1 | intermediaire | elastique | Allongé sur le dos, élastique passé sous la voûte des pieds, extrémités tenues à deux mains. |
+| releve-de-jambes-tendues-allonge-elastique | Avec un élastique | 1 | intermediaire | elastique, tapis | Allongé sur le dos, élastique passé sous la voûte des pieds, extrémités tenues à deux mains. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les jambes tendues et les pieds joints.

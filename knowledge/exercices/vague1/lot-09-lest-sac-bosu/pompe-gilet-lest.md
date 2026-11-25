@@ -16,7 +16,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pompe-gilet-lest-sol | Gilet lesté, mains au sol | 1 | avance | lest, tapis | Gilet lesté bien serré et à plat sur la poitrine, mains au sol sous les épaules, pointes de pieds au sol, corps en ligne. |
-| pompe-gilet-lest-pieds-chaise | Gilet lesté, pieds sur une chaise | 2 | avance | lest, chaise, mur | Chaise solide dont les pieds arrière sont contre un mur plein, pieds posés sur l'assise, mains au sol sous les épaules. |
+| pompe-gilet-lest-pieds-chaise | Gilet lesté, pieds sur une chaise | 2 | avance | lest, chaise, mur, tapis | Chaise solide dont les pieds arrière sont contre un mur plein, pieds posés sur l'assise, mains au sol sous les épaules. |
 
 ## Consignes
 1. Réservé à qui fait déjà 15 pompes propres au sol sans gilet. Enfile le gilet à plat, serré, lests calés.

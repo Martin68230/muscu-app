@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| etirement-jambes-ecartees-assis-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Assis au sol, jambes écartées sans forcer, mains posées devant toi. |
+| etirement-jambes-ecartees-assis-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Assis au sol, jambes écartées sans forcer, mains posées devant toi. |
 
 ## Consignes
 1. Assieds-toi au sol, les jambes tendues et écartées sans forcer.

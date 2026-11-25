@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| poussee-de-hanches-a-genoux-elastique | Avec un élastique | 1 | debutant | elastique | À genoux sur un tapis, élastique autour des cuisses juste au-dessus des genoux. |
+| poussee-de-hanches-a-genoux-elastique | Avec un élastique | 1 | debutant | elastique, tapis | À genoux sur un tapis, élastique autour des cuisses juste au-dessus des genoux. |
 
 ## Consignes
 1. Mets-toi à genoux sur un tapis, les genoux écartés à la largeur des hanches.

@@ -16,7 +16,7 @@ statut: complete_kine
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-sol | Au sol | 1 | debutant | poids_du_corps | Mains au sol, sur les pointes de pieds. |
+| pompe-sol | Au sol | 1 | debutant | poids_du_corps, tapis | Mains au sol, sur les pointes de pieds. |
 
 ## Consignes
 1. Mains au sol un peu plus larges que les épaules.

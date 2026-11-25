@@ -15,7 +15,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pompe-piquee-pieds-marche | Pieds sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Pieds sur la première marche d'un escalier éclairé et dégagé. |
-| pompe-piquee-pieds-chaise | Pieds sur une chaise | 2 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur : plus haut, donc plus dur. |
+| pompe-piquee-pieds-chaise | Pieds sur une chaise | 2 | intermediaire | poids_du_corps, chaise, tapis | Chaise stable calée contre un mur : plus haut, donc plus dur. |
 
 ## Consignes
 1. Pieds posés sur le support, mains au sol à largeur d'épaules.

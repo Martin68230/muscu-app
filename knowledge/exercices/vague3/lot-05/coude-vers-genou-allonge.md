@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| coude-vers-genou-allonge-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Allongé sur un tapis, mains derrière la tête sans tirer sur la nuque. |
+| coude-vers-genou-allonge-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Allongé sur un tapis, mains derrière la tête sans tirer sur la nuque. |
 
 ## Consignes
 1. Commence allongé sur le dos, les genoux fléchis et les pieds à plat sur le sol.

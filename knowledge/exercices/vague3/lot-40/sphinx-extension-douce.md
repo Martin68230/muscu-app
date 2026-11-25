@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| sphinx-extension-douce-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Allongé sur le ventre au sol, avant-bras à plat, coudes sous les épaules. |
+| sphinx-extension-douce-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Allongé sur le ventre au sol, avant-bras à plat, coudes sous les épaules. |
 
 ## Consignes
 1. Allonge-toi face vers le bas au sol, les avant-bras à plat au sol, les coudes directement sous tes épaules.

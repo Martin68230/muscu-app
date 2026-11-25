@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| releve-de-buste-jambes-tendues-bras-tendus-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Allongé sur un tapis, bras au-dessus de la tête. |
+| releve-de-buste-jambes-tendues-bras-tendus-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Allongé sur un tapis, bras au-dessus de la tête. |
 
 ## Consignes
 1. Allonge-toi sur le dos, jambes tendues, bras tendus au-dessus de la tête.

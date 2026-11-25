@@ -15,8 +15,8 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-mains-rapprochees-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | En planche, mains rapprochées sous la poitrine, corps aligné. |
-| pompe-mains-rapprochees-elastique | Avec un élastique | 1 | intermediaire | elastique | En planche, élastique passé dans le dos et tenu sous les mains. |
+| pompe-mains-rapprochees-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | En planche, mains rapprochées sous la poitrine, corps aligné. |
+| pompe-mains-rapprochees-elastique | Avec un élastique | 1 | intermediaire | elastique, tapis | En planche, élastique passé dans le dos et tenu sous les mains. |
 
 ## Consignes
 1. Commence en position de planche haute, les mains rapprochées, directement sous les épaules.

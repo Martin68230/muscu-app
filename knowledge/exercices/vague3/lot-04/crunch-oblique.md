@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-oblique-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Sur un tapis, genoux fléchis, pieds à plat, mains derrière la tête ou croisées sur la poitrine. |
+| crunch-oblique-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Sur un tapis, genoux fléchis, pieds à plat, mains derrière la tête ou croisées sur la poitrine. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les genoux fléchis et les pieds à plat au sol.

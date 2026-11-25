@@ -15,8 +15,8 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-declinee-chaise | Pieds sur une chaise | 1 | intermediaire | poids_du_corps, chaise | Mains au sol sur un tapis, pieds posés sur une chaise stable (contre un mur), corps aligné de la tête aux talons. |
-| pompe-declinee-banc-pieds | Pieds sur un banc | 2 | intermediaire | poids_du_corps, banc | Mains au sol sur un tapis, pieds posés sur le banc stable, corps aligné de la tête aux talons. |
+| pompe-declinee-chaise | Pieds sur une chaise | 1 | intermediaire | poids_du_corps, chaise, tapis | Mains au sol sur un tapis, pieds posés sur une chaise stable (contre un mur), corps aligné de la tête aux talons. |
+| pompe-declinee-banc-pieds | Pieds sur un banc | 2 | intermediaire | poids_du_corps, banc, tapis | Mains au sol sur un tapis, pieds posés sur le banc stable, corps aligné de la tête aux talons. |
 
 ## Consignes
 1. Mains sous les épaules, pieds posés sur le support, corps aligné, ventre serré.

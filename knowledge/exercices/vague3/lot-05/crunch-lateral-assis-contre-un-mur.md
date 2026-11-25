@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-lateral-assis-contre-un-mur-poids-du-corps-mur | Poids du corps, dos au mur | 1 | debutant | poids_du_corps, mur | Assis au sol, dos contre un mur dégagé. |
+| crunch-lateral-assis-contre-un-mur-poids-du-corps-mur | Poids du corps, dos au mur | 1 | debutant | poids_du_corps, mur, tapis | Assis au sol, dos contre un mur dégagé. |
 
 ## Consignes
 1. Assieds-toi au sol, le dos contre un mur et les jambes tendues devant toi.

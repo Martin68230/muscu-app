@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| etirement-lateral-couche-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Allongé sur le côté sur un tapis, un bras tendu au-dessus de la tête. |
+| etirement-lateral-couche-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Allongé sur le côté sur un tapis, un bras tendu au-dessus de la tête. |
 
 ## Consignes
 1. Allonge-toi sur le côté, les jambes tendues et le bras du dessous tendu au-dessus de la tête.
