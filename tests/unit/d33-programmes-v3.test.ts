@@ -183,8 +183,8 @@ describe('D33 §8 : filtre « salle » (PV3-SALLE-1, T-D33-26a à d)', () => {
       if (excluded(e).length) expect(e.variantNom.endsWith(SALLE_HOME_SUFFIX)).toBe(true);
     }
   });
-  it('26d : sans le réglage (lieu « salle » seul, ou maison) : comportement inchangé ; grossesse : pas de filtre', () => {
-    expect(buildCtx(P2()).salleFilter).toBe(false);
+  it('26d : lieu maison sans le réglage : comportement inchangé ; lieu « salle » : filtre actif (retour utilisateur du 24/11/2026) ; grossesse : pas de filtre', () => {
+    expect(buildCtx(P2()).salleFilter).toBe(true); // 24/11/2026 : en salle, des exercices de salle (avant : le lieu « salle » seul ne changeait rien)
     const home = mk({ profile: 'E', level: 'intermediaire', days: 3, goal: 'muscle', dur: 60 });
     const anyExcluded = (p: GenProgram) => p.sessions.flatMap((s) => s.exercises).filter((e) => excluded(e).length && !e.variantNom.endsWith(SALLE_HOME_SUFFIX));
     expect(anyExcluded(prog(home)).length).toBeGreaterThan(0);

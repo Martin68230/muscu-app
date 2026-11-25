@@ -17,6 +17,8 @@ import { ReportsExport } from '../ReportsExport';
 import { HealthNoticeText } from '../HealthNotice';
 import { GainToggle, gainDisabledReason } from '../GainToggle';
 import { SwitchRow } from '../SwitchRow';
+import { DayPlacesCard } from './DayPlaces';
+import { validDayPlaces } from '../../generator/day-places';
 import { D30_TEXT } from '../../session/messages';
 import { CORRECTIF_COU } from '../../generator/config';
 import { getActiveProgram } from '../../session/program';
@@ -159,7 +161,7 @@ export function Profile({ profile, onChange, onWiped, onEditStep, onNoteSport }:
           ['jours', 'Jours par semaine', profile.daysPerWeek === null ? '—' : String(profile.daysPerWeek)],
           ['bloques', 'Jours impossibles', profile.blockedWeekdays.length ? profile.blockedWeekdays.map((i) => WEEKDAYS[i]?.long.slice(0, 3)).join(', ') : 'aucun'],
           ['duree', 'Durée de séance', profile.sessionDurationMin === null && !profile.profileCompletedAt ? '—' : labelOf(DURATIONS, profile.sessionDurationMin)],
-          ['lieu', 'Lieu', labelOf(PLACES, profile.place ?? null)],
+          ['lieu', 'Lieu', validDayPlaces(profile.dayPlaces) ? 'Un lieu par jour' : labelOf(PLACES, profile.place ?? null)],
           ['niveau', 'Niveau', labelOf(NIVEAUX, profile.level)],
           ['objectif', 'Objectifs', goalsSummary(goal, others)],
           ['grossesse', 'Grossesse', labelOf(PREGNANCY_CHOICES, profile.pregnancy ?? null)],
@@ -204,6 +206,8 @@ export function Profile({ profile, onChange, onWiped, onEditStep, onNoteSport }:
           onToggle={async (on) => onChange(await update('profile', profile.id, { exterieur: on }))}
         />
       </div>
+
+      <DayPlacesCard profile={profile} onChange={onChange} />
 
       <MySportCard profile={profile} onChange={onChange} onNote={() => onNoteSport?.()} />
 

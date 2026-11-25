@@ -29,6 +29,7 @@ export const SPECS: Record<TableName, Spec> = {
     heightCm: 'number?',
     aiEnabled: 'boolean',
     place: 'string?',
+    dayPlaces: 'array?',
     pregnancy: 'string?',
     profileCompletedAt: 'string?',
     progressionLog: 'array?',
@@ -49,6 +50,7 @@ export const SPECS: Record<TableName, Spec> = {
     kettlebellWeightsKg: 'array',
     dumbbellKind: 'string?',
     platesKg: 'array',
+    gymOff: 'array?',
     other: 'string',
   },
   goals: { goalKey: 'string', rank: 'number' },
@@ -196,12 +198,12 @@ export const SPECS: Record<TableName, Spec> = {
 
 /** Champs ajoutés après coup : peuvent manquer dans une ancienne sauvegarde. */
 const MAY_BE_MISSING: Partial<Record<TableName, string[]>> = {
-  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur', 'neckScreen', 'sportPlan', 'catchUpLog'],
+  profile: ['place', 'pregnancy', 'profileCompletedAt', 'progressionLog', 'reprise', 'gagnerDuTemps', 'seanceCardio', 'salleAccess', 'exterieur', 'neckScreen', 'sportPlan', 'catchUpLog', 'dayPlaces'],
   programs: ['inputsHash', 'generatorVersion', 'explanation', 'messages', 'durationMin', 'family', 'missedAnswers', 'lightDays', 'cardioOption'],
   sessions: ['cursor', 'restEndsAt', 'restTotalMs', 'restKind', 'phase', 'skippedExercises', 'painExercises', 'loadsKg', 'plan', 'lastActionAt', 'endReason', 'echelonSwitches', 'calibDecided', 'calibDrops', 'summary', 'decidedAt', 'originDate', 'postponedTo', 'dejaDecalee', 'created', 'imported'],
   sets: ['targetRir', 'isCalibration', 'isWarmup', 'echelon', 'bandResistance', 'holdSec', 'side', 'capped', 'painZone', 'restTakenSec', 'felt'],
   injuries: ['afterShock'],
-  equipment: ['dumbbellKind', 'platesKg', 'other'],
+  equipment: ['dumbbellKind', 'platesKg', 'gymOff', 'other'],
   sportSessions: ['name', 'match', 'jumps', 'overhead', 'painZone', 'signs', 'note'],
   nutritionProfiles: ['mealConfig'],
   mealPlans: ['result', 'seed', 'status', 'confirmedAt', 'locks', 'previous'],
@@ -258,6 +260,10 @@ export function validateRow(table: TableName, row: unknown): string[] {
   // F6 : repos pris plausible ; décisions de progression d'un type connu (un import ne doit pas en introduire d'inconnues).
   if (table === 'sets' && typeof r.restTakenSec === 'number' && (r.restTakenSec < 0 || r.restTakenSec > 3600)) {
     errors.push(`${table}/${String(r.id ?? '?')} : champ « restTakenSec » hors limites`);
+  }
+  // Lieu par jour : vide (un seul lieu) ou 7 valeurs connues (un import ne doit pas en introduire d'inconnues).
+  if (table === 'profile' && Array.isArray(r.dayPlaces) && r.dayPlaces.length !== 0 && (r.dayPlaces.length !== 7 || r.dayPlaces.some((x) => !['salle', 'maison', 'dehors', 'repos'].includes(String(x))))) {
+    errors.push(`${table}/${String(r.id ?? '?')} : champ « dayPlaces » invalide`);
   }
   if (table === 'profile' && Array.isArray(r.progressionLog)) {
     const kinds = ['montee', 'descente', 'refus', 'niveau', 'annule', 'adapt_accepte', 'adapt_plus_tard', 'adapt_applique', 'adapt_annule'];

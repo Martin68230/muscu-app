@@ -124,6 +124,13 @@ export const hasHeavyShoulderTrap = (s: Pick<Sess, 'exercises'>, ctx: Ctx): bool
   s.exercises.some((e) => [e, ...(e.alt ? [e.alt] : [])].some((x) => x.slot !== 'correctif' && isHeavyShoulderTrapExercise(x, ctx)));
 
 /** Fiches correctif admissibles d'une zone pour le profil (liste fermée CORRECTIF, matériel, niveau, cases de sécurité, grossesse). */
+function noSalleFilter(ctx: Ctx): Ctx {
+  if (!ctx.salleFilter) return ctx;
+  let c = ctx.memo.get('nosalle') as Ctx | undefined;
+  if (!c) { c = { ...ctx, salleFilter: false, memo: new Map() }; ctx.memo.set('nosalle', c); }
+  return c;
+}
+
 export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[]): Candidate[] {
   const key = `correctif:${z}`;
   const hit = ctx.memo.get(key) as Candidate[] | undefined;
@@ -137,7 +144,8 @@ export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[])
     const f = pool.find((x) => x.id === id);
     if (!f || ficheTouchesSensitive(f, ctx) || (zoneCoefs(f as ZoneFiche).get(z) ?? 0) < MIN_COEF) continue;
     if (ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0) continue;
-    const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces && (z !== 'cou' || c.variant.id === CORRECTIF_COU.variantId));
+    // Les correctifs (élastique, mini-bande : mobilité / activation) échappent au filtre « salle » (comme l'échauffement) : sans eux, péroniers et abducteurs resteraient gris en salle.
+    const cand = resolveFiche(f, noSalleFilter(ctx)).candidates.find((c) => c.fiche.id === f.id && !c.replaces && (z !== 'cou' || c.variant.id === CORRECTIF_COU.variantId));
     if (cand) out.push(cand);
   }
   ctx.memo.set(key, out);
@@ -446,3 +454,58 @@ export function fillToTarget(
 }
 
 export const zoneGroupOf = capGroupOf;
+
+/**
+ * 24/11/2026 : filet final des plafonds par zone (§3, 20 / 10 par semaine, x1,2 si plafonds relevés). Le placement ne regardait pas ce plafond (seuls les ajouts le
+ * faisaient) ; avec des exercices de salle (barres, tractions) un groupe pouvait le dépasser d'une série. On ne fait que BAISSER : une série de moins à la fois sur
+ * l'exercice qui charge le plus le groupe (séances les plus tardives d'abord), jamais sous 2 séries, jamais d'exercice retiré ni de série ajoutée ailleurs.
+ */
+export function enforceZoneCaps(sessions: Sess[], ctx: Ctx): void {
+  const po = raisedCaps(ctx);
+  const factor = po ? { factor: RAISED_CAPS.zoneFactor } : false;
+  for (let guard = 0; guard < 60; guard++) {
+    const groups = capGroupPoints(weekPoints(sessions, ctx, po));
+    const over = [...groups.entries()].find(([, v]) => v.points > zoneCaps(v.zone, factor).week);
+    if (!over) return;
+    const [g] = over;
+    let best: { e: GenExercise; pts: number } | null = null;
+    for (const s of [...sessions].reverse()) {
+      for (const e of s.exercises) {
+        if (e.sets <= 2 || e.slot === 'correctif') continue;
+        const pts = capGroupPoints(weekPoints([{ exercises: [e] }], ctx, po)).get(g)?.points ?? 0;
+        if (pts > 0 && (!best || pts / e.sets > best.pts / best.e.sets)) best = { e, pts };
+      }
+    }
+    if (!best) return;
+    best.e.sets--;
+  }
+}
+
+/**
+ * 25/11/2026 : le cou (séance du bas du corps réservée) n'est pas placé quand le groupe des trapèzes est tout près de son plafond (en salle, rowings et tirages à la barre).
+ * Avant d'y renoncer : une série de moins (jamais sous 2, jamais un exercice du séance réservée ni un correctif) sur l'exercice qui charge le plus les trapèzes, puis nouvel essai ;
+ * si le cou ne passe toujours pas après 4 séries, les séries retirées sont rendues. Ne fait que baisser, jamais au-delà d'un plafond.
+ */
+export function makeRoomForNeck(sessions: Sess[], ctx: Ctx, reserved: ReadonlySet<string>, tryPlace: () => boolean): boolean {
+  if (tryPlace()) return true;
+  const po = raisedCaps(ctx);
+  const shaved: GenExercise[] = [];
+  for (let i = 0; i < 4; i++) {
+    let best: { e: GenExercise; pts: number } | null = null;
+    for (const s of [...sessions].reverse()) {
+      if (reserved.has(s.label)) continue;
+      for (const e of s.exercises) {
+        if (e.sets <= 2 || e.slot === 'correctif') continue;
+        const g = capGroupPoints(weekPoints([{ exercises: [e] }], ctx, po));
+        const pts = [...g.entries()].filter(([k]) => /trap/.test(k)).reduce((a, [, v]) => a + v.points, 0);
+        if (pts > 0 && (!best || pts / e.sets > best.pts / best.e.sets)) best = { e, pts };
+      }
+    }
+    if (!best) break;
+    best.e.sets--;
+    shaved.push(best.e);
+    if (tryPlace()) return true;
+  }
+  for (const e of shaved) e.sets++;
+  return false;
+}

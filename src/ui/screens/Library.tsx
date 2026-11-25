@@ -53,7 +53,7 @@ export function Library() {
     Promise.all([loadFiches(), list('profile').catch(() => [])]).then(
       ([l, profiles]) => {
         const p = profiles[0];
-        const gym = p?.place === 'salle' || !!p?.salleAccess;
+        const gym = p?.place === 'salle' || !!p?.salleAccess || !!p?.dayPlaces?.includes('salle');
         setFiches(sortByName(l.filter((f) => isUsable(f) && (gym || !isMachineFiche(f)))));
       },
       (e: Error) => setError(e.message || FICHES_ERROR),

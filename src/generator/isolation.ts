@@ -6,7 +6,7 @@ import { levelIdx, type Ctx } from './context';
 import { buildExercise } from './dose';
 import { resolveFiche } from './safety';
 import type { Fiche, GenExercise, GenProgram } from './types';
-import { isTwinOfUsed } from './slots';
+import { gymRank, isTwinOfUsed } from './slots';
 import { rotationStart } from './variety';
 
 /**
@@ -63,7 +63,16 @@ export function isoExercise(
   const r0 = rotationStart(ok.length, variety.k ?? 1, variety.week ?? 1, variety.block ?? 1);
   const turned = ok.map((_, i) => ok[(r0 + i) % ok.length]);
   const wu = variety.weekUsed ?? new Set<string>();
-  for (const f of [...turned.filter((x) => !wu.has(x.id)), ...turned.filter((x) => wu.has(x.id))]) {
+  // Lieu « salle » (24/11/2026) : à rotation égale, la fiche dont la variante est un exercice de salle passe d'abord.
+  const gymFirst = (l: Fiche[]): Fiche[] => {
+    if (ctx.place !== 'salle') return l;
+    const g = (x: Fiche): number => {
+      const c = resolveFiche(x, ctx).candidates.find((k) => k.fiche.id === x.id && !k.replaces);
+      return c ? gymRank(c, ctx) : 1;
+    };
+    return [...l].sort((a, b) => g(a) - g(b));
+  };
+  for (const f of gymFirst([...turned.filter((x) => !wu.has(x.id)), ...turned.filter((x) => wu.has(x.id))])) {
     const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces);
     if (!cand) continue;
     const ex = buildExercise(cand, def.slot, 'a', ctx);

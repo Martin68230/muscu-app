@@ -1,7 +1,7 @@
 // Types du générateur v1 (knowledge/generateur-v1.md). Entrées = profil, matériel, blessures, objectifs, fiches,
 // historique ; sortie = programme ou « pas de programme ». Aucune valeur sportive ici.
 import type {
-  EquipmentProfile, ExerciseRole, ExerciseUnit, Injury, Level, PlannedExercise, PregnancyStatus, SportPlanEntry, TrainingPlace, WarmupSet,
+  EquipmentProfile, ExerciseRole, ExerciseUnit, Injury, Level, PlannedExercise, PregnancyStatus, SportPlanEntry, TrainingPlace, WarmupSet, DayPlace,
 } from '../data/model';
 import type { CoreFamily, Family, GG, SessionType } from './config';
 
@@ -68,6 +68,8 @@ export interface GeneratorInput {
     /** null = sans limite ; undefined = non renseigné (45 min, V-DEF). */
     sessionDurationMin?: number | null;
     place?: TrainingPlace | null;
+    /** Lieu par jour (0 = lundi … 6 = dimanche) ; absent = `place` pour tous les jours. « repos » = jour impossible. */
+    dayPlaces?: DayPlace[];
     pregnancy?: PregnancyStatus | null;
     /** D30 (machines-etiquettes.md §2) : « j'ai accès à une salle » (en plus du lieu). Absent = non. */
     salleAccess?: boolean;
@@ -82,6 +84,8 @@ export interface GeneratorInput {
   };
   equipment: Pick<EquipmentProfile, 'preset' | 'tags' | 'disabledImplicit' | 'dumbbellWeightsKg' | 'kettlebellWeightsKg'> & {
     platesKg?: number[];
+    /** Matériel de salle décoché (lieu par jour) ; absent = salle complète. */
+    gymOff?: string[];
   };
   injuries?: InjuryInput[];
   /** Objectifs classés ; le rang 1 décide (V-OBJ) ; `cardio` en rang 2 ou plus ajoute des blocs limités (B4). */
@@ -281,6 +285,8 @@ export interface GenSession {
   type: SessionType;
   /** 0 = lundi … 6 = dimanche. */
   weekday: number;
+  /** Lieu de la séance quand le profil choisit un lieu par jour. */
+  place?: 'salle' | 'maison' | 'dehors';
   warmup: { general: WarmupItem | null; generalSec: number; mobility: WarmupItem[]; cooldown: WarmupItem | null };
   exercises: GenExercise[];
   estimatedSec: number;
