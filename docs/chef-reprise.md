@@ -10,8 +10,8 @@ Ce fichier remplace, pour la période du 13 au 25/11/2026, la dernière section 
 - Fiches par matériel (au 25/11) : kettlebell 19, barre_ez 12, rack 15, medecine_ball 11, marche_escalier 10, mini_bande 6, box_ou_step 6, sac_a_dos 5, bosu 4, sangles_suspension 4, sac_de_sable 4, bidons_ou_sacs 4, lest 7 (lest = gilet). Objectif de l'utilisateur : au moins 15 fiches par matériel (seule voie pour les matériels absents du jeu : variantes sur fiches existantes).
 
 ## 2. Travail NON fusionné (à reprendre en premier)
-- Branche `fiches-lot10` (af3322a) : 55 variantes de matériel sur fiches existantes (sac à dos, mini-bande, box / step, rack, bidons, sac de sable…) ; kiné passé, relecteur en cours à l'arrêt ; à rebaser sur origin/main, régénérer la baseline, lancer les tests de données, puis pousser. Session : « Fiches kettlebell » (`fiches-kettlebell`).
-- Branche `claude/spec-nutrition-eb35f9` (115970d) : 6 sauces du commerce (barbecue, carbonara, moutarde, aigre-douce, tomate-champignons, tomate-fromage) NON validées par la nutritionniste, absentes de main : à valider (relecteur allergènes) ou abandonner.
+- [SAUVEGARDÉE SUR GITHUB le 25/11/2026] Branche `fiches-lot10` (af3322a) : 55 variantes de matériel sur fiches existantes (sac à dos, mini-bande, box / step, rack, bidons, sac de sable…) ; kiné passé, relecteur en cours à l'arrêt ; à rebaser sur origin/main, régénérer la baseline, lancer les tests de données, puis pousser. Session : « Fiches kettlebell » (`fiches-kettlebell`).
+- [SAUVEGARDÉE SUR GITHUB le 25/11/2026] Branche `claude/spec-nutrition-eb35f9` (115970d) : 6 sauces du commerce (barbecue, carbonara, moutarde, aigre-douce, tomate-champignons, tomate-fromage) NON validées par la nutritionniste, absentes de main : à valider (relecteur allergènes) ou abandonner.
 - Fiches B (tirage) : lots 21 et suivants possibles (tranche 20 à 29). Fiches A / C / D : zones épuisées dans le jeu, sessions à supprimer.
 - Poussée horizontale du jeu NON activée dans le générateur (`HASAN_UPPER_ACTIVE` dans `src/generator/config.ts`) : trapèzes / dos large faisaient dépasser les plafonds protégés ; à activer par famille avec balayage de profils.
 
@@ -91,3 +91,7 @@ git commit -q -m "Merge $br (conflits resolus)
 
 Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>" && echo "  commit ok"
 ```
+
+## 10. Sauvegarde et ménage (25/11/2026)
+- Branches poussées sur GitHub (sauvegarde, sans toucher à `main` ni au site) : `fiches-lot10` (55 variantes de matériel), `claude/spec-nutrition-eb35f9` (6 sauces non validées), `design-lot5` (contenu déjà en ligne par cherry-pick, gardée par prudence).
+- Les sessions A (poussée), B (tirage), C (bas du corps), D (tronc), kettlebell et spec nutrition sont supprimées : leur travail est dans `main` ou dans ces branches. Pour les variantes : `git fetch && git switch -c fiches-lot10-suite origin/fiches-lot10`, rebaser sur origin/main, régénérer la baseline, tests de données, pousser.
