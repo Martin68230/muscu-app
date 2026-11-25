@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [biceps]
 muscles_secondaires: [avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -27,6 +27,7 @@ statut: brouillon_coach
 - Mouvement lent, sans élan, poignets alignés.
 - Choisis une charge qui permet de finir toutes les répétitions proprement.
 - Charge légère : la descente paumes vers le bas sollicite les avant-bras et les poignets, plus faibles que les biceps.
+- Rotation du poignet lente et sans charge excessive ; arrête si le coude ou le poignet tire.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes

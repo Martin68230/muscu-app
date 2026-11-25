@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [biceps, rhomboides, avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.

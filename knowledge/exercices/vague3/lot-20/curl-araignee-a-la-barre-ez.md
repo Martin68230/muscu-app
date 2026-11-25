@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [biceps]
 muscles_secondaires: [avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -27,6 +27,7 @@ statut: brouillon_coach
 - Mouvement lent, sans élan, poignets alignés.
 - Choisis une charge qui permet de finir toutes les répétitions proprement.
 - Barre légère : sans l’appui du dos, un élan sollicite fortement le coude.
+- Mouvement lent, sans élan ; arrête si le coude, le poignet ou l'épaule tire.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes

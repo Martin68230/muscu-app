@@ -1,6 +1,6 @@
 ---
 id: curl-de-poignet-a-la-barre
-nom: Curl de poignet à la barre
+nom: Curl de poignet chargé, prise supination
 alias: [Flexion du poignet à la barre]
 schema: tirage_h
 type: force
@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [avant_bras]
 muscles_secondaires: [biceps]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -31,6 +31,7 @@ statut: brouillon_coach
 - Choisis une charge qui permet de finir toutes les répétitions proprement.
 - Charge légère, séries longues : les tendons de l’avant-bras s’adaptent lentement.
 - Ne laisse jamais la barre rouler hors de tes doigts.
+- Charge légère, amplitude contrôlée ; arrête si le poignet ou le coude tire, ou en cas d'engourdissement.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes

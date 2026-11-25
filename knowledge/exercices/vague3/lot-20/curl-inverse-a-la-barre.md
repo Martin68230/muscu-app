@@ -1,6 +1,6 @@
 ---
 id: curl-inverse-a-la-barre
-nom: Curl inversé à la barre
+nom: Curl inversé, prise pronation
 alias: [Curl prise pronation à la barre]
 schema: tirage_h
 type: force
@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [avant_bras, biceps]
 muscles_secondaires: []
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -30,6 +30,7 @@ statut: brouillon_coach
 - Mouvement lent, sans élan, poignets alignés.
 - Choisis une charge qui permet de finir toutes les répétitions proprement.
 - Charge légère : les avant-bras sont plus faibles en prise inversée ; la barre EZ ménage les poignets.
+- Charge légère (les avant-bras fatiguent vite) ; arrête si le coude ou le poignet tire.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes

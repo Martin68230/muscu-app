@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [grand_dorsal, rhomboides]
 muscles_secondaires: [biceps, deltoides_posterieurs, avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -30,6 +30,7 @@ statut: brouillon_coach
 - Garde le dos neutre.
 - La barre doit être fixée solidement et ne pas pouvoir basculer ni rouler : teste-la avant de t’y suspendre.
 - Si tu ne tiens pas le corps droit, fléchis les genoux ou monte la barre.
+- Vérifie que la barre est stable et bloquée avant de t'y suspendre ; arrête si l'épaule pince ou si le poignet tire.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes
@@ -52,10 +53,10 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter: amplitude:reduite | retirer |
-| Épaule | garder | adapter: amplitude:reduite | retirer |
+| Dos | adapter: amplitude:reduite | retirer | retirer |
+| Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
-| Poignet | garder | adapter: charge:legere | retirer |
+| Poignet | adapter: amplitude:reduite | retirer | retirer |
 | Cou | garder | adapter: amplitude:tete-alignee | retirer |
 
 **Notes**

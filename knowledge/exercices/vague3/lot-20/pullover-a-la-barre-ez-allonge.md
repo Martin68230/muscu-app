@@ -7,7 +7,7 @@ niveau_min: intermediaire
 muscles_principaux: [grand_dorsal]
 muscles_secondaires: [triceps, pectoraux]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -27,6 +27,7 @@ statut: brouillon_coach
 - Mouvement lent et contrôlé.
 - Ne cambre pas le bas du dos.
 - Épaules : réduis l’amplitude au moindre pincement ; charge légère ; fais-toi passer la barre si elle est lourde.
+- Amplitude limitée à ce qui reste confortable pour l'épaule, charge légère, sans cambrer ; arrête si l'épaule ou le cou tire.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes
@@ -50,9 +51,9 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
-| Coude | garder | adapter: charge:legere | retirer |
+| Coude | adapter: charge:legere | retirer | retirer |
 | Dos | adapter: charge:legere | retirer | retirer |
-| Cou | garder | adapter: amplitude:tete-alignee | retirer |
+| Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 | Poignet | adapter: amplitude:reduite | retirer | retirer |
 
 **Notes**

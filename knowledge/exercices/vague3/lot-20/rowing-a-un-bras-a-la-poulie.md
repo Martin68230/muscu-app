@@ -7,7 +7,7 @@ niveau_min: debutant
 muscles_principaux: [grand_dorsal, rhomboides]
 muscles_secondaires: [biceps, deltoides_posterieurs]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -50,7 +50,7 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter: amplitude:reduite | retirer |
+| Dos | adapter: amplitude:reduite | retirer | retirer |
 | Épaule | garder | adapter: amplitude:reduite | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | garder | adapter: charge:legere | retirer |

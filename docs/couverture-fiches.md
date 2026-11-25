@@ -50,3 +50,7 @@ Seuil de test : `tests/unit/salle-jours.test.ts` exige une moyenne >= 80 % et un
 | lest | 7 | 7 | « lest » = gilet lesté dans l’app (test S4) : les exercices « weighted » du jeu (planche, rotation, dips, tractions) sont avancés ou à disque, écartés |
 | sangles_suspension, bosu | 4 | 4 | aucun exercice du jeu (matériel absent du jeu) : passer par des variantes sur fiches existantes |
 | sac_a_dos, mini_bande, box_ou_step, sac_de_sable, bidons_ou_sacs, marche_escalier, rack | 4 à 12 | inchangé | pas de matériel du jeu : variantes à ajouter aux fiches existantes (prochain lot) |
+
+## Famille tirage (session B, 25/11/2026) : lot 20
+La zone tirage (dos, biceps, avant-bras, trapèzes, deltoïde postérieur) est quasi épuisée : les 652 familles retenues du jeu sont déjà passées par les lots 1 à 9 (130 fiches de la zone existent). Reste : (a) 16 vrais nouveaux gestes (curl poulie / machine / Zottman / araignée EZ, curl et extension de poignet chargés, rowing inversé, rowing poulie un bras / poitrine appuyée, rowing barre guidée, rowing haut machine, tirage vertical machine, haussement guidé, pullover EZ) ; (b) des GIF reliés à des fiches EXISTANTES (« doublon » = même geste) : 48 lignes `proche` par `node tools/hasan-doublons-gif.mjs` + 17 manuelles. Écartés : tractions d'une main / muscle-up / levers (techniques), rowing debout à la serviette, pronation-supination à l'haltère (consigne non fiable), tirage derrière la nuque, haussement derrière le dos, upright row (épaule), curls d'équilibre.
+Lot 20 : 16 fiches `brouillon_coach` → voir docs/decisions-prises.md.

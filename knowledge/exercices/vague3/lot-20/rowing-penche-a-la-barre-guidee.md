@@ -1,6 +1,6 @@
 ---
 id: rowing-penche-a-la-barre-guidee
-nom: Rowing penché à la barre guidée
+nom: Rowing penché guidé (Smith)
 alias: [Rowing à la Smith]
 schema: tirage_h
 type: force
@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [grand_dorsal, rhomboides]
 muscles_secondaires: [biceps, deltoides_posterieurs, avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -28,6 +28,7 @@ statut: brouillon_coach
 - Mouvement lent, sans élan ni balancement du buste.
 - Garde le dos neutre.
 - Lombaires : charge légère, dos plat sans l’arrondir ; arrête si le bas du dos tire.
+- Dos plat, buste stable ; arrête dès qu'une gêne apparaît dans le bas du dos.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes
@@ -50,10 +51,10 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Dos | garder | adapter: amplitude:reduite | retirer |
+| Dos | adapter: amplitude:reduite | retirer | retirer |
 | Épaule | garder | adapter: amplitude:reduite | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
-| Poignet | garder | adapter: charge:legere | retirer |
+| Poignet | adapter: charge:legere | retirer | retirer |
 | Cou | garder | adapter: amplitude:tete-alignee | retirer |
 
 **Notes**

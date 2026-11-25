@@ -8,7 +8,7 @@ niveau_min: intermediaire
 muscles_principaux: [trapezes]
 muscles_secondaires: [avant_bras]
 source_brouillon: []
-statut: brouillon_coach
+statut: utilisable
 ---
 ## Variantes (installation + matériel, avec échelon de difficulté)
 `echelon` : 1 = plus facile. Échelons et niveaux : règles du convertisseur (hasan-vers-fiches.mjs), NON SOURCÉ, relus par `coach`.
@@ -29,6 +29,7 @@ statut: brouillon_coach
 - Mouvement lent, sans élan ni balancement du buste.
 - Garde le dos neutre.
 - Pas de rotation des épaules ni de tête en avant ; charge modérée.
+- Charge modérée, jamais de rotation des épaules ; arrête si le cou, les trapèzes ou les mains tirent, ou si des fourmillements apparaissent.
 - Aucune valeur sourcée ; avis kine nécessaire avant toute douleur ou gêne.
 
 ## Erreurs fréquentes
@@ -52,9 +53,9 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Dos | garder | retirer | retirer |
-| Épaule | garder | adapter: charge:legere | retirer |
-| Coude | garder | garder | retirer |
-| Poignet | garder | adapter: charge:legere | retirer |
+| Épaule | adapter: charge:legere | retirer | retirer |
+| Coude | adapter: charge:legere | adapter: charge:legere | retirer |
+| Poignet | adapter: charge:legere | retirer | retirer |
 | Cou | adapter: amplitude:tete-alignee | retirer | retirer |
 
 **Notes**
