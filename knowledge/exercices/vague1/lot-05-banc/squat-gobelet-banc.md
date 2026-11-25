@@ -18,6 +18,7 @@ statut: utilisable
 | squat-banc-sans-charge | Sans charge, au banc | 1 | debutant | poids_du_corps, banc | Dos au banc, pieds à la largeur des épaules ; tu t'assois à peine sur le bord, puis tu te relèves. |
 | squat-banc-halteres-cote | Haltères le long du corps | 2 | debutant | halteres, banc | Même geste, un haltère par main, bras tendus le long du corps. |
 | squat-banc-gobelet | Un haltère contre la poitrine | 2 | debutant | halteres, banc | Même geste, un seul haltère tenu à deux mains contre la poitrine. |
+| squat-gobelet-banc-bidons-ou-sacs | Avec des bidons ou des sacs | 2 | debutant | bidons_ou_sacs, banc | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon tenu contre la poitrine. |
 
 ## Consignes
 1. Place-toi dos à un banc stable, pieds à la largeur des épaules, pointes légèrement ouvertes.

@@ -16,6 +16,7 @@ statut: utilisable
 |---|---|---|---|---|---|
 | fermier-halteres | Deux haltères | 1 | debutant | halteres | Un haltère dans chaque main, posés au sol de chaque côté des pieds. |
 | fermier-bidons-sacs | Bidons ou sacs de courses | 1 | debutant | bidons_ou_sacs | Deux bidons d'eau ou deux sacs solides, de poids proche, avec des poignées qui ne coupent pas les doigts. |
+| marche-du-fermier-sac-de-sable | Avec un sac de sable | 1 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : un sac dans chaque main. |
 
 ## Consignes
 1. Charges au sol, de chaque côté des pieds.

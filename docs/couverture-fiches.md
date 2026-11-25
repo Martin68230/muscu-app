@@ -60,3 +60,6 @@ Lot 20 : 16 fiches `brouillon_coach` → voir docs/decisions-prises.md.
 
 ## Lot 40 (tronc / mobilité, 25/11/2026)
 Zone tronc / mobilité du jeu quasi épuisée (96 fiches core déjà en ligne) : 163 candidats triés par `coach` : 1 fiche nouvelle (`sphinx-extension-douce`, mobilité, grossesse retirée, dos niveau 2 retiré), ~50 GIF supplémentaires reliés (niveau « proche ») à des fiches existantes, 80 écartés (cardio non supporté par le convertisseur, sauts, partenaire, techniques avancées, lestés). Lots 41 à 49 : rien à convertir dans cette zone.
+
+### Mise à jour (lot 10, variantes de matériel sur fiches existantes, 25/11/2026)
+`tools/ajout-variantes-materiel.mjs` ajoute 55 variantes (même geste, autre matériel, sans nouvelle fiche ni nouveau dessin ; le GIF de la fiche de base sert d'image) puis kiné et relecteur. Nombre de fiches avec une variante du matériel : sac_a_dos 5 → 15, mini_bande 6 → 15, box_ou_step 6 → 15, sac_de_sable 4 → 15, bidons_ou_sacs 4 → 15, marche_escalier 10 → 15. Restent sous 15 : rack 12 (variantes à la barre déjà dans les fiches du rack), lest 7 (le tag `lest` = gilet lesté, limité aux 7 fiches gilet par le test S4), bosu 4 et sangles_suspension 4 (matériel absent du jeu, pas de nouvelle fiche dessinée).

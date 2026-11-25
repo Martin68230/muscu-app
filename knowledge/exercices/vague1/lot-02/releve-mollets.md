@@ -18,6 +18,9 @@ statut: utilisable
 | releve-mollets-marche | Talons dans le vide sur une marche | 2 | debutant | poids_du_corps, marche_escalier | Avant-pieds sur le bord de la première marche, une main à la rampe, talons dans le vide. |
 | releve-mollets-elastique | Avec un élastique sous les pieds | 2 | debutant | elastique | Debout sur l'élastique, extrémités tenues près des épaules, élastique contrôlé avant de commencer. |
 | releve-mollets-une-jambe | Une jambe sur la marche | 3 | intermediaire | poids_du_corps, marche_escalier | Comme l'échelon 2, un seul pied sur la marche, une main à la rampe. |
+| releve-mollets-sac-a-dos | Avec un sac à dos | 3 | intermediaire | sac_a_dos | Sac à dos léger, sangles serrées, sac qui ne bouge pas : porté sur le dos. Sol plat et non glissant, ou avant-pieds sur le bord de la première marche, une main à la rampe ou au mur, talons dans le vide. |
+| releve-mollets-bidons-ou-sacs | Avec des bidons ou des sacs | 3 | intermediaire | bidons_ou_sacs | Deux bidons ou sacs légers de poids égal, anses solides : un dans chaque main, sur sol plat et non glissant, près d’un mur (pas sur une marche : les deux mains sont prises). |
+| releve-mollets-box-ou-step | Avec une box | 3 | intermediaire | box_ou_step | Box ou step large et stable, qui ne glisse pas, calé contre un mur : avant-pieds sur le bord, talons dans le vide, une main au mur. Sans charge. |
 
 ## Consignes
 1. Place-toi comme indiqué par la variante, une main en appui, pieds droits vers l'avant.

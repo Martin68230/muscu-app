@@ -18,6 +18,10 @@ statut: utilisable
 | squat-sumo-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Pieds plus écartés que les épaules, pointes de pieds vers l'extérieur, mains jointes devant la poitrine. |
 | squat-sumo-haltere | Avec un haltère | 2 | debutant | halteres | Même position, un haltère tenu à deux mains entre les jambes, bras tendus. |
 | squat-sumo-kettlebell | Avec une kettlebell | 2 | debutant | kettlebell | Même position, une kettlebell tenue à deux mains entre les jambes, bras tendus. |
+| squat-sumo-sac-a-dos | Avec un sac à dos | 2 | debutant | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : tenu à deux mains entre les jambes. |
+| squat-sumo-bidons-ou-sacs | Avec des bidons ou des sacs | 2 | debutant | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon tenu entre les jambes. |
+| squat-sumo-sac-de-sable | Avec un sac de sable | 2 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu entre les jambes. |
+| squat-sumo-mini-bande | Avec une mini-bande | 2 | intermediaire | mini_bande | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux. |
 
 ## Consignes
 1. Place les pieds nettement plus larges que les épaules, pointes légèrement vers l'extérieur.

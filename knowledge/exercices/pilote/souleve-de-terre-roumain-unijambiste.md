@@ -17,6 +17,9 @@ statut: utilisable
 | sdt-unijambiste-mur | Poids du corps, main au mur | 1 | intermediaire | poids_du_corps, mur | Debout à côté d'un mur, une main posée pour l'équilibre. |
 | sdt-unijambiste-poids-du-corps | Poids du corps, sans appui | 2 | intermediaire | poids_du_corps | Debout, espace dégagé. |
 | sdt-unijambiste-haltere | Un haltère | 2 | intermediaire | halteres | Haltère dans la main opposée à la jambe d'appui. |
+| souleve-de-terre-roumain-unijambiste-sac-a-dos | Avec un sac à dos | 2 | intermediaire | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : tenu devant les cuisses. |
+| souleve-de-terre-roumain-unijambiste-bidons-ou-sacs | Avec des bidons ou des sacs | 2 | intermediaire | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon tenu devant les cuisses. |
+| souleve-de-terre-roumain-unijambiste-sac-de-sable | Avec un sac de sable | 2 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu devant les cuisses. |
 
 ## Consignes
 1. En appui sur une jambe, genou légèrement fléchi.

@@ -17,6 +17,8 @@ statut: utilisable
 |---|---|---|---|---|---|
 | releve-bassin-pas-alternes | Pieds au sol, un talon qui se décolle à tour de rôle | 1 | intermediaire | poids_du_corps, tapis | Couché sur le dos sur un tapis, genoux fléchis, pieds à plat largeur de hanches, bras le long du corps. |
 | releve-bassin-pas-chaise | Pieds sur une chaise, pas alternés | 2 | intermediaire | poids_du_corps, chaise, tapis | Même position, pieds posés sur l'assise d'une chaise calée contre un mur (R8). |
+| releve-bassin-marche-box-ou-step | Avec une box | 2 | intermediaire | box_ou_step, tapis | Box ou step large et stable, calé contre un mur, qui ne glisse pas : pieds à plat sur la box. |
+| releve-bassin-marche-marche-escalier | Avec une marche | 2 | intermediaire | marche_escalier, tapis | Première marche d’un escalier non glissant, tapis antidérapant au sol : pieds à plat sur la marche, jamais de chaussures à semelle lisse. |
 
 ## Consignes
 1. Couché sur le dos, genoux fléchis, pieds à plat, bras le long du corps.

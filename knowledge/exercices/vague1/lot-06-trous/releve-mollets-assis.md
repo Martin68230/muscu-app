@@ -17,6 +17,7 @@ statut: utilisable
 | releve-mollets-assis-chaise | Assis sur une chaise, sans charge | 1 | debutant | poids_du_corps, chaise | Assis, dos droit, pieds à plat sous les genoux, mains sur les cuisses. |
 | releve-mollets-assis-haltere | Un haltère sur les cuisses | 2 | debutant | halteres, chaise | Même position ; un haltère posé sur les cuisses près des genoux, tenu à deux mains. |
 | releve-mollets-assis-une-jambe | Une jambe à la fois, sans charge | 3 | intermediaire | poids_du_corps, chaise | Même position ; un seul talon se lève, l'autre pied reste à plat au sol. |
+| releve-mollets-assis-box-ou-step | Avec une box | 3 | intermediaire | box_ou_step, chaise | Box ou step large et stable, qui ne glisse pas, calé contre un mur : pieds à plat sur la box. |
 
 ## Consignes
 1. Assieds-toi sur une chaise stable, dos droit, pieds à plat sous les genoux.

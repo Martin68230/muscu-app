@@ -17,6 +17,8 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | montee-rapide-chaise-sans-charge | Montée rapide, descente lente, sans décollage | 1 | intermediaire | poids_du_corps, chaise, mur | Chaise solide sans roulettes, dossier calé contre un mur, assise de 45 cm de haut au plus, qui ne glisse pas ; pose tout le pied au milieu de l'assise. Chaussures aux pieds, sol non glissant. Jamais de charge. |
+| montee-rapide-chaise-box-ou-step | Avec une box | 1 | intermediaire | box_ou_step, mur | Box ou step large et stable, calé contre un mur, hauteur au plus celle d’un genou, qui ne glisse pas : pied posé sur la box. Sans charge. |
+| montee-rapide-chaise-marche-escalier | Avec une marche | 1 | intermediaire | marche_escalier, mur | Première marche d’un escalier éclairé, dégagé et non glissant, rampe à portée, chaussures aux pieds : pied posé sur la marche. Sans charge. |
 
 ## Consignes
 1. Cale la chaise contre le mur et pose tout un pied au milieu de l'assise, genou au-dessus de la cheville.

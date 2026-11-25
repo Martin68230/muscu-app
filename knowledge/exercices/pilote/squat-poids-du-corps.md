@@ -16,6 +16,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | squat-poids-du-corps-libre | Libre | 1 | debutant | poids_du_corps | Debout, espace dégagé. |
+| squat-poids-du-corps-mini-bande | Avec une mini-bande | 1 | debutant | mini_bande | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux, genoux poussés vers l’extérieur. |
 
 ## Consignes
 1. Pieds à peu près à largeur d'épaules, orteils un peu ouverts si c'est plus confortable.

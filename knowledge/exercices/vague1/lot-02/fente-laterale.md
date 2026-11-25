@@ -18,6 +18,7 @@ statut: utilisable
 | fente-laterale-courte | Petite amplitude, poids du corps | 1 | debutant | poids_du_corps | Pieds largeur de hanches, espace dégagé sur les côtés. |
 | fente-laterale-complete | Amplitude complète, poids du corps | 2 | intermediaire | poids_du_corps | Même installation ; pas large sur le côté, hanche qui descend plus bas. |
 | fente-laterale-haltere | Amplitude complète, haltère devant la poitrine | 2 | intermediaire | halteres | Même installation ; un haltère tenu contre la poitrine, comme pour un gobelet. |
+| fente-laterale-mini-bande | Avec une mini-bande | 2 | intermediaire | mini_bande | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux. |
 
 ## Consignes
 1. Debout, pieds largeur de hanches, orteils vers l'avant.
