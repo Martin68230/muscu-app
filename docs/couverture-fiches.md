@@ -50,3 +50,4 @@ Seuil de test : `tests/unit/salle-jours.test.ts` exige une moyenne >= 80 % et un
 | lest | 7 | 7 | « lest » = gilet lesté dans l’app (test S4) : les exercices « weighted » du jeu (planche, rotation, dips, tractions) sont avancés ou à disque, écartés |
 | sangles_suspension, bosu | 4 | 4 | aucun exercice du jeu (matériel absent du jeu) : passer par des variantes sur fiches existantes |
 | sac_a_dos, mini_bande, box_ou_step, sac_de_sable, bidons_ou_sacs, marche_escalier, rack | 4 à 12 | inchangé | pas de matériel du jeu : variantes à ajouter aux fiches existantes (prochain lot) |
+- **Lot 30 (bas du corps, 25/11/2026)** : 6 fiches (squat barre basse, squat large barre, 2 squats Smith, fente latérale barre, soulevé sumo haltère) + ~52 GIF reliés à des variantes existantes (surtout « proche »). Le jeu n'a plus d'exercice de jambes non traité hors étirements ; les lots 1 à 6 en avaient écarté beaucoup en bloc comme « doublon ».
