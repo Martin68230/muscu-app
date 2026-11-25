@@ -472,3 +472,32 @@ export function enforceZoneCaps(sessions: Sess[], ctx: Ctx): void {
     best.e.sets--;
   }
 }
+
+/**
+ * 25/11/2026 : le cou (séance du bas du corps réservée) n'est pas placé quand le groupe des trapèzes est tout près de son plafond (en salle, rowings et tirages à la barre).
+ * Avant d'y renoncer : une série de moins (jamais sous 2, jamais un exercice du séance réservée ni un correctif) sur l'exercice qui charge le plus les trapèzes, puis nouvel essai ;
+ * si le cou ne passe toujours pas après 4 séries, les séries retirées sont rendues. Ne fait que baisser, jamais au-delà d'un plafond.
+ */
+export function makeRoomForNeck(sessions: Sess[], ctx: Ctx, reserved: ReadonlySet<string>, tryPlace: () => boolean): boolean {
+  if (tryPlace()) return true;
+  const po = raisedCaps(ctx);
+  const shaved: GenExercise[] = [];
+  for (let i = 0; i < 4; i++) {
+    let best: { e: GenExercise; pts: number } | null = null;
+    for (const s of [...sessions].reverse()) {
+      if (reserved.has(s.label)) continue;
+      for (const e of s.exercises) {
+        if (e.sets <= 2 || e.slot === 'correctif') continue;
+        const g = capGroupPoints(weekPoints([{ exercises: [e] }], ctx, po));
+        const pts = [...g.entries()].filter(([k]) => /trap/.test(k)).reduce((a, [, v]) => a + v.points, 0);
+        if (pts > 0 && (!best || pts / e.sets > best.pts / best.e.sets)) best = { e, pts };
+      }
+    }
+    if (!best) break;
+    best.e.sets--;
+    shaved.push(best.e);
+    if (tryPlace()) return true;
+  }
+  for (const e of shaved) e.sets++;
+  return false;
+}

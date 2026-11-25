@@ -42,7 +42,7 @@ import { capCoreWeek } from './core-cap';
 import { addComplements } from './complements';
 import { addSportPrevention } from './sport-prevention';
 import { a1Allowed, lightenLegs } from './sport-legs-light';
-import { addCorrectifs, checkZones, enforceZoneCaps, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
+import { addCorrectifs, checkZones, enforceZoneCaps, makeRoomForNeck, fillGreyZones, fillToTarget, hasHeavyShoulderTrap, neckAllowed, zoneCapsOk } from './zones-check';
 import { zoneName } from '../zones/zones';
 export { checkZones, SLOTLESS_ZONES, slotlessFor } from './zones-check';
 export { zoneName, ZONES } from '../zones/zones';
@@ -1047,7 +1047,10 @@ function generateWeek(input: GeneratorInput, week: number): GenerateResult {
   // en gardant 6 min libres pour les correctifs des petites zones (idempotent : l’appel suivant ne fait que compléter).
   if (isPpl && raisedCaps(ctx)) addIsolation(RAISED_ISO_RESERVE_SEC);
   // Cou : placé tout de suite dans la séance réservée (le remplissage des zones prendrait sa place et son temps) ; l'appel suivant de addCorrectifs ne le double jamais.
-  if (ctx.neckSafeLabels) addCorrectifs(kept, zoneDeps, { only: ['cou'] });
+  if (ctx.neckSafeLabels) {
+    const hasNeck = () => kept.some((s) => s.exercises.some((e) => e.ficheId === CORRECTIF_COU.ficheId && e.slot === 'correctif'));
+    makeRoomForNeck(kept, ctx, ctx.neckSafeLabels, () => { addCorrectifs(kept, zoneDeps, { only: ['cou'] }); return hasNeck(); });
+  }
   fillGreyZones(kept, zoneDeps);
   // Emplacement correctif (06/11/2026) : petites zones restées grises, 1 à 2 exercices légers en fin de séance (zones-check.ts).
   addCorrectifs(kept, zoneDeps);
