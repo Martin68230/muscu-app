@@ -14,10 +14,10 @@ const WORDS: [string, RegExp, string[]][] = [
   ['barre', /\bbarres?\b/, ['barre', 'barre_ez', 'barre_traction', 'rack', 'disques']],
   ['poulie', /\bpoulies?\b/, ['poulie']],
   ['kettlebell', /\bkettlebells?\b/, ['kettlebell']],
-  ['banc', /\bbancs?\b/, ['banc', 'banc_inclinable']],
+  ['banc', /\bbancs?\b/, ['banc', 'banc_inclinable', 'box_ou_step', 'marche_escalier']],
   ['serviette', /\bserviettes?\b/, ['serviette']],
   ['sac à dos', /\bsacs? a dos\b/, ['sac_a_dos']],
-  ['chaise', /\bchaises?\b/, ['chaise']],
+  ['chaise', /\bchaises?\b/, ['chaise', 'box_ou_step', 'marche_escalier']],
   ['machine', /\bmachines?\b/, ['machine', 'machine_cardio']],
 ];
 /** « sans élastique » ne cite pas un matériel nécessaire. */
