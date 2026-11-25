@@ -105,7 +105,6 @@ export const GV_TABLE: GvEntry[] = [
   { id: '0182', gif: '0182-61GrD55.gif', fiche: 'curl-prise-serree', variante: 'curl-prise-serree-poulie', niveau: 'proche' },
   { id: '0452', gif: '0452-vBNyir7.gif', fiche: 'curl-pupitre-prise-inversee-a-la-barre-ez', variante: 'curl-pupitre-prise-inversee-a-la-barre-ez-barre-ez-disques-banc', niveau: 'sûr' },
   { id: '1616', gif: '1616-kj3hy6W.gif', fiche: 'curl-pupitre-prise-inversee-a-la-barre-ez', variante: 'curl-pupitre-prise-inversee-a-la-barre-ez-barre-ez-disques-banc', niveau: 'proche' },
-  { id: '1616', gif: '1616-kj3hy6W.gif', fiche: 'curl-pupitre-prise-inversee-a-la-barre-ez', variante: 'curl-pupitre-prise-inversee-a-la-barre-ez-machine', niveau: 'sûr' },
   { id: '1627', gif: '1627-hacCyUv.gif', fiche: 'curl-pupitre-prise-serree-a-la-barre-ez', variante: 'curl-pupitre-prise-serree-a-la-barre-ez-barre-ez-disques-banc', niveau: 'sûr' },
   { id: '1632', gif: '1632-dXz8zjF.gif', fiche: 'curl-trainant', variante: 'curl-trainant-poulie', niveau: 'sûr' },
   { id: '2294', gif: '2294-y5U5B9Y.gif', fiche: 'curl-zottman-au-pupitre', variante: 'curl-zottman-au-pupitre-halteres-banc', niveau: 'sûr' },
