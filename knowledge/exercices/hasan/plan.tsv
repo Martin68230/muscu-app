@@ -1219,7 +1219,7 @@ id	statut	raison	famille	schema	type	fam	niveau	main	sec	tags	equipment	target	n
 1309	retenu		poussee_h|pectoraux|bench decline grip press wide	poussee_h	force		intermediaire	pectoraux	triceps,deltoides_anterieurs	machine	smith machine	pectorals	smith wide grip decline bench press
 0776	ecarte	technique-ou-dangereux-ou-hors-sujet									barbell	quads	snatch pull
 0777	ecarte	deja-couvert-gif									dumbbell	abs	spell caster
-1362	ecarte	schema-non-deduit									body weight	spine	sphinx
+1362	retenu		mobilite|erecteurs_rachis|sphinx	mobilite	mobilite_recup		debutant	erecteurs_rachis	abdominaux	poids_du_corps	body weight	spine	sphinx
 0778	ecarte	technique-ou-dangereux-ou-hors-sujet									body weight	glutes	spider crawl push up
 1363	retenu		mobilite|erecteurs_rachis|spine stretch	mobilite	mobilite_recup		debutant	erecteurs_rachis	ischios,fessiers	poids_du_corps	body weight	spine	spine stretch
 2329	ecarte	deja-couvert-gif									body weight	abs	spine twist
