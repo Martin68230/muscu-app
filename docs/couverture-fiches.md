@@ -50,3 +50,6 @@ Seuil de test : `tests/unit/salle-jours.test.ts` exige une moyenne >= 80 % et un
 | lest | 7 | 7 | « lest » = gilet lesté dans l’app (test S4) : les exercices « weighted » du jeu (planche, rotation, dips, tractions) sont avancés ou à disque, écartés |
 | sangles_suspension, bosu | 4 | 4 | aucun exercice du jeu (matériel absent du jeu) : passer par des variantes sur fiches existantes |
 | sac_a_dos, mini_bande, box_ou_step, sac_de_sable, bidons_ou_sacs, marche_escalier, rack | 4 à 12 | inchangé | pas de matériel du jeu : variantes à ajouter aux fiches existantes (prochain lot) |
+
+## Lot 40 (tronc / mobilité, 25/11/2026)
+Zone tronc / mobilité du jeu quasi épuisée (96 fiches core déjà en ligne) : 163 candidats triés par `coach` : 1 fiche nouvelle (`sphinx-extension-douce`, mobilité, grossesse retirée, dos niveau 2 retiré), ~50 GIF supplémentaires reliés (niveau « proche ») à des fiches existantes, 80 écartés (cardio non supporté par le convertisseur, sauts, partenaire, techniques avancées, lestés). Lots 41 à 49 : rien à convertir dans cette zone.
