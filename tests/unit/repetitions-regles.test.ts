@@ -273,6 +273,8 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
       'curl-biceps-coudes-cales-a-la-barre-ez', 'curl-concentre-assis-a-la-barre-ez', 'curl-pupitre-prise-inversee-a-la-barre-ez', 'curl-pupitre-prise-serree-a-la-barre-ez', 'extension-triceps-debout-a-la-barre-ez',
       // lot 6 de la vague 3 (24/11/2026, jeu hasaneyldrm) : curls marteau et variantes relus par kine et relecteur
       'curl-des-jambes', 'curl-des-jambes-a-genoux', 'curl-marteau', 'curl-marteau-a-la-corde', 'curl-marteau-a-un-bras', 'curl-marteau-au-pupitre', 'curl-marteau-croise', 'curl-marteau-sur-ballon-de-gym', 'extension-triceps-a-la-corde',
+      // lot 9 et lot 20 (25/11/2026, famille tirage) : curls à la barre EZ, poulie, machine, Zottman, araignée ; relus par kine et relecteur
+      'curl-a-la-poulie-basse', 'curl-araignee-a-la-barre-ez', 'curl-biceps-a-la-machine', 'curl-de-poignet-a-la-barre', 'curl-inverse-a-la-barre', 'curl-marteau-au-pupitre-aux-halteres', 'curl-zottman-aux-halteres', 'extension-triceps-debout-a-la-barre-ez', 'curl-biceps-coudes-cales-a-la-barre-ez', 'curl-concentre-assis-a-la-barre-ez', 'curl-pupitre-prise-inversee-a-la-barre-ez', 'curl-pupitre-prise-serree-a-la-barre-ez',
     ];
     const hits = FICHES.filter((f) => ISOLATION_FICHE_PREFIXES.some((p) => f.id.startsWith(p)));
     expect(hits.map((f) => f.id).sort()).toEqual([...REVUES].sort());
