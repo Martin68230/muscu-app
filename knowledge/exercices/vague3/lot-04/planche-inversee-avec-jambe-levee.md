@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| planche-inversee-avec-jambe-levee-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Assis au sol, mains derrière toi doigts vers les pieds, hanches soulevées. |
+| planche-inversee-avec-jambe-levee-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Assis au sol, mains derrière toi doigts vers les pieds, hanches soulevées. |
 
 ## Consignes
 1. Assieds-toi au sol, les jambes tendues devant toi et les mains posées sur le sol derrière toi, les doigts pointés vers tes pieds.

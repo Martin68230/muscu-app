@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-en-horloge-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | En planche haute sur un tapis, mains sous les épaules, pieds un peu écartés. |
+| pompe-en-horloge-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | En planche haute sur un tapis, mains sous les épaules, pieds un peu écartés. |
 
 ## Consignes
 1. Mets-toi en planche haute, les mains sous les épaules et le corps bien aligné.

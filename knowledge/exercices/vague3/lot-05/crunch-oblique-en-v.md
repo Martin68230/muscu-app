@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-oblique-en-v-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Allongé sur un tapis, genoux fléchis, pieds à plat. |
+| crunch-oblique-en-v-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Allongé sur un tapis, genoux fléchis, pieds à plat. |
 
 ## Consignes
 1. Allonge-toi sur le dos, genoux fléchis, pieds à plat au sol.

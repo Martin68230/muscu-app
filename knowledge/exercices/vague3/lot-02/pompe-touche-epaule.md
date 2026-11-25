@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-touche-epaule-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | En planche haute sur un tapis, mains sous les épaules, pieds écartés. |
+| pompe-touche-epaule-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | En planche haute sur un tapis, mains sous les épaules, pieds écartés. |
 
 ## Consignes
 1. Commence en position de planche haute, les mains un peu plus écartées que la largeur des épaules et le corps aligné de la tête aux talons.

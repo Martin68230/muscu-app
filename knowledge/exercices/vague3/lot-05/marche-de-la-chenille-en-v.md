@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| marche-de-la-chenille-en-v-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Sur un tapis antidérapant, espace dégagé devant toi. |
+| marche-de-la-chenille-en-v-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Sur un tapis antidérapant, espace dégagé devant toi. |
 
 ## Consignes
 1. Tiens-toi debout, pieds écartés à la largeur des hanches.

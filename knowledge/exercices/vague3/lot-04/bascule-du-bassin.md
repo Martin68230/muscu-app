@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| bascule-du-bassin-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Sur un tapis ou un sol souple, genoux fléchis, bras le long du corps. |
+| bascule-du-bassin-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Sur un tapis ou un sol souple, genoux fléchis, bras le long du corps. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les genoux fléchis et les pieds à plat au sol.

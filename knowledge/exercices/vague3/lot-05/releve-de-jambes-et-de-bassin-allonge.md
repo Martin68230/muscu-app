@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| releve-de-jambes-et-de-bassin-allonge-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Allongé sur un tapis, mains sous les fesses. |
+| releve-de-jambes-et-de-bassin-allonge-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Allongé sur un tapis, mains sous les fesses. |
 
 ## Consignes
 1. Allonge-toi sur le dos, jambes tendues, mains sous les fesses.

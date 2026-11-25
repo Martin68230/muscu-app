@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-jambes-repliees-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Allongé sur un tapis, mains derrière la tête. |
+| crunch-jambes-repliees-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Allongé sur un tapis, mains derrière la tête. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les genoux fléchis et les pieds à plat au sol.

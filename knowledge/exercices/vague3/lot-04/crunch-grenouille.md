@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| crunch-grenouille-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Sur un tapis, plantes de pieds jointes, genoux fléchis et écartés. |
+| crunch-grenouille-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Sur un tapis, plantes de pieds jointes, genoux fléchis et écartés. |
 
 ## Consignes
 1. Allonge-toi sur le dos, les genoux fléchis et écartés, les plantes de pieds jointes.

@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| marche-de-la-chenille-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Debout sur un tapis ou un sol non glissant, de la place devant toi. |
+| marche-de-la-chenille-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Debout sur un tapis ou un sol non glissant, de la place devant toi. |
 
 ## Consignes
 1. Commence en position debout, les pieds écartés à la largeur des hanches.

@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| releve-de-bassin-jambes-verticales-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Allongé sur un tapis, bras le long du corps, paumes au sol. |
+| releve-de-bassin-jambes-verticales-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Allongé sur un tapis, bras le long du corps, paumes au sol. |
 
 ## Consignes
 1. Allonge-toi sur le dos, bras le long du corps, paumes au sol.

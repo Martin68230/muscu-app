@@ -16,7 +16,7 @@ Variante de la pompe qui déplace l'effort vers les triceps : fiche séparée (d
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| pompe-diamant-sol | Au sol | 1 | intermediaire | poids_du_corps | Mains au sol sous la poitrine, index et pouces se touchent en forme de losange, sur les pointes de pieds. |
+| pompe-diamant-sol | Au sol | 1 | intermediaire | poids_du_corps, tapis | Mains au sol sous la poitrine, index et pouces se touchent en forme de losange, sur les pointes de pieds. |
 
 ## Consignes
 1. Place les mains sous la poitrine, rapprochées : index et pouces se touchent.

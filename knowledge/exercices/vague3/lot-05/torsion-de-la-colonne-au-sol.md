@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| torsion-de-la-colonne-au-sol-poids-du-corps | Poids du corps, assis au sol | 1 | intermediaire | poids_du_corps | Assis sur un tapis, pieds à plat. |
+| torsion-de-la-colonne-au-sol-poids-du-corps | Poids du corps, assis au sol | 1 | intermediaire | poids_du_corps, tapis | Assis sur un tapis, pieds à plat. |
 
 ## Consignes
 1. Assieds-toi au sol, genoux fléchis, pieds à plat écartés à la largeur des hanches.

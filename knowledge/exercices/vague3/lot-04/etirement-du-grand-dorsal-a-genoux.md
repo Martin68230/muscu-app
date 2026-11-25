@@ -15,7 +15,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| etirement-du-grand-dorsal-a-genoux-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | À genoux sur un tapis, bras tendus au-dessus de la tête, doigts entrelacés. |
+| etirement-du-grand-dorsal-a-genoux-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | À genoux sur un tapis, bras tendus au-dessus de la tête, doigts entrelacés. |
 
 ## Consignes
 1. Mets-toi à genoux au sol, les genoux écartés à la largeur des hanches et les orteils pointés vers l'arrière.

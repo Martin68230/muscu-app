@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| releve-de-buste-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps | Sur le dos, genoux pliés, pieds à plat, mains derrière la tête. |
+| releve-de-buste-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, tapis | Sur le dos, genoux pliés, pieds à plat, mains derrière la tête. |
 | releve-de-buste-machine | Sur machine | 2 | intermediaire | machine | Assis sur la machine, dos calé, poignées ou coussin tenus près de la poitrine. |
 
 ## Consignes

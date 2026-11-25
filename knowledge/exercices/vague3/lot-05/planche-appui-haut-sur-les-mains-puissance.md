@@ -16,7 +16,7 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| planche-appui-haut-sur-les-mains-puissance-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps | Sur un tapis, espace dégagé. |
+| planche-appui-haut-sur-les-mains-puissance-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, tapis | Sur un tapis, espace dégagé. |
 
 ## Consignes
 1. Mets-toi en planche haute : mains sous les épaules, corps aligné de la tête aux pieds.
