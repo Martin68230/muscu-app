@@ -277,7 +277,7 @@ describe('Contrôle relecteur et avis kiné du 05/11/2026', () => {
       'curl-a-la-poulie-basse', 'curl-araignee-a-la-barre-ez', 'curl-biceps-a-la-machine', 'curl-de-poignet-a-la-barre', 'curl-inverse-a-la-barre', 'curl-marteau-au-pupitre-aux-halteres', 'curl-zottman-aux-halteres', 'extension-triceps-debout-a-la-barre-ez', 'curl-biceps-coudes-cales-a-la-barre-ez', 'curl-concentre-assis-a-la-barre-ez', 'curl-pupitre-prise-inversee-a-la-barre-ez', 'curl-pupitre-prise-serree-a-la-barre-ez',
     ];
     const hits = FICHES.filter((f) => ISOLATION_FICHE_PREFIXES.some((p) => f.id.startsWith(p)));
-    expect(hits.map((f) => f.id).sort()).toEqual([...REVUES].sort());
+    expect(hits.map((f) => f.id).sort()).toEqual([...new Set(REVUES)].sort());
     for (const f of hits) {
       expect(f.musclesPrincipaux.length, f.id).toBeLessThanOrEqual(2);
       expect(['squat', 'fente'].includes(f.schema), f.id).toBe(false);
