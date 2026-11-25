@@ -15,7 +15,6 @@ statut: utilisable
 
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
-| curl-pupitre-prise-inversee-a-la-barre-ez-machine | Sur machine | 1 | intermediaire | machine | Matériel : machine ; position de départ : voir les consignes. |
 | curl-pupitre-prise-inversee-a-la-barre-ez-barre-ez-disques-banc | À la barre EZ, sur un banc | 1 | intermediaire | barre_ez, disques, banc | Matériel : barre ez, disques, banc ; position de départ : voir les consignes. |
 
 ## Consignes
