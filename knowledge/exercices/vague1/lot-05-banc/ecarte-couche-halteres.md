@@ -64,7 +64,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - epaule-n2 : exercice d'isolation qui étire fortement l'épaule : retiré dès la gêne nette.
 - coude-n1 : charge de départ légère ; coudes à peine pliés et fixes (le long bras de levier tire sur le coude). Au niveau 2, retiré.
 - dos-n2 : retour au banc plat, jamais décliné ; charge qui n'augmente pas (R2).
-- cou-n1 et n2 : jamais la variante déclinée (tête plus basse que les pieds). Après un choc au cou (C3) : niveau 3.
+- cou-n1 : jamais la variante déclinée (tête plus basse que les pieds). Après un choc au cou (C3) : niveau 3.
+- cou-n2 : jamais la variante déclinée (tête plus basse que les pieds). Après un choc au cou (C3) : niveau 3.
 - grossesse : couché sur le dos (banc plat) ou semi-allongé (banc incliné), donc retiré (G4 et prudence). Post-partum : G7.
 - general : version plus douce = développé couché à prise neutre (moins d'étirement de l'épaule) ; elle reste soumise aux cases de sa propre fiche.
 

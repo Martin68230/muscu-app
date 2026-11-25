@@ -65,7 +65,8 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 - epaule-n2 : le seul remplaçant (développé au sol) serait lui-même adapté par la même zone : la case est un retrait sans remplaçant ; le générateur choisit un autre exercice de poussée horizontale.
 - poignet-n1 : paumes face à face, poignet droit (variante prise neutre).
 - dos-n2 : retour à plat (prise neutre), jamais décliné ; charge qui n'augmente pas (R2).
-- cou-n1 et n2 : jamais la variante déclinée (tête plus basse que les pieds) ; tête posée sur le banc. Après un choc au cou (C3) : niveau 3.
+- cou-n1 : jamais la variante déclinée (tête plus basse que les pieds) ; tête posée sur le banc. Après un choc au cou (C3) : niveau 3.
+- cou-n2 : jamais la variante déclinée (tête plus basse que les pieds) ; tête posée sur le banc. Après un choc au cou (C3) : niveau 3.
 - grossesse : couché sur le dos, donc retiré (G4 ; extrapolation PROVISOIRE : la HAS parle de la 24e semaine, l'app l'applique dès la coche du réglage) ; remplaçant : développé épaules assis, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres
