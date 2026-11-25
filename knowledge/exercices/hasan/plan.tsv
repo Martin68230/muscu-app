@@ -1323,3 +1323,4 @@ id	statut	raison	famille	schema	type	fam	niveau	main	sec	tags	equipment	target	n
 1604	ecarte	deja-couvert-gif									body weight	hamstrings	world greatest stretch
 1428	ecarte	deja-couvert-gif									body weight	forearms	wrist circles
 0859	retenu		mobilite|avant_bras|rollerer wrist	mobilite	mobilite_recup		intermediaire	avant_bras	biceps,triceps	lest	weighted	forearms	wrist rollerer
+0152	retenu		poussee_h|triceps|cable concentration	poussee_h	force		intermediaire	triceps	avant_bras	poulie	cable	triceps	cable concentration extension (on knee)

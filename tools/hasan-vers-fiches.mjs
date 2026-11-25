@@ -113,6 +113,10 @@ const KB_TEXTE = {
   'kb-fente-passage': { att: ['Pas contrôlé, buste droit, genou avant dans l’axe du pied ; la kettlebell passe lentement d’une main à l’autre sous la jambe, sans se pencher en avant.', 'Équilibre avant tout : commence très léger, sol non glissant.', 'Choisis une kettlebell (parmi tes poids) que tu peux passer sans perdre l’équilibre.'], dose: '2 à 3 séries de 6 à 10 répétitions par jambe, réserve >= 2, repos 60 à 90 secondes' },
   'kb-rowing': { att: ['Buste penché, dos neutre, ventre serré ; tire le coude vers la hanche, épaule basse.', 'Mouvement lent, sans élan ni balancement du buste ; une main peut s’appuyer sur un banc ou une chaise.', 'Choisis une kettlebell (parmi tes poids) qui permet de finir toutes les répétitions proprement.'], dose: '2 à 3 séries de 8 à 12 répétitions par côté, réserve >= 2, repos 60 à 90 secondes' },
 };
+// ---- famille poussée (25/11/2026, session A) : exercices dont le schéma n'est pas déduit du nom ; seul cet identifiant est repris.
+const PUSH = {
+  '0152': { famille: 'poussee_h|triceps|cable concentration', schema: 'poussee_h', type: 'force', niveau: 'intermediaire' },
+};
 const KB_TECH = new Set(Object.values(KB).filter((x) => x.tech).map((x) => x.famille));
 function schemaOf(h) {
   const n = ` ${h.name.toLowerCase()} `;
@@ -172,7 +176,7 @@ function plan() {
   for (const h of data) {
     const base = { id: h.id, name: h.name, equipment: h.equipment, target: h.target };
     const why = (r) => rows.push({ ...base, statut: 'ecarte', raison: r });
-    const ov = KB[h.id];
+    const ov = KB[h.id] ?? PUSH[h.id];
     if (!ov && EXCLU_NOM.test(h.name)) { why('technique-ou-dangereux-ou-hors-sujet'); continue; }
     if (h.body_part === 'neck' || h.body_part === 'cardio' || h.target === 'cardiovascular system') { why('cou-ou-cardio'); continue; }
     const tags = equipTags(h);
