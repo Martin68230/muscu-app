@@ -17,6 +17,9 @@ statut: utilisable
 |---|---|---|---|---|---|
 | squat-gobelet-haltere | À l'haltère | 1 | debutant | halteres | Un haltère tenu vertical contre la poitrine, mains sous le disque du haut. |
 | squat-gobelet-kettlebell | Au kettlebell | 1 | debutant | kettlebell | Kettlebell tenu par les côtés de la poignée, contre la poitrine. |
+| squat-gobelet-sac-a-dos | Avec un sac à dos | 1 | debutant | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : tenu serré contre la poitrine, à deux bras. |
+| squat-gobelet-bidons-ou-sacs | Avec des bidons ou des sacs | 1 | debutant | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon tenu contre la poitrine. |
+| squat-gobelet-sac-de-sable | Avec un sac de sable | 1 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu contre la poitrine. |
 
 ## Consignes
 1. Tiens la charge collée à ta poitrine, coudes vers le bas.

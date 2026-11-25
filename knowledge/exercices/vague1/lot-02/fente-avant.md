@@ -18,6 +18,9 @@ statut: utilisable
 | fente-avant-poids-du-corps | Poids du corps, retour au point de départ | 1 | debutant | poids_du_corps | Espace dégagé devant toi, mains sur les hanches. |
 | fente-avant-halteres | Avec deux haltères, retour au point de départ | 1 | debutant | halteres | Même installation, un haltère dans chaque main le long du corps. |
 | fente-marchee | Fentes marchées, poids du corps | 2 | debutant | poids_du_corps | Espace dégagé pour avancer, mains sur les hanches. |
+| fente-avant-sac-a-dos | Avec un sac à dos | 2 | debutant | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : porté sur le dos. |
+| fente-avant-bidons-ou-sacs | Avec des bidons ou des sacs | 2 | debutant | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon dans chaque main, bras le long du corps. |
+| fente-avant-sac-de-sable | Avec un sac de sable | 2 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu contre la poitrine. |
 
 ## Consignes
 1. Debout, pieds largeur de hanches, mains sur les hanches (ou haltères le long du corps).

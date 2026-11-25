@@ -18,6 +18,7 @@ statut: utilisable
 | squat-bulgare-chaise | Pied sur une chaise | 1 | intermediaire | poids_du_corps, chaise | Chaise stable calée contre un mur, dessus du pied arrière posé sur l'assise. |
 | squat-bulgare-marche | Pied sur une marche | 1 | intermediaire | poids_du_corps, marche_escalier | Dessus du pied arrière sur la première marche d'un escalier (éclairé, dégagé, rampe si possible). |
 | squat-bulgare-halteres | Haltères, pied sur une chaise | 1 | intermediaire | halteres, chaise | Comme la version chaise, un haltère dans chaque main. |
+| squat-bulgare-box-ou-step | Avec une box | 1 | intermediaire | box_ou_step | Box ou step large et stable, qui ne glisse pas, calé contre un mur, hauteur au plus celle d’un genou : dessus du pied arrière posé sur la box. Sans charge. |
 
 ## Consignes
 1. Dos à la chaise, pose le dessus d'un pied sur l'assise.

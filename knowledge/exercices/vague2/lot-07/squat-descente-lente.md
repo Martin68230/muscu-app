@@ -17,6 +17,7 @@ statut: utilisable
 |---|---|---|---|---|---|
 | squat-descente-lente-appui | Une main sur un support stable | 1 | debutant | poids_du_corps, chaise | Debout face au dossier d'une chaise stable calée contre un mur, ou face au mur, une main posée dessus. |
 | squat-descente-lente-libre | Sans appui | 2 | debutant | poids_du_corps | Debout, pieds un peu plus larges que les hanches, bras devant toi. |
+| squat-descente-lente-mini-bande | Avec une mini-bande | 2 | debutant | mini_bande | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux. |
 
 ## Consignes
 1. Debout, pieds un peu plus larges que les hanches, ventre serré.

@@ -50,3 +50,6 @@ Seuil de test : `tests/unit/salle-jours.test.ts` exige une moyenne >= 80 % et un
 | lest | 7 | 7 | « lest » = gilet lesté dans l’app (test S4) : les exercices « weighted » du jeu (planche, rotation, dips, tractions) sont avancés ou à disque, écartés |
 | sangles_suspension, bosu | 4 | 4 | aucun exercice du jeu (matériel absent du jeu) : passer par des variantes sur fiches existantes |
 | sac_a_dos, mini_bande, box_ou_step, sac_de_sable, bidons_ou_sacs, marche_escalier, rack | 4 à 12 | inchangé | pas de matériel du jeu : variantes à ajouter aux fiches existantes (prochain lot) |
+
+### Mise à jour (lot 10, variantes de matériel sur fiches existantes, 25/11/2026)
+`tools/ajout-variantes-materiel.mjs` ajoute 55 variantes (même geste, autre matériel, sans nouvelle fiche ni nouveau dessin ; le GIF de la fiche de base sert d'image) puis kiné et relecteur. Nombre de fiches avec une variante du matériel : sac_a_dos 5 → 15, mini_bande 6 → 15, box_ou_step 6 → 15, sac_de_sable 4 → 15, bidons_ou_sacs 4 → 15, marche_escalier 10 → 15. Restent sous 15 : rack 12 (variantes à la barre déjà dans les fiches du rack), lest 7 (le tag `lest` = gilet lesté, limité aux 7 fiches gilet par le test S4), bosu 4 et sangles_suspension 4 (matériel absent du jeu, pas de nouvelle fiche dessinée).
