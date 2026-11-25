@@ -21,6 +21,7 @@ statut: utilisable
 | elevation-laterale-chaise-elastique | Assis sur une chaise, élastique | 1 | debutant | elastique, chaise | Même chaise ; assis, dos contre le dossier, pieds à plat sur le milieu de l'élastique, une poignée (ou un bout) dans chaque main, élastique légèrement tendu. |
 | elevation-laterale-debout-halteres | Aux haltères | 2 | debutant | halteres | Debout, pieds à largeur de hanches, genoux souples, un haltère très léger par main, bras le long du corps, paumes face aux cuisses, ventre serré. |
 | elevation-laterale-debout-elastique | À l'élastique | 2 | debutant | elastique | Debout, pieds à largeur de hanches sur le milieu de l'élastique, chaussures aux pieds, sol non glissant ; une poignée (ou un bout) dans chaque main, bras le long du corps, élastique légèrement tendu. |
+| elevation-laterale-debout-poulie | À la poulie basse | 2 | debutant | poulie | Debout de côté à la poulie basse, poignée dans la main éloignée de la machine, bras le long du corps, genoux souples, ventre serré ; charge très légère. |
 
 ## Consignes
 1. Choisis une charge très légère (ou l'élastique le plus léger) et mets-toi en position, épaules loin des oreilles, ventre serré.
@@ -31,6 +32,7 @@ statut: utilisable
 6. Respire en continu ; si tu balances le corps pour lever, la charge est trop lourde.
 
 ## Points d'attention
+- À la poulie : un bras à la fois, jamais plus haut que l’horizontale ; ne lâche pas la poignée sous tension.
 - Jamais plus haut que l'horizontale (hauteur des épaules), à tous les niveaux et pour toutes les variantes ; mouvement lent, sans élan. Bras un peu devant le plan du corps plutôt que pile sur le côté, si c'est plus confortable pour l'épaule (NON SOURCÉ).
 - Charge très légère, jamais augmentée tant qu'une gêne à l'épaule est signalée (R2) (NON SOURCÉ).
 - Avec l'élastique : ne lâche jamais une poignée sous tension ; si un pied bouge ou si l'élastique glisse, arrête : redescends lentement les mains, pose-les, puis dégage l'élastique ; jamais de pas hors de l'élastique tendu (NON SOURCÉ).

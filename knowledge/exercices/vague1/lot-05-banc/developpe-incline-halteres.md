@@ -16,6 +16,8 @@ statut: utilisable
 |---|---|---|---|---|---|
 | developpe-incline-halteres-pente-douce | Banc peu incliné | 1 | debutant | halteres, banc_inclinable | Dossier réglé à une pente faible (environ 30 degrés), réglage bloqué, pieds à plat au sol. |
 | developpe-incline-halteres-pente-moyenne | Banc incliné moyen | 2 | debutant | halteres, banc_inclinable | Dossier réglé à environ 45 degrés, réglage bloqué, pieds à plat au sol. |
+| developpe-incline-halteres-prise-neutre | Prise neutre (paumes face à face) | 2 | debutant | halteres, banc_inclinable | Dossier à environ 45 degrés, réglage bloqué, haltères tenus paumes face à face, coudes un peu écartés du buste. |
+| developpe-incline-halteres-pente-forte | Banc très incliné | 3 | intermediaire | halteres, banc_inclinable | Dossier à environ 60 degrés, réglage bloqué ; l’épaule travaille davantage : haltères plus légers, pieds à plat. |
 
 ## Consignes
 1. Règle le dossier et bloque-le ; assieds-toi avec les haltères sur les cuisses, puis appuie le dos et monte les haltères à hauteur des épaules.
@@ -25,6 +27,7 @@ statut: utilisable
 5. Termine en reposant les haltères sur les cuisses.
 
 ## Points d'attention
+- Pente forte : proche d’un développé d’épaules, haltères plus légers ; si l’épaule pince, reviens à la pente douce.
 - Plus le dossier est redressé, plus l'épaule travaille : commence par la pente douce.
 - Le dos reste en appui sur le dossier.
 - Les haltères montent au-dessus de la poitrine, pas du visage.
@@ -51,13 +54,13 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Épaule | adapter: amplitude:reduite | retirer | retirer |
+| Épaule | adapter: variante:developpe-incline-halteres-pente-douce | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | adapter: appui:paumes-face-a-face | adapter: charge:legere | retirer |
 | Dos | garder | adapter: variante:developpe-incline-halteres-pente-douce | retirer |
 
 **Notes**
-- epaule-n1 : descends moins bas, coudes plus près du buste ; reste sur la pente douce (plus le dossier se redresse, plus l'épaule travaille). Conseil affiché, non codé.
+- epaule-n1 : retour à la pente douce (plus le dossier se redresse, plus l'épaule travaille ; la pente forte et la pente moyenne sont écartées) ; descends moins bas, coudes plus près du buste.
 - poignet-n1 : paumes face à face, poignet droit.
 - dos-n2 : pente douce, charge qui n'augmente pas (R2).
 - grossesse : semi-allongé retiré par prudence (extrapolation de G4, NON SOURCÉ : la HAS ne cite pas la position inclinée) ; remplaçant : développé épaules assis dossier droit, charge légère. Post-partum : G7.

@@ -17,6 +17,7 @@ couverture: substitut
 |---|---|---|---|---|---|
 | extension-triceps-couche-deux-halteres | Deux haltères légers | 1 | intermediaire | halteres, banc | Allongé sur un banc plat, pieds au sol, un haltère léger par main, bras tendus au-dessus de la poitrine, paumes face à face. |
 | extension-triceps-couche-un-haltere | Un haltère tenu à deux mains | 1 | intermediaire | halteres, banc | Même position, un seul haltère tenu à deux mains par le disque du haut, bras tendus. |
+| extension-triceps-couche-un-bras | Un haltère, un bras | 2 | intermediaire | halteres, banc | Allongé sur un banc plat, un haltère léger dans une main, bras tendu au-dessus de l’épaule (jamais au-dessus du visage), l’autre main soutient le coude ; descends vers le côté de la tête, pas vers le front. |
 
 ## Consignes
 1. Allonge-toi sur le banc, pieds au sol, haltères au-dessus de la poitrine, bras tendus, coudes dirigés vers le plafond.
@@ -26,6 +27,7 @@ couverture: substitut
 5. Pose les haltères sur les cuisses en te redressant, sans les lâcher.
 
 ## Points d'attention
+- Un bras à la fois : le coude reste fixe et pointé vers le plafond ; charge très légère, arrête si le coude ou l’épaule tire.
 - Les haltères passent à côté du visage : charge légère, tenue très ferme, aucun lâcher (R9).
 - Les coudes ne s'écartent pas.
 - Haltère fixe de préférence ; si réglable, disques serrés.

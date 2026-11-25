@@ -17,6 +17,7 @@ statut: utilisable
 | developpe-couche-halteres-prise-neutre | Paumes face à face | 1 | debutant | halteres, banc | Allongé sur un banc plat, pieds au sol, un haltère par main, paumes face à face, coudes un peu écartés du buste. |
 | developpe-couche-halteres-classique | Paumes vers les pieds | 1 | debutant | halteres, banc | Même position, poignets alignés avec les avant-bras, haltères au niveau de la poitrine. |
 | developpe-couche-halteres-un-bras | Un bras à la fois | 2 | intermediaire | halteres, banc | Un seul haltère, l'autre main posée sur le ventre ; le buste reste bien à plat sur le banc, sans tourner. |
+| developpe-couche-halteres-decline | Banc légèrement décliné | 3 | intermediaire | halteres, banc | Banc décliné de 10 à 15 degrés au plus, pieds bien calés ; un partenaire te passe les haltères et les reprend (sans partenaire : ne fais pas cette variante). Même geste que le développé à plat. |
 
 ## Consignes
 1. Assieds-toi sur le banc avec les haltères sur les cuisses, puis allonge-toi en les montant un par un à hauteur de la poitrine ; pieds à plat au sol.
@@ -26,6 +27,7 @@ statut: utilisable
 5. Pour finir, repose les haltères sur les cuisses en te redressant.
 
 ## Points d'attention
+- Variante déclinée : tête plus basse que les pieds, donc jamais seul, jamais avec une tension élevée ou un reflux connus sans avis d’un médecin ; arrête au moindre vertige ou pression à la tête. Haltères plus légers qu’à plat.
 - Choisis des haltères que tu contrôles : la descente dure plus longtemps que la montée.
 - Les fesses et la tête restent sur le banc, le bas du dos ne se cambre pas fortement.
 - Les haltères ne passent jamais au-dessus du visage : ils montent au-dessus des épaules.
@@ -55,13 +57,15 @@ Rédigé par `kine` le 2026-10-22 (reprise de la proposition de `coach`). Règle
 | Épaule | adapter: amplitude:reduite | retirer | retirer |
 | Coude | garder | adapter: charge:legere | retirer |
 | Poignet | adapter: appui:paumes-face-a-face | adapter: charge:legere | retirer |
-| Dos | garder | adapter: charge:legere | retirer |
+| Dos | garder | adapter: variante:developpe-couche-halteres-prise-neutre | retirer |
+| Cou | adapter: variante:developpe-couche-halteres-prise-neutre | adapter: variante:developpe-couche-halteres-prise-neutre | retirer |
 
 **Notes**
 - epaule-n1 : descends moins bas, coudes plus près du buste.
 - epaule-n2 : le seul remplaçant (développé au sol) serait lui-même adapté par la même zone : la case est un retrait sans remplaçant ; le générateur choisit un autre exercice de poussée horizontale.
 - poignet-n1 : paumes face à face, poignet droit (variante prise neutre).
-- dos-n2 : haltères légers, pas d'augmentation (R2).
+- dos-n2 : retour à plat (prise neutre), jamais décliné ; charge qui n'augmente pas (R2).
+- cou-n1 et n2 : jamais la variante déclinée (tête plus basse que les pieds) ; tête posée sur le banc. Après un choc au cou (C3) : niveau 3.
 - grossesse : couché sur le dos, donc retiré (G4 ; extrapolation PROVISOIRE : la HAS parle de la 24e semaine, l'app l'applique dès la coche du réglage) ; remplaçant : développé épaules assis, charge légère. Post-partum : G7.
 
 **Grossesse** : retirer: remplacant:developpe-epaules-halteres
