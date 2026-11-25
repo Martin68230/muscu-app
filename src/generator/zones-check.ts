@@ -124,6 +124,13 @@ export const hasHeavyShoulderTrap = (s: Pick<Sess, 'exercises'>, ctx: Ctx): bool
   s.exercises.some((e) => [e, ...(e.alt ? [e.alt] : [])].some((x) => x.slot !== 'correctif' && isHeavyShoulderTrapExercise(x, ctx)));
 
 /** Fiches correctif admissibles d'une zone pour le profil (liste fermée CORRECTIF, matériel, niveau, cases de sécurité, grossesse). */
+function noSalleFilter(ctx: Ctx): Ctx {
+  if (!ctx.salleFilter) return ctx;
+  let c = ctx.memo.get('nosalle') as Ctx | undefined;
+  if (!c) { c = { ...ctx, salleFilter: false, memo: new Map() }; ctx.memo.set('nosalle', c); }
+  return c;
+}
+
 export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[]): Candidate[] {
   const key = `correctif:${z}`;
   const hit = ctx.memo.get(key) as Candidate[] | undefined;
@@ -137,7 +144,8 @@ export function correctifCandidates(z: ZoneId, ctx: Ctx, pool: readonly Fiche[])
     const f = pool.find((x) => x.id === id);
     if (!f || ficheTouchesSensitive(f, ctx) || (zoneCoefs(f as ZoneFiche).get(z) ?? 0) < MIN_COEF) continue;
     if (ctx.level === 'debutant' && levelIdx(f.niveauMin) > 0) continue;
-    const cand = resolveFiche(f, ctx).candidates.find((c) => c.fiche.id === f.id && !c.replaces && (z !== 'cou' || c.variant.id === CORRECTIF_COU.variantId));
+    // Les correctifs (élastique, mini-bande : mobilité / activation) échappent au filtre « salle » (comme l'échauffement) : sans eux, péroniers et abducteurs resteraient gris en salle.
+    const cand = resolveFiche(f, noSalleFilter(ctx)).candidates.find((c) => c.fiche.id === f.id && !c.replaces && (z !== 'cou' || c.variant.id === CORRECTIF_COU.variantId));
     if (cand) out.push(cand);
   }
   ctx.memo.set(key, out);
