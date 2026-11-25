@@ -16,6 +16,8 @@ statut: utilisable
 |---|---|---|---|---|---|
 | porte-valise-haltere | Un haltère | 1 | debutant | halteres | Un haltère posé au sol à côté du pied. |
 | porte-valise-bidon-sac | Un bidon ou un sac | 1 | debutant | bidons_ou_sacs | Un bidon d'eau ou un sac solide avec une poignée confortable. |
+| porte-valise-sac-a-dos | Avec un sac à dos | 1 | debutant | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : tenu par la poignée d’une main. |
+| porte-valise-sac-de-sable | Avec un sac de sable | 1 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : un sac dans une main. |
 
 ## Consignes
 1. Charge au sol à côté d'un pied.

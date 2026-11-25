@@ -19,6 +19,7 @@ Version de la marche latérale pour les profils sans mini-bande (voir marche-lat
 |---|---|---|---|---|---|
 | marche-laterale-corps-genoux-souples | Genoux légèrement fléchis | 1 | debutant | poids_du_corps | Debout, pieds largeur de hanches, genoux légèrement fléchis, mains sur les hanches. |
 | marche-laterale-corps-demi-squat | Demi-squat, mains devant | 2 | debutant | poids_du_corps | Même position, genoux plus fléchis, mains jointes devant la poitrine. |
+| marche-laterale-poids-du-corps-mini-bande | Avec une mini-bande | 2 | debutant | mini_bande | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux. |
 
 ## Consignes
 1. Debout, pieds largeur de hanches, genoux légèrement fléchis, buste droit.

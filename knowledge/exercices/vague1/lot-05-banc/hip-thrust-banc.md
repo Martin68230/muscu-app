@@ -18,6 +18,7 @@ statut: utilisable
 | hip-thrust-banc-poids-du-corps | Poids du corps | 1 | debutant | poids_du_corps, banc | Haut du dos (sous les omoplates) contre le bord d'un banc stable, pieds à plat au sol, genoux pliés. |
 | hip-thrust-banc-halteres | Un haltère sur les hanches | 2 | debutant | halteres, banc | Même position, un haltère posé en travers des hanches, tenu à deux mains (serviette pliée dessous si besoin). |
 | hip-thrust-banc-une-jambe | Une jambe | 3 | intermediaire | poids_du_corps, banc | Même position, une jambe tendue en l'air, l'autre pied pousse. |
+| hip-thrust-banc-box-ou-step | Avec une box | 3 | intermediaire | box_ou_step, banc | Box ou step large, stable, calé contre un mur et de la hauteur d’un banc (jamais plus haut) : haut du dos appuyé sur la box. |
 
 ## Consignes
 1. Assieds-toi au sol, dos contre le côté d'un banc stable (à hauteur des omoplates) ; pieds à plat, écartés à la largeur du bassin.

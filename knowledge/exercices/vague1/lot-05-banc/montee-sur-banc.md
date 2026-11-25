@@ -17,6 +17,8 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | montee-sur-banc-poids-du-corps | Poids du corps | 1 | intermediaire | poids_du_corps, banc | Face à un banc stable ; main libre vers un mur ou un support si besoin. |
+| montee-sur-banc-box-ou-step | Avec une box | 1 | intermediaire | box_ou_step | Box ou step large et stable, calé contre un mur, hauteur au plus celle d’un genou, qui ne glisse pas : pied posé sur la box. Sans charge. |
+| montee-sur-banc-marche-escalier | Avec une marche | 1 | intermediaire | marche_escalier | Première marche d’un escalier éclairé, dégagé et non glissant, rampe à portée, chaussures aux pieds : pied posé sur la marche. Sans charge. |
 
 ## Consignes
 1. Place-toi face à un banc stable ; pose tout un pied dessus, genou au-dessus de la cheville.

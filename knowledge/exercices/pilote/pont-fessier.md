@@ -16,6 +16,10 @@ statut: utilisable
 |---|---|---|---|---|---|
 | pont-fessier-sol | Au sol | 1 | debutant | poids_du_corps, tapis | Allongé sur le dos, genoux pliés, pieds à plat. |
 | pont-fessier-haltere | Haltère sur le bassin | 1 | debutant | halteres, tapis | Un haltère posé en travers du bassin, tenu à deux mains. |
+| pont-fessier-sac-a-dos | Avec un sac à dos | 1 | debutant | sac_a_dos, tapis | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : posé sur les hanches, tenu à deux mains. |
+| pont-fessier-bidons-ou-sacs | Avec des bidons ou des sacs | 1 | debutant | bidons_ou_sacs, tapis | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon posé sur les hanches. |
+| pont-fessier-sac-de-sable | Avec un sac de sable | 1 | intermediaire | sac_de_sable, tapis | Sac de sable fermé et stable, poids que tu contrôles : posé sur les hanches. |
+| pont-fessier-mini-bande | Avec une mini-bande | 1 | intermediaire | mini_bande, tapis | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux, genoux poussés vers l’extérieur. |
 
 ## Consignes
 1. Allonge-toi sur le dos, genoux pliés, pieds à plat à largeur de hanches.

@@ -16,6 +16,8 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | squat-cosaque-lest | Avec un haltère contre la poitrine | 1 | intermediaire | halteres | Debout, pieds bien écartés, un petit haltère tenu à deux mains contre la poitrine. |
+| squat-cosaque-bidons-ou-sacs | Avec des bidons ou des sacs | 1 | intermediaire | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon tenu contre la poitrine. |
+| squat-cosaque-sac-de-sable | Avec un sac de sable | 1 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu contre la poitrine. |
 
 ## Consignes
 1. Tiens-toi debout, les pieds plus écartés que la largeur des épaules et les orteils légèrement tournés vers l'extérieur.

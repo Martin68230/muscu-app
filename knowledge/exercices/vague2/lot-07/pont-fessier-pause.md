@@ -16,6 +16,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pont-fessier-pause-sol | Pause de 3 secondes en haut | 1 | debutant | poids_du_corps, tapis | Allongé sur le dos, genoux pliés, pieds à plat à largeur de hanches, bras le long du corps. |
+| pont-fessier-pause-mini-bande | Avec une mini-bande | 1 | debutant | mini_bande, tapis | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux. |
 
 ## Consignes
 1. Allonge-toi sur le dos, genoux pliés, pieds à plat à largeur de hanches, bras le long du corps.

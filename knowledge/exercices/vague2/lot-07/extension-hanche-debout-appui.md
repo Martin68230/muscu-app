@@ -17,6 +17,7 @@ statut: utilisable
 |---|---|---|---|---|---|
 | extension-hanche-debout-mur | Mains sur un mur | 1 | debutant | poids_du_corps, mur | Debout face à un mur, mains posées à hauteur des épaules, bras presque tendus. |
 | extension-hanche-debout-chaise | Mains sur le dossier d'une chaise | 1 | debutant | poids_du_corps, chaise | Debout face au dossier d'une chaise stable calée contre un mur, mains posées dessus. |
+| extension-hanche-debout-appui-mini-bande | Avec une mini-bande | 1 | debutant | mini_bande, mur | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : autour des chevilles. |
 
 ## Consignes
 1. Debout face au mur (ou à la chaise), mains posées dessus, pieds largeur de hanches, ventre serré.

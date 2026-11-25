@@ -17,6 +17,7 @@ statut: utilisable
 |---|---|---|---|---|---|
 | squat-assis-debout-chaise | Sur une chaise | 1 | debutant | poids_du_corps, chaise | Chaise stable, sans roulettes, dossier contre un mur. |
 | squat-assis-debout-marche | Sur un banc de parc ou une box | 1 | debutant | poids_du_corps, box_ou_step | Support stable, à peu près à hauteur de genou. |
+| squat-assis-debout-marche-escalier | Avec une marche | 2 | intermediaire | marche_escalier | Marche solide et antidérapante, rebord large, escalier dégagé et une main à la rampe : assis sur la première marche. Assise plus basse que la chaise, donc plus difficile : pas pour une gêne au genou ou à la hanche.  |
 
 ## Consignes
 1. Dos à la chaise, pieds à largeur de hanches, un peu ouverts.
@@ -51,9 +52,9 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
-| Genou | garder | adapter: appui:assise-rehaussee | retirer |
-| Hanche | garder | adapter: appui:assise-rehaussee | retirer |
-| Dos | garder | adapter: appui:assise-rehaussee | retirer |
+| Genou | adapter: variante:squat-assis-debout-chaise | adapter: variante:squat-assis-debout-chaise | retirer |
+| Hanche | adapter: variante:squat-assis-debout-chaise | adapter: variante:squat-assis-debout-chaise | retirer |
+| Dos | adapter: variante:squat-assis-debout-chaise | adapter: variante:squat-assis-debout-chaise | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
@@ -66,7 +67,7 @@ Rédigé par `kine` le 2026-10-21. Règles communes R1 à R10 et grossesse (G) :
 - cuisse-n2 : choix prudent, extrapolation de §0 (NON SOURCÉ)
 - aine-n2 : idem (NON SOURCÉ)
 
-**Grossesse** : garder
+**Grossesse** : adapter: variante:squat-assis-debout-chaise
 **Version plus douce** : aucune
 
 

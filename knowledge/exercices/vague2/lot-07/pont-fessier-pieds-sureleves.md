@@ -16,6 +16,9 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | pont-fessier-pieds-chaise | Pieds sur une chaise stable | 1 | debutant | poids_du_corps, tapis, chaise | Allongé sur le dos, talons posés sur l'assise d'une chaise stable calée contre un mur, genoux pliés à environ 90 degrés. |
+| pont-fessier-pieds-sureleves-mini-bande | Avec une mini-bande | 1 | debutant | mini_bande, tapis, chaise | Mini-bande élastique en boucle, placée comme indiqué, ni fissurée ni abîmée, sans qu’elle roule ni glisse : au-dessus des genoux. |
+| pont-fessier-pieds-sureleves-box-ou-step | Avec une box | 1 | debutant | box_ou_step, tapis | Box ou step large et stable, calé contre un mur, qui ne glisse pas : pieds à plat sur la box. |
+| pont-fessier-pieds-sureleves-marche-escalier | Avec une marche | 1 | debutant | marche_escalier, tapis | Première marche d’un escalier non glissant, tapis antidérapant au sol : pieds à plat sur la marche, jamais de chaussures à semelle lisse. |
 
 ## Consignes
 1. Cale une chaise stable contre un mur et allonge-toi sur le dos devant elle, talons sur l'assise, genoux pliés.

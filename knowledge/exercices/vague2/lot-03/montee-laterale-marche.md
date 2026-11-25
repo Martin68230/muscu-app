@@ -16,6 +16,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | montee-laterale-marche-rampe | Première marche, main sur la rampe | 1 | intermediaire | poids_du_corps, marche_escalier | Première marche d'un escalier solide et non glissant, de côté, une main sur la rampe ou le mur ; chaussures aux pieds. Jamais de charge dans les mains. |
+| montee-laterale-marche-box-ou-step | Avec une box | 1 | intermediaire | box_ou_step | Box ou step large et stable, calé contre un mur, hauteur au plus celle d’une marche, qui ne glisse pas : pied posé sur la box, de côté, une main au mur. Jamais de charge dans les mains. |
 
 ## Consignes
 1. Place-toi de côté devant la première marche, une main sur la rampe, le pied le plus proche posé en entier sur la marche.

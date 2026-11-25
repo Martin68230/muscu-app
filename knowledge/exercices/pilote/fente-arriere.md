@@ -18,6 +18,9 @@ statut: utilisable
 | fente-arriere-mur | Main au mur | 1 | debutant | poids_du_corps, mur | Une main posée au mur pour l'équilibre. |
 | fente-arriere-poids-du-corps | Poids du corps | 2 | debutant | poids_du_corps | Debout, espace dégagé derrière toi. |
 | fente-arriere-halteres | Haltères | 2 | debutant | halteres | Un haltère dans chaque main, bras le long du corps. |
+| fente-arriere-sac-a-dos | Avec un sac à dos | 2 | debutant | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : porté sur le dos. |
+| fente-arriere-bidons-ou-sacs | Avec des bidons ou des sacs | 2 | debutant | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon dans chaque main. |
+| fente-arriere-sac-de-sable | Avec un sac de sable | 2 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu contre la poitrine. |
 
 ## Consignes
 1. Debout, pieds à largeur de hanches.

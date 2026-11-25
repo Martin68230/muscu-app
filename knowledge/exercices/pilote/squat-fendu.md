@@ -18,6 +18,9 @@ statut: utilisable
 | squat-fendu-mur | Main au mur | 1 | debutant | poids_du_corps, mur | Une main posée au mur pour l'équilibre. |
 | squat-fendu-poids-du-corps | Poids du corps | 2 | debutant | poids_du_corps | Pieds décalés, un devant, un derrière. |
 | squat-fendu-halteres | Haltères | 2 | debutant | halteres | Un haltère dans chaque main, bras le long du corps. |
+| squat-fendu-sac-a-dos | Avec un sac à dos | 2 | debutant | sac_a_dos | Sac à dos chargé (livres, bouteilles), sangles serrées, sac qui ne bouge pas : porté sur le dos. |
+| squat-fendu-bidons-ou-sacs | Avec des bidons ou des sacs | 2 | debutant | bidons_ou_sacs | Deux bidons ou sacs de courses de poids égal, anses solides : un bidon dans chaque main. |
+| squat-fendu-sac-de-sable | Avec un sac de sable | 2 | intermediaire | sac_de_sable | Sac de sable fermé et stable, poids que tu contrôles : tenu contre la poitrine. |
 
 ## Consignes
 1. Fais un grand pas en avant et reste dans cette position.
