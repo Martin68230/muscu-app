@@ -53,3 +53,41 @@ Notes brutes de l'utilisateur, reformulées sans rien ajouter :
 2. **Créer sa propre séance** (l'écran « Créer une séance » existe déjà, D28) en choisissant soi-même les exercices : option superset ou non, minuteurs de repos comme dans le lecteur, et la séance créée s'ajoute au calendrier ET au rapport de la semaine (carte des zones, volume).
 3. **Filtre de matériel à vérifier** : en ne laissant que « barre de traction » et « élastique » dans le matériel (en retirant sol, etc.), l'appli a quand même proposé des exercices au sol, et pas de dips ; l'utilisateur n'est pas sûr qu'il existe des dips. À reproduire avec le profil exact : (a) un matériel retiré ne doit jamais laisser passer une fiche qui l'exige (tapis / sol), (b) vérifier la couverture des exercices à la barre de traction et aux barres parallèles (dips, tractions, relevés de jambes suspendus) et ajouter les fiches manquantes.
 4. **Remplacer un exercice qu'on ne peut pas faire, pendant la séance** : un bouton qui régénère un exercice équivalent (même muscle principal, matériel disponible) en le comparant (a) au reste de la semaine pour combler les muscles qui manquent et (b) au reste de la séance pour éviter les doublons. Sécurité : mêmes règles que le générateur (plafonds, règle 23, CAL-12) ; le moteur d'adaptation existant (`src/session/adaptation.ts`, `swapForZone` dans `src/zones/catchup.ts`) est un point de départ.
+
+## 9. Annexe : script de fusion utilise (a recreer dans un fichier temporaire, ex. mergebr.sh)
+Usage : `./mergebr.sh <branche> "<message>"` depuis une branche partie de origin/main. Il fusionne en `--no-ff`, resout les conflits connus (correspondance JSON : union ; lots.json : union des cles ; docs / css / tsv : garder les deux cotes ; gv-table.ts : regenere) puis commite. Tout autre conflit est signale (`CONFLIT NON GERE`) : le traiter a la main. Apres lui : `node tools/hasan-vers-fiches.mjs nettoyer`, `node tools/gen-gv-table.mjs`, `npm run fiches`, tests, baseline.
+
+```bash
+#!/bin/bash
+# usage: mergebr.sh <branch> <message>
+br="$1"; msg="$2"
+git merge --no-ff -q "$br" -m "$msg
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>" >/dev/null 2>&1
+conf=$(git status --short | grep -E "^(UU|AA|DU|UD)" | awk '{print $2}')
+[ -z "$conf" ] && { echo "$br: fusion sans conflit"; exit 0; }
+echo "$br: conflits: $(echo $conf | tr '\n' ' ')"
+for f in $conf; do
+  case "$f" in
+    knowledge/exercices/CORRESPONDANCE-FICHES-HASAN.json)
+      node -e "
+const {execSync}=require('child_process');const fs=require('fs');
+const get=(n)=>JSON.parse(execSync('git show :'+n+':knowledge/exercices/CORRESPONDANCE-FICHES-HASAN.json',{maxBuffer:1e8}).toString());
+const key=(c)=>c.hasan_id+'|'+c.fiche+'|'+c.variante;const m=new Map();
+for(const c of [...get(2),...get(3)])if(!m.has(key(c))||(c.niveau==='sûr'&&m.get(key(c)).niveau!=='sûr'))m.set(key(c),c);
+fs.writeFileSync('$f',JSON.stringify([...m.values()])+'\n');" && git add "$f" ;;
+    knowledge/exercices/hasan/lots.json)
+      node -e "const {execSync}=require(\"child_process\");const fs=require(\"fs\");const g=(n)=>JSON.parse(execSync(\"git show :\"+n+\":knowledge/exercices/hasan/lots.json\",{maxBuffer:1e8}).toString());const a=g(2),b=g(3);const out={...b,...a};for(const k of Object.keys(out)){if(Array.isArray(a[k])&&Array.isArray(b[k]))out[k]=[...new Set([...a[k],...b[k]])]}fs.writeFileSync(\"knowledge/exercices/hasan/lots.json\",JSON.stringify(out))" && git add "$f" ;;
+    src/images/gv-table.ts) git checkout --ours "$f" 2>/dev/null; git add "$f" ;;
+    docs/*|*.md|*.tsv|*.css)
+      node -e "
+const fs=require('fs');let t=fs.readFileSync('$f','utf8');
+t=t.replace(/^<<<<<<< .*\r?\n/gm,'').replace(/^=======\r?\n/gm,'').replace(/^>>>>>>> .*\r?\n/gm,'');fs.writeFileSync('$f',t)" && git add "$f" ;;
+    *) echo "  CONFLIT NON GERE: $f"; exit 2 ;;
+  esac
+done
+timeout 120 node tools/gen-gv-table.mjs && git add src/images/gv-table.ts
+git commit -q -m "Merge $br (conflits resolus)
+
+Co-Authored-By: Claude Sonnet 5.5 <noreply@anthropic.com>" && echo "  commit ok"
+```
