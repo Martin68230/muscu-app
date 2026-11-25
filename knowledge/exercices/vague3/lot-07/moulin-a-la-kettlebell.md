@@ -54,7 +54,7 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 | Zone | Niveau 1 | Niveau 2 | Niveau 3 |
 |---|---|---|---|
 | Cou | retirer | retirer | retirer |
-| Dos | adapter: charge:legere | retirer | retirer |
+| Dos | retirer | retirer | retirer |
 | Épaule | retirer | retirer | retirer |
 | Coude | adapter: charge:legere | retirer | retirer |
 | Poignet | adapter: charge:legere | retirer | retirer |

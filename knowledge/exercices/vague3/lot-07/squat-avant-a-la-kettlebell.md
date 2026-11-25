@@ -57,6 +57,8 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 | Cheville | garder | adapter: amplitude:reduite | retirer |
+| Poignet | adapter: charge:legere | retirer | retirer |
+| Épaule | adapter: charge:legere | retirer | retirer |
 
 **Notes**
 - grossesse : retiré (choix prudent). post-partum : mêmes règles que la grossesse ; reprise des charges, des exercices abdominaux et des appuis prolongés seulement après l’avis de la sage-femme ou du médecin (G7).

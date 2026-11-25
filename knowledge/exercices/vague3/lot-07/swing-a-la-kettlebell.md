@@ -26,7 +26,7 @@ statut: utilisable
 
 ## Points d'attention
 - Exercice TECHNIQUE (règle 23) : niveau intermédiaire ou avancé seulement, jamais pour un débutant ni à la maison sans avis d’un coach ; jamais proposé par les programmes automatiques de l’appli (consultation de la fiche seulement).
-- Mouvement balistique de charnière : la puissance vient des hanches, les bras ne tirent pas ; la kettlebell monte à hauteur de poitrine, pas plus haut.
+- Mouvement balistique de charnière : la puissance vient des hanches, les bras ne tirent pas ; la kettlebell monte à hauteur d’épaule au plus, pas plus haut.
 - Dos neutre du début à la fin, jamais arrondi ; pas de squat : les genoux restent peu fléchis.
 - Poids : commence avec la kettlebell la plus légère que tu possèdes ; ne l’augmente que si 10 répétitions restent propres. Aucune valeur sourcée.
 - Séries courtes, jamais de grosse série à la fatigue : arrête dès que le dos ou la cadence se dégradent.

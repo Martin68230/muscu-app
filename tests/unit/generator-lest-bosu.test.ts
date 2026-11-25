@@ -8,7 +8,7 @@
 import { readFileSync } from 'node:fs';
 import { describe, expect, it } from 'vitest';
 import { generateProgram } from '../../src/generator';
-import { CHARGEABLE_TAGS, DOSE, FIXED_LOAD_TAGS, GENERATOR_EXCLUDED_FICHES, TEMPS } from '../../src/generator/config';
+import { CHARGEABLE_TAGS, DOSE, FIXED_LOAD_TAGS, GENERATOR_EXCLUDED_FICHES, KETTLEBELL_TECHNIQUE_FICHES, TEMPS } from '../../src/generator/config';
 import { buildCtx, carriesLoad, isChargeable } from '../../src/generator/context';
 import { buildExercise } from '../../src/generator/dose';
 import { allowedVariants, ficheAdmissible, resolveFiche, type Candidate } from '../../src/generator/safety';
@@ -156,7 +156,7 @@ describe('S4 lot 09 : le gilet lesté est une charge fixe, jamais chargeable', (
 
 describe('S3 lot 09 : equilibre-unipodal-bosu jamais placée', () => {
   it('config : la fiche est dans la liste d\'exclusion, et elle seule', () => {
-    expect([...GENERATOR_EXCLUDED_FICHES]).toEqual([EXCLUE]);
+    expect([...GENERATOR_EXCLUDED_FICHES].filter((id) => !KETTLEBELL_TECHNIQUE_FICHES.includes(id))).toEqual([EXCLUE]);
   });
 
   it('fiche lue, `utilisable` en mémoire, matériel présent : pourtant non admissible, même en échauffement', () => {

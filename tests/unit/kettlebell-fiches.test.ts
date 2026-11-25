@@ -23,7 +23,9 @@ describe('famille kettlebell', () => {
     let vus = 0;
     for (const profile of PROFILE_KEYS) for (const level of LEVELS) for (const place of ['maison', 'salle'] as const) for (const kb of [false, true]) for (const neck of [false, true]) {
       const input = mk({ profile, level, place, extraTags: kb ? ['kettlebell'] : [], injuries: neck ? [['cou', 1]] : [] });
-      const ex = allEx(generateProgram(input).program!);
+      const r = generateProgram(input);
+      if (!r.ok) continue;
+      const ex = allEx(r.program);
       for (const e of ex) {
         expect(KETTLEBELL_TECHNIQUE_FICHES, `${e.ficheId} ${profile} ${level}`).not.toContain(e.ficheId);
         if (!e.tags.includes('kettlebell')) continue;

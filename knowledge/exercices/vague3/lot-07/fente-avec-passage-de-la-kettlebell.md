@@ -54,6 +54,8 @@ Cases posées PAR RÈGLES (action la plus prudente des fiches existantes du mêm
 | Hanche | adapter: amplitude:reduite | retirer | retirer |
 | Cheville | adapter: amplitude:reduite | retirer | retirer |
 | Dos | adapter: amplitude:reduite | retirer | retirer |
+| Poignet | adapter: charge:legere | retirer | retirer |
+| Épaule | adapter: charge:legere | retirer | retirer |
 | Cuisse | garder | adapter: amplitude:reduite | retirer |
 | Aine | garder | adapter: amplitude:reduite | retirer |
 
