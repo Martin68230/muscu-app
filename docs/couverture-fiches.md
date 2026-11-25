@@ -47,6 +47,6 @@ Seuil de test : `tests/unit/salle-jours.test.ts` exige une moyenne >= 80 % et un
 | kettlebell | 4 | 19 | lot 7 : 15 fiches, dont 10 techniques en bibliothèque seulement (règle 23) |
 | barre_ez | 4 | 9 | lot 9 : 5 curls / extension ; le jeu n'a que 9 exercices barre EZ, le reste est doublon, technique (JM press) ou déjà couvert |
 | medecine_ball | 9 | 11 | lot 9 : rotation russe, pompe sur ballon ; lancers du jeu écartés (balistiques) |
-| lest | 7 | 9 | lot 9 : planche et rotation russe lestées ; dips / tractions lestées du jeu = avancé, écartés |
+| lest | 7 | 7 | « lest » = gilet lesté dans l’app (test S4) : les exercices « weighted » du jeu (planche, rotation, dips, tractions) sont avancés ou à disque, écartés |
 | sangles_suspension, bosu | 4 | 4 | aucun exercice du jeu (matériel absent du jeu) : passer par des variantes sur fiches existantes |
 | sac_a_dos, mini_bande, box_ou_step, sac_de_sable, bidons_ou_sacs, marche_escalier, rack | 4 à 12 | inchangé | pas de matériel du jeu : variantes à ajouter aux fiches existantes (prochain lot) |

@@ -130,3 +130,4 @@ Famille posée par le convertisseur (tools/hasan-vers-fiches.mjs), revue par `co
 | touche-pied-en-crabe | rotation | intermediaire | CF3 |
 | touche-talons-alternes | gainage | debutant | CF4 |
 | crunch-assis-guide | gainage | intermediaire | CF4 |
+| rotation-russe-avec-ballon-leste-jambes-tendues | rotation | intermediaire | CF3 |
