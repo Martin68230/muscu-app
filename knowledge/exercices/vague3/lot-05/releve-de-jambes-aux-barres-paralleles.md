@@ -17,6 +17,7 @@ statut: utilisable
 | id variante | nom | echelon | niveau | materiel_tags | installation |
 |---|---|---|---|---|---|
 | releve-de-jambes-aux-barres-paralleles-poids-du-corps | Aux barres parallèles | 1 | intermediaire | materiel_specialise | Barres parallèles stables, tapis dessous. |
+| releve-de-jambes-aux-barres-paralleles-maison | À la maison, barres de dips | 1 | intermediaire | barres_dips | Barres de dips solides (station stable ou barres murales fixées dans un mur porteur), testées de tout ton poids avant la série, assez hautes pour que tes pieds ne touchent pas le sol bras tendus ; sol dégagé et non glissant dessous. |
 
 ## Consignes
 1. Soutiens-toi sur les barres parallèles, bras tendus, corps droit.
@@ -77,6 +78,7 @@ Repris par `kine` le 2026-11-15 d'après le geste réel (cases d'abord posées p
 - Signes généraux (R5) : douleur ou serrement dans la poitrine, malaise, essoufflement anormal : arrête la séance.
 
 **Objets du quotidien**
+- Barres de dips à la maison : station sur sol plat qui ne bascule pas quand tu te penches ou que tes jambes bougent, ou barres murales vissées dans un mur porteur selon la notice ; charge maximale de la notice supérieure à ton poids ; vis et fixations vérifiées avant chaque séance ; jamais deux chaises, un plan de travail ou des meubles improvisés (R8).
 - Barres parallèles : stables, qui ne bougent pas quand tu t'appuies de tout ton poids ; écartement adapté à ta largeur d'épaules ; tapis dessous ; pas de dossiers de chaises, de rambarde ou de meubles.
 - Tapis antidérapant sur sol sec et non glissant ; pas de support improvisé (R8).
 
@@ -89,3 +91,4 @@ Repris par `kine` le 2026-11-15 d'après le geste réel (cases d'abord posées p
 | Nom, muscles, matériel, consignes (traduction abrégée) | jeu hasaneyldrm/exercises-dataset, texte sous licence MIT (page crédits) ; lot 5 | description de l’exercice, sans étude | 2026-11-15 | NON SOURCÉ |
 | Niveau, échelons, dosage, tableau par zone, grossesse, signes d’arrêt (repris par kine le 2026-11-15) | règles du convertisseur d’après les fiches existantes ; choix prudents ; aucune étude ne teste ces adaptations | avis d’expert (extrapolation) | 2026-11-15 | NON SOURCÉ |
 | Règles communes R1 à R10 et règles G, S, U | knowledge/regles-securite-communes.md | voir ce fichier | 2026-11-15 | R1, R2, R3, R7, R8, R9 : NON SOURCÉ ; R4, R5, R6, R10 : PROVISOIRE |
+| Consignes barres de dips à la maison (stabilité, fixation, notice, charge maximale, pas de meubles improvisés) | extrapolation de R8 (knowledge/regles-securite-communes.md) ; ajout kine le 2026-11-26 | avis d'expert (extrapolation) | 2026-11-26 | NON SOURCÉ |

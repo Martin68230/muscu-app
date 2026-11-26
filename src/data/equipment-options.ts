@@ -43,6 +43,7 @@ export const EQUIPMENT_GROUPS: EquipmentGroup[] = [
       { tag: 'ancrage_porte', label: 'Ancrage de porte', hint: 'Un ancrage adapté pour poser l’élastique en haut d’une porte fermée.' },
       { tag: 'mini_bande', label: 'Élastique en boucle (mini-bande)' },
       { tag: 'barre_traction', label: 'Barre de traction' },
+      { tag: 'barres_dips', label: 'Barres de dips', hint: 'Station ou barres murales solides, assez hautes pour que tes pieds ne touchent pas le sol (pas des parallettes basses).' },
       { tag: 'banc', label: 'Banc plat' },
       { tag: 'banc_inclinable', label: 'Banc inclinable' },
       { tag: 'barre', label: 'Barre droite' },
@@ -99,6 +100,7 @@ export const GYM_EQUIPMENT: { tag: string; label: string }[] = [
   { tag: 'banc', label: 'Banc plat' },
   { tag: 'banc_inclinable', label: 'Banc inclinable' },
   { tag: 'barre_traction', label: 'Barre de traction' },
+  { tag: 'barres_dips', label: 'Barres de dips' },
   { tag: 'machine_cardio', label: 'Machines de cardio (vélo, rameur, tapis)' },
 ];
 
