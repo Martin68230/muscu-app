@@ -70,3 +70,20 @@ export function recipeAllergens(ings: readonly LabeledIngredient[]): AllergenKey
   for (const i of ings) for (const a of i.allergenes) set.add(a);
   return ALLERGENS.filter((a) => set.has(a));
 }
+
+/**
+ * Régimes rendus impossibles par les allergènes et les familles d'ingrédients, en plus des `regimesIncompatibles` étiquetés à la main.
+ * Mêmes règles que le contrôle de tools/build-recettes.mjs : un oubli d'étiquetage de régime ne laisse jamais passer un aliment.
+ * Poisson, crustacés, mollusques, ou viande (protéine animale hors œufs et lait) : ni végétarien ni végétalien ;
+ * œufs : pas végétalien ; lait : ni végétalien ni sans lactose ; gluten : pas sans gluten.
+ */
+export function impliedIncompatibleDiets(allergenes: readonly string[], familles: readonly string[] = []): Set<string> {
+  const a = new Set(allergenes);
+  const out = new Set<string>();
+  if (a.has('poissons') || a.has('crustaces') || a.has('mollusques')) { out.add('vegetarien'); out.add('vegetalien'); }
+  if (familles.includes('proteine_animale') && !a.has('oeufs') && !a.has('lait')) { out.add('vegetarien'); out.add('vegetalien'); }
+  if (a.has('oeufs')) out.add('vegetalien');
+  if (a.has('lait')) { out.add('vegetalien'); out.add('sans_lactose'); }
+  if (a.has('gluten')) out.add('sans_gluten');
+  return out;
+}
