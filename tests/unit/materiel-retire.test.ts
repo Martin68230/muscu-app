@@ -34,3 +34,26 @@ describe('matériel retiré : tapis / sol', () => {
     }
   });
 });
+
+// Barres de dips à la maison (décision de l'utilisateur du 26/11/2026) : variantes maison seulement avec la case cochée, jamais pour un débutant.
+describe('barres de dips (barres_dips)', () => {
+  const DIPS = VARIANTS.filter((v) => v.tags.includes('barres_dips'));
+  it('variantes maison présentes, toutes intermédiaire ou plus', () => {
+    expect(DIPS.map((v) => v.id).sort()).toEqual(['dips-aux-barres-paralleles-maison', 'dips-aux-barres-paralleles-pectoraux-maison', 'releve-de-jambes-aux-barres-paralleles-maison']);
+    for (const v of DIPS) expect(v.niveau).not.toBe('debutant');
+  });
+  it('profil maison sans la case : aucune variante barres_dips ; débutant avec la case : aucune non plus', () => {
+    const run = (tags: string[], level: string) => {
+      const r = generateProgram({
+        profile: { blockedWeekdays: [], place: 'maison', sessionDurationMin: 45, sports: [], level, daysPerWeek: 3 },
+        equipment: { preset: 'perso', tags, disabledImplicit: [], dumbbellWeightsKg: [], kettlebellWeightsKg: [] },
+        goals: [{ goalKey: 'muscle', rank: 1 }], injuries: [], fiches: FICHES, options: {},
+      } as unknown as GeneratorInput);
+      return r.ok ? JSON.stringify(r.program) : '';
+    };
+    for (const [tags, level] of [[['barre_traction', 'elastique'], 'intermediaire'], [['barres_dips', 'barre_traction'], 'debutant']] as const) {
+      const json = run([...tags], level);
+      for (const v of DIPS) expect(json).not.toContain(`"${v.id}"`);
+    }
+  });
+});

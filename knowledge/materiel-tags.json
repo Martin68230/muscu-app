@@ -22,6 +22,7 @@
     { "id": "ancrage_porte", "groupe": "maison", "detail": "Accessoire explicite (jamais supposé présent) : ancrage adapté pour poser l'élastique en haut d'une porte fermée, utilisé selon sa notice. Exigé par toute variante dont l'élastique est ancré à une porte ; décision du 06/11/2026." },
     { "id": "elastique", "groupe": "maison", "detail": "Bande longue ou bande avec poignées ; résistance dans le profil. La boucle fermée est le tag mini_bande (distinct)." },
     { "id": "barre_traction", "groupe": "maison" },
+    { "id": "barres_dips", "groupe": "maison", "detail": "Barres parallèles de dips : station stable ou barres murales fixées dans un mur porteur, assez hautes pour que les pieds ne touchent pas le sol bras tendus. Les parallettes basses posées au sol ne comptent pas. Décision de l'utilisateur du 26/11/2026." },
     { "id": "banc", "groupe": "maison" },
     { "id": "banc_inclinable", "groupe": "maison" },
     { "id": "roue_abdos", "groupe": "maison" },
