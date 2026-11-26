@@ -4,7 +4,7 @@
 // Après chaque changement, tout est recalculé à partir des créneaux (macros, jours, lots, courses) : une seule source de vérité.
 
 import { ARRONDI_GRAMMES, ECHELLE_MAX_PRINCIPAL, NUTRITION_VERSION, OUT_KCAL_MAX, OUT_SPLIT, RESTO_KCAL_REPERES, SEUIL_ECART_KCAL, TOL_KCAL_JOUR, TOL_KCAL_OPTIONNEL, TOL_KCAL_REPAS } from './config';
-import { ingredientAllowed } from './allergens';
+import { impliedIncompatibleDiets, ingredientAllowed } from './allergens';
 import type { FoodInfo } from './catalog';
 import type { DayTarget } from './day-targets';
 import { norm, recipeAllowed, scaleRecipe, type DayCheck, type FoodMacros, type PlanPrefs, type Recipe } from './plan';
@@ -40,6 +40,8 @@ export function foodUsable(f: FoodInfo, p: Prefs): boolean {
   if (strict && f.statutAllergenes !== 'valide') return false;
   if (f.statutAllergenes === 'inconnu') return false;
   if (p.diet.some((d) => f.regimesIncompatibles.includes(d))) return false;
+  const implied = impliedIncompatibleDiets(f.allergenes, [f.famille]);
+  if (p.diet.some((d) => implied.has(d))) return false;
   if (p.dislikedFoods.includes(f.code)) return false;
   const name = ` ${norm(f.nom)} `;
   if (p.allergenFree.some((w) => norm(w) && name.includes(norm(w)))) return false;

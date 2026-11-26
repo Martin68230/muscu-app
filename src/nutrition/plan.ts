@@ -4,7 +4,7 @@
 
 import { ARRONDI_GRAMMES, ECHELLE_MAX, ECHELLE_MIN, NUTRITION_VERSION, PART_REPAS, SCORE, TOL_KCAL_JOUR, TOL_KCAL_REPAS } from './config';
 import type { DayTarget } from './day-targets';
-import type { AllergenKey } from './allergens';
+import { impliedIncompatibleDiets, type AllergenKey } from './allergens';
 import type { GoalKind } from './needs';
 import type { PlannedIngredient, Rayon } from './shopping';
 
@@ -135,6 +135,9 @@ export function recipeAllowed(r: Recipe, p: PlanPrefs): boolean {
   if (p.allergenFree.some((w) => norm(w) && text.includes(norm(w)))) return false; // sous-chaîne : en cas de doute, l'exclusion est large
   // Échec sûr : tout régime demandé doit figurer sur la recette ; une clé non étiquetée (halal, casher, inconnue...) exclut la recette.
   if (p.diet.some((d) => !r.regimes.includes(d))) return false;
+  // Défense en profondeur : même si une recette déclare un régime, ses allergènes et familles d'ingrédients ne doivent pas le contredire.
+  const implied = impliedIncompatibleDiets(r.allergenes, r.ingredients.map((i) => i.famille));
+  if (p.diet.some((d) => implied.has(d))) return false;
   if (r.ingredients.some((i) => p.dislikedFoods.includes(i.code))) return false;
   if (p.maxCookMin != null && r.prepMin + r.cuissonMin > p.maxCookMin) return false;
   if (r.materiel.some((m) => m !== 'aucun' && !p.appliances.includes(m))) return false;
