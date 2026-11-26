@@ -517,7 +517,8 @@ export const MAIN_EXERCISE_SLOTS: readonly string[] = ['jambes_genou', 'poussee_
  * Fiches du catalogue (bibliothèque, choix à la main) jamais placées automatiquement : lot 5 (13/11/2026) : tirage de sac sur le sol (sac non pesé, charge variable,
  * dose NON SOURCÉE : placement automatique seulement quand le coach aura sourcé la charge). Annuler : retirer l'id.
  */
-export const MANUAL_ONLY_FICHES: readonly string[] = ['tirage-sac-sur-sol', 'elevation-frontale-halteres', 'souleve-de-terre-halteres'];
+export const MANUAL_ONLY_FICHES: readonly string[] = ['tirage-sac-sur-sol', 'elevation-frontale-halteres', 'souleve-de-terre-halteres', 'pompe-profonde', 'pompe-touche-epaule'];
+// 26/11/2026 : pompe-profonde et pompe-touche-epaule (jeu hasaneyldrm, poussee_h) hors générateur : grande amplitude d'épaule / instabilité à 3-5 répétitions en objectif force (relecteur) ; à rouvrir avec un minimum de répétitions validé kiné.
 
 export const PILLAR_EXCLUDED_FICHES: readonly string[] = [
   'lancer-poitrine-mur', 'lancer-rotation-mur', 'lancer-bas-haut-mur', 'squat-lancer-mur',
@@ -1547,9 +1548,9 @@ export const COMPLEMENTS = {
  * Fiches du haut du corps du jeu hasaneyldrm (sans image du dépôt) proposées par le générateur, par GROUPE : clé = schéma (poussee_h, poussee_v, tirage_h, tirage_v) ; un groupe absent reste en
  * bibliothèque et en choix manuel (index.ts). Activation progressive après balayage de profils (plafonds de zone, cou, épaules) : voir docs/decisions-prises.md.
  */
-export const HASAN_UPPER_ACTIVE: readonly string[] = ['poussee_v', 'tirage_h', 'tirage_v']; // poussee_h : à activer après revue (pompes / développés du jeu : séances pleines, correctifs supprimés, profil 3)
+export const HASAN_UPPER_ACTIVE: readonly string[] = ['poussee_h', 'poussee_v', 'tirage_h', 'tirage_v']; // poussee_h activée le 26/11/2026 après balayage (tests/unit/hasan-upper-balayage.test.ts)
 
-/** Muscles principaux dont les fiches du jeu restent hors générateur même dans un groupe actif : zones à plafond protégé et petites zones (avant-bras, trapèzes, coiffe, dentelé, cou) : leur dose vient des fiches validées à la main. */
+/** Muscles principaux dont les fiches du jeu restent hors générateur même dans un groupe actif : zones à plafond protégé et petites zones (avant-bras, trapèzes, coiffe, dentelé, cou) : leur dose vient des fiches validées à la main. Dos large (grand_dorsal) : balayage des plafonds sans dépassement le 26/11/2026, mais laissé exclu (régressions T-D33-26b traction-barre en salle et T-D25-17 blocs cardio). */
 export const HASAN_UPPER_EXCLUDED_MUSCLES: readonly string[] = ['avant_bras', 'trapezes', 'rhomboides', 'grand_dorsal', 'coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
 /** Même liste pour les muscles SECONDAIRES : la coiffe, le dentelé et le cou ne reçoivent aucun travail incident d'une fiche du jeu (cases de sécurité propres à ces zones). */
 export const HASAN_UPPER_EXCLUDED_SECONDARY: readonly string[] = ['coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
