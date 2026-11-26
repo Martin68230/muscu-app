@@ -6,7 +6,7 @@ objectifs: [perte, maintien, prise]
 duree_prep_min: 5
 duree_cuisson_min: 12
 materiel: [plaques]
-regimes: [sans_porc]
+regimes: []
 cout: eco
 source_glucides: "pâtes"
 source_proteines: "thon"

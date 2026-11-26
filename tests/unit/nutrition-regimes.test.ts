@@ -109,3 +109,23 @@ describe('vraies données : rien d\'exclu n\'est jamais proposé', () => {
     }
   });
 });
+
+describe('sauces du commerce : porc et viande cachés (étiquetage prudent du 26/11/2026)', () => {
+  // Bouillon, lardons, gélatine, fromage à présure animale possibles selon la marque : doute = incompatible.
+  const SAUCES = ['11107', '11114', '11192', '11132', '11207', '11100', '11128', '11157', '11177', '11208'];
+  it('aucune sauce composée proposée en sans porc ou végétarien (carbonara comprise)', () => {
+    for (const code of SAUCES) {
+      const f = foods.find((x) => x.code === code);
+      expect(f, code).toBeDefined();
+      for (const d of ['sans_porc', 'vegetarien', 'vegetalien']) expect(foodUsable(f!, prefs({ diet: [d] })), `${code} en ${d}`).toBe(false);
+    }
+  });
+  it('aucune recette contenant une de ces sauces proposée en sans porc ou végétarien', () => {
+    const withSauce = recipes.filter((r) => r.ingredients.some((i) => SAUCES.includes(i.code)));
+    expect(withSauce.length).toBeGreaterThan(0);
+    for (const r0 of withSauce) {
+      const r: Recipe = { ...r0, objectifs: GOALS as Recipe['objectifs'], materiel: [] };
+      for (const d of ['sans_porc', 'vegetarien']) expect(recipeAllowed(r, plan({ diet: [d] })), `${r.id} en ${d}`).toBe(false);
+    }
+  });
+});

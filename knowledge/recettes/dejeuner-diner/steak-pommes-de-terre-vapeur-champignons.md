@@ -6,7 +6,7 @@ objectifs: [maintien, prise]
 duree_prep_min: 10
 duree_cuisson_min: 15
 materiel: [plaques,micro-ondes]
-regimes: [sans_porc]
+regimes: []
 cout: normal
 source_glucides: "pomme de terre"
 source_proteines: "steak haché 10 % MG"
