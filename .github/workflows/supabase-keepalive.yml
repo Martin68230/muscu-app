@@ -1,0 +1,34 @@
+# Réveil Supabase : l'offre gratuite met le projet en pause après 7 jours sans activité.
+# Un simple GET sur l'API REST tous les 3 jours suffit. Aucune valeur en dur : tout vient des secrets.
+name: Réveil Supabase
+
+on:
+  schedule:
+    - cron: "17 6 */3 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  keepalive:
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Appel de l'API Supabase
+        env:
+          SUPABASE_URL: ${{ secrets.SUPABASE_URL }}
+          SUPABASE_ANON_KEY: ${{ secrets.SUPABASE_ANON_KEY }}
+        run: |
+          if [ -z "$SUPABASE_URL" ] || [ -z "$SUPABASE_ANON_KEY" ]; then
+            echo "::notice::Secrets SUPABASE_URL ou SUPABASE_ANON_KEY absents : réveil ignoré."
+            exit 0
+          fi
+          code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 20 \
+            -H "apikey: $SUPABASE_ANON_KEY" \
+            "${SUPABASE_URL%/}/rest/v1/" || echo "000")
+          echo "Code HTTP : $code"
+          if [ "$code" != "200" ]; then
+            echo "::error::Supabase a répondu $code (200 attendu)."
+            exit 1
+          fi
