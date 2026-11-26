@@ -5073,5 +5073,150 @@
     "perissable": false,
     "statut_allergenes": "valide",
     "garde_manger": false
+  },
+  {
+    "code": "11100",
+    "nom": "Sauce barbecue du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites",
+      "oeufs",
+      "poissons"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "vegetarien",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "flacon",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11128",
+    "nom": "Sauce carbonara du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_porc",
+      "halal",
+      "sans_gluten",
+      "sans_lactose",
+      "vegetarien",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 350
+    },
+    "conditionnement_g": 350,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11157",
+    "nom": "Sauce moutarde du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "flacon",
+      "grammes": 250
+    },
+    "conditionnement_g": 250,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11177",
+    "nom": "Sauce tomate aux champignons du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 400
+    },
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
+  },
+  {
+    "code": "11208",
+    "nom": "Sauce tomate au fromage du commerce",
+    "famille": "legume",
+    "rayon": "epicerie",
+    "allergenes": [
+      "celeri",
+      "gluten",
+      "lait",
+      "soja",
+      "moutarde",
+      "sulfites",
+      "oeufs"
+    ],
+    "statut_allergenes": "valide",
+    "regimes_incompatibles": [
+      "sans_gluten",
+      "sans_lactose",
+      "vegetalien"
+    ],
+    "unite_achat": {
+      "label": "bocal",
+      "grammes": 400
+    },
+    "conditionnement_g": 400,
+    "garde_manger": false,
+    "perissable": false
   }
 ]

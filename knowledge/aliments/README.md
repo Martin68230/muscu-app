@@ -7,4 +7,4 @@
 - `regimes_incompatibles` : végétarien, végétalien, sans porc, halal (préférence déclarée, jamais une certification ; porc seulement), sans lactose, sans gluten.
 - `unite_achat` (label, grammes) et `conditionnement_g` : tailles d'achat usuelles en France, PROVISOIRES (à valider) ; `null` si vrac ou non pertinent.
 - `garde_manger` : masqué par défaut dans la liste de courses (sel, poivre, épices, huiles). `perissable` : sert à l'optimisation des courses.
-- Aucune durée de conservation (NON SOURCÉ, spec §7.6). Produits transformés (sauces, bouillons, charcuterie, plats préparés, moutarde, vinaigres, curry, chocolat) volontairement absents.
+- Aucune durée de conservation (NON SOURCÉ, spec §7.6). Produits transformés du commerce (sauces, charcuterie) admis seulement avec code Ciqual, étiquetage prudent des allergènes (doute = présent), validation nutritionniste puis un passage relecteur ; bouillons, plats préparés, vinaigres, chocolat toujours absents.
