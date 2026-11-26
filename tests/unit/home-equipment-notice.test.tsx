@@ -1,11 +1,13 @@
 // @vitest-environment jsdom
 // Lot A.3 : message « matériel changé » à l'accueil, fermable.
-import { afterEach, describe, expect, it, vi } from 'vitest';
+import { afterAll, afterEach, describe, expect, it, vi } from 'vitest';
 import { cleanup, fireEvent, render, screen } from '@testing-library/preact';
 import { HomeView } from '../../src/ui/screens/Home';
 import type { Profile } from '../../src/data/model';
 
 afterEach(cleanup);
+// preact/hooks planifie un setTimeout (100 ms) qui appelle cancelAnimationFrame : on le laisse finir avant la fin de jsdom.
+afterAll(() => new Promise((r) => setTimeout(r, 150)));
 
 const next = { dayIndex: 0, day: { label: 'Séance A', exercises: [], estimatedMin: 40 }, tooSoon: false, readyAt: null } as never;
 const nextSoon = { dayIndex: 0, day: { label: 'Séance A', exercises: [], estimatedMin: 40 }, tooSoon: true, readyAt: null } as never;
