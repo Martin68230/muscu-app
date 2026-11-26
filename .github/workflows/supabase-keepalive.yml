@@ -1,5 +1,5 @@
 # Réveil Supabase : l'offre gratuite met le projet en pause après 7 jours sans activité.
-# Un simple GET sur l'API REST tous les 3 jours suffit. Aucune valeur en dur : tout vient des secrets.
+# Un simple GET sur la santé Auth tous les 3 jours suffit. Aucune valeur en dur : tout vient des secrets.
 name: Réveil Supabase
 
 on:
@@ -26,7 +26,7 @@ jobs:
           fi
           code=$(curl --silent --output /dev/null --write-out '%{http_code}' --max-time 20 \
             -H "apikey: $SUPABASE_ANON_KEY" \
-            "${SUPABASE_URL%/}/rest/v1/" || echo "000")
+            "$(echo "$SUPABASE_URL" | sed -E 's#(/rest/v1)?/*$##')/auth/v1/health" || echo "000")
           echo "Code HTTP : $code"
           if [ "$code" != "200" ]; then
             echo "::error::Supabase a répondu $code (200 attendu)."
