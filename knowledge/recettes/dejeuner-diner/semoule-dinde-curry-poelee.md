@@ -6,7 +6,7 @@ objectifs: [perte, maintien, prise]
 duree_prep_min: 10
 duree_cuisson_min: 18
 materiel: [plaques]
-regimes: [sans_porc]
+regimes: []
 cout: normal
 source_glucides: "semoule"
 source_proteines: "dinde"

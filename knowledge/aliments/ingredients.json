@@ -4399,7 +4399,11 @@
       "soja"
     ],
     "statut_allergenes": "valide",
-    "regimes_incompatibles": [],
+    "regimes_incompatibles": [
+      "vegetarien",
+      "sans_porc",
+      "halal"
+    ],
     "unite_achat": {
       "label": "bocal",
       "grammes": 400
@@ -4847,7 +4851,10 @@
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
-      "vegetalien"
+      "vegetalien",
+      "vegetarien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "bocal",
@@ -4876,7 +4883,10 @@
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
-      "vegetalien"
+      "vegetalien",
+      "vegetarien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "bocal",
@@ -4901,7 +4911,10 @@
     ],
     "statut_allergenes": "valide",
     "regimes_incompatibles": [
-      "sans_gluten"
+      "sans_gluten",
+      "vegetarien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "bocal",
@@ -5094,7 +5107,9 @@
       "sans_gluten",
       "vegetarien",
       "sans_lactose",
-      "vegetalien"
+      "vegetalien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "flacon",
@@ -5153,7 +5168,10 @@
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
-      "vegetalien"
+      "vegetalien",
+      "vegetarien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "flacon",
@@ -5181,7 +5199,10 @@
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
-      "vegetalien"
+      "vegetalien",
+      "vegetarien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "bocal",
@@ -5209,7 +5230,10 @@
     "regimes_incompatibles": [
       "sans_gluten",
       "sans_lactose",
-      "vegetalien"
+      "vegetalien",
+      "vegetarien",
+      "sans_porc",
+      "halal"
     ],
     "unite_achat": {
       "label": "bocal",
