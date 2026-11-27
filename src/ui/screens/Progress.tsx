@@ -6,6 +6,39 @@ import { frDate } from '../../session/calendar';
 import { fmtKg } from '../../session/messages';
 import { exerciseProgress, groupsOfMuscles, MUSCLE_GROUPS, recordHistory, weeklyMetrics, weeklySets, type ExerciseProgress, type WeekCount } from '../../session/progress-view';
 import { ProgressCurve } from './SessionDetail';
+import { exercisesWithPain } from '../../session/pain-history';
+import { painFrozen } from '../../session/adaptation';
+import { PainHistoryCard } from '../PainHistoryCard';
+
+/** Exercices avec une douleur dans leurs dernières séances : une carte chacun, évolution au toucher. */
+export function PainSection({ sets, sessions, names, zonesOf }: {
+  sets: readonly SetLog[];
+  sessions: readonly WorkoutSession[];
+  names: (id: string) => string;
+  zonesOf?: (movementId: string) => readonly string[];
+}) {
+  const [open, setOpen] = useState<string | null>(null);
+  const ids = exercisesWithPain(sets, sessions);
+  if (!ids.length) return null;
+  return (
+    <>
+      <h2>Douleur par exercice</h2>
+      <p class="dim small">Exercices où tu as signalé une douleur lors de leurs dernières séances.</p>
+      {ids.map((id) => (
+        <section class="card prog-ex" key={id} aria-label={`Douleur : ${names(id)}`}>
+          <h3>{names(id)}</h3>
+          <button type="button" class="btn" aria-expanded={open === id} onClick={() => setOpen(open === id ? null : id)}>
+            {open === id ? 'Masquer l’évolution' : 'Voir l’évolution de la douleur'}
+          </button>
+          {open === id && (
+            <PainHistoryCard movementId={id} name={names(id)} sets={sets} sessions={sessions}
+              frozen={!!zonesOf && painFrozen({ movementId: id, zones: zonesOf(id), sets, sessions, zonesOfMovement: zonesOf })} />
+          )}
+        </section>
+      ))}
+    </>
+  );
+}
 
 const unitOf = (m: ExerciseProgress['metric']): string => (m === 'charge' ? ' kg' : m === 'duree' ? ' s' : ' rép.');
 const fmt = (p: ExerciseProgress, v: number): string => `${p.metric === 'charge' ? fmtKg(v) : v}${unitOf(p.metric)}`;
@@ -75,13 +108,14 @@ export function MuscleVolume({ sets, sessions, groupsOf }: { sets: readonly SetL
 const NEW_DAYS = 14;
 const isRecent = (key: string): boolean => (Date.now() - new Date(`${key}T12:00:00`).getTime()) / 86400000 <= NEW_DAYS;
 
-export function ProgressView({ items, weeks, names, sets, sessions, groupsOf = () => [], onBack }: {
+export function ProgressView({ items, weeks, names, sets, sessions, groupsOf = () => [], zonesOf, onBack }: {
   items: ExerciseProgress[];
   weeks: WeekCount[];
   names: (id: string) => string;
   sets: readonly SetLog[];
   sessions: readonly WorkoutSession[];
   groupsOf?: (movementId: string) => readonly string[];
+  zonesOf?: (movementId: string) => readonly string[];
   onBack: () => void;
 }) {
   const [open, setOpen] = useState<string | null>(null);
@@ -147,25 +181,28 @@ export function ProgressView({ items, weeks, names, sets, sessions, groupsOf = (
           </section>
         );
       })}
+      <PainSection sets={sets} sessions={sessions} names={names} zonesOf={zonesOf} />
       <button type="button" class="btn" onClick={onBack}>Retour à l’accueil</button>
     </>
   );
 }
 
 export function Progress({ pregnancy, onBack }: { pregnancy?: PregnancyStatus | null; onBack: () => void }) {
-  const [st, setSt] = useState<{ sets: SetLog[]; sessions: WorkoutSession[]; names: (id: string) => string; groupsOf: (id: string) => readonly string[] } | null>(null);
+  const [st, setSt] = useState<{ sets: SetLog[]; sessions: WorkoutSession[]; names: (id: string) => string; groupsOf: (id: string) => readonly string[]; zonesOf?: (id: string) => readonly string[] } | null>(null);
   useEffect(() => {
     (async () => {
       const [sets, sessions] = await Promise.all([list('sets'), list('sessions')]);
       let names = (_id: string): string => 'Exercice';
       let groupsOf = (_id: string): readonly string[] => [];
+      let zonesOf: ((id: string) => readonly string[]) | undefined;
       try {
         const fiches = await loadFiches();
         names = (id) => fiches.find((f) => f.id === id)?.nom ?? 'Exercice';
         const byId = new Map(fiches.map((f) => [f.id, groupsOfMuscles(f.musclesPrincipaux ?? [])]));
         groupsOf = (id) => byId.get(id) ?? [];
+        zonesOf = (id) => Object.keys(fiches.find((f) => f.id === id)?.securite.zones ?? {});
       } catch { /* hors ligne sans fiches : noms génériques */ }
-      setSt({ sets, sessions, names, groupsOf });
+      setSt({ sets, sessions, names, groupsOf, zonesOf });
     })().catch(() => setSt({ sets: [], sessions: [], names: () => 'Exercice', groupsOf: () => [] }));
   }, []);
   // Grossesse / post-partum : pas de chiffres de charge ni de records (comme le détail des séances).
@@ -179,5 +216,5 @@ export function Progress({ pregnancy, onBack }: { pregnancy?: PregnancyStatus | 
     );
   }
   if (!st) return <p class="dim" role="status">Calcul de ta progression…</p>;
-  return <ProgressView items={exerciseProgress(st.sets, st.sessions)} weeks={weeklySets(st.sets, st.sessions, new Date())} names={st.names} groupsOf={st.groupsOf} sets={st.sets} sessions={st.sessions} onBack={onBack} />;
+  return <ProgressView items={exerciseProgress(st.sets, st.sessions)} weeks={weeklySets(st.sets, st.sessions, new Date())} names={st.names} groupsOf={st.groupsOf} zonesOf={st.zonesOf} sets={st.sets} sessions={st.sessions} onBack={onBack} />;
 }
