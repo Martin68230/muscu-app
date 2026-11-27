@@ -797,3 +797,12 @@ details.card.nut-details > summary { font-size: 1.0625rem; }
 .dayplace-day { margin: 0 0 2px; text-transform: capitalize; font-weight: 600; }
 .dayplace-row .segmented { margin: 0; gap: 4px; padding: 3px; }
 .dayplace-row .segmented button { padding: 0 2px; font-size: 0.9rem; min-width: 0; }
+
+/* Évolution de la douleur par exercice (texte seul, point neutre, pas de rouge) */
+.pain-hist { margin-top: 10px; }
+.pain-trend { margin: 0 0 8px; }
+.pain-list { list-style: none; margin: 0 0 8px; padding: 0; }
+.pain-row { min-height: 44px; box-sizing: border-box; padding: 11px 0 11px 18px; line-height: 1.4; position: relative; border-bottom: 1px solid var(--line, rgba(127,127,127,.25)); }
+.pain-row::before { content: ''; position: absolute; left: 2px; top: calc(11px + .7em - 3.5px); width: 7px; height: 7px; border-radius: 50%; border: 1px solid currentColor; opacity: .5; }
+.pain-yes::before { background: currentColor; opacity: .8; }
+.pain-date { font-weight: 600; }

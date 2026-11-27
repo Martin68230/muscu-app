@@ -6,6 +6,8 @@ import {
   type ExerciseCompare, type ExerciseDetail,
 } from '../../session/history-view';
 import { fmtKg } from '../../session/messages';
+import { painHistory } from '../../session/pain-history';
+import { PainHistoryCard } from '../PainHistoryCard';
 
 export interface DetailNames {
   fiche: (movementId: string) => string;
@@ -85,6 +87,7 @@ export function SessionDetail({ session, sets, sessions, names, numbers }: {
   numbers: boolean;
 }) {
   const [curve, setCurve] = useState<number | null>(null);
+  const [pain, setPain] = useState<number | null>(null);
   const detail = sessionDetail(session, sets);
   if (!detail.length) return null;
   const prev = numbers ? previousSameType(session, sessions, sets) : null;
@@ -116,6 +119,15 @@ export function SessionDetail({ session, sets, sessions, names, numbers }: {
                 {curve === d.index ? 'Masquer la courbe' : 'Voir la courbe'}
               </button>
               {curve === d.index && <ProgressCurve movementId={d.movementId} name={nameOf(d)} sets={sets} sessions={sessions} />}
+            </>
+          )}
+          {/* Douleur sur cet exercice dans ses dernières séances : montrée même sans chiffres (grossesse, post-partum). */}
+          {painHistory(d.movementId, sets, sessions).anyPain && (
+            <>
+              <button type="button" class="btn" aria-expanded={pain === d.index} onClick={() => setPain(pain === d.index ? null : d.index)}>
+                {pain === d.index ? 'Masquer l’évolution de la douleur' : 'Évolution de la douleur'}
+              </button>
+              {pain === d.index && <PainHistoryCard movementId={d.movementId} name={nameOf(d)} sets={sets} sessions={sessions} />}
             </>
           )}
         </section>
