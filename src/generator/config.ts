@@ -299,7 +299,7 @@ export const TRACTION_RULE = { minRir: 2, maxSets: 3, reps: [5, 10] as [number, 
 /** [kine] Mouvements techniques à barre (squat, soulevé de terre, good-morning, rowing barre, hip thrust barre) : au plus 12 répétitions. */
 export const TECHNICAL_CAP_FICHES: readonly string[] = [
   'squat-arriere-barre', 'squat-avant-barre', 'squat-barre-repere-banc', 'souleve-de-terre-barre', 'souleve-de-terre-roumain-barre',
-  'souleve-de-terre-sumo-barre', 'good-morning-barre', 'rowing-barre-penche', 'rowing-pendlay-barre', 'hip-thrust-barre',
+  'souleve-de-terre-sumo-barre', 'good-morning-barre', 'rowing-barre-penche', 'rowing-buste-penche-prise-supination', 'rowing-pendlay-barre', 'hip-thrust-barre',
 ];
 export const TECHNICAL_MAX_REPS = 12;
 /** [kine] Fiches « techniques » (soulevé de terre, good-morning) : jamais de série <= 5 répétitions sans fiche qui l'autorise (aucune aujourd'hui). */
@@ -1550,7 +1550,9 @@ export const COMPLEMENTS = {
  */
 export const HASAN_UPPER_ACTIVE: readonly string[] = ['poussee_h', 'poussee_v', 'tirage_h', 'tirage_v']; // poussee_h activée le 26/11/2026 après balayage (tests/unit/hasan-upper-balayage.test.ts)
 
-/** Muscles principaux dont les fiches du jeu restent hors générateur même dans un groupe actif : zones à plafond protégé et petites zones (avant-bras, trapèzes, coiffe, dentelé, cou) : leur dose vient des fiches validées à la main. Dos large (grand_dorsal) : balayage des plafonds sans dépassement le 26/11/2026, mais laissé exclu (régressions T-D33-26b traction-barre en salle et T-D25-17 blocs cardio). */
-export const HASAN_UPPER_EXCLUDED_MUSCLES: readonly string[] = ['avant_bras', 'trapezes', 'rhomboides', 'grand_dorsal', 'coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
+/** Muscles principaux dont les fiches du jeu restent hors générateur même dans un groupe actif : zones à plafond protégé et petites zones (avant-bras, trapèzes, coiffe, dentelé, cou) : leur dose vient des fiches validées à la main. Dos large (grand_dorsal) activé le 27/11/2026 (balayage sans dépassement, HASAN_LATE_MUSCLES). */
+export const HASAN_UPPER_EXCLUDED_MUSCLES: readonly string[] = ['avant_bras', 'trapezes', 'rhomboides', 'coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
+/** Muscles principaux dont les fiches du jeu passent après toutes les fiches validées à la main du même plan (slots.ts, rankKey) : rotation et variété seulement, jamais le choix par défaut. */
+export const HASAN_LATE_MUSCLES: readonly string[] = ['grand_dorsal'];
 /** Même liste pour les muscles SECONDAIRES : la coiffe, le dentelé et le cou ne reçoivent aucun travail incident d'une fiche du jeu (cases de sécurité propres à ces zones). */
 export const HASAN_UPPER_EXCLUDED_SECONDARY: readonly string[] = ['coiffe_des_rotateurs', 'dentele_anterieur', 'cou'];
