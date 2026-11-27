@@ -12,7 +12,7 @@ import type { InjuryZone } from '../data/model';
 import { createSession, type CreateContext, type CreatedExercise, type CreatedSession, type CreateMessage } from '../generator';
 import { CREER_SEANCE, JUMPS, VOLUME, itemNom, type CreateEntry, type CreateIntensity, type CreateZone } from '../generator/config';
 import { SPORT_GATE_TEXT } from '../sport/sport-config';
-import { buildCtx, carriesLoad, isUnilateral, levelIdx, type Ctx } from '../generator/context';
+import { buildCtx, isUnilateral, levelIdx, type Ctx } from '../generator/context';
 import { buildExercise } from '../generator/dose';
 import { canPair, estimerDuree, pairRestSec, type DurSession } from '../generator/duration';
 import { makePlaf, sessionCapsOk, sessionVol, weekCapFor, weekMusclesOf, weekVol } from '../generator/plaf';
