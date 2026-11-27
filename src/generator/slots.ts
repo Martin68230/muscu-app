@@ -1,5 +1,5 @@
 // Emplacements d'une séance (V-EMP §2.2), classement (V-CLASSE §6.7), replis (V-IMPOS §7.1), rotation A/C (V-ROT §2.3).
-import { CORE_NOT_CORE_IDS, GYM_RANK_TAGS, ISOLATION, MAIN_EXERCISE_SLOTS, MANUAL_ONLY_FICHES, PILLAR_EXCLUDED_FICHES } from './config';
+import { CORE_NOT_CORE_IDS, GYM_RANK_TAGS, HASAN_LATE_MUSCLES, ISOLATION, MAIN_EXERCISE_SLOTS, MANUAL_ONLY_FICHES, PILLAR_EXCLUDED_FICHES } from './config';
 import { levelIdx, isChargeable, isUnilateral, type Ctx } from './context';
 import { allowedVariants, resolveFiche, type Candidate } from './safety';
 import { templateOf, typeOf } from './split';
@@ -174,6 +174,9 @@ function rankKey(c: Candidate, slot: SlotKey, schemaRank: number, ctx: Ctx): (nu
   const f = c.fiche;
   // Index 3 de la clé finale (après le niveau de repli) : exercice de salle d'abord (salle seulement), avant la charge et le niveau.
   const key: (number | string)[] = [schemaRank, c.adapted ? 1 : 0, gymRank(c, ctx)];
+  // Clé « jeu en retrait » (27/11/2026, activation du dos large) : une fiche du jeu hasaneyldrm dont un muscle principal est dans HASAN_LATE_MUSCLES passe après TOUTES les fiches validées
+  // à la main du même plan et du même niveau de repli (pas seulement à rang égal, clé 6 bis) : traction-barre reste le choix par défaut en salle (T-D33-26b) ; le jeu sert à la rotation. Toujours 0 ailleurs.
+  key.push(Array.isArray(f.images) && f.images.length === 0 && f.musclesPrincipaux.some((m) => HASAN_LATE_MUSCLES.includes(m)) ? 1 : 0);
   // Clé 3 : familles force/muscle, fiche de type force : variante chargeable ; puis variante au niveau de la personne.
   const underCap = c.capped || ctx.pregnant;
   if ((ctx.family === 'force' || ctx.family === 'muscle') && f.type === 'force') {
