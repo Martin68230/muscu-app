@@ -16,6 +16,8 @@ import { asGenFiches } from '../session/launch';
 import { durationText, lineText } from '../session/text';
 import { ExoThumbById } from '../../images/ExoThumb';
 import { Precautions } from '../Precautions';
+import { buildManual, manualEnv, rebuildFor, MANUAL_TEXT, type ManualPick } from '../../session/manual-session';
+import { ManualPicker } from './ManualPicker';
 
 const ZONES: CreateZone[] = ['jambes', 'haut', 'tronc', 'corps_entier'];
 type Sport = NonNullable<CreateSessionRequest['sport']>;
@@ -31,6 +33,9 @@ const INTENSITIES: { id: CreateIntensity; label: string }[] = [
 export const CREATE_TEXT = {
   title: 'Créer une séance',
   intro: 'Une séance ponctuelle, faite pour aujourd’hui. Elle s’ajoute à ton programme, elle ne le remplace pas.',
+  mode: 'Comment ?',
+  modeAuto: 'Séance proposée',
+  modeManual: 'Je choisis mes exercices',
   zone: 'Quelle zone ?',
   sport: 'Un sport à préparer ? (facultatif)',
   duration: 'Combien de temps ?',
@@ -141,7 +146,7 @@ function SessionResult({ s }: { s: CreatedSession }) {
             <li key={`${e.variantId}-${i}`} class="prev-row">
               <ExoThumbById ficheId={e.ficheId} variantId={e.variantId} size={44} />
               <div class="prev-body"><strong>{e.nom}{e.variantNom && e.variantNom !== e.nom ? ` (${e.variantNom})` : ''}</strong>
-              <div class="dim small">{lineText(plannedOf(e))}{e.tempo ? ` · ${e.tempo}` : ''}</div></div>
+              <div class="dim small">{lineText(plannedOf(e))}{e.tempo ? ` · ${e.tempo}` : ''}{e.supersetGroup ? (s.exercises[i - 1]?.supersetGroup === e.supersetGroup ? ' · superset avec le précédent' : ' · superset avec le suivant') : ''}</div></div>
             </li>
           ))}
         </ol>
@@ -177,6 +182,9 @@ export function CreateSessionView({ input, context, now = () => new Date(), pref
   const [info, setInfo] = useState<string | null>(null);
   const [error, setError] = useState<string | null>(null);
   const [busy, setBusy] = useState(false);
+  /** Idée 2 : « Je choisis mes exercices » ; picks = choix gardés pour recomposer la séance au jour choisi du calendrier. */
+  const [mode, setMode] = useState<'auto' | 'manual'>('auto');
+  const [picks, setPicks] = useState<ManualPick[] | null>(null);
 
   if (!input) {
     return (
@@ -199,6 +207,7 @@ export function CreateSessionView({ input, context, now = () => new Date(), pref
     setError(null);
     setInfo(null);
     setPicking(false);
+    setPicks(null);
     const r = request();
     setResult({ request: r, res: createSession(input, r, context) });
     scrollTo(0, 0);
@@ -220,7 +229,7 @@ export function CreateSessionView({ input, context, now = () => new Date(), pref
     setError(null);
     // La séance est recomposée pour ce jour-là : l'espacement des jambes et les contacts dépendent de la date.
     const r = { ...result.request, todayIso: noonIso(day) };
-    const res = createSession(input, r, context);
+    const res = picks ? manualFor(input, context, picks, r) : createSession(input, r, context);
     if (!res.ok) {
       setError(res.message);
       setBusy(false);
@@ -287,6 +296,24 @@ export function CreateSessionView({ input, context, now = () => new Date(), pref
       <button type="button" class="btn back-btn" onClick={onBack}>{CREATE_TEXT.back}</button>
       <h1>{CREATE_TEXT.title}</h1>
       <p class="dim">{CREATE_TEXT.intro}</p>
+      {!prefill && <Chips legend={CREATE_TEXT.mode} items={[{ id: 'auto', label: CREATE_TEXT.modeAuto }, { id: 'manual', label: CREATE_TEXT.modeManual }]} value={mode} onPick={(m) => setMode(m as 'auto' | 'manual')} />}
+      {mode === 'manual' ? (
+        <>
+          <Chips legend={CREATE_TEXT.intensity} items={INTENSITIES} value={intensity} onPick={setIntensity} />
+          {hasChair && (
+            <Chips legend={CREATE_TEXT.chair} items={[{ id: 'oui', label: 'Oui' }, { id: 'non', label: 'Non' }]} value={chairStable ? 'oui' : 'non'} onPick={(v) => setChairStable(v === 'oui')} />
+          )}
+          <ManualPicker input={input} context={context} intensity={intensity} chairStable={hasChair && chairStable} now={now} initial={picks} onCompose={(session, p) => {
+            setError(null);
+            setInfo(null);
+            setPicking(false);
+            setPicks(p);
+            const r = { ...request(), zone: session.zone, sport: null, durationMin: session.durationMin };
+            setResult({ request: r, res: { ok: true, session, warnings: session.warnings } });
+            scrollTo(0, 0);
+          }} />
+        </>
+      ) : (<>
       <Chips legend={CREATE_TEXT.zone} items={ZONES.map((z) => ({ id: z, label: ZONE_TEXT[z] }))} value={zone} onPick={setZone} />
       <Chips legend={CREATE_TEXT.sport} items={SPORTS.map((s) => ({ id: s.id as Sport | null, label: s.label }))} value={sport} onPick={setSport} />
       <Chips legend={CREATE_TEXT.duration} items={DURATIONS.map((d) => ({ id: d, label: `${d} min` }))} value={durationMin} onPick={setDurationMin} />
@@ -303,8 +330,17 @@ export function CreateSessionView({ input, context, now = () => new Date(), pref
       <div class="thumb-zone">
         <button type="button" class="btn btn-primary" onClick={compose}>{CREATE_TEXT.compose}</button>
       </div>
+      </>)}
     </>
   );
+}
+
+/** Séance choisie à la main, recomposée pour une autre date (calendrier) : mêmes filtres et verrous, à la date du jour choisi. */
+function manualFor(input: GeneratorInput, context: CreateContext, picks: ManualPick[], r: CreateSessionRequest): CreateSessionResult {
+  const env = manualEnv(input, { intensity: r.intensity, chairStable: !!r.chairStable, todayIso: r.todayIso }, context);
+  const again = rebuildFor(picks, env);
+  const built = again ? buildManual(again, env) : { ok: false as const, message: MANUAL_TEXT.unavailable };
+  return built.ok ? { ok: true, session: built.session, warnings: built.session.warnings } : { ok: false, code: 'manuel', message: built.message, warnings: [], suggestions: [] };
 }
 
 /** Écran branché sur le stockage local : lit le profil complet, l'historique, puis délègue le lancement à l'application. */

@@ -20,6 +20,7 @@ import { MISSED_TEXT } from '../../session/missed-texts';
 import { PAIN_S1_TEXT, R5_STOP_TEXT, U1_TEL, U1_TEXT } from '../../session/messages';
 import { MissedCardView, type MissedActions } from '../MissedCard';
 import { MuscleMapCard } from '../MuscleMapCard';
+import { WeekDoneCard } from '../WeekDoneCard';
 import { cycleMaps, weekMap, type ZoneMap } from '../../zones/map-data';
 import { mainGoalKey } from '../../zones/main-goal';
 
@@ -292,6 +293,7 @@ export function HomeView({ profile, status, onStart, onEditStep, onResume, onOpe
       <TodayMeals />
       <WeighReminder />
       <RegularityCard reg={reg ?? null} today={today ?? new Date()} onOpenHistory={onOpenHistory} onOpenProgress={onOpenProgress} />
+      {!security && <WeekDoneCard today={today ?? undefined} />}
       {muscles && !security && (
         <MuscleMapCard id="home-carte" title="Muscles de ton cycle" intro="Ce que ton programme prévoit sur un cycle (toutes ses séances, une fois chacune). C’est cette carte qui dit si une zone est couverte." statuses={muscles.week.statuses} points={muscles.week.points} period="sur le cycle">
           <button type="button" class="btn" onClick={() => { setCycle(true); scrollTo(0, 0); }}>Voir par type de séance</button>
