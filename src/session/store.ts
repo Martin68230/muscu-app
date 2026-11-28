@@ -90,6 +90,34 @@ export interface SymptomOutcome {
   tel: string | null;
 }
 
+/**
+ * SUP-10 pour une séance créée : muscles principaux de la veille = séance du programme actif (veilleMuscles) + toute séance commencée
+ * la veille. Doute (muscles illisibles) : null, aucune paire.
+ */
+export async function createdVeille(sessions: readonly WorkoutSession[], todayKey: string, mainMusclesOf: (ex: ProgramDay['exercises'][number]) => string[] | null): Promise<string[] | null> {
+  const programs = await list('programs');
+  const active = programs.find((p) => p.active && !p.deletedAt) ?? null;
+  const fromProgram = active ? veilleMuscles(active, sessions, todayKey, mainMusclesOf) : [];
+  if (fromProgram === null) return null;
+  const [y, m, d] = todayKey.split('-').map(Number);
+  const prevKey = dateKey(new Date(y, m - 1, d - 1));
+  const out = new Set(fromProgram);
+  for (const s of sessions) {
+    // Toute séance commencée la veille (créée, ou d'un programme même plus actif : relecteur 27/11/2026) ; celles du programme actif
+    // sont déjà lues par veilleMuscles (doublon sans effet : ensemble).
+    if (s.deletedAt || !s.plan || s.status === 'prevue') continue;
+    const when = s.startedAt ? dateKey(new Date(s.startedAt)) : s.plannedDate.slice(0, 10);
+    if (when !== prevKey) continue;
+    for (const ex of s.plan.exercises) {
+      if (ex.role === 'cardio' || ex.jump) continue;
+      const ms = mainMusclesOf(ex);
+      if (ms === null) return null;
+      ms.forEach((x) => out.add(x));
+    }
+  }
+  return [...out];
+}
+
 export class SessionController {
   private lastSeenAt: number | null = null;
 
@@ -149,7 +177,9 @@ export class SessionController {
     if (sessions.some((s) => s.status === 'en_cours')) throw new SessionError('Une séance est déjà en cours.');
     const t = now();
     // Les paires décidées par le composeur ne sont appliquées que hors étalonnage ou retour après gêne (comme pour un programme).
-    const played = withPerSide(pairsForSession(day, ctx), ctx);
+    // Choix manuel compris ; SUP-10 : ni si la veille (programme actif OU séance créée la veille) a travaillé un même muscle principal.
+    const veille = ctx.mainMusclesOf ? await createdVeille(sessions, dateKey(new Date(t)), (ex) => ctx.mainMusclesOf!(ex)) : undefined;
+    const played = withPerSide(pairsForSession(day, ctx, { veille }), ctx);
     const state = startSession(played, t);
     const fields = { status: 'en_cours' as const, startedAt: iso(t), endedAt: null, plan: played, created: meta, ...toPatch(state, played, t) };
     const planned = existingId ? sessions.find((s) => s.id === existingId && s.status === 'prevue' && !s.deletedAt) : undefined;
